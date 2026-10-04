@@ -48,7 +48,7 @@ const CaseStudy = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/case-studies"
-            className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-navy-dark/60 hover:text-navy-dark transition-colors duration-300 mb-8"
+            className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-navy-dark/70 hover:text-navy-dark transition-colors duration-300 mb-8"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             {" All case studies"}
@@ -213,7 +213,7 @@ const CaseStudy = () => {
                 <span className="text-[10.5px] font-bold text-navy-dark/70 border border-line rounded px-2 py-0.5">
                   {c}
                 </span>
-                <span className="text-[9.5px] font-bold tracking-wider text-navy-dark/60 bg-linen rounded px-2 py-1">
+                <span className="text-[9.5px] font-bold tracking-wider text-navy-dark/70 bg-linen rounded px-2 py-1">
                   {u}
                 </span>
               </div>

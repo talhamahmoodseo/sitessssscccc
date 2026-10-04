@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Check, Clock, X } from "lucide-react";
 import {
-  Glow,
   HeroActions,
   OtherServices,
   RatingRow,
@@ -62,7 +61,7 @@ const RequestTicker = () => {
             <span className="animate-ping absolute h-full w-full rounded-full bg-verified opacity-60" />
             <span className="relative rounded-full h-2 w-2 bg-verified" />
           </span>
-          <span className="text-[11px] font-semibold tracking-[0.14em] text-navy-dark/60 uppercase">
+          <span className="text-[11px] font-semibold tracking-[0.14em] text-navy-dark/70 uppercase">
             Source requests · live
           </span>
           <span className="ml-auto text-[11px] font-semibold text-navy-dark/70">
@@ -93,7 +92,7 @@ const RequestTicker = () => {
                   <span className="text-[12.5px] font-semibold text-navy-dark">
                     {a.outlet}
                   </span>
-                  <span className="text-[9.5px] font-bold text-navy-dark/55 border border-line rounded px-1.5 py-0.5">
+                  <span className="text-[9.5px] font-bold text-navy-dark/70 border border-line rounded px-1.5 py-0.5">
                     {a.dr}
                   </span>
                 </span>
@@ -102,7 +101,7 @@ const RequestTicker = () => {
                 </span>
               </span>
               <span
-                className={`flex-none inline-flex items-center gap-1 text-[10px] font-bold tabular-nums rounded-full px-2 py-1 ${c < 60 ? "text-gap bg-gap/10" : "text-navy-dark/60 bg-linen"}`}
+                className={`flex-none inline-flex items-center gap-1 text-[10px] font-bold tabular-nums rounded-full px-2 py-1 ${c < 60 ? "text-gap bg-gap/10" : "text-navy-dark/70 bg-linen"}`}
               >
                 <Clock className="w-2.5 h-2.5" />
                 {c}m
@@ -147,14 +146,6 @@ const HaroQuotes = () => {
     <PageLayout>
       <Seo title="HARO & Expert Quotes" description={e.sub} />
       <div className="relative bg-mist overflow-hidden pt-28 pb-20 lg:pt-32">
-        <Glow
-          tint="bg-blush"
-          className="-right-24 top-10 w-[500px] h-[380px] opacity-60"
-        />
-        <Glow
-          tint="bg-butter"
-          className="-left-20 top-44 w-[420px] h-[320px] opacity-50"
-        />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.05fr] gap-12 items-center">
           <div>
             <SectionLabel>HARO & Expert Placements</SectionLabel>
@@ -201,7 +192,7 @@ const HaroQuotes = () => {
                 ].map((s) => (
                   <li
                     key={s}
-                    className="flex gap-3 text-[14.5px] text-navy-dark/60"
+                    className="flex gap-3 text-[14.5px] text-navy-dark/70"
                   >
                     <X className="w-4 h-4 text-gap flex-none mt-0.5" />
                     {s}
@@ -216,7 +207,7 @@ const HaroQuotes = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.1 }}
             >
-              <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/60 uppercase mb-5">
+              <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/70 uppercase mb-5">
                 How we run it
               </p>
               <ul className="space-y-3.5">
@@ -318,7 +309,7 @@ const HaroQuotes = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: a * 0.09 }}
               >
-                <span className="text-[11px] font-bold tracking-[0.16em] text-navy-dark/55 mb-4">
+                <span className="text-[11px] font-bold tracking-[0.16em] text-navy-dark/70 mb-4">
                   0{a + 1}
                 </span>
                 <h3 className="text-[18px] font-semibold text-navy-dark mb-2.5">
@@ -345,7 +336,7 @@ const HaroQuotes = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[13px] font-semibold text-navy-dark/60 mb-1">
+            <p className="text-[13px] font-semibold text-navy-dark/70 mb-1">
               The Industry Journal
             </p>
             <p className="text-[11px] text-navy-dark/65 mb-7">
@@ -372,10 +363,10 @@ const HaroQuotes = () => {
                 <Check className="w-2.5 h-2.5" />
                 {" QUOTED + LINKED"}
               </span>
-              <span className="text-[10px] font-bold tracking-wider text-navy-dark/60 bg-white border border-line rounded-full px-2.5 py-1">
+              <span className="text-[10px] font-bold tracking-wider text-navy-dark/70 bg-white border border-line rounded-full px-2.5 py-1">
                 DR 66
               </span>
-              <span className="text-[10px] font-bold tracking-wider text-navy-dark/60 bg-white border border-line rounded-full px-2.5 py-1">
+              <span className="text-[10px] font-bold tracking-wider text-navy-dark/70 bg-white border border-line rounded-full px-2.5 py-1">
                 INDEXED · 4 DAYS
               </span>
             </div>

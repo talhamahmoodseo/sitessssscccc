@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Annotation, SectionTitle } from "@/components/brand";
 import {
   FigAiAnswers,
   FigCategoryClimb,
@@ -97,98 +99,115 @@ const PERSONAS = [
   },
 ];
 
+const TINTS = [
+  "from-butter/70",
+  "from-mint/70",
+  "from-lilac/70",
+  "from-blush/70",
+  "from-sky/70",
+];
+
 const Personas = () => {
-  const [e, s] = useState(0),
-    a = PERSONAS[e];
+  const [active, setActive] = useState(0);
+  const p = PERSONAS[active];
+
   return (
-    <div className="bg-linen py-24 lg:py-32">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-4xl sm:text-5xl font-semibold text-navy-dark text-center tracking-[-0.03em] leading-[1.06] mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-        >
-          {"Built to "}
-          <span className="text-navy-dark/65">power</span>
-          <br />
-          the people who need authority
-        </motion.h2>
-        <div className="bg-white rounded-3xl border border-line p-4 sm:p-6">
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
-            {PERSONAS.map((r, c) => {
-              const u = c === e;
+    <div className="bg-mist py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="relative">
+          <Annotation className="-top-2 left-0 hidden w-[140px] xl:block">
+            pick your corner
+          </Annotation>
+          <SectionTitle align="center" eyebrow="Who it's for">
+            Built for the people who need authority
+          </SectionTitle>
+        </div>
+
+        <div className="rounded-[2rem] bg-white/70 p-3 ring-1 ring-navy-dark/[0.06] sm:p-4">
+          {/* persona selector — each card carries its own line-art figure */}
+          <div
+            role="tablist"
+            aria-label="Who we work with"
+            className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5"
+          >
+            {PERSONAS.map((item, i) => {
+              const on = i === active;
               return (
                 <button
-                  key={r.id}
-                  onClick={() => s(c)}
-                  className={`relative rounded-2xl border p-3 pt-2.5 text-left overflow-hidden transition-colors duration-300 ${u ? "border-navy-dark/25 bg-white" : "border-line bg-white hover:border-navy-dark/15"}`}
+                  key={item.id}
+                  role="tab"
+                  aria-selected={on}
+                  onClick={() => setActive(i)}
+                  className={`group relative overflow-hidden rounded-2xl px-3 pb-3 pt-4 text-center transition-all duration-300 ${
+                    on
+                      ? "bg-white ring-1 ring-navy-dark/10"
+                      : "bg-transparent hover:bg-white/60"
+                  }`}
                 >
                   <span
-                    className={`block text-[11.5px] font-semibold mb-1 transition-colors duration-300 ${u ? "text-navy-dark" : "text-navy-dark/65"}`}
+                    className={`block text-[13px] font-semibold transition-colors duration-300 ${
+                      on ? "text-navy-dark" : "text-navy-dark/70"
+                    }`}
                   >
-                    {r.tab}
+                    {item.tab}
                   </span>
-                  <span
-                    className={`block transition-opacity duration-300 ${u ? "text-navy-dark opacity-100" : "text-navy-dark opacity-35"}`}
-                  >
-                    <r.Fig className="w-full h-24" />
-                  </span>
-                  {u && (
+
+                  <span className="relative mt-3 block h-[104px]">
+                    {/* the tint only appears under the active figure */}
                     <motion.span
-                      layoutId="persona-glow"
-                      className="absolute inset-x-2 bottom-0 h-10 rounded-full blur-xl"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, rgb(var(--lilac)), rgb(var(--blush)), rgb(var(--butter)))",
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 30,
-                      }}
+                      className={`absolute inset-x-3 bottom-0 h-12 rounded-full bg-gradient-to-t ${TINTS[i]} to-transparent blur-xl`}
+                      initial={false}
+                      animate={{ opacity: on ? 1 : 0 }}
+                      transition={{ duration: 0.4 }}
                     />
-                  )}
+                    <item.Fig
+                      className={`relative mx-auto h-full w-auto transition-all duration-500 ${
+                        on
+                          ? "text-navy-dark/80"
+                          : "text-navy-dark/25 group-hover:text-navy-dark/40"
+                      }`}
+                    />
+                  </span>
                 </button>
               );
             })}
           </div>
-          <motion.div
-            key={a.id}
-            className="grid lg:grid-cols-2 gap-10 lg:gap-16 px-3 sm:px-6 pt-10 pb-6"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
-          >
-            <div>
-              <h3 className="text-2xl sm:text-[1.9rem] font-semibold text-navy-dark leading-[1.15] tracking-[-0.02em] mb-6">
-                {a.title}
-              </h3>
-              <a
-                href={a.href}
-                className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 text-[13.5px] font-semibold text-navy-dark hover:border-navy-dark transition-colors duration-300"
-              >
-                Explore this
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-            <div className="space-y-6">
-              {a.points.map((r, c) => (
-                <div
-                  key={r.h}
-                  className={c === 0 ? "pb-6 border-b border-line" : ""}
+
+          <div className="mt-3 border-t border-navy-dark/[0.07] pt-8 sm:mt-4 sm:pt-10">
+            <motion.div
+              key={p.id}
+              className="grid gap-10 px-2 pb-4 sm:px-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <div>
+                <h3 className="text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.2rem]">
+                  {p.title}
+                </h3>
+                <Link
+                  to={p.href}
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl border border-navy-dark/20 bg-white px-5 py-3 text-[13.5px] font-semibold text-navy-dark transition-colors duration-300 hover:border-navy-dark"
                 >
-                  <p className="text-[15.5px] font-semibold text-navy-dark mb-1.5">
-                    {r.h}
-                  </p>
-                  <p className="text-[14px] text-navy-dark/70 leading-relaxed">
-                    {r.d}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+                  Explore {p.tab.toLowerCase()} solutions
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+
+              <div className="divide-y divide-navy-dark/[0.08]">
+                {p.points.map((pt) => (
+                  <div key={pt.h} className="py-5 first:pt-0 last:pb-0">
+                    <h4 className="text-[16.5px] font-semibold text-navy-dark">
+                      {pt.h}
+                    </h4>
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-navy-dark/65">
+                      {pt.d}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>

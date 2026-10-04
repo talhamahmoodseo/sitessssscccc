@@ -44,7 +44,7 @@ const Results = ({ standalone = false }) => (
             <div
               className={`${s.bg} p-8 sm:p-10 flex flex-col justify-between min-h-[220px]`}
             >
-              <p className="text-[11px] font-semibold tracking-[0.14em] text-navy-dark/60 uppercase">
+              <p className="text-[11px] font-semibold tracking-[0.14em] text-navy-dark/70 uppercase">
                 {s.industry}
                 {" \u00b7 "}
                 {s.duration}
@@ -71,7 +71,7 @@ const Results = ({ standalone = false }) => (
                     <span className="block text-[19px] font-semibold text-navy-dark leading-none">
                       {r}
                     </span>
-                    <span className="block text-[11px] text-navy-dark/60 mt-1.5">
+                    <span className="block text-[11px] text-navy-dark/70 mt-1.5">
                       {c}
                     </span>
                   </span>
@@ -100,7 +100,7 @@ const Results = ({ standalone = false }) => (
             See all case studies
             <ArrowRight className="w-4 h-4" />
           </a>
-          <span className="text-[13px] text-navy-dark/60">
+          <span className="text-[13px] text-navy-dark/70">
             Sample data — real client files shared on the call.
           </span>
         </div>

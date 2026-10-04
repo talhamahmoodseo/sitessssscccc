@@ -376,7 +376,7 @@ export const FitPanel = ({ good, bad }: { good: string[]; bad: string[] }) => (
           </li>
         ))}
       </ul>
-      <p className="mt-5 text-[12.5px] leading-relaxed text-navy-dark/60">
+      <p className="mt-5 text-[12.5px] leading-relaxed text-navy-dark/70">
         If it is not a fit we will say so on the call and point you somewhere
         better. That costs us a deal and saves you a quarter.
       </p>

@@ -202,7 +202,7 @@ const About = () => (
                 <div
                   className={`${e.tint} p-8 flex flex-col justify-between min-h-[230px]`}
                 >
-                  <span className="text-[13px] font-bold tracking-[0.14em] text-navy-dark/60">
+                  <span className="text-[13px] font-bold tracking-[0.14em] text-navy-dark/70">
                     {e.year}
                   </span>
                   <span className="text-navy-dark self-center">
@@ -291,7 +291,7 @@ const About = () => (
             <br />
             senior hands
           </h2>
-          <p className="text-[14px] text-navy-dark/60 max-w-xs">
+          <p className="text-[14px] text-navy-dark/70 max-w-xs">
             No account managers between you and the work. Role cards below are
             real functions — photos go in as the team grows.
           </p>
@@ -316,7 +316,7 @@ const About = () => (
                     className="w-20 h-20 rounded-full object-cover ring-4 ring-white"
                   />
                 ) : (
-                  <span className="text-[26px] font-bold text-navy-dark/60">
+                  <span className="text-[26px] font-bold text-navy-dark/70">
                     {e.initials}
                   </span>
                 )}

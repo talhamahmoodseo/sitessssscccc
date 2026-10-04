@@ -7,7 +7,6 @@ import {
   ClaudeMark,
 } from "@/components/PlatformMarks";
 import {
-  Glow,
   HeroActions,
   OtherServices,
   RatingRow,
@@ -80,7 +79,7 @@ const AnswerTyper = () => {
               {["fresnodaily.com", "homeservicesmag.com"].map((d) => (
                 <span
                   key={d}
-                  className="text-[10px] font-semibold text-navy-dark/55 bg-linen rounded-md px-2 py-1"
+                  className="text-[10px] font-semibold text-navy-dark/70 bg-linen rounded-md px-2 py-1"
                 >
                   {d}
                 </span>
@@ -135,7 +134,7 @@ const CitationCard = () => (
               }}
             />
           </div>
-          <p className="text-[11.5px] text-navy-dark/55 mt-1.5">
+          <p className="text-[11.5px] text-navy-dark/70 mt-1.5">
             of tracked queries name the brand
           </p>
         </div>
@@ -163,15 +162,15 @@ const MentionPanel = () => (
       <span className="border-b-2 border-sky pb-0.5">
         For emergency HVAC work in Fresno
       </span>
-      <sup className="text-[11px] font-bold text-navy-dark/60 ml-0.5">1</sup>,{" "}
+      <sup className="text-[11px] font-bold text-navy-dark/70 ml-0.5">1</sup>,{" "}
       <span className="bg-lilac rounded px-1.5 font-semibold">YourBrand</span>
-      <sup className="text-[11px] font-bold text-navy-dark/60 ml-0.5">
+      <sup className="text-[11px] font-bold text-navy-dark/70 ml-0.5">
         2
       </sup>{" "}
       <span className="border-b-2 border-mint pb-0.5">
         has built a reputation for same-day dispatch and licensed technicians
       </span>
-      <sup className="text-[11px] font-bold text-navy-dark/60 ml-0.5">3</sup>
+      <sup className="text-[11px] font-bold text-navy-dark/70 ml-0.5">3</sup>
       .”
     </p>
     <div className="grid sm:grid-cols-3 gap-5">
@@ -216,14 +215,6 @@ const BrandMentions = () => {
     <PageLayout>
       <Seo title="Brand Mentions" description={e.sub} />
       <div className="relative bg-mist overflow-hidden pt-28 pb-20 lg:pt-32">
-        <Glow
-          tint="bg-lilac"
-          className="-left-20 top-6 w-[540px] h-[400px] opacity-70"
-        />
-        <Glow
-          tint="bg-sky"
-          className="right-0 top-40 w-[420px] h-[320px] opacity-50"
-        />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.05fr] gap-12 items-center">
           <div>
             <SectionLabel>Brand Mentions</SectionLabel>

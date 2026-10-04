@@ -12,7 +12,7 @@
 
 @layer base {
   :root {
-    --background: 38 44% 96%;
+    --background: 40 20% 96.5%;
     --foreground: 30 11% 7%;
     --card: 0 0% 100%;
     --card-foreground: 30 11% 7%;
@@ -61,11 +61,20 @@
     --mark-deep: 198 150 32; /* its underline */
     --emphasis: 24 24 24; /* emphasised text stays near-black */
 
-    --butter: 247 233 107;
-    --mint: 199 239 185;
-    --lilac: 216 212 247;
-    --blush: 248 211 228;
-    --sky: 199 227 247;
+    /* Tile palette. Reserved for stat tiles and persona illustrations —
+       never for background washes, chips or decorative blobs. */
+    --tile-butter: 250 229 128;
+    --tile-mint: 182 231 203;
+    --tile-lilac: 209 204 248;
+    --tile-blush: 250 207 227;
+    --tile-sky: 193 222 250;
+
+    /* legacy aliases */
+    --butter: 250 229 128;
+    --mint: 182 231 203;
+    --lilac: 209 204 248;
+    --blush: 250 207 227;
+    --sky: 193 222 250;
   }
 
   * {

@@ -165,7 +165,7 @@ const Pricing = () => {
                 <button
                   key={r}
                   onClick={() => s(c === 1)}
-                  className={`relative rounded-full px-5 py-2 text-[13px] font-semibold transition-colors duration-300 ${u ? "text-white" : "text-navy-dark/60 hover:text-navy-dark"}`}
+                  className={`relative rounded-full px-5 py-2 text-[13px] font-semibold transition-colors duration-300 ${u ? "text-white" : "text-navy-dark/70 hover:text-navy-dark"}`}
                 >
                   {u && (
                     <motion.span
@@ -210,7 +210,7 @@ const Pricing = () => {
                 <span className="text-[3rem] font-semibold text-navy-dark tracking-[-0.03em] leading-none">
                   ${a(r.price).toLocaleString()}
                 </span>
-                <span className="text-[14px] text-navy-dark/60">{r.unit}</span>
+                <span className="text-[14px] text-navy-dark/70">{r.unit}</span>
               </p>
               <p className="text-[14px] text-navy-dark/70 leading-relaxed mb-7 min-h-[42px]">
                 {r.blurb}

@@ -64,7 +64,7 @@ const VideoStories = () => {
               {"people who "}
               <span className="text-navy-dark/65">checked the links</span>
             </h2>
-            <p className="text-[14px] text-navy-dark/60 max-w-xs">
+            <p className="text-[14px] text-navy-dark/70 max-w-xs">
               Ninety seconds each. No script, no agency polish — just what the
               campaign did for their business.
             </p>
@@ -106,10 +106,10 @@ const VideoStories = () => {
                     {a.result}
                   </span>
                   <span className="absolute inset-x-0 bottom-0 p-5">
-                    <span className="block text-white font-semibold text-[15px] leading-none">
+                    <span className="block text-navy-dark font-semibold text-[15px] leading-none">
                       {a.name}
                     </span>
-                    <span className="block text-white/70 text-[12px] mt-1.5">
+                    <span className="block text-navy-dark/70 text-[12px] mt-1.5">
                       {a.role}
                     </span>
                   </span>
@@ -157,7 +157,7 @@ const VideoStories = () => {
                   <p className="text-[15px] font-semibold text-navy-dark">
                     Video placeholder
                   </p>
-                  <p className="text-[13px] text-navy-dark/60 mt-1.5 max-w-sm">
+                  <p className="text-[13px] text-navy-dark/70 mt-1.5 max-w-sm">
                     {"Add the client's video URL to "}
                     <code className="font-mono text-[12px]">STORIES</code>
                     {" in VideoStories.tsx and this frame becomes the player."}
@@ -170,7 +170,7 @@ const VideoStories = () => {
                   <p className="text-[13px] font-semibold text-navy-dark">
                     {e.name}
                   </p>
-                  <p className="text-[12.5px] text-navy-dark/60 mt-0.5">
+                  <p className="text-[12.5px] text-navy-dark/70 mt-0.5">
                     {e.role}
                   </p>
                 </div>

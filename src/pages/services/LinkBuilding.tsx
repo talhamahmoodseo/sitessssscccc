@@ -5,14 +5,13 @@ import { ArrowRight } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import { Seo } from "@/components/MotionKit";
 import { openBooking } from "@/lib/booking";
-import { Glow, OtherServices, RatingRow, SectionHead } from "./shared";
+import { OtherServices, RatingRow, SectionHead } from "./shared";
 import {
   DeliverableGrid,
   FitPanel,
   InlineCta,
   LedgerPanel,
   ObjectionFaq,
-  PricingContext,
   ProcessTimeline,
   ProofStrip,
   Section,
@@ -40,10 +39,6 @@ const LinkBuilding = () => (
 
     {/* 1 — hero */}
     <div className="relative overflow-hidden bg-mist pt-28 pb-20 lg:pt-32">
-      <Glow
-        tint="bg-butter"
-        className="-left-24 top-4 h-[380px] w-[520px] opacity-60"
-      />
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <motion.p
           className="mb-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/65"
@@ -165,12 +160,6 @@ const LinkBuilding = () => (
         Link building is not right for everyone.
       </SectionHead>
       <FitPanel good={c.fit.good} bad={c.fit.bad} />
-    </Section>
-
-    {/* 9 — pricing context */}
-    <Section>
-      <SectionHead eyebrow="Pricing">What this usually costs.</SectionHead>
-      <PricingContext {...c.pricing} />
     </Section>
 
     {/* 10 — objections */}

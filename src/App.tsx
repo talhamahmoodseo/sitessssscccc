@@ -15,7 +15,7 @@ import Results from "./sections/Results";
 import Personas from "./sections/Personas";
 import Process from "./sections/Process";
 import VideoStories from "./sections/VideoStories";
-import Testimonials from "./sections/Testimonials";
+import ProofGrid from "./sections/ProofGrid";
 import FAQ from "./sections/FAQ";
 import HomeContact from "./sections/HomeContact";
 import Footer from "./sections/Footer";
@@ -71,7 +71,7 @@ const Home = () => (
         <VideoStories />
       </section>
       <section id="testimonials">
-        <Testimonials />
+        <ProofGrid />
       </section>
 
       <section id="faq">

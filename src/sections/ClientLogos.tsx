@@ -1,15 +1,11 @@
 import { motion } from "motion/react";
 
-const CLIENT_LOGOS = [
-  { name: "Northvale", sub: "HVAC" },
-  { name: "Loopdesk", sub: "" },
-  { name: "VANTAGE", sub: "& CO" },
-  { name: "OrbitPay", sub: "" },
-  { name: "GulfEstates", sub: "" },
-  { name: "Clearpath", sub: "LEGAL" },
-  { name: "Fieldstone", sub: "" },
-  { name: "Brightcart", sub: "" },
-];
+import { CLIENTS } from "@/lib/clients";
+
+const CLIENT_LOGOS = CLIENTS.map((c) => ({
+  name: c.name,
+  sub: c.sector ?? "",
+}));
 
 const LogoRow = ({ name, sub }) => (
   <span className="flex items-baseline gap-1.5 whitespace-nowrap">
@@ -17,7 +13,7 @@ const LogoRow = ({ name, sub }) => (
       {name}
     </span>
     {sub && (
-      <span className="text-[10px] font-semibold tracking-[0.16em] text-navy-dark/60">
+      <span className="text-[10px] font-semibold tracking-[0.16em] text-navy-dark/70">
         {sub}
       </span>
     )}
@@ -28,7 +24,7 @@ const ClientLogos = () => (
   <div className="bg-mist pb-16 pt-2">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.p
-        className="text-center text-[13px] font-medium text-navy-dark/60 mb-8"
+        className="text-center text-[13px] font-medium text-navy-dark/70 mb-8"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -45,9 +41,6 @@ const ClientLogos = () => (
           ))}
         </div>
       </div>
-      <p className="text-center text-[10px] font-semibold tracking-[0.16em] text-navy-dark/65 uppercase mt-8">
-        Illustrative marks · replace with real client logos
-      </p>
     </div>
   </div>
 );

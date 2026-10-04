@@ -98,7 +98,7 @@ const Services = () => (
               className="group block h-full rounded-3xl border border-line bg-white overflow-hidden hover:shadow-lift transition-shadow duration-500"
             >
               <div className={`${e.tint} px-8 py-7`}>
-                <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/60 uppercase mb-2">
+                <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/70 uppercase mb-2">
                   0{s + 1}
                 </p>
                 <h2 className="text-[1.7rem] font-semibold text-navy-dark tracking-[-0.025em] leading-tight">

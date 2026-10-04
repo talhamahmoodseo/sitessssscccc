@@ -654,7 +654,7 @@ export const OtherServices = ({ current }: { current: string }) => (
             <span className="block text-[16px] font-semibold text-navy-dark mb-1.5">
               {s.nav}
             </span>
-            <span className="text-[13px] text-navy-dark/60 group-hover:text-navy-dark transition-colors duration-300">
+            <span className="text-[13px] text-navy-dark/70 group-hover:text-navy-dark transition-colors duration-300">
               Explore →
             </span>
           </Link>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowUpRight, Mail } from "lucide-react";
 import {
-  Glow,
   HeroActions,
   OtherServices,
   RatingRow,
@@ -69,7 +68,7 @@ const PlacementFan = () => (
           <p className="text-[12.5px] font-semibold text-navy-dark">
             {e.outlet}
           </p>
-          <span className="text-[9px] font-bold text-navy-dark/60 border border-navy-dark/15 rounded px-1.5 py-0.5">
+          <span className="text-[9px] font-bold text-navy-dark/70 border border-navy-dark/15 rounded px-1.5 py-0.5">
             {e.dr}
           </span>
         </div>
@@ -127,14 +126,14 @@ const PitchPanel = () => (
           <span className="bg-mint rounded px-1">
             Response time is the new local moat
           </span>
-          <sup className="text-[10px] font-bold text-navy-dark/60 ml-1">1</sup>
+          <sup className="text-[10px] font-bold text-navy-dark/70 ml-1">1</sup>
         </p>
         <p className="text-[14.5px] text-navy-dark/75 leading-relaxed mb-3">
           <span className="border-b-2 border-blush">
             Dispatch data from 40 service firms shows 71% of callers book
             whoever answers first
           </span>
-          <sup className="text-[10px] font-bold text-navy-dark/60 ml-0.5">
+          <sup className="text-[10px] font-bold text-navy-dark/70 ml-0.5">
             2
           </sup>
           {" \u2014 happy to share the full set."}
@@ -143,7 +142,7 @@ const PitchPanel = () => (
           <span className="border-b-2 border-lilac">
             Draft ready if useful, or a 200-word quote by Thursday
           </span>
-          <sup className="text-[10px] font-bold text-navy-dark/60 ml-0.5">
+          <sup className="text-[10px] font-bold text-navy-dark/70 ml-0.5">
             3
           </sup>
           .
@@ -206,14 +205,6 @@ const DigitalPR = () => {
     <PageLayout>
       <Seo title="Digital PR" description={e.sub} />
       <div className="relative bg-mist overflow-hidden pt-28 pb-8 lg:pt-32">
-        <Glow
-          tint="bg-mint"
-          className="-right-24 top-8 w-[520px] h-[380px] opacity-60"
-        />
-        <Glow
-          tint="bg-blush"
-          className="-left-20 top-32 w-[420px] h-[320px] opacity-50"
-        />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionLabel>Digital PR</SectionLabel>
           <SectionTitle>
@@ -308,7 +299,7 @@ const DigitalPR = () => {
               <button
                 key={c.t}
                 onClick={() => a(u)}
-                className={`rounded-full px-5 py-2.5 text-[13px] font-semibold border transition-colors duration-300 ${s === u ? "bg-navy-dark text-white border-navy-dark" : "border-line text-navy-dark/60 hover:text-navy-dark"}`}
+                className={`rounded-full px-5 py-2.5 text-[13px] font-semibold border transition-colors duration-300 ${s === u ? "bg-navy-dark text-white border-navy-dark" : "border-line text-navy-dark/70 hover:text-navy-dark"}`}
               >
                 {c.t}
               </button>
@@ -373,7 +364,7 @@ const DigitalPR = () => {
                   <span className="block text-[15.5px] font-semibold text-navy-dark">
                     {u}
                   </span>
-                  <span className="block text-[13px] text-navy-dark/60 mt-1">
+                  <span className="block text-[13px] text-navy-dark/70 mt-1">
                     {h}
                   </span>
                 </span>
@@ -383,7 +374,7 @@ const DigitalPR = () => {
               </motion.div>
             ))}
           </div>
-          <p className="text-center text-[13.5px] text-navy-dark/60 mt-6">
+          <p className="text-center text-[13.5px] text-navy-dark/70 mt-6">
             Most campaigns mix all three. Tier 1 builds the “as seen in” bar;
             tier 3 wins the comparison searches.
           </p>
