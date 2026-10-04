@@ -58,7 +58,7 @@ const VideoStories = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl sm:text-5xl font-semibold text-navy-dark tracking-[-0.03em] leading-[1.06]">
+            <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
               Hear it from the
               <br />
               {"people who "}

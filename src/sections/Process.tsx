@@ -230,7 +230,7 @@ const Process = () => {
               <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
                 The Process
               </p>
-              <h2 className="text-4xl sm:text-[2.9rem] font-semibold tracking-[-0.02em] text-navy-dark">
+              <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
                 {"A "}
                 <span className="text-navy-dark/65">results-driven</span>
                 {" link building process \u2014 with you in control."}
@@ -354,7 +354,7 @@ const Process = () => {
             <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-3">
               The Process
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-navy-dark">
+            <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
               {"A "}
               <span className="text-navy-dark/65">results-driven</span>
               {" process \u2014 with you in control."}

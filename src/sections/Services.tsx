@@ -104,7 +104,7 @@ const ServicesSection = () => {
             Our Link Building Services
           </motion.p>
           <motion.h2
-            className="text-4xl sm:text-[2.9rem] font-semibold tracking-[-0.02em] text-navy-dark leading-tight max-w-4xl mx-auto"
+            className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark leading-tight max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

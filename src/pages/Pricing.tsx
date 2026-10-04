@@ -242,7 +242,7 @@ const Pricing = () => {
       </div>
       <div className="bg-white py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-semibold text-navy-dark tracking-[-0.02em] mb-10 text-center">
+          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-10 text-center">
             {"Compare the "}
             <span className="text-navy-dark/65">detail</span>
           </h2>
@@ -293,7 +293,7 @@ const Pricing = () => {
           <FigSpreadsheet className="w-24 h-auto" />
         </div>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-semibold text-navy-dark tracking-[-0.02em] mb-10 text-center">
+          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-10 text-center">
             {"Pricing "}
             <span className="text-navy-dark/65">questions</span>
           </h2>

@@ -84,6 +84,9 @@ Editorial, monochrome, deliberately not SaaS-styled. Two client decisions to
 respect: **no SaaS-product look** and **no red accent** — both were tried and
 rejected. Emphasis uses the `.mark` highlighter classes in `index.css`.
 
+**[BRAND.md](BRAND.md) is the rulebook** — four surfaces, a four-step ink ramp,
+and a closed pastel palette reserved for stat tiles. Read it before restyling.
+
 Be aware the Tailwind colour names are historical and misleading: `navy-dark`
 is near-black, `blue-accent` is *not* blue, `mist` is warm paper. Real values
 are RGB triples on `:root` in `src/index.css`. See
@@ -91,10 +94,11 @@ are RGB triples on `:root` in `src/index.css`. See
 
 ## Status
 
-Link Building is the finished service-page template (1,395 words, 8-question
-FAQ with schema, four CTAs). Digital PR, Brand Mentions and HARO are still thin
-and are the next job — the strategy for them is written up in
-[SERVICE-PAGES-PLAN.md](SERVICE-PAGES-PLAN.md).
+All four service pages are rebuilt on one template — 2,000–2,200 words each,
+8-question objection FAQ with `FAQPage` schema, four spaced CTAs, and a
+scroll-revealed stage ladder. The brand system is defined in
+[BRAND.md](BRAND.md) and applied across the site; 13 routes measured at zero
+WCAG AA contrast failures.
 
-Full list of unfinished work and known issues in
-[PROJECT.md §8–9](PROJECT.md).
+Still thin: About, Pricing, Contact and the case-study pages. Full list of
+unfinished work and known issues in [PROJECT.md §8–9](PROJECT.md).

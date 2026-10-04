@@ -83,13 +83,15 @@ src/
   lib/
     booking.ts           Calendly config + the `open-booking` window event
     content.ts           CASE_STUDIES and BLOG_POSTS (shared across pages)
+    clients.ts           real client names + the proof-grid tiles
     utils.ts             cn()
   components/
     MotionKit.tsx        Seo, ScrollToTop, ScrollProgress, SITE_NAME
     Navigation.tsx       fixed header, services dropdown, mobile sheet
     BookingModal.tsx     Calendly dialog, opens on the global event
     LogoReveal.tsx       1.8s opening curtain
-    RocketLaunch.tsx     hero rocket (fly-in + idle float)
+    RocketLaunch.tsx     hero rocket, scroll-driven along a sampled curve
+    brand.tsx            SectionTitle, StatTile, QuoteTile, Annotation
     HeroAtmosphere.tsx   drifting colour blobs behind the hero
     LineArt.tsx          11 hand-drawn SVG figures
     PlatformMarks.tsx    Google / AI Overview / ChatGPT / Claude glyphs
@@ -101,7 +103,7 @@ src/
     ui/                  button, accordion, dropdown-menu (shadcn-style)
   sections/              homepage, in render order:
                          Hero, ClientLogos, TheShift, Services, Results,
-                         Personas, Process, VideoStories, Testimonials,
+                         Personas, Process, VideoStories, ProofGrid,
                          FAQ, HomeContact, Footer
   pages/
     About, Services, ServicePage, CaseStudies, CaseStudy,
@@ -110,8 +112,9 @@ src/
       shared.tsx         SERVICES content model + section primitives
       sections.tsx       long-form page building blocks (see §7)
       content/           per-page copy, separated from layout
-      LinkBuilding.tsx   rebuilt flagship page
-      DigitalPR.tsx  BrandMentions.tsx  HaroQuotes.tsx   (not yet rebuilt)
+      ServiceTemplate.tsx  the one shape all four service pages use
+      LinkBuilding.tsx  DigitalPR.tsx  BrandMentions.tsx  HaroQuotes.tsx
+                         thin wrappers: content + template
 public/images/           22 photos used by case studies and testimonials
 wordpress/               PHP templates for the WordPress theme build
 scripts/                 theme build + PHP safety check
@@ -260,9 +263,14 @@ In rough priority order.
 
 ## 10. Placeholder content to replace before launch
 
-- Client logos — `CLIENT_LOGOS` in `sections/ClientLogos.tsx`
+- **Client proof** — `src/lib/clients.ts` holds the real client names (CapCut,
+  Ocuco) with **indicative figures and invented quotes**. The names are real;
+  the numbers and words are not yet signed off. The page carries a visible
+  "figures indicative pending client sign-off" line — remove it once real.
+- Real SVG logos — drop into `public/logos/` and swap the wordmarks in
+  `sections/ClientLogos.tsx`
 - Publication names — `PUBLICATIONS` in `components/AgencyBlocks.tsx`
-- Testimonials — currently render with a "placeholder" / "sample" suffix
+- Testimonials elsewhere still render with a "placeholder" / "sample" suffix
 - The three rejected-site examples in `content/linkBuilding.ts` are realistic
   but invented. Swap in real anonymised ones — that section is the strongest
   trust signal on the page and real data will land harder.
@@ -275,6 +283,7 @@ In rough priority order.
 | File | Contents |
 | --- | --- |
 | `README.md` | Quick start and stack |
+| `BRAND.md` | **The visual identity. Read before any styling change.** |
 | `SERVICE-PAGES-PLAN.md` | Content strategy for the service pages |
 | `HOSTING.md` | Netlify / static / WordPress / Hostinger deployment |
 | `REDESIGN.md` | The rejected SaaS-direction experiment, kept for context |

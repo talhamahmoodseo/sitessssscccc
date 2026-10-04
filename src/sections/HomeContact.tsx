@@ -33,7 +33,7 @@ ${e.message}`);
           <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
             Get in touch
           </p>
-          <h2 className="text-4xl sm:text-[2.9rem] font-semibold tracking-[-0.02em] text-navy-dark mb-6">
+          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-6">
             Not ready for a call?{" "}
             <span className="text-navy-dark/65">Write to us.</span>
           </h2>

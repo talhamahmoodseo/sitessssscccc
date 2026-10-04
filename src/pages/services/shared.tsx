@@ -630,7 +630,7 @@ export const SectionHead = ({
         {eyebrow}
       </p>
     )}
-    <h2 className="text-4xl sm:text-[2.9rem] font-semibold text-navy-dark tracking-[-0.03em] leading-[1.08]">
+    <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
       {children}
     </h2>
   </motion.div>

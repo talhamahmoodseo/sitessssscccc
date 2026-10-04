@@ -525,3 +525,79 @@ export const ObjectionFaq = ({
 );
 
 export { SectionHead };
+
+/* ---------- visual storytelling: the climb from invisible to cited ---------- */
+export const StageLadder = ({
+  stages,
+}: {
+  stages: { k: string; d: string }[];
+}) => (
+  <div className="relative overflow-hidden rounded-3xl bg-navy-dark p-7 sm:p-10">
+    <div className="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {stages.map((s, i) => (
+        <motion.div
+          key={s.k}
+          className="relative rounded-2xl border border-white/10 bg-white/[0.04] p-5"
+          style={{ marginTop: `${i * 6}px` }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{
+            duration: 0.55,
+            delay: i * 0.1,
+            ease: [0.4, 0, 0.2, 1],
+          }}
+        >
+          {/* fill bar grows with each stage — the climb, made literal */}
+          <div className="mb-4 h-1 overflow-hidden rounded-full bg-white/10">
+            <motion.div
+              className="h-full rounded-full bg-white/70"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: (i + 1) / stages.length }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
+              style={{ transformOrigin: "left" }}
+            />
+          </div>
+          <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-white/45">
+            Stage {i + 1}
+          </span>
+          <h3 className="mt-1.5 text-[18px] font-semibold text-white">{s.k}</h3>
+          <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">
+            {s.d}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ---------- problem told as a contrast, not another paragraph block ------- */
+export const ProblemSplit = ({
+  paras,
+  pull,
+}: {
+  paras: string[];
+  pull: string;
+}) => (
+  <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+    <div className="space-y-5">
+      {paras.map((p) => (
+        <p key={p} className="text-[16px] leading-relaxed text-navy-dark/80">
+          {p}
+        </p>
+      ))}
+    </div>
+    <motion.figure
+      className="self-start rounded-3xl bg-linen p-7"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.55, delay: 0.1 }}
+    >
+      <blockquote className="text-[19px] font-semibold leading-[1.35] tracking-[-0.02em] text-navy-dark">
+        {pull}
+      </blockquote>
+    </motion.figure>
+  </div>
+);

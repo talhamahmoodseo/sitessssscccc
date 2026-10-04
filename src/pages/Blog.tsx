@@ -210,7 +210,7 @@ const Blog = () => {
           <p className="text-[11px] font-semibold tracking-[0.18em] text-white/60 uppercase mb-4">
             The Field Notes
           </p>
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-white mb-4">
+          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white mb-4">
             {"One tactical email "}
             <span className="font-medium text-white/80">a month</span>.
           </h2>

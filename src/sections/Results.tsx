@@ -18,7 +18,7 @@ const Results = ({ standalone = false }) => (
             <FigTrendline className="w-24 h-14 ml-10 -mt-1" />
           </div>
           <motion.h2
-            className="text-4xl sm:text-5xl font-semibold text-navy-dark text-center tracking-[-0.03em] leading-[1.06]"
+            className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark text-center"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
