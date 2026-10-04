@@ -1,0 +1,47 @@
+# Apache config for the React SPA (cPanel / shared WordPress hosting).
+#
+# Vite copies this file into dist/ on build, so it ships with the site.
+# Serving from a SUBFOLDER? Change both /  paths below — see HOSTING.md.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Never rewrite a request that maps to a real file or directory,
+  # otherwise the JS, CSS, fonts and images would all return index.html.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else is a client-side route: hand back the app shell so
+  # /services/digital-pr and friends resolve instead of 404ing.
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Some shared hosts still don't know these types, which makes fonts
+# silently fail and the page fall back to a system typeface.
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType font/woff .woff
+  AddType image/svg+xml .svg
+  AddType application/json .json
+</IfModule>
+
+# The built filenames are stable (assets/app.js, assets/app.css) rather than
+# content-hashed, so a long cache would serve stale code after a redeploy.
+# Keep the shell and the bundles revalidating; let fonts and images cache.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "^app\.(js|css)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(woff2?|jpg|jpeg|png|svg|webp)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>

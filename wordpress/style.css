@@ -1,0 +1,13 @@
+/*
+Theme Name: Talha Mahmood — Link Building & AI Visibility
+Description: React single-page site served through WordPress. All markup is rendered by the bundle in assets/; this theme only supplies the shell and enqueues it. Rebuild with `npm run build:wp`.
+Author: Talha Mahmood
+Version: 1.0.1
+Requires at least: 6.0
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: talha-site
+*/
+
+/* Intentionally empty: the compiled stylesheet is assets/app.css.
+   WordPress only requires this file for the theme header above. */
