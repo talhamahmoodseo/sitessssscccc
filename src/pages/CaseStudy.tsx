@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import { asset } from "@/lib/booking";
 import { openBooking } from "@/lib/booking";
 import { CASE_STUDIES } from "@/lib/content";
 
@@ -99,8 +100,27 @@ const CaseStudy = () => {
             ))}
           </div>
         </motion.div>
-        <div className="h-20" />
+        <div className="h-16" />
       </div>
+
+      {/* cover image — the campaign, not a stock abstraction */}
+      <div className="bg-mist pb-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.figure
+            className="overflow-hidden rounded-3xl ring-1 ring-navy-dark/[0.07]"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <img
+              src={asset(s.cover)}
+              alt={`${s.client} — ${s.title}`}
+              className="aspect-[16/8] w-full object-cover"
+            />
+          </motion.figure>
+        </div>
+      </div>
+
       <Block
         eyebrow="The situation"
         title={
@@ -174,6 +194,27 @@ const CaseStudy = () => {
           ))}
         </div>
       </Block>
+      <div className="bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <motion.figure
+            className="overflow-hidden rounded-2xl ring-1 ring-navy-dark/[0.07]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src={asset(s.shot)}
+              alt={`Sample placement from the ${s.client} campaign`}
+              className="aspect-[16/7] w-full object-cover"
+            />
+            <figcaption className="bg-linen px-5 py-3 text-[12.5px] text-navy-dark/70">
+              Sample placement from this campaign · representative image
+            </figcaption>
+          </motion.figure>
+        </div>
+      </div>
+
       <Block
         eyebrow="The work"
         title={

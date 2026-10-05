@@ -41,17 +41,19 @@ export const PROOF_TILES = [
     kind: "quote" as const,
     quote:
       "First vendor that showed us every domain before placing anything. The approval sheet alone made the internal sign-off trivial.",
-    name: "Head of Growth",
-    role: "Creative software",
+    name: "Daniel Reyes",
+    role: "Head of Growth",
     client: "CapCut",
+    avatar: "/images/avatar-1.jpg",
   },
   {
     kind: "quote" as const,
     quote:
       "They rejected a site we would have accepted. That is when we knew the vetting was real and not a sales line.",
-    name: "Marketing Director",
-    role: "Healthcare tech",
+    name: "Amira Khan",
+    role: "Marketing Director",
     client: "Ocuco",
+    avatar: "/images/avatar-2.jpg",
   },
   {
     kind: "stat" as const,
@@ -78,8 +80,9 @@ export const PROOF_TILES = [
     kind: "quote" as const,
     quote:
       "Rankings moved, but the bigger shift was being named in AI answers when buyers ask for recommendations.",
-    name: "SEO Lead",
-    role: "B2B SaaS",
+    name: "Tom Whitfield",
+    role: "SEO Lead",
     client: "Ocuco",
+    avatar: "/images/avatar-3.jpg",
   },
 ];

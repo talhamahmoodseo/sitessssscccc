@@ -4,7 +4,6 @@ import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
 import PageHero from "@/components/PageHero";
 import PageLayout from "@/components/PageLayout";
-import ProofGrid from "@/sections/ProofGrid";
 import Results from "@/sections/Results";
 
 const CASE_STATS = [
@@ -56,7 +55,6 @@ const CaseStudies = () => (
         ))}
       </div>
     </div>
-    <ProofGrid />
     <Results standalone={true} />
     <Testimonial
       text="The case file format sold us before the call did. Charts, placements, indexation — everything an SEO lead needs to defend the budget internally."

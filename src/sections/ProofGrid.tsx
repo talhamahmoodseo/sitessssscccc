@@ -45,6 +45,7 @@ const ProofGrid = () => (
                 name={t.name}
                 role={t.role}
                 client={t.client}
+                avatar={t.avatar}
                 delay={(i % 3) * 0.07}
               />
             </div>

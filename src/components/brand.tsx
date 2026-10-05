@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
+import { asset } from "@/lib/booking";
 
 /**
  * Branded primitives. These are the only places colour, handwriting and tile
@@ -109,18 +110,21 @@ export const StatTile = ({
   </motion.div>
 );
 
-/** Testimonial tile, sized to sit in the same grid as the stats. */
+/** Testimonial tile: quote, then a face, a name and the client wordmark —
+ *  the lockup that makes proof feel like it came from a person. */
 export const QuoteTile = ({
   quote,
   name,
   role,
   client,
+  avatar,
   delay = 0,
 }: {
   quote: string;
   name: string;
   role: string;
   client: string;
+  avatar?: string;
   delay?: number;
 }) => (
   <motion.figure
@@ -133,14 +137,25 @@ export const QuoteTile = ({
     <blockquote className="text-[16.5px] leading-[1.5] tracking-[-0.011em] text-navy-dark">
       “{quote}”
     </blockquote>
-    <figcaption className="mt-6 flex items-end justify-between gap-4">
-      <span>
-        <span className="block text-[13.5px] font-semibold text-navy-dark">
+
+    <figcaption className="mt-6 flex items-center gap-3">
+      {avatar && (
+        <img
+          src={asset(avatar)}
+          alt=""
+          loading="lazy"
+          className="h-10 w-10 flex-none rounded-full object-cover ring-1 ring-navy-dark/10"
+        />
+      )}
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-[13.5px] font-semibold text-navy-dark">
           {name}
         </span>
-        <span className="block text-[12.5px] text-navy-dark/70">{role}</span>
+        <span className="block truncate text-[12.5px] text-navy-dark/70">
+          {role}
+        </span>
       </span>
-      <span className="text-[15px] font-bold tracking-[-0.02em] text-navy-dark/80">
+      <span className="flex-none text-[15px] font-bold tracking-[-0.02em] text-navy-dark/80">
         {client}
       </span>
     </figcaption>

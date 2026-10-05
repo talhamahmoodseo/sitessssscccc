@@ -5,6 +5,8 @@ import { asset } from "@/lib/booking";
 const CASE_STUDIES = [
   {
     slug: "b2b-saas-ai-visibility",
+    cover: "/images/portfolio-1.jpg",
+    shot: "/images/project-1.jpg",
     client: "B2B SaaS platform",
     industry: "Customer support software",
     duration: "7 months",
@@ -89,6 +91,8 @@ const CASE_STUDIES = [
   },
   {
     slug: "home-services-local-pack",
+    cover: "/images/portfolio-4.jpg",
+    shot: "/images/project-2.jpg",
     client: "Emergency HVAC company",
     industry: "Home services · Fresno, CA",
     duration: "5 months",
@@ -171,6 +175,8 @@ const CASE_STUDIES = [
   },
   {
     slug: "ecommerce-gulf-authority",
+    cover: "/images/portfolio-6.jpg",
+    shot: "/images/project-3.jpg",
     client: "Home & lifestyle e-commerce",
     industry: "E-commerce · UK + GCC",
     duration: "6 months",
