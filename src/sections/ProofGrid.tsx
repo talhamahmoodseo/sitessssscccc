@@ -72,9 +72,6 @@ const ProofGrid = () => (
           Open the full case files
           <ArrowRight className="h-4 w-4" />
         </Link>
-        <span className="text-[12.5px] text-navy-dark/70">
-          Figures indicative pending client sign-off.
-        </span>
       </div>
     </div>
   </div>

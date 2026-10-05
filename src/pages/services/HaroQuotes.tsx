@@ -65,7 +65,7 @@ const RequestTicker = () => {
           <span className="text-[11px] font-semibold tracking-[0.14em] text-navy-dark/60 uppercase">
             Source requests · live
           </span>
-          <span className="ml-auto text-[11px] font-semibold text-navy-dark/50">
+          <span className="ml-auto text-[11px] font-semibold text-navy-dark/70">
             3 fits today
           </span>
         </div>
@@ -85,7 +85,7 @@ const RequestTicker = () => {
                 {a.fit ? (
                   <Check className="w-3 h-3 text-verified" />
                 ) : (
-                  <X className="w-3 h-3 text-navy-dark/40" />
+                  <X className="w-3 h-3 text-navy-dark/65" />
                 )}
               </span>
               <span className="min-w-0 flex-1">
@@ -93,7 +93,7 @@ const RequestTicker = () => {
                   <span className="text-[12.5px] font-semibold text-navy-dark">
                     {a.outlet}
                   </span>
-                  <span className="text-[9.5px] font-bold text-navy-dark/55 border border-line rounded px-1.5 py-0.5">
+                  <span className="text-[9.5px] font-bold text-navy-dark/70 border border-line rounded px-1.5 py-0.5">
                     {a.dr}
                   </span>
                 </span>
@@ -110,7 +110,7 @@ const RequestTicker = () => {
             </motion.div>
           );
         })}
-        <p className="px-5 py-3.5 text-[10.5px] text-navy-dark/45 bg-linen/60">
+        <p className="px-5 py-3.5 text-[10.5px] text-navy-dark/65 bg-linen/60">
           Requests die in hours. We answer the ones that fit, fast.
         </p>
       </div>
@@ -160,7 +160,7 @@ const HaroQuotes = () => {
             <SectionLabel>HARO & Expert Placements</SectionLabel>
             <SectionTitle>
               {"Your expertise, "}
-              <span className="text-navy-dark/45">quoted everywhere</span>.
+              <span className="text-navy-dark/65">quoted everywhere</span>.
             </SectionTitle>
             <SectionLead className="max-w-lg">{e.sub}</SectionLead>
             <HeroActions label="Get me quoted" />
@@ -179,7 +179,7 @@ const HaroQuotes = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead eyebrow="The problem" center={true}>
             {"HARO became "}
-            <span className="text-navy-dark/45">a lottery</span>
+            <span className="text-navy-dark/65">a lottery</span>
           </SectionHead>
           <div className="grid sm:grid-cols-2 gap-5">
             <motion.div
@@ -274,7 +274,7 @@ const HaroQuotes = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/50 uppercase mb-5">
+            <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/70 uppercase mb-5">
               Expertise profile · sample
             </p>
             {[
@@ -293,7 +293,7 @@ const HaroQuotes = () => {
                 key={s}
                 className={`py-3.5 ${r ? "border-t border-line" : ""}`}
               >
-                <p className="text-[11px] font-semibold tracking-[0.12em] text-navy-dark/45 uppercase mb-1">
+                <p className="text-[11px] font-semibold tracking-[0.12em] text-navy-dark/65 uppercase mb-1">
                   {s}
                 </p>
                 <p className="text-[14px] text-navy-dark/80">{a}</p>
@@ -306,7 +306,7 @@ const HaroQuotes = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead eyebrow="The workflow" center={true}>
             {"Request to print, "}
-            <span className="text-navy-dark/45">with your sign-off</span>
+            <span className="text-navy-dark/65">with your sign-off</span>
           </SectionHead>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {HARO_STEPS.map((s, a) => (
@@ -318,7 +318,7 @@ const HaroQuotes = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: a * 0.09 }}
               >
-                <span className="text-[11px] font-bold tracking-[0.16em] text-navy-dark/55 mb-4">
+                <span className="text-[11px] font-bold tracking-[0.16em] text-navy-dark/70 mb-4">
                   0{a + 1}
                 </span>
                 <h3 className="text-[18px] font-semibold text-navy-dark mb-2.5">
@@ -336,7 +336,7 @@ const HaroQuotes = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead eyebrow="The result" center={true}>
             {"What it looks like "}
-            <span className="text-navy-dark/45">in print</span>
+            <span className="text-navy-dark/65">in print</span>
           </SectionHead>
           <motion.div
             className="bg-mist rounded-3xl border border-line p-8 sm:p-12"
@@ -348,7 +348,7 @@ const HaroQuotes = () => {
             <p className="text-[13px] font-semibold text-navy-dark/60 mb-1">
               The Industry Journal
             </p>
-            <p className="text-[11px] text-navy-dark/45 mb-7">
+            <p className="text-[11px] text-navy-dark/65 mb-7">
               Industry analysis · 1,400 words
             </p>
             <span className="block h-1.5 rounded-full bg-navy-dark/8 w-full mb-2" />
@@ -400,7 +400,7 @@ const HaroQuotes = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead>
             {"What's "}
-            <span className="text-navy-dark/45">included</span>
+            <span className="text-navy-dark/65">included</span>
           </SectionHead>
           <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
             {e.deliverables.map((s, a) => (
@@ -433,7 +433,7 @@ const HaroQuotes = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead center={true}>
             {"Straight "}
-            <span className="text-navy-dark/45">answers</span>
+            <span className="text-navy-dark/65">answers</span>
           </SectionHead>
           <FaqList faqs={e.faqs} />
         </div>

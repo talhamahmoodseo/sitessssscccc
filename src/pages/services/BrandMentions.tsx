@@ -80,7 +80,7 @@ const AnswerTyper = () => {
               {["fresnodaily.com", "homeservicesmag.com"].map((d) => (
                 <span
                   key={d}
-                  className="text-[10px] font-semibold text-navy-dark/55 bg-linen rounded-md px-2 py-1"
+                  className="text-[10px] font-semibold text-navy-dark/70 bg-linen rounded-md px-2 py-1"
                 >
                   {d}
                 </span>
@@ -102,7 +102,7 @@ const ENGINE_SHARE = [
 const CitationCard = () => (
   <div className="rounded-3xl border border-line bg-white p-7 sm:p-8">
     <div className="flex items-center justify-between mb-7">
-      <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/50 uppercase">
+      <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/70 uppercase">
         Citation tracker · month 4
       </p>
       <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-wider text-verified">
@@ -135,13 +135,13 @@ const CitationCard = () => (
               }}
             />
           </div>
-          <p className="text-[11.5px] text-navy-dark/55 mt-1.5">
+          <p className="text-[11.5px] text-navy-dark/70 mt-1.5">
             of tracked queries name the brand
           </p>
         </div>
       ))}
     </div>
-    <p className="text-[10.5px] font-semibold tracking-[0.14em] text-navy-dark/40 uppercase mt-7">
+    <p className="text-[10.5px] font-semibold tracking-[0.14em] text-navy-dark/65 uppercase mt-7">
       Illustrative figures
     </p>
   </div>
@@ -155,7 +155,7 @@ const MentionPanel = () => (
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.6 }}
   >
-    <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/50 uppercase mb-6">
+    <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-dark/70 uppercase mb-6">
       Anatomy of a mention that works
     </p>
     <p className="text-[19px] sm:text-[22px] text-navy-dark/85 leading-[1.7] mb-8">
@@ -229,7 +229,7 @@ const BrandMentions = () => {
             <SectionLabel>Brand Mentions</SectionLabel>
             <SectionTitle>
               {"The mentions AI engines "}
-              <span className="text-navy-dark/45">actually quote</span>.
+              <span className="text-navy-dark/65">actually quote</span>.
             </SectionTitle>
             <SectionLead className="max-w-lg">{e.sub}</SectionLead>
             <HeroActions label="Check my AI visibility" />
@@ -264,7 +264,7 @@ const BrandMentions = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.85fr_1.15fr] gap-12">
           <SectionHead eyebrow={e.problem.eyebrow}>
             {e.problem.pre}{" "}
-            <span className="text-navy-dark/45">{e.problem.em}</span>.
+            <span className="text-navy-dark/65">{e.problem.em}</span>.
           </SectionHead>
           <div className="space-y-6">
             {e.problem.paras.map((s, a) => (
@@ -286,7 +286,7 @@ const BrandMentions = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead eyebrow="How it works" center={true}>
             {"How a mention becomes "}
-            <span className="text-navy-dark/45">an answer</span>
+            <span className="text-navy-dark/65">an answer</span>
           </SectionHead>
           <div className="relative">
             <motion.div
@@ -328,7 +328,7 @@ const BrandMentions = () => {
       <div className="bg-navy-dark py-24 lg:py-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase mb-3">
+            <p className="text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase mb-3">
               What we track
             </p>
             <h2 className="text-4xl sm:text-[2.9rem] font-semibold text-white tracking-[-0.03em] leading-[1.08]">
@@ -353,7 +353,7 @@ const BrandMentions = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: r * 0.08 }}
               >
-                <span className="text-[10px] font-bold text-white/40">
+                <span className="text-[10px] font-bold text-white/70">
                   Q{r + 1}
                 </span>
                 <span className="text-[15px] text-white font-medium flex-1">
@@ -375,7 +375,7 @@ const BrandMentions = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead eyebrow="The craft" center={true}>
             {"Not a name-drop. "}
-            <span className="text-navy-dark/45">A sentence.</span>
+            <span className="text-navy-dark/65">A sentence.</span>
           </SectionHead>
           <MentionPanel />
         </div>
@@ -385,7 +385,7 @@ const BrandMentions = () => {
           <div>
             <SectionHead eyebrow="Reporting">
               {"AI visibility has no Search Console. "}
-              <span className="text-navy-dark/45">So we built the report.</span>
+              <span className="text-navy-dark/65">So we built the report.</span>
             </SectionHead>
             <p className="text-[16.5px] text-navy-dark/75 leading-[1.75] max-w-md mb-6">
               Every month we run your buyer queries across all three surfaces,
@@ -414,7 +414,7 @@ const BrandMentions = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead>
             {"What's "}
-            <span className="text-navy-dark/45">included</span>
+            <span className="text-navy-dark/65">included</span>
           </SectionHead>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {e.deliverables.map((s, a) => (
@@ -442,7 +442,7 @@ const BrandMentions = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead center={true}>
             {"Straight "}
-            <span className="text-navy-dark/45">answers</span>
+            <span className="text-navy-dark/65">answers</span>
           </SectionHead>
           <FaqList faqs={e.faqs} />
         </div>

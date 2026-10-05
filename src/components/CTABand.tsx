@@ -61,7 +61,7 @@ const CTABand = () => (
           <input
             id="cta-site"
             placeholder="yourbrand.com"
-            className="flex-1 min-w-0 bg-transparent px-3 sm:px-0 py-3 text-[14.5px] text-white placeholder:text-white/40 focus:outline-none"
+            className="flex-1 min-w-0 bg-transparent px-3 sm:px-0 py-3 text-[14.5px] text-white placeholder:text-white/70 focus:outline-none"
           />
           <a
             href="/contact"

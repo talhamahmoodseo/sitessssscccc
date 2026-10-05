@@ -161,7 +161,7 @@ const About = () => (
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7 }}
       >
-        <p className="text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase mb-7">
+        <p className="text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase mb-7">
           Why we exist
         </p>
         <p className="text-[1.7rem] sm:text-[2.3rem] text-white leading-[1.4] tracking-[-0.02em]">

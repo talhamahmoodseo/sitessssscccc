@@ -114,7 +114,7 @@ const PitchPanel = () => (
       transition={{ duration: 0.6 }}
     >
       <div className="flex items-center gap-2.5 px-6 py-3.5 border-b border-line bg-linen">
-        <Mail className="w-4 h-4 text-navy-dark/50" />
+        <Mail className="w-4 h-4 text-navy-dark/70" />
         <span className="text-[12px] font-semibold text-navy-dark/70">
           To: features desk
         </span>
@@ -218,7 +218,7 @@ const DigitalPR = () => {
           <SectionLabel>Digital PR</SectionLabel>
           <SectionTitle>
             {"Coverage that makes you "}
-            <span className="text-navy-dark/45">the one they quote</span>.
+            <span className="text-navy-dark/65">the one they quote</span>.
           </SectionTitle>
           <SectionLead className="max-w-xl mx-auto">{e.sub}</SectionLead>
           <div className="flex justify-center">
@@ -234,7 +234,7 @@ const DigitalPR = () => {
       </div>
       <div className="bg-navy-dark py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase mb-8">
+          <p className="text-center text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase mb-8">
             Recent placements
           </p>
           <div className="space-y-2.5">
@@ -257,11 +257,11 @@ const DigitalPR = () => {
                 <span className="text-[10.5px] font-bold text-white/70 border border-white/20 rounded px-2 py-0.5">
                   {d}
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-white/40" />
+                <ArrowUpRight className="w-4 h-4 text-white/70" />
               </motion.div>
             ))}
           </div>
-          <p className="text-center text-[10px] font-semibold tracking-[0.14em] text-white/30 uppercase mt-8">
+          <p className="text-center text-[10px] font-semibold tracking-[0.14em] text-white/70 uppercase mt-8">
             Sample coverage · real client list shared on the call
           </p>
         </div>
@@ -270,7 +270,7 @@ const DigitalPR = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.85fr_1.15fr] gap-12">
           <SectionHead eyebrow={e.problem.eyebrow}>
             {e.problem.pre}{" "}
-            <span className="text-navy-dark/45">{e.problem.em}</span>.
+            <span className="text-navy-dark/65">{e.problem.em}</span>.
           </SectionHead>
           <div className="space-y-6">
             {e.problem.paras.map((c, u) => (
@@ -292,7 +292,7 @@ const DigitalPR = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead eyebrow="The craft" center={true}>
             {"Anatomy of a pitch "}
-            <span className="text-navy-dark/45">editors open</span>
+            <span className="text-navy-dark/65">editors open</span>
           </SectionHead>
           <PitchPanel />
         </div>
@@ -301,7 +301,7 @@ const DigitalPR = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead eyebrow="Where stories come from" center={true}>
             {"Three places we "}
-            <span className="text-navy-dark/45">find the angle</span>
+            <span className="text-navy-dark/65">find the angle</span>
           </SectionHead>
           <div className="flex flex-wrap justify-center gap-2.5 mb-8">
             {r.map((c, u) => (
@@ -414,7 +414,7 @@ const DigitalPR = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead>
             {"What's "}
-            <span className="text-navy-dark/45">included</span>
+            <span className="text-navy-dark/65">included</span>
           </SectionHead>
           <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
             {e.deliverables.map((c, u) => (
@@ -447,7 +447,7 @@ const DigitalPR = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead center={true}>
             {"Straight "}
-            <span className="text-navy-dark/45">answers</span>
+            <span className="text-navy-dark/65">answers</span>
           </SectionHead>
           <FaqList faqs={e.faqs} />
         </div>

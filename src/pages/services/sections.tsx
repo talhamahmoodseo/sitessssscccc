@@ -559,7 +559,7 @@ export const StageLadder = ({
               style={{ transformOrigin: "left" }}
             />
           </div>
-          <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-white/45">
+          <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
             Stage {i + 1}
           </span>
           <h3 className="mt-1.5 text-[18px] font-semibold text-white">{s.k}</h3>
