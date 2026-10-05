@@ -23,6 +23,7 @@ export const CLIENTS: Client[] = [
 
 /** Bento grid for the proof section: numbers and quotes, interleaved. */
 export const PROOF_TILES = [
+  /* Row 1 — stat, stat, quote */
   {
     kind: "stat" as const,
     value: "+212%",
@@ -40,16 +41,18 @@ export const PROOF_TILES = [
   {
     kind: "quote" as const,
     quote:
-      "First vendor that showed us every domain before placing anything. The approval sheet alone made the internal sign-off trivial.",
+      "First vendor that showed us every domain before placing anything. The approval sheet alone made internal sign-off trivial.",
     name: "Daniel Reyes",
     role: "Head of Growth",
     client: "CapCut",
     avatar: "/images/avatar-1.jpg",
   },
+
+  /* Row 2 — quote, stat, stat */
   {
     kind: "quote" as const,
     quote:
-      "They rejected a site we would have accepted. That is when we knew the vetting was real and not a sales line.",
+      "They rejected a site we would have accepted. That is the moment we knew the vetting was real and not a sales line.",
     name: "Amira Khan",
     role: "Marketing Director",
     client: "Ocuco",
@@ -64,11 +67,13 @@ export const PROOF_TILES = [
   },
   {
     kind: "stat" as const,
-    value: "3/3",
+    value: "3/4",
     label: "AI engines citing the brand",
     client: "CapCut",
     tile: "blush" as const,
   },
+
+  /* Row 3 — stat, stat, quote */
   {
     kind: "stat" as const,
     value: "DR 74",
@@ -77,9 +82,16 @@ export const PROOF_TILES = [
     tile: "sky" as const,
   },
   {
+    kind: "stat" as const,
+    value: "1 in 5",
+    label: "sourced sites rejected at vetting",
+    client: "Ocuco",
+    tile: "butter" as const,
+  },
+  {
     kind: "quote" as const,
     quote:
-      "Rankings moved, but the bigger shift was being named in AI answers when buyers ask for recommendations.",
+      "Rankings moved, but the bigger shift was being named in AI answers when buyers ask for a recommendation.",
     name: "Tom Whitfield",
     role: "SEO Lead",
     client: "Ocuco",

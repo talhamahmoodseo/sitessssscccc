@@ -76,8 +76,8 @@ const TILE: Record<Tile, string> = {
   sky: "bg-sky",
 };
 
-/** A single result, told as a number and a client. The pastel lives here and
- *  nowhere else. */
+/** A single result: number top, client wordmark anchored bottom-left.
+ *  The pastel lives here and nowhere else. */
 export const StatTile = ({
   value,
   label,
@@ -92,26 +92,27 @@ export const StatTile = ({
   delay?: number;
 }) => (
   <motion.div
-    className={`flex min-h-[200px] flex-col justify-between rounded-3xl p-6 ${TILE[tile]}`}
+    className={`flex aspect-square flex-col justify-between rounded-[26px] p-6 sm:p-7 ${TILE[tile]}`}
     initial={{ opacity: 0, y: 18 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] }}
   >
     <div>
-      <div className="text-[2.6rem] font-semibold leading-none tracking-[-0.035em] text-navy-dark">
+      <div className="text-[2.4rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark sm:text-[2.9rem]">
         {value}
       </div>
-      <div className="mt-1.5 text-[13.5px] text-navy-dark/65">{label}</div>
+      <div className="mt-2 text-[14px] leading-snug text-navy-dark/70">
+        {label}
+      </div>
     </div>
-    <div className="text-[17px] font-bold tracking-[-0.02em] text-navy-dark">
-      {client}
-    </div>
+    <Wordmark name={client} className="text-[19px] text-navy-dark" />
   </motion.div>
 );
 
-/** Testimonial tile: quote, then a face, a name and the client wordmark —
- *  the lockup that makes proof feel like it came from a person. */
+/** Testimonial card: the quote carries the weight, then a face, a name and
+ *  the client wordmark on the right. Neutral surface so the pastels stay the
+ *  loudest thing in the grid. */
 export const QuoteTile = ({
   quote,
   name,
@@ -128,36 +129,37 @@ export const QuoteTile = ({
   delay?: number;
 }) => (
   <motion.figure
-    className="flex min-h-[200px] flex-col justify-between rounded-3xl bg-white p-6 ring-1 ring-navy-dark/[0.07]"
+    className="flex h-full flex-col justify-between rounded-[26px] bg-linen/70 p-6 sm:p-8"
     initial={{ opacity: 0, y: 18 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] }}
   >
-    <blockquote className="text-[16.5px] leading-[1.5] tracking-[-0.011em] text-navy-dark">
+    <blockquote className="text-[18px] leading-[1.42] tracking-[-0.018em] text-navy-dark sm:text-[20px]">
       “{quote}”
     </blockquote>
 
-    <figcaption className="mt-6 flex items-center gap-3">
+    <figcaption className="mt-8 flex items-center gap-3">
       {avatar && (
         <img
           src={asset(avatar)}
           alt=""
           loading="lazy"
-          className="h-10 w-10 flex-none rounded-full object-cover ring-1 ring-navy-dark/10"
+          className="h-11 w-11 flex-none rounded-lg object-cover ring-1 ring-navy-dark/10"
         />
       )}
-      <span className="min-w-0 flex-1">
-        <span className="block truncate text-[13.5px] font-semibold text-navy-dark">
+      <span className="min-w-0 flex-1 leading-tight">
+        <span className="block truncate text-[14px] font-semibold text-navy-dark">
           {name}
         </span>
-        <span className="block truncate text-[12.5px] text-navy-dark/70">
+        <span className="block truncate text-[13px] text-navy-dark/70">
           {role}
         </span>
       </span>
-      <span className="flex-none text-[15px] font-bold tracking-[-0.02em] text-navy-dark/80">
-        {client}
-      </span>
+      <Wordmark
+        name={client}
+        className="flex-none text-[18px] text-navy-dark"
+      />
     </figcaption>
   </motion.figure>
 );
@@ -197,4 +199,32 @@ export const SectionTitle = ({
       </p>
     )}
   </motion.div>
+);
+
+/* ------------------------------------------------------------------ wordmark */
+
+/** Client names set as logos rather than body text. Until real SVGs land in
+ *  public/logos/, each brand gets its own typographic treatment so the grid
+ *  reads as a wall of logos instead of a wall of labels. */
+const WORDMARK: Record<string, string> = {
+  CapCut: "font-extrabold tracking-[-0.045em]",
+  Ocuco: "font-bold tracking-[0.18em] uppercase",
+  "Khaleej Times": "font-semibold tracking-[-0.01em]",
+  "Arabian Business": "font-bold tracking-[-0.02em]",
+  "Gulf Business": "font-semibold tracking-[0.04em] uppercase",
+  "Tech Daily": "font-extrabold tracking-[-0.03em] lowercase",
+};
+
+export const Wordmark = ({
+  name,
+  className = "",
+}: {
+  name: string;
+  className?: string;
+}) => (
+  <span
+    className={`${WORDMARK[name] ?? "font-bold tracking-[-0.02em]"} ${className}`}
+  >
+    {name}
+  </span>
 );
