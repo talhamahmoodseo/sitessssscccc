@@ -194,6 +194,11 @@ export const linkBuilding = {
     ],
   },
 
+  quote: {
+    text: "First vendor that showed us every domain before placing anything. The approval sheet alone made internal sign-off trivial.",
+    who: "Daniel Reyes · Head of Growth, CapCut",
+  },
+
   faqs: [
     {
       q: "Can I see the list of sites before you place anything?",

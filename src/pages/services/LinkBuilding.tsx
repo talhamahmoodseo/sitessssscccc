@@ -21,7 +21,7 @@ import {
   SectionTitle,
   getService,
 } from "./shared";
-import AgencyBlocks, { FaqList, Testimonial } from "@/components/AgencyBlocks";
+import { FaqList } from "@/components/AgencyBlocks";
 import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -210,7 +210,7 @@ const IndexSteps = () => (
 
 /* ---------- what the gate actually rejects ---------- */
 const RejectionWall = () => (
-  <div className="bg-white py-24 lg:py-32">
+  <div className="bg-white pb-24 pt-4 lg:pb-32">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         className="mb-14 max-w-2xl"
@@ -398,6 +398,15 @@ const GrowthProof = () => {
             <p className="mt-5 text-[13.5px] leading-relaxed text-navy-dark/70">
               {LB.example.takeaway}
             </p>
+
+            <figure className="mt-7 border-t border-line pt-6">
+              <blockquote className="text-[15.5px] leading-[1.5] text-navy-dark">
+                “{LB.quote.text}”
+              </blockquote>
+              <figcaption className="mt-3 text-[12.5px] font-semibold text-navy-dark/70">
+                {LB.quote.who}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -407,7 +416,7 @@ const GrowthProof = () => {
 
 /* ---------- qualifying out is itself a trust signal ---------- */
 const FitSplit = () => (
-  <div className="bg-mist py-24 lg:py-32">
+  <div className="bg-linen py-24 lg:py-32">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHead eyebrow="Fit">
         {"Link building is "}
@@ -533,33 +542,6 @@ const LinkBuilding = () => {
           </div>
         </div>
       </div>
-      <div className="bg-linen py-24 lg:py-32">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
-          <div>
-            <SectionHead eyebrow="The gate">
-              {"Four in five prospects "}
-              <span className="text-navy-dark/65">never make it</span>
-            </SectionHead>
-            <p className="text-[16.5px] text-navy-dark/75 leading-[1.75] max-w-md">
-              Every domain runs the same checks before it reaches your approval
-              sheet. High DR is not a pass — an audience is. You see what
-              survived and what we killed, every month.
-            </p>
-          </div>
-          <VettingTable />
-        </div>
-      </div>
-      <RejectionWall />
-      <AgencyBlocks />
-      <div className="bg-white py-24 lg:py-32">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHead eyebrow="The part vendors skip" center={true}>
-            {"A link Google never renders "}
-            <span className="text-navy-dark/65">is an invoice</span>
-          </SectionHead>
-          <IndexSteps />
-        </div>
-      </div>
       <div className="bg-navy-dark py-24 lg:py-32">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -617,6 +599,32 @@ const LinkBuilding = () => {
           </p>
         </div>
       </div>
+      <div className="bg-linen py-24 lg:py-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <SectionHead eyebrow="The gate">
+              {"Four in five prospects "}
+              <span className="text-navy-dark/65">never make it</span>
+            </SectionHead>
+            <p className="text-[16.5px] text-navy-dark/75 leading-[1.75] max-w-md">
+              Every domain runs the same checks before it reaches your approval
+              sheet. High DR is not a pass — an audience is. You see what
+              survived and what we killed, every month.
+            </p>
+          </div>
+          <VettingTable />
+        </div>
+      </div>
+      <RejectionWall />
+      <div className="bg-linen py-24 lg:py-32">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHead eyebrow="The part vendors skip" center={true}>
+            {"A link Google never renders "}
+            <span className="text-navy-dark/65">is an invoice</span>
+          </SectionHead>
+          <IndexSteps />
+        </div>
+      </div>
       <div className="bg-mist py-24 lg:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead>
@@ -649,7 +657,6 @@ const LinkBuilding = () => {
       </div>
       <HowItRuns />
       <GrowthProof />
-      <Testimonial text={e.quote.text} who={e.quote.who} />
       <FitSplit />
       <div className="bg-white py-24 lg:py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
