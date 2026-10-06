@@ -174,6 +174,11 @@ export const haroQuotes = {
     ],
   },
 
+  quote: {
+    text: "Two placements in the first month after a year of nothing. The difference was that they skipped the queries I had no business answering.",
+    who: "Daniel Reyes · Head of Growth, CapCut",
+  },
+
   faqs: [
     {
       q: "Isn't HARO dead?",

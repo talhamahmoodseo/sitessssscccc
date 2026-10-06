@@ -170,6 +170,11 @@ export const digitalPr = {
     ],
   },
 
+  quote: {
+    text: "The data study did more in six weeks than a year of our old agency's press releases. Editors actually replied.",
+    who: "Amira Khan · Marketing Director, Ocuco",
+  },
+
   faqs: [
     {
       q: "How is this different from link building?",

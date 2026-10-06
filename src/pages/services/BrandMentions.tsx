@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FitPair, ProofPanel, ProcessFunnel, RejectLedger } from "./depth";
+import { brandMentions as C } from "./content/brandMentions";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, Search } from "lucide-react";
 import {
@@ -17,7 +19,7 @@ import {
   SectionTitle,
   getService,
 } from "./shared";
-import { FaqList, Testimonial } from "@/components/AgencyBlocks";
+import { FaqList } from "@/components/AgencyBlocks";
 import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -410,6 +412,39 @@ const BrandMentions = () => {
           <CitationCard />
         </div>
       </div>
+      <RejectLedger
+        items={C.ledger.rejections}
+        eyebrow="Sources that look right and are not"
+        title={
+          <>
+            What we{" "}
+            <span className="text-navy-dark/65">leave off the list</span>
+          </>
+        }
+        lede="Engines cite a narrow set of sources. These three have the authority and none of the citation."
+      />
+      <ProcessFunnel
+        steps={C.process}
+        eyebrow="How it runs"
+        title={
+          <>
+            From baseline to{" "}
+            <span className="text-navy-dark/65">share of the answer</span>
+          </>
+        }
+      />
+      <ProofPanel
+        example={C.example}
+        quote={C.quote}
+        eyebrow="One campaign, in full"
+        title={
+          <>
+            From invisible to{" "}
+            <span className="text-navy-dark/65">cited on three engines</span>
+          </>
+        }
+        tone="mist"
+      />
       <div className="bg-white py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead>
@@ -437,7 +472,18 @@ const BrandMentions = () => {
           </div>
         </div>
       </div>
-      <Testimonial text={e.quote.text} who={e.quote.who} />
+      <FitPair
+        good={C.fit.good}
+        bad={C.fit.bad}
+        eyebrow="Fit"
+        title={
+          <>
+            This is{" "}
+            <span className="text-navy-dark/65">not right for everyone</span>
+          </>
+        }
+        tone="linen"
+      />
       <div className="bg-white py-24 lg:py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead center={true}>

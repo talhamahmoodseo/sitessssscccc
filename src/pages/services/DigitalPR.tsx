@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { FitPair, ProofPanel, ProcessRail, RejectStrip } from "./depth";
+import { digitalPr as C } from "./content/digitalPr";
+
 import { ArrowUpRight, Mail } from "lucide-react";
 import {
   Glow,
@@ -12,7 +15,7 @@ import {
   SectionTitle,
   getService,
 } from "./shared";
-import { FaqList, Testimonial } from "@/components/AgencyBlocks";
+import { FaqList } from "@/components/AgencyBlocks";
 import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -410,6 +413,40 @@ const DigitalPR = () => {
           ))}
         </div>
       </div>
+      <RejectStrip
+        items={C.ledger.rejections}
+        eyebrow="Not every outlet earns the pitch"
+        title={
+          <>
+            Three we turned down
+            <br />
+            <span className="text-white/70">last quarter</span>
+          </>
+        }
+        lede="Coverage is only worth having if the publication is. These cleared the authority filter and still failed."
+      />
+      <ProcessRail
+        steps={C.process}
+        eyebrow="How a campaign runs"
+        title={
+          <>
+            Five steps, and you are{" "}
+            <span className="text-navy-dark/65">in the loop at three</span>
+          </>
+        }
+      />
+      <ProofPanel
+        example={C.example}
+        quote={C.quote}
+        eyebrow="One campaign, in full"
+        title={
+          <>
+            Gulf trade coverage rebuilt a{" "}
+            <span className="text-navy-dark/65">thin profile</span>
+          </>
+        }
+        tone="mist"
+      />
       <div className="bg-white py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead>
@@ -442,7 +479,18 @@ const DigitalPR = () => {
           </div>
         </div>
       </div>
-      <Testimonial text={e.quote.text} who={e.quote.who} />
+      <FitPair
+        good={C.fit.good}
+        bad={C.fit.bad}
+        eyebrow="Fit"
+        title={
+          <>
+            Digital PR is{" "}
+            <span className="text-navy-dark/65">not right for everyone</span>
+          </>
+        }
+        tone="linen"
+      />
       <div className="bg-white py-24 lg:py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead center={true}>

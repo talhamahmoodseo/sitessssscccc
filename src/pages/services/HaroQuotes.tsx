@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { FitPair, ProofPanel, ProcessFunnel, RejectStrip } from "./depth";
+import { haroQuotes as C } from "./content/haroQuotes";
+
 import { Check, Clock, X } from "lucide-react";
 import {
   Glow,
@@ -12,7 +15,7 @@ import {
   SectionTitle,
   getService,
 } from "./shared";
-import { FaqList, Testimonial } from "@/components/AgencyBlocks";
+import { FaqList } from "@/components/AgencyBlocks";
 import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -382,6 +385,39 @@ const HaroQuotes = () => {
           </motion.div>
         </div>
       </div>
+      <RejectStrip
+        items={C.ledger.rejections}
+        eyebrow="The queries we skip"
+        title={
+          <>
+            We answer <br />
+            <span className="text-white/70">one query in six</span>
+          </>
+        }
+        lede="Filtering is the whole service. These three were tempting and would have cost you credibility."
+      />
+      <ProcessFunnel
+        steps={C.process}
+        eyebrow="How it runs"
+        title={
+          <>
+            Five steps, and{" "}
+            <span className="text-navy-dark/65">most of the work is ours</span>
+          </>
+        }
+      />
+      <ProofPanel
+        example={C.example}
+        quote={C.quote}
+        eyebrow="One engagement, in full"
+        title={
+          <>
+            Two DR 65+ quotes in{" "}
+            <span className="text-navy-dark/65">month one</span>
+          </>
+        }
+        tone="linen"
+      />
       <div className="bg-navy-dark py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-3 gap-10">
           {e.stats.map((s) => (
@@ -428,7 +464,18 @@ const HaroQuotes = () => {
           </div>
         </div>
       </div>
-      <Testimonial text={e.quote.text} who={e.quote.who} />
+      <FitPair
+        good={C.fit.good}
+        bad={C.fit.bad}
+        eyebrow="Fit"
+        title={
+          <>
+            Expert quotes are{" "}
+            <span className="text-navy-dark/65">not right for everyone</span>
+          </>
+        }
+        tone="linen"
+      />
       <div className="bg-white py-24 lg:py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead center={true}>

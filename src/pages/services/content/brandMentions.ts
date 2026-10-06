@@ -173,6 +173,11 @@ export const brandMentions = {
     ],
   },
 
+  quote: {
+    text: "We could finally see it. The monthly prompt report turned a vague worry into something we could act on.",
+    who: "Tom Whitfield · SEO Lead, Ocuco",
+  },
+
   faqs: [
     {
       q: "Can you actually influence what an AI says?",
