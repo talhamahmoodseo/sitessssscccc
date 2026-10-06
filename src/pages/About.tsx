@@ -68,18 +68,21 @@ const TEAM_NOTES = [
   {
     role: "Outreach & Partnerships",
     desc: "Maintains the publisher network and keeps the prospect pipeline full.",
+    photo: asset("/images/avatar-4.jpg"),
     initials: "OP",
     tint: "bg-mint",
   },
   {
     role: "Editorial",
     desc: "Writes to each publication’s standard — accepted first pass.",
+    photo: asset("/images/hero-person.jpg"),
     initials: "ED",
     tint: "bg-blush",
   },
   {
     role: "QA & Reporting",
     desc: "Verifies indexation, runs citation checks, ships plain-language reports.",
+    photo: asset("/images/avatar-2.jpg"),
     initials: "QA",
     tint: "bg-sky",
   },
@@ -315,7 +318,7 @@ const About = () => (
                 {e.photo ? (
                   <img
                     src={e.photo}
-                    alt={e.name}
+                    alt={e.name || e.role}
                     className="w-20 h-20 rounded-full object-cover ring-4 ring-white"
                   />
                 ) : (

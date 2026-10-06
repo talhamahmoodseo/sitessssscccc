@@ -32,7 +32,7 @@ const BlogPost = () => {
       <Seo title={s.title} description={s.excerpt} schema={u} />
       <div className="relative bg-navy-dark overflow-hidden pt-32 pb-16">
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${s.grad} opacity-70`}
+          className={`absolute inset-0 ${s.grad} opacity-25`}
         />
         <span
           className="absolute -bottom-16 -right-4 font-medium text-white/[0.08] text-[16rem] leading-none select-none"
@@ -48,7 +48,7 @@ const BlogPost = () => {
           >
             <Link
               to="/blog"
-              className="inline-flex items-center gap-1.5 text-[12px] font-bold text-white/55 hover:text-white transition-colors duration-300 mb-7"
+              className="inline-flex items-center gap-1.5 text-[12px] font-bold text-white/70 hover:text-white transition-colors duration-300 mb-7"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               All articles
@@ -71,7 +71,7 @@ const BlogPost = () => {
                 <p className="text-white text-[13px] font-bold leading-none">
                   Talha Mahmood
                 </p>
-                <p className="text-white/65 text-[11px] font-medium mt-1 flex items-center gap-1.5">
+                <p className="text-white/75 text-[11px] font-medium mt-1 flex items-center gap-1.5">
                   <Clock className="w-3 h-3" />
                   {s.read}
                   {" read"}

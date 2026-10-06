@@ -6,6 +6,7 @@ import { Seo } from "@/components/MotionKit";
 import PageHero from "@/components/PageHero";
 import PageLayout from "@/components/PageLayout";
 import { CASE_STUDIES } from "@/lib/content";
+import { asset } from "@/lib/booking";
 
 /**
  * /case-studies — the archive.
@@ -94,11 +95,22 @@ const FileIndex = () => (
           >
             <Link
               to={`/case-studies/${c.slug}`}
-              className="group grid gap-6 py-9 lg:grid-cols-[auto_1fr_auto_auto] lg:items-center lg:gap-10 lg:py-10"
+              className="group grid gap-6 py-9 lg:grid-cols-[auto_200px_1fr_auto] lg:items-center lg:gap-10 lg:py-10"
             >
               <span className="text-[13px] font-bold tabular-nums text-navy-dark/40 lg:w-10">
                 {String(i + 1).padStart(2, "0")}
               </span>
+
+              <div
+                className={`${c.bg} overflow-hidden rounded-2xl border border-line`}
+              >
+                <img
+                  src={asset(c.cover)}
+                  alt=""
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover mix-blend-luminosity opacity-90 transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
 
               <div>
                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-dark/70">
@@ -124,6 +136,10 @@ const FileIndex = () => (
                     </div>
                   ))}
                 </dl>
+                <span className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-navy-dark">
+                  Open the file
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
               </div>
 
               <div className="lg:w-40">
@@ -135,11 +151,6 @@ const FileIndex = () => (
                   {c.seriesLabel}
                 </p>
               </div>
-
-              <span className="inline-flex items-center gap-2 text-[13px] font-semibold text-navy-dark">
-                Open the file
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
             </Link>
           </motion.li>
         ))}
