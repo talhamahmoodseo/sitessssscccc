@@ -9,119 +9,22 @@ const stroke = {
   strokeLinejoin: "round",
 } as const;
 
-export const RocketFigure = ({ className = "" }: FigProps) => (
-  <svg viewBox="0 0 480 320" className={className} aria-hidden="true">
-    <defs>
-      <radialGradient id="rrGlow" cx="50%" cy="50%">
-        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
-        <stop offset="55%" stopColor="#7c5cf6" stopOpacity="0.3" />
-        <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
-      </radialGradient>
-      <filter id="rrBlur" x="-60%" y="-60%" width="220%" height="220%">
-        <feGaussianBlur stdDeviation="18" />
-      </filter>
-    </defs>
-    <g filter="url(#rrBlur)" opacity="0.9">
-      <ellipse
-        cx="170"
-        cy="236"
-        rx="128"
-        ry="48"
-        fill="url(#rrGlow)"
-        transform="rotate(-38 170 236)"
-      />
-      <ellipse
-        cx="234"
-        cy="210"
-        rx="56"
-        ry="30"
-        fill="url(#rrGlow)"
-        transform="rotate(-38 234 210)"
-      />
-    </g>
+export const PaperPlaneFigure = ({ className = "" }: FigProps) => (
+  <svg viewBox="0 0 130 92" className={className} aria-hidden="true">
+    {/* The dart is drawn as two folded surfaces so it reads three-dimensional
+        at small sizes: the underside carries the brand highlight, the top face
+        is paper. Outline last, so the strokes sit over both fills. */}
+    <path d="M122 46 L38 46 L8 86 Z" fill="rgb(var(--mark) / 0.6)" />
+    <path d="M122 46 L8 6 L38 46 Z" fill="rgb(var(--paper))" />
     <g
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.1"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path
-        className="rr-flame"
-        d="M252 206 C206 216 160 240 100 284 C138 248 184 226 224 214 C194 232 162 254 126 286 C172 260 214 238 246 226 Z"
-      />
-      <path
-        className="rr-flame"
-        style={{ animationDelay: ".45s" }}
-        opacity="0.9"
-        d="M243 194 C200 198 150 212 86 240 C130 226 174 218 214 212 C178 222 142 236 104 256 C150 240 198 226 240 216 Z"
-      />
-      <path
-        className="rr-flame"
-        style={{ animationDelay: ".9s" }}
-        opacity="0.78"
-        d="M263 218 C234 240 206 268 172 306 C198 276 226 254 254 238 C230 260 208 284 190 310 C220 282 248 258 268 246 Z"
-      />
-    </g>
-    <g
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      opacity="0.75"
-    >
-      <path
-        className="rr-curl"
-        d="M214 224 C194 230 178 242 166 258 C178 248 194 242 210 240"
-      />
-      <path
-        className="rr-curl"
-        style={{ animationDelay: ".6s" }}
-        d="M178 244 C158 252 142 264 132 280 C144 270 158 264 174 262"
-      />
-      <path
-        className="rr-curl"
-        style={{ animationDelay: "1.1s" }}
-        d="M234 244 C216 256 202 270 194 286 C204 274 218 266 232 262"
-      />
-    </g>
-    <g
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      opacity="0.4"
-    >
-      <path
-        className="rr-streak"
-        d="M156 214 C132 226 110 242 88 262"
-        strokeDasharray="14 16"
-      />
-      <path
-        className="rr-streak"
-        style={{ animationDelay: ".7s" }}
-        d="M196 254 C172 266 150 282 130 302"
-        strokeDasharray="11 15"
-      />
-    </g>
-    <g
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M258 208 L330 136 c22-22 54-34 84-32 2 30-10 62-32 84 l-72 72 z" />
-      <path d="M330 136 l34 34" />
-      <circle cx="358" cy="148" r="11" />
-      <path d="M258 208 l-30 6 16 22 z" />
-      <path d="M310 260 l-6 30 22-16 z" />
-      <circle cx="330" cy="78" r="15" />
-      <path d="M330 93 l0 32" />
-      <path d="M330 102 l-28 -20" />
-      <path d="M330 102 l30 -26" />
-      <path d="M330 125 l-20 22" />
-      <path d="M330 125 l22 18" />
+      <path d="M122 46 L8 6 L38 46 L8 86 Z" />
+      <path d="M38 46 L122 46" />
     </g>
   </svg>
 );

@@ -22,7 +22,7 @@ ${e.message}`);
     c =
       "w-full rounded-xl border border-line bg-white px-4 py-3 text-[14px] text-navy-dark placeholder:text-navy-dark/70 focus:outline-none focus:border-blue-accent focus:ring-2 focus:ring-blue-accent/20 transition-all duration-300";
   return (
-    <div className="bg-white py-24 lg:py-32">
+    <div className="bg-linen py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 items-start">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

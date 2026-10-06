@@ -8,23 +8,23 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { RocketFigure } from "./LineArt";
+import { PaperPlaneFigure } from "./LineArt";
 
 /**
- * The rocket flies a real curve, driven by scroll.
+ * The paper plane flies a real curve, driven by scroll.
  *
  * A hidden path defines the flight. On mount we sample it into a table of
- * points and tangent angles; scroll progress indexes that table, so the rocket
+ * points and tangent angles; scroll progress indexes that table, so the plane
  * follows the curve and banks into it the way a drawn flight path should. A
  * dashed contrail draws in behind it.
  *
  * Scroll progress is spring-smoothed, which is what separates this from the
- * usual jittery scroll-scrub — the rocket keeps flying for a beat after the
+ * usual jittery scroll-scrub — the plane keeps flying for a beat after the
  * wheel stops, then settles.
  *
  * The SVG uses preserveAspectRatio="none" so its viewBox maps linearly onto the
  * measured container, letting the same arithmetic place both the trail and the
- * rocket. Without that the two drift apart at different viewport widths.
+ * plane. Without that the two drift apart at different viewport widths.
  */
 
 const VB_W = 1200;
@@ -34,7 +34,7 @@ const FLIGHT = "M -40 330 C 230 285 370 140 620 170 C 830 196 950 100 1260 18";
 
 type Frame = { x: number; y: number; angle: number };
 
-const RocketLaunch = () => {
+const PlaneFlight = () => {
   const reduced = useReducedMotion() ?? false;
   const wrapRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
@@ -107,10 +107,24 @@ const RocketLaunch = () => {
   const scale = useTransform(progress, [0, 1], [1, 0.74]);
   const opacity = useTransform(progress, [0, 0.84, 1], [1, 1, 0]);
 
-  const trail = useMotionValue(0);
-  useMotionValueEvent(progress, "change", (v) => trail.set(v));
-
   const still = reduced || frames === null;
+
+  /**
+   * The contrail length is always a motion value, never a bare number.
+   *
+   * It used to be `still ? { pathLength: 1 } : { pathLength: trail }`, and
+   * swapping a static number for a MotionValue between renders left the
+   * attribute stuck at its first value — the trail rendered fully drawn before
+   * a single pixel of scroll. Driving one motion value in both states, and
+   * setting it to 1 only when the flight is disabled, keeps the binding stable.
+   */
+  const trail = useMotionValue(0);
+  useMotionValueEvent(progress, "change", (v) => {
+    if (!still) trail.set(v);
+  });
+  useEffect(() => {
+    if (still) trail.set(1);
+  }, [still, trail]);
 
   return (
     <div
@@ -132,12 +146,12 @@ const RocketLaunch = () => {
           strokeDasharray="2 11"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          style={still ? { pathLength: 1 } : { pathLength: trail }}
+          style={{ pathLength: trail }}
         />
       </svg>
 
       <motion.div
-        className="absolute left-0 top-0 w-[290px] -translate-x-1/2 -translate-y-1/2 text-navy-dark xl:w-[350px]"
+        className="absolute left-0 top-0 w-[112px] -translate-x-1/2 -translate-y-1/2 text-navy-dark xl:w-[132px]"
         style={
           still
             ? { left: "76%", top: "26%", rotate: -12 }
@@ -148,11 +162,11 @@ const RocketLaunch = () => {
           animate={still ? {} : { y: [0, -7, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <RocketFigure className="h-auto w-full" />
+          <PaperPlaneFigure className="h-auto w-full" />
         </motion.div>
       </motion.div>
     </div>
   );
 };
 
-export default RocketLaunch;
+export default PlaneFlight;
