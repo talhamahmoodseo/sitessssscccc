@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { FigSplitSearch } from "@/components/LineArt";
 import { SERVICES } from "./services/shared";
+import { Matrix, SharedStandard } from "./services-depth";
 import AgencyBlocks from "@/components/AgencyBlocks";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -131,6 +132,8 @@ const Services = () => (
       </div>
     </div>
     <AgencyBlocks />
+    <SharedStandard />
+    <Matrix />
     <div className="bg-white py-24 lg:py-32">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2

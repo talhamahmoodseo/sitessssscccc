@@ -5,6 +5,8 @@ import { asset } from "@/lib/booking";
 const CASE_STUDIES = [
   {
     slug: "b2b-saas-ai-visibility",
+    series: [1200, 1380, 1610, 2050, 2400, 2980, 3450, 3744],
+    seriesLabel: "Monthly organic clicks, months 0–7",
     cover: "/images/portfolio-1.jpg",
     shot: "/images/project-1.jpg",
     client: "B2B SaaS platform",
@@ -91,6 +93,8 @@ const CASE_STUDIES = [
   },
   {
     slug: "home-services-local-pack",
+    series: [640, 690, 820, 1010, 1240, 1498],
+    seriesLabel: "Monthly organic clicks, months 0–5",
     cover: "/images/portfolio-4.jpg",
     shot: "/images/project-2.jpg",
     client: "Emergency HVAC company",
@@ -175,6 +179,8 @@ const CASE_STUDIES = [
   },
   {
     slug: "ecommerce-gulf-authority",
+    series: [2100, 2240, 2610, 3180, 3790, 4420, 5130, 5880, 6410],
+    seriesLabel: "Monthly organic clicks, months 0–8",
     cover: "/images/portfolio-6.jpg",
     shot: "/images/project-3.jpg",
     client: "Home & lifestyle e-commerce",

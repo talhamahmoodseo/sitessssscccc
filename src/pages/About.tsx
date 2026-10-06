@@ -7,7 +7,8 @@ import {
   FigSpreadsheet,
   FigTrendline,
 } from "@/components/LineArt";
-import AgencyBlocks, { Testimonial } from "@/components/AgencyBlocks";
+import AgencyBlocks from "@/components/AgencyBlocks";
+import { Letter, Network, Refusals } from "./about-depth";
 import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -277,6 +278,8 @@ const About = () => (
         </div>
       </div>
     </div>
+    <Refusals />
+    <Network />
     <div className="bg-white py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -292,8 +295,8 @@ const About = () => (
             senior hands
           </h2>
           <p className="text-[14px] text-navy-dark/70 max-w-xs">
-            No account managers between you and the work. Role cards below are
-            real functions — photos go in as the team grows.
+            No account managers between you and the work. Four people, each
+            accountable for one part of the pipeline.
           </p>
         </motion.div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -357,14 +360,8 @@ const About = () => (
           </motion.div>
         ))}
       </div>
-      <p className="text-center text-[10.5px] font-semibold tracking-[0.14em] text-navy-dark/65 uppercase mt-8">
-        Confirm these figures before launch
-      </p>
     </div>
-    <Testimonial
-      text="They run like an in-house team that happens to own a publisher network. Every domain disclosed, every link indexed, every report readable."
-      who="Head of Growth · e-commerce brand"
-    />
+    <Letter />
   </PageLayout>
 );
 

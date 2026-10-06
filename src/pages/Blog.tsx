@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Clock, Search } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageHero from "@/components/PageHero";
+import { ReadingPaths } from "./blog-depth";
 import PageLayout from "@/components/PageLayout";
 import { BLOG_POSTS } from "@/lib/content";
 
@@ -199,7 +200,8 @@ const Blog = () => {
           </motion.div>
         </div>
       </div>
-      <div className="bg-navy-dark py-20">
+      <ReadingPaths />
+      <div className="bg-linen py-20">
         <motion.div
           className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
           initial={{ opacity: 0, y: 24 }}
@@ -207,20 +209,20 @@ const Blog = () => {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[11px] font-semibold tracking-[0.18em] text-white/60 uppercase mb-4">
+          <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
             The Field Notes
           </p>
-          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white mb-4">
+          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-4">
             {"One tactical email "}
-            <span className="font-medium text-white/80">a month</span>.
+            <span className="text-navy-dark/65">a month</span>.
           </h2>
-          <p className="text-white/55 text-[15px] leading-relaxed mb-8 max-w-md mx-auto">
+          <p className="text-navy-dark/75 text-[15px] leading-relaxed mb-8 max-w-md mx-auto">
             What moved rankings and AI citations this month, from live
             campaigns. No fluff, no funnels.
           </p>
           <a
             href="mailto:contact@talhamahmood.com?subject=Subscribe%20me%20to%20The%20Field%20Notes"
-            className="inline-flex items-center gap-2 bg-white text-navy-dark hover:bg-white/90 rounded-xl px-8 py-3.5 text-sm font-semibold transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-navy-dark text-white hover:bg-black rounded-xl px-8 py-3.5 text-sm font-semibold transition-colors duration-300"
           >
             Get the next issue
           </a>

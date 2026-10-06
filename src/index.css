@@ -51,8 +51,8 @@
     --brand-2: 124 92 246;
     --brand-2-on: 255 255 255;
     --muted-ink: 122 120 114;
-    --verified: 34 122 84;
-    --gap: 190 74 46;
+    --verified: 26 104 70;
+    --gap: 176 62 38;
 
     /* Emphasis. The old highlight resolved to a pale grey, which made the
        words we most wanted read fade out. These are deliberately strong
