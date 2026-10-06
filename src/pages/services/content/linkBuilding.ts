@@ -1,232 +1,338 @@
-/** Content for /services/link-building.
- *  Structure follows SERVICE-PAGES-PLAN.md §4.1. */
+/**
+ * Content for /services/link-building.
+ *
+ * Rewritten story-first, modelled on how dofollow.com/visibility-plus is
+ * *built* rather than what it says:
+ *
+ *   - headlines are two short declarative sentences, the second one turning
+ *     the first ("Google Changed. What Counts as a Vote Didn't.")
+ *   - every prose block is paired with a data artefact, never left alone
+ *   - the hero carries a single concrete artefact that embodies the whole
+ *     pitch — theirs is a buyer prompt showing the brand missing, ours is the
+ *     approval sheet, because that is the thing nobody else will show you
+ *   - one section exists purely to say what we are not ("Most Vendors Stop at
+ *     Placed.")
+ *   - one section argues against our own product ("Not Every Ranking Problem
+ *     Needs Another Link."), which is what makes the rest credible
+ *   - proof is distributed — logos under the hero, a quote after the problem,
+ *     numbers in the movement band, a quote after the comparison — rather
+ *     than pooled in one testimonial wall
+ *
+ * Client names are real. Figures and quotes are indicative placeholders.
+ */
 
 export const linkBuilding = {
   eyebrow: "Link Building",
-  h1: {
-    pre: "Link building that",
-    em: "survives an audit",
-    post: ".",
-  },
-  sub: "Editorial backlinks from DR 40+ publications with real organic traffic. Every domain is disclosed and approved by you before anything is placed — and the ones we reject show up in your report too.",
 
-  proof: [
-    { v: 800, suffix: "+", label: "Vetted publications in our own network" },
-    { custom: "DR 40–75", label: "Working authority range" },
-    { v: 96, suffix: "%", label: "Indexation rate over the last 12 months" },
-  ],
+  h1: {
+    pre: "Everyone sells you links.",
+    em: "Almost nobody shows you the sites.",
+  },
+  sub: "We send you every publication before anything is placed — real organic traffic, the outbound profile, and the reason it passed. You strike whatever you do not want. We only count a placement once Google indexes it.",
+  credit:
+    "DR 40–75 editorial placements · 96% indexed over 12 months · run by the people who do the outreach",
+
+  /** The hero artefact. Mirrors the role of dofollow's buyer-prompt card:
+   *  one specific object that makes the whole proposition concrete. */
+  approvalSheet: {
+    label: "Approval sheet",
+    period: "March",
+    rows: [
+      {
+        domain: "thehvac•••journal.com",
+        meta: "DR 61 · 18,400 organic / mo",
+        status: "approved" as const,
+      },
+      {
+        domain: "saas•••weekly.io",
+        meta: "DR 58 · 9,400 organic / mo",
+        status: "approved" as const,
+      },
+      {
+        domain: "business•••mag.net",
+        meta: "DR 71 · 240 organic / mo",
+        status: "rejected" as const,
+      },
+    ],
+    calloutLabel: "Approval-first",
+    callout:
+      "You approved 12 of 18 domains this month. The six you struck were never placed, and never invoiced.",
+  },
+
+  logosLabel: "Trusted by teams who had to defend the spend internally",
+
+  /* ---------------------------------------------------------------- problem */
 
   problem: {
-    heading: {
-      pre: "Most link building is built to",
-      em: "invoice you, not rank you",
-    },
+    eyebrow: "The DR trap",
+    heading: { pre: "A DR 71 link can still be", em: "worth nothing." },
     paras: [
-      "The industry runs on volume. Marketplace inventory gets resold at markup, placements land on content farms Google stopped crawling years ago, and the monthly report counts links instead of outcomes. In most engagements the client never sees a domain until after the invoice.",
-      "That model survives because the buyer has no way to check the work. A link exists, a number goes up, and nobody asks whether the page was ever indexed or whether the site had a single real visitor.",
-      "We built the opposite. A publisher network we maintain ourselves, written approval on every domain before placement, and a definition of done that includes Google indexing the link and the target page responding.",
+      "Domain Rating scores a site's own backlinks. It does not tell you whether anyone reads the site, whether Google still trusts it, or whether it has the faintest connection to what you sell.",
+      "We get offered DR 70+ placements every week from domains whose organic traffic fell off a cliff two core updates ago. The score has not caught up yet. The link is worth nothing, and you would never learn that from the invoice.",
+    ],
+    bold: "The number on the invoice is not the number that moves you.",
+    chart: {
+      domain: "business•••mag.net",
+      badge: "DR 71",
+      series: [41000, 39500, 37000, 12000, 6400, 3100, 1400, 240],
+      axis: "Monthly organic traffic, 8 months",
+      verdict: "94% of its traffic gone after one core update — still sold at DR 71, still rejected by the gate.",
+    },
+  },
+
+  /* ------------------------------------------------------------ distributed
+     proof: one quote after the problem, one after the comparison, one at fit */
+
+  quotes: {
+    afterProblem: {
+      text: "We had been buying DR 60+ for a year. When their team audited what we already had, a third of it sat on sites with no readers at all. That audit was worth the retainer on its own.",
+      who: "Daniel Reyes · Head of Growth, CapCut",
+    },
+    afterComparison: {
+      text: "First vendor that showed us every domain before placing anything. The approval sheet alone made internal sign-off trivial.",
+      who: "Amira Khan · Marketing Director, Ocuco",
+    },
+    atFit: {
+      text: "They told us in the audit that two of our target pages were too thin to rank, and to fix those before paying for links. Nobody selling links had ever talked us out of buying them.",
+      who: "Hana Al-Mansouri · Content Lead, Khaleej Times",
+    },
+  },
+
+  /* ----------------------------------------------------------------- process */
+
+  steps: {
+    eyebrow: "How it runs",
+    heading: { pre: "See the site.", em: "Then decide." },
+    lede: "Four steps. You hold the pen at step three, and nothing is placed until you do.",
+    items: [
+      {
+        n: "01",
+        label: "Audit",
+        t: "Find what is closest to moving",
+        d: "We pull your profile and your competitors', then agree the target pages and anchor ratios before a single email goes out.",
+        chip: "Targets agreed before outreach",
+      },
+      {
+        n: "02",
+        label: "Source",
+        t: "Shortlist, then run the gate",
+        d: "Candidates come from our own publisher network and fresh prospecting. Every one is checked against the four standards before you see it.",
+        chip: "~5 reviewed per 1 placed",
+      },
+      {
+        n: "03",
+        label: "Approve",
+        t: "You strike anything you want",
+        d: "Each candidate reaches you with its metrics, traffic chart and relevance note. No reason required to reject one.",
+        chip: "You approve, or it does not happen",
+      },
+      {
+        n: "04",
+        label: "Prove",
+        t: "Chase it until Google indexes it",
+        d: "A placement is not done when it publishes. It is done when it is indexed and recorded against the target page.",
+        chip: "96% indexed · replaced free if not",
+      },
+    ],
+    emphasis:
+      "You don't get a link report to decode. You get a list you signed off on.",
+  },
+
+  /* ---------------------------------------------------------------- movement */
+
+  movement: {
+    eyebrow: "Real movement",
+    heading: { pre: "From page two to", em: "the money pages." },
+    context: "B2B SaaS · customer support software · 7 months",
+    tiles: [
+      { label: "Domain Rating", value: "35 → 65" },
+      { label: "Organic clicks", value: "+212%" },
+    ],
+    note: "Twelve of the fourteen placements pointed at two category pages rather than the homepage. Concentrating authority on pages already sitting in positions 8–15 is what moved them.",
+    ctaLabel: "Open the case file",
+    ctaHref: "/case-studies/b2b-saas-ai-visibility",
+  },
+
+  /* -------------------------------------------------------------- the gate */
+
+  gate: {
+    eyebrow: "The intelligence behind the work",
+    heading: { pre: "Powered by", em: "the gate." },
+    lede: "How do we know which sites are worth your money? The gate — the vetting standard every candidate clears before it ever reaches your approval sheet. Roughly one in five makes it.",
+    columns: [
+      {
+        label: "Traffic",
+        q: "Does anyone actually read it?",
+        d: "Minimum 1,000 monthly organic visits from a market that matters to you, verified in Ahrefs. Bought spikes and single-keyword flukes do not count.",
+      },
+      {
+        label: "Outbound",
+        q: "Who else does it link to?",
+        d: "We read the last 30 outbound links. Casinos, loans or CBD sitting alongside your industry and it is out, whatever the DR says.",
+      },
+      {
+        label: "Editorial",
+        q: "Is there a real publication here?",
+        d: "A named editor, a genuine publishing cadence, and articles written for readers rather than for a link marketplace.",
+      },
+      {
+        label: "Relevance",
+        q: "Would your buyer believe it?",
+        d: "The publication has to plausibly cover your subject. A general news site with a thin 'business' tag is not relevance.",
+      },
+    ],
+    flowFrom: { t: "The gate", d: "Finds what is real" },
+    flowTo: { t: "Your approval", d: "Decides what is yours" },
+  },
+
+  /* ------------------------------------------------------------- comparison */
+
+  comparison: {
+    eyebrow: "Placed vs indexed",
+    heading: { pre: "Most vendors stop at placed.", em: "We start at indexed." },
+    lede: "A link that exists is not the same as a link that counts. Only one of those is easy to invoice for.",
+    them: {
+      label: "Most link vendors",
+      items: [
+        "Send the list after placement",
+        "Count links delivered",
+        "Leave indexation to you",
+        "Quietly resell marketplace inventory",
+      ],
+    },
+    us: {
+      label: "How we work",
+      items: [
+        "Show every domain before",
+        "Count links Google indexed",
+        "Replace what drops, free, for 12 months",
+        "Place only on publishers we deal with directly",
+      ],
+    },
+    line: "A link Google never indexed is an invoice, not an asset.",
+  },
+
+  /* -------------------------------------------------------------- diagnosis */
+
+  diagnosis: {
+    eyebrow: "The right move > more links",
+    heading: { pre: "Not every ranking problem", em: "needs another link." },
+    paras: [
+      "Sometimes it does. Sometimes the page is too thin to hold any amount of authority. Sometimes you already have the links and the anchor profile is so over-optimised it is working against you.",
+      "Roughly one enquiry in five gets an audit back saying the links are not the problem yet. We lose that sale and keep the reputation, which has turned out to be the better trade.",
+    ],
+    bold: "We start with the diagnosis, not the placement.",
+    map: [
+      { gap: "Authority gap", move: "Editorial placements" },
+      { gap: "Relevance gap", move: "Niche edits on aged pages" },
+      { gap: "Trust gap", move: "Digital PR and expert quotes" },
+      { gap: "Thin target page", move: "Fix the page first" },
+    ],
+    defs: [
+      {
+        t: "Editorial placements",
+        d: "Original articles on niche-relevant publications, written to the editor's standard, with your link inside the body of the story rather than an author bio.",
+      },
+      {
+        t: "Niche edits",
+        d: "Contextual links added to aged, already-indexed articles Google has trusted for years. Faster to index, because the page already has history.",
+      },
+      {
+        t: "Authority placements",
+        d: "DR 60+ editorial features, reserved for the money pages that need the strongest push — typically two to four a quarter.",
+      },
+      {
+        t: "Anchor mapping",
+        d: "Which page receives which anchor, in ratios that stay inside natural ranges. No exact-match stacking, no footprints.",
+      },
     ],
   },
 
-  deliverables: [
-    {
-      t: "Guest posts",
-      d: "Original articles on niche-relevant publications, written to the editor's standard, with your link placed inside the body of the story rather than an author bio.",
-    },
-    {
-      t: "Niche edits",
-      d: "Contextual links added to aged, already-indexed articles Google has trusted for years. Faster to index because the page already has history.",
-    },
-    {
-      t: "Authority placements",
-      d: "DR 60+ editorial features reserved for the money pages that need the strongest push — typically two to four per quarter.",
-    },
-    {
-      t: "Anchor & target mapping",
-      d: "A written plan for which page receives which anchor, with ratios that stay inside natural ranges. No exact-match stacking, no footprints.",
-    },
-    {
-      t: "Indexation follow-through",
-      d: "We track every placement until Google indexes it. If it does not index within 60 days we chase the publisher or replace it at no cost.",
-    },
-    {
-      t: "Monthly reporting",
-      d: "Live sheet with every domain, its metrics, the anchor used, the target URL, indexation status, and the sites we rejected on your behalf.",
-    },
-  ],
+  /* ----------------------------------------------------------- fundamentals */
 
-  ledger: {
-    standards: [
-      {
-        label: "Real organic traffic, verified in Ahrefs",
-        detail:
-          "Minimum 1,000 monthly organic visits from a market that matters to you. Traffic that is bought, bot-driven or concentrated on one fluke keyword does not count.",
-      },
-      {
-        label: "Clean outbound profile",
-        detail:
-          "We read the last 30 outbound links. If the site links to casinos, loans or CBD alongside your industry, it is out regardless of DR.",
-      },
-      {
-        label: "Editorial standards that exist",
-        detail:
-          "A named editor, a real publishing cadence, and articles that were written for readers rather than for a link marketplace.",
-      },
-      {
-        label: "Topical relevance to your pages",
-        detail:
-          "The publication has to plausibly cover your subject. A general news site with a thin 'business' category is not relevance.",
-      },
-      {
-        label: "No paid-link footprints",
-        detail:
-          "Sites with a visible 'write for us' pricing page, sponsored-post sprawl or sudden outbound spikes get dropped.",
-      },
+  fundamentals: {
+    eyebrow: "Built on what does not change",
+    heading: { pre: "Google changed.", em: "What counts as a vote didn't." },
+    paras: [
+      "Core updates, helpful content, AI Overviews. Each one changed how results get assembled, and each one sent the industry hunting for a new trick.",
+      "None of them changed the underlying signal: a real publication, with real readers, choosing to point at you.",
     ],
-    rejections: [
-      {
-        site: "Business magazine (anonymised)",
-        metric: "DR 71",
-        reason:
-          "Strong DR, but organic traffic had collapsed 94% after a core update and the remaining visits came from one unrelated keyword. Authority on paper, none in practice.",
-      },
-      {
-        site: "Regional tech news site",
-        metric: "DR 64",
-        reason:
-          "Clean-looking until we read the outbound profile: 40% of recent external links pointed to offshore gambling. Guilt by association is a real risk here.",
-      },
-      {
-        site: "Trade publication",
-        metric: "DR 58",
-        reason:
-          "Genuine traffic and a real editor, but a public price list for sponsored posts meant the entire domain carried a paid-link footprint. Good site, wrong signal.",
-      },
-    ],
+    bold: "That has survived every update we have worked through, and it is the only thing we sell.",
+    flow: {
+      top: "Editorial links + mentions",
+      mid: "Authority",
+      out: ["Google rankings", "AI citations"],
+    },
   },
 
-  process: [
-    {
-      n: "01",
-      t: "Audit and target mapping",
-      d: "We pull your current link profile, find which pages are closest to moving, and agree the target URLs and anchor ratios before any outreach starts.",
-      you: "30 minutes on a call, plus access to Search Console.",
-    },
-    {
-      n: "02",
-      t: "Sourcing from the network",
-      d: "We shortlist publications from our own network and fresh prospecting, then run each one through the vetting standard above.",
-      you: "Nothing.",
-    },
-    {
-      n: "03",
-      t: "You approve the list",
-      d: "You receive every candidate domain with its metrics, traffic chart and relevance note. You strike anything you do not want. Nothing is placed without a yes.",
-      you: "One pass through the sheet, usually 15 minutes.",
-    },
-    {
-      n: "04",
-      t: "Placement and publication",
-      d: "Our editorial team writes to the publication's standard and works the piece through their process. You see drafts for anything carrying your name.",
-      you: "Approve the draft if you want to; many clients skip this.",
-    },
-    {
-      n: "05",
-      t: "Indexation and reporting",
-      d: "We confirm Google has indexed each link, record it against the target page, and report movement on the keywords we agreed in step one.",
-      you: "Read the monthly sheet.",
-    },
-  ],
-
-  example: {
-    label: "B2B SaaS · customer support software · 7 months",
-    headline: "DR 35 to 65, and the category pages finally moved",
-    facts: [
-      { k: "Placements", v: "14" },
-      { k: "Average DR", v: "61" },
-      { k: "Domain Rating", v: "35 → 65" },
-      { k: "Organic clicks", v: "+212%" },
-      { k: "Indexation", v: "14 / 14" },
-    ],
-    series: [1200, 1380, 1610, 2050, 2400, 2980, 3450, 3744],
-    seriesLabel: "Monthly organic clicks, months 0–7",
-    takeaway:
-      "Twelve of the fourteen placements pointed at two category pages rather than the homepage. Concentrating authority on the pages that were already ranking 8–15 is what moved them onto page one.",
-    caseHref: "/case-studies/b2b-saas-ai-visibility",
-  },
+  /* ------------------------------------------------------------------- fit */
 
   fit: {
+    eyebrow: "Fit",
+    heading: { pre: "Worth doing,", em: "and worth skipping." },
     good: [
-      "You have pages that already rank between positions 5 and 20 and need authority to push them up.",
+      "You have pages already ranking between positions 5 and 20 that need authority to push them up.",
       "Your site is technically sound — crawlable, indexed, reasonable Core Web Vitals.",
-      "You can commit to at least three months. Link building does not show its hand in four weeks.",
+      "You can commit to three months. Indexation alone takes two to six weeks per placement.",
       "You want to see and approve every domain rather than receive a list after the fact.",
     ],
     bad: [
-      "You need results this month. Indexation alone takes two to six weeks.",
-      "Your pages have no content depth yet — links to a thin page waste the link.",
-      "You want the cheapest possible cost per link. We are not the cheapest and do not try to be.",
-      "You are in a sector our publishers will not touch, such as gambling or adult.",
+      "You need movement this month. Nothing we do shows up that fast.",
+      "Your target pages have no content depth yet — authority pointed at a thin page is wasted.",
+      "You want the lowest possible cost per link. We are not the cheapest and do not try to be.",
+      "You are in gambling, adult or payday. Our publishers will not touch them.",
     ],
   },
 
-  pricing: {
-    from: "$2,400",
-    unit: "/ month, typical starting retainer",
-    note: "We scope on delivered placements, not attempts or hours. Most clients start between $2,400 and $6,000 a month depending on the authority range they need and how fast they want to move. There is no setup fee and no lock-in beyond the agreed term.",
-    drivers: [
-      {
-        k: "Authority range",
-        v: "A DR 70+ placement costs several times a DR 45 one, because the editorial bar is higher.",
-      },
-      {
-        k: "Volume per month",
-        v: "Four placements a month is a different pipeline to twelve. Rate per placement improves with volume.",
-      },
-      {
-        k: "Market and language",
-        v: "Gulf and non-English placements need different relationships and carry different costs.",
-      },
-      {
-        k: "Content ownership",
-        v: "We write by default. If your team supplies drafts to our spec, the rate drops.",
-      },
-    ],
+  /* ----------------------------------------------------------------- close */
+
+  close: {
+    heading: { pre: "Find out which sites", em: "would actually move you." },
+    lede: "Send us your domain. You get back the pages closest to moving, the authority gap to your nearest competitor, and the five publications we would go after first. No call required to receive it.",
+    ctaLabel: "Request pricing",
+    snapshot: {
+      label: "Illustrative profile snapshot",
+      bars: [
+        { k: "Your referring domains", v: 142, max: 318 },
+        { k: "Top competitor", v: 318, max: 318 },
+      ],
+      facts: [
+        { k: "Pages in positions 5–20", v: "11" },
+        { k: "No-traffic links found", v: "23" },
+      ],
+    },
   },
 
-  quote: {
-    text: "First vendor that showed us every domain before placing anything. The approval sheet alone made internal sign-off trivial.",
-    who: "Daniel Reyes · Head of Growth, CapCut",
-  },
+  /* ------------------------------------------------------------------- faq */
 
   faqs: [
     {
       q: "Can I see the list of sites before you place anything?",
-      a: "Yes, and this is the whole point of how we work. You receive every candidate domain with its Ahrefs metrics, organic traffic chart and a relevance note before outreach converts into a placement. You strike anything you do not want and we do not place it. Most agencies answer this question defensively because they resell marketplace inventory they would rather you not inspect.",
+      a: "Yes, and it is the whole point of how we work. Every candidate domain reaches you with its Ahrefs metrics, organic traffic chart and a relevance note before outreach turns into a placement. You strike anything you do not want, without giving a reason. Most agencies answer this question defensively because they are reselling marketplace inventory they would rather you did not inspect.",
     },
     {
       q: "Are these PBNs or paid links?",
-      a: "No. Private blog networks are sites built to sell links, and they are the thing our vetting is designed to catch. Every placement is on an independent publication with its own audience and editorial process. We do pay for editorial time on some publications, which is standard across the industry, but we will not work with a site that advertises a public price list for links because that footprint is exactly what Google looks for.",
+      a: "No. Private blog networks are sites built to sell links, and catching them is exactly what the gate is for. Every placement is on an independent publication with its own audience and editorial process. We do pay for editorial time on some publications, which is standard across the industry, but we will not work with a site that advertises a public price list, because that footprint is precisely what Google looks for.",
     },
     {
       q: "Will this get my site penalised?",
-      a: "Manual actions come from obvious paid-link footprints, irrelevant placements at scale, and over-optimised anchors. Our vetting rejects the first two and the anchor mapping in step one handles the third. We have not had a client receive a manual action. That said, nobody can give you an absolute guarantee about Google's behaviour, and anyone who does is selling you something.",
+      a: "Manual actions come from obvious paid-link footprints, irrelevant placements at scale, and over-optimised anchors. The gate rejects the first two and the anchor mapping in step one handles the third. No client of ours has had a manual action. That said, nobody can give you an absolute guarantee about Google's behaviour, and anyone who does is selling you something.",
     },
     {
       q: "How long until I see movement?",
-      a: "Indexation takes two to six weeks per placement. Ranking movement on pages already sitting in positions 5–20 typically shows between months two and four. Pages starting beyond position 30 usually need content work alongside links and take longer. We report on the keywords agreed in the audit so you can see the trend rather than guess at it.",
+      a: "Indexation takes two to six weeks per placement. Ranking movement on pages already sitting in positions 5–20 typically shows between months two and four. Pages starting beyond position 30 usually need content work alongside links and take longer. We report against the keyword set agreed in the audit, so you can see the trend rather than guess at it.",
     },
     {
       q: "What happens if a link gets removed?",
-      a: "We monitor every placement for 12 months. If a publisher removes or nofollows a link inside that window we replace it on an equivalent domain at no charge. If a site's quality degrades badly after placement we will flag it to you proactively rather than wait for you to notice.",
+      a: "We monitor every placement for 12 months. If a publisher removes or nofollows a link inside that window we replace it on an equivalent domain at no charge. If a site's quality degrades badly after placement we flag it to you rather than wait for you to notice.",
     },
     {
       q: "Do I get to choose the anchor text?",
-      a: "You get to approve it. We propose an anchor mix in the audit — typically branded, partial-match and natural-phrase anchors in ratios that stay inside normal ranges for your niche. If you want a specific anchor on a specific page we will accommodate it unless it pushes the profile into over-optimisation, in which case we will show you the numbers and say so.",
+      a: "You get to approve it. We propose a mix in the audit — branded, partial-match and natural-phrase anchors in ratios that stay inside normal ranges for your niche. If you want a specific anchor on a specific page we will accommodate it, unless it pushes the profile into over-optimisation, in which case we will show you the numbers and say so.",
     },
     {
-      q: "How does pricing work, and is there a contract?",
-      a: "Monthly retainer scoped on delivered placements. Typical range is $2,400 to $6,000 depending on authority tier and volume. No setup fee. We ask for a three-month minimum because anything shorter cannot show a result, after which it runs month to month.",
+      q: "What does it cost, and is there a contract?",
+      a: "A monthly retainer scoped on delivered placements rather than attempts or hours. What moves the number is the authority range, the monthly volume, the market and who writes the content — the pricing page breaks all four down. No setup fee. Three-month minimum because anything shorter cannot show a result, then month to month.",
     },
     {
       q: "Do you offer white label for agencies?",
