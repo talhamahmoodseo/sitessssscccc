@@ -42,7 +42,7 @@ internals are not. This affects most of `src/pages/` and `src/sections/`.
 
 Hand-written files are clean and idiomatic:
 `components/MotionKit.tsx`, `Navigation.tsx`, `BookingModal.tsx`,
-`LogoReveal.tsx`, `PlatformMarks.tsx`, `HeroAtmosphere.tsx`, `RocketLaunch.tsx`,
+`LogoReveal.tsx`, `PlatformMarks.tsx`, `HeroAtmosphere.tsx`, `PlaneFlight.tsx`,
 `CountUp.tsx`, `PageLayout.tsx`, `PageHero.tsx`, `LineArt.tsx`,
 `ServicePage.tsx`, `pages/services/shared.tsx`, `pages/services/sections.tsx`,
 `pages/services/LinkBuilding.tsx`, `pages/services/content/*`.
@@ -90,7 +90,7 @@ src/
     Navigation.tsx       fixed header, services dropdown, mobile sheet
     BookingModal.tsx     Calendly dialog, opens on the global event
     LogoReveal.tsx       1.8s opening curtain
-    RocketLaunch.tsx     hero rocket, scroll-driven along a sampled curve
+    PlaneFlight.tsx      hero paper plane, scroll-driven along a sampled curve
     brand.tsx            SectionTitle, StatTile, QuoteTile, Annotation
     HeroAtmosphere.tsx   drifting colour blobs behind the hero
     LineArt.tsx          11 hand-drawn SVG figures
@@ -221,20 +221,59 @@ defensively. The name is a proposal and can be changed with a find-replace.
 
 In rough priority order.
 
-1. **Three service pages still thin.** `DigitalPR.tsx`, `BrandMentions.tsx` and
-   `HaroQuotes.tsx` are still the machine-recovered originals (~700 words, no
-   FAQ, one CTA). Rebuild each using `sections.tsx` + a new file in `content/`,
-   following `SERVICE-PAGES-PLAN.md` §4.2–4.4.
-2. **Hero animation.** The client wants the rocket animation raised to the
-   craft level of amplemarket.com's scroll-driven plane — smoother, ideally
-   scroll-linked, more intentional. Not started. Improve `RocketLaunch.tsx`;
-   do **not** replace the homepage design around it.
-3. **Case study pages** → move to the 3-act format (goal / solution / result)
-   with stat cards and a chart, like the `WorkedExample` component.
-4. **About page** is thin — founder story, method, proof.
-5. **Pricing** — clarify tiers against deliverables.
-6. **Homepage sections** other than the hero still use the older spacing and
-   card styles. Polish only; no redesign.
+1. **Replace the placeholder client logos.** CapCut, Ocuco and Khaleej Times
+   are real clients and are used as wordmarks in `lib/clients.ts`; the rest of
+   the proof grid, testimonials and case-study figures are invented. The owner
+   has said the site is not finished until the real client logos are in. Every
+   name, figure and quote outside those three should be treated as dummy copy.
+2. **Case-study word counts.** The three files run 440-530 words. They now
+   carry everything the index promises (growth chart, indexation report,
+   rejected domains, timeline), but the narrative sections — `situation`,
+   `strategy`, `blockers` in `lib/content.ts` — are still short next to the
+   ~1,000-word service pages. Content, not structure.
+3. **Blog posts** run 300-480 words each. Same shape as above: the page
+   template is fine, `BLOG_POSTS` bodies are short.
+4. **Scroll-driven motion is unverified in this environment.** `PlaneFlight.tsx`
+   was checked in the DOM only — the Browser pane does not composite, so the
+   page cannot scroll and the flight could not be watched. Open the site in a
+   real browser and confirm the plane tracks the curve and the contrail draws
+   in behind it.
+5. **Homepage sections** other than the hero still use the older spacing and
+   card styles. Polish only; no redesign — the owner has rejected two homepage
+   redesigns and asked for this direction to be kept.
+
+### Design rules that are not negotiable
+
+These came from the owner directly, after rejected attempts:
+
+- **Every page has its own identity.** Do not add a shared page template and do
+  not copy a section from one page onto another. Current signature shapes, one
+  per page: homepage pastel bento (`ProofGrid`), service pages rejection
+  filmstrip vs ledger and process rail vs funnel (`services/depth.tsx`),
+  Case Studies numbered file index with sparklines, Pricing stacked allocation
+  bar, About vertical DR-band columns + signed letter, Services hub two-way
+  decision matrix, Contact horizontal numbered rail, Blog numbered reading
+  paths.
+- **`<Results />` is homepage-only.** It was previously rendered on
+  `/case-studies` as well, which the owner called out directly.
+- **No red accent.** Rejected twice. `--gap` is a rust used only for rejection
+  markers, not an accent colour.
+- **No build-notes in the markup.** Lines like "confirm these figures before
+  launch" were rendering as body copy on live pages. All removed.
+- **No standalone testimonial band immediately before a fit/FAQ section.** Fold
+  the quote into the adjacent proof section instead.
+
+### Audit the work before calling it done
+
+`npm run build`, then in a browser console measure, per route: WCAG AA contrast
+and adjacent same-surface sections. Contrast must be measured with **full alpha
+compositing** — every translucent ancestor background, plus any absolutely
+positioned element that is an *earlier sibling* of the text's branch and
+geometrically covers it. Two earlier passes reported wrong numbers:
+one composited a single layer and missed an overlay (hiding the unreadable blog
+hero), another counted overlays that paint *after* the text (158 false
+failures). Last verified state: **0 contrast failures, 0 broken images across
+20 routes.**
 
 ## 9. Known issues and traps
 

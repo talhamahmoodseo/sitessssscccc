@@ -3,16 +3,17 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import { GrowthChart, IndexationReport, RejectedHere } from "./case-depth";
 import { asset } from "@/lib/booking";
 import { openBooking } from "@/lib/booking";
 import { CASE_STUDIES } from "@/lib/content";
 
 const GB = (e) => CASE_STUDIES.find((s) => s.slug === e);
 
+const TONES = { white: "bg-white", linen: "bg-linen", paper: "bg-mist" };
+
 const Block = ({ eyebrow, title, children, tone = "paper" }) => (
-  <div
-    className={`${tone === "white" ? "bg-white" : "bg-mist"} py-20 lg:py-24`}
-  >
+  <div className={`${TONES[tone] ?? TONES.paper} py-20 lg:py-24`}>
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.p
         className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-3"
@@ -170,6 +171,7 @@ const CaseStudy = () => {
             <span className="text-navy-dark/65">approached it</span>
           </>
         }
+        tone="linen"
       >
         <div className="grid sm:grid-cols-3 gap-4">
           {s.strategy.map((r, c) => (
@@ -194,7 +196,7 @@ const CaseStudy = () => {
           ))}
         </div>
       </Block>
-      <div className="bg-white">
+      <div className="bg-mist">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           <motion.figure
             className="overflow-hidden rounded-2xl ring-1 ring-navy-dark/[0.07]"
@@ -261,6 +263,46 @@ const CaseStudy = () => {
             ))}
           </div>
         </div>
+      </Block>
+      <Block
+        eyebrow="The growth"
+        title={
+          <>
+            {"What the chart "}
+            <span className="text-navy-dark/65">actually did</span>
+          </>
+        }
+        tone="linen"
+      >
+        <GrowthChart series={s.series} seriesLabel={s.seriesLabel} />
+      </Block>
+      <Block
+        eyebrow="The indexation report"
+        title={
+          <>
+            {"Every link, "}
+            <span className="text-navy-dark/65">and when Google took it</span>
+          </>
+        }
+        tone="white"
+      >
+        <IndexationReport data={s.indexation} />
+      </Block>
+      <Block
+        eyebrow="What we turned down"
+        title={
+          <>
+            {"The domains that "}
+            <span className="text-navy-dark/65">did not make it</span>
+          </>
+        }
+        tone="linen"
+      >
+        <RejectedHere
+          items={s.rejected}
+          reviewed={s.reviewed}
+          placed={Number(s.indexation.rate.split("/")[0].trim())}
+        />
       </Block>
       <Block
         eyebrow="The timeline"

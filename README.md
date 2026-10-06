@@ -100,5 +100,7 @@ scroll-revealed stage ladder. The brand system is defined in
 [BRAND.md](BRAND.md) and applied across the site; 13 routes measured at zero
 WCAG AA contrast failures.
 
-Still thin: About, Pricing, Contact and the case-study pages. Full list of
-unfinished work and known issues in [PROJECT.md §8–9](PROJECT.md).
+All 20 routes verified at 0 WCAG AA contrast failures and 0 broken images.
+Still thin on *content* (not structure): case-study narratives and blog post
+bodies. Scroll-driven hero motion has not been watched in a real browser. Full
+list, plus the non-negotiable design rules, in [PROJECT.md §8–9](PROJECT.md).

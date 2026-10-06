@@ -5,6 +5,33 @@ import { asset } from "@/lib/booking";
 const CASE_STUDIES = [
   {
     slug: "b2b-saas-ai-visibility",
+    indexation: {
+      rate: "14 / 14",
+      median: "19 days",
+      slowest: "41 days",
+      note: "Two placements stalled past the four-week mark. We went back to both publishers; one re-published with an updated date and indexed in nine days, the other needed an internal link from the publication’s own category page before Google picked it up.",
+    },
+    reviewed: 31,
+    rejected: [
+      {
+        site: "Business magazine",
+        metric: "DR 71",
+        reason:
+          "Organic traffic had collapsed 94% after a core update, and the remaining visits came from one unrelated keyword. Authority on paper, none in practice.",
+      },
+      {
+        site: "Regional tech news site",
+        metric: "DR 64",
+        reason:
+          "Clean-looking until we read the outbound profile: 40% of recent external links pointed to offshore gambling.",
+      },
+      {
+        site: "Support-industry trade blog",
+        metric: "DR 52",
+        reason:
+          "Genuine traffic and a real editor, but a public price list for sponsored posts put a paid-link footprint on the whole domain.",
+      },
+    ],
     series: [1200, 1380, 1610, 2050, 2400, 2980, 3450, 3744],
     seriesLabel: "Monthly organic clicks, months 0–7",
     cover: "/images/portfolio-1.jpg",
@@ -93,6 +120,33 @@ const CASE_STUDIES = [
   },
   {
     slug: "home-services-local-pack",
+    indexation: {
+      rate: "9 / 9",
+      median: "14 days",
+      slowest: "26 days",
+      note: "Local placements indexed faster than we expected — the publications are small but crawled daily. The slowest was a monthly print-first title whose web edition goes up in a batch.",
+    },
+    reviewed: 18,
+    rejected: [
+      {
+        site: "City events directory",
+        metric: "DR 44",
+        reason:
+          "A link farm wearing a local-news coat: every page was a paid listing and nothing had an author.",
+      },
+      {
+        site: "Home-improvement content site",
+        metric: "DR 58",
+        reason:
+          "Traffic was real but entirely US-national. For an emergency-repair business in Fresno, a national audience is not relevance.",
+      },
+      {
+        site: "Contractor review portal",
+        metric: "DR 49",
+        reason:
+          "Would only place the link inside a sponsored comparison table alongside four direct competitors.",
+      },
+    ],
     series: [640, 690, 820, 1010, 1240, 1498],
     seriesLabel: "Monthly organic clicks, months 0–5",
     cover: "/images/portfolio-4.jpg",
@@ -179,6 +233,33 @@ const CASE_STUDIES = [
   },
   {
     slug: "ecommerce-gulf-authority",
+    indexation: {
+      rate: "21 / 22",
+      median: "23 days",
+      slowest: "68 days",
+      note: "One Gulf placement never indexed. The publisher moved the article behind a subscriber wall two weeks after publication, so we replaced it on an equivalent domain at no charge — that replacement is the 22nd row and did index.",
+    },
+    reviewed: 45,
+    rejected: [
+      {
+        site: "Regional lifestyle magazine",
+        metric: "DR 67",
+        reason:
+          "Strong brand, but the English edition was machine-translated from Arabic and read as thin content to a crawler.",
+      },
+      {
+        site: "Gulf business news site",
+        metric: "DR 61",
+        reason:
+          "Required the piece to run under a “brand voices” label, which flags it as sponsored to both readers and Google.",
+      },
+      {
+        site: "Home-decor aggregator",
+        metric: "DR 55",
+        reason:
+          "Pure syndication — every article existed on three other domains first. The link would have carried no independent signal.",
+      },
+    ],
     series: [2100, 2240, 2610, 3180, 3790, 4420, 5130, 5880, 6410],
     seriesLabel: "Monthly organic clicks, months 0–8",
     cover: "/images/portfolio-6.jpg",
