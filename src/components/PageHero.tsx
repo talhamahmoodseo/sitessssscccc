@@ -18,7 +18,7 @@ const PageHero = ({
   children,
   compact = false,
 }: PageHeroProps) => (
-  <div className="relative bg-stone overflow-hidden">
+  <div className="relative bg-mist overflow-hidden">
     <motion.div
       className="absolute -right-40 -top-20 w-[520px] h-[520px] bg-transparent rounded-full blur-3xl"
       animate={{ scale: [1, 1.12, 1], opacity: [0.25, 0.4, 0.25] }}

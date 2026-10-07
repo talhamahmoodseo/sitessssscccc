@@ -4,57 +4,6 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { FigNetwork, FigTrendline } from "@/components/LineArt";
 import { CASE_STUDIES } from "@/lib/content";
 
-/**
- * The page's one amber moment. DESIGN.md allows a single saturated band per
- * page, spent on the figure most worth remembering — here, the indexation
- * rate, because it is the number that decides whether anything else counted.
- */
-const IndexationBand = () => (
-  <div className="bg-white py-16 lg:py-20">
-    <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-16 lg:px-8">
-      <motion.p
-        className="text-[5.5rem] font-semibold leading-[0.82] tracking-[-0.05em] text-navy-dark tabular-nums sm:text-[7rem]"
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6 }}
-      >
-        96%
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-navy-dark/75">
-          Last twelve months
-        </p>
-        <p className="mt-3 max-w-xl text-[19px] font-semibold leading-snug tracking-[-0.015em] text-navy-dark sm:text-[21px]">
-          of placements were indexed by Google. The ones that were not, we went
-          back to the publisher for — or replaced.
-        </p>
-        <dl className="mt-7 flex flex-wrap gap-x-12 gap-y-5 border-t border-navy-dark/20 pt-6">
-          {[
-            ["19 days", "median time to index"],
-            ["90 days", "replacement window"],
-            ["1 in 5", "sourced sites rejected at vetting"],
-          ].map(([v, k]) => (
-            <div key={k}>
-              <dt className="text-[1.4rem] font-semibold leading-none tracking-[-0.02em] text-navy-dark tabular-nums">
-                {v}
-              </dt>
-              <dd className="mt-1.5 max-w-[11rem] text-[12px] leading-snug text-navy-dark/75">
-                {k}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </motion.div>
-    </div>
-  </div>
-);
-
 const Results = ({ standalone = false }) => (
   <>
     <div className={`${standalone ? "bg-white" : "bg-mist"} py-24 lg:py-32`}>
@@ -159,7 +108,6 @@ const Results = ({ standalone = false }) => (
         )}
       </div>
     </div>
-    {!standalone && <IndexationBand />}
   </>
 );
 

@@ -504,7 +504,7 @@ const MOVEMENT = [
 ];
 
 const HowWeCount = () => (
-  <div className="bg-stone py-24 lg:py-32">
+  <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div>

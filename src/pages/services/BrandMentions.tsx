@@ -171,7 +171,7 @@ const AnswerCard = () => {
                 {a.sources.map((s) => (
                   <span
                     key={s}
-                    className="rounded-md bg-stone px-2 py-1 text-[10.5px] font-semibold text-navy-dark/75"
+                    className="rounded-md bg-mist px-2 py-1 text-[10.5px] font-semibold text-navy-dark/75"
                   >
                     {s}
                   </span>
@@ -260,7 +260,7 @@ const Hero = () => (
 
 /* 2 — stone, with the figure panel overlapping the espresso boundary */
 const Proof = () => (
-  <div className="bg-stone pb-20 lg:pb-24">
+  <div className="bg-white pb-20 lg:pb-24">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.div
         className="relative z-10 -mt-20 grid rounded-3xl bg-white shadow-deep sm:grid-cols-3 lg:-mt-24"
@@ -536,7 +536,7 @@ const Anatomy = () => {
           <div className="grid gap-5 border-t border-line pt-7 sm:grid-cols-3">
             {BM.anatomy.notes.map((n) => (
               <div key={n.n} className="flex gap-3">
-                <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-stone text-[11px] font-bold text-navy-dark">
+                <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-mist text-[11px] font-bold text-navy-dark">
                   {n.n}
                 </span>
                 <div>
@@ -567,7 +567,7 @@ const Anatomy = () => {
 const Reporting = () => {
   const t = BM.reporting.tracker;
   return (
-    <div className="bg-stone py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto grid max-w-6xl items-start gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
         <div>
           <Head
@@ -642,7 +642,7 @@ const Reporting = () => {
                       {e.pct}%
                     </span>
                   </div>
-                  <div className="h-2.5 overflow-hidden rounded-full bg-stone">
+                  <div className="h-2.5 overflow-hidden rounded-full bg-mist">
                     <motion.div
                       className={`h-full rounded-full ${
                         [
@@ -915,7 +915,7 @@ const Process = () => (
               <p className="mt-2 max-w-2xl text-[14.5px] leading-relaxed text-navy-dark/75">
                 {s.d}
               </p>
-              <p className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-stone px-3.5 py-2 text-[12.5px] font-semibold text-navy-dark">
+              <p className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-mist px-3.5 py-2 text-[12.5px] font-semibold text-navy-dark">
                 <span className="h-1.5 w-1.5 rounded-full bg-verified" />
                 Your part — {s.you}
               </p>
@@ -943,7 +943,7 @@ const Process = () => (
 
 /* 11 — stone */
 const Included = () => (
-  <div className="bg-stone py-24 lg:py-32">
+  <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={BM.included.eyebrow}

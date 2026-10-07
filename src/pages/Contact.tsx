@@ -534,7 +534,7 @@ const OFFRAMPS = [
 ];
 
 const OffRamps = () => (
-  <div className="bg-stone py-24 lg:py-32">
+  <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.h2
         className="text-balance mb-12 max-w-xl text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.03em] text-navy-dark sm:text-[2rem]"

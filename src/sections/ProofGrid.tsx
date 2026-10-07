@@ -27,7 +27,7 @@ const SCORECARD: [string, string][] = [
 ];
 
 const ProofGrid = () => (
-  <div className="relative bg-stone pb-20 lg:pb-28">
+  <div className="relative bg-white pb-20 lg:pb-28">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       {/* the scorecard rides up over the dark band above, so the two surfaces
           interlock instead of simply butting together */}

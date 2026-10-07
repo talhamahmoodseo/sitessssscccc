@@ -690,7 +690,7 @@ const Pricing = () => {
       </div>
 
       {/* 2 · stone — tier cards, pulled up so they interlock with the hero */}
-      <div className="bg-stone pb-24 lg:pb-28">
+      <div className="bg-white pb-24 lg:pb-28">
         <div className="mx-auto -mt-24 grid max-w-6xl grid-cols-1 items-start gap-5 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           {PRICING_TIERS.map((r, c) => (
             <motion.div
@@ -706,7 +706,7 @@ const Pricing = () => {
                   {r.name}
                 </h2>
                 <span
-                  className={`whitespace-nowrap rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${r.featured ? "bg-navy-dark text-white" : "bg-stone text-navy-dark/75"}`}
+                  className={`whitespace-nowrap rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${r.featured ? "bg-navy-dark text-white" : "bg-mist text-navy-dark/75"}`}
                 >
                   {r.tag}
                 </span>
@@ -782,7 +782,7 @@ const Pricing = () => {
                     <td className="py-3.5 text-center">
                       <FeatureCell v={r.s} />
                     </td>
-                    <td className="bg-stone/60 py-3.5 text-center">
+                    <td className="bg-mist py-3.5 text-center">
                       <FeatureCell v={r.g} />
                     </td>
                     <td className="py-3.5 text-center">
@@ -804,7 +804,7 @@ const Pricing = () => {
       <Terms />
 
       {/* 9 · stone — pricing FAQ (white cards on a tinted ground) */}
-      <div className="relative bg-stone py-24 lg:py-28">
+      <div className="relative bg-white py-24 lg:py-28">
         <div className="absolute left-10 top-32 hidden text-navy-dark/70 xl:block">
           <FigSpreadsheet className="h-auto w-24" />
         </div>

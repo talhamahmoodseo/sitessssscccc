@@ -22,31 +22,38 @@ grid, a chart, a mock, a diagram — not a coloured background.
 
 ## Section grounds — this is the whole list
 
-| Token          | Use                                                          |
-| -------------- | ------------------------------------------------------------ |
-| `bg-mist`      | The default ground. Most sections.                           |
-| `bg-white`     | Alternating sections, and **every card**.                    |
-| `bg-stone`     | A quieter band. **At most one or two per page.**             |
-| `bg-navy-dark` | Dark. **At most two per page**, plus the global CTA band.     |
+Reference: amplemarket.com. Their base is **black and near-white, nothing
+else.** Saturated colour appears only in small areas.
 
-That is four, and two of them are near-white. Nothing else is a section
-ground — ever.
+| Token          | Use                                                       |
+| -------------- | --------------------------------------------------------- |
+| `bg-mist`      | Near-white. The default ground.                            |
+| `bg-white`     | The alternate ground, and every card.                      |
+| `bg-navy-dark` | Black. Two to three times per page, including the CTA band.|
 
-**Banned as section grounds:** `bg-clay`, `bg-espresso`, `bg-mark`, and every
-pastel (`butter`, `mint`, `lilac`, `blush`, `sky`). They still exist as tokens
-for artwork and small components.
+That is it. Three.
 
-## Where colour is allowed
+**No beige, no brown, no tinted bands.** `stone` and `clay` were warm greys
+that read brown at section size and have been removed from the codebase.
+`espresso` is gone too. Do not reintroduce a tinted section ground of any
+kind — this has been rejected explicitly.
 
+## Where colour goes instead
+
+Amplemarket puts real colour in small, high-value places, against the
+black-and-white base:
+
+- **the client-results bento** — pastel tiles in butter / mint / lilac /
+  blush / sky, each carrying one number and one client wordmark. This is the
+  single most important colour moment on the site. It lives on the homepage as
+  `ProofGrid` and must not be removed.
+- case-study cover plates and team photo tints
+- small coloured markers in feature lists
 - the hero fluid artifact
-- charts, sparklines, diagrams and UI mocks
-- the homepage proof bento tiles (the established brand bento)
-- case-study cover tints and team photo tints
-- small chips and the `.mark` highlighter sweep on a few words of running text
-- a single accent button
+- the `.mark` highlighter sweep on a few words of running text
 
-Amber is the brand highlighter. It belongs on **words and small controls**, not
-on a band 400px tall.
+The rule: colour belongs to **objects** — a tile, a chart, a plate, a few
+highlighted words. Never to a 400px-tall band.
 
 ## Where depth comes from instead
 

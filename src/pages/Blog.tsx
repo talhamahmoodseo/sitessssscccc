@@ -460,7 +460,7 @@ const Blog = () => {
 
       <Beats counts={counts} onPick={pick} />
 
-      <section id="archive" className="bg-stone py-24 lg:py-28">
+      <section id="archive" className="bg-white py-24 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="max-w-2xl" {...rise()}>
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">

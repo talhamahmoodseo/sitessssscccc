@@ -11,6 +11,7 @@ import Hero from "./sections/Hero";
 import ClientLogos from "./sections/ClientLogos";
 import TheShift from "./sections/TheShift";
 import ServicesSection from "./sections/Services";
+import ProofGrid from "./sections/ProofGrid";
 import Results from "./sections/Results";
 import Personas from "./sections/Personas";
 import Process from "./sections/Process";
@@ -69,6 +70,10 @@ const Home = () => (
       <section id="stories">
         <VideoStories />
       </section>
+      <section id="testimonials">
+        <ProofGrid />
+      </section>
+
       <section id="faq">
         <FAQ />
       </section>

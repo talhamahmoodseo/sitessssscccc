@@ -118,7 +118,7 @@ const CaseStudy = () => {
       <Seo title={`${s.title} — case study`} description={s.line} />
 
       {/* ───────────────────────── 1 · hero — stone ───────────────────────── */}
-      <div className="bg-stone pb-0 pt-28">
+      <div className="bg-white pb-0 pt-28">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Link
             to="/case-studies"
@@ -510,7 +510,7 @@ const CaseStudy = () => {
       </div>
 
       {/* ─────────────────────── 8 · the timeline — stone ────────────────── */}
-      <div className="bg-stone py-24 lg:py-28">
+      <div className="bg-white py-24 lg:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Head
             eyebrow="The timeline"

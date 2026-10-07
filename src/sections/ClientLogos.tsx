@@ -21,7 +21,7 @@ const LogoRow = ({ name, sub }) => (
 );
 
 const ClientLogos = () => (
-  <div className="bg-stone py-14">
+  <div className="bg-white py-14">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.p
         className="text-center text-[12.5px] font-semibold uppercase tracking-[0.16em] text-navy-dark/70 mb-8"

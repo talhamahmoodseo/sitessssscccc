@@ -77,7 +77,7 @@ const Head = ({
  *  one testimonial wall. */
 const QUOTE_TONE = {
   mist: { bg: "bg-mist", quote: "text-navy-dark", cite: "text-navy-dark/70" },
-  stone: { bg: "bg-stone", quote: "text-navy-dark", cite: "text-navy-dark/70" },
+  stone: { bg: "bg-mist", quote: "text-navy-dark", cite: "text-navy-dark/70" },
   white: { bg: "bg-white", quote: "text-navy-dark", cite: "text-navy-dark/70" },
 } as const;
 
@@ -250,7 +250,7 @@ const Hero = () => (
 /* ============================== logo band ============================== */
 
 const LogoBand = () => (
-  <div className="bg-stone py-14">
+  <div className="bg-white py-14">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.p
         className="mb-8 text-center text-[12.5px] text-navy-dark/70"
@@ -457,7 +457,7 @@ const Movement = () => (
 /* ============================= methodology ============================= */
 
 const Methodology = () => (
-  <div className="bg-stone py-24 lg:py-32">
+  <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
       <Head
         eyebrow={LB.methodology.eyebrow}
@@ -845,7 +845,7 @@ const LinkBuilding = () => (
     <Moves />
     <Context />
     <PullQuote {...LB.quotes.beforeClose} tone="white" />
-    <div className="bg-stone py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="text-balance mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"

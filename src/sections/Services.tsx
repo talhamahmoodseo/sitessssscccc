@@ -85,7 +85,7 @@ const ServicesSection = () => {
       },
     };
   return (
-    <div className="bg-stone py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"

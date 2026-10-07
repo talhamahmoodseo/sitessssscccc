@@ -251,7 +251,7 @@ const About = () => (
     </div>
 
     {/* ---- recognition band ---- */}
-    <div className="bg-stone py-14">
+    <div className="bg-white py-14">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.p
           className="mb-8 text-center text-[12.5px] text-navy-dark/70"
@@ -383,7 +383,7 @@ const About = () => (
     <Network />
 
     {/* ---- what we do ---- */}
-    <div className="bg-stone py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div className="mb-12 max-w-2xl" {...rise()}>
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
@@ -517,7 +517,7 @@ const About = () => (
     </div>
 
     {/* ---- client proof ---- */}
-    <div className="bg-stone py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="text-balance mb-12 max-w-2xl text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"

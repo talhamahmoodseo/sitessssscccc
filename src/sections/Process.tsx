@@ -218,7 +218,7 @@ const Process = () => {
     },
     h = s + 1;
   return (
-    <div className="bg-stone" ref={e}>
+    <div className="bg-mist" ref={e}>
       <div className="hidden lg:block">
         <div className="sticky top-0 min-h-screen flex items-center py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">

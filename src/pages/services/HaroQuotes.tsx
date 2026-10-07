@@ -98,7 +98,7 @@ const RequestQueue = () => {
 
   return (
     <div className="overflow-hidden rounded-[1.4rem] bg-white shadow-deep">
-      <div className="flex items-center gap-2.5 border-b border-line bg-stone px-5 py-3.5">
+      <div className="flex items-center gap-2.5 border-b border-line bg-mist px-5 py-3.5">
         <span className="relative flex h-2 w-2" aria-hidden="true">
           <span className="absolute h-full w-full animate-ping rounded-full bg-verified opacity-60" />
           <span className="relative h-2 w-2 rounded-full bg-verified" />
@@ -160,7 +160,7 @@ const RequestQueue = () => {
                   className={`inline-flex flex-none items-center gap-1 rounded-full px-2 py-1 text-[10px] font-bold tabular-nums ${
                     left < 60
                       ? "bg-mark/40 text-navy-dark"
-                      : "bg-stone text-navy-dark/80"
+                      : "bg-mist text-navy-dark/80"
                   }`}
                 >
                   <Clock className="h-2.5 w-2.5" aria-hidden="true" />
@@ -176,7 +176,7 @@ const RequestQueue = () => {
         })}
       </ul>
 
-      <p className="border-t border-line bg-stone/60 px-5 py-4 text-[11.5px] leading-relaxed text-navy-dark/75">
+      <p className="border-t border-line bg-mist px-5 py-4 text-[11.5px] leading-relaxed text-navy-dark/75">
         {H.queue.foot}
       </p>
     </div>
@@ -282,7 +282,7 @@ const Hero = () => (
 /* ============================== figures band ============================== */
 
 const Numbers = () => (
-  <div className="bg-stone py-16 lg:py-20">
+  <div className="bg-white py-16 lg:py-20">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.p
         className="mb-10 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70"
@@ -422,7 +422,7 @@ const Profile = () => (
 
       {/* bordered inset dossier on a deeper ground than the section */}
       <motion.div
-        className="rounded-3xl border border-line bg-stone p-7 lg:p-9"
+        className="rounded-3xl border border-line bg-mist p-7 lg:p-9"
         {...rise(0.1)}
       >
         <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.14em] text-navy-dark/75">
@@ -566,7 +566,7 @@ const Methodology = () => (
 /* ================================= process ================================= */
 
 const Process = () => (
-  <div className="bg-stone pb-36 pt-24 lg:pb-52 lg:pt-32">
+  <div className="bg-white pb-36 pt-24 lg:pb-52 lg:pt-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={H.process.eyebrow}
@@ -625,7 +625,7 @@ const Process = () => (
 /** The right column interlocks with the section above it — the clipping is
  *  pulled up over the boundary so the two surfaces overlap. */
 const Clipping = () => (
-  <div className="bg-stone pb-24 pt-24 lg:pb-32 lg:pt-32">
+  <div className="bg-white pb-24 pt-24 lg:pb-32 lg:pt-32">
     <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-8">
       <div className="lg:pt-4">
         <Head
@@ -889,7 +889,7 @@ const Skipped = () => (
 /* =================================== fit =================================== */
 
 const Fit = () => (
-  <div className="bg-stone py-24 lg:py-32">
+  <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={H.fit.eyebrow}

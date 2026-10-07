@@ -130,7 +130,7 @@ const ClippingFan = () => (
 );
 
 const Hero = () => (
-  <div className="relative bg-stone pt-28 lg:pt-32">
+  <div className="relative bg-white pt-28 lg:pt-32">
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <Glow
         tint="bg-mint"
@@ -396,7 +396,7 @@ const Angles = () => {
   const [open, setOpen] = useState(0);
   const a = PR.angles.items[open];
   return (
-    <div className="bg-stone py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow={PR.angles.eyebrow}
@@ -838,7 +838,7 @@ const CampaignBand = () => {
 /* ====================== 11 · deliverables (stone) ====================== */
 
 const Deliverables = () => (
-  <div className="bg-stone py-24 lg:py-32">
+  <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={PR.deliverables.eyebrow}
@@ -913,7 +913,7 @@ const Fit = () => (
         </motion.div>
 
         <motion.div
-          className="rounded-3xl border border-line bg-stone p-8"
+          className="rounded-3xl border border-line bg-mist p-8"
           {...rise(0.08)}
         >
           <h3 className="text-[16px] font-semibold text-navy-dark">

@@ -156,7 +156,7 @@ const Hero = () => (
 
 /** The four routes. White cards pulled up across the mist/stone boundary. */
 const Routes = () => (
-  <div className="bg-stone pb-24 lg:pb-28">
+  <div className="bg-white pb-24 lg:pb-28">
     <div className="relative z-10 mx-auto -mt-24 max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">
         {SERVICES.map((e, s) => {
