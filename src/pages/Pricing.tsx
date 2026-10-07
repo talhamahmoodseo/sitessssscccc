@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { FigSpreadsheet } from "@/components/LineArt";
+import { AccentDot, type Accent } from "@/components/brand";
 import { FaqList } from "@/components/AgencyBlocks";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -50,6 +51,7 @@ const rise = (delay = 0) => ({
 
 const PRICING_TIERS = [
   {
+    accent: "butter" as Accent,
     id: "starter",
     name: "Starter",
     tag: "Testing the water",
@@ -67,6 +69,7 @@ const PRICING_TIERS = [
     ],
   },
   {
+    accent: "lilac" as Accent,
     id: "growth",
     name: "Growth",
     tag: "Most chosen",
@@ -86,6 +89,7 @@ const PRICING_TIERS = [
     ],
   },
   {
+    accent: "sky" as Accent,
     id: "authority",
     name: "Authority",
     tag: "Category leaders",
@@ -702,7 +706,8 @@ const Pricing = () => {
               transition={{ duration: 0.55, delay: c * 0.08, ease: EASE }}
             >
               <div className="mb-5 flex items-center justify-between gap-3">
-                <h2 className="text-balance text-[19px] font-semibold text-navy-dark">
+                <h2 className="text-balance flex items-center gap-2.5 text-[19px] font-semibold text-navy-dark">
+                  <AccentDot accent={r.accent} />
                   {r.name}
                 </h2>
                 <span

@@ -648,13 +648,12 @@ export const OtherServices = ({ current }: { current: string }) => (
           <Link
             key={s.slug}
             to={`/services/${s.slug}`}
-            className="group rounded-2xl border border-line bg-white p-6 hover:-translate-y-1 hover:shadow-lift transition-all duration-500"
+            className={`group rounded-[22px] p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift ${s.tint}`}
           >
-            <span className={`block w-10 h-10 rounded-xl ${s.tint} mb-4`} />
-            <span className="block text-[16px] font-semibold text-navy-dark mb-1.5">
+            <span className="mb-10 block text-[16.5px] font-semibold text-navy-dark">
               {s.nav}
             </span>
-            <span className="text-[13px] text-navy-dark/70 group-hover:text-navy-dark transition-colors duration-300">
+            <span className="text-[13px] font-semibold text-navy-dark/75 transition-colors duration-300 group-hover:text-navy-dark">
               Explore →
             </span>
           </Link>

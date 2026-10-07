@@ -19,13 +19,6 @@ import { PROOF_TILES } from "@/lib/clients";
 const span = (kind: "stat" | "quote") =>
   kind === "quote" ? "sm:col-span-2 lg:col-span-6" : "lg:col-span-3";
 
-/** Programme-level facts, stated once, on hairlines rather than in boxes. */
-const SCORECARD: [string, string][] = [
-  ["40+", "brands served"],
-  ["DR 40–75", "typical placement range"],
-  ["4", "answer surfaces tracked monthly"],
-];
-
 const ProofGrid = () => (
   <div className="relative bg-white pb-20 lg:pb-28">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -40,22 +33,6 @@ const ProofGrid = () => (
           Real clients.
           <span className="text-navy-dark/65">Numbers they signed off on.</span>
         </h2>
-
-        <dl className="mx-auto mt-10 grid max-w-3xl gap-y-7 border-t border-line pt-8 sm:grid-cols-3 sm:divide-x sm:divide-line">
-          {SCORECARD.map(([v, k], i) => (
-            <div
-              key={k}
-              className={`text-center ${i > 0 ? "sm:px-4" : "sm:pr-4"}`}
-            >
-              <dt className="text-[2rem] font-semibold leading-none tracking-[-0.03em] text-navy-dark tabular-nums sm:text-[2.3rem]">
-                {v}
-              </dt>
-              <dd className="mx-auto mt-2 max-w-[12rem] text-[12.5px] leading-snug text-navy-dark/70">
-                {k}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
 
       <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">

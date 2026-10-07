@@ -514,18 +514,21 @@ const PreCall = () => (
 
 const OFFRAMPS = [
   {
+    tint: "bg-butter",
     to: "/case-studies",
     t: "Read a case file first",
     d: "Three engagements published in full — the growth curves, every placement, and the pages each one was pointed at.",
     cta: "Open the archive",
   },
   {
+    tint: "bg-mint",
     to: "/pricing",
     t: "See what it costs",
     d: "Retainer ranges, what moves the number up or down, and why we scope on delivered placements rather than hours.",
     cta: "See pricing",
   },
   {
+    tint: "bg-lilac",
     to: "/blog",
     t: "Judge the thinking",
     d: "How AI engines pick sources, linked versus unlinked mentions, and what a DR 70 placement actually involves.",
@@ -557,12 +560,12 @@ const OffRamps = () => (
           >
             <Link
               to={o.to}
-              className="group flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-lift transition-shadow duration-500 hover:shadow-deep"
+              className={`group flex h-full flex-col rounded-[22px] p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift ${o.tint}`}
             >
               <h3 className="mb-2.5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
                 {o.t}
               </h3>
-              <p className="mb-6 text-[14px] leading-relaxed text-navy-dark/75">
+              <p className="mb-8 text-[14px] leading-relaxed text-navy-dark/80">
                 {o.d}
               </p>
               <span className="mt-auto inline-flex items-center gap-2 text-[13px] font-semibold text-navy-dark">

@@ -72,21 +72,25 @@ const PILLARS = [
 
 const SERVICES = [
   {
+    tint: "bg-butter",
     to: "/services/link-building",
     t: "Link Building",
     d: "Editorial links that carry your commercial pages into positions that generate revenue.",
   },
   {
+    tint: "bg-mint",
     to: "/services/digital-pr",
     t: "Digital PR",
     d: "Coverage, features and data stories in publications your buyers already read.",
   },
   {
+    tint: "bg-lilac",
     to: "/services/brand-mentions",
     t: "Brand Mentions",
     d: "References on the sources AI assistants cite when buyers ask about your category.",
   },
   {
+    tint: "bg-blush",
     to: "/services/haro-links",
     t: "Expert Quotes",
     d: "Your specialists quoted as sources in journalism, with the attribution that follows.",
@@ -406,12 +410,12 @@ const About = () => (
             >
               <Link
                 to={s.to}
-                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-lift transition-shadow duration-500 hover:shadow-deep"
+                className={`group flex h-full flex-col rounded-[22px] p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift ${s.tint}`}
               >
                 <h3 className="mb-2.5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
                   {s.t}
                 </h3>
-                <p className="mb-6 text-[14px] leading-relaxed text-navy-dark/75">
+                <p className="mb-8 text-[14px] leading-relaxed text-navy-dark/80">
                   {s.d}
                 </p>
                 <span className="mt-auto inline-flex items-center gap-2 text-[13px] font-semibold text-navy-dark">

@@ -228,3 +228,65 @@ export const Wordmark = ({
     {name}
   </span>
 );
+
+/* ----------------------------- accent system ----------------------------- */
+
+/** The five accent hues, in a fixed order. Cycling an index through this keeps
+ *  colour consistent across the site instead of each page inventing its own. */
+export const ACCENTS = ["butter", "mint", "lilac", "blush", "sky"] as const;
+export type Accent = (typeof ACCENTS)[number];
+
+const DOT: Record<Accent, string> = {
+  butter: "bg-butter",
+  mint: "bg-mint",
+  lilac: "bg-lilac",
+  blush: "bg-blush",
+  sky: "bg-sky",
+};
+
+const PANEL: Record<Accent, string> = {
+  butter: "bg-butter",
+  mint: "bg-mint",
+  lilac: "bg-lilac",
+  blush: "bg-blush",
+  sky: "bg-sky",
+};
+
+/**
+ * A small coloured diamond before a category label.
+ *
+ * This is the reference's quietest and most-used colour device — it appears
+ * before every feature group on their pricing page. It gives a page colour
+ * without tinting anything, which is the whole point.
+ */
+export const AccentDot = ({
+  accent,
+  className = "",
+}: {
+  accent: Accent;
+  className?: string;
+}) => (
+  <span
+    className={`inline-block h-2.5 w-2.5 rotate-45 rounded-[2px] ${DOT[accent]} ${className}`}
+    aria-hidden="true"
+  />
+);
+
+/**
+ * A pastel panel for one of a set of parallel options — the reference uses
+ * exactly this for its four partner programmes. Only correct when the items
+ * are peers; never for a single highlighted card.
+ */
+export const AccentPanel = ({
+  accent,
+  className = "",
+  children,
+}: {
+  accent: Accent;
+  className?: string;
+  children: React.ReactNode;
+}) => (
+  <div className={`rounded-[22px] p-7 ${PANEL[accent]} ${className}`}>
+    {children}
+  </div>
+);
