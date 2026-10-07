@@ -76,6 +76,12 @@ const Head = ({
 
 /** Client proof, placed under the claim it supports rather than pooled into
  *  one testimonial wall. */
+const QUOTE_TONE = {
+  clay: { bg: "bg-clay", quote: "text-navy-dark", cite: "text-navy-dark/70" },
+  stone: { bg: "bg-stone", quote: "text-navy-dark", cite: "text-navy-dark/70" },
+  espresso: { bg: "bg-espresso", quote: "text-white", cite: "text-white/70" },
+} as const;
+
 const PullQuote = ({
   text,
   who,
@@ -83,26 +89,31 @@ const PullQuote = ({
 }: {
   text: string;
   who: string;
-  tone: "linen" | "mist";
-}) => (
-  <div
-    className={`${tone === "linen" ? "bg-linen" : "bg-mist"} py-16 lg:py-20`}
-  >
-    <motion.figure
-      className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8"
-      {...rise()}
-    >
-      <blockquote className="text-[1.3rem] leading-[1.45] tracking-[-0.02em] text-navy-dark sm:text-[1.55rem]">
-        {"“"}
-        {text}
-        {"”"}
-      </blockquote>
-      <figcaption className="mt-5 text-[12.5px] font-semibold uppercase tracking-[0.12em] text-navy-dark/70">
-        {who}
-      </figcaption>
-    </motion.figure>
-  </div>
-);
+  tone: keyof typeof QUOTE_TONE;
+}) => {
+  const t = QUOTE_TONE[tone];
+  return (
+    <div className={`${t.bg} py-16 lg:py-20`}>
+      <motion.figure
+        className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8"
+        {...rise()}
+      >
+        <blockquote
+          className={`text-[1.3rem] leading-[1.45] tracking-[-0.02em] sm:text-[1.55rem] ${t.quote}`}
+        >
+          {"“"}
+          {text}
+          {"”"}
+        </blockquote>
+        <figcaption
+          className={`mt-5 text-[12.5px] font-semibold uppercase tracking-[0.12em] ${t.cite}`}
+        >
+          {who}
+        </figcaption>
+      </motion.figure>
+    </div>
+  );
+};
 
 /* ================================= hero ================================= */
 
@@ -110,7 +121,7 @@ const GapCard = () => {
   const g = LB.gapCard;
   return (
     <motion.div
-      className="rounded-[1.4rem] border border-white/10 bg-white p-6 lg:p-7"
+      className="rounded-[1.4rem] border border-white/10 bg-white p-6 shadow-deep lg:p-7"
       initial={{ opacity: 0, y: 26 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
@@ -242,7 +253,7 @@ const Hero = () => (
 /* ============================== logo band ============================== */
 
 const LogoBand = () => (
-  <div className="bg-mist py-14">
+  <div className="bg-stone py-14">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.p
         className="mb-8 text-center text-[12.5px] text-navy-dark/70"
@@ -291,14 +302,14 @@ const Problem = () => (
       </div>
 
       <motion.div
-        className="rounded-3xl border border-line bg-mist p-8 text-center lg:p-10"
+        className="rounded-3xl border border-line bg-lilac/35 p-8 text-center shadow-lift lg:p-10"
         {...rise(0.1)}
       >
         <div className="grid grid-cols-2 gap-3">
           {LB.problem.flow.inputs.map((t, i) => (
             <motion.p
               key={t}
-              className="rounded-xl bg-white px-4 py-4 text-[13px] font-semibold text-navy-dark"
+              className="rounded-xl bg-white px-4 py-4 text-[13px] font-semibold text-navy-dark shadow-soft"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -350,7 +361,7 @@ const Framework = () => (
         {LB.framework.items.map((s, i) => (
           <motion.article
             key={s.n}
-            className="flex flex-col rounded-2xl bg-white p-6 lg:p-7"
+            className="flex flex-col rounded-2xl bg-white p-6 shadow-deep lg:p-7"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -375,7 +386,7 @@ const Framework = () => (
       </div>
 
       <motion.p
-        className="mt-5 rounded-2xl bg-white px-7 py-6 text-center text-[16px] font-bold tracking-[-0.01em] text-navy-dark sm:text-[18px]"
+        className="mt-5 rounded-2xl bg-mark px-7 py-7 text-center text-[17px] font-bold tracking-[-0.01em] text-navy-dark sm:text-[19px]"
         {...rise(0.1)}
       >
         {LB.framework.emphasis}
@@ -387,7 +398,7 @@ const Framework = () => (
 /* ============================== movement ============================== */
 
 const Movement = () => (
-  <div className="bg-white py-24 lg:py-32">
+  <div className="bg-clay py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
       <motion.p
         className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70"
@@ -411,7 +422,7 @@ const Movement = () => (
         {LB.movement.tiles.map((t, i) => (
           <motion.div
             key={t.label}
-            className="rounded-2xl bg-navy-dark px-6 py-9"
+            className="rounded-2xl bg-navy-dark px-6 py-9 shadow-deep"
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -450,7 +461,7 @@ const Movement = () => (
 /* ============================= methodology ============================= */
 
 const Methodology = () => (
-  <div className="bg-linen py-24 lg:py-32">
+  <div className="bg-stone py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
       <Head
         eyebrow={LB.methodology.eyebrow}
@@ -469,6 +480,7 @@ const Methodology = () => (
         {LB.methodology.columns.map((c, i) => (
           <motion.div
             key={c.label}
+            className="rounded-2xl border border-line bg-white p-6 shadow-lift"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -519,16 +531,17 @@ const Methodology = () => (
 /* ============================= positioning ============================= */
 
 const Positioning = () => (
-  <div className="bg-white py-24 lg:py-32">
+  <div className="bg-espresso py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
       <Head
         eyebrow={LB.positioning.eyebrow}
         pre={LB.positioning.heading.pre}
         em={LB.positioning.heading.em}
+        dark={true}
         className="mx-auto max-w-3xl"
       />
       <motion.p
-        className="mx-auto mt-6 max-w-xl text-[15.5px] leading-relaxed text-navy-dark/75"
+        className="mx-auto mt-6 max-w-xl text-[15.5px] leading-relaxed text-white/70"
         {...rise(0.05)}
       >
         {LB.positioning.lede}
@@ -543,8 +556,8 @@ const Positioning = () => (
             key={col.label}
             className={`rounded-3xl p-7 lg:p-8 ${
               col.good
-                ? "border-2 border-navy-dark bg-white"
-                : "border border-line bg-mist"
+                ? "border border-mark/40 bg-white shadow-deep"
+                : "border border-white/12 bg-white/[0.05]"
             }`}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -553,7 +566,7 @@ const Positioning = () => (
           >
             <p
               className={`mb-6 text-[11px] font-bold uppercase tracking-[0.14em] ${
-                col.good ? "text-navy-dark" : "text-navy-dark/70"
+                col.good ? "text-navy-dark" : "text-white/70"
               }`}
             >
               {col.label}
@@ -564,11 +577,11 @@ const Positioning = () => (
                   {col.good ? (
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-verified" />
                   ) : (
-                    <Minus className="mt-0.5 h-4 w-4 shrink-0 text-navy-dark/60" />
+                    <Minus className="mt-0.5 h-4 w-4 shrink-0 text-white/50" />
                   )}
                   <span
                     className={`text-[14.5px] leading-relaxed ${
-                      col.good ? "text-navy-dark" : "text-navy-dark/75"
+                      col.good ? "text-navy-dark" : "text-white/75"
                     }`}
                   >
                     {t}
@@ -581,7 +594,7 @@ const Positioning = () => (
       </div>
 
       <motion.p
-        className="mt-10 text-[16px] font-bold tracking-[-0.01em] text-navy-dark sm:text-[17px]"
+        className="mt-10 text-[16px] font-bold tracking-[-0.01em] text-white sm:text-[17px]"
         {...rise(0.1)}
       >
         {LB.positioning.line}
@@ -590,7 +603,7 @@ const Positioning = () => (
       <motion.div className="mt-8" {...rise(0.15)}>
         <button
           onClick={openBooking}
-          className="group inline-flex items-center gap-2 rounded-xl bg-navy-dark px-8 py-4 text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-black"
+          className="group inline-flex items-center gap-2 rounded-xl bg-mark px-8 py-4 text-[14px] font-semibold text-navy-dark transition-colors duration-300 hover:bg-mark/90"
         >
           {LB.positioning.ctaLabel}
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -603,7 +616,7 @@ const Positioning = () => (
 /* ================================ moves ================================ */
 
 const Moves = () => (
-  <div className="bg-white py-24 lg:py-32">
+  <div className="bg-clay py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
@@ -631,7 +644,7 @@ const Moves = () => (
           {LB.moves.map.map((m, i) => (
             <motion.div
               key={m.gap}
-              className="flex items-center justify-between gap-5 rounded-xl bg-mist px-5 py-4"
+              className="flex items-center justify-between gap-5 rounded-xl bg-white px-5 py-4 shadow-soft"
               initial={{ opacity: 0, x: 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -683,7 +696,7 @@ const Moves = () => (
 /* =============================== context =============================== */
 
 const Context = () => (
-  <div className="bg-linen py-24 lg:py-32">
+  <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
       <div>
         <Head
@@ -769,7 +782,7 @@ const Close = () => (
       </div>
 
       <motion.div
-        className="rounded-[1.4rem] bg-white p-7"
+        className="rounded-[1.4rem] bg-white p-7 shadow-deep"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
@@ -828,16 +841,16 @@ const LinkBuilding = () => (
     <Hero />
     <LogoBand />
     <Problem />
-    <PullQuote {...LB.quotes.afterProblem} tone="linen" />
+    <PullQuote {...LB.quotes.afterProblem} tone="clay" />
     <Framework />
     <Movement />
     <Methodology />
     <Positioning />
-    <PullQuote {...LB.quotes.afterComparison} tone="mist" />
+    <PullQuote {...LB.quotes.afterComparison} tone="stone" />
     <Moves />
     <Context />
-    <PullQuote {...LB.quotes.beforeClose} tone="mist" />
-    <div className="bg-white py-24 lg:py-32">
+    <PullQuote {...LB.quotes.beforeClose} tone="espresso" />
+    <div className="bg-stone py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"

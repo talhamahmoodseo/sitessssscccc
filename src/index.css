@@ -39,9 +39,25 @@
     --ink: 14 14 14;
     --ink-soft: 24 24 24;
     --ink-raised: 38 38 38;
-    --paper: 247 246 244;
+    --paper: 249 248 245;
     --linen: 240 239 236;
     --line: 226 224 219;
+
+    /* Real tonal steps.
+       paper / linen / white sit within 1.08:1 of each other, which the eye
+       reads as one surface — the whole site was effectively two tones, a
+       white-ish ground and a near-black band. `stone` and `clay` are warm
+       neutrals placed at genuine perceptual distance so a light section can
+       actually read as a different surface.
+         paper 0.933 -> stone 0.767  = 1.20:1
+         stone 0.767 -> clay  0.636  = 1.19:1
+       Ink on clay is still 12.6:1, so both carry body copy safely. */
+    --stone: 231 226 217;
+    --clay: 215 208 196;
+
+    /* A second dark, warmer than --ink, so two dark bands on one page do not
+       read as the same slab. */
+    --espresso: 32 28 25;
     --brand: 14 14 14;
     --brand-deep: 0 0 0;
     --brand-wash: 236 235 232;
@@ -61,8 +77,8 @@
     --mark-deep: 198 150 32; /* its underline */
     --emphasis: 24 24 24; /* emphasised text stays near-black */
 
-    /* Tile palette. Reserved for stat tiles and persona illustrations —
-       never for background washes, chips or decorative blobs. */
+    /* Tile palette. Usable as a feature panel or a section ground, but at
+       most one saturated moment per page — see DESIGN.md. */
     --tile-butter: 250 229 128;
     --tile-mint: 182 231 203;
     --tile-lilac: 209 204 248;

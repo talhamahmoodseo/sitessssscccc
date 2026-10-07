@@ -38,6 +38,9 @@ export default {
         sky: rgb("--sky"),
         paper: rgb("--paper"),
         linen: rgb("--linen"),
+        stone: rgb("--stone"),
+        clay: rgb("--clay"),
+        espresso: rgb("--espresso"),
         line: rgb("--line"),
         ivory: rgb("--paper"),
         cream: rgb("--linen"),
@@ -83,9 +86,12 @@ export default {
         },
       },
       boxShadow: {
-        /* `shadow-soft` / `shadow-deep` / `shadow-lift` are referenced in markup
-           but were never defined in the original build — left undefined so the
-           rendering matches. */
+        /* These are referenced 23 times across the site and used to resolve to
+           nothing, which is a large part of why pages read flat. Tinted with
+           ink rather than pure black so they sit warm against paper. */
+        soft: "0 1px 2px rgb(14 14 14 / 0.04), 0 2px 8px -2px rgb(14 14 14 / 0.05)",
+        lift: "0 2px 4px rgb(14 14 14 / 0.04), 0 10px 28px -6px rgb(14 14 14 / 0.09)",
+        deep: "0 6px 12px -2px rgb(14 14 14 / 0.06), 0 28px 64px -16px rgb(14 14 14 / 0.18)",
         glow: "0 0 40px rgba(59, 130, 246, 0.3)",
       },
       borderRadius: {
