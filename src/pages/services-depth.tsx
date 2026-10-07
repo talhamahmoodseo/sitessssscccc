@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, Minus } from "lucide-react";
 import { FigCategoryClimb } from "@/components/LineArt";
-import { Wordmark } from "@/components/brand";
+import { AccentDot, type Accent, Wordmark } from "@/components/brand";
 import { openBooking } from "@/lib/booking";
 
 /**
@@ -139,11 +139,11 @@ export const SharedStandard = () => (
 
 /* ------------------------------- the matrix ------------------------------- */
 
-const COLS: { label: string; slug: string }[] = [
-  { label: "Link Building", slug: "link-building" },
-  { label: "Digital PR", slug: "digital-pr" },
-  { label: "Brand Mentions", slug: "brand-mentions" },
-  { label: "Expert Quotes", slug: "haro-links" },
+const COLS: { label: string; slug: string; accent: Accent }[] = [
+  { label: "Link Building", slug: "link-building", accent: "butter" },
+  { label: "Digital PR", slug: "digital-pr", accent: "mint" },
+  { label: "Brand Mentions", slug: "brand-mentions", accent: "lilac" },
+  { label: "Expert Quotes", slug: "haro-links", accent: "blush" },
 ];
 
 /** 2 = where we would start, 1 = useful alongside, 0 = not the first move. */
@@ -180,24 +180,6 @@ const ROWS: { s: string; note: string; v: number[] }[] = [
   },
 ];
 
-const LEGEND = [
-  {
-    v: 2,
-    t: "Start",
-    d: "Where the first month of budget does the most work.",
-  },
-  {
-    v: 1,
-    t: "Alongside",
-    d: "Compounds the first choice once it is running.",
-  },
-  {
-    v: 0,
-    t: "Not first",
-    d: "Not wrong, just not what moves this situation.",
-  },
-];
-
 const Cell = ({ v }: { v: number }) => {
   if (v === 2)
     return (
@@ -220,54 +202,82 @@ const Cell = ({ v }: { v: number }) => {
   );
 };
 
+const CELL_FILL: Record<Accent, string> = {
+  butter: "bg-butter",
+  mint: "bg-mint",
+  lilac: "bg-lilac",
+  blush: "bg-blush",
+  sky: "bg-sky",
+};
+
 export const Matrix = () => (
-  <section id="choose" className="scroll-mt-24 bg-navy-dark py-24 lg:py-32">
+  <section id="choose" className="scroll-mt-24 bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.div className="max-w-2xl" {...rise()}>
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
           Which one do you need
         </p>
-        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.5rem]">
-          Find Your Situation.
-          <span className="text-white/70">Read Across.</span>
+        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
+          Find your situation.{" "}
+          <span className="text-navy-dark/65">Read across.</span>
         </h2>
-        <p className="mt-5 text-[15.5px] leading-relaxed text-white/75">
+        <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/75">
           Six situations we are asked about most. The marked column is where we
           would put the first month of work; the rest usually come in behind it.
-          Every column heading is a link to the full service.
         </p>
       </motion.div>
 
-      {/* small screens: the same decision, stacked, no horizontal scroll */}
-      <div className="mt-12 space-y-4 md:hidden">
+      {/* legend — the four services, each with its own accent, each a link */}
+      <motion.div
+        className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3"
+        {...rise(0.05)}
+      >
+        {COLS.map((c) => (
+          <Link
+            key={c.slug}
+            to={`/services/${c.slug}`}
+            className="group inline-flex items-center gap-2.5 text-[13.5px] font-semibold text-navy-dark"
+          >
+            <AccentDot accent={c.accent} />
+            {c.label}
+            <ArrowUpRight className="h-3.5 w-3.5 text-navy-dark/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
+        ))}
+      </motion.div>
+
+      {/* one card per situation; the marked service carries the colour */}
+      <div className="mt-8 space-y-3">
         {ROWS.map((r, i) => (
           <motion.div
             key={r.s}
-            className="rounded-2xl border border-white/15 bg-white/[0.04] p-5"
-            initial={{ opacity: 0, y: 14 }}
+            className="grid gap-5 rounded-[22px] border border-line bg-white p-6 shadow-soft lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-10 lg:p-7"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.45, delay: i * 0.05 }}
           >
-            <span className="mb-2 block text-[11px] font-bold tabular-nums tracking-[0.14em] text-white/60">
+            <span className="text-[1.6rem] font-semibold leading-none tabular-nums text-navy-dark/25 lg:w-12">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <h3 className="text-[16px] font-semibold leading-snug text-white">
-              {r.s}
-            </h3>
-            <p className="mt-1.5 text-[13px] leading-relaxed text-white/70">
-              {r.note}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
+
+            <div>
+              <h3 className="text-[17px] font-semibold leading-snug tracking-[-0.015em] text-navy-dark">
+                {r.s}
+              </h3>
+              <p className="mt-1.5 max-w-xl text-[13.5px] leading-relaxed text-navy-dark/70">
+                {r.note}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 lg:justify-end">
               {COLS.map((c, j) =>
                 r.v[j] === 2 ? (
                   <Link
                     key={c.slug}
                     to={`/services/${c.slug}`}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-navy-dark"
+                    className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[11.5px] font-bold text-navy-dark transition-transform duration-300 hover:-translate-y-0.5 ${CELL_FILL[c.accent]}`}
                   >
                     <Check className="h-3 w-3" aria-hidden="true" />
-                    {"Start: "}
                     {c.label}
                   </Link>
                 ) : null,
@@ -277,8 +287,9 @@ export const Matrix = () => (
                   <Link
                     key={c.slug}
                     to={`/services/${c.slug}`}
-                    className="inline-flex items-center rounded-full border border-white/25 px-3 py-1.5 text-[11px] font-semibold text-white/80"
+                    className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-2 text-[11.5px] font-semibold text-navy-dark/70 transition-colors duration-300 hover:border-navy-dark/30 hover:text-navy-dark"
                   >
+                    <AccentDot accent={c.accent} className="h-1.5 w-1.5" />
                     {c.label}
                   </Link>
                 ) : null,
@@ -288,117 +299,22 @@ export const Matrix = () => (
         ))}
       </div>
 
-      {/* md and up: the two-way read */}
-      <div className="mt-12 hidden overflow-x-auto md:block">
-        <table className="w-full min-w-[680px] border-collapse text-left">
-          <thead>
-            <tr>
-              <th
-                scope="col"
-                className="w-[38%] border-b border-white/20 pb-4 pr-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70"
-              >
-                Your situation
-              </th>
-              {COLS.map((c) => (
-                <th
-                  key={c.slug}
-                  scope="col"
-                  className="border-b border-white/20 px-3 pb-4 text-center"
-                >
-                  <Link
-                    to={`/services/${c.slug}`}
-                    className="group inline-flex items-center gap-1 text-[12.5px] font-semibold text-white transition-colors duration-300 hover:text-mark"
-                  >
-                    {c.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  </Link>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {ROWS.map((r, i) => (
-              <motion.tr
-                key={r.s}
-                className="border-b border-white/10 transition-colors duration-300 last:border-0 hover:bg-white/[0.03]"
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: i * 0.06 }}
-              >
-                <th scope="row" className="py-6 pr-6 align-top font-normal">
-                  <span className="flex gap-4">
-                    <span className="mt-1 text-[11px] font-bold tabular-nums tracking-[0.1em] text-white/60">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span>
-                      <span className="block text-[15.5px] font-semibold leading-snug text-white">
-                        {r.s}
-                      </span>
-                      <span className="mt-1.5 block text-[12.5px] leading-relaxed text-white/70">
-                        {r.note}
-                      </span>
-                    </span>
-                  </span>
-                </th>
-                {r.v.map((v, j) => (
-                  <td
-                    key={COLS[j].slug}
-                    className="px-3 py-6 text-center align-top"
-                  >
-                    <Cell v={v} />
-                  </td>
-                ))}
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <motion.div
-        className="mt-10 grid gap-6 rounded-2xl border border-white/15 p-6 sm:grid-cols-3 lg:p-8"
-        {...rise(0.05)}
-      >
-        {LEGEND.map((l) => (
-          <div key={l.t} className="flex gap-3.5">
-            <span className="mt-0.5 shrink-0">
-              {l.v === 2 ? (
-                <Check className="h-4 w-4 text-white" aria-hidden="true" />
-              ) : l.v === 1 ? (
-                <ArrowRight
-                  className="h-4 w-4 text-white/70"
-                  aria-hidden="true"
-                />
-              ) : (
-                <Minus className="h-4 w-4 text-white/50" aria-hidden="true" />
-              )}
-            </span>
-            <span>
-              <span className="block text-[13px] font-bold uppercase tracking-[0.1em] text-white">
-                {l.t}
-              </span>
-              <span className="mt-1 block text-[13px] leading-relaxed text-white/70">
-                {l.d}
-              </span>
-            </span>
-          </div>
-        ))}
-      </motion.div>
-
       <motion.p
-        className="mt-8 max-w-3xl text-[14.5px] leading-relaxed text-white/75"
+        className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[12.5px] text-navy-dark/70"
         {...rise(0.1)}
       >
-        If nothing in your row is marked{" "}
-        <span className="font-semibold text-white">Start</span>, that is worth
-        saying out loud on the call. It usually means the page needs depth
-        before it needs authority, and that is the recommendation you will get.
+        <span className="inline-flex items-center gap-2">
+          <span className="inline-flex h-4 w-7 items-center justify-center rounded-full bg-butter" />
+          Where we would start
+        </span>
+        <span className="inline-flex items-center gap-2">
+          <span className="inline-flex h-4 w-7 items-center justify-center rounded-full border border-line" />
+          Usually comes in behind it
+        </span>
       </motion.p>
     </div>
   </section>
 );
-
-/* ------------------------------- the pairings ------------------------------- */
 
 const PAIRS: {
   share: string;

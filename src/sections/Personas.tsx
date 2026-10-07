@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Annotation, SectionTitle } from "@/components/brand";
+import { GLOW_SETS, GrainGlow } from "@/components/GrainGlow";
 import {
   FigAiAnswers,
   FigCategoryClimb,
@@ -99,14 +100,6 @@ const PERSONAS = [
   },
 ];
 
-const TINTS = [
-  "from-butter/70",
-  "from-mint/70",
-  "from-lilac/70",
-  "from-blush/70",
-  "from-sky/70",
-];
-
 const Personas = () => {
   const [active, setActive] = useState(0);
   const p = PERSONAS[active];
@@ -140,8 +133,8 @@ const Personas = () => {
                   onClick={() => setActive(i)}
                   className={`group relative overflow-hidden rounded-2xl px-3 pb-3 pt-4 text-center transition-all duration-300 ${
                     on
-                      ? "bg-white shadow-lift"
-                      : "bg-transparent hover:bg-white/60"
+                      ? "bg-white shadow-lift ring-1 ring-navy-dark/10"
+                      : "bg-white/55 hover:bg-white"
                   }`}
                 >
                   <span
@@ -153,12 +146,14 @@ const Personas = () => {
                   </span>
 
                   <span className="relative mt-3 block h-[104px]">
-                    {/* the tint only appears under the active figure */}
-                    <motion.span
-                      className={`absolute inset-x-3 bottom-0 h-12 rounded-full bg-gradient-to-t ${TINTS[i]} to-transparent blur-xl`}
-                      initial={false}
-                      animate={{ opacity: on ? 1 : 0 }}
-                      transition={{ duration: 0.4 }}
+                    {/* the reference's grainy multi-hue bloom: three colours
+                        mixed, displaced and grained, and a different mix for
+                        every tab so moving across the strip changes the colour */}
+                    <GrainGlow
+                      hues={GLOW_SETS[i % GLOW_SETS.length]}
+                      seed={i + 2}
+                      show={on}
+                      className="pointer-events-none absolute -inset-x-2 -bottom-3 -top-1 h-[120%] w-[116%] -translate-x-[7%]"
                     />
                     <item.Fig
                       className={`relative mx-auto h-full w-auto transition-all duration-500 ${

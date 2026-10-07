@@ -15,7 +15,6 @@ import ProofGrid from "./sections/ProofGrid";
 import Results from "./sections/Results";
 import Personas from "./sections/Personas";
 import Process from "./sections/Process";
-import VideoStories from "./sections/VideoStories";
 import FAQ from "./sections/FAQ";
 import HomeContact from "./sections/HomeContact";
 import Footer from "./sections/Footer";
@@ -67,9 +66,6 @@ const Home = () => (
         <Process />
       </section>
 
-      <section id="stories">
-        <VideoStories />
-      </section>
       <section id="testimonials">
         <ProofGrid />
       </section>
