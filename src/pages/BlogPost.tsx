@@ -95,8 +95,11 @@ const BlogPost = () => {
                 {d.c}
               </h2>
             ) : d.t === "quote" ? (
-              <blockquote key={h} className="border-l-2 border-gold pl-5 my-9">
-                <p className="font-medium text-xl text-navy-dark/80 leading-relaxed">
+              <blockquote
+                key={h}
+                className="my-10 rounded-2xl bg-mark px-7 py-7 shadow-lift"
+              >
+                <p className="text-[19px] font-medium leading-relaxed text-navy-dark">
                   {d.c}
                 </p>
               </blockquote>
@@ -107,7 +110,7 @@ const BlogPost = () => {
                     key={m}
                     className="flex gap-3 text-[16px] text-navy-dark/70 leading-relaxed"
                   >
-                    <span className="flex-none w-1.5 h-1.5 rounded-full bg-blue-accent mt-2.5" />
+                    <span className="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-mark-deep" />
                     {x}
                   </li>
                 ))}
@@ -121,11 +124,16 @@ const BlogPost = () => {
               </p>
             ),
           )}
-          <div className="mt-14 flex items-center gap-4 bg-linen rounded-2xl p-6">
+        </motion.article>
+      </div>
+
+      <div className="bg-clay py-16 lg:py-20">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-4 rounded-2xl bg-white p-6 shadow-lift">
             <img
               src={asset("/images/talha-avatar.jpg")}
               alt="Talha Mahmood"
-              className="flex-none w-14 h-14 rounded-full object-cover ring-2 ring-blue-accent/40"
+              className="h-14 w-14 flex-none rounded-full object-cover ring-2 ring-mark"
             />
             <div>
               <p className="text-navy-dark font-bold text-[15px]">
@@ -140,10 +148,10 @@ const BlogPost = () => {
           {c && (
             <Link
               to={`/services/${c.slug}`}
-              className="mt-5 flex items-center justify-between gap-4 bg-navy-dark rounded-2xl p-6 group hover:bg-[#1c2436] transition-colors duration-300"
+              className="group mt-5 flex items-center justify-between gap-4 rounded-2xl bg-espresso p-6 shadow-lift transition-colors duration-300 hover:bg-navy-dark"
             >
               <div>
-                <p className="text-[10px] font-extrabold tracking-[0.16em] text-brand-soft uppercase mb-1.5">
+                <p className="mb-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white/70">
                   Related service
                 </p>
                 <p className="text-white font-bold text-[16px]">
@@ -155,10 +163,11 @@ const BlogPost = () => {
               <ArrowUpRight className="w-5 h-5 text-white flex-none transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </Link>
           )}
-        </motion.article>
+        </div>
       </div>
+
       {a.length > 0 && (
-        <div className="bg-linen py-20">
+        <div className="bg-stone py-20">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-navy-dark mb-8">
               {"More on "}
@@ -176,10 +185,10 @@ const BlogPost = () => {
                     <p className="text-[10px] font-bold tracking-wider text-navy-dark/70 uppercase mb-1.5">
                       {d.date}
                     </p>
-                    <h3 className="text-[15.5px] font-bold text-navy-dark leading-snug group-hover:text-brand-soft transition-colors duration-300 mb-2">
+                    <h3 className="text-[15.5px] font-bold text-navy-dark leading-snug group-hover:text-navy-dark/70 transition-colors duration-300 mb-2">
                       {d.title}
                     </h3>
-                    <span className="inline-flex items-center gap-1 text-[12px] font-bold text-blue-accent">
+                    <span className="inline-flex items-center gap-1 text-[12px] font-bold text-navy-dark">
                       {"Read "}
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </span>

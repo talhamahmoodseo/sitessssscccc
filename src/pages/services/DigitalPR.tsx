@@ -1,66 +1,107 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { FitPair, ProofPanel, ProcessRail, RejectStrip } from "./depth";
-import { digitalPr as C } from "./content/digitalPr";
-
-import { ArrowUpRight, Mail } from "lucide-react";
-import {
-  Glow,
-  HeroActions,
-  OtherServices,
-  RatingRow,
-  SectionHead,
-  SectionLabel,
-  SectionLead,
-  SectionTitle,
-  getService,
-} from "./shared";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowUpRight, Check, Mail, Minus } from "lucide-react";
+import { digitalPr as PR } from "./content/digitalPr";
+import { Glow, HeroActions, OtherServices, RatingRow } from "./shared";
 import { FaqList } from "@/components/AgencyBlocks";
-import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 
-const PR_PLACEMENTS = [
-  {
-    outlet: "Khaleej Times",
-    dr: "DR 74",
-    head: "How response time became the new local moat",
-    kind: "FEATURE",
-    rot: -7,
-    tint: "bg-mint",
-  },
-  {
-    outlet: "The Industry Journal",
-    dr: "DR 71",
-    head: "Founders on the systems behind 24/7 service",
-    kind: "EXPERT QUOTE",
-    rot: 0,
-    tint: "bg-white",
-  },
-  {
-    outlet: "Home Services Digest",
-    dr: "DR 64",
-    head: "2026 buyer’s guide: who the pros recommend",
-    kind: "ROUNDUP",
-    rot: 7,
-    tint: "bg-blush",
-  },
-];
+/**
+ * /services/digital-pr
+ *
+ * Identity: a newsroom. The repeating devices are clippings, a pitch rendered
+ * as the email it actually is, a masthead tier table, and a kicker rule above
+ * every section label. Nothing here is borrowed from the link-building page's
+ * stacked-flow vocabulary, and the page sources all of its copy from
+ * content/digitalPr.ts rather than the shared SERVICES register.
+ *
+ * Surface ladder, in order:
+ *   stone → navy-dark → mist → clay → stone → espresso → mist → clay →
+ *   white → MARK → stone → mist → espresso → (mist, OtherServices)
+ *
+ *   7 distinct surfaces · 2 darks · 1 amber · longest light run 3.
+ *
+ * Depth techniques: overlapping composition (the clipping fan hangs out of the
+ * hero over the dark band), cards floating on clay/stone with shadow-lift and
+ * shadow-deep, bordered inset panels, oversized numerals as structure, hairline
+ * rules carrying the process and the ledgers, a sky pastel panel behind the
+ * AuthorityOS™ diagram, and the amber band on the campaign result.
+ */
 
-const PlacementFan = () => (
-  <div className="relative flex justify-center items-end py-4">
-    {PR_PLACEMENTS.map((e, s) => (
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const rise = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-70px" },
+  transition: { duration: 0.6, delay, ease: EASE },
+});
+
+/** Kicker: a short hairline rule, then the label. The page's type signature. */
+const Kicker = ({ children, dark }: { children: string; dark?: boolean }) => (
+  <span className="mb-4 flex items-center gap-3">
+    <span
+      className={`h-px w-8 ${dark ? "bg-white/40" : "bg-navy-dark/30"}`}
+      aria-hidden="true"
+    />
+    <span
+      className={`text-[11px] font-semibold uppercase tracking-[0.2em] ${
+        dark ? "text-white/70" : "text-navy-dark/70"
+      }`}
+    >
+      {children}
+    </span>
+  </span>
+);
+
+/** Eyebrow + two-line headline where the second line turns the first. */
+const Head = ({
+  eyebrow,
+  pre,
+  em,
+  dark = false,
+  center = false,
+  className = "",
+}: {
+  eyebrow: string;
+  pre: string;
+  em: string;
+  dark?: boolean;
+  center?: boolean;
+  className?: string;
+}) => (
+  <motion.div
+    className={`${center ? "flex flex-col items-center text-center" : ""} ${className}`}
+    {...rise()}
+  >
+    <Kicker dark={dark}>{eyebrow}</Kicker>
+    <h2
+      className={`text-[2rem] font-semibold leading-[1.07] tracking-[-0.035em] sm:text-[2.5rem] ${
+        dark ? "text-white" : "text-navy-dark"
+      }`}
+    >
+      {pre}
+      <br />
+      <span className={dark ? "text-white/70" : "text-navy-dark/65"}>{em}</span>
+    </h2>
+  </motion.div>
+);
+
+/* ============================ 1 · hero (stone) ============================ */
+
+/** Three clippings, fanned, hanging over the section boundary below. */
+const ClippingFan = () => (
+  <div className="relative flex items-end justify-center py-4">
+    {PR.fan.map((e, i) => (
       <motion.div
         key={e.outlet}
-        className={`${e.tint} w-52 sm:w-56 rounded-2xl border border-line shadow-lift p-5 -mx-4`}
+        className={`${e.tint} -mx-4 w-52 rounded-2xl border border-line p-5 shadow-lift sm:w-56`}
         style={{ zIndex: e.rot === 0 ? 3 : 1 }}
         initial={{ opacity: 0, y: 40, rotate: 0 }}
         animate={{ opacity: 1, y: e.rot === 0 ? 0 : 20, rotate: e.rot }}
-        transition={{
-          duration: 0.7,
-          delay: 0.3 + s * 0.14,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+        transition={{ duration: 0.7, delay: 0.3 + i * 0.14, ease: EASE }}
         whileHover={{
           y: -10,
           rotate: 0,
@@ -68,20 +109,20 @@ const PlacementFan = () => (
           transition: { duration: 0.3 },
         }}
       >
-        <div className="flex items-center justify-between mb-3">
+        <div className="mb-3 flex items-center justify-between">
           <p className="text-[12.5px] font-semibold text-navy-dark">
             {e.outlet}
           </p>
-          <span className="text-[9px] font-bold text-navy-dark/60 border border-navy-dark/15 rounded px-1.5 py-0.5">
+          <span className="rounded border border-navy-dark/20 px-1.5 py-0.5 text-[9px] font-bold text-navy-dark/70">
             {e.dr}
           </span>
         </div>
-        <p className="text-[13px] font-medium text-navy-dark/80 leading-snug mb-4">
+        <p className="mb-4 text-[13px] font-medium leading-snug text-navy-dark/80">
           {e.head}
         </p>
-        <span className="block h-1 rounded-full bg-navy-dark/10 w-full mb-1.5" />
-        <span className="block h-1 rounded-full bg-navy-dark/10 w-4/5 mb-4" />
-        <span className="text-[8.5px] font-bold tracking-[0.14em] text-navy-dark/70 bg-white/70 border border-navy-dark/10 rounded-full px-2.5 py-1">
+        <span className="mb-1.5 block h-1 w-full rounded-full bg-navy-dark/15" />
+        <span className="mb-4 block h-1 w-4/5 rounded-full bg-navy-dark/15" />
+        <span className="rounded-full border border-navy-dark/15 bg-white/70 px-2.5 py-1 text-[8.5px] font-bold tracking-[0.14em] text-navy-dark/75">
           {e.kind}
         </span>
       </motion.div>
@@ -89,420 +130,857 @@ const PlacementFan = () => (
   </div>
 );
 
-const PITCH_STEPS = [
-  {
-    n: "1",
-    label: "A subject line about their readers",
-    d: "Not your brand. The idea an editor could headline tomorrow.",
-  },
-  {
-    n: "2",
-    label: "Evidence in the first line",
-    d: "A number or field observation that makes the story printable.",
-  },
-  {
-    n: "3",
-    label: "An easy yes",
-    d: "Draft offered, quote ready, deadline respected. No chasing.",
-  },
-];
+const Hero = () => (
+  <div className="relative bg-stone pt-28 lg:pt-32">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <Glow
+        tint="bg-mint"
+        className="-right-24 top-8 h-[380px] w-[520px] opacity-50"
+      />
+      <Glow
+        tint="bg-blush"
+        className="-left-20 top-40 h-[320px] w-[420px] opacity-40"
+      />
+    </div>
 
-const PitchPanel = () => (
-  <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
-    <motion.div
-      className="bg-white rounded-3xl border border-line shadow-soft overflow-hidden"
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="flex items-center gap-2.5 px-6 py-3.5 border-b border-line bg-linen">
-        <Mail className="w-4 h-4 text-navy-dark/70" />
-        <span className="text-[12px] font-semibold text-navy-dark/70">
-          To: features desk
-        </span>
-        <span className="ml-auto text-[10px] font-bold tracking-wider text-verified bg-verified/10 border border-verified/25 rounded-full px-2 py-1">
-          OPENED · REPLIED 31H
-        </span>
+    <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <motion.p
+        className="mb-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-dark/70"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {PR.eyebrow}
+      </motion.p>
+      <motion.h1
+        className="text-[2.4rem] font-semibold leading-[1.04] tracking-[-0.035em] text-navy-dark sm:text-[3rem] lg:text-[3.3rem]"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, delay: 0.05, ease: EASE }}
+      >
+        {PR.h1.pre}
+        <br />
+        <span className="text-navy-dark/65">{PR.h1.em}</span>
+      </motion.h1>
+      <motion.p
+        className="mx-auto mt-7 max-w-xl text-[16.5px] leading-[1.6] text-navy-dark/75"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.12, ease: EASE }}
+      >
+        {PR.sub}
+      </motion.p>
+      <div className="mt-9 flex justify-center">
+        <HeroActions label="Pitch my story" />
       </div>
-      <div className="p-6 sm:p-8">
-        <p className="text-[17px] font-semibold text-navy-dark leading-snug mb-4">
-          <span className="bg-mint rounded px-1">
-            Response time is the new local moat
-          </span>
-          <sup className="text-[10px] font-bold text-navy-dark/60 ml-1">1</sup>
-        </p>
-        <p className="text-[14.5px] text-navy-dark/75 leading-relaxed mb-3">
-          <span className="border-b-2 border-blush">
-            Dispatch data from 40 service firms shows 71% of callers book
-            whoever answers first
-          </span>
-          <sup className="text-[10px] font-bold text-navy-dark/60 ml-0.5">
-            2
-          </sup>
-          {" \u2014 happy to share the full set."}
-        </p>
-        <p className="text-[14.5px] text-navy-dark/75 leading-relaxed">
-          <span className="border-b-2 border-lilac">
-            Draft ready if useful, or a 200-word quote by Thursday
-          </span>
-          <sup className="text-[10px] font-bold text-navy-dark/60 ml-0.5">
-            3
-          </sup>
-          .
-        </p>
+      <div className="flex justify-center">
+        <RatingRow />
       </div>
-    </motion.div>
-    <div className="space-y-5">
-      {PITCH_STEPS.map((e, s) => (
-        <motion.div
-          key={e.n}
-          className="flex gap-4"
-          initial={{ opacity: 0, x: 16 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: s * 0.1 }}
-        >
-          <span className="flex-none w-7 h-7 rounded-full bg-navy-dark text-white text-[12px] font-bold flex items-center justify-center">
-            {e.n}
-          </span>
-          <div>
-            <p className="text-[15.5px] font-semibold text-navy-dark mb-1">
-              {e.label}
-            </p>
-            <p className="text-[13.5px] text-navy-dark/70 leading-relaxed">
-              {e.d}
-            </p>
-          </div>
-        </motion.div>
-      ))}
+      <motion.p
+        className="mt-7 text-[12.5px] italic text-navy-dark/70"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.45 }}
+      >
+        {PR.credit}
+      </motion.p>
+    </div>
+
+    {/* the overlap: the fan leaves the stone and sits on the dark band */}
+    <div className="relative z-10 mx-auto -mb-20 max-w-3xl px-4 pt-14 sm:-mb-24">
+      <ClippingFan />
     </div>
   </div>
 );
 
-const PLACEMENT_ROWS = [
-  ["Khaleej Times", "Feature · business desk", "DR 74", "bg-mint"],
-  ["Arabian Business", "Expert quote", "DR 72", "bg-lilac"],
-  ["The Industry Journal", "Feature", "DR 71", "bg-butter"],
-  ["Home Services Digest", "Buyer’s guide roundup", "DR 64", "bg-blush"],
-  ["Gulf Business Review", "Feature", "DR 61", "bg-sky"],
-];
+/* ======================= 2 · coverage band (navy-dark) ======================= */
 
-const DigitalPR = () => {
-  const e = getService("digital-pr"),
-    [s, a] = useState(0),
-    r = [
-      {
-        t: "Data you already have",
-        d: "Dispatch times, order values, seasonal patterns — internal numbers become a story no competitor can copy.",
-      },
-      {
-        t: "A contrarian read",
-        d: "The thing your market believes that your experience says is wrong. Editors love a defensible disagreement.",
-      },
-      {
-        t: "A moment worth covering",
-        d: "Expansion, a hire, a regional first. Small news, framed for the reader rather than the press release.",
-      },
-    ];
-  return (
-    <PageLayout>
-      <Seo title="Digital PR" description={e.sub} />
-      <div className="relative bg-mist overflow-hidden pt-28 pb-8 lg:pt-32">
-        <Glow
-          tint="bg-mint"
-          className="-right-24 top-8 w-[520px] h-[380px] opacity-60"
-        />
-        <Glow
-          tint="bg-blush"
-          className="-left-20 top-32 w-[420px] h-[320px] opacity-50"
-        />
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionLabel>Digital PR</SectionLabel>
-          <SectionTitle>
-            {"Coverage that makes you "}
-            <span className="text-navy-dark/65">the one they quote</span>.
-          </SectionTitle>
-          <SectionLead className="max-w-xl mx-auto">{e.sub}</SectionLead>
-          <div className="flex justify-center">
-            <HeroActions label="Pitch my story" />
-          </div>
-          <div className="flex justify-center">
-            <RatingRow />
-          </div>
-        </div>
-        <div className="relative max-w-3xl mx-auto px-4 mt-12">
-          <PlacementFan />
-        </div>
-      </div>
-      <div className="bg-navy-dark py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase mb-8">
-            Recent placements
-          </p>
-          <div className="space-y-2.5">
-            {PLACEMENT_ROWS.map(([c, u, d, h], x) => (
-              <motion.div
-                key={c}
-                className="flex items-center gap-4 rounded-2xl bg-white/[0.05] border border-white/10 px-5 py-4"
-                initial={{ opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: x * 0.08 }}
-              >
-                <span className={`w-2.5 h-2.5 rounded-full flex-none ${h}`} />
-                <span className="text-[15px] font-semibold text-white flex-1 truncate">
-                  {c}
-                </span>
-                <span className="hidden sm:block text-[12.5px] text-white/55">
-                  {u}
-                </span>
-                <span className="text-[10.5px] font-bold text-white/70 border border-white/20 rounded px-2 py-0.5">
-                  {d}
-                </span>
-                <ArrowUpRight className="w-4 h-4 text-white/70" />
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-center text-[10px] font-semibold tracking-[0.14em] text-white/70 uppercase mt-8">
-            Sample coverage · real client list shared on the call
-          </p>
-        </div>
-      </div>
-      <div className="bg-white py-24 lg:py-32">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.85fr_1.15fr] gap-12">
-          <SectionHead eyebrow={e.problem.eyebrow}>
-            {e.problem.pre}{" "}
-            <span className="text-navy-dark/65">{e.problem.em}</span>.
-          </SectionHead>
-          <div className="space-y-6">
-            {e.problem.paras.map((c, u) => (
-              <motion.p
-                key={u}
-                className="text-[16.5px] text-navy-dark/75 leading-[1.75]"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: u * 0.08 }}
-              >
-                {c}
-              </motion.p>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="bg-linen py-24 lg:py-32">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHead eyebrow="The craft" center={true}>
-            {"Anatomy of a pitch "}
-            <span className="text-navy-dark/65">editors open</span>
-          </SectionHead>
-          <PitchPanel />
-        </div>
-      </div>
-      <div className="bg-white py-24 lg:py-32">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHead eyebrow="Where stories come from" center={true}>
-            {"Three places we "}
-            <span className="text-navy-dark/65">find the angle</span>
-          </SectionHead>
-          <div className="flex flex-wrap justify-center gap-2.5 mb-8">
-            {r.map((c, u) => (
-              <button
-                key={c.t}
-                onClick={() => a(u)}
-                className={`rounded-full px-5 py-2.5 text-[13px] font-semibold border transition-colors duration-300 ${s === u ? "bg-navy-dark text-white border-navy-dark" : "border-line text-navy-dark/60 hover:text-navy-dark"}`}
-              >
-                {c.t}
-              </button>
-            ))}
-          </div>
+const CoverageBand = () => (
+  <div className="bg-navy-dark pb-20 pt-32 lg:pt-36">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <p className="mb-8 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-white/70">
+        {PR.coverage.label}
+      </p>
+
+      <div className="space-y-2.5">
+        {PR.coverage.rows.map((r, i) => (
           <motion.div
-            key={s}
-            className="bg-mist rounded-3xl p-8 sm:p-10 text-center"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
+            key={r.outlet}
+            className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4"
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: i * 0.07 }}
           >
-            <p className="text-[18px] text-navy-dark/80 leading-relaxed max-w-2xl mx-auto">
-              {r[s].d}
-            </p>
+            <span className={`h-2.5 w-2.5 flex-none rounded-full ${r.tint}`} />
+            <span className="flex-1 truncate text-[15px] font-semibold text-white">
+              {r.outlet}
+            </span>
+            <span className="hidden text-[12.5px] text-white/70 sm:block">
+              {r.kind}
+            </span>
+            <span className="rounded border border-white/25 px-2 py-0.5 text-[10.5px] font-bold tabular-nums text-white/80">
+              {r.dr}
+            </span>
+            <ArrowUpRight
+              className="h-4 w-4 text-white/70"
+              aria-hidden="true"
+            />
           </motion.div>
-        </div>
+        ))}
       </div>
-      <div className="bg-linen py-24 lg:py-32">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHead eyebrow="Where you can land" center={true}>
-            Three tiers of coverage
-          </SectionHead>
-          <div className="rounded-3xl border border-line bg-white overflow-hidden">
-            {[
-              [
-                "Tier 1",
-                "National & regional business press",
-                "DR 70–80",
-                "Khaleej Times, Arabian Business",
-                "bg-mint",
-              ],
-              [
-                "Tier 2",
-                "Trade and industry publications",
-                "DR 55–70",
-                "Sector journals your buyers read weekly",
-                "bg-blush",
-              ],
-              [
-                "Tier 3",
-                "Niche blogs and roundups",
-                "DR 40–55",
-                "Where comparison and “best of” searches land",
-                "bg-sky",
-              ],
-            ].map(([c, u, d, h, x], m) => (
-              <motion.div
-                key={c}
-                className={`grid sm:grid-cols-[100px_1fr_110px] gap-4 items-center px-6 py-6 ${m ? "border-t border-line" : ""}`}
-                initial={{ opacity: 0, x: -14 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: m * 0.09 }}
-              >
-                <span
-                  className={`${x} rounded-xl px-3 py-2 text-[12.5px] font-bold text-navy-dark text-center w-fit sm:w-auto`}
-                >
-                  {c}
-                </span>
-                <span>
-                  <span className="block text-[15.5px] font-semibold text-navy-dark">
-                    {u}
-                  </span>
-                  <span className="block text-[13px] text-navy-dark/60 mt-1">
-                    {h}
-                  </span>
-                </span>
-                <span className="text-[13px] font-semibold text-navy-dark/70 sm:text-right">
-                  {d}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-center text-[13.5px] text-navy-dark/60 mt-6">
-            Most campaigns mix all three. Tier 1 builds the “as seen in” bar;
-            tier 3 wins the comparison searches.
-          </p>
-        </div>
+
+      <p className="mt-7 text-center text-[11.5px] text-white/70">
+        {PR.coverage.note}
+      </p>
+
+      <div className="mt-14 grid gap-x-10 gap-y-8 border-t border-white/15 pt-12 sm:grid-cols-3">
+        {PR.coverage.figures.map((f, i) => (
+          <motion.figure key={f.k} {...rise(i * 0.08)}>
+            <p className="text-[2.6rem] font-semibold leading-none tracking-[-0.04em] text-white tabular-nums">
+              {f.v}
+            </p>
+            <figcaption className="mt-3 text-[12.5px] leading-snug text-white/70">
+              {f.k}
+            </figcaption>
+          </motion.figure>
+        ))}
       </div>
-      <div className="bg-mist py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-3 gap-4">
-          {e.stats.map((c, u) => (
-            <motion.div
-              key={c.label}
-              className={`${["bg-mint", "bg-blush", "bg-sky"][u % 3]} rounded-2xl p-7`}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: u * 0.08 }}
+    </div>
+  </div>
+);
+
+/* ========================== 3 · problem (mist) ========================== */
+
+const Problem = () => (
+  <div className="bg-mist py-24 lg:py-32">
+    <div className="mx-auto grid max-w-6xl gap-14 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20 lg:px-8">
+      <div>
+        <Head
+          eyebrow={PR.problem.eyebrow}
+          pre={PR.problem.heading.pre}
+          em={PR.problem.heading.em}
+        />
+        {PR.problem.paras.map((p, i) => (
+          <motion.p
+            key={i}
+            className="mt-5 text-[15.5px] leading-[1.68] text-navy-dark/75"
+            {...rise(0.05 + i * 0.05)}
+          >
+            {p}
+          </motion.p>
+        ))}
+
+        {/* the page's single comparison, carried on a hairline, not a box */}
+        <motion.p
+          className="mt-9 border-l-2 border-navy-dark/25 pl-5 text-[17px] font-semibold leading-snug tracking-[-0.015em] text-navy-dark sm:text-[18px]"
+          {...rise(0.2)}
+        >
+          {PR.problem.compare}
+        </motion.p>
+      </div>
+
+      <motion.aside
+        className="self-start rounded-3xl border border-line bg-white p-7 shadow-lift lg:p-8"
+        {...rise(0.1)}
+      >
+        <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-navy-dark/70">
+          {PR.problem.desk.label}
+        </p>
+        <dl className="mt-6">
+          {PR.problem.desk.rows.map((r) => (
+            <div
+              key={r.k}
+              className="flex items-baseline justify-between gap-5 border-b border-line py-4 last:border-0"
             >
-              <p className="text-[2.6rem] font-semibold text-navy-dark tracking-[-0.03em] leading-none">
-                {c.custom ?? (
-                  <CountUp to={c.v} prefix={c.prefix} suffix={c.suffix} />
-                )}
-              </p>
-              <p className="text-[13px] text-navy-dark/70 mt-2.5">{c.label}</p>
-            </motion.div>
+              <dt className="text-[13.5px] text-navy-dark/75">{r.k}</dt>
+              <dd className="text-[1.55rem] font-semibold leading-none tracking-[-0.03em] text-navy-dark tabular-nums">
+                {r.v}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-6 text-[13px] leading-relaxed text-navy-dark/75">
+          {PR.problem.desk.foot}
+        </p>
+      </motion.aside>
+    </div>
+  </div>
+);
+
+/* =========================== 4 · pitch (clay) =========================== */
+
+const Pitch = () => (
+  <div className="bg-clay py-24 lg:py-32">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <Head
+        eyebrow={PR.pitch.eyebrow}
+        pre={PR.pitch.heading.pre}
+        em={PR.pitch.heading.em}
+        center={true}
+        className="mb-14"
+      />
+
+      <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <motion.div
+          className="overflow-hidden rounded-3xl bg-white shadow-deep"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: EASE }}
+        >
+          <div className="flex items-center gap-2.5 border-b border-line bg-mist px-6 py-3.5">
+            <Mail className="h-4 w-4 text-navy-dark/70" aria-hidden="true" />
+            <span className="text-[12px] font-semibold text-navy-dark/75">
+              {PR.pitch.mailTo}
+            </span>
+            <span className="ml-auto rounded-full border border-verified/30 bg-verified/10 px-2 py-1 text-[10px] font-bold tracking-wider text-verified">
+              {PR.pitch.mailStatus}
+            </span>
+          </div>
+          <div className="p-6 sm:p-8">
+            <p className="mb-4 text-[17px] font-semibold leading-snug text-navy-dark">
+              <span className="rounded bg-mint px-1">{PR.pitch.subject}</span>
+              <sup className="ml-1 text-[10px] font-bold text-navy-dark/70">
+                1
+              </sup>
+            </p>
+            <p className="mb-3 text-[14.5px] leading-relaxed text-navy-dark/80">
+              <span className="border-b-2 border-blush">
+                {PR.pitch.evidence}
+              </span>
+              <sup className="ml-0.5 text-[10px] font-bold text-navy-dark/70">
+                2
+              </sup>
+              {PR.pitch.evidenceTail}
+            </p>
+            <p className="text-[14.5px] leading-relaxed text-navy-dark/80">
+              <span className="border-b-2 border-lilac">{PR.pitch.offer}</span>
+              <sup className="ml-0.5 text-[10px] font-bold text-navy-dark/70">
+                3
+              </sup>
+              .
+            </p>
+          </div>
+        </motion.div>
+
+        <ol className="space-y-6">
+          {PR.pitch.steps.map((e, i) => (
+            <motion.li
+              key={e.n}
+              className="flex gap-4"
+              initial={{ opacity: 0, x: 16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.1 }}
+            >
+              <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-navy-dark text-[12px] font-bold text-white">
+                {e.n}
+              </span>
+              <div>
+                <p className="mb-1 text-[15.5px] font-semibold text-navy-dark">
+                  {e.label}
+                </p>
+                <p className="text-[13.5px] leading-relaxed text-navy-dark/75">
+                  {e.d}
+                </p>
+              </div>
+            </motion.li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </div>
+);
+
+/* ========================== 5 · angles (stone) ========================== */
+
+const Angles = () => {
+  const [open, setOpen] = useState(0);
+  const a = PR.angles.items[open];
+  return (
+    <div className="bg-stone py-24 lg:py-32">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <Head
+          eyebrow={PR.angles.eyebrow}
+          pre={PR.angles.heading.pre}
+          em={PR.angles.heading.em}
+          center={true}
+        />
+        <motion.p
+          className="mx-auto mt-6 max-w-xl text-center text-[15.5px] leading-relaxed text-navy-dark/75"
+          {...rise(0.05)}
+        >
+          {PR.angles.lede}
+        </motion.p>
+
+        <div className="mb-8 mt-10 flex flex-wrap justify-center gap-2.5">
+          {PR.angles.items.map((c, i) => (
+            <button
+              key={c.t}
+              onClick={() => setOpen(i)}
+              aria-pressed={open === i}
+              className={`rounded-full border px-5 py-2.5 text-[13px] font-semibold transition-colors duration-300 ${
+                open === i
+                  ? "border-navy-dark bg-navy-dark text-white"
+                  : "border-navy-dark/25 text-navy-dark/75 hover:text-navy-dark"
+              }`}
+            >
+              {c.t}
+            </button>
           ))}
         </div>
+
+        <motion.div
+          key={open}
+          className="rounded-3xl bg-white p-8 shadow-lift sm:p-10"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+        >
+          <p className="text-[16.5px] leading-[1.65] text-navy-dark/80">
+            {a.d}
+          </p>
+          <figure className="mt-7 border-t border-line pt-6">
+            <blockquote className="text-[15.5px] font-medium leading-snug text-navy-dark">
+              {a.example}
+            </blockquote>
+            <figcaption className="mt-4 inline-block rounded-lg bg-mist px-3.5 py-2 text-[11.5px] font-bold uppercase tracking-[0.1em] text-navy-dark/75">
+              {a.chip}
+            </figcaption>
+          </figure>
+        </motion.div>
       </div>
-      <RejectStrip
-        items={C.ledger.rejections}
-        eyebrow="Not every outlet earns the pitch"
-        title={
-          <>
-            Three we turned down
-            <br />
-            <span className="text-white/70">last quarter</span>
-          </>
-        }
-        lede="Coverage is only worth having if the publication is. These cleared the authority filter and still failed."
+    </div>
+  );
+};
+
+/* ========================= 6 · tiers (espresso) ========================= */
+
+const Tiers = () => (
+  <div className="bg-espresso py-24 lg:py-32">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <Head
+        eyebrow={PR.tiers.eyebrow}
+        pre={PR.tiers.heading.pre}
+        em={PR.tiers.heading.em}
+        dark={true}
+        center={true}
+        className="mb-14"
       />
-      <ProcessRail
-        steps={C.process}
-        eyebrow="How a campaign runs"
-        title={
-          <>
-            Five steps, and you are{" "}
-            <span className="text-navy-dark/65">in the loop at three</span>
-          </>
-        }
-      />
-      <ProofPanel
-        example={C.example}
-        quote={C.quote}
-        eyebrow="One campaign, in full"
-        title={
-          <>
-            Gulf trade coverage rebuilt a{" "}
-            <span className="text-navy-dark/65">thin profile</span>
-          </>
-        }
-        tone="mist"
-      />
-      <div className="bg-white py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHead>
-            {"What's "}
-            <span className="text-navy-dark/65">included</span>
-          </SectionHead>
-          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
-            {e.deliverables.map((c, u) => (
-              <motion.div
-                key={c.t}
-                className="flex gap-4 pb-8 border-b border-line"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: (u % 2) * 0.08 }}
+
+      <div className="overflow-hidden rounded-3xl border border-white/15">
+        {PR.tiers.rows.map((r, i) => (
+          <motion.div
+            key={r.tier}
+            className={`grid items-center gap-4 px-6 py-7 sm:grid-cols-[104px_1fr_112px] ${
+              i ? "border-t border-white/15" : ""
+            }`}
+            initial={{ opacity: 0, x: -14 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: i * 0.09 }}
+          >
+            <span
+              className={`${r.tint} w-fit rounded-xl px-3 py-2 text-center text-[12.5px] font-bold text-navy-dark sm:w-auto`}
+            >
+              {r.tier}
+            </span>
+            <span>
+              <span className="block text-[15.5px] font-semibold text-white">
+                {r.name}
+              </span>
+              <span className="mt-1 block text-[13px] text-white/70">
+                {r.detail}
+              </span>
+            </span>
+            <span className="text-[13px] font-semibold tabular-nums text-white/80 sm:text-right">
+              {r.dr}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+      <motion.p
+        className="mx-auto mt-8 max-w-2xl text-center text-[13.5px] leading-relaxed text-white/70"
+        {...rise(0.1)}
+      >
+        {PR.tiers.note}
+      </motion.p>
+    </div>
+  </div>
+);
+
+/* ======================= 7 · methodology (mist) ======================= */
+
+const Methodology = () => (
+  <div className="bg-mist py-24 lg:py-32">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+        <div>
+          <Head
+            eyebrow={PR.methodology.eyebrow}
+            pre={PR.methodology.heading.pre}
+            em={PR.methodology.heading.em}
+          />
+          <motion.p
+            className="mt-6 text-[15.5px] leading-[1.68] text-navy-dark/75"
+            {...rise(0.05)}
+          >
+            {PR.methodology.lede}
+          </motion.p>
+
+          {/* pastel feature panel behind the diagram */}
+          <motion.div
+            className="mt-10 rounded-3xl border border-line bg-sky/40 p-7"
+            {...rise(0.12)}
+          >
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+              <div className="flex-1">
+                <p className="text-[15.5px] font-bold text-navy-dark">
+                  {PR.methodology.flowFrom.t}
+                </p>
+                <p className="text-[13px] text-navy-dark/75">
+                  {PR.methodology.flowFrom.d}
+                </p>
+              </div>
+              <ArrowRight
+                className="h-5 w-5 shrink-0 rotate-90 text-navy-dark/60 sm:rotate-0"
+                aria-hidden="true"
+              />
+              <div className="flex-1 rounded-2xl bg-white px-5 py-4 shadow-soft">
+                <p className="text-[15.5px] font-bold text-navy-dark">
+                  {PR.methodology.flowTo.t}
+                </p>
+                <p className="text-[13px] text-navy-dark/75">
+                  {PR.methodology.flowTo.d}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* hairline-ruled register, no boxes */}
+        <dl className="divide-y divide-line border-t border-line">
+          {PR.methodology.columns.map((c, i) => (
+            <motion.div
+              key={c.label}
+              className="py-7 sm:grid sm:grid-cols-[112px_1fr] sm:gap-7"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
+            >
+              <dt className="mb-2 text-[10.5px] font-bold uppercase tracking-[0.16em] text-navy-dark/70 sm:mb-0 sm:pt-1">
+                {c.label}
+              </dt>
+              <dd>
+                <p className="text-[16.5px] font-semibold leading-snug tracking-[-0.015em] text-navy-dark">
+                  {c.q}
+                </p>
+                <p className="mt-2 text-[13.5px] leading-relaxed text-navy-dark/75">
+                  {c.d}
+                </p>
+              </dd>
+            </motion.div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </div>
+);
+
+/* ======================== 8 · judgement (clay) ======================== */
+
+const Judgement = () => (
+  <div className="bg-clay py-24 lg:py-32">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="grid gap-12 lg:grid-cols-[1fr_0.82fr] lg:gap-16">
+        <div>
+          <Head
+            eyebrow={PR.judgement.eyebrow}
+            pre={PR.judgement.heading.pre}
+            em={PR.judgement.heading.em}
+          />
+          <motion.p
+            className="mt-6 max-w-xl text-[15.5px] leading-[1.68] text-navy-dark/75"
+            {...rise(0.05)}
+          >
+            {PR.judgement.lede}
+          </motion.p>
+        </div>
+
+        <motion.div
+          className="self-start rounded-2xl border border-navy-dark/15 p-7"
+          {...rise(0.1)}
+        >
+          <p className="mb-5 text-[10.5px] font-bold uppercase tracking-[0.14em] text-navy-dark/75">
+            What we check first
+          </p>
+          <dl>
+            {PR.judgement.checks.map((c) => (
+              <div
+                key={c.label}
+                className="border-t border-navy-dark/12 py-3.5"
               >
-                <span className="text-[13px] font-bold text-navy-dark/30 pt-0.5">
-                  0{u + 1}
-                </span>
-                <div>
-                  <h3 className="text-[17px] font-semibold text-navy-dark mb-1.5">
-                    {c.t}
-                  </h3>
-                  <p className="text-[14px] text-navy-dark/70 leading-relaxed">
-                    {c.d}
-                  </p>
-                </div>
-              </motion.div>
+                <dt className="text-[14px] font-bold text-navy-dark">
+                  {c.label}
+                </dt>
+                <dd className="mt-1 text-[13px] leading-relaxed text-navy-dark/75">
+                  {c.detail}
+                </dd>
+              </div>
             ))}
+          </dl>
+        </motion.div>
+      </div>
+
+      <div className="mt-14 grid gap-4 md:grid-cols-3">
+        {PR.judgement.cases.map((c, i) => (
+          <motion.article
+            key={c.site}
+            className="flex flex-col rounded-2xl bg-white p-6 shadow-lift"
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, delay: i * 0.1, ease: EASE }}
+          >
+            <div className="mb-4 flex items-baseline justify-between gap-3">
+              <h3 className="text-[15.5px] font-semibold leading-snug text-navy-dark">
+                {c.site}
+              </h3>
+              <span className="shrink-0 text-[12px] font-bold tabular-nums text-navy-dark/70">
+                {c.metric}
+              </span>
+            </div>
+            <p className="text-[13.5px] leading-relaxed text-navy-dark/75">
+              {c.read}
+            </p>
+            <p className="mt-5 flex gap-2.5 border-t border-line pt-4 text-[13px] font-semibold text-navy-dark">
+              <ArrowRight
+                className="mt-0.5 h-3.5 w-3.5 shrink-0 text-navy-dark/60"
+                aria-hidden="true"
+              />
+              {c.move}
+            </p>
+          </motion.article>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+/* ========================= 9 · process (white) ========================= */
+
+const Process = () => (
+  <div className="bg-white py-24 lg:py-32">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <Head
+        eyebrow={PR.process.eyebrow}
+        pre={PR.process.heading.pre}
+        em={PR.process.heading.em}
+        className="mb-12"
+      />
+
+      <ol className="divide-y divide-line border-y border-line">
+        {PR.process.steps.map((s, i) => (
+          <motion.li
+            key={s.n}
+            className="grid gap-x-8 gap-y-3 py-8 md:grid-cols-[auto_1fr_15rem] md:items-start"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, delay: i * 0.06 }}
+          >
+            <span
+              className="text-[3rem] font-semibold leading-[0.8] tracking-[-0.045em] text-navy-dark/55 tabular-nums md:text-[3.6rem]"
+              aria-hidden="true"
+            >
+              {s.n}
+            </span>
+            <div>
+              <h3 className="text-[18px] font-semibold tracking-[-0.015em] text-navy-dark">
+                {s.t}
+              </h3>
+              <p className="mt-2 max-w-xl text-[14.5px] leading-relaxed text-navy-dark/75">
+                {s.d}
+              </p>
+            </div>
+            <p className="text-[12.5px] leading-relaxed text-navy-dark/75 md:border-l md:border-line md:pl-6">
+              <span className="block font-bold uppercase tracking-[0.12em] text-navy-dark/70">
+                Your part
+              </span>
+              {s.you}
+            </p>
+          </motion.li>
+        ))}
+      </ol>
+    </div>
+  </div>
+);
+
+/* ================== 10 · the amber moment (bg-mark) ================== */
+
+const CampaignBand = () => {
+  const w = 620;
+  const h = 150;
+  const max = Math.max(...PR.example.series);
+  const min = Math.min(...PR.example.series);
+  const pts = PR.example.series.map((v, i) => {
+    const x = (i / (PR.example.series.length - 1)) * w;
+    const y = h - ((v - min) / (max - min || 1)) * (h - 22) - 11;
+    return [x, y] as const;
+  });
+  const line = pts
+    .map(([x, y], i) => (i ? "L" : "M") + x.toFixed(1) + "," + y.toFixed(1))
+    .join(" ");
+
+  return (
+    <div className="bg-mark py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <Head
+          eyebrow={PR.example.eyebrow}
+          pre={PR.example.heading.pre}
+          em={PR.example.heading.em}
+        />
+
+        <div className="mt-12 grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-navy-dark/75">
+              {PR.example.label}
+            </p>
+            <motion.p
+              className="mt-6 text-[5.5rem] font-semibold leading-[0.82] tracking-[-0.05em] text-navy-dark tabular-nums sm:text-[6.5rem]"
+              {...rise(0.05)}
+            >
+              {PR.example.hero.v}
+            </motion.p>
+            <p className="mt-2 text-[14px] font-semibold text-navy-dark/80">
+              {PR.example.hero.k}
+            </p>
+            <dl className="mt-8">
+              {PR.example.facts.map((f) => (
+                <div
+                  key={f.k}
+                  className="flex items-baseline justify-between gap-4 border-t border-navy-dark/20 py-3"
+                >
+                  <dt className="text-[13.5px] text-navy-dark/80">{f.k}</dt>
+                  <dd className="text-[15px] font-bold tabular-nums text-navy-dark">
+                    {f.v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <Link
+              to={PR.example.caseHref}
+              className="group mt-8 inline-flex items-center gap-2 rounded-xl border border-navy-dark/30 px-6 py-3.5 text-[14px] font-semibold text-navy-dark transition-colors duration-300 hover:border-navy-dark"
+            >
+              {PR.example.ctaLabel}
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+
+          <div>
+            <p className="text-[12.5px] font-bold uppercase tracking-[0.12em] text-navy-dark/75">
+              {PR.example.seriesLabel}
+            </p>
+            <svg
+              viewBox={`0 0 ${w} ${h}`}
+              className="mt-5 h-auto w-full"
+              fill="none"
+              role="img"
+              aria-label={PR.example.seriesLabel}
+            >
+              <motion.path
+                d={line}
+                stroke="rgb(var(--ink))"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.4, ease: [0.4, 0, 0.2, 1] }}
+              />
+              {pts.map(([x, y], i) => (
+                <circle
+                  key={i}
+                  cx={x}
+                  cy={y}
+                  r={i === pts.length - 1 ? 6 : 3.5}
+                  fill={
+                    i === pts.length - 1
+                      ? "rgb(var(--ink))"
+                      : "rgb(var(--mark))"
+                  }
+                  stroke="rgb(var(--ink))"
+                  strokeWidth={1.8}
+                />
+              ))}
+            </svg>
+            <p className="mt-6 max-w-xl text-[14.5px] leading-[1.65] text-navy-dark/80">
+              {PR.example.takeaway}
+            </p>
+            <figure className="mt-8 border-t border-navy-dark/20 pt-7">
+              <blockquote className="text-[1.2rem] leading-[1.45] tracking-[-0.015em] text-navy-dark sm:text-[1.35rem]">
+                {"“"}
+                {PR.example.quote.text}
+                {"”"}
+              </blockquote>
+              <figcaption className="mt-4 text-[12.5px] font-bold uppercase tracking-[0.12em] text-navy-dark/75">
+                {PR.example.quote.who}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
-      <FitPair
-        good={C.fit.good}
-        bad={C.fit.bad}
-        eyebrow="Fit"
-        title={
-          <>
-            Digital PR is{" "}
-            <span className="text-navy-dark/65">not right for everyone</span>
-          </>
-        }
-        tone="linen"
-      />
-      <div className="bg-white py-24 lg:py-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHead center={true}>
-            {"Straight "}
-            <span className="text-navy-dark/65">answers</span>
-          </SectionHead>
-          <FaqList faqs={e.faqs} />
-        </div>
-      </div>
-      <OtherServices current="digital-pr" />
-    </PageLayout>
+    </div>
   );
 };
+
+/* ====================== 11 · deliverables (stone) ====================== */
+
+const Deliverables = () => (
+  <div className="bg-stone py-24 lg:py-32">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <Head
+        eyebrow={PR.deliverables.eyebrow}
+        pre={PR.deliverables.heading.pre}
+        em={PR.deliverables.heading.em}
+        className="mb-12"
+      />
+      <div className="grid gap-x-12 gap-y-9 sm:grid-cols-2">
+        {PR.deliverables.items.map((c, i) => (
+          <motion.div
+            key={c.t}
+            className="flex gap-5 border-t border-navy-dark/15 pt-6"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: (i % 2) * 0.08 }}
+          >
+            <span
+              className="text-[2rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark/65 tabular-nums"
+              aria-hidden="true"
+            >
+              {"0"}
+              {i + 1}
+            </span>
+            <div>
+              <h3 className="mb-1.5 text-[17px] font-semibold tracking-[-0.015em] text-navy-dark">
+                {c.t}
+              </h3>
+              <p className="text-[14px] leading-relaxed text-navy-dark/75">
+                {c.d}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+/* =========================== 12 · fit (mist) =========================== */
+
+const Fit = () => (
+  <div className="bg-mist py-24 lg:py-32">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <Head
+        eyebrow={PR.fit.eyebrow}
+        pre={PR.fit.heading.pre}
+        em={PR.fit.heading.em}
+        className="mb-12"
+      />
+      <div className="grid gap-4 md:grid-cols-2">
+        <motion.div
+          className="rounded-3xl border border-line bg-white p-8 shadow-lift"
+          {...rise()}
+        >
+          <h3 className="text-[16px] font-semibold text-navy-dark">
+            Worth a call if…
+          </h3>
+          <ul className="mt-5 space-y-3.5">
+            {PR.fit.good.map((g) => (
+              <li key={g} className="flex gap-3">
+                <Check
+                  className="mt-0.5 h-4 w-4 flex-none text-verified"
+                  aria-hidden="true"
+                />
+                <span className="text-[14px] leading-relaxed text-navy-dark/75">
+                  {g}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        <motion.div
+          className="rounded-3xl border border-line bg-stone p-8"
+          {...rise(0.08)}
+        >
+          <h3 className="text-[16px] font-semibold text-navy-dark">
+            Link building first if…
+          </h3>
+          <ul className="mt-5 space-y-3.5">
+            {PR.fit.bad.map((b) => (
+              <li key={b} className="flex gap-3">
+                <Minus
+                  className="mt-0.5 h-4 w-4 flex-none text-navy-dark/60"
+                  aria-hidden="true"
+                />
+                <span className="text-[14px] leading-relaxed text-navy-dark/75">
+                  {b}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 border-t border-line pt-5 text-[13px] leading-relaxed text-navy-dark/75">
+            {PR.fit.foot}
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ========================= 13 · faq (espresso) ========================= */
+
+const Faq = () => (
+  <div className="bg-espresso py-24 lg:py-32">
+    <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <motion.h2
+        className="mb-10 text-center text-[2rem] font-semibold leading-[1.07] tracking-[-0.035em] text-white sm:text-[2.4rem]"
+        {...rise()}
+      >
+        {"Straight "}
+        <span className="text-white/70">answers</span>
+      </motion.h2>
+      <FaqList faqs={PR.faqs} />
+    </div>
+  </div>
+);
+
+/* ================================= page ================================= */
+
+const DigitalPR = () => (
+  <PageLayout>
+    <Seo title="Digital PR" description={PR.sub} />
+    <Hero />
+    <CoverageBand />
+    <Problem />
+    <Pitch />
+    <Angles />
+    <Tiers />
+    <Methodology />
+    <Judgement />
+    <Process />
+    <CampaignBand />
+    <Deliverables />
+    <Fit />
+    <Faq />
+    <OtherServices current="digital-pr" />
+  </PageLayout>
+);
 
 export default DigitalPR;

@@ -18,12 +18,25 @@ import { Network } from "./about-depth";
  * client proof, and a three-up closing CTA.
  *
  * Register follows dofollow: we describe our own experience, approach and
- * results. There is no section about what other agencies get wrong — the
+ * results. Nothing on this page is framed as a criticism of anyone else — the
  * previous version opened with a refusal list and a founder letter about bad
- * link reports, which read as a small agency defining itself against the
- * industry rather than an established one describing its work.
+ * link reports, which read as a small agency defining itself by comparison
+ * rather than an established one describing its work. Do not reintroduce
+ * either. The page keeps exactly one category-level distinction about method
+ * ("Editorial, not inventory"); every other framing is self-descriptive.
  *
- * Surface rhythm: m w D w l w D l m — no two adjacent sections share a tone.
+ * Surfaces (see DESIGN.md):
+ *   mist → stone → navy-dark → mist → clay → stone → espresso → mist →
+ *   stone → mark
+ * Six distinct surfaces, two darks, one amber, longest light run is three
+ * (thesis → network → services). `white` is used only for cards, never as a
+ * section ground.
+ *
+ * Depth: white cards with shadow-lift/deep on tinted grounds, an overlapping
+ * feature card over the mist/clay boundary, oversized display numerals (the
+ * stats band, the 814 figure, the timeline years), hairline rules carrying the
+ * timeline and market table, a pastel inset panel behind the distribution
+ * chart, and the amber band on the closing choice.
  */
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -45,7 +58,7 @@ const STATS = [
 const PILLARS = [
   {
     t: "Research-led",
-    d: "Every engagement opens with AuthorityOS™ research: how your category is read, which publications carry weight inside it, and which of your pages will respond first. The plan comes from the research, not from a catalogue.",
+    d: "Every engagement opens with AuthorityOS™ research: how your category is read, which publications carry weight inside it, and which of your pages will respond first. The plan comes out of that research — target pages, publications, and the order to build in.",
   },
   {
     t: "Editorial, not inventory",
@@ -53,7 +66,7 @@ const PILLARS = [
   },
   {
     t: "Senior delivery",
-    d: "The strategist who scopes your programme is the one who runs it. Four people, twelve engagements, and no layer between you and the person making the decisions.",
+    d: "The strategist who scopes your programme is the one who runs it. Four people, twelve engagements at a time, and direct access to whoever is making the call on your account.",
   },
 ];
 
@@ -112,7 +125,7 @@ const TIMELINE = [
   {
     year: "2023",
     t: "Founded",
-    d: "Started as a specialist outreach practice serving three B2B clients, built on direct relationships with editors rather than bought inventory.",
+    d: "Started as a specialist outreach practice serving three B2B clients, on the strength of direct relationships with a handful of editors.",
   },
   {
     year: "2024",
@@ -239,7 +252,7 @@ const About = () => (
     </div>
 
     {/* ---- recognition band ---- */}
-    <div className="bg-white py-14">
+    <div className="bg-stone py-14">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.p
           className="mb-8 text-center text-[12.5px] text-navy-dark/70"
@@ -288,7 +301,7 @@ const About = () => (
     </div>
 
     {/* ---- the thesis, in the founder's voice ---- */}
-    <div className="bg-white py-24 lg:py-32">
+    <div className="bg-mist pb-32 pt-24 lg:pb-44 lg:pt-32">
       <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:px-8">
         <div>
           <motion.p
@@ -344,15 +357,21 @@ const About = () => (
           {PILLARS.map((p, i) => (
             <motion.div
               key={p.t}
-              className="rounded-2xl border border-line bg-mist p-7"
+              className="rounded-2xl border border-line bg-white p-7 shadow-lift"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.09 }}
             >
-              <h3 className="mb-2.5 text-[17px] font-semibold tracking-[-0.02em] text-navy-dark">
-                {p.t}
-              </h3>
+              <div className="mb-2.5 flex items-baseline gap-3.5">
+                <span className="text-[1.6rem] font-semibold leading-none tabular-nums tracking-[-0.04em] text-navy-dark/55">
+                  {"0"}
+                  {i + 1}
+                </span>
+                <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-navy-dark">
+                  {p.t}
+                </h3>
+              </div>
               <p className="text-[14px] leading-relaxed text-navy-dark/75">
                 {p.d}
               </p>
@@ -366,7 +385,7 @@ const About = () => (
     <Network />
 
     {/* ---- what we do ---- */}
-    <div className="bg-linen py-24 lg:py-32">
+    <div className="bg-stone py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div className="mb-12 max-w-2xl" {...rise()}>
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
@@ -390,7 +409,7 @@ const About = () => (
             >
               <Link
                 to={s.to}
-                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 transition-shadow duration-500 hover:shadow-lift"
+                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-lift transition-shadow duration-500 hover:shadow-deep"
               >
                 <h3 className="mb-2.5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
                   {s.t}
@@ -409,19 +428,19 @@ const About = () => (
       </div>
     </div>
 
-    {/* ---- team ---- */}
-    <div className="bg-white py-24 lg:py-32">
+    {/* ---- team: white cards on the warm dark ---- */}
+    <div className="bg-espresso py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="mb-12 flex flex-wrap items-end justify-between gap-6"
+          className="mb-12 flex flex-wrap items-end justify-between gap-6 border-b border-white/15 pb-10"
           {...rise()}
         >
-          <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
+          <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
             Small team,
             <br />
-            <span className="text-navy-dark/65">senior hands.</span>
+            <span className="text-white/70">senior hands.</span>
           </h2>
-          <p className="max-w-xs text-[14px] leading-relaxed text-navy-dark/70">
+          <p className="max-w-xs text-[14px] leading-relaxed text-white/70">
             Four people, each accountable for one part of the pipeline. The
             strategist who scopes your programme is the one who runs it.
           </p>
@@ -431,7 +450,7 @@ const About = () => (
           {TEAM.map((m, i) => (
             <motion.div
               key={m.role}
-              className="overflow-hidden rounded-2xl border border-line"
+              className="overflow-hidden rounded-2xl bg-white shadow-deep"
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -463,37 +482,37 @@ const About = () => (
       </div>
     </div>
 
-    {/* ---- how we got here ---- */}
-    <div className="bg-navy-dark py-24 lg:py-32">
+    {/* ---- how we got here: years as display figures on hairline rules ---- */}
+    <div className="bg-mist py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div className="mb-14 max-w-2xl" {...rise()}>
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
             How we got here
           </p>
-          <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
+          <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
             Three years of
             <br />
-            <span className="text-white/70">building the same thing.</span>
+            <span className="text-navy-dark/65">building the same thing.</span>
           </h2>
         </motion.div>
 
-        <ol className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {TIMELINE.map((e, i) => (
             <motion.li
               key={e.year}
-              className="border-t border-white/15 pt-6"
+              className="border-t border-navy-dark/20 pt-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.09 }}
             >
-              <p className="mb-3 text-[13px] font-bold tabular-nums text-white/70">
+              <p className="mb-4 text-[2.7rem] font-semibold leading-none tracking-[-0.045em] tabular-nums text-navy-dark/60 lg:text-[3.1rem]">
                 {e.year}
               </p>
-              <h3 className="mb-2.5 text-[17px] font-semibold tracking-[-0.02em] text-white">
+              <h3 className="mb-2.5 text-[17px] font-semibold tracking-[-0.02em] text-navy-dark">
                 {e.t}
               </h3>
-              <p className="text-[13.5px] leading-relaxed text-white/70">
+              <p className="text-[13.5px] leading-relaxed text-navy-dark/75">
                 {e.d}
               </p>
             </motion.li>
@@ -503,7 +522,7 @@ const About = () => (
     </div>
 
     {/* ---- client proof ---- */}
-    <div className="bg-linen py-24 lg:py-32">
+    <div className="bg-stone py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="mb-12 max-w-2xl text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
@@ -518,7 +537,7 @@ const About = () => (
           {PROOF.map((p, i) => (
             <motion.figure
               key={p.who}
-              className="flex h-full flex-col rounded-2xl border border-line bg-white p-7"
+              className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-lift"
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -543,15 +562,15 @@ const About = () => (
       </div>
     </div>
 
-    {/* ---- closing, three ways in ---- */}
-    <div className="bg-mist py-24 lg:py-32">
+    {/* ---- closing, three ways in: the page's one amber band ---- */}
+    <div className="bg-mark py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="mb-12 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
           {...rise()}
         >
-          {"Where would you "}
-          <span className="text-navy-dark/65">like to start?</span>
+          {"Three ways in. "}
+          <span className="text-navy-dark/70">Start wherever you like.</span>
         </motion.h2>
 
         <div className="grid gap-4 md:grid-cols-3">
@@ -565,7 +584,7 @@ const About = () => (
             >
               <Link
                 to={c.to}
-                className="group flex h-full flex-col rounded-3xl border border-line bg-white p-7 transition-shadow duration-500 hover:shadow-lift"
+                className="group flex h-full flex-col rounded-3xl bg-white p-7 shadow-lift transition-shadow duration-500 hover:shadow-deep"
               >
                 <h3 className="mb-2.5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
                   {c.t}

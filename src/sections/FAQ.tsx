@@ -12,42 +12,47 @@ const FAQ = () => {
       {
         question: "What exactly do you place?",
         answer:
-          "Three things: editorial backlinks (guest posts, niche edits, authority links on DR 40+ sites), brand mentions and PR features (quotes, roundup inclusions, press coverage), and Gulf or international media placements. Links move your Google rankings. Mentions build the citation footprint AI engines pull answers from.",
+          "Three things: editorial backlinks (guest posts, niche edits, authority links on DR 40+ sites), brand mentions and PR features (expert commentary, roundup inclusions, press coverage), and Gulf or international media placements. Links move your Google rankings. Mentions build the citation footprint answer engines pull from.",
       },
       {
-        question: "Can you really influence ChatGPT and AI Overviews?",
+        question: "What is AuthorityOS™?",
         answer:
-          "Honest answer: nobody controls what an AI says, and anyone promising guaranteed AI citations is selling snake oil. What we can do is build the thing AI engines consistently cite — mentions and coverage on authoritative publications they already trust. We track your citations across AI Overviews, ChatGPT, and Claude monthly so you can see the footprint grow.",
+          "AuthorityOS™ is the research methodology behind the work. It maps how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. You do not buy AuthorityOS™ — it powers how we decide where to act.",
       },
       {
-        question: "Are these PBNs or link farms?",
+        question: "Can you influence ChatGPT and AI Overviews?",
         answer:
-          "No. Every site must pass manual checks: real organic traffic in Ahrefs, a clean outbound profile, genuine editorial standards, and regular crawl activity. If a site exists only to sell links, it never enters the network.",
+          "Not directly. No one controls what a model says. What we can do is build what these systems consistently cite: mentions and coverage on publications they already treat as sources. We check your citations across AI Overviews, ChatGPT and Claude every month, so the footprint is measured rather than assumed.",
       },
       {
-        question: "How long until I see results?",
+        question: "How do you decide a site is worth placing on?",
         answer:
-          "Google rankings typically compound over 3–6 months as links get discovered and credited. AI citations can move sooner when mentions land on sources the engines already pull from. Either way, you see every placement the week it goes live — no waiting in the dark.",
+          "Every site passes a manual review: verified organic traffic in Ahrefs, a clean outbound profile, genuine editorial standards, and regular crawl activity. Roughly one in five sites we source does not clear it, and those never reach your plan.",
       },
       {
-        question: "Do I approve sites before you place anything?",
+        question: "How long until I see movement?",
         answer:
-          "Yes — and it is the default, not a premium add-on. You receive every prospect with DR, traffic, and relevance data, and approve or reject each domain. Nothing is placed without your sign-off.",
+          "Indexation takes two to six weeks per placement. Pages already sitting in positions 5–20 typically move between months two and four. Pages starting beyond position 30 usually need content work alongside links and take longer. We report against the keyword set agreed at the start, so you see the trend rather than guess at it.",
+      },
+      {
+        question: "Do I see the publications before they go live?",
+        answer:
+          "Whenever you want to. Some clients review every candidate domain with its metrics before we proceed; others prefer to leave sourcing to us and read the monthly report. Either way the full list, with metrics and target pages, is in your reporting.",
       },
       {
         question: "What is in the monthly report?",
         answer:
-          "Live placement URLs, anchor text, DR and traffic of each site, indexation status, ranking movement on target pages, and your AI citation tracking across the major answer engines. Clean enough to forward straight to your boss or your client.",
+          "Live placement URLs, anchor text, DR and traffic of each site, indexation status, ranking movement on target pages, and your AI citation tracking across the major answer engines. Written so you can forward it to your board or your client without editing it first.",
       },
       {
         question: "Do you offer white-label for agencies?",
         answer:
-          "Yes. Unbranded reports your clients can read, volume pricing, NDA on request, and a dedicated WhatsApp or Slack channel. A large share of our work runs white-label for agencies.",
+          "Yes. Unbranded reporting your clients can read, volume pricing, NDA on request, and a dedicated WhatsApp or Slack channel. Roughly a third of our work is delivered white-label for other agencies.",
       },
       {
         question: "Do you guarantee rankings or AI citations?",
         answer:
-          "No — and you should run from anyone who does. Algorithms and AI models are outside everyone's control. What we do guarantee: the quality and volume of placements in your package, indexation verification, and free replacement of any link that drops within 90 days.",
+          "No one can — algorithms and models sit outside anyone's control. What we commit to is the placement volume and quality scoped in your programme, indexation verification on every link, and free replacement of anything that drops inside 90 days. Over the last twelve months 96% of placements were indexed by Google.",
       },
     ],
     s: Variants = {
@@ -63,23 +68,28 @@ const FAQ = () => {
       },
     };
   return (
-    <div className="bg-white py-24 lg:py-32">
+    <div className="bg-mist py-24 lg:py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="mb-14 border-b border-navy-dark/20 pb-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
+            Before you ask
+          </p>
           <motion.h2
-            className="text-4xl sm:text-5xl font-bold text-navy-dark"
+            className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            Frequently Asked Questions
+            Common questions.
+            <br />
+            <span className="text-navy-dark/65">Direct answers.</span>
           </motion.h2>
         </motion.div>
         <motion.div
@@ -88,26 +98,26 @@ const FAQ = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <Accordion type="single" collapsible={true} className="space-y-4">
+          <Accordion type="single" collapsible={true} className="">
             {e.map((r, c) => (
               <motion.div key={c} variants={a}>
                 <AccordionItem
                   value={`item-${c}`}
-                  className="border-b border-gray-200 py-2"
+                  className="border-b border-navy-dark/15 py-1.5"
                 >
                   <AccordionTrigger className="text-left hover:no-underline group py-4">
-                    <div className="flex items-start gap-4">
-                      <span className="text-sm font-medium text-navy-dark/70 mt-1">
+                    <div className="flex items-start gap-5">
+                      <span className="mt-1 text-[13px] font-bold tabular-nums tracking-[0.08em] text-navy-dark/65">
                         {String(c + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-lg font-semibold text-navy-dark group-hover:text-blue-accent transition-colors">
+                      <span className="text-[17.5px] font-semibold leading-snug text-navy-dark transition-opacity group-hover:opacity-70">
                         {r.question}
                       </span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="pl-12 pr-4">
+                  <AccordionContent className="pl-[3.1rem] pr-4">
                     <motion.p
-                      className="text-navy-dark/70 leading-relaxed pb-4"
+                      className="max-w-2xl text-[15px] leading-[1.65] text-navy-dark/75 pb-5"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}

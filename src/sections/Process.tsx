@@ -11,31 +11,31 @@ const PROCESS_STEPS = [
   {
     title: "Audit",
     description:
-      "We map your current footprint — link profile, rankings, and where you do (or do not) appear across Google, AI Overviews, ChatGPT, and Claude. The gaps become the plan.",
+      "AuthorityOS™ maps your current footprint — link profile, rankings, and where you do or do not appear across Google, AI Overviews, ChatGPT and Claude. The gaps become the plan.",
     deliverable: "Visibility gap analysis & anchor plan",
   },
   {
     title: "Map",
     description:
-      "Competitor backlink and citation analysis across our publisher network — finding the high-authority, niche-relevant sites that both rankings and AI answers are built on.",
+      "Competitor backlink and citation analysis across the publications that shape your category, finding the niche-relevant sources both rankings and AI answers are built on.",
     deliverable: "Vetted prospect list with metrics",
   },
   {
-    title: "Approve",
+    title: "Prioritise",
     description:
-      "You receive every prospect with DR, traffic, and relevance data — and approve or reject each domain. Nothing is placed without your sign-off. Ever.",
-    deliverable: "Approved target list",
+      "We rank the pages closest to moving and decide which receives authority first, which anchors it takes, and at what pace. You see the plan, with its reasoning, before anything is placed.",
+    deliverable: "Ranked target-page plan",
   },
   {
     title: "Place",
     description:
-      "Links, brand mentions, and PR features placed inside real editorial content with contextual anchors. No footers, no sidebars, no shortcuts.",
+      "Links, brand mentions and PR features earned inside real editorial content, each one written to the publication's standard and sitting in a sentence that stands on its own.",
     deliverable: "Live placement URLs",
   },
   {
     title: "Verify",
     description:
-      "Every link checked for indexation and monitored for 90 days. Rankings tracked, AI citations monitored monthly, and anything that drops gets replaced free.",
+      "Every link checked for indexation and monitored for 90 days. Rankings tracked against the agreed keyword set, AI citations checked monthly, and anything that drops replaced free.",
     deliverable: "Indexation-verified report + citation tracking",
   },
 ];
@@ -78,108 +78,110 @@ const ProcessRail = () => {
         c.setAttribute("opacity", d < 0.04 || d > 0.96 ? "0" : "1"));
     }),
     (
-      <div className="bg-white rounded-2xl border border-line shadow-sm px-5 pt-5 pb-2">
-        <div className="text-[10px] font-bold tracking-[0.22em] text-navy-dark/70 uppercase text-center mb-1">
-          How a link travels
-        </div>
-        <svg
-          viewBox="0 0 460 132"
-          className="w-full"
-          role="img"
-          aria-label="A link travels from a publisher site to your site"
-        >
-          <motion.path
-            ref={e}
-            d="M104,66 C 185,16 275,116 356,66"
-            stroke="#1a1f2e"
-            strokeOpacity="0.28"
-            strokeWidth="1.6"
-            fill="none"
-            strokeDasharray="6 6"
-            animate={{ strokeDashoffset: [0, -12] }}
-            transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
-          />
-          <rect
-            x="16"
-            y="41"
-            width="88"
-            height="50"
-            rx="10"
-            fill="#ffffff"
-            stroke="#1a1f2e"
-            strokeOpacity="0.15"
-            strokeWidth="1.4"
-          />
-          <text
-            x="60"
-            y="63"
-            textAnchor="middle"
-            fontSize="8.5"
-            fontWeight="700"
-            letterSpacing="1.5"
-            fill="#1a1f2e"
-            fillOpacity="0.55"
-            fontFamily="Plus Jakarta Sans, sans-serif"
+      <div className="rounded-[1.6rem] border border-line bg-sky/40 p-3">
+        <div className="bg-white rounded-2xl px-5 pt-5 pb-2 shadow-lift">
+          <div className="text-[10px] font-bold tracking-[0.22em] text-navy-dark/70 uppercase text-center mb-1">
+            How a link travels
+          </div>
+          <svg
+            viewBox="0 0 460 132"
+            className="w-full"
+            role="img"
+            aria-label="A link travels from a publisher site to your site"
           >
-            PUBLISHER
-          </text>
-          <text
-            x="60"
-            y="78"
-            textAnchor="middle"
-            fontSize="8"
-            fontWeight="700"
-            fill="#1a1f2e"
-            fontFamily="Plus Jakarta Sans, sans-serif"
-          >
-            DR 62
-          </text>
-          <rect
-            x="356"
-            y="41"
-            width="88"
-            height="50"
-            rx="10"
-            className="fill-navy-dark"
-          />
-          <text
-            x="400"
-            y="63"
-            textAnchor="middle"
-            fontSize="8.5"
-            fontWeight="700"
-            letterSpacing="1.5"
-            fill="#ffffff"
-            fillOpacity="0.8"
-            fontFamily="Plus Jakarta Sans, sans-serif"
-          >
-            YOUR SITE
-          </text>
-          <text
-            x="400"
-            y="78"
-            textAnchor="middle"
-            fontSize="8"
-            fontWeight="700"
-            fill="#3b82f6"
-            fontFamily="Plus Jakarta Sans, sans-serif"
-          >
-            ▲ AUTHORITY
-          </text>
-          <g ref={s}>
-            <circle r="12" fill="#3b82f6" />
-            <text
-              y="3"
-              textAnchor="middle"
-              fontSize="6.5"
-              fontWeight="800"
+            <motion.path
+              ref={e}
+              d="M104,66 C 185,16 275,116 356,66"
+              stroke="#1a1f2e"
+              strokeOpacity="0.28"
+              strokeWidth="1.6"
+              fill="none"
+              strokeDasharray="6 6"
+              animate={{ strokeDashoffset: [0, -12] }}
+              transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+            />
+            <rect
+              x="16"
+              y="41"
+              width="88"
+              height="50"
+              rx="10"
               fill="#ffffff"
+              stroke="#1a1f2e"
+              strokeOpacity="0.15"
+              strokeWidth="1.4"
+            />
+            <text
+              x="60"
+              y="63"
+              textAnchor="middle"
+              fontSize="8.5"
+              fontWeight="700"
+              letterSpacing="1.5"
+              fill="#1a1f2e"
+              fillOpacity="0.55"
               fontFamily="Plus Jakarta Sans, sans-serif"
             >
-              LINK
+              PUBLISHER
             </text>
-          </g>
-        </svg>
+            <text
+              x="60"
+              y="78"
+              textAnchor="middle"
+              fontSize="8"
+              fontWeight="700"
+              fill="#1a1f2e"
+              fontFamily="Plus Jakarta Sans, sans-serif"
+            >
+              DR 62
+            </text>
+            <rect
+              x="356"
+              y="41"
+              width="88"
+              height="50"
+              rx="10"
+              className="fill-navy-dark"
+            />
+            <text
+              x="400"
+              y="63"
+              textAnchor="middle"
+              fontSize="8.5"
+              fontWeight="700"
+              letterSpacing="1.5"
+              fill="#ffffff"
+              fillOpacity="0.8"
+              fontFamily="Plus Jakarta Sans, sans-serif"
+            >
+              YOUR SITE
+            </text>
+            <text
+              x="400"
+              y="78"
+              textAnchor="middle"
+              fontSize="8"
+              fontWeight="700"
+              className="fill-verified"
+              fontFamily="Plus Jakarta Sans, sans-serif"
+            >
+              ▲ AUTHORITY
+            </text>
+            <g ref={s}>
+              <circle r="12" className="fill-navy-dark" />
+              <text
+                y="3"
+                textAnchor="middle"
+                fontSize="6.5"
+                fontWeight="800"
+                fill="#ffffff"
+                fontFamily="Plus Jakarta Sans, sans-serif"
+              >
+                LINK
+              </text>
+            </g>
+          </svg>
+        </div>
       </div>
     )
   );
@@ -216,35 +218,44 @@ const Process = () => {
     },
     h = s + 1;
   return (
-    <div className="bg-linen" ref={e}>
+    <div className="bg-clay" ref={e}>
       <div className="hidden lg:block">
         <div className="sticky top-0 min-h-screen flex items-center py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <motion.div
-              className="mb-14"
+              className="mb-12 flex flex-wrap items-end justify-between gap-x-12 gap-y-6 border-b border-navy-dark/15 pb-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
-                The Process
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
+                  The Process
+                </p>
+                <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
+                  Five steps.
+                  <br />
+                  <span className="text-navy-dark/65">
+                    The research decides the order.
+                  </span>
+                </h2>
+              </div>
+              <p className="max-w-sm text-[14.5px] leading-relaxed text-navy-dark/75">
+                {
+                  "Knowing you need more authority is not useful on its own. AuthorityOS\u2122 tells us which page needs it, where it should come from, and what to do next once it lands."
+                }
               </p>
-              <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
-                {"A "}
-                <span className="text-navy-dark/65">results-driven</span>
-                {" link building process \u2014 with you in control."}
-              </h2>
             </motion.div>
             <div className="grid lg:grid-cols-[44px_1fr_1.05fr] gap-8 lg:gap-12 items-start">
               <div className="relative h-[420px] flex justify-center">
-                <div className="relative w-px bg-navy-dark/10 h-full">
+                <div className="relative w-px bg-navy-dark/20 h-full">
                   <motion.div
-                    className="absolute top-0 left-0 w-full bg-green-500 origin-top"
+                    className="absolute top-0 left-0 w-full bg-verified origin-top"
                     style={{ height: u }}
                   />
                   <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-green-500 border-[3px] border-[#e8eaed] shadow-[0_0_0_1px_rgba(34,197,94,0.4)]"
+                    className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-verified border-[3px] border-clay shadow-[0_0_0_1px_rgb(var(--verified)/0.45)]"
                     style={{ top: u }}
                   />
                 </div>
@@ -259,14 +270,14 @@ const Process = () => {
                     }}
                   >
                     <span
-                      className={`block rounded-full transition-all duration-500 ${m <= s ? "w-2 h-2 bg-green-500" : "w-1.5 h-1.5 bg-navy-dark/25 group-hover:bg-navy-dark/50"}`}
+                      className={`block rounded-full transition-all duration-500 ${m <= s ? "w-2 h-2 bg-verified" : "w-1.5 h-1.5 bg-navy-dark/30 group-hover:bg-navy-dark/55"}`}
                     />
                   </button>
                 ))}
               </div>
               <div>
                 <div
-                  className="text-[150px] xl:text-[190px] font-semibold text-navy-dark tracking-[-0.02em]er select-none"
+                  className="text-[150px] xl:text-[190px] font-semibold text-navy-dark tracking-[-0.02em] select-none"
                   style={{
                     fontFamily: "Plus Jakarta Sans, sans-serif",
                     lineHeight: 1,
@@ -275,7 +286,7 @@ const Process = () => {
                   <RollingDigit digit={0} />
                   <RollingDigit digit={h} />
                   <span
-                    className="inline-block align-top text-blue-accent"
+                    className="inline-block align-top text-mark-deep"
                     style={{ height: "1em", lineHeight: "1em" }}
                   >
                     .
@@ -302,7 +313,7 @@ const Process = () => {
                       }}
                       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                     >
-                      <p className="text-sm font-bold tracking-[0.2em] text-blue-accent uppercase mb-4">
+                      <p className="text-sm font-bold tracking-[0.2em] text-navy-dark/70 uppercase mb-4">
                         {"Step "}
                         {m + 1}
                         {" of "}
@@ -314,8 +325,8 @@ const Process = () => {
                       <p className="text-navy-dark/70 leading-relaxed text-lg mb-7 max-w-md">
                         {x.description}
                       </p>
-                      <div className="inline-flex items-center gap-2.5 bg-white border border-line rounded-full pl-3 pr-4 py-2 shadow-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                      <div className="inline-flex items-center gap-2.5 bg-white rounded-full pl-3 pr-4 py-2 shadow-lift">
+                        <span className="w-1.5 h-1.5 rounded-full bg-verified" />
                         <span className="text-[11px] font-bold tracking-wider text-navy-dark/70 uppercase">
                           Deliverable
                         </span>
@@ -334,7 +345,7 @@ const Process = () => {
                   key={x.title}
                   onClick={() => d(m)}
                   aria-label={`Step ${m + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${s === m ? "bg-green-500 w-8" : "bg-navy-dark/20 w-1.5 hover:bg-navy-dark/40"}`}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${s === m ? "bg-verified w-8" : "bg-navy-dark/25 w-1.5 hover:bg-navy-dark/45"}`}
                 />
               ))}
             </div>
@@ -355,12 +366,19 @@ const Process = () => {
               The Process
             </p>
             <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
-              {"A "}
-              <span className="text-navy-dark/65">results-driven</span>
-              {" process \u2014 with you in control."}
+              Five steps.
+              <br />
+              <span className="text-navy-dark/65">
+                The research decides the order.
+              </span>
             </h2>
+            <p className="mt-4 text-[15.5px] leading-relaxed text-navy-dark/75">
+              {
+                "AuthorityOS\u2122 tells us which page needs authority, where it should come from, and what to do next once it lands."
+              }
+            </p>
           </motion.div>
-          <div className="relative border-l border-line pl-7 space-y-12">
+          <div className="relative border-l border-navy-dark/20 pl-7 space-y-12">
             {PROCESS_STEPS.map((x, m) => (
               <motion.div
                 key={x.title}
@@ -370,9 +388,9 @@ const Process = () => {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
               >
-                <span className="absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-green-500 border-[3px] border-[#e8eaed]" />
+                <span className="absolute -left-[33px] top-1 w-3 h-3 rounded-full bg-verified border-[3px] border-clay" />
                 <p
-                  className="text-4xl font-extrabold text-navy-dark/15 tracking-tighter mb-2"
+                  className="text-4xl font-extrabold text-navy-dark/55 tracking-tighter mb-2"
                   style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
                 >
                   0{m + 1}.
@@ -383,8 +401,8 @@ const Process = () => {
                 <p className="text-navy-dark/70 leading-relaxed mb-4">
                   {x.description}
                 </p>
-                <div className="inline-flex items-center gap-2 bg-white border border-line rounded-full px-3.5 py-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                <div className="inline-flex items-center gap-2 bg-white rounded-full px-3.5 py-1.5 shadow-soft">
+                  <span className="w-1.5 h-1.5 rounded-full bg-verified" />
                   <span className="text-[12px] font-semibold text-navy-dark">
                     {x.deliverable}
                   </span>

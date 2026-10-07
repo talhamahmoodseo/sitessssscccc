@@ -277,11 +277,16 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
 
 ## 9. Known issues and traps
 
-- **`shadow-soft`, `shadow-deep`, `shadow-lift` are intentionally undefined.**
-  They appear in markup but were never defined in the original Tailwind config,
-  so they render as no-ops. They are left undefined so the build matches what
-  was verified against the original. Defining them will change the look of many
-  cards at once — fine, but do it deliberately.
+- **`shadow-soft`, `shadow-deep`, `shadow-lift` are now real.** They were
+  undefined no-ops for most of this project's life — referenced 23 times in
+  markup and rendering as nothing, which was a large part of why pages read
+  flat. They are defined in `tailwind.config.js`, tinted with ink not black.
+- **Read `DESIGN.md` before changing any section background.** The palette has
+  a deliberate tonal ladder (`mist` → `stone` → `clay`, plus `espresso` as a
+  second dark and `mark` as the one accent per page). `white`, `paper` and
+  `linen` sit within 1.08:1 of each other, so a run of those reads as a single
+  surface — that was the original "it feels like a document" failure. `linen`
+  survives only in legacy components; prefer `stone`.
 - **Keep `lucide-react` on the 0.x line.** 1.x renames exports (`Linkedin` →
   `LinkedinIcon`) and changes some icon geometry. Pinned at 0.577.
 - **`noImplicitAny` is `false`** in `tsconfig.json`, a concession to the

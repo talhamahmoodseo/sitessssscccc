@@ -8,7 +8,7 @@ const VIDEO_STORIES = [
     id: "s1",
     name: "Daniel Reyes",
     role: "Founder · B2B SaaS",
-    quoteShort: "They showed us every domain before placing anything.",
+    quoteShort: "They told us which pages to back, then backed them.",
     result: "+212% clicks",
     poster: asset("/images/vid-test-1.jpg"),
     tint: "bg-butter",
@@ -17,7 +17,7 @@ const VIDEO_STORIES = [
     id: "s2",
     name: "Amira Khan",
     role: "Head of Growth · E-commerce",
-    quoteShort: "Gulf press our last agency called impossible.",
+    quoteShort: "Gulf coverage we assumed was out of reach for us.",
     result: "4× domains",
     poster: asset("/images/vid-test-2.jpg"),
     tint: "bg-lilac",
@@ -26,7 +26,7 @@ const VIDEO_STORIES = [
     id: "s3",
     name: "Tom Whitfield",
     role: "Owner · Home services",
-    quoteShort: "I read the phone ringing. It rings.",
+    quoteShort: "I measure this in phone calls. They went up.",
     result: "Top 3 local",
     poster: asset("/images/vid-test-3.jpg"),
     tint: "bg-mint",
@@ -49,7 +49,7 @@ const VideoStories = () => {
       );
     }, [e]),
     (
-      <div className="bg-white py-24 lg:py-32">
+      <div className="bg-espresso py-24 lg:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="flex flex-wrap items-end justify-between gap-6 mb-12"
@@ -58,15 +58,15 @@ const VideoStories = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
+            <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white">
               Hear it from the
               <br />
-              {"people who "}
-              <span className="text-navy-dark/65">checked the links</span>
+              {"people whose "}
+              <span className="text-white/70">pages moved</span>
             </h2>
-            <p className="text-[14px] text-navy-dark/70 max-w-xs">
-              Ninety seconds each. No script, no agency polish — just what the
-              campaign did for their business.
+            <p className="text-[14px] text-white/70 max-w-xs">
+              Ninety seconds each. Unscripted, and specific about what the
+              programme changed for the business.
             </p>
           </motion.div>
           <div className="grid sm:grid-cols-3 gap-5">
@@ -81,14 +81,14 @@ const VideoStories = () => {
                 transition={{ duration: 0.55, delay: r * 0.09 }}
               >
                 <div
-                  className={`relative ${a.tint} rounded-3xl overflow-hidden aspect-[4/5] border border-line`}
+                  className={`relative ${a.tint} rounded-3xl overflow-hidden aspect-[4/5] shadow-deep`}
                 >
                   <img
                     src={a.poster}
                     alt={a.name}
                     className="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-95 transition-transform duration-700 group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/35 to-transparent" />
                   <span className="absolute inset-0 flex items-center justify-center">
                     <motion.span
                       className="w-16 h-16 rounded-full bg-white/95 flex items-center justify-center shadow-lift"
@@ -106,21 +106,21 @@ const VideoStories = () => {
                     {a.result}
                   </span>
                   <span className="absolute inset-x-0 bottom-0 p-5">
-                    <span className="block text-navy-dark font-semibold text-[15px] leading-none">
+                    <span className="block text-white font-semibold text-[15px] leading-none">
                       {a.name}
                     </span>
-                    <span className="block text-navy-dark/70 text-[12px] mt-1.5">
+                    <span className="block text-white/80 text-[12px] mt-1.5">
                       {a.role}
                     </span>
                   </span>
                 </div>
-                <p className="mt-4 text-[14.5px] text-navy-dark/75 leading-relaxed">
+                <p className="mt-4 text-[14.5px] text-white/75 leading-relaxed">
                   “{a.quoteShort}”
                 </p>
               </motion.button>
             ))}
           </div>
-          <p className="mt-8 text-center text-[11px] font-semibold tracking-[0.14em] text-navy-dark/65 uppercase">
+          <p className="mt-8 text-center text-[11px] font-semibold tracking-[0.14em] text-white/65 uppercase">
             Placeholder stories · swap in real client videos before launch
           </p>
         </div>
@@ -159,7 +159,7 @@ const VideoStories = () => {
                   </p>
                   <p className="text-[13px] text-navy-dark/70 mt-1.5 max-w-sm">
                     {"Add the client's video URL to "}
-                    <code className="font-mono text-[12px]">STORIES</code>
+                    <code className="font-mono text-[12px]">VIDEO_STORIES</code>
                     {" in VideoStories.tsx and this frame becomes the player."}
                   </p>
                 </div>

@@ -579,8 +579,9 @@ Please send me a free visibility audit.`);
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
         >
-          Editorial backlinks, HARO quotes and brand mentions on real
-          publications — the footprint that wins page one and the AI answer.
+          Editorial backlinks, expert commentary and brand mentions on the
+          publications your category already cites — the footprint that wins
+          page one and the AI answer.
         </motion.p>
         <motion.div
           className="max-w-lg mx-auto"
