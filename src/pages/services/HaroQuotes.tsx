@@ -78,8 +78,7 @@ const Head = ({
         dark ? "text-white" : "text-navy-dark"
       }`}
     >
-      {pre}
-      <br />
+      {pre}{" "}
       <span className={dark ? "text-white/70" : "text-navy-dark/65"}>{em}</span>
     </h2>
   </motion.div>
@@ -185,7 +184,7 @@ const RequestQueue = () => {
 };
 
 const Hero = () => (
-  <div className="relative overflow-hidden bg-espresso pb-20 pt-32 lg:pb-28 lg:pt-40">
+  <div className="relative overflow-hidden bg-navy-dark pb-20 pt-32 lg:pb-28 lg:pt-40">
     <Glow
       tint="bg-blush"
       className="-right-24 top-4 h-[400px] w-[540px] opacity-[0.16]"
@@ -205,14 +204,12 @@ const Hero = () => (
           {H.eyebrow}
         </motion.p>
         <motion.h1
-          className="text-[2.35rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white sm:text-[2.9rem] lg:text-[3.2rem]"
+          className="text-balance text-[2.35rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white sm:text-[2.9rem] lg:text-[3.2rem]"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
         >
-          {H.h1.pre}
-          <br />
-          <span className="text-white/70">{H.h1.em}</span>
+          {H.h1.pre} <span className="text-white/70">{H.h1.em}</span>
         </motion.h1>
         <motion.p
           className="mt-7 max-w-xl text-[16.5px] leading-[1.6] text-white/75"
@@ -344,7 +341,7 @@ const Problem = () => (
 
       {/* pastel feature panel carrying the timeline figure */}
       <motion.figure
-        className="rounded-3xl border border-line bg-sky/40 p-7 shadow-lift lg:p-9"
+        className="rounded-3xl border border-line bg-white p-7 shadow-lift lg:p-9"
         {...rise(0.1)}
       >
         <figcaption className="mb-7 text-[11px] font-bold uppercase tracking-[0.14em] text-navy-dark/75">
@@ -461,7 +458,7 @@ const Profile = () => (
 
 /** The one saturated moment on the page: the ratio the whole service turns on. */
 const Ratio = () => (
-  <div className="bg-mark py-20 lg:py-24">
+  <div className="bg-white py-20 lg:py-24">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <motion.p
         className="mb-10 text-[11px] font-bold uppercase tracking-[0.18em] text-navy-dark/80"
@@ -569,7 +566,7 @@ const Methodology = () => (
 /* ================================= process ================================= */
 
 const Process = () => (
-  <div className="bg-clay pb-36 pt-24 lg:pb-52 lg:pt-32">
+  <div className="bg-stone pb-36 pt-24 lg:pb-52 lg:pt-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={H.process.eyebrow}
@@ -840,7 +837,7 @@ const Proof = () => (
 /* ================================= skipped ================================= */
 
 const Skipped = () => (
-  <div className="bg-espresso py-24 lg:py-32">
+  <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={H.skipped.eyebrow}
@@ -979,10 +976,10 @@ const HaroQuotes = () => (
     <Proof />
     <Skipped />
     <Fit />
-    <div className="bg-clay py-24 lg:py-32">
+    <div className="bg-mist py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="mb-10 text-center text-[2rem] font-semibold leading-[1.1] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
+          className="text-balance mb-10 text-center text-[2rem] font-semibold leading-[1.1] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
           {...rise()}
         >
           {"Straight "}

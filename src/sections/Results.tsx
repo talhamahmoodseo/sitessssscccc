@@ -10,7 +10,7 @@ import { CASE_STUDIES } from "@/lib/content";
  * rate, because it is the number that decides whether anything else counted.
  */
 const IndexationBand = () => (
-  <div className="bg-mark py-16 lg:py-20">
+  <div className="bg-white py-16 lg:py-20">
     <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-16 lg:px-8">
       <motion.p
         className="text-[5.5rem] font-semibold leading-[0.82] tracking-[-0.05em] text-navy-dark tabular-nums sm:text-[7rem]"
@@ -57,7 +57,7 @@ const IndexationBand = () => (
 
 const Results = ({ standalone = false }) => (
   <>
-    <div className={`${standalone ? "bg-white" : "bg-clay"} py-24 lg:py-32`}>
+    <div className={`${standalone ? "bg-white" : "bg-mist"} py-24 lg:py-32`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {!standalone && (
           <div className="relative flex items-end justify-center mb-14">
@@ -70,16 +70,14 @@ const Results = ({ standalone = false }) => (
               <FigTrendline className="w-24 h-14 ml-10 -mt-1" />
             </div>
             <motion.h2
-              className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark text-center"
+              className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark text-center"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
-              The work, and what
-              <br />
-              {"it "}
-              <span className="text-navy-dark/65">actually did</span>
+              {"The work, and what "}
+              <span className="text-navy-dark/65">it actually did</span>
             </motion.h2>
           </div>
         )}

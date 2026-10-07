@@ -49,7 +49,7 @@ const VideoStories = () => {
       );
     }, [e]),
     (
-      <div className="bg-espresso py-24 lg:py-32">
+      <div className="bg-navy-dark py-24 lg:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="flex flex-wrap items-end justify-between gap-6 mb-12"
@@ -58,11 +58,9 @@ const VideoStories = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white">
-              Hear it from the
-              <br />
-              {"people whose "}
-              <span className="text-white/70">pages moved</span>
+            <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white">
+              {"Hear it from the people "}
+              <span className="text-white/70">whose pages moved</span>
             </h2>
             <p className="text-[14px] text-white/70 max-w-xs">
               Ninety seconds each. Unscripted, and specific about what the

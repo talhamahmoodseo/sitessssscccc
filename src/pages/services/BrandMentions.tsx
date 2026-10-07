@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, Minus, X } from "lucide-react";
 import { brandMentions as BM } from "./content/brandMentions";
 import { OtherServices } from "./shared";
-import { AiOverviewMark, ChatGptMark, ClaudeMark } from "@/components/PlatformMarks";
+import {
+  AiOverviewMark,
+  ChatGptMark,
+  ClaudeMark,
+} from "@/components/PlatformMarks";
 import { FaqList } from "@/components/AgencyBlocks";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
@@ -64,8 +68,7 @@ const Head = ({
         dark ? "text-white" : "text-navy-dark"
       }`}
     >
-      {pre}
-      <br />
+      {pre}{" "}
       <span className={dark ? "text-white/70" : "text-navy-dark/65"}>{em}</span>
     </h2>
   </motion.div>
@@ -187,7 +190,7 @@ const AnswerCard = () => {
 
 /* 1 — espresso */
 const Hero = () => (
-  <div className="relative overflow-hidden bg-espresso pb-36 pt-32 lg:pb-44 lg:pt-40">
+  <div className="relative overflow-hidden bg-navy-dark pb-36 pt-32 lg:pb-44 lg:pt-40">
     <div
       className="pointer-events-none absolute -right-28 top-0 h-[420px] w-[560px] rounded-full opacity-[0.17] blur-[90px]"
       style={{ background: "rgb(var(--lilac))" }}
@@ -204,14 +207,12 @@ const Hero = () => (
           {BM.eyebrow}
         </motion.p>
         <motion.h1
-          className="text-[2.45rem] font-semibold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3rem] lg:text-[3.3rem]"
+          className="text-balance text-[2.45rem] font-semibold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3rem] lg:text-[3.3rem]"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
         >
-          {BM.h1.pre}
-          <br />
-          <span className="text-white/70">{BM.h1.em}</span>
+          {BM.h1.pre} <span className="text-white/70">{BM.h1.em}</span>
         </motion.h1>
         <motion.p
           className="mt-7 max-w-xl text-[16.5px] leading-[1.6] text-white/75"
@@ -333,7 +334,7 @@ const Shift = () => (
 
       {/* pastel feature panel behind the diagram */}
       <motion.div
-        className="rounded-3xl border border-line bg-sky/40 p-6 shadow-lift lg:p-8"
+        className="rounded-3xl border border-line bg-white p-6 shadow-lift lg:p-8"
         {...rise(0.1)}
       >
         {BM.shift.lanes.map((lane, li) => (
@@ -360,7 +361,9 @@ const Shift = () => (
                 >
                   <span
                     className={`text-[10.5px] font-bold tabular-nums ${
-                      lane.live && si === 1 ? "text-white/70" : "text-navy-dark/60"
+                      lane.live && si === 1
+                        ? "text-white/70"
+                        : "text-navy-dark/60"
                     }`}
                   >
                     {si + 1}
@@ -381,7 +384,7 @@ const Shift = () => (
 
 /* 4 — clay */
 const Pathway = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={BM.pathway.eyebrow}
@@ -550,7 +553,7 @@ const Anatomy = () => {
         </motion.div>
 
         <motion.p
-          className="mt-5 rounded-2xl bg-butter/60 px-7 py-6 text-[15px] font-semibold leading-snug text-navy-dark"
+          className="mt-5 rounded-2xl bg-white px-7 py-6 text-[15px] font-semibold leading-snug text-navy-dark"
           {...rise(0.15)}
         >
           {BM.anatomy.aside}
@@ -642,7 +645,12 @@ const Reporting = () => {
                   <div className="h-2.5 overflow-hidden rounded-full bg-stone">
                     <motion.div
                       className={`h-full rounded-full ${
-                        ["bg-navy-dark", "bg-navy-dark/80", "bg-navy-dark/65", "bg-navy-dark/50"][i]
+                        [
+                          "bg-navy-dark",
+                          "bg-navy-dark/80",
+                          "bg-navy-dark/65",
+                          "bg-navy-dark/50",
+                        ][i]
                       }`}
                       initial={{ width: 0 }}
                       whileInView={{ width: `${e.pct}%` }}
@@ -673,7 +681,7 @@ const Reporting = () => {
 
 /* 8 — clay */
 const Sources = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
         <div>
@@ -765,7 +773,7 @@ const Result = () => {
     .join(" ");
 
   return (
-    <div className="bg-mark py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-8">
         <div>
           <motion.p
@@ -970,7 +978,7 @@ const Included = () => (
 
 /* 12 — espresso */
 const Fit = () => (
-  <div className="bg-espresso py-24 lg:py-32">
+  <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={BM.fit.eyebrow}
@@ -996,7 +1004,9 @@ const Fit = () => (
             viewport={{ once: true, margin: "-70px" }}
             transition={{ duration: 0.55, delay: i * 0.08 }}
           >
-            <h3 className="text-[16px] font-semibold text-white">{col.title}</h3>
+            <h3 className="text-[16px] font-semibold text-white">
+              {col.title}
+            </h3>
             <ul className="mt-5 space-y-3.5">
               {col.items.map((t) => (
                 <li key={t} className="flex gap-3">
@@ -1042,10 +1052,10 @@ const BrandMentions = () => (
     <Included />
     <Fit />
     {/* 13 — clay */}
-    <div className="bg-clay py-24 lg:py-32">
+    <div className="bg-mist py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
+          className="text-balance mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
           {...rise()}
         >
           {"Straight "}

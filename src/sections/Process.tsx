@@ -218,7 +218,7 @@ const Process = () => {
     },
     h = s + 1;
   return (
-    <div className="bg-clay" ref={e}>
+    <div className="bg-stone" ref={e}>
       <div className="hidden lg:block">
         <div className="sticky top-0 min-h-screen flex items-center py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -233,9 +233,8 @@ const Process = () => {
                 <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
                   The Process
                 </p>
-                <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
+                <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
                   Five steps.
-                  <br />
                   <span className="text-navy-dark/65">
                     The research decides the order.
                   </span>
@@ -365,9 +364,8 @@ const Process = () => {
             <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-3">
               The Process
             </p>
-            <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
+            <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
               Five steps.
-              <br />
               <span className="text-navy-dark/65">
                 The research decides the order.
               </span>

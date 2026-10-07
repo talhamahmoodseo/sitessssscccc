@@ -29,7 +29,7 @@ const CTABand = () => (
         Free visibility audit
       </motion.p>
       <motion.h2
-        className="text-[2.8rem] sm:text-6xl lg:text-[4.6rem] font-semibold text-white leading-[0.98] tracking-[-0.04em] mb-7"
+        className="text-balance text-[2.8rem] sm:text-6xl lg:text-[4.6rem] font-semibold text-white leading-[0.98] tracking-[-0.04em] mb-7"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}

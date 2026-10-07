@@ -225,9 +225,8 @@ const TheShift = () => {
             <p className="text-[11px] font-semibold tracking-[0.18em] text-white/60 uppercase mb-5">
               The Shift
             </p>
-            <h2 className="text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-7">
+            <h2 className="text-balance text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-7">
               One question.
-              <br />
               <span className="font-medium text-white/85">
                 Four answer engines.
               </span>

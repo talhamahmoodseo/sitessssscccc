@@ -76,8 +76,7 @@ const Head = ({
         dark ? "text-white" : "text-navy-dark"
       }`}
     >
-      {pre}
-      <br />
+      {pre}{" "}
       <span className={dark ? "text-white/70" : "text-navy-dark/65"}>{em}</span>
     </h2>
   </motion.div>
@@ -139,7 +138,7 @@ const CaseStudy = () => {
             {s.duration}
           </motion.p>
           <motion.h1
-            className="mb-6 max-w-3xl text-[2.4rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-5xl lg:text-[3.4rem]"
+            className="text-balance mb-6 max-w-3xl text-[2.4rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-5xl lg:text-[3.4rem]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.05, ease: EASE }}
@@ -429,7 +428,7 @@ const CaseStudy = () => {
       </div>
 
       {/* ──────────────────────── 5 · the growth — clay ──────────────────── */}
-      <div className="bg-clay py-24 lg:py-28">
+      <div className="bg-mist py-24 lg:py-28">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Head
             eyebrow="The growth"
@@ -448,7 +447,7 @@ const CaseStudy = () => {
       </div>
 
       {/* ─────────────────── 6 · the result — amber, once ────────────────── */}
-      <div className="bg-mark py-20 lg:py-24">
+      <div className="bg-white py-20 lg:py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             <motion.div {...rise()}>
@@ -489,7 +488,7 @@ const CaseStudy = () => {
       </div>
 
       {/* ────────────────── 7 · the reporting — espresso ─────────────────── */}
-      <div className="bg-espresso py-24 lg:py-28">
+      <div className="bg-navy-dark py-24 lg:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Head
             eyebrow="The reporting"
@@ -596,7 +595,7 @@ const CaseStudy = () => {
       {/* ───────────────────── 10 · more campaigns — mist ────────────────── */}
       <div className="bg-mist py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-7 text-2xl font-semibold tracking-[-0.02em] text-navy-dark">
+          <h2 className="text-balance mb-7 text-2xl font-semibold tracking-[-0.02em] text-navy-dark">
             More campaigns
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">

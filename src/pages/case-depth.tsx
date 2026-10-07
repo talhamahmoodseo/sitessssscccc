@@ -244,7 +244,11 @@ export const SourcingNotes = ({
         <motion.div
           key={r.site}
           className={`grid gap-3 px-6 py-5 sm:grid-cols-[1fr_auto] sm:items-start lg:px-7 ${
-            i ? (dark ? "border-t border-white/12" : "border-t border-line") : ""
+            i
+              ? dark
+                ? "border-t border-white/12"
+                : "border-t border-line"
+              : ""
           }`}
           initial={{ opacity: 0, x: -12 }}
           whileInView={{ opacity: 1, x: 0 }}

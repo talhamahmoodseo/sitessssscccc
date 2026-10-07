@@ -93,6 +93,13 @@
     --sky: 193 222 250;
   }
 
+  /* Headings wrap naturally and balance their lines instead of carrying a
+     hard <br/>. A forced break that reads well at one width breaks badly at
+     every other one — see DESIGN.md. */
+  .text-balance {
+    text-wrap: balance;
+  }
+
   * {
     @apply border-border;
   }

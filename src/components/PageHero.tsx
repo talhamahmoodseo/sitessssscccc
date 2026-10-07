@@ -40,7 +40,7 @@ const PageHero = ({
       </motion.p>
 
       <motion.h1
-        className="text-4xl sm:text-5xl lg:text-[3.7rem] font-semibold text-navy-dark leading-[1.05] tracking-[-0.02em]"
+        className="text-balance text-4xl sm:text-5xl lg:text-[3.7rem] font-semibold text-navy-dark leading-[1.05] tracking-[-0.02em]"
         initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.18 }}

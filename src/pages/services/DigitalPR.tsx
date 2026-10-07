@@ -82,8 +82,7 @@ const Head = ({
         dark ? "text-white" : "text-navy-dark"
       }`}
     >
-      {pre}
-      <br />
+      {pre}{" "}
       <span className={dark ? "text-white/70" : "text-navy-dark/65"}>{em}</span>
     </h2>
   </motion.div>
@@ -153,14 +152,12 @@ const Hero = () => (
         {PR.eyebrow}
       </motion.p>
       <motion.h1
-        className="text-[2.4rem] font-semibold leading-[1.04] tracking-[-0.035em] text-navy-dark sm:text-[3rem] lg:text-[3.3rem]"
+        className="text-balance text-[2.4rem] font-semibold leading-[1.04] tracking-[-0.035em] text-navy-dark sm:text-[3rem] lg:text-[3.3rem]"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, delay: 0.05, ease: EASE }}
       >
-        {PR.h1.pre}
-        <br />
-        <span className="text-navy-dark/65">{PR.h1.em}</span>
+        {PR.h1.pre} <span className="text-navy-dark/65">{PR.h1.em}</span>
       </motion.h1>
       <motion.p
         className="mx-auto mt-7 max-w-xl text-[16.5px] leading-[1.6] text-navy-dark/75"
@@ -311,7 +308,7 @@ const Problem = () => (
 /* =========================== 4 · pitch (clay) =========================== */
 
 const Pitch = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={PR.pitch.eyebrow}
@@ -458,7 +455,7 @@ const Angles = () => {
 /* ========================= 6 · tiers (espresso) ========================= */
 
 const Tiers = () => (
-  <div className="bg-espresso py-24 lg:py-32">
+  <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow={PR.tiers.eyebrow}
@@ -532,7 +529,7 @@ const Methodology = () => (
 
           {/* pastel feature panel behind the diagram */}
           <motion.div
-            className="mt-10 rounded-3xl border border-line bg-sky/40 p-7"
+            className="mt-10 rounded-3xl border border-line bg-white p-7"
             {...rise(0.12)}
           >
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
@@ -593,7 +590,7 @@ const Methodology = () => (
 /* ======================== 8 · judgement (clay) ======================== */
 
 const Judgement = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-12 lg:grid-cols-[1fr_0.82fr] lg:gap-16">
         <div>
@@ -736,7 +733,7 @@ const CampaignBand = () => {
     .join(" ");
 
   return (
-    <div className="bg-mark py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow={PR.example.eyebrow}
@@ -947,10 +944,10 @@ const Fit = () => (
 /* ========================= 13 · faq (espresso) ========================= */
 
 const Faq = () => (
-  <div className="bg-espresso py-24 lg:py-32">
+  <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
       <motion.h2
-        className="mb-10 text-center text-[2rem] font-semibold leading-[1.07] tracking-[-0.035em] text-white sm:text-[2.4rem]"
+        className="text-balance mb-10 text-center text-[2rem] font-semibold leading-[1.07] tracking-[-0.035em] text-white sm:text-[2.4rem]"
         {...rise()}
       >
         {"Straight "}

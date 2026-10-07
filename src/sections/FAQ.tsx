@@ -81,14 +81,13 @@ const FAQ = () => {
             Before you ask
           </p>
           <motion.h2
-            className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark"
+            className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             Common questions.
-            <br />
             <span className="text-navy-dark/65">Direct answers.</span>
           </motion.h2>
         </motion.div>

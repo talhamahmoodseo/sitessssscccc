@@ -64,9 +64,8 @@ export const SharedStandard = () => (
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
           True of all four
         </p>
-        <h2 className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
+        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
           Four Different Services.
-          <br />
           <span className="text-navy-dark/65">The Same Four Rules.</span>
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/75">
@@ -228,9 +227,8 @@ export const Matrix = () => (
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
           Which one do you need
         </p>
-        <h2 className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.5rem]">
+        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.5rem]">
           Find Your Situation.
-          <br />
           <span className="text-white/70">Read Across.</span>
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-white/75">
@@ -367,7 +365,10 @@ export const Matrix = () => (
               {l.v === 2 ? (
                 <Check className="h-4 w-4 text-white" aria-hidden="true" />
               ) : l.v === 1 ? (
-                <ArrowRight className="h-4 w-4 text-white/70" aria-hidden="true" />
+                <ArrowRight
+                  className="h-4 w-4 text-white/70"
+                  aria-hidden="true"
+                />
               ) : (
                 <Minus className="h-4 w-4 text-white/50" aria-hidden="true" />
               )}
@@ -435,15 +436,14 @@ const PAIRS: {
 ];
 
 export const Pairings = () => (
-  <section className="bg-mark py-24 lg:py-28">
+  <section className="bg-white py-24 lg:py-28">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.div className="max-w-2xl" {...rise()}>
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/80">
           How they combine
         </p>
-        <h2 className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
+        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
           Most Engagements Run Two.
-          <br />
           <span className="text-navy-dark/70">Very Few Run Four.</span>
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/80">
@@ -529,7 +529,7 @@ const SHAPE = [
 ];
 
 export const Sequence = () => (
-  <section className="bg-clay py-24 lg:py-32">
+  <section className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-14 lg:grid-cols-[1fr_0.75fr] lg:gap-20">
         <div>
@@ -537,9 +537,8 @@ export const Sequence = () => (
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/75">
               If you are starting from nothing
             </p>
-            <h2 className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
+            <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
               Authority First.
-              <br />
               <span className="text-navy-dark/65">Then What It Earns.</span>
             </h2>
           </motion.div>

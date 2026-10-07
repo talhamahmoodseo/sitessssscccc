@@ -112,7 +112,7 @@ const Personas = () => {
   const p = PERSONAS[active];
 
   return (
-    <div className="bg-mark py-20 lg:py-28">
+    <div className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="relative">
           <Annotation className="-top-2 left-0 hidden w-[140px] xl:block">

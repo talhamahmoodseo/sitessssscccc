@@ -56,7 +56,7 @@ const BlogPost = () => {
               {" \u00b7 "}
               {s.date}
             </p>
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] font-extrabold text-white leading-[1.12] tracking-tight mb-6">
+            <h1 className="text-balance text-3xl sm:text-4xl lg:text-[2.9rem] font-extrabold text-white leading-[1.12] tracking-tight mb-6">
               {s.title}
             </h1>
             <div className="flex items-center gap-4">
@@ -97,7 +97,7 @@ const BlogPost = () => {
             ) : d.t === "quote" ? (
               <blockquote
                 key={h}
-                className="my-10 rounded-2xl bg-mark px-7 py-7 shadow-lift"
+                className="my-10 rounded-2xl border-l-[3px] border-mark-deep bg-mist px-7 py-7"
               >
                 <p className="text-[19px] font-medium leading-relaxed text-navy-dark">
                   {d.c}
@@ -127,7 +127,7 @@ const BlogPost = () => {
         </motion.article>
       </div>
 
-      <div className="bg-clay py-16 lg:py-20">
+      <div className="bg-mist py-16 lg:py-20">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 rounded-2xl bg-white p-6 shadow-lift">
             <img
@@ -148,7 +148,7 @@ const BlogPost = () => {
           {c && (
             <Link
               to={`/services/${c.slug}`}
-              className="group mt-5 flex items-center justify-between gap-4 rounded-2xl bg-espresso p-6 shadow-lift transition-colors duration-300 hover:bg-navy-dark"
+              className="group mt-5 flex items-center justify-between gap-4 rounded-2xl bg-navy-dark p-6 shadow-lift transition-colors duration-300 hover:bg-navy"
             >
               <div>
                 <p className="mb-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white/70">
@@ -169,7 +169,7 @@ const BlogPost = () => {
       {a.length > 0 && (
         <div className="bg-stone py-20">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-navy-dark mb-8">
+            <h2 className="text-balance text-2xl font-bold text-navy-dark mb-8">
               {"More on "}
               <span className="text-navy-dark/65">{s.category}</span>
             </h2>

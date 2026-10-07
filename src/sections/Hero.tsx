@@ -563,7 +563,7 @@ Please send me a free visibility audit.`);
           <ArrowRight className="w-3.5 h-3.5 text-navy-dark/70" />
         </motion.a>
         <motion.h1
-          className="text-[2.75rem] sm:text-6xl lg:text-[4.1rem] font-semibold text-navy-dark leading-[1.02] tracking-[-0.035em] mb-6"
+          className="text-balance text-[2.75rem] sm:text-6xl lg:text-[4.1rem] font-semibold text-navy-dark leading-[1.02] tracking-[-0.035em] mb-6"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}

@@ -186,7 +186,7 @@ const Featured = ({ post }) => (
               {"Featured · "}
               {post.date}
             </p>
-            <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-bold text-navy-dark leading-tight mb-4 group-hover:text-blue-accent transition-colors duration-300">
+            <h2 className="text-balance text-2xl sm:text-3xl lg:text-[2.1rem] font-bold text-navy-dark leading-tight mb-4 group-hover:text-blue-accent transition-colors duration-300">
               {post.title}
             </h2>
             <p className="text-[15px] text-navy-dark/70 leading-relaxed mb-7">
@@ -246,11 +246,10 @@ const Beats = ({ counts, onPick }) => (
             The beats
           </motion.p>
           <motion.h2
-            className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]"
+            className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]"
             {...rise(0.05)}
           >
             Three subjects.
-            <br />
             <span className="text-navy-dark/65">
               One question underneath them.
             </span>
@@ -277,7 +276,7 @@ const Beats = ({ counts, onPick }) => (
         </div>
 
         <motion.figure
-          className="rounded-3xl border border-line bg-sky/35 p-7 shadow-lift lg:p-8"
+          className="rounded-3xl border border-line bg-white p-7 shadow-lift lg:p-8"
           {...rise(0.1)}
         >
           <figcaption className="mb-6 text-[10.5px] font-bold uppercase tracking-[0.14em] text-navy-dark/70">
@@ -352,7 +351,7 @@ const Beats = ({ counts, onPick }) => (
 /** The page's one amber band: the single moment worth remembering here is the
  *  subscribe. Ink on amber is 12.7:1. */
 const FieldNotes = () => (
-  <section className="bg-mark py-20 lg:py-24">
+  <section className="bg-white py-20 lg:py-24">
     <div className="mx-auto grid max-w-5xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:px-8">
       <div>
         <motion.p
@@ -362,11 +361,10 @@ const FieldNotes = () => (
           The Field Notes
         </motion.p>
         <motion.h2
-          className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.5rem]"
+          className="text-balance text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.5rem]"
           {...rise(0.05)}
         >
           One tactical email a month.
-          <br />
           <span className="text-navy-dark/70">
             Written the week it goes out.
           </span>
@@ -468,9 +466,8 @@ const Blog = () => {
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
               The archive
             </p>
-            <h2 className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
+            <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
               Everything, newest first.
-              <br />
               <span className="text-navy-dark/65">Or narrow it down.</span>
             </h2>
           </motion.div>

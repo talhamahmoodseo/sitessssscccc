@@ -141,15 +141,14 @@ const DRIVERS = [
 ];
 
 const Drivers = () => (
-  <div className="bg-espresso py-24 lg:py-32">
+  <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.div className="max-w-2xl" {...rise()}>
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
           What moves the number
         </p>
-        <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
+        <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
           Five inputs set the price.
-          <br />
           <span className="text-white/70">All five are in the proposal.</span>
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-white/75">
@@ -227,15 +226,14 @@ const WORKED = [
 ];
 
 const Allocation = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.div className="mb-12 max-w-2xl" {...rise()}>
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
           Where the money goes
         </p>
-        <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
+        <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
           You pay for a month of work.
-          <br />
           <span className="text-navy-dark/65">Here are its four parts.</span>
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/75">
@@ -265,7 +263,7 @@ const Allocation = () => (
           >
             <span
               className={`text-[13px] font-bold tabular-nums ${
-                i < 3 ? "text-white" : "text-navy-dark"
+                i < 2 ? "text-white" : "text-navy-dark"
               }`}
             >
               {a.pct}%
@@ -302,7 +300,7 @@ const Allocation = () => (
 
         {/* pastel feature panel: the same month, costed on a real engagement */}
         <motion.div
-          className="self-start rounded-3xl border border-navy-dark/10 bg-mint/40 p-7 shadow-lift"
+          className="self-start rounded-3xl border border-navy-dark/10 bg-white p-7 shadow-lift"
           {...rise(0.1)}
         >
           <p className="mb-6 text-[10.5px] font-bold uppercase tracking-[0.14em] text-navy-dark/70">
@@ -340,7 +338,7 @@ const PROMISE_FACTS = [
 ];
 
 const PricePromise = () => (
-  <div className="bg-mark py-20 lg:py-24">
+  <div className="bg-white py-20 lg:py-24">
     <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
       <motion.p
         className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70"
@@ -349,11 +347,10 @@ const PricePromise = () => (
         Pricing, in writing
       </motion.p>
       <motion.h2
-        className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]"
+        className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]"
         {...rise(0.05)}
       >
         The number in the proposal
-        <br />
         <span className="text-navy-dark/70">is the number on the invoice.</span>
       </motion.h2>
       <motion.p
@@ -420,9 +417,8 @@ const Routes = () => (
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
           How the options compare
         </p>
-        <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
+        <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
           There are four ways to buy authority.
-          <br />
           <span className="text-white/70">Each one prices differently.</span>
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-white/70">
@@ -497,15 +493,14 @@ const TERMS = [
 ];
 
 const Terms = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <motion.div className="mb-12 max-w-2xl" {...rise()}>
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
           The terms
         </p>
-        <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
+        <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
           Five commitments.
-          <br />
           <span className="text-navy-dark/65">All five in the contract.</span>
         </h2>
       </motion.div>
@@ -623,13 +618,12 @@ const Pricing = () => {
       <div className="bg-mist pb-36 pt-32 text-center lg:pt-40">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <motion.h1
-            className="mb-6 text-[2.6rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-5xl lg:text-[3.6rem]"
+            className="text-balance mb-6 text-[2.6rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-5xl lg:text-[3.6rem]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
           >
             The prices are on this page.
-            <br />
             <span className="text-navy-dark/65">So is what moves them.</span>
           </motion.h1>
           <motion.p
@@ -708,7 +702,7 @@ const Pricing = () => {
               transition={{ duration: 0.55, delay: c * 0.08, ease: EASE }}
             >
               <div className="mb-5 flex items-center justify-between gap-3">
-                <h2 className="text-[19px] font-semibold text-navy-dark">
+                <h2 className="text-balance text-[19px] font-semibold text-navy-dark">
                   {r.name}
                 </h2>
                 <span
@@ -753,11 +747,10 @@ const Pricing = () => {
       <div className="bg-white py-24 lg:py-28">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <motion.h2
-            className="mb-12 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.035em] text-navy-dark sm:text-[2.5rem]"
+            className="text-balance mb-12 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.035em] text-navy-dark sm:text-[2.5rem]"
             {...rise()}
           >
             Three paces, one method.
-            <br />
             <span className="text-navy-dark/65">Line by line.</span>
           </motion.h2>
           <div className="overflow-x-auto">
@@ -817,7 +810,7 @@ const Pricing = () => {
         </div>
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <motion.h2
-            className="mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.035em] text-navy-dark sm:text-[2.5rem]"
+            className="text-balance mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.035em] text-navy-dark sm:text-[2.5rem]"
             {...rise()}
           >
             {"Pricing "}

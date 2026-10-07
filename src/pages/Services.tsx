@@ -29,7 +29,11 @@ const ROUTE: Record<
 > = {
   "link-building": {
     best: "Commercial pages that are close to the top but will not move.",
-    items: ["Editorial placements", "Niche edits", "Anchor and target strategy"],
+    items: [
+      "Editorial placements",
+      "Niche edits",
+      "Anchor and target strategy",
+    ],
     figure: "96%",
     figureLabel: "indexed, last 12 months",
   },
@@ -51,7 +55,11 @@ const ROUTE: Record<
   },
   "haro-links": {
     best: "Founders and specialists with a view worth quoting.",
-    items: ["Quote placements", "Direct journalist pitching", "Drafted in your voice"],
+    items: [
+      "Quote placements",
+      "Direct journalist pitching",
+      "Drafted in your voice",
+    ],
     figure: "48h",
     figureLabel: "median pitch to quote",
   },
@@ -86,13 +94,12 @@ const Hero = () => (
         Services
       </motion.p>
       <motion.h1
-        className="mb-6 text-[2.5rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-5xl lg:text-[3.5rem]"
+        className="text-balance mb-6 text-[2.5rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-5xl lg:text-[3.5rem]"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, delay: 0.05 }}
       >
         Four Services.
-        <br />
         <span className="text-navy-dark/65">One Thing They All Build.</span>
       </motion.h1>
       <motion.p
@@ -170,7 +177,7 @@ const Routes = () => (
                 <div
                   className={`${e.tint} flex items-baseline justify-between gap-4 px-7 py-6 lg:px-8`}
                 >
-                  <h2 className="text-[1.6rem] font-semibold leading-tight tracking-[-0.025em] text-navy-dark">
+                  <h2 className="text-balance text-[1.6rem] font-semibold leading-tight tracking-[-0.025em] text-navy-dark">
                     {e.nav}
                   </h2>
                   <span className="text-[2rem] font-semibold leading-none tracking-[-0.04em] tabular-nums text-navy-dark/60">

@@ -190,7 +190,7 @@ export const SectionTitle = ({
         {eyebrow}
       </p>
     )}
-    <h2 className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
+    <h2 className="text-balance text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
       {children}
     </h2>
     {sub && (

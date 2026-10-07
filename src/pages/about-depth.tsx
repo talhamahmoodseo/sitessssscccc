@@ -38,7 +38,7 @@ const REGIONS = [
 export const Network = () => {
   const peak = Math.max(...BANDS.map((b) => b.n));
   return (
-    <div className="bg-clay pb-24 pt-px lg:pb-32">
+    <div className="bg-mist pb-24 pt-px lg:pb-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* feature card, pulled up so the two surfaces interlock */}
         <motion.div
@@ -61,10 +61,11 @@ export const Network = () => {
           </div>
 
           <div className="lg:border-l lg:border-line lg:pl-14">
-            <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
+            <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
               Built one editor at a time.
-              <br />
-              <span className="text-navy-dark/65">Mapped by what it moves.</span>
+              <span className="text-navy-dark/65">
+                Mapped by what it moves.
+              </span>
             </h2>
             <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/75">
               Five markets, added one relationship at a time since 2024. The
@@ -78,7 +79,7 @@ export const Network = () => {
         <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           {/* pastel inset panel behind the distribution */}
           <motion.div
-            className="rounded-3xl border border-line bg-sky/40 p-7 shadow-lift lg:p-9"
+            className="rounded-3xl border border-line bg-white p-7 shadow-lift lg:p-9"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

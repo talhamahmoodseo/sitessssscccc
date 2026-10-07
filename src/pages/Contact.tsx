@@ -102,7 +102,7 @@ ${e.message}`);
       "mb-5 flex items-baseline gap-3 text-[10.5px] font-bold uppercase tracking-[0.16em] text-navy-dark/70";
 
   return (
-    <div className="bg-clay pb-28 pt-36 lg:pb-32 lg:pt-44">
+    <div className="bg-mist pb-28 pt-36 lg:pb-32 lg:pt-44">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           {/* ---------------------------------------------------- left rail */}
@@ -116,19 +116,14 @@ ${e.message}`);
               Contact
             </motion.p>
             <motion.h1
-              className="mb-7 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-navy-dark sm:text-5xl lg:text-[3.3rem]"
+              className="text-balance mb-7 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-navy-dark sm:text-5xl lg:text-[3.3rem]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08, ease: EASE }}
             >
-              Tell Us Where You
-              <br />
-              Want to Rank.
-              <br />
+              {"Tell Us Where You Want to Rank. "}
               <span className="text-navy-dark/65">
-                We&rsquo;ll Show You
-                <br />
-                What It Takes.
+                We&rsquo;ll Show You What It Takes.
               </span>
             </motion.h1>
             <motion.p
@@ -168,7 +163,7 @@ ${e.message}`);
 
             {/* pastel feature panel behind the figure */}
             <motion.div
-              className="mt-5 flex items-center gap-5 rounded-3xl border border-line bg-sky/40 px-6 py-5"
+              className="mt-5 flex items-center gap-5 rounded-3xl border border-line bg-white px-6 py-5"
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
@@ -202,9 +197,7 @@ ${e.message}`);
             <p className={g}>
               <span>Project brief</span>
               <span className="h-px flex-1 bg-line" aria-hidden="true" />
-              <span className="font-semibold tracking-[0.1em]">
-                Six fields
-              </span>
+              <span className="font-semibold tracking-[0.1em]">Six fields</span>
             </p>
 
             <p className="mb-8 text-[10.5px] font-bold uppercase tracking-[0.16em] text-navy-dark/70">
@@ -335,13 +328,13 @@ const CLOCKS = [
 
 /** The page's one saturated moment. Ink on amber is 12.7:1. */
 const Clocks = () => (
-  <div className="bg-mark pb-20 pt-56 lg:pb-24 lg:pt-60">
+  <div className="bg-white pb-20 pt-56 lg:pb-24 lg:pt-60">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.div className="max-w-2xl" {...rise()}>
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/80">
           Two clocks
         </p>
-        <h2 className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
+        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
           You Send It Today.
           <br />
           You Hear Back Tomorrow.
@@ -366,10 +359,7 @@ const Clocks = () => (
         ))}
       </dl>
 
-      <motion.p
-        className="mt-10 text-[13px] text-navy-dark/80"
-        {...rise(0.12)}
-      >
+      <motion.p className="mt-10 text-[13px] text-navy-dark/80" {...rise(0.12)}>
         Both clocks run on working days. If an audit needs longer because the
         site is larger than it looked, you hear that inside the 24 hours too.
       </motion.p>
@@ -409,9 +399,8 @@ const AfterRail = () => (
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
           What happens next
         </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark">
+        <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark">
           Four Steps.
-          <br />
           <span className="text-navy-dark/65">
             You Can Stop at Any of Them.
           </span>
@@ -478,9 +467,8 @@ const PreCall = () => (
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
           Before you send it
         </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
+        <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
           The Four Questions
-          <br />
           <span className="text-white/70">That Come Up First.</span>
         </h2>
       </motion.div>
@@ -510,7 +498,9 @@ const PreCall = () => (
         {...rise(0.08)}
       >
         <blockquote className="text-[1.15rem] leading-[1.5] tracking-[-0.02em] text-white sm:text-[1.3rem]">
-          {"“They work like an extension of our in-house team. Senior people, reporting we can forward to the board without editing, and a plan we can defend.”"}
+          {
+            "“They work like an extension of our in-house team. Senior people, reporting we can forward to the board without editing, and a plan we can defend.”"
+          }
         </blockquote>
         <figcaption className="mt-5 text-[12.5px] font-semibold uppercase tracking-[0.12em] text-white/70">
           {"Hana Al-Mansouri · Content Lead, Khaleej Times"}
@@ -547,7 +537,7 @@ const OffRamps = () => (
   <div className="bg-stone py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.h2
-        className="mb-12 max-w-xl text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.03em] text-navy-dark sm:text-[2rem]"
+        className="text-balance mb-12 max-w-xl text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.03em] text-navy-dark sm:text-[2rem]"
         {...rise()}
       >
         {"Not ready to talk? "}

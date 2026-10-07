@@ -27,7 +27,8 @@ export const haroQuotes = {
     em: "You Should Be the Source They Quote.",
   },
   sub: "We document your expertise in enough detail to answer a journalist's question specifically, inside the hours it stays open, and get you named as a source in the stories your buyers and the AI engines already read.",
-  credit: "Powered by AuthorityOS™ research. Drafted by editors, read by you first.",
+  credit:
+    "Powered by AuthorityOS™ research. Drafted by editors, read by you first.",
 
   /** Hero artefact: the live request queue, with the misfit shown as a skip. */
   queue: {
@@ -75,7 +76,10 @@ export const haroQuotes = {
       { fig: "2–6", label: "Published quotes in a typical month" },
       { fig: "DR 63", label: "Average outlet authority over the last year" },
       { fig: "41 min", label: "Median time from request to drafted answer" },
-      { fig: "1 in 3", label: "Placements that arrive unlinked, reported as such" },
+      {
+        fig: "1 in 3",
+        label: "Placements that arrive unlinked, reported as such",
+      },
     ],
   },
 
@@ -130,7 +134,10 @@ export const haroQuotes = {
         k: "Will argue",
         v: "That fraud screening belongs in onboarding, not at checkout",
       },
-      { k: "Never pitch", v: "Crypto prices, politics, anything outside payments" },
+      {
+        k: "Never pitch",
+        v: "Crypto prices, politics, anything outside payments",
+      },
     ],
     note: "One forty-five-minute session, then a document you correct. Everything downstream is drafted from it.",
     caption: "Expertise profile · illustrative extract",

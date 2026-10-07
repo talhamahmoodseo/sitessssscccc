@@ -26,7 +26,8 @@ export const brandMentions = {
     em: "It Answers From Sources.",
   },
   sub: "ChatGPT, Claude, Perplexity and AI Overviews build their view of your category from a narrow set of publications they trust. We get your brand described inside those sources, then re-run your buyer prompts across all four engines every month so you can watch the share move.",
-  credit: "Powered by AuthorityOS™ research. Reported monthly across four engines.",
+  credit:
+    "Powered by AuthorityOS™ research. Reported monthly across four engines.",
 
   /** Hero artefact: a live answer, with the brand named and the sources cited
    *  underneath it. The page's signature object. */
@@ -127,10 +128,16 @@ export const brandMentions = {
 
   tracked: {
     eyebrow: "What we measure",
-    heading: { pre: "We Fix the Questions.", em: "So the Movement Means Something." },
+    heading: {
+      pre: "We Fix the Questions.",
+      em: "So the Movement Means Something.",
+    },
     rows: [
       { q: "best {category} for small teams", intent: "Comparison intent" },
-      { q: "who should I hire for {service} in {city}", intent: "Local buying intent" },
+      {
+        q: "who should I hire for {service} in {city}",
+        intent: "Local buying intent",
+      },
       { q: "{competitor} alternatives", intent: "Switching intent" },
       { q: "is {your brand} any good", intent: "Brand due diligence" },
     ],
@@ -211,7 +218,10 @@ export const brandMentions = {
 
   sources: {
     eyebrow: "Source selection",
-    heading: { pre: "Authority Is Not Citation.", em: "We Go After the Second." },
+    heading: {
+      pre: "Authority Is Not Citation.",
+      em: "We Go After the Second.",
+    },
     /** The page's single comparison. Category of approach, capability framing. */
     comparison:
       "Most AI visibility work starts with a list of publications. Ours starts with the answers, and works backwards to the sources producing them.",
@@ -365,7 +375,10 @@ export const brandMentions = {
 
   fit: {
     eyebrow: "Fit",
-    heading: { pre: "It Suits Some Categories.", em: "We Will Say If Yours Isn't One." },
+    heading: {
+      pre: "It Suits Some Categories.",
+      em: "We Will Say If Yours Isn't One.",
+    },
     good: [
       "Buyers research your category before they buy, so assistants get asked about it.",
       "Competitors are already being named and you can see it happening.",

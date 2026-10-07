@@ -458,7 +458,7 @@ export const InlineCta = ({
     className="rounded-3xl bg-navy-dark px-7 py-9 text-center sm:px-10"
     {...reveal}
   >
-    <h2 className="mx-auto max-w-2xl text-[24px] font-semibold leading-tight tracking-[-0.02em] text-white sm:text-[30px]">
+    <h2 className="text-balance mx-auto max-w-2xl text-[24px] font-semibold leading-tight tracking-[-0.02em] text-white sm:text-[30px]">
       {title}
     </h2>
     <p className="mx-auto mt-3 max-w-xl text-[14.5px] leading-relaxed text-white/70">

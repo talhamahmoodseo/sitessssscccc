@@ -64,8 +64,7 @@ const Head = ({
         dark ? "text-white" : "text-navy-dark"
       }`}
     >
-      {pre}
-      <br />
+      {pre}{" "}
       <span className={dark ? "text-white/70" : "text-navy-dark/65"}>{em}</span>
     </h2>
   </motion.div>
@@ -138,7 +137,7 @@ const FileIndex = () => (
         {...rise()}
       >
         <div>
-          <h2 className="text-[13px] font-bold uppercase tracking-[0.16em] text-white">
+          <h2 className="text-balance text-[13px] font-bold uppercase tracking-[0.16em] text-white">
             The index
           </h2>
           <p className="mt-2.5 max-w-xl text-[14px] leading-relaxed text-white/70">
@@ -241,7 +240,7 @@ const LEDGER = [
 /** The page's one amber ground: the totals, and the methodology that produced
  *  them. Extra bottom padding leaves room for the card that overlaps it. */
 const Ledger = () => (
-  <div className="bg-mark pb-36 pt-24 lg:pb-48 lg:pt-32">
+  <div className="bg-white pb-36 pt-24 lg:pb-48 lg:pt-32">
     <div className="mx-auto grid max-w-6xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-8">
       <div>
         <Head
@@ -379,7 +378,7 @@ const Contents = () => (
         </div>
 
         {/* pastel feature panel behind the figure */}
-        <figure className="self-center rounded-2xl bg-sky/50 p-6 lg:p-7">
+        <figure className="self-center rounded-2xl bg-white p-6 lg:p-7">
           <figcaption className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-navy-dark/70">
             Figure one · the growth chart
           </figcaption>
@@ -457,7 +456,7 @@ const VOICE_FACTS = [
 ];
 
 const Voice = () => (
-  <div className="bg-espresso py-20 lg:py-24">
+  <div className="bg-navy-dark py-20 lg:py-24">
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <motion.figure className="text-center" {...rise()}>
         <blockquote className="text-[1.3rem] leading-[1.45] tracking-[-0.02em] text-white sm:text-[1.6rem]">
@@ -610,7 +609,7 @@ const PATTERN = [
 ];
 
 const Pattern = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <Head
         eyebrow="What the three have in common"

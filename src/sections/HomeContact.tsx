@@ -22,7 +22,7 @@ ${e.message}`);
     c =
       "w-full rounded-xl border border-line bg-mist px-4 py-3 text-[14px] text-navy-dark placeholder:text-navy-dark/70 focus:outline-none focus:border-navy-dark focus:ring-2 focus:ring-navy-dark/15 transition-all duration-300";
   return (
-    <div className="bg-clay py-24 lg:py-32">
+    <div className="bg-mist py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 items-start">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -33,7 +33,7 @@ ${e.message}`);
           <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
             Get in touch
           </p>
-          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-6">
+          <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-6">
             Not ready for a call?{" "}
             <span className="text-navy-dark/65">Write to us.</span>
           </h2>
@@ -47,7 +47,7 @@ ${e.message}`);
               [Clock, "24h", "to a reply from a strategist"],
               [FileText, "48h", "to your visibility audit"],
             ].map(([Icon, v, k]: any) => (
-              <div key={v} className="bg-clay px-5 py-5">
+              <div key={v} className="bg-mist px-5 py-5">
                 <Icon
                   className="mb-3 h-4 w-4 text-navy-dark/70"
                   aria-hidden="true"

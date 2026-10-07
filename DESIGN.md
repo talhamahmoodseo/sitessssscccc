@@ -1,91 +1,85 @@
-# Design system — surfaces, depth, and when to use colour
+# Design system — a controlled, limited visual language
 
-This exists because the site read as "one long white document". The cause was
-measurable, not stylistic.
+Reference: **amplemarket.com**. The rule that matters most:
 
-## The problem it fixes
+> Colour lives in artwork, product mocks and charts. **Not in section
+> backgrounds.**
 
-`white`, `paper/mist` and `linen` sat within **1.08:1** of each other in
-relative luminance. The eye cannot separate surfaces that close, so a page
-with a `white → linen → mist → white` rhythm looked like a single continuous
-sheet interrupted by occasional black bands. The site effectively had two
-surfaces, not four.
+## What went wrong twice, so it doesn't go wrong again
 
-On top of that, `shadow-soft`, `shadow-deep` and `shadow-lift` were referenced
-23 times in markup and resolved to **nothing**, so every card sat perfectly
-flat on its background.
+**First mistake — everything white.** `white`, `paper` and `linen` sat within
+1.08:1 of each other, so the page read as one sheet. True, but it was only
+half the diagnosis.
 
-## The surface ladder
+**Second mistake — fixing that with colour.** Pages ended up with seven section
+grounds (mist, stone, clay, white, espresso, amber, pastel panels), four or
+five dark bands, and a different colour treatment per page. That reads
+inconsistent and cheap, not premium.
 
-Use these as section grounds. Luminance in brackets; each step down is a real,
-visible change.
+**The actual diagnosis:** a section feels like a document when it is *text on a
+flat ground with no visual object in it*. The fix is a visual object — a card
+grid, a chart, a mock, a diagram — not a coloured background.
 
-| Token             | L     | Use                                                        |
-| ----------------- | ----- | ---------------------------------------------------------- |
-| `bg-white`        | 1.000 | Cards and panels sitting **on** a tinted ground. Rarely a whole section. |
-| `bg-mist`         | 0.933 | The default page ground.                                    |
-| `bg-stone`        | 0.767 | A visibly deeper neutral. The workhorse alternate.          |
-| `bg-clay`         | 0.636 | Deepest light tone. One or two weighty sections per page.    |
-| `bg-espresso`     | 0.012 | Warm dark. Use when a page needs a second dark band.         |
-| `bg-navy-dark`    | 0.005 | Primary dark band (this is ink, the name is historical).     |
-| `bg-mark`         | 0.643 | **Amber. One saturated moment per page, maximum.**           |
+## Section grounds — this is the whole list
 
-Ink on `clay` is 12.6:1 and ink on `mark` is 12.7:1, so both carry body copy
-safely. Always verify rather than assume.
+| Token          | Use                                                          |
+| -------------- | ------------------------------------------------------------ |
+| `bg-mist`      | The default ground. Most sections.                           |
+| `bg-white`     | Alternating sections, and **every card**.                    |
+| `bg-stone`     | A quieter band. **At most one or two per page.**             |
+| `bg-navy-dark` | Dark. **At most two per page**, plus the global CTA band.     |
 
-### Rules
+That is four, and two of them are near-white. Nothing else is a section
+ground — ever.
 
-1. **No two adjacent sections share a surface.**
-2. A page uses **at least four** distinct surfaces, including at least one
-   dark, and **at most one** amber.
-3. **Never more than three consecutive light sections** (white/mist/stone/clay)
-   without a dark or amber break.
-4. `white` is for things sitting on top of something, not for long runs of
-   full-width sections. A run of white sections is the exact failure this
-   document exists to prevent.
+**Banned as section grounds:** `bg-clay`, `bg-espresso`, `bg-mark`, and every
+pastel (`butter`, `mint`, `lilac`, `blush`, `sky`). They still exist as tokens
+for artwork and small components.
 
-## Depth
+## Where colour is allowed
 
-Shadows are now real. Tinted with ink rather than black so they stay warm:
+- the hero fluid artifact
+- charts, sparklines, diagrams and UI mocks
+- the homepage proof bento tiles (the established brand bento)
+- case-study cover tints and team photo tints
+- small chips and the `.mark` highlighter sweep on a few words of running text
+- a single accent button
 
-- `shadow-soft` — chips, small controls
-- `shadow-lift` — standard cards on a tinted ground
-- `shadow-deep` — hero cards, the one feature object on a page
+Amber is the brand highlighter. It belongs on **words and small controls**, not
+on a band 400px tall.
 
-**Every page must use at least three** of these techniques:
+## Where depth comes from instead
 
-- cards floating on a tinted ground with `shadow-lift`
-- bordered inset panels (`border border-line`) on a contrasting ground
-- oversized numerals or display figures as structure
-- hairline rules carrying the layout instead of boxes
-- a pastel feature panel (butter / mint / lilac / blush / sky) behind a
-  figure, diagram or image
-- a full-bleed amber band for the page's highest-intent moment
-- an overlapping composition — a card pulled up over a section boundary with
-  a negative margin so the two surfaces interlock
+Every section should contain something to look at. In priority order:
 
-## Colour
+1. a visual object — chart, mock, diagram, card grid, image
+2. white cards on the mist ground, with `border-line` and `shadow-lift`
+3. type scale: a section's headline should be meaningfully larger than its body
+4. generous, consistent vertical rhythm (`py-24 lg:py-32`)
+5. hairline rules carrying layout instead of boxes
+6. an overlapping composition where two sections interlock
 
-The pastels are no longer reserved for stat tiles. They may ground a feature
-panel or a card. They may not be used as a full-bleed section ground — they
-are too saturated at that size, and the amber band is the page's one loud
-moment.
+`shadow-soft` / `shadow-lift` / `shadow-deep` are real and ink-tinted.
 
-Amber (`bg-mark`) is the accent. It is the brand highlighter, so it reads as
-ours rather than as decoration. Spend it once per page on the thing you most
-want remembered: a closing CTA, an emphasis line, or the single proof figure
-that matters.
+## Headings
 
-No red. It has been rejected twice. `--gap` is a rust reserved for rejection
-markers and must not be promoted to an accent.
+**No forced line breaks.** Amplemarket has none, and a hard `<br/>` that reads
+well at one width breaks awkwardly at every other width.
 
-## Verifying
+Headings wrap naturally and are balanced with `text-balance`
+(`text-wrap: balance`), which evens the lines out automatically. Constrain the
+measure with `max-w-*` instead of breaking by hand.
 
-Per route, in the browser console, measure:
+The second half of a two-part headline stays in the muted colour
+(`text-navy-dark/65`) — that is the emphasis device, not a line break.
 
-- WCAG AA contrast with **full alpha compositing** — every translucent
-  ancestor background, plus any absolutely positioned element that is an
-  *earlier sibling* of the text's branch and geometrically covers it
-- adjacent same-surface sections (must be 0)
-- distinct surfaces used (must be ≥ 4)
-- longest run of consecutive light sections (must be ≤ 3)
+## Rules
+
+1. Four section grounds, no more.
+2. At most two dark sections per page, plus the global CTA band.
+3. At most two `stone` bands per page.
+4. No pastel or amber section grounds.
+5. Every section contains a visual object or card structure.
+6. No `<br/>` inside a heading.
+7. Zero WCAG AA contrast failures, measured with full alpha compositing, and
+   with gradient scrims treated as unmeasurable rather than failed.

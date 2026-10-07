@@ -538,7 +538,7 @@ export const SectionLabel = ({ children }: { children: ReactNode }) => (
 
 export const SectionTitle = ({ children }: { children: ReactNode }) => (
   <motion.h1
-    className="text-[2.5rem] sm:text-5xl lg:text-[3.5rem] font-semibold text-navy-dark leading-[1.03] tracking-[-0.035em] mb-6"
+    className="text-balance text-[2.5rem] sm:text-5xl lg:text-[3.5rem] font-semibold text-navy-dark leading-[1.03] tracking-[-0.035em] mb-6"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.65, delay: 0.05 }}
@@ -630,7 +630,7 @@ export const SectionHead = ({
         {eyebrow}
       </p>
     )}
-    <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
+    <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
       {children}
     </h2>
   </motion.div>
@@ -640,7 +640,7 @@ export const SectionHead = ({
 export const OtherServices = ({ current }: { current: string }) => (
   <div className="bg-mist py-20">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-2xl font-semibold text-navy-dark tracking-[-0.02em] mb-7">
+      <h2 className="text-balance text-2xl font-semibold text-navy-dark tracking-[-0.02em] mb-7">
         Other services
       </h2>
       <div className="grid sm:grid-cols-3 gap-4">

@@ -67,8 +67,7 @@ const Head = ({
         dark ? "text-white" : "text-navy-dark"
       }`}
     >
-      {pre}
-      <br />
+      {pre}{" "}
       <span className={dark ? "text-white/70" : "text-navy-dark/65"}>{em}</span>
     </h2>
   </motion.div>
@@ -77,9 +76,9 @@ const Head = ({
 /** Client proof, placed under the claim it supports rather than pooled into
  *  one testimonial wall. */
 const QUOTE_TONE = {
-  clay: { bg: "bg-clay", quote: "text-navy-dark", cite: "text-navy-dark/70" },
+  mist: { bg: "bg-mist", quote: "text-navy-dark", cite: "text-navy-dark/70" },
   stone: { bg: "bg-stone", quote: "text-navy-dark", cite: "text-navy-dark/70" },
-  espresso: { bg: "bg-espresso", quote: "text-white", cite: "text-white/70" },
+  white: { bg: "bg-white", quote: "text-navy-dark", cite: "text-navy-dark/70" },
 } as const;
 
 const PullQuote = ({
@@ -197,14 +196,12 @@ const Hero = () => (
           {LB.eyebrow}
         </motion.p>
         <motion.h1
-          className="text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3.1rem] lg:text-[3.4rem]"
+          className="text-balance text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3.1rem] lg:text-[3.4rem]"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
         >
-          {LB.h1.pre}
-          <br />
-          <span className="text-white/70">{LB.h1.em}</span>
+          {LB.h1.pre} <span className="text-white/70">{LB.h1.em}</span>
         </motion.h1>
         <motion.p
           className="mt-7 max-w-xl text-[16.5px] leading-[1.6] text-white/75"
@@ -302,7 +299,7 @@ const Problem = () => (
       </div>
 
       <motion.div
-        className="rounded-3xl border border-line bg-lilac/35 p-8 text-center shadow-lift lg:p-10"
+        className="rounded-3xl border border-line bg-white p-8 text-center shadow-lift lg:p-10"
         {...rise(0.1)}
       >
         <div className="grid grid-cols-2 gap-3">
@@ -398,7 +395,7 @@ const Framework = () => (
 /* ============================== movement ============================== */
 
 const Movement = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
       <motion.p
         className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70"
@@ -407,11 +404,10 @@ const Movement = () => (
         {LB.movement.eyebrow}
       </motion.p>
       <motion.h2
-        className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
+        className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
         {...rise(0.05)}
       >
-        {LB.movement.heading.pre}
-        <br />
+        {LB.movement.heading.pre}{" "}
         <span className="text-navy-dark/65">{LB.movement.heading.em}</span>
       </motion.h2>
       <motion.p className="mt-6 text-[13px] text-navy-dark/70" {...rise(0.1)}>
@@ -531,7 +527,7 @@ const Methodology = () => (
 /* ============================= positioning ============================= */
 
 const Positioning = () => (
-  <div className="bg-espresso py-24 lg:py-32">
+  <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
       <Head
         eyebrow={LB.positioning.eyebrow}
@@ -616,7 +612,7 @@ const Positioning = () => (
 /* ================================ moves ================================ */
 
 const Moves = () => (
-  <div className="bg-clay py-24 lg:py-32">
+  <div className="bg-mist py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
@@ -757,11 +753,10 @@ const Close = () => (
     <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-8">
       <div>
         <motion.h2
-          className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.7rem]"
+          className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.7rem]"
           {...rise()}
         >
-          {LB.close.heading.pre}
-          <br />
+          {LB.close.heading.pre}{" "}
           <span className="text-white/70">{LB.close.heading.em}</span>
         </motion.h2>
         <motion.p
@@ -841,7 +836,7 @@ const LinkBuilding = () => (
     <Hero />
     <LogoBand />
     <Problem />
-    <PullQuote {...LB.quotes.afterProblem} tone="clay" />
+    <PullQuote {...LB.quotes.afterProblem} tone="mist" />
     <Framework />
     <Movement />
     <Methodology />
@@ -849,11 +844,11 @@ const LinkBuilding = () => (
     <PullQuote {...LB.quotes.afterComparison} tone="stone" />
     <Moves />
     <Context />
-    <PullQuote {...LB.quotes.beforeClose} tone="espresso" />
+    <PullQuote {...LB.quotes.beforeClose} tone="white" />
     <div className="bg-stone py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
+          className="text-balance mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
           {...rise()}
         >
           {"Common "}

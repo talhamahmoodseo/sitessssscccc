@@ -44,7 +44,7 @@ const PATHS = [
 const bySlug = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);
 
 export const ReadingPaths = () => (
-  <section className="bg-espresso py-24 lg:py-32">
+  <section className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.div
         className="mb-14 max-w-2xl"
@@ -56,9 +56,8 @@ export const ReadingPaths = () => (
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
           Start here
         </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
+        <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
           Three routes through it,
-          <br />
           <span className="text-white/70">depending on why you came</span>
         </h2>
       </motion.div>

@@ -204,13 +204,12 @@ const About = () => (
           About us
         </motion.p>
         <motion.h1
-          className="text-[2.7rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-[3.4rem] lg:text-[4rem]"
+          className="text-balance text-[2.7rem] font-semibold leading-[1.03] tracking-[-0.035em] text-navy-dark sm:text-[3.4rem] lg:text-[4rem]"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
         >
           We help brands earn
-          <br />
           <span className="text-navy-dark/65">their authority.</span>
         </motion.h1>
         <motion.p
@@ -311,11 +310,10 @@ const About = () => (
             What we believe
           </motion.p>
           <motion.h2
-            className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
+            className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
             {...rise(0.05)}
           >
             Authority is earned
-            <br />
             <span className="text-navy-dark/65">in public.</span>
           </motion.h2>
 
@@ -391,9 +389,8 @@ const About = () => (
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
             What we do
           </p>
-          <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
+          <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
             Four services,
-            <br />
             <span className="text-navy-dark/65">one discipline.</span>
           </h2>
         </motion.div>
@@ -429,15 +426,14 @@ const About = () => (
     </div>
 
     {/* ---- team: white cards on the warm dark ---- */}
-    <div className="bg-espresso py-24 lg:py-32">
+    <div className="bg-navy-dark py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="mb-12 flex flex-wrap items-end justify-between gap-6 border-b border-white/15 pb-10"
           {...rise()}
         >
-          <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
+          <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.6rem]">
             Small team,
-            <br />
             <span className="text-white/70">senior hands.</span>
           </h2>
           <p className="max-w-xs text-[14px] leading-relaxed text-white/70">
@@ -489,9 +485,8 @@ const About = () => (
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
             How we got here
           </p>
-          <h2 className="text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
+          <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
             Three years of
-            <br />
             <span className="text-navy-dark/65">building the same thing.</span>
           </h2>
         </motion.div>
@@ -525,11 +520,10 @@ const About = () => (
     <div className="bg-stone py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="mb-12 max-w-2xl text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
+          className="text-balance mb-12 max-w-2xl text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
           {...rise()}
         >
           What clients say
-          <br />
           <span className="text-navy-dark/65">about working with us.</span>
         </motion.h2>
 
@@ -563,10 +557,10 @@ const About = () => (
     </div>
 
     {/* ---- closing, three ways in: the page's one amber band ---- */}
-    <div className="bg-mark py-24 lg:py-32">
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="mb-12 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
+          className="text-balance mb-12 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
           {...rise()}
         >
           {"Three ways in. "}

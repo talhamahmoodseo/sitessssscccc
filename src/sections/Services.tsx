@@ -104,7 +104,7 @@ const ServicesSection = () => {
             What we run · Powered by AuthorityOS™
           </motion.p>
           <motion.h2
-            className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark max-w-4xl mx-auto"
+            className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
