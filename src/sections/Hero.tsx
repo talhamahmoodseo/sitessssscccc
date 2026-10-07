@@ -7,7 +7,6 @@ import {
   ClaudeMark,
   GoogleMark,
 } from "@/components/PlatformMarks";
-import HeroAtmosphere from "@/components/HeroAtmosphere";
 import HeroArtifact from "@/components/HeroArtifact";
 
 const SCENE_MS = 6400;
@@ -546,7 +545,6 @@ Please send me a free visibility audit.`);
     };
   return (
     <div className="relative bg-mist overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
-      <HeroAtmosphere />
       <HeroArtifact />
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.a

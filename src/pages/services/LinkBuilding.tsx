@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, Minus, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Minus } from "lucide-react";
 import { linkBuilding as LB } from "./content/linkBuilding";
 import { OtherServices } from "./shared";
 import { FaqList } from "@/components/AgencyBlocks";
@@ -13,25 +13,21 @@ import { openBooking } from "@/lib/booking";
 /**
  * /services/link-building — the flagship page.
  *
- * Rebuilt content-first. The structural ideas come from how
- * dofollow.com/visibility-plus is *built*, not from what it says:
+ * Follows the structure and register of dofollow.com/visibility-plus:
+ * situation → problem → framework → results → named methodology →
+ * one category-level comparison → the right-move section → context → close.
  *
- *   - a split hero carrying one concrete artefact that embodies the pitch
- *     (theirs: a buyer prompt with the brand missing; ours: the approval
- *     sheet, because that is the thing no other vendor will show you)
- *   - prose is never left alone — every block is paired with a data object
- *   - one section exists purely to say what we are not
- *   - one section argues against our own product, which is what makes the
- *     rest of the page credible
- *   - proof is distributed down the page rather than pooled into one
- *     testimonial wall: logos under the hero, a quote after the problem,
- *     numbers in the movement band, a quote after the comparison, a quote
- *     after fit
+ * Tone rules this page holds to:
+ *   - lead with the client's outcome, never with what other agencies do wrong
+ *   - the credibility comes from a named methodology (AuthorityOS™) that is
+ *     explained openly, not from positioning as the honest exception
+ *   - exactly one comparison, aimed at a category of approach rather than at
+ *     agencies, framed as a capability difference
  *
- * Layout is specific to this page — the split hero, logo band, step cards,
- * comparison columns and snapshot close appear on no other service page.
+ * Domain approval is no longer a section. It is one FAQ answer, because some
+ * clients review every domain and others leave sourcing to us.
  *
- * Surface rhythm: D m w l D w l w m w l w m l D m — no two adjacent sections
+ * Surface rhythm: D m w l D w l w m w l m w D m — no two adjacent sections
  * share a tone.
  */
 
@@ -78,8 +74,8 @@ const Head = ({
   </motion.div>
 );
 
-/** Inline client proof. Used three times, each directly under the claim it
- *  supports, rather than collected into one band. */
+/** Client proof, placed under the claim it supports rather than pooled into
+ *  one testimonial wall. */
 const PullQuote = ({
   text,
   who,
@@ -89,7 +85,9 @@ const PullQuote = ({
   who: string;
   tone: "linen" | "mist";
 }) => (
-  <div className={`${tone === "linen" ? "bg-linen" : "bg-mist"} py-16 lg:py-20`}>
+  <div
+    className={`${tone === "linen" ? "bg-linen" : "bg-mist"} py-16 lg:py-20`}
+  >
     <motion.figure
       className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8"
       {...rise()}
@@ -108,8 +106,8 @@ const PullQuote = ({
 
 /* ================================= hero ================================= */
 
-const ApprovalSheet = () => {
-  const s = LB.approvalSheet;
+const GapCard = () => {
+  const g = LB.gapCard;
   return (
     <motion.div
       className="rounded-[1.4rem] border border-white/10 bg-white p-6 lg:p-7"
@@ -117,35 +115,34 @@ const ApprovalSheet = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
     >
-      <div className="mb-5 flex items-baseline justify-between">
-        <p className="text-[14px] font-bold text-navy-dark">{s.label}</p>
-        <span className="text-[11.5px] font-semibold uppercase tracking-[0.12em] text-navy-dark/70">
-          {s.period}
-        </span>
-      </div>
+      <p className="mb-5 text-[11.5px] font-semibold uppercase tracking-[0.12em] text-navy-dark/70">
+        {g.label}
+        {": "}
+        <span className="text-navy-dark">{g.category}</span>
+      </p>
 
       <ul className="space-y-2.5">
-        {s.rows.map((r, i) => (
+        {g.rows.map((r, i) => (
           <motion.li
-            key={r.domain}
-            className="flex items-center justify-between gap-4 rounded-xl bg-mist px-4 py-3.5"
+            key={r.name}
+            className={`flex items-center justify-between gap-4 rounded-xl px-4 py-3.5 ${
+              r.you ? "bg-mark/25" : "bg-mist"
+            }`}
             initial={{ opacity: 0, x: 14 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.45 + i * 0.1, ease: EASE }}
           >
             <span className="min-w-0">
               <span className="block truncate text-[13.5px] font-semibold text-navy-dark">
-                {r.domain}
+                {r.name}
               </span>
               <span className="mt-0.5 block text-[11.5px] tabular-nums text-navy-dark/70">
                 {r.meta}
               </span>
             </span>
             <span
-              className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] ${
-                r.status === "approved"
-                  ? "bg-verified/12 text-verified"
-                  : "bg-gap/12 text-gap"
+              className={`shrink-0 text-[11px] font-bold uppercase tracking-[0.08em] ${
+                r.you ? "text-navy-dark" : "text-navy-dark/70"
               }`}
             >
               {r.status}
@@ -155,16 +152,16 @@ const ApprovalSheet = () => {
       </ul>
 
       <motion.div
-        className="mt-5 rounded-xl bg-mark/25 p-4"
+        className="mt-5 rounded-xl border border-line bg-linen p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.85 }}
       >
         <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-[0.12em] text-navy-dark">
-          {s.calloutLabel}
+          {g.calloutLabel}
         </p>
         <p className="text-[13px] leading-relaxed text-navy-dark/80">
-          {s.callout}
+          {g.callout}
         </p>
       </motion.div>
     </motion.div>
@@ -189,7 +186,7 @@ const Hero = () => (
           {LB.eyebrow}
         </motion.p>
         <motion.h1
-          className="text-[2.6rem] font-semibold leading-[1.04] tracking-[-0.035em] text-white sm:text-[3.2rem] lg:text-[3.5rem]"
+          className="text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3.1rem] lg:text-[3.4rem]"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
@@ -216,14 +213,14 @@ const Hero = () => (
             onClick={openBooking}
             className="group inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-[14px] font-semibold text-navy-dark transition-colors duration-300 hover:bg-white/90"
           >
-            Request pricing
+            Request Pricing
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </button>
           <Link
             to="/case-studies"
             className="inline-flex items-center gap-2 text-[14px] font-semibold text-white/80 transition-colors duration-300 hover:text-white"
           >
-            See a case file
+            See the results
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </motion.div>
@@ -237,7 +234,7 @@ const Hero = () => (
         </motion.p>
       </div>
 
-      <ApprovalSheet />
+      <GapCard />
     </div>
   </div>
 );
@@ -273,64 +270,6 @@ const LogoBand = () => (
 
 /* =============================== problem =============================== */
 
-const CollapseChart = () => {
-  const c = LB.problem.chart;
-  const W = 420;
-  const H = 150;
-  const hi = Math.max(...c.series);
-  const x = (i: number) => (i / (c.series.length - 1)) * W;
-  const y = (v: number) => H - (v / hi) * (H - 12) - 6;
-  const line = c.series
-    .map((v, i) => `${i ? "L" : "M"}${x(i)},${y(v)}`)
-    .join(" ");
-
-  return (
-    <motion.div
-      className="rounded-3xl border border-line bg-white p-7"
-      {...rise(0.1)}
-    >
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <span className="truncate text-[13.5px] font-semibold text-navy-dark">
-          {c.domain}
-        </span>
-        <span className="shrink-0 rounded-full bg-linen px-2.5 py-1 text-[11px] font-bold text-navy-dark/70">
-          {c.badge}
-        </span>
-      </div>
-
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" aria-hidden="true">
-        <motion.path
-          d={`${line} L${W},${H} L0,${H} Z`}
-          fill="rgb(var(--gap) / 0.10)"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-        />
-        <motion.path
-          d={line}
-          fill="none"
-          stroke="rgb(var(--gap))"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-        />
-      </svg>
-
-      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-navy-dark/70">
-        {c.axis}
-      </p>
-      <p className="mt-5 border-t border-line pt-5 text-[13.5px] leading-relaxed text-navy-dark/80">
-        {c.verdict}
-      </p>
-    </motion.div>
-  );
-};
-
 const Problem = () => (
   <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
@@ -349,39 +288,66 @@ const Problem = () => (
             {p}
           </motion.p>
         ))}
-        <motion.p
-          className="mt-6 text-[16px] font-semibold leading-snug text-navy-dark"
-          {...rise(0.2)}
-        >
-          {LB.problem.bold}
-        </motion.p>
       </div>
-      <CollapseChart />
+
+      <motion.div
+        className="rounded-3xl border border-line bg-mist p-8 text-center lg:p-10"
+        {...rise(0.1)}
+      >
+        <div className="grid grid-cols-2 gap-3">
+          {LB.problem.flow.inputs.map((t, i) => (
+            <motion.p
+              key={t}
+              className="rounded-xl bg-white px-4 py-4 text-[13px] font-semibold text-navy-dark"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.1 + i * 0.07 }}
+            >
+              {t}
+            </motion.p>
+          ))}
+        </div>
+        <ArrowRight
+          className="mx-auto my-5 h-5 w-5 rotate-90 text-navy-dark/50"
+          aria-hidden="true"
+        />
+        <p className="inline-block rounded-xl bg-navy-dark px-8 py-4 text-[13px] font-bold uppercase tracking-[0.12em] text-white">
+          {LB.problem.flow.mid}
+        </p>
+        <ArrowRight
+          className="mx-auto my-5 h-5 w-5 rotate-90 text-navy-dark/50"
+          aria-hidden="true"
+        />
+        <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-navy-dark/70">
+          {LB.problem.flow.out}
+        </p>
+      </motion.div>
     </div>
   </div>
 );
 
-/* ================================ steps ================================ */
+/* ============================== framework ============================== */
 
-const Steps = () => (
+const Framework = () => (
   <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <Head
-        eyebrow={LB.steps.eyebrow}
-        pre={LB.steps.heading.pre}
-        em={LB.steps.heading.em}
+        eyebrow={LB.framework.eyebrow}
+        pre={LB.framework.heading.pre}
+        em={LB.framework.heading.em}
         dark={true}
         className="max-w-2xl"
       />
       <motion.p
-        className="mt-5 max-w-xl text-[15.5px] leading-relaxed text-white/70"
+        className="mt-5 max-w-2xl text-[15.5px] leading-relaxed text-white/70"
         {...rise(0.05)}
       >
-        {LB.steps.lede}
+        {LB.framework.lede}
       </motion.p>
 
       <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {LB.steps.items.map((s, i) => (
+        {LB.framework.items.map((s, i) => (
           <motion.article
             key={s.n}
             className="flex flex-col rounded-2xl bg-white p-6 lg:p-7"
@@ -412,7 +378,7 @@ const Steps = () => (
         className="mt-5 rounded-2xl bg-white px-7 py-6 text-center text-[16px] font-bold tracking-[-0.01em] text-navy-dark sm:text-[18px]"
         {...rise(0.1)}
       >
-        {LB.steps.emphasis}
+        {LB.framework.emphasis}
       </motion.p>
     </div>
   </div>
@@ -481,26 +447,26 @@ const Movement = () => (
   </div>
 );
 
-/* ================================ gate ================================ */
+/* ============================= methodology ============================= */
 
-const Gate = () => (
+const Methodology = () => (
   <div className="bg-linen py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
       <Head
-        eyebrow={LB.gate.eyebrow}
-        pre={LB.gate.heading.pre}
-        em={LB.gate.heading.em}
+        eyebrow={LB.methodology.eyebrow}
+        pre={LB.methodology.heading.pre}
+        em={LB.methodology.heading.em}
         className="mx-auto max-w-2xl"
       />
       <motion.p
         className="mx-auto mt-6 max-w-2xl text-[15.5px] leading-relaxed text-navy-dark/75"
         {...rise(0.05)}
       >
-        {LB.gate.lede}
+        {LB.methodology.lede}
       </motion.p>
 
       <div className="mt-14 grid gap-x-10 gap-y-10 text-left sm:grid-cols-2 lg:grid-cols-4">
-        {LB.gate.columns.map((c, i) => (
+        {LB.methodology.columns.map((c, i) => (
           <motion.div
             key={c.label}
             initial={{ opacity: 0, y: 20 }}
@@ -527,9 +493,11 @@ const Gate = () => (
       >
         <div className="text-left">
           <p className="text-[15.5px] font-bold text-navy-dark">
-            {LB.gate.flowFrom.t}
+            {LB.methodology.flowFrom.t}
           </p>
-          <p className="text-[13px] text-navy-dark/70">{LB.gate.flowFrom.d}</p>
+          <p className="text-[13px] text-navy-dark/70">
+            {LB.methodology.flowFrom.d}
+          </p>
         </div>
         <ArrowRight
           className="h-5 w-5 shrink-0 rotate-90 text-navy-dark/50 sm:rotate-0"
@@ -537,37 +505,39 @@ const Gate = () => (
         />
         <div className="rounded-2xl bg-mark/30 px-7 py-5 text-left">
           <p className="text-[15.5px] font-bold text-navy-dark">
-            {LB.gate.flowTo.t}
+            {LB.methodology.flowTo.t}
           </p>
-          <p className="text-[13px] text-navy-dark/80">{LB.gate.flowTo.d}</p>
+          <p className="text-[13px] text-navy-dark/80">
+            {LB.methodology.flowTo.d}
+          </p>
         </div>
       </motion.div>
     </div>
   </div>
 );
 
-/* ============================= comparison ============================= */
+/* ============================= positioning ============================= */
 
-const Comparison = () => (
+const Positioning = () => (
   <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
       <Head
-        eyebrow={LB.comparison.eyebrow}
-        pre={LB.comparison.heading.pre}
-        em={LB.comparison.heading.em}
-        className="mx-auto max-w-2xl"
+        eyebrow={LB.positioning.eyebrow}
+        pre={LB.positioning.heading.pre}
+        em={LB.positioning.heading.em}
+        className="mx-auto max-w-3xl"
       />
       <motion.p
         className="mx-auto mt-6 max-w-xl text-[15.5px] leading-relaxed text-navy-dark/75"
         {...rise(0.05)}
       >
-        {LB.comparison.lede}
+        {LB.positioning.lede}
       </motion.p>
 
       <div className="mt-12 grid gap-5 text-left sm:grid-cols-2">
         {[
-          { ...LB.comparison.them, good: false },
-          { ...LB.comparison.us, good: true },
+          { ...LB.positioning.them, good: false },
+          { ...LB.positioning.us, good: true },
         ].map((col, i) => (
           <motion.div
             key={col.label}
@@ -614,43 +584,51 @@ const Comparison = () => (
         className="mt-10 text-[16px] font-bold tracking-[-0.01em] text-navy-dark sm:text-[17px]"
         {...rise(0.1)}
       >
-        {LB.comparison.line}
+        {LB.positioning.line}
       </motion.p>
+
+      <motion.div className="mt-8" {...rise(0.15)}>
+        <button
+          onClick={openBooking}
+          className="group inline-flex items-center gap-2 rounded-xl bg-navy-dark px-8 py-4 text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-black"
+        >
+          {LB.positioning.ctaLabel}
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+        </button>
+      </motion.div>
     </div>
   </div>
 );
 
-/* ============================== diagnosis ============================== */
+/* ================================ moves ================================ */
 
-const Diagnosis = () => (
+const Moves = () => (
   <div className="bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
           <Head
-            eyebrow={LB.diagnosis.eyebrow}
-            pre={LB.diagnosis.heading.pre}
-            em={LB.diagnosis.heading.em}
+            eyebrow={LB.moves.eyebrow}
+            pre={LB.moves.heading.pre}
+            em={LB.moves.heading.em}
           />
-          {LB.diagnosis.paras.map((p, i) => (
+          {LB.moves.paras.map((p, i) => (
             <motion.p
               key={i}
-              className="mt-5 text-[15.5px] leading-[1.65] text-navy-dark/75"
+              className={
+                i === LB.moves.paras.length - 1
+                  ? "mt-6 text-[16px] font-semibold leading-snug text-navy-dark"
+                  : "mt-5 text-[15.5px] leading-[1.65] text-navy-dark/75"
+              }
               {...rise(0.05 + i * 0.05)}
             >
               {p}
             </motion.p>
           ))}
-          <motion.p
-            className="mt-6 text-[16px] font-semibold leading-snug text-navy-dark"
-            {...rise(0.2)}
-          >
-            {LB.diagnosis.bold}
-          </motion.p>
         </div>
 
         <div className="space-y-3 self-start">
-          {LB.diagnosis.map.map((m, i) => (
+          {LB.moves.map.map((m, i) => (
             <motion.div
               key={m.gap}
               className="flex items-center justify-between gap-5 rounded-xl bg-mist px-5 py-4"
@@ -673,10 +651,10 @@ const Diagnosis = () => (
       </div>
 
       <dl className="mt-16 grid gap-x-12 gap-y-7 border-t border-line pt-12 sm:grid-cols-2">
-        {LB.diagnosis.defs.map((d, i) => (
+        {LB.moves.defs.map((d, i) => (
           <motion.div
             key={d.t}
-            className="sm:grid sm:grid-cols-[0.5fr_1fr] sm:gap-6"
+            className="sm:grid sm:grid-cols-[0.55fr_1fr] sm:gap-6"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -691,22 +669,29 @@ const Diagnosis = () => (
           </motion.div>
         ))}
       </dl>
+
+      <motion.p
+        className="mt-12 text-center text-[16px] font-bold tracking-[-0.01em] text-navy-dark sm:text-[17px]"
+        {...rise(0.1)}
+      >
+        {LB.moves.closing}
+      </motion.p>
     </div>
   </div>
 );
 
-/* ============================ fundamentals ============================ */
+/* =============================== context =============================== */
 
-const Fundamentals = () => (
+const Context = () => (
   <div className="bg-linen py-24 lg:py-32">
     <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
       <div>
         <Head
-          eyebrow={LB.fundamentals.eyebrow}
-          pre={LB.fundamentals.heading.pre}
-          em={LB.fundamentals.heading.em}
+          eyebrow={LB.context.eyebrow}
+          pre={LB.context.heading.pre}
+          em={LB.context.heading.em}
         />
-        {LB.fundamentals.paras.map((p, i) => (
+        {LB.context.paras.map((p, i) => (
           <motion.p
             key={i}
             className="mt-5 text-[15.5px] leading-[1.65] text-navy-dark/75"
@@ -715,31 +700,25 @@ const Fundamentals = () => (
             {p}
           </motion.p>
         ))}
-        <motion.p
-          className="mt-6 text-[16px] font-semibold leading-snug text-navy-dark"
-          {...rise(0.2)}
-        >
-          {LB.fundamentals.bold}
-        </motion.p>
       </div>
 
       <motion.div className="text-center" {...rise(0.1)}>
         <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-navy-dark/70">
-          {LB.fundamentals.flow.top}
+          {LB.context.flow.top}
         </p>
         <ArrowRight
           className="mx-auto my-4 h-5 w-5 rotate-90 text-navy-dark/50"
           aria-hidden="true"
         />
         <p className="inline-block rounded-xl bg-navy-dark px-8 py-4 text-[14px] font-bold uppercase tracking-[0.12em] text-white">
-          {LB.fundamentals.flow.mid}
+          {LB.context.flow.mid}
         </p>
         <ArrowRight
           className="mx-auto my-4 h-5 w-5 rotate-90 text-navy-dark/50"
           aria-hidden="true"
         />
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
-          {LB.fundamentals.flow.out.map((o) => (
+          {LB.context.flow.out.map((o) => (
             <span
               key={o}
               className="text-[12px] font-bold uppercase tracking-[0.14em] text-navy-dark/70"
@@ -749,56 +728,6 @@ const Fundamentals = () => (
           ))}
         </div>
       </motion.div>
-    </div>
-  </div>
-);
-
-/* ================================= fit ================================= */
-
-const Fit = () => (
-  <div className="bg-white py-24 lg:py-32">
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <Head
-        eyebrow={LB.fit.eyebrow}
-        pre={LB.fit.heading.pre}
-        em={LB.fit.heading.em}
-        className="mb-12 max-w-2xl"
-      />
-      <div className="grid gap-5 sm:grid-cols-2">
-        {[
-          { items: LB.fit.good, good: true, label: "Worth doing if" },
-          { items: LB.fit.bad, good: false, label: "Skip it if" },
-        ].map((col, i) => (
-          <motion.div
-            key={col.label}
-            className={`rounded-3xl border p-7 ${
-              col.good ? "border-navy-dark/15 bg-linen" : "border-line bg-mist"
-            }`}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, delay: i * 0.1, ease: EASE }}
-          >
-            <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.14em] text-navy-dark">
-              {col.label}
-            </p>
-            <ul className="space-y-4">
-              {col.items.map((t) => (
-                <li key={t} className="flex gap-3">
-                  {col.good ? (
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-verified" />
-                  ) : (
-                    <X className="mt-0.5 h-4 w-4 shrink-0 text-gap" />
-                  )}
-                  <span className="text-[13.5px] leading-relaxed text-navy-dark/80">
-                    {t}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
-      </div>
     </div>
   </div>
 );
@@ -865,7 +794,11 @@ const Close = () => (
                 initial={{ width: 0 }}
                 whileInView={{ width: `${(b.v / b.max) * 100}%` }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.3 + i * 0.12, ease: EASE }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.3 + i * 0.12,
+                  ease: EASE,
+                }}
               />
             </div>
           </div>
@@ -896,23 +829,22 @@ const LinkBuilding = () => (
     <LogoBand />
     <Problem />
     <PullQuote {...LB.quotes.afterProblem} tone="linen" />
-    <Steps />
+    <Framework />
     <Movement />
-    <Gate />
-    <Comparison />
+    <Methodology />
+    <Positioning />
     <PullQuote {...LB.quotes.afterComparison} tone="mist" />
-    <Diagnosis />
-    <Fundamentals />
-    <Fit />
-    <PullQuote {...LB.quotes.atFit} tone="mist" />
-    <div className="bg-linen py-24 lg:py-32">
+    <Moves />
+    <Context />
+    <PullQuote {...LB.quotes.beforeClose} tone="mist" />
+    <div className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="mb-10 text-center text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.4rem]"
           {...rise()}
         >
-          {"Straight "}
-          <span className="text-navy-dark/65">answers</span>
+          {"Common "}
+          <span className="text-navy-dark/65">questions</span>
         </motion.h2>
         <FaqList faqs={LB.faqs} />
       </div>

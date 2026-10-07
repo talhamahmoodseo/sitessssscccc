@@ -17,13 +17,13 @@ export const digitalPr = {
 
   problem: {
     heading: {
-      pre: "Most agencies sell you",
-      em: "press releases nobody reads",
+      pre: "Coverage is earned",
+      em: "one editor at a time",
     },
     paras: [
-      "The default digital PR motion is to write a release, blast it to a purchased media list, and report the syndication count. Those pickups land on aggregator sites with no readership, pass no authority, and are gone from the index within weeks.",
-      "Journalists do not ignore these because they are hostile. They ignore them because the pitch leads with your company instead of their readers. An editor opens forty pitches a morning and answers the two that hand them a story.",
-      "We work the other way round. We find the angle a specific desk is already covering, build the data or expertise that makes it publishable, and pitch named journalists individually. Slower to start, and it is the only version that produces links worth having.",
+      "A press release sent to a purchased media list produces syndication counts. It rarely produces coverage: the pickups land on aggregator sites with no readership, pass no authority, and leave the index within weeks.",
+      "An editor opens forty pitches a morning and answers the two that hand them a story. The difference is rarely the company — it is whether the pitch leads with something their readers want.",
+      "So we start from the desk. We find the angle a specific publication is already covering, build the data or expertise that makes it publishable, and pitch named journalists individually. It is slower to start, and it is what produces coverage worth having.",
     ],
   },
 

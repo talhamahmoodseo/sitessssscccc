@@ -31,9 +31,7 @@ const BlogPost = () => {
     <PageLayout>
       <Seo title={s.title} description={s.excerpt} schema={u} />
       <div className="relative bg-navy-dark overflow-hidden pt-32 pb-16">
-        <div
-          className={`absolute inset-0 ${s.grad} opacity-25`}
-        />
+        <div className={`absolute inset-0 ${s.grad} opacity-25`} />
         <span
           className="absolute -bottom-16 -right-4 font-medium text-white/[0.08] text-[16rem] leading-none select-none"
           aria-hidden="true"

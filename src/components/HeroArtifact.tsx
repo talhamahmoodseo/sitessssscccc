@@ -1,144 +1,152 @@
 import { motion, useReducedMotion } from "motion/react";
-import { PaperPlaneFigure } from "./LineArt";
+import { CraftFigure } from "./LineArt";
 
 /**
- * The hero artifact: a paper plane held on the right with its fluid trailing
- * away to the left, behind everything else.
+ * The hero artifact: a sketched craft held on the right, with coloured fluid
+ * flowing out from behind it and spreading left across the page.
  *
- * This is deliberately NOT an animation. It is a composition that resolves
- * once, about half a second after load, and then holds still — the earlier
- * scroll-driven version flew the plane across the screen, which was the wrong
- * reading of the reference.
+ * This is a composition that resolves once, roughly half a second after load,
+ * and then holds. It is not a loop and nothing travels across the screen.
  *
- * Rules this has to keep:
- *   - the plane stays on the right and stays visible
- *   - the fluid starts behind the plane and spreads left, never right
- *   - the fluid is fully transparent before it reaches the centre column, so
- *     the headline and the product card in the middle stay clean
- *   - it sits at z-0; the hero content is z-10 and the product card is a later
- *     sibling, so both paint over the fluid
+ * What the reference actually does, and what this reproduces:
+ *   - the craft sits on the right and stays there
+ *   - the fluid starts behind it and spreads leftward, never right
+ *   - the fluid SHIFTS HUE along its length — violet behind the craft,
+ *     through pink, to warm amber at the far left edge
+ *   - it reads as smoke, not as a gradient: every shape is pushed through a
+ *     turbulence + displacement filter so the edges break up organically,
+ *     with a grain pass over the top
+ *   - the middle of the page stays clear. Colour is concentrated in the left
+ *     quarter and the right quarter, with only a whisper across the centre,
+ *     so the headline and the product card read cleanly
  *
- * The layers are blurred gradients rather than SVG so the falloff stays smooth
- * at any width. Every colour is a brand token — no imported palette.
+ * It sits at z-0; hero content is z-10 and the product card is a later
+ * sibling, so both paint over it.
+ *
+ * Replaces the old HeroAtmosphere blob field, which drifted continuously and
+ * was a separate system from the craft.
  */
 
-/* Each layer is positioned from the RIGHT edge of the group, so the dense end
-   sits under the plane and the tail runs left. */
-const LAYERS = [
-  {
-    /* broad lilac haze — the body of the trail */
-    w: 820,
-    h: 230,
-    right: 54,
-    top: 58,
-    rotate: -7,
-    blur: 48,
-    background:
-      "linear-gradient(to left, rgb(var(--tile-lilac) / 0.62) 0%, rgb(var(--tile-lilac) / 0.30) 34%, rgb(var(--tile-lilac) / 0) 76%)",
-  },
-  {
-    /* amber core — brighter, narrower, reads as the exhaust itself */
-    w: 610,
-    h: 104,
-    right: 86,
-    top: 132,
-    rotate: -5,
-    blur: 30,
-    background:
-      "linear-gradient(to left, rgb(var(--mark) / 0.70) 0%, rgb(var(--mark) / 0.28) 38%, rgb(var(--mark) / 0) 78%)",
-  },
-  {
-    /* hot spot directly behind the plane */
-    w: 240,
-    h: 150,
-    right: 74,
-    top: 104,
-    rotate: 0,
-    blur: 30,
-    background:
-      "radial-gradient(50% 50% at 62% 50%, rgb(var(--mark) / 0.62) 0%, rgb(var(--mark) / 0) 72%)",
-  },
-  {
-    /* cool underside, keeps the trail from reading as one flat colour */
-    w: 470,
-    h: 96,
-    right: 140,
-    top: 194,
-    rotate: -3,
-    blur: 36,
-    background:
-      "linear-gradient(to left, rgb(var(--tile-sky) / 0.52) 0%, rgb(var(--tile-sky) / 0) 74%)",
-  },
-];
+const VB_W = 1440;
+const VB_H = 900;
 
-/** The drawn curl in the trail, echoing the hand-made line work elsewhere. */
-const Curl = () => (
-  <svg
-    viewBox="0 0 260 90"
-    className="absolute"
-    style={{ right: 150, top: 150, width: 260 }}
-    fill="none"
-    aria-hidden="true"
-  >
-    <path
-      d="M254 36 C206 20 160 16 120 30 C86 42 74 70 92 80 C108 89 128 74 120 56 C110 34 74 30 36 44 C22 49 10 56 2 64"
-      stroke="rgb(var(--ink) / 0.26)"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+/** Fluid bodies, right (behind the craft) to left (far edge). The hue walks
+ *  lilac → blush → mark as it travels, which is the colour change in the
+ *  reference. Opacity is tuned so the centre band stays near-paper. */
+const BODIES = [
+  // --- trail behind the craft, violet
+  { cx: 1310, cy: 300, rx: 170, ry: 130, c: "--tile-lilac", o: 0.72, r: -8 },
+  { cx: 1140, cy: 330, rx: 300, ry: 120, c: "--tile-lilac", o: 0.6, r: -10 },
+  { cx: 980, cy: 352, rx: 250, ry: 96, c: "--tile-blush", o: 0.4, r: -8 },
+
+  // --- the whisper across the middle, keeps it reading as one body
+  { cx: 720, cy: 380, rx: 300, ry: 110, c: "--tile-blush", o: 0.16, r: -6 },
+
+  // --- the left field, where the colour has fully turned
+  { cx: 300, cy: 400, rx: 290, ry: 200, c: "--tile-blush", o: 0.42, r: 0 },
+  { cx: 120, cy: 236, rx: 330, ry: 230, c: "--mark", o: 0.6, r: 0 },
+  { cx: 40, cy: 452, rx: 300, ry: 250, c: "--tile-blush", o: 0.62, r: 0 },
+  { cx: 140, cy: 672, rx: 340, ry: 240, c: "--tile-lilac", o: 0.66, r: 0 },
+  { cx: -40, cy: 560, rx: 240, ry: 300, c: "--mark", o: 0.34, r: 0 },
+];
 
 const HeroArtifact = () => {
   const reduced = useReducedMotion() ?? false;
-  const ease = [0.22, 1, 0.36, 1] as const;
+  const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden md:block"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       aria-hidden="true"
     >
-      {/* Sits low enough that the plane is level with the top of the centre
-          card rather than beside the headline, which is where the reference
-          anchors it. */}
-      <div className="absolute right-[-5%] top-[24%] h-[370px] w-[880px] lg:right-[-2%] lg:top-[26%] xl:right-[1%]">
-        {LAYERS.map((l, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: l.w,
-              height: l.h,
-              right: l.right,
-              top: l.top,
-              background: l.background,
-              filter: `blur(${l.blur}px)`,
-              rotate: `${l.rotate}deg`,
-            }}
-            initial={reduced ? false : { opacity: 0, x: 44, scaleX: 0.9 }}
-            animate={{ opacity: 1, x: 0, scaleX: 1 }}
-            transition={{ duration: 0.55, delay: 0.08 + i * 0.05, ease }}
-          />
-        ))}
+      <motion.svg
+        viewBox={`0 0 ${VB_W} ${VB_H}`}
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 h-full w-full"
+        initial={reduced ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.55, delay: 0.05, ease }}
+      >
+        <defs>
+          {/* Breaks each body's edge into smoke. Displacement does the
+              billowing, the blur afterwards keeps it soft rather than noisy. */}
+          <filter
+            id="ha-smoke"
+            x="-35%"
+            y="-45%"
+            width="180%"
+            height="200%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.009 0.016"
+              numOctaves="3"
+              seed="7"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="190"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+            <feGaussianBlur stdDeviation="34" />
+          </filter>
 
-        <motion.div
-          initial={reduced ? false : { opacity: 0, x: 26 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.26, ease }}
-        >
-          <Curl />
-        </motion.div>
+          {/* Film grain, the way the reference image is visibly grainy. */}
+          <filter
+            id="ha-grain"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.85"
+              numOctaves="2"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+        </defs>
 
-        <motion.div
-          className="absolute right-4 top-[86px] w-[186px] text-navy-dark lg:w-[212px]"
-          style={{ rotate: "-14deg" }}
-          initial={reduced ? false : { opacity: 0, x: 34, scale: 0.94 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.16, ease }}
-        >
-          <PaperPlaneFigure className="h-auto w-full" />
-        </motion.div>
-      </div>
+        <g filter="url(#ha-smoke)">
+          {BODIES.map((b, i) => (
+            <ellipse
+              key={i}
+              cx={b.cx}
+              cy={b.cy}
+              rx={b.rx}
+              ry={b.ry}
+              fill={`rgb(var(${b.c}))`}
+              opacity={b.o}
+              transform={b.r ? `rotate(${b.r} ${b.cx} ${b.cy})` : undefined}
+            />
+          ))}
+        </g>
+
+        <rect
+          width={VB_W}
+          height={VB_H}
+          filter="url(#ha-grain)"
+          opacity="0.14"
+          style={{ mixBlendMode: "multiply" }}
+        />
+      </motion.svg>
+
+      {/* The craft, held on the right. */}
+      <motion.div
+        className="absolute right-[2%] top-[20%] hidden w-[188px] text-navy-dark md:block lg:right-[4%] lg:w-[214px]"
+        initial={reduced ? false : { opacity: 0, x: 30, scale: 0.95 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.18, ease }}
+      >
+        <CraftFigure className="h-auto w-full" />
+      </motion.div>
     </div>
   );
 };

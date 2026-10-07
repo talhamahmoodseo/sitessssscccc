@@ -24,12 +24,12 @@ export const SERVICES = [
       { v: 96, suffix: "%", label: "Indexation rate, last 12 months" },
     ],
     problem: {
-      eyebrow: "The problem",
-      pre: "Most link building is built to",
-      em: "invoice you, not rank you",
+      eyebrow: "Editorial authority",
+      pre: "Rankings follow",
+      em: "credible references",
       paras: [
-        "The industry runs on volume: marketplace inventory resold at markup, content-farm placements that never get crawled, and reports that count links instead of outcomes. The site owner never sees the domains until the invoice arrives.",
-        "We built the opposite. A publisher network we maintain ourselves, client approval before any placement, and a definition of done that includes Google indexing the link and the target keyword responding.",
+        "Google does not read your page in isolation. It weighs how many credible, independent publications have chosen to reference it, and how closely those publications sit to your subject.",
+        "We maintain our own publisher network, earn placements through direct editorial relationships, and treat a placement as delivered once Google has indexed it and recorded it against the target page.",
       ],
     },
     deliverables: [
@@ -153,7 +153,7 @@ export const SERVICES = [
       em: "paid noise",
       paras: [
         "Most “digital PR” is a press release pushed through a wire service — distribution nobody reads, on pages no editor chose, with zero authority transfer. It produces a PDF of coverage and not a single buyer.",
-        "Real coverage is a story an editor decides to run. That needs an angle worth running and a relationship that gets it read. We build both — including Gulf business media most agencies cannot reach.",
+        "Real coverage is a story an editor decides to run. That needs an angle worth running and a relationship that gets it read. We build both, including across Gulf business media.",
       ],
     },
     deliverables: [
@@ -171,7 +171,7 @@ export const SERVICES = [
       },
       {
         t: "Gulf & international media",
-        d: "Khaleej Times, Arabian Business and regional outlets most agencies have no path into.",
+        d: "Khaleej Times, Arabian Business and regional outlets we place in regularly.",
       },
       {
         t: "Story angle development",

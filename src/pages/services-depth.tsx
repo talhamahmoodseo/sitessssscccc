@@ -17,20 +17,20 @@ import { Check, Minus } from "lucide-react";
 
 const STANDARD = [
   {
-    t: "You approve every domain",
-    d: "Whatever we are placing — a guest post, a mention, an expert quote — the publication reaches you with its metrics first. Strike anything, for any reason, without explaining why.",
+    t: "Research comes before outreach",
+    d: "Every engagement starts by mapping which of your pages are closest to moving and which publications carry weight in your category. The plan follows the research.",
+  },
+  {
+    t: "Relevance before volume",
+    d: "Placements are earned on publications with real readership on your subject. We scope on what moves a page, not on how many links fit in a month.",
   },
   {
     t: "Indexation is the definition of done",
-    d: "A placement that Google never indexes does not count and is not billed as a win. We chase the publisher, and replace it free if it stalls past 60 days.",
+    d: "A placement counts once Google has indexed it and recorded it against the target page. If one stalls past 60 days we replace it at no charge.",
   },
   {
-    t: "The rejections are in your report",
-    d: "Every month you see what we turned down on your behalf and why. On one engagement that was 31 domains against 14 placements.",
-  },
-  {
-    t: "One sheet, no dashboard login",
-    d: "Live document with every domain, anchor, target URL and indexation status. Yours to keep, and forwardable to a client without editing.",
+    t: "Reporting you can forward",
+    d: "One live document with every placement, its metrics, the target page and its indexation status — ready to send to a client or a board without editing.",
   },
 ];
 

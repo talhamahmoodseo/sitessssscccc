@@ -97,7 +97,7 @@ const ALLOCATION = [
     k: "Publisher and editorial fees",
     pct: 46,
     tone: "bg-navy-dark",
-    d: "Paid to the publication for editorial time. This is the part most agencies mark up twice and never itemise.",
+    d: "Paid directly to the publication for editorial time. It is the largest line, and we itemise it so you can see where the retainer goes.",
   },
   {
     k: "Writing and editing",
@@ -232,7 +232,7 @@ const Alternatives = () => (
         transition={{ duration: 0.6 }}
       >
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
-          The cheaper options
+          How the options compare
         </p>
         <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
           Three ways to spend less,
@@ -240,8 +240,8 @@ const Alternatives = () => (
           <span className="text-white/70">and what each one costs you</span>
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-white/70">
-          We are not the cheapest and do not try to be. Here is the honest
-          version of what you give up by going the other three ways.
+          Editorial link building is not the lowest-cost option available. Here
+          is what each alternative costs, and what it gets you.
         </p>
       </motion.div>
 

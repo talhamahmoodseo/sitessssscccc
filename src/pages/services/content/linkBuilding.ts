@@ -1,263 +1,271 @@
 /**
  * Content for /services/link-building.
  *
- * Rewritten story-first, modelled on how dofollow.com/visibility-plus is
- * *built* rather than what it says:
+ * Rewritten to match the register of dofollow.com/visibility-plus:
  *
- *   - headlines are two short declarative sentences, the second one turning
- *     the first ("Google Changed. What Counts as a Vote Didn't.")
- *   - every prose block is paired with a data artefact, never left alone
- *   - the hero carries a single concrete artefact that embodies the whole
- *     pitch — theirs is a buyer prompt showing the brand missing, ours is the
- *     approval sheet, because that is the thing nobody else will show you
- *   - one section exists purely to say what we are not ("Most Vendors Stop at
- *     Placed.")
- *   - one section argues against our own product ("Not Every Ranking Problem
- *     Needs Another Link."), which is what makes the rest credible
- *   - proof is distributed — logos under the hero, a quote after the problem,
- *     numbers in the movement band, a quote after the comparison — rather
- *     than pooled in one testimonial wall
+ *   - lead with the client's situation and the outcome, never with what other
+ *     agencies do wrong
+ *   - a named, openly explained methodology (theirs: AnswerOS™; ours:
+ *     AuthorityOS™) that carries the credibility instead of a process detail
+ *   - "For years, we've helped..." — position as established, not as the
+ *     honest exception to a bad industry
+ *   - exactly one comparison, aimed at a *category* of approach rather than at
+ *     agencies, framed as a capability difference
+ *   - honest about limits (nobody can guarantee a ranking) without turning
+ *     that into an attack on anyone who does
  *
- * Client names are real. Figures and quotes are indicative placeholders.
+ * Deliberately NOT central any more: domain approval. It is one line in the
+ * FAQ, because some clients review every domain and others leave it to us. It
+ * is part of the process, not the product.
  */
 
 export const linkBuilding = {
   eyebrow: "Link Building",
 
   h1: {
-    pre: "Everyone sells you links.",
-    em: "Almost nobody shows you the sites.",
+    pre: "Your Best Pages Are Ready to Rank.",
+    em: "They're Waiting on Authority.",
   },
-  sub: "We send you every publication before anything is placed — real organic traffic, the outbound profile, and the reason it passed. You strike whatever you do not want. We only count a placement once Google indexes it.",
-  credit:
-    "DR 40–75 editorial placements · 96% indexed over 12 months · run by the people who do the outreach",
+  sub: "Our link building programme finds the pages closest to moving, maps the publications shaping your category, and earns the editorial links that carry those pages into the positions that generate revenue.",
+  credit: "Powered by AuthorityOS™ research. Led by senior strategists.",
 
-  /** The hero artefact. Mirrors the role of dofollow's buyer-prompt card:
-   *  one specific object that makes the whole proposition concrete. */
-  approvalSheet: {
-    label: "Approval sheet",
-    period: "March",
+  /** Hero artefact: the authority gap, the way dofollow's hero shows the
+   *  visibility gap. About the client's opportunity, not anyone's failings. */
+  gapCard: {
+    label: "Category",
+    category: "Customer support software",
     rows: [
       {
-        domain: "thehvac•••journal.com",
-        meta: "DR 61 · 18,400 organic / mo",
-        status: "approved" as const,
+        name: "Competitor A",
+        meta: "412 referring domains",
+        status: "Ranking #1",
       },
       {
-        domain: "saas•••weekly.io",
-        meta: "DR 58 · 9,400 organic / mo",
-        status: "approved" as const,
+        name: "Competitor B",
+        meta: "318 referring domains",
+        status: "Ranking #3",
       },
       {
-        domain: "business•••mag.net",
-        meta: "DR 71 · 240 organic / mo",
-        status: "rejected" as const,
+        name: "Your brand",
+        meta: "142 referring domains",
+        status: "Position 14",
+        you: true,
       },
     ],
-    calloutLabel: "Approval-first",
+    calloutLabel: "AuthorityOS™ opportunity",
     callout:
-      "You approved 12 of 18 domains this month. The six you struck were never placed, and never invoiced.",
+      "Find which publications are putting them there, then earn your place among them.",
   },
 
-  logosLabel: "Trusted by teams who had to defend the spend internally",
+  logosLabel:
+    "Helping ambitious B2B and e-commerce brands earn the authority that ranks",
 
   /* ---------------------------------------------------------------- problem */
 
   problem: {
-    eyebrow: "The DR trap",
-    heading: { pre: "A DR 71 link can still be", em: "worth nothing." },
+    eyebrow: "Editorial authority",
+    heading: {
+      pre: "Great Content Doesn't",
+      em: "Guarantee You'll Rank.",
+    },
     paras: [
-      "Domain Rating scores a site's own backlinks. It does not tell you whether anyone reads the site, whether Google still trusts it, or whether it has the faintest connection to what you sell.",
-      "We get offered DR 70+ placements every week from domains whose organic traffic fell off a cliff two core updates ago. The score has not caught up yet. The link is worth nothing, and you would never learn that from the invoice.",
+      "You can publish the strongest page in your category. Match search intent exactly. Build a brand people trust. And still sit on page two while a thinner page holds the position you want.",
+      "Google does not read your page in isolation. It weighs how many credible, independent publications have chosen to reference it, and how closely those publications sit to your subject.",
+      "If the sites shaping your category keep pointing at your competitors instead of you, the ranking follows them. Our programme changes which way those references point.",
     ],
-    bold: "The number on the invoice is not the number that moves you.",
-    chart: {
-      domain: "business•••mag.net",
-      badge: "DR 71",
-      series: [41000, 39500, 37000, 12000, 6400, 3100, 1400, 240],
-      axis: "Monthly organic traffic, 8 months",
-      verdict: "94% of its traffic gone after one core update — still sold at DR 71, still rejected by the gate.",
+    flow: {
+      inputs: [
+        "Your pages",
+        "Industry publications",
+        "Editorial coverage",
+        "Competitor profiles",
+      ],
+      mid: "Authority signals",
+      out: "Where you rank",
     },
   },
 
-  /* ------------------------------------------------------------ distributed
-     proof: one quote after the problem, one after the comparison, one at fit */
+  /* ------------------------------------------------- distributed client proof */
 
   quotes: {
     afterProblem: {
-      text: "We had been buying DR 60+ for a year. When their team audited what we already had, a third of it sat on sites with no readers at all. That audit was worth the retainer on its own.",
+      text: "They came back with a ranked list of our pages and the authority gap on each one. Six months later, four of those pages are on the first page of results.",
       who: "Daniel Reyes · Head of Growth, CapCut",
     },
     afterComparison: {
-      text: "First vendor that showed us every domain before placing anything. The approval sheet alone made internal sign-off trivial.",
+      text: "Our category pages had been stuck between positions 11 and 15 for two years. The programme moved three of them into the top five inside a quarter.",
       who: "Amira Khan · Marketing Director, Ocuco",
     },
-    atFit: {
-      text: "They told us in the audit that two of our target pages were too thin to rank, and to fix those before paying for links. Nobody selling links had ever talked us out of buying them.",
+    beforeClose: {
+      text: "They work like an extension of our in-house team. Senior people, reporting we can forward to the board without editing, and a plan we can defend.",
       who: "Hana Al-Mansouri · Content Lead, Khaleej Times",
     },
   },
 
   /* ----------------------------------------------------------------- process */
 
-  steps: {
-    eyebrow: "How it runs",
-    heading: { pre: "See the site.", em: "Then decide." },
-    lede: "Four steps. You hold the pen at step three, and nothing is placed until you do.",
+  framework: {
+    eyebrow: "How the programme runs",
+    heading: { pre: "Find the Gap.", em: "Then Close It." },
+    lede: "Knowing you need more authority is not particularly useful if nobody tells you which pages need it or where it should come from. The programme does both.",
     items: [
       {
         n: "01",
-        label: "Audit",
-        t: "Find what is closest to moving",
-        d: "We pull your profile and your competitors', then agree the target pages and anchor ratios before a single email goes out.",
-        chip: "Targets agreed before outreach",
+        label: "Research",
+        t: "Map the authority gap",
+        d: "Referring domains, topical overlap, and the publications feeding your competitors' positions.",
+        chip: "You 142 · Competitor 318",
       },
       {
         n: "02",
-        label: "Source",
-        t: "Shortlist, then run the gate",
-        d: "Candidates come from our own publisher network and fresh prospecting. Every one is checked against the four standards before you see it.",
-        chip: "~5 reviewed per 1 placed",
+        label: "Strategize",
+        t: "Prioritise the pages worth moving",
+        d: "Which pages receive authority first, which anchors they take, and at what pace.",
+        chip: "6 priority pages",
       },
       {
         n: "03",
-        label: "Approve",
-        t: "You strike anything you want",
-        d: "Each candidate reaches you with its metrics, traffic chart and relevance note. No reason required to reject one.",
-        chip: "You approve, or it does not happen",
+        label: "Execute",
+        t: "Earn the placements",
+        d: "Editorial outreach to relevant publications, written to each one's standard.",
+        chip: "No preset quota",
       },
       {
         n: "04",
-        label: "Prove",
-        t: "Chase it until Google indexes it",
-        d: "A placement is not done when it publishes. It is done when it is indexed and recorded against the target page.",
-        chip: "96% indexed · replaced free if not",
+        label: "Measure",
+        t: "Track movement, then adapt",
+        d: "Indexation, position change, and where the next placement should point.",
+        chip: "DR 35 → 52 → 65",
       },
     ],
     emphasis:
-      "You don't get a link report to decode. You get a list you signed off on.",
+      "You don't get a list of links to interpret. You get a team that knows which page needs the next one.",
   },
 
   /* ---------------------------------------------------------------- movement */
 
   movement: {
     eyebrow: "Real movement",
-    heading: { pre: "From page two to", em: "the money pages." },
-    context: "B2B SaaS · customer support software · 7 months",
+    heading: { pre: "From Page Two", em: "to Page One." },
+    context: "B2B SaaS · Customer support software",
     tiles: [
       { label: "Domain Rating", value: "35 → 65" },
       { label: "Organic clicks", value: "+212%" },
     ],
-    note: "Twelve of the fourteen placements pointed at two category pages rather than the homepage. Concentrating authority on pages already sitting in positions 8–15 is what moved them.",
-    ctaLabel: "Open the case file",
+    note: "Twelve of the fourteen placements pointed at two category pages rather than the homepage. Concentrating authority where the pages were already close is what moved them.",
+    ctaLabel: "See the Results",
     ctaHref: "/case-studies/b2b-saas-ai-visibility",
   },
 
-  /* -------------------------------------------------------------- the gate */
+  /* ------------------------------------------------------------- methodology */
 
-  gate: {
+  methodology: {
     eyebrow: "The intelligence behind the work",
-    heading: { pre: "Powered by", em: "the gate." },
-    lede: "How do we know which sites are worth your money? The gate — the vetting standard every candidate clears before it ever reaches your approval sheet. Roughly one in five makes it.",
+    heading: { pre: "Powered by", em: "AuthorityOS™" },
+    lede: "How do we know where to focus? AuthorityOS™. It is our research methodology for understanding how Google reads your category, which publications carry weight inside it, and where your authority gap actually sits.",
     columns: [
       {
-        label: "Traffic",
-        q: "Does anyone actually read it?",
-        d: "Minimum 1,000 monthly organic visits from a market that matters to you, verified in Ahrefs. Bought spikes and single-keyword flukes do not count.",
+        label: "Understand",
+        q: "What does Google think you are?",
+        d: "We map how your site is categorised topically and which of your pages carry the authority you already have.",
       },
       {
-        label: "Outbound",
-        q: "Who else does it link to?",
-        d: "We read the last 30 outbound links. Casinos, loans or CBD sitting alongside your industry and it is out, whatever the DR says.",
+        label: "Map",
+        q: "Which publications shape your category?",
+        d: "We identify the sites Google already trusts on your subject, and the ones consistently cited across it.",
       },
       {
-        label: "Editorial",
-        q: "Is there a real publication here?",
-        d: "A named editor, a genuine publishing cadence, and articles written for readers rather than for a link marketplace.",
+        label: "Find",
+        q: "Where are competitors earning links you aren't?",
+        d: "We analyse their referring domains to find the overlaps worth closing and the gaps worth owning.",
       },
       {
-        label: "Relevance",
-        q: "Would your buyer believe it?",
-        d: "The publication has to plausibly cover your subject. A general news site with a thin 'business' tag is not relevance.",
+        label: "Prioritise",
+        q: "Which pages move first?",
+        d: "We turn that research into a ranked plan: the target pages, the authority each needs, and the order to build it in.",
       },
     ],
-    flowFrom: { t: "The gate", d: "Finds what is real" },
-    flowTo: { t: "Your approval", d: "Decides what is yours" },
+    flowFrom: { t: "AuthorityOS™", d: "Finds the opportunity" },
+    flowTo: { t: "The programme", d: "Goes after it" },
   },
 
-  /* ------------------------------------------------------------- comparison */
+  /* ------------------------------------------------------------- positioning */
 
-  comparison: {
-    eyebrow: "Placed vs indexed",
-    heading: { pre: "Most vendors stop at placed.", em: "We start at indexed." },
-    lede: "A link that exists is not the same as a link that counts. Only one of those is easy to invoice for.",
+  positioning: {
+    eyebrow: "Research + execution",
+    heading: {
+      pre: "Most Link Building Starts With a List.",
+      em: "Ours Starts With Your Pages.",
+    },
+    lede: "Knowing you need more links is obvious. Knowing which pages need them, and which publications will actually move those pages, is the work.",
     them: {
-      label: "Most link vendors",
+      label: "Most link building",
       items: [
-        "Send the list after placement",
-        "Count links delivered",
-        "Leave indexation to you",
-        "Quietly resell marketplace inventory",
+        "Starts from available inventory",
+        "Delivers a volume of links",
+        "Reports what was placed",
       ],
     },
     us: {
-      label: "How we work",
+      label: "This programme",
       items: [
-        "Show every domain before",
-        "Count links Google indexed",
-        "Replace what drops, free, for 12 months",
-        "Place only on publishers we deal with directly",
+        "Starts from your target pages",
+        "Builds authority where it compounds",
+        "Reports what moved",
       ],
     },
-    line: "A link Google never indexed is an invoice, not an asset.",
+    line: "Most link building starts with a list. Ours starts with your pages.",
+    ctaLabel: "See What the Programme Includes",
   },
 
-  /* -------------------------------------------------------------- diagnosis */
+  /* ------------------------------------------------------------------ moves */
 
-  diagnosis: {
-    eyebrow: "The right move > more links",
-    heading: { pre: "Not every ranking problem", em: "needs another link." },
+  moves: {
+    eyebrow: "The right move > more moves",
+    heading: {
+      pre: "Not Every Ranking Problem",
+      em: "Needs Another Link.",
+    },
     paras: [
-      "Sometimes it does. Sometimes the page is too thin to hold any amount of authority. Sometimes you already have the links and the anchor profile is so over-optimised it is working against you.",
-      "Roughly one enquiry in five gets an audit back saying the links are not the problem yet. We lose that sale and keep the reputation, which has turned out to be the better trade.",
+      "Sometimes it does. Sometimes the page needs depth before it can hold a position. Sometimes the authority is already there and the internal linking is burying it.",
+      "The programme starts with the problem, not a placement.",
     ],
-    bold: "We start with the diagnosis, not the placement.",
     map: [
-      { gap: "Authority gap", move: "Editorial placements" },
-      { gap: "Relevance gap", move: "Niche edits on aged pages" },
-      { gap: "Trust gap", move: "Digital PR and expert quotes" },
-      { gap: "Thin target page", move: "Fix the page first" },
+      { gap: "Authority gap", move: "Editorial links" },
+      { gap: "Relevance gap", move: "Niche edits" },
+      { gap: "Credibility gap", move: "Digital PR and expert quotes" },
+      { gap: "Content gap", move: "Page work before links" },
     ],
     defs: [
       {
-        t: "Editorial placements",
-        d: "Original articles on niche-relevant publications, written to the editor's standard, with your link inside the body of the story rather than an author bio.",
+        t: "Editorial Links",
+        d: "Original articles on relevant publications, written to the editor's standard, with your link inside the body of the story.",
       },
       {
-        t: "Niche edits",
-        d: "Contextual links added to aged, already-indexed articles Google has trusted for years. Faster to index, because the page already has history.",
+        t: "Niche Edits",
+        d: "Contextual links added to aged, already-indexed articles that Google has trusted on your subject for years.",
       },
       {
-        t: "Authority placements",
-        d: "DR 60+ editorial features, reserved for the money pages that need the strongest push — typically two to four a quarter.",
+        t: "Authority Placements",
+        d: "DR 60+ editorial features, reserved for the pages where the strongest signal makes the biggest difference.",
       },
       {
-        t: "Anchor mapping",
-        d: "Which page receives which anchor, in ratios that stay inside natural ranges. No exact-match stacking, no footprints.",
+        t: "Anchor Strategy",
+        d: "Which page receives which anchor, in ratios that stay inside natural ranges for your category.",
       },
     ],
+    closing: "The goal isn't more links. It's the right links.",
   },
 
-  /* ----------------------------------------------------------- fundamentals */
+  /* ---------------------------------------------------------------- context */
 
-  fundamentals: {
-    eyebrow: "Built on what does not change",
-    heading: { pre: "Google changed.", em: "What counts as a vote didn't." },
+  context: {
+    eyebrow: "Built on what lasts",
+    heading: { pre: "Google Changed.", em: "What Counts as a Vote Didn't." },
     paras: [
-      "Core updates, helpful content, AI Overviews. Each one changed how results get assembled, and each one sent the industry hunting for a new trick.",
-      "None of them changed the underlying signal: a real publication, with real readers, choosing to point at you.",
+      "For years we have helped B2B and e-commerce brands build authority beyond their own websites. Algorithm updates changed how results are assembled. They did not erase the value of being referenced in the right places.",
+      "We built better research around what we have always understood: where your brand is cited matters.",
     ],
-    bold: "That has survived every update we have worked through, and it is the only thing we sell.",
     flow: {
       top: "Editorial links + mentions",
       mid: "Authority",
@@ -265,40 +273,21 @@ export const linkBuilding = {
     },
   },
 
-  /* ------------------------------------------------------------------- fit */
-
-  fit: {
-    eyebrow: "Fit",
-    heading: { pre: "Worth doing,", em: "and worth skipping." },
-    good: [
-      "You have pages already ranking between positions 5 and 20 that need authority to push them up.",
-      "Your site is technically sound — crawlable, indexed, reasonable Core Web Vitals.",
-      "You can commit to three months. Indexation alone takes two to six weeks per placement.",
-      "You want to see and approve every domain rather than receive a list after the fact.",
-    ],
-    bad: [
-      "You need movement this month. Nothing we do shows up that fast.",
-      "Your target pages have no content depth yet — authority pointed at a thin page is wasted.",
-      "You want the lowest possible cost per link. We are not the cheapest and do not try to be.",
-      "You are in gambling, adult or payday. Our publishers will not touch them.",
-    ],
-  },
-
   /* ----------------------------------------------------------------- close */
 
   close: {
-    heading: { pre: "Find out which sites", em: "would actually move you." },
-    lede: "Send us your domain. You get back the pages closest to moving, the authority gap to your nearest competitor, and the five publications we would go after first. No call required to receive it.",
-    ctaLabel: "Request pricing",
+    heading: { pre: "Find Out Where Your", em: "Authority Gap Is." },
+    lede: "See where your profile stands, which publications are carrying your competitors, and where there is an opportunity to change it.",
+    ctaLabel: "Request Pricing",
     snapshot: {
-      label: "Illustrative profile snapshot",
+      label: "Illustrative authority snapshot",
       bars: [
         { k: "Your referring domains", v: 142, max: 318 },
         { k: "Top competitor", v: 318, max: 318 },
       ],
       facts: [
         { k: "Pages in positions 5–20", v: "11" },
-        { k: "No-traffic links found", v: "23" },
+        { k: "Priority opportunities", v: "6" },
       ],
     },
   },
@@ -307,36 +296,36 @@ export const linkBuilding = {
 
   faqs: [
     {
-      q: "Can I see the list of sites before you place anything?",
-      a: "Yes, and it is the whole point of how we work. Every candidate domain reaches you with its Ahrefs metrics, organic traffic chart and a relevance note before outreach turns into a placement. You strike anything you do not want, without giving a reason. Most agencies answer this question defensively because they are reselling marketplace inventory they would rather you did not inspect.",
+      q: "What exactly is the link building programme?",
+      a: "It is our managed editorial link building service. We use AuthorityOS™ research to identify which of your pages are closest to moving and where their authority gap sits, then our strategists plan and execute the placements that close it. You get the research, the strategy and the delivery as one engagement.",
     },
     {
-      q: "Are these PBNs or paid links?",
-      a: "No. Private blog networks are sites built to sell links, and catching them is exactly what the gate is for. Every placement is on an independent publication with its own audience and editorial process. We do pay for editorial time on some publications, which is standard across the industry, but we will not work with a site that advertises a public price list, because that footprint is precisely what Google looks for.",
+      q: "What is AuthorityOS™?",
+      a: "AuthorityOS™ is the research methodology behind the work. It maps how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. You do not buy AuthorityOS™. It powers how we decide where to act.",
     },
     {
-      q: "Will this get my site penalised?",
-      a: "Manual actions come from obvious paid-link footprints, irrelevant placements at scale, and over-optimised anchors. The gate rejects the first two and the anchor mapping in step one handles the third. No client of ours has had a manual action. That said, nobody can give you an absolute guarantee about Google's behaviour, and anyone who does is selling you something.",
+      q: "Is this a link marketplace?",
+      a: "No, and we would like to keep it that way. Placements are earned through editorial outreach to publications we have direct relationships with. Our team writes to each publication's standard and works the piece through their process, which is why we scope on delivered placements rather than a catalogue of available inventory.",
     },
     {
-      q: "How long until I see movement?",
-      a: "Indexation takes two to six weeks per placement. Ranking movement on pages already sitting in positions 5–20 typically shows between months two and four. Pages starting beyond position 30 usually need content work alongside links and take longer. We report against the keyword set agreed in the audit, so you can see the trend rather than guess at it.",
+      q: "How is this different from Digital PR?",
+      a: "If you know your pages need authority, link building is likely what you need. Digital PR starts from a different question: what story would earn coverage in the first place? The answer often includes links, but it can also mean features, expert commentary or data studies. Many clients run both, with link building carrying the commercial pages and digital PR carrying the brand.",
     },
     {
-      q: "What happens if a link gets removed?",
-      a: "We monitor every placement for 12 months. If a publisher removes or nofollows a link inside that window we replace it on an equivalent domain at no charge. If a site's quality degrades badly after placement we flag it to you rather than wait for you to notice.",
+      q: "Can you guarantee a ranking?",
+      a: "No one can. What we can do is identify the pages where authority will make the most difference, build that authority from publications relevant to your subject, and report the position movement against the keyword set agreed at the start. Over the last twelve months 96% of our placements were indexed by Google, and we replace the ones that are not.",
     },
     {
-      q: "Do I get to choose the anchor text?",
-      a: "You get to approve it. We propose a mix in the audit — branded, partial-match and natural-phrase anchors in ratios that stay inside normal ranges for your niche. If you want a specific anchor on a specific page we will accommodate it, unless it pushes the profile into over-optimisation, in which case we will show you the numbers and say so.",
+      q: "How long before we see movement?",
+      a: "Indexation takes two to six weeks per placement. Movement on pages already sitting in positions 5–20 typically shows between months two and four. Pages starting beyond position 30 usually need content work alongside links and take longer. We report against the agreed keyword set so you can see the trend rather than guess at it.",
     },
     {
-      q: "What does it cost, and is there a contract?",
-      a: "A monthly retainer scoped on delivered placements rather than attempts or hours. What moves the number is the authority range, the monthly volume, the market and who writes the content — the pricing page breaks all four down. No setup fee. Three-month minimum because anything shorter cannot show a result, then month to month.",
+      q: "Do I see the publications before they go live?",
+      a: "Whenever you want to. Some clients review every candidate domain with its metrics before we proceed; others prefer to leave sourcing to us and read the monthly report. Either way the full list, with metrics and target pages, is in your reporting.",
     },
     {
-      q: "Do you offer white label for agencies?",
-      a: "Yes. Roughly a third of our work is fulfilment for other agencies. You get the same approval sheet under your own branding, reports you can forward to your client without editing, and we stay invisible on calls. Pricing is structured so you have margin to resell.",
+      q: "Who manages the programme?",
+      a: "People. You work with a senior strategist who interprets the AuthorityOS™ research, sets the priority order, coordinates the outreach and decides where the next placement should point. Roughly a third of our work is delivered white-label for other agencies on the same basis.",
     },
   ],
 };

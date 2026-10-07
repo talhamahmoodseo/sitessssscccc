@@ -55,7 +55,7 @@ const ServicesSection = () => {
         icon: Globe,
         title: "Gulf & International Media",
         content:
-          "Direct access to Khaleej Times, Arabian Business, and regional outlets most agencies cannot reach. High-authority coverage for brands targeting the Gulf and international markets.",
+          "Direct relationships with Khaleej Times, Arabian Business and regional outlets across the Gulf. High-authority coverage for brands entering the region.",
       },
       {
         icon: Newspaper,

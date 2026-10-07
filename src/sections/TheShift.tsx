@@ -238,9 +238,7 @@ const TheShift = () => {
               publications don't talk about you, you don't exist in the answer.
             </p>
             <p className="text-lg text-white/65 leading-relaxed mb-10 max-w-lg">
-              {
-                "Here's the part most agencies miss: every one of those surfaces trusts the same thing \u2014 "
-              }
+              {"Every one of those surfaces trusts the same thing \u2014 "}
               <span className="text-white font-semibold">
                 what real, authoritative sites say about you
               </span>
