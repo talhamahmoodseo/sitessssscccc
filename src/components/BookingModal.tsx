@@ -84,6 +84,7 @@ const BookingModal = () => {
 
               <h3 className="relative text-3xl xl:text-[2.1rem] font-bold text-navy-dark leading-tight mb-4">
                 15 minutes.
+                <br />
                 <span className="font-medium text-navy-dark/85">
                   Zero pitch.
                 </span>

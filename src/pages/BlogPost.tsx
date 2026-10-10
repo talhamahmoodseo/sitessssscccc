@@ -31,7 +31,9 @@ const BlogPost = () => {
     <PageLayout>
       <Seo title={s.title} description={s.excerpt} schema={u} />
       <div className="relative bg-navy-dark overflow-hidden pt-32 pb-16">
-        <div className={`absolute inset-0 ${s.grad} opacity-25`} />
+        <div
+          className={`absolute inset-0 ${s.grad} opacity-25`}
+        />
         <span
           className="absolute -bottom-16 -right-4 font-medium text-white/[0.08] text-[16rem] leading-none select-none"
           aria-hidden="true"
@@ -56,7 +58,7 @@ const BlogPost = () => {
               {" \u00b7 "}
               {s.date}
             </p>
-            <h1 className="text-balance text-3xl sm:text-4xl lg:text-[2.9rem] font-extrabold text-white leading-[1.12] tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] font-extrabold text-white leading-[1.12] tracking-tight mb-6">
               {s.title}
             </h1>
             <div className="flex items-center gap-4">
@@ -95,11 +97,8 @@ const BlogPost = () => {
                 {d.c}
               </h2>
             ) : d.t === "quote" ? (
-              <blockquote
-                key={h}
-                className="my-10 rounded-2xl border-l-[3px] border-mark-deep bg-mist px-7 py-7"
-              >
-                <p className="text-[19px] font-medium leading-relaxed text-navy-dark">
+              <blockquote key={h} className="border-l-2 border-gold pl-5 my-9">
+                <p className="font-medium text-xl text-navy-dark/80 leading-relaxed">
                   {d.c}
                 </p>
               </blockquote>
@@ -110,7 +109,7 @@ const BlogPost = () => {
                     key={m}
                     className="flex gap-3 text-[16px] text-navy-dark/70 leading-relaxed"
                   >
-                    <span className="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-mark-deep" />
+                    <span className="flex-none w-1.5 h-1.5 rounded-full bg-blue-accent mt-2.5" />
                     {x}
                   </li>
                 ))}
@@ -124,16 +123,11 @@ const BlogPost = () => {
               </p>
             ),
           )}
-        </motion.article>
-      </div>
-
-      <div className="bg-mist py-16 lg:py-20">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 rounded-2xl bg-white p-6 shadow-lift">
+          <div className="mt-14 flex items-center gap-4 bg-linen rounded-2xl p-6">
             <img
               src={asset("/images/talha-avatar.jpg")}
               alt="Talha Mahmood"
-              className="h-14 w-14 flex-none rounded-full object-cover ring-2 ring-mark"
+              className="flex-none w-14 h-14 rounded-full object-cover ring-2 ring-blue-accent/40"
             />
             <div>
               <p className="text-navy-dark font-bold text-[15px]">
@@ -148,10 +142,10 @@ const BlogPost = () => {
           {c && (
             <Link
               to={`/services/${c.slug}`}
-              className="group mt-5 flex items-center justify-between gap-4 rounded-2xl bg-navy-dark p-6 shadow-lift transition-colors duration-300 hover:bg-navy"
+              className="mt-5 flex items-center justify-between gap-4 bg-navy-dark rounded-2xl p-6 group hover:bg-[#1c2436] transition-colors duration-300"
             >
               <div>
-                <p className="mb-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white/70">
+                <p className="text-[10px] font-extrabold tracking-[0.16em] text-brand-soft uppercase mb-1.5">
                   Related service
                 </p>
                 <p className="text-white font-bold text-[16px]">
@@ -163,13 +157,12 @@ const BlogPost = () => {
               <ArrowUpRight className="w-5 h-5 text-white flex-none transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </Link>
           )}
-        </div>
+        </motion.article>
       </div>
-
       {a.length > 0 && (
-        <div className="bg-white py-20">
+        <div className="bg-linen py-20">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-balance text-2xl font-bold text-navy-dark mb-8">
+            <h2 className="text-2xl font-bold text-navy-dark mb-8">
               {"More on "}
               <span className="text-navy-dark/65">{s.category}</span>
             </h2>
@@ -185,10 +178,10 @@ const BlogPost = () => {
                     <p className="text-[10px] font-bold tracking-wider text-navy-dark/70 uppercase mb-1.5">
                       {d.date}
                     </p>
-                    <h3 className="text-[15.5px] font-bold text-navy-dark leading-snug group-hover:text-navy-dark/70 transition-colors duration-300 mb-2">
+                    <h3 className="text-[15.5px] font-bold text-navy-dark leading-snug group-hover:text-brand-soft transition-colors duration-300 mb-2">
                       {d.title}
                     </h3>
-                    <span className="inline-flex items-center gap-1 text-[12px] font-bold text-navy-dark">
+                    <span className="inline-flex items-center gap-1 text-[12px] font-bold text-blue-accent">
                       {"Read "}
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </span>

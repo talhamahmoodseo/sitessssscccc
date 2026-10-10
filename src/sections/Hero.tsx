@@ -565,7 +565,7 @@ Please send me a free visibility audit.`);
           <ArrowRight className="w-3.5 h-3.5 text-navy-dark/70" />
         </motion.a>
         <motion.h1
-          className="text-balance text-[2.75rem] sm:text-6xl lg:text-[4.1rem] font-semibold text-navy-dark leading-[1.02] tracking-[-0.035em] mb-6"
+          className="text-[2.75rem] sm:text-6xl lg:text-[4.1rem] font-semibold text-navy-dark leading-[1.02] tracking-[-0.035em] mb-6"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
@@ -581,9 +581,8 @@ Please send me a free visibility audit.`);
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
         >
-          Editorial backlinks, expert commentary and brand mentions on the
-          publications your category already cites — the footprint that wins
-          page one and the AI answer.
+          Editorial backlinks, HARO quotes and brand mentions on real
+          publications — the footprint that wins page one and the AI answer.
         </motion.p>
         <motion.div
           className="max-w-lg mx-auto"

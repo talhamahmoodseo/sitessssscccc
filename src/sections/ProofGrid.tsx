@@ -20,22 +20,19 @@ const span = (kind: "stat" | "quote") =>
   kind === "quote" ? "sm:col-span-2 lg:col-span-6" : "lg:col-span-3";
 
 const ProofGrid = () => (
-  <div className="relative bg-white pb-20 lg:pb-28">
+  <div className="relative bg-mist py-20 lg:py-28">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      {/* the scorecard rides up over the dark band above, so the two surfaces
-          interlock instead of simply butting together */}
-      <div className="relative -mt-14 rounded-[2rem] bg-white px-6 py-10 shadow-deep sm:px-10 lg:-mt-20 lg:px-14 lg:py-12">
-        <Annotation className="left-6 top-9 hidden w-[150px] xl:block">
+      <div className="relative mb-14">
+        <Annotation className="-top-6 left-0 hidden w-[160px] xl:block">
           see the numbers
         </Annotation>
 
-        <h2 className="text-balance mx-auto max-w-2xl text-center text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
-          Real clients.
-          <span className="text-navy-dark/65">Numbers they signed off on.</span>
+        <h2 className="mx-auto max-w-2xl text-center text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
+          Real results from real clients
         </h2>
       </div>
 
-      <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
         {PROOF_TILES.map((t, i) => (
           <div
             key={

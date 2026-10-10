@@ -20,9 +20,9 @@ ${e.message}`);
       window.location.href = `mailto:${QB}?subject=${u}&body=${d}`;
     },
     c =
-      "w-full rounded-xl border border-line bg-mist px-4 py-3 text-[14px] text-navy-dark placeholder:text-navy-dark/70 focus:outline-none focus:border-navy-dark focus:ring-2 focus:ring-navy-dark/15 transition-all duration-300";
+      "w-full rounded-xl border border-line bg-white px-4 py-3 text-[14px] text-navy-dark placeholder:text-navy-dark/70 focus:outline-none focus:border-blue-accent focus:ring-2 focus:ring-blue-accent/20 transition-all duration-300";
   return (
-    <div className="bg-mist py-24 lg:py-32">
+    <div className="bg-linen py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 items-start">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -33,44 +33,43 @@ ${e.message}`);
           <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
             Get in touch
           </p>
-          <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-6">
+          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-6">
             Not ready for a call?{" "}
             <span className="text-navy-dark/65">Write to us.</span>
           </h2>
-          <p className="text-[16px] text-navy-dark/75 leading-relaxed max-w-md mb-8">
-            A few lines about your site and the pages you want moving is enough.
-            A senior strategist replies with first questions, and the visibility
-            audit follows.
+          <p className="text-[16px] text-navy-dark/70 leading-relaxed max-w-md mb-8">
+            A few lines about your site and goals is enough. A senior strategist
+            replies within 24 hours with first questions — and a free visibility
+            audit within 48.
           </p>
-          <dl className="mb-8 grid max-w-sm grid-cols-2 gap-px overflow-hidden rounded-2xl border border-navy-dark/15 bg-navy-dark/15">
-            {[
-              [Clock, "24h", "to a reply from a strategist"],
-              [FileText, "48h", "to your visibility audit"],
-            ].map(([Icon, v, k]: any) => (
-              <div key={v} className="bg-mist px-5 py-5">
-                <Icon
-                  className="mb-3 h-4 w-4 text-navy-dark/70"
-                  aria-hidden="true"
-                />
-                <dt className="text-[1.9rem] font-semibold leading-none tracking-[-0.03em] text-navy-dark tabular-nums">
-                  {v}
-                </dt>
-                <dd className="mt-2 text-[12.5px] leading-snug text-navy-dark/75">
-                  {k}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="space-y-4 mb-8">
+            <div className="flex items-center gap-3">
+              <span className="flex-none w-9 h-9 rounded-xl bg-blue-accent/10 flex items-center justify-center">
+                <Clock className="w-4 h-4 text-blue-accent" />
+              </span>
+              <span className="text-[14px] font-semibold text-navy-dark/70">
+                Replies within 24 hours
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="flex-none w-9 h-9 rounded-xl bg-gold/15 flex items-center justify-center">
+                <FileText className="w-4 h-4 text-blue-accent" />
+              </span>
+              <span className="text-[14px] font-semibold text-navy-dark/70">
+                Free visibility audit within 48 hours
+              </span>
+            </div>
+          </div>
           <button
             onClick={openBooking}
-            className="inline-flex items-center gap-2 min-h-[44px] text-[14px] font-semibold text-navy-dark/80 underline decoration-navy-dark/25 underline-offset-[5px] transition-colors duration-300 hover:text-navy-dark hover:decoration-navy-dark"
+            className="inline-flex items-center gap-2 min-h-[44px] text-[14px] font-semibold text-blue-accent hover:text-navy-dark transition-colors duration-300"
           >
             Or book a 15-minute call instead
             <ArrowRight className="w-4 h-4" />
           </button>
         </motion.div>
         <motion.div
-          className="bg-white rounded-3xl border border-line p-7 shadow-deep sm:p-9"
+          className="bg-linen rounded-3xl border border-line p-7 sm:p-9"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}

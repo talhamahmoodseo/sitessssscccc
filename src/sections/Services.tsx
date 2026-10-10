@@ -25,49 +25,49 @@ const ServicesSection = () => {
         icon: Link2,
         title: "Authority Link Building",
         content:
-          "Editorial backlinks from DR 40+ publications with verified organic traffic, placed through editors we work with directly. Contextual anchors inside the body of a story — the links that still move Google rankings.",
+          "Editorial backlinks from DR 40+ publications with real, verified organic traffic. Contextual anchors inside real articles — the links that still move Google rankings, placed through editors we work with directly.",
       },
       {
         icon: Megaphone,
         title: "Digital PR & Brand Mentions",
         content:
-          "Features, expert commentary, HARO-style source placements and brand mentions on publications your buyers — and the answer engines — already read. Mentions are the raw material AI systems cite, so we build that footprint deliberately.",
+          "Features, expert quotes, HARO-style source placements, and brand mentions on publications your buyers — and AI models — already read. Mentions are the raw material AI engines cite. We build that footprint deliberately, not by accident.",
       },
       {
         icon: Target,
         title: "Guest Posts & Niche Edits",
         content:
-          "Original articles written to each publication's standard, plus contextual links added to aged, already-indexed pieces Google has trusted on your subject for years.",
+          "Original articles on vetted, niche-relevant sites, plus contextual links inserted into aged, already-indexed content. No footers, no sidebars, no link pages. You approve every domain first.",
       },
       {
         icon: ChartColumn,
         title: "AI Search Visibility (GEO)",
         content:
-          "We map which sources AI Overviews, ChatGPT and Claude already cite for your category queries, target placements on those sources, and track your citation footprint month over month.",
+          "We map where your competitors get cited across AI Overviews, ChatGPT, and target placements on the sources those engines already trust, and track your citation footprint month over month.",
       },
       {
         icon: Award,
-        title: "Our Publisher Relationships",
+        title: "Own Publisher Network",
         content:
-          "Years of editorial relationships mean a placement goes to an editor who knows us. The piece is written to their standard and worked through their process, which is why we scope on delivered placements rather than available inventory.",
+          "Years of relationship building mean we place through editors and site owners we know — not marketplaces. That is why we can show you every site, with full metrics, before anything goes live.",
       },
       {
         icon: Globe,
         title: "Gulf & International Media",
         content:
-          "Direct relationships with Khaleej Times, Arabian Business and regional outlets across the Gulf. High-authority coverage for brands entering the region.",
+          "Direct access to Khaleej Times, Arabian Business, and regional outlets most agencies cannot reach. High-authority coverage for brands targeting the Gulf and international markets.",
       },
       {
         icon: Newspaper,
-        title: "Reporting You Can Forward",
+        title: "Transparent Reporting",
         content:
-          "Live URLs, DR, traffic, anchor text, indexation status and AI citation tracking in every report, written against the keyword set agreed at the start so the trend is visible rather than asserted.",
+          "Live URLs, DR, traffic, anchor text, indexation status, and AI citation tracking in every report. Clean enough to forward to your boss or your clients — no vanity metrics, no padding.",
       },
       {
         icon: Users,
-        title: "A Senior Strategist on the Account",
+        title: "You Approve Everything",
         content:
-          "The person who interprets the the research is the person you talk to. One strategist sets the priority order, decides where the next placement should point, and is a WhatsApp or Slack message away.",
+          "Every domain is disclosed with metrics before placement, and a dedicated manager is one WhatsApp or Slack message away. You stay in control of your link profile at every step.",
       },
     ],
     s = e.slice(0, 4),
@@ -85,10 +85,10 @@ const ServicesSection = () => {
       },
     };
   return (
-    <div className="bg-white py-24 lg:py-32">
+    <div className="bg-linen py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -101,10 +101,10 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            What we run · Powered by our research
+            Our Link Building Services
           </motion.p>
           <motion.h2
-            className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark max-w-4xl mx-auto"
+            className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark leading-tight max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -115,32 +115,21 @@ const ServicesSection = () => {
             answers happen.
           </motion.h2>
           <motion.p
-            className="mt-6 text-[16px] leading-relaxed text-navy-dark/75 max-w-2xl mx-auto"
+            className="mt-6 text-navy-dark/70 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            the research tells us which of your pages sit closest to moving and
-            which publications carry weight in your category. These eight
-            workstreams are how we act on it — read the{" "}
+            As an expert{" "}
             <a
               href="/case-studies"
-              className="font-semibold text-blue-accent underline underline-offset-[3px] decoration-navy-dark/30 hover:decoration-navy-dark"
+              className="text-blue-accent hover:underline"
             >
-              case files
-            </a>{" "}
-            for what that has produced.
-          </motion.p>
-          <motion.p
-            className="mx-auto mt-8 max-w-xl border-t border-navy-dark/15 pt-7 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-navy-dark"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.45 }}
-          >
-            Most link building starts with available inventory. Ours starts with
-            the pages you need to move.
+              link building agency
+            </a>
+            , we deliver premium backlinks that drive results. Stand out and get
+            exceptional value for your business.
           </motion.p>
         </motion.div>
         <motion.div
@@ -158,12 +147,12 @@ const ServicesSection = () => {
                   <motion.div key={d} variants={c}>
                     <AccordionItem
                       value={`left-${d}`}
-                      className="bg-white rounded-2xl border-0 shadow-lift overflow-hidden transition-shadow duration-500 hover:shadow-deep"
+                      className="bg-white rounded-xl border-0 shadow-sm overflow-hidden"
                     >
                       <AccordionTrigger className="px-6 py-5 hover:no-underline group">
                         <div className="flex items-center gap-4 text-left">
                           <motion.div
-                            className="w-10 h-10 rounded-lg bg-mist flex items-center justify-center flex-shrink-0 group-hover:bg-mark/35 transition-colors"
+                            className="w-10 h-10 rounded-lg bg-navy-dark/5 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-accent/10 transition-colors"
                             whileHover={{ scale: 1.1, rotate: 5 }}
                           >
                             <H className="w-5 h-5 text-navy-dark group-hover:text-blue-accent transition-colors" />
@@ -175,7 +164,7 @@ const ServicesSection = () => {
                       </AccordionTrigger>
                       <AccordionContent className="px-6 pb-5">
                         <motion.p
-                          className="text-[14.5px] text-navy-dark/75 pl-14 leading-relaxed"
+                          className="text-navy-dark/70 pl-14 leading-relaxed"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}
@@ -197,12 +186,12 @@ const ServicesSection = () => {
                   <motion.div key={d} variants={c}>
                     <AccordionItem
                       value={`right-${d}`}
-                      className="bg-white rounded-2xl border-0 shadow-lift overflow-hidden transition-shadow duration-500 hover:shadow-deep"
+                      className="bg-white rounded-xl border-0 shadow-sm overflow-hidden"
                     >
                       <AccordionTrigger className="px-6 py-5 hover:no-underline group">
                         <div className="flex items-center gap-4 text-left">
                           <motion.div
-                            className="w-10 h-10 rounded-lg bg-mist flex items-center justify-center flex-shrink-0 group-hover:bg-mark/35 transition-colors"
+                            className="w-10 h-10 rounded-lg bg-navy-dark/5 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-accent/10 transition-colors"
                             whileHover={{ scale: 1.1, rotate: 5 }}
                           >
                             <H className="w-5 h-5 text-navy-dark group-hover:text-blue-accent transition-colors" />
@@ -214,7 +203,7 @@ const ServicesSection = () => {
                       </AccordionTrigger>
                       <AccordionContent className="px-6 pb-5">
                         <motion.p
-                          className="text-[14.5px] text-navy-dark/75 pl-14 leading-relaxed"
+                          className="text-navy-dark/70 pl-14 leading-relaxed"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}

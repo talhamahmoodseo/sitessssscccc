@@ -1,161 +1,100 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, Minus } from "lucide-react";
-import { FigCategoryClimb } from "@/components/LineArt";
-import { AccentDot, type Accent, Wordmark } from "@/components/brand";
-import { openBooking } from "@/lib/booking";
+import { Check, Minus } from "lucide-react";
 
 /**
  * Services hub depth sections.
  *
  * The hub's job is routing, not selling — the four service pages do that. So
- * it carries the standards that hold on all four, the decision matrix, the
- * pairings most engagements actually run, and the default order.
+ * it gets a decision matrix (situation down the side, service across the top)
+ * and the standards that hold on all four, which keeps each service page from
+ * repeating the same four promises.
  *
  * The matrix is this page's signature visual; no other page uses a grid read
- * in two directions. It is navigable (every column header is a route) and it
- * reflows into stacked decision cards on small screens rather than becoming a
- * horizontal scroll.
- *
- * Surfaces here, in page order: white → navy-dark → mark (the page's single
- * amber moment) → clay.
+ * in two directions.
  */
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
-const rise = (delay = 0) => ({
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-70px" },
-  transition: { duration: 0.55, delay, ease: EASE },
-});
 
 /* ----------------------------- shared standard ----------------------------- */
 
 const STANDARD = [
   {
-    t: "Research comes before outreach",
-    d: "Every engagement opens by mapping which of your pages sit closest to moving and which publications carry weight in your category. The plan follows the research.",
-  },
-  {
-    t: "Relevance decides scope",
-    d: "Placements are earned on publications with real readership on your subject. Scope follows what a page needs to move, measured against the keyword set agreed at the start.",
+    t: "You approve every domain",
+    d: "Whatever we are placing — a guest post, a mention, an expert quote — the publication reaches you with its metrics first. Strike anything, for any reason, without explaining why.",
   },
   {
     t: "Indexation is the definition of done",
-    d: "A placement counts once Google has indexed it and recorded it against the target page. Anything still unindexed at 60 days is replaced at no charge.",
+    d: "A placement that Google never indexes does not count and is not billed as a win. We chase the publisher, and replace it free if it stalls past 60 days.",
   },
   {
-    t: "Reporting you can forward",
-    d: "One live document per engagement: every placement, its metrics, the page it supports and its indexation status — ready to send to a client or a board without editing.",
+    t: "The rejections are in your report",
+    d: "Every month you see what we turned down on your behalf and why. On one engagement that was 31 domains against 14 placements.",
   },
-];
-
-const FACTS = [
-  { v: "96%", k: "of placements indexed, last 12 months" },
-  { v: "60", k: "day replacement window on any that are not" },
-  { v: "40+", k: "brands served across the four services" },
+  {
+    t: "One sheet, no dashboard login",
+    d: "Live document with every domain, anchor, target URL and indexation status. Yours to keep, and forwardable to a client without editing.",
+  },
 ];
 
 export const SharedStandard = () => (
-  <section className="bg-white py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <motion.div className="max-w-2xl" {...rise()}>
+  <div className="bg-white py-24 lg:py-32">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <motion.div
+        className="mb-12 max-w-2xl"
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6 }}
+      >
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
           True of all four
         </p>
-        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
-          Four Different Services.
-          <span className="text-navy-dark/65">The Same Four Rules.</span>
+        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark">
+          Four different services.
+          <br />
+          <span className="text-navy-dark/65">The same four rules.</span>
         </h2>
-        <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/75">
-          Whichever one you start with, the engagement is run the same way. The
-          four below are the part of the work that does not change.
-        </p>
       </motion.div>
 
-      <div className="mt-14 grid border-t border-line sm:grid-cols-2">
+      <div className="grid gap-x-12 gap-y-9 sm:grid-cols-2">
         {STANDARD.map((s, i) => (
           <motion.div
             key={s.t}
-            className={`flex gap-5 border-b border-line py-9 sm:gap-7 sm:py-10 ${
-              i % 2 === 0 ? "sm:border-r sm:pr-10" : "sm:pl-10"
-            }`}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
           >
-            <span className="shrink-0 text-[2.4rem] font-semibold leading-[0.85] tracking-[-0.04em] tabular-nums text-navy-dark/60 sm:text-[3rem]">
-              {i + 1}
-            </span>
-            <div>
-              <h3 className="mb-2 text-[17px] font-semibold leading-snug tracking-[-0.015em] text-navy-dark">
+            <div className="mb-2.5 flex items-center gap-3">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-navy-dark text-[11px] font-bold tabular-nums text-white">
+                {i + 1}
+              </span>
+              <h3 className="text-[16.5px] font-semibold leading-snug text-navy-dark">
                 {s.t}
               </h3>
-              <p className="text-[14px] leading-relaxed text-navy-dark/75">
-                {s.d}
-              </p>
             </div>
+            <p className="text-[14px] leading-relaxed text-navy-dark/75">
+              {s.d}
+            </p>
           </motion.div>
         ))}
       </div>
-
-      <motion.div
-        className="mt-14 grid items-center gap-10 rounded-3xl border border-line bg-butter/35 p-8 lg:grid-cols-[1.5fr_1fr] lg:p-10"
-        {...rise(0.05)}
-      >
-        <dl className="grid gap-7 sm:grid-cols-3">
-          {FACTS.map((f, i) => (
-            <div
-              key={f.k}
-              className={
-                i > 0 ? "sm:border-l sm:border-navy-dark/15 sm:pl-6" : ""
-              }
-            >
-              <dt className="text-[1.9rem] font-semibold leading-none tracking-[-0.03em] tabular-nums text-navy-dark">
-                {f.v}
-              </dt>
-              <dd className="mt-2 text-[12.5px] leading-snug text-navy-dark/80">
-                {f.k}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <div className="lg:border-l lg:border-navy-dark/15 lg:pl-10">
-          <p className="mb-3 text-[10.5px] font-bold uppercase tracking-[0.14em] text-navy-dark/80">
-            Recent programmes
-          </p>
-          <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1.5 text-[16.5px] text-navy-dark">
-            {["CapCut", "Ocuco", "Khaleej Times"].map((n) => (
-              <Wordmark key={n} name={n} />
-            ))}
-          </div>
-        </div>
-      </motion.div>
     </div>
-  </section>
+  </div>
 );
 
 /* ------------------------------- the matrix ------------------------------- */
 
-const COLS: { label: string; slug: string; accent: Accent }[] = [
-  { label: "Link Building", slug: "link-building", accent: "butter" },
-  { label: "Digital PR", slug: "digital-pr", accent: "mint" },
-  { label: "Brand Mentions", slug: "brand-mentions", accent: "lilac" },
-  { label: "Expert Quotes", slug: "haro-links", accent: "blush" },
-];
+const COLS = ["Link Building", "Digital PR", "Brand Mentions", "Expert Quotes"];
 
-/** 2 = where we would start, 1 = useful alongside, 0 = not the first move. */
+/** 2 = where to start, 1 = useful alongside, 0 = not the tool for this. */
 const ROWS: { s: string; note: string; v: number[] }[] = [
   {
     s: "Pages ranking 5–20 that will not move",
-    note: "Authority is the missing input. The page is already close enough that references are what decide it.",
+    note: "Authority is the missing input. Everything else is secondary until that is fixed.",
     v: [2, 1, 0, 1],
   },
   {
     s: "Competitors get named in AI answers, you do not",
-    note: "Engines assemble answers from a narrow set of sources. You need to be described on the ones they already read.",
+    note: "Engines cite a narrow set of sources. You need to be described on the ones they already read.",
     v: [1, 1, 2, 1],
   },
   {
@@ -165,17 +104,17 @@ const ROWS: { s: string; note: string; v: number[] }[] = [
   },
   {
     s: "Credibility needed before a raise or a sale",
-    note: "Named coverage and attributed quotes are the proof a buyer or an investor can check for themselves.",
+    note: "Named coverage and attributed quotes are what a buyer or an investor can actually check.",
     v: [0, 2, 1, 2],
   },
   {
     s: "Entering a market where you are unknown",
-    note: "Regional publications, regional relationships, longer lead times and far less competition for them.",
+    note: "Local publications, local relationships, longer lead times, far less competition.",
     v: [2, 2, 1, 0],
   },
   {
     s: "An agency that needs fulfilment under its own brand",
-    note: "White-label across all four, with reporting you can forward without editing.",
+    note: "White-label across all four, with reports you can forward without editing.",
     v: [2, 1, 1, 1],
   },
 ];
@@ -183,356 +122,92 @@ const ROWS: { s: string; note: string; v: number[] }[] = [
 const Cell = ({ v }: { v: number }) => {
   if (v === 2)
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.08em] text-navy-dark shadow-soft">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-navy-dark">
         <Check className="h-3 w-3" aria-hidden="true" />
         Start
       </span>
     );
   if (v === 1)
     return (
-      <span className="text-[11.5px] font-semibold text-white/75">
+      <span className="text-[11.5px] font-semibold text-white/70">
         Alongside
       </span>
     );
   return (
-    <>
-      <Minus className="mx-auto h-3.5 w-3.5 text-white/50" aria-hidden="true" />
-      <span className="sr-only">Not the first move</span>
-    </>
+    <Minus className="mx-auto h-3.5 w-3.5 text-white/40" aria-hidden="true" />
   );
 };
 
-const CELL_FILL: Record<Accent, string> = {
-  butter: "bg-butter",
-  mint: "bg-mint",
-  lilac: "bg-lilac",
-  blush: "bg-blush",
-  sky: "bg-sky",
-};
-
 export const Matrix = () => (
-  <section id="choose" className="scroll-mt-24 bg-mist py-24 lg:py-32">
+  <div className="bg-navy-dark py-24 lg:py-32">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <motion.div className="max-w-2xl" {...rise()}>
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
+      <motion.div
+        className="mb-12 max-w-2xl"
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
           Which one do you need
         </p>
-        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
-          Find your situation.{" "}
-          <span className="text-navy-dark/65">Read across.</span>
+        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
+          Find your situation,
+          <br />
+          <span className="text-white/70">read across</span>
         </h2>
-        <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/75">
-          Six situations we are asked about most. The marked column is where we
-          would put the first month of work; the rest usually come in behind it.
+        <p className="mt-5 text-[15.5px] leading-relaxed text-white/70">
+          Most engagements run two of the four. If your row has no{" "}
+          <span className="font-semibold text-white">Start</span>, say so on the
+          call — it usually means the answer is content work first.
         </p>
       </motion.div>
 
-      {/* legend — the four services, each with its own accent, each a link */}
-      <motion.div
-        className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3"
-        {...rise(0.05)}
-      >
-        {COLS.map((c) => (
-          <Link
-            key={c.slug}
-            to={`/services/${c.slug}`}
-            className="group inline-flex items-center gap-2.5 text-[13.5px] font-semibold text-navy-dark"
-          >
-            <AccentDot accent={c.accent} />
-            {c.label}
-            <ArrowUpRight className="h-3.5 w-3.5 text-navy-dark/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
-        ))}
-      </motion.div>
-
-      {/* one card per situation; the marked service carries the colour */}
-      <div className="mt-8 space-y-3">
-        {ROWS.map((r, i) => (
-          <motion.div
-            key={r.s}
-            className="grid gap-5 rounded-[22px] border border-line bg-white p-6 shadow-soft lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-10 lg:p-7"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.45, delay: i * 0.05 }}
-          >
-            <span className="text-[1.6rem] font-semibold leading-none tabular-nums text-navy-dark/25 lg:w-12">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-
-            <div>
-              <h3 className="text-[17px] font-semibold leading-snug tracking-[-0.015em] text-navy-dark">
-                {r.s}
-              </h3>
-              <p className="mt-1.5 max-w-xl text-[13.5px] leading-relaxed text-navy-dark/70">
-                {r.note}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2 lg:justify-end">
-              {COLS.map((c, j) =>
-                r.v[j] === 2 ? (
-                  <Link
-                    key={c.slug}
-                    to={`/services/${c.slug}`}
-                    className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[11.5px] font-bold text-navy-dark transition-transform duration-300 hover:-translate-y-0.5 ${CELL_FILL[c.accent]}`}
-                  >
-                    <Check className="h-3 w-3" aria-hidden="true" />
-                    {c.label}
-                  </Link>
-                ) : null,
-              )}
-              {COLS.map((c, j) =>
-                r.v[j] === 1 ? (
-                  <Link
-                    key={c.slug}
-                    to={`/services/${c.slug}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-2 text-[11.5px] font-semibold text-navy-dark/70 transition-colors duration-300 hover:border-navy-dark/30 hover:text-navy-dark"
-                  >
-                    <AccentDot accent={c.accent} className="h-1.5 w-1.5" />
-                    {c.label}
-                  </Link>
-                ) : null,
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      <motion.p
-        className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[12.5px] text-navy-dark/70"
-        {...rise(0.1)}
-      >
-        <span className="inline-flex items-center gap-2">
-          <span className="inline-flex h-4 w-7 items-center justify-center rounded-full bg-butter" />
-          Where we would start
-        </span>
-        <span className="inline-flex items-center gap-2">
-          <span className="inline-flex h-4 w-7 items-center justify-center rounded-full border border-line" />
-          Usually comes in behind it
-        </span>
-      </motion.p>
-    </div>
-  </section>
-);
-
-const PAIRS: {
-  share: string;
-  t: string;
-  d: string;
-  routes: { label: string; slug: string }[];
-}[] = [
-  {
-    share: "45%",
-    t: "Link Building + Digital PR",
-    d: "When the commercial pages and the brand both need to move. PR earns the references other publications notice; link building points that authority at the pages that convert.",
-    routes: [
-      { label: "Link Building", slug: "link-building" },
-      { label: "Digital PR", slug: "digital-pr" },
-    ],
-  },
-  {
-    share: "25%",
-    t: "Link Building + Brand Mentions",
-    d: "When rankings and AI answers matter equally. One research pass feeds both, and where the editorial allows it a single placement carries the link Google counts and the sentence a model repeats.",
-    routes: [
-      { label: "Link Building", slug: "link-building" },
-      { label: "Brand Mentions", slug: "brand-mentions" },
-    ],
-  },
-  {
-    share: "15%",
-    t: "Digital PR + Expert Quotes",
-    d: "When credibility has a deadline. Features carry the story; attributed quotes keep you in journalists' copy between them. Both produce something a buyer can check.",
-    routes: [
-      { label: "Digital PR", slug: "digital-pr" },
-      { label: "Expert Quotes", slug: "haro-links" },
-    ],
-  },
-];
-
-export const Pairings = () => (
-  <section className="bg-white py-24 lg:py-28">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <motion.div className="max-w-2xl" {...rise()}>
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/80">
-          How they combine
-        </p>
-        <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
-          Most Engagements Run Two.
-          <span className="text-navy-dark/70">Very Few Run Four.</span>
-        </h2>
-        <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/80">
-          Three pairings cover most of what we run. Each shares one research
-          pass, one plan and one report, so the second service asks far less of
-          your week than the first did.
-        </p>
-      </motion.div>
-
-      <div className="mt-12 grid gap-5 lg:grid-cols-3">
-        {PAIRS.map((p, i) => (
-          <motion.article
-            key={p.t}
-            className="flex flex-col rounded-2xl bg-white p-7 shadow-lift lg:p-8"
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, delay: i * 0.09, ease: EASE }}
-          >
-            <p className="flex items-baseline gap-2.5">
-              <span className="text-[2.1rem] font-semibold leading-none tracking-[-0.03em] tabular-nums text-navy-dark">
-                {p.share}
-              </span>
-              <span className="text-[12px] leading-snug text-navy-dark/70">
-                of current
-                <br />
-                engagements
-              </span>
-            </p>
-            <h3 className="mt-6 text-[17.5px] font-semibold leading-snug tracking-[-0.02em] text-navy-dark">
-              {p.t}
-            </h3>
-            <p className="mt-2.5 text-[14px] leading-relaxed text-navy-dark/75">
-              {p.d}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-t border-line pt-5">
-              {p.routes.map((r) => (
-                <Link
-                  key={r.slug}
-                  to={`/services/${r.slug}`}
-                  className="group inline-flex items-center gap-1.5 text-[13px] font-semibold text-navy-dark"
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px] border-collapse text-left">
+          <thead>
+            <tr>
+              <th className="w-[38%] border-b border-white/15 pb-4 pr-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70">
+                Your situation
+              </th>
+              {COLS.map((c) => (
+                <th
+                  key={c}
+                  className="border-b border-white/15 px-3 pb-4 text-center text-[12.5px] font-semibold text-white"
                 >
-                  {r.label}
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
-                </Link>
+                  {c}
+                </th>
               ))}
-            </div>
-          </motion.article>
-        ))}
-      </div>
-
-      <motion.p
-        className="mt-12 text-center text-[1.15rem] font-bold tracking-[-0.015em] text-navy-dark sm:text-[1.3rem]"
-        {...rise(0.1)}
-      >
-        Start where the gap is biggest. The rest is sequencing.
-      </motion.p>
-    </div>
-  </section>
-);
-
-/* ------------------------------- the sequence ------------------------------- */
-
-const LADDER = [
-  {
-    t: "Authority first",
-    d: "Editorial links are the base layer. Until the pages Google already likes carry the references to back them, everything built on top compounds slowly.",
-  },
-  {
-    t: "Then the coverage it earns",
-    d: "Digital PR and expert quotes turn that authority into something a buyer can see: named features, attributed commentary, a story with your name on it.",
-  },
-  {
-    t: "Then the answers",
-    d: "Brand mentions convert the same footprint into the third-party sources AI engines quote when someone asks who to hire.",
-  },
-];
-
-const SHAPE = [
-  { when: "Months 1–3", what: "Link building" },
-  { when: "Months 3–6", what: "+ Digital PR" },
-  { when: "Month 6 on", what: "+ Brand mentions" },
-];
-
-export const Sequence = () => (
-  <section className="bg-mist py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div className="grid gap-14 lg:grid-cols-[1fr_0.75fr] lg:gap-20">
-        <div>
-          <motion.div {...rise()}>
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/75">
-              If you are starting from nothing
-            </p>
-            <h2 className="text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.5rem]">
-              Authority First.
-              <span className="text-navy-dark/65">Then What It Earns.</span>
-            </h2>
-          </motion.div>
-
-          <div className="mt-10 border-t border-navy-dark/15">
-            {LADDER.map((l, i) => (
-              <motion.div
-                key={l.t}
-                className="flex gap-5 border-b border-navy-dark/15 py-7 sm:gap-7"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+            </tr>
+          </thead>
+          <tbody>
+            {ROWS.map((r, i) => (
+              <motion.tr
+                key={r.s}
+                className="border-b border-white/10 last:border-0"
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
               >
-                <span className="shrink-0 text-[2.4rem] font-semibold leading-[0.85] tracking-[-0.04em] tabular-nums text-navy-dark/60 sm:text-[2.9rem]">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="mb-2 text-[17px] font-semibold leading-snug tracking-[-0.015em] text-navy-dark">
-                    {l.t}
-                  </h3>
-                  <p className="text-[14px] leading-relaxed text-navy-dark/80">
-                    {l.d}
-                  </p>
-                </div>
-              </motion.div>
+                <th scope="row" className="py-6 pr-6 align-top font-normal">
+                  <span className="block text-[15.5px] font-semibold leading-snug text-white">
+                    {r.s}
+                  </span>
+                  <span className="mt-1.5 block text-[12.5px] leading-relaxed text-white/70">
+                    {r.note}
+                  </span>
+                </th>
+                {r.v.map((v, j) => (
+                  <td key={COLS[j]} className="px-3 py-6 text-center align-top">
+                    <Cell v={v} />
+                  </td>
+                ))}
+              </motion.tr>
             ))}
-          </div>
-        </div>
-
-        <motion.div
-          className="self-start rounded-3xl border border-line bg-mint/40 p-8"
-          {...rise(0.08)}
-        >
-          <p className="mb-6 text-[10.5px] font-bold uppercase tracking-[0.14em] text-navy-dark/80">
-            A typical nine months
-          </p>
-          <ol className="space-y-3">
-            {SHAPE.map((s, i) => (
-              <li key={s.when}>
-                <div className="rounded-xl bg-white px-5 py-4 shadow-soft">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-navy-dark/70">
-                    {s.when}
-                  </p>
-                  <p className="mt-1 text-[14.5px] font-bold text-navy-dark">
-                    {s.what}
-                  </p>
-                </div>
-                {i < SHAPE.length - 1 && (
-                  <ArrowRight
-                    className="mx-auto mt-3 h-4 w-4 rotate-90 text-navy-dark/60"
-                    aria-hidden="true"
-                  />
-                )}
-              </li>
-            ))}
-          </ol>
-          <FigCategoryClimb className="mx-auto mt-8 h-auto w-20 text-navy-dark/70" />
-        </motion.div>
+          </tbody>
+        </table>
       </div>
-
-      <motion.div
-        className="mt-14 flex flex-col items-start justify-between gap-7 border-t border-navy-dark/15 pt-10 sm:flex-row sm:items-center"
-        {...rise(0.05)}
-      >
-        <p className="max-w-xl text-[15.5px] leading-relaxed text-navy-dark/80">
-          That is the default order, not a rule. If the table above points
-          somewhere else for your situation, we start there instead — and say so
-          on the first call.
-        </p>
-        <button
-          onClick={openBooking}
-          className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-navy-dark px-7 py-3.5 text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-black"
-        >
-          Book a strategy call
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-        </button>
-      </motion.div>
     </div>
-  </section>
+  </div>
 );

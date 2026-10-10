@@ -18,7 +18,7 @@ const PageHero = ({
   children,
   compact = false,
 }: PageHeroProps) => (
-  <div className="relative bg-mist overflow-hidden">
+  <div className="relative bg-linen overflow-hidden">
     <motion.div
       className="absolute -right-40 -top-20 w-[520px] h-[520px] bg-transparent rounded-full blur-3xl"
       animate={{ scale: [1, 1.12, 1], opacity: [0.25, 0.4, 0.25] }}
@@ -40,7 +40,7 @@ const PageHero = ({
       </motion.p>
 
       <motion.h1
-        className="text-balance text-4xl sm:text-5xl lg:text-[3.7rem] font-semibold text-navy-dark leading-[1.05] tracking-[-0.02em]"
+        className="text-4xl sm:text-5xl lg:text-[3.7rem] font-semibold text-navy-dark leading-[1.05] tracking-[-0.02em]"
         initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.18 }}

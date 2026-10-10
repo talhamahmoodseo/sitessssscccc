@@ -61,8 +61,8 @@
     --mark-deep: 198 150 32; /* its underline */
     --emphasis: 24 24 24; /* emphasised text stays near-black */
 
-    /* Tile palette. Usable as a feature panel or a section ground, but at
-       most one saturated moment per page — see DESIGN.md. */
+    /* Tile palette. Reserved for stat tiles and persona illustrations —
+       never for background washes, chips or decorative blobs. */
     --tile-butter: 250 229 128;
     --tile-mint: 182 231 203;
     --tile-lilac: 209 204 248;
@@ -75,13 +75,6 @@
     --lilac: 209 204 248;
     --blush: 250 207 227;
     --sky: 193 222 250;
-  }
-
-  /* Headings wrap naturally and balance their lines instead of carrying a
-     hard <br/>. A forced break that reads well at one width breaks badly at
-     every other one — see DESIGN.md. */
-  .text-balance {
-    text-wrap: balance;
   }
 
   * {

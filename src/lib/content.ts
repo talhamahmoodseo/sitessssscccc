@@ -353,7 +353,7 @@ const BLOG_POSTS = [
     slug: "why-ai-engines-cite-some-brands",
     title: "Why AI Engines Cite Some Brands and Ignore Others",
     excerpt:
-      "Six months of tracking four engines across roughly 40 commercial queries. What decided which brands got named was not the site or the backlink count — it was who else had described them, and how.",
+      "We tracked citations across ChatGPT, Claude, and AI Overviews for six months. The pattern is uncomfortable for most SEO playbooks — and great news for anyone doing real digital PR.",
     category: "AI Search",
     date: "Jun 4, 2026",
     read: "8 min",
@@ -450,9 +450,9 @@ const BLOG_POSTS = [
   },
   {
     slug: "site-approval-workflow",
-    title: "What a Domain Has to Clear Before We Pitch It",
+    title: "The Site-Approval Workflow That Saves Our Clients Thousands",
     excerpt:
-      "The five checks a domain passes before anything is pitched — traffic trend, outbound profile, editorial standards, topical fit, crawl freshness — and why the client sees the list first.",
+      "Most link disasters are approved by nobody. Here is the exact checklist every domain passes before a placement happens — and why clients see it first.",
     category: "Link Building",
     date: "May 19, 2026",
     read: "7 min",
@@ -461,7 +461,7 @@ const BLOG_POSTS = [
     body: [
       {
         t: "p",
-        c: "Cost per link is the wrong unit. A placement on a site with no readership carries no signal, so the working cost is not what you paid for it — it is what you paid divided by the ones that actually count. That arithmetic is why we scope on delivered, indexed placements rather than volume, and why relevance is assessed before a publication enters the plan at all.",
+        c: "The most expensive links in this industry are the cheap ones. A $60 placement on a site that exists only to sell placements does not just fail to help — it sits in your profile as a flag, and cleaning it up later costs more than doing it right would have. After watching new clients arrive with profiles full of those flags, we made one rule non-negotiable: nothing is placed until the client has seen the domain and said yes.",
       },
       { t: "h2", c: "The checks every prospect passes first" },
       {
@@ -548,7 +548,7 @@ const BLOG_POSTS = [
     body: [
       {
         t: "p",
-        c: "Clients can watch their Google rankings move in a dashboard any morning they like. AI visibility has no equivalent: there is no console, no rank tracker, and no export. So we built a fixed routine, run it manually each month, and report the result next to the ranking data. Here is the routine.",
+        c: "Clients can watch their Google rankings move in a dashboard any morning they like. AI visibility has no such dashboard, which is why most agencies either ignore it or hand-wave it. We track it manually, on a fixed routine, and report it monthly next to the ranking data. Here is the routine.",
       },
       { t: "h2", c: "Build the query set once" },
       {
@@ -583,7 +583,7 @@ const BLOG_POSTS = [
     slug: "gulf-media-placements",
     title: "Gulf Media Placements: The Untapped Authority Channel",
     excerpt:
-      "Khaleej Times, Arabian Business, and the regional press that takes years of relationships to reach — why Gulf media is quietly one of the strongest authority plays for international brands.",
+      "Khaleej Times, Arabian Business, and the regional press most agencies cannot reach — why Gulf media is quietly one of the best authority plays for international brands.",
     category: "Digital PR",
     date: "Apr 17, 2026",
     read: "6 min",

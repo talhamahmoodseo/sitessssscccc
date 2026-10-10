@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Annotation, SectionTitle } from "@/components/brand";
-import { GLOW_SETS, GrainGlow } from "@/components/GrainGlow";
 import {
   FigAiAnswers,
   FigCategoryClimb,
@@ -25,8 +24,8 @@ const PERSONAS = [
         d: "Vetted placements delivered under your logo, with reports your client can read without you translating them.",
       },
       {
-        h: "Senior delivery on your cycle",
-        d: "One strategist assigned across your accounts, working to your reporting dates, so you can promise a month and hold it. Roughly a third of our work runs white-label.",
+        h: "No inventory surprises",
+        d: "Every domain disclosed before placement, so you never defend a link you have not seen.",
       },
     ],
   },
@@ -56,7 +55,7 @@ const PERSONAS = [
     points: [
       {
         h: "Real editorial, real traffic",
-        d: "DR 40–75 publications with verified organic audiences, a clean outbound profile and editors who run a genuine review process.",
+        d: "DR 40–75 publications with organic audiences — no PBNs, no high-DR shells.",
       },
       {
         h: "Indexation is the deliverable",
@@ -100,12 +99,20 @@ const PERSONAS = [
   },
 ];
 
+const TINTS = [
+  "from-butter/70",
+  "from-mint/70",
+  "from-lilac/70",
+  "from-blush/70",
+  "from-sky/70",
+];
+
 const Personas = () => {
   const [active, setActive] = useState(0);
   const p = PERSONAS[active];
 
   return (
-    <div className="bg-white py-20 lg:py-28">
+    <div className="bg-mist py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="relative">
           <Annotation className="-top-2 left-0 hidden w-[140px] xl:block">
@@ -116,7 +123,7 @@ const Personas = () => {
           </SectionTitle>
         </div>
 
-        <div className="rounded-[2rem] bg-white/70 p-3 shadow-deep sm:p-4">
+        <div className="rounded-[2rem] bg-white/70 p-3 ring-1 ring-navy-dark/[0.06] sm:p-4">
           {/* persona selector — each card carries its own line-art figure */}
           <div
             role="tablist"
@@ -133,8 +140,8 @@ const Personas = () => {
                   onClick={() => setActive(i)}
                   className={`group relative overflow-hidden rounded-2xl px-3 pb-3 pt-4 text-center transition-all duration-300 ${
                     on
-                      ? "bg-white shadow-lift ring-1 ring-navy-dark/10"
-                      : "bg-white/55 hover:bg-white"
+                      ? "bg-white ring-1 ring-navy-dark/10"
+                      : "bg-transparent hover:bg-white/60"
                   }`}
                 >
                   <span
@@ -146,20 +153,18 @@ const Personas = () => {
                   </span>
 
                   <span className="relative mt-3 block h-[104px]">
-                    {/* the reference's grainy multi-hue bloom: three colours
-                        mixed, displaced and grained, and a different mix for
-                        every tab so moving across the strip changes the colour */}
-                    <GrainGlow
-                      hues={GLOW_SETS[i % GLOW_SETS.length]}
-                      seed={i + 2}
-                      show={on}
-                      className="pointer-events-none absolute -inset-x-2 -bottom-3 -top-1 h-[120%] w-[116%] -translate-x-[7%]"
+                    {/* the tint only appears under the active figure */}
+                    <motion.span
+                      className={`absolute inset-x-3 bottom-0 h-12 rounded-full bg-gradient-to-t ${TINTS[i]} to-transparent blur-xl`}
+                      initial={false}
+                      animate={{ opacity: on ? 1 : 0 }}
+                      transition={{ duration: 0.4 }}
                     />
                     <item.Fig
                       className={`relative mx-auto h-full w-auto transition-all duration-500 ${
                         on
                           ? "text-navy-dark/80"
-                          : "text-navy-dark/35 group-hover:text-navy-dark/55"
+                          : "text-navy-dark/25 group-hover:text-navy-dark/40"
                       }`}
                     />
                   </span>
@@ -168,7 +173,7 @@ const Personas = () => {
             })}
           </div>
 
-          <div className="mt-3 border-t border-navy-dark/15 pt-8 sm:mt-4 sm:pt-10">
+          <div className="mt-3 border-t border-navy-dark/[0.07] pt-8 sm:mt-4 sm:pt-10">
             <motion.div
               key={p.id}
               className="grid gap-10 px-2 pb-4 sm:px-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16"
@@ -182,14 +187,14 @@ const Personas = () => {
                 </h3>
                 <Link
                   to={p.href}
-                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-[13.5px] font-semibold text-navy-dark shadow-soft transition-shadow duration-300 hover:shadow-lift"
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl border border-navy-dark/20 bg-white px-5 py-3 text-[13.5px] font-semibold text-navy-dark transition-colors duration-300 hover:border-navy-dark"
                 >
                   Explore {p.tab.toLowerCase()} solutions
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
 
-              <div className="divide-y divide-navy-dark/15">
+              <div className="divide-y divide-navy-dark/[0.08]">
                 {p.points.map((pt) => (
                   <div key={pt.h} className="py-5 first:pt-0 last:pb-0">
                     <h4 className="text-[16.5px] font-semibold text-navy-dark">

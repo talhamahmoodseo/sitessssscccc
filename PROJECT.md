@@ -277,18 +277,11 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
 
 ## 9. Known issues and traps
 
-- **`shadow-soft`, `shadow-deep`, `shadow-lift` are now real.** They were
-  undefined no-ops for most of this project's life — referenced 23 times in
-  markup and rendering as nothing, which was a large part of why pages read
-  flat. They are defined in `tailwind.config.js`, tinted with ink not black.
-- **Read `DESIGN.md` before changing any section background.** There are
-  exactly four section grounds — `mist`, `white`, `stone`, `navy-dark` — and
-  nothing else is ever one. `clay`, `espresso`, `mark` and the pastels are for
-  artwork and small components only. Colour lives in charts, mocks and the hero
-  artifact, the way amplemarket.com does it; putting colour in section
-  backgrounds is what made the site look inconsistent in an earlier pass.
-- **No `<br/>` inside a heading**, except between complete sentences. Headings
-  carry `.text-balance` (`text-wrap: balance`) and wrap naturally.
+- **`shadow-soft`, `shadow-deep`, `shadow-lift` are intentionally undefined.**
+  They appear in markup but were never defined in the original Tailwind config,
+  so they render as no-ops. They are left undefined so the build matches what
+  was verified against the original. Defining them will change the look of many
+  cards at once — fine, but do it deliberately.
 - **Keep `lucide-react` on the 0.x line.** 1.x renames exports (`Linkedin` →
   `LinkedinIcon`) and changes some icon geometry. Pinned at 0.577.
 - **`noImplicitAny` is `false`** in `tsconfig.json`, a concession to the

@@ -1,17 +1,12 @@
 import { motion } from "motion/react";
-import { Minus } from "lucide-react";
+import { X } from "lucide-react";
 
 /**
- * The reporting artefacts a published case file carries: the growth curve, the
- * indexation report, and the sourcing notes.
+ * The three artefacts the case-studies index promises are in "every file":
+ * the growth chart, the indexation report, and the domains we turned down.
  *
- * Each one takes a `dark` flag so it can sit on `espresso` / `navy-dark` as
- * well as on a light ground — white cards floating on a dark surface, bordered
- * inset panels where a card would be too heavy.
- *
- * Sourcing notes are deliberately subordinate. They are part of the record, not
- * a selling point, so they carry a small label rather than a section headline
- * and they report the reason without drawing a conclusion from it.
+ * They were missing from the detail pages, so the index was advertising
+ * something the files did not contain. These close that gap.
  */
 
 type Indexation = {
@@ -50,7 +45,7 @@ export const GrowthChart = ({
   );
 
   return (
-    <div className="rounded-3xl bg-white p-7 shadow-lift lg:p-9">
+    <div className="rounded-3xl border border-line bg-white p-7 lg:p-9">
       <div className="mb-7 flex flex-wrap items-end justify-between gap-5">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-dark/70">
@@ -142,13 +137,7 @@ export const GrowthChart = ({
 
 /* -------------------------- the indexation report -------------------------- */
 
-export const IndexationReport = ({
-  data,
-  dark = false,
-}: {
-  data: Indexation;
-  dark?: boolean;
-}) => (
+export const IndexationReport = ({ data }: { data: Indexation }) => (
   <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
     <dl className="grid grid-cols-3 gap-4 self-start lg:grid-cols-1">
       {[
@@ -158,7 +147,7 @@ export const IndexationReport = ({
       ].map((e, i) => (
         <motion.div
           key={e.k}
-          className="rounded-2xl bg-white p-5 shadow-lift lg:flex lg:items-baseline lg:justify-between lg:gap-6 lg:p-6"
+          className={`rounded-2xl border border-line bg-white p-5 lg:flex lg:items-baseline lg:justify-between lg:gap-6 lg:p-6`}
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -180,75 +169,44 @@ export const IndexationReport = ({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: 0.1 }}
     >
-      <p
-        className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${
-          dark ? "text-white/70" : "text-navy-dark/70"
-        }`}
-      >
-        Where indexation slowed, and what we did
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-dark/70">
+        What went wrong, and what we did
       </p>
-      <p
-        className={`mt-4 text-[15.5px] leading-[1.65] ${
-          dark ? "text-white/80" : "text-navy-dark/80"
-        }`}
-      >
+      <p className="mt-4 text-[15.5px] leading-[1.65] text-navy-dark/80">
         {data.note}
       </p>
     </motion.div>
   </div>
 );
 
-/* ----------------------------- sourcing notes ----------------------------- */
+/* ---------------------------- what we rejected ---------------------------- */
 
-export const SourcingNotes = ({
+export const RejectedHere = ({
   items,
   reviewed,
   placed,
-  dark = false,
 }: {
   items: Rejection[];
   reviewed: number;
   placed: number;
-  dark?: boolean;
 }) => (
-  <div>
+  <>
     <motion.p
-      className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${
-        dark ? "text-white/70" : "text-navy-dark/70"
-      }`}
+      className="mb-9 max-w-2xl text-[15.5px] leading-relaxed text-navy-dark/75"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      Sourcing notes
-    </motion.p>
-    <motion.p
-      className={`mt-4 max-w-2xl text-[15px] leading-[1.65] ${
-        dark ? "text-white/75" : "text-navy-dark/75"
-      }`}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.05 }}
-    >
-      {`Research surfaced ${reviewed} candidate domains for this engagement and the programme placed on ${placed}. Three of the candidates we did not use are below, with the reason recorded at the time.`}
+      {`We reviewed ${reviewed} domains on this engagement and placed on ${placed}. Three of the rejections are below, with the reason, because what we refused says more about the work than what we ran.`}
     </motion.p>
 
-    <div
-      className={`mt-7 overflow-hidden rounded-2xl border ${
-        dark ? "border-white/15 bg-white/[0.04]" : "border-line bg-white"
-      }`}
-    >
+    <div className="overflow-hidden rounded-3xl border border-line bg-white">
       {items.map((r, i) => (
         <motion.div
           key={r.site}
-          className={`grid gap-3 px-6 py-5 sm:grid-cols-[1fr_auto] sm:items-start lg:px-7 ${
-            i
-              ? dark
-                ? "border-t border-white/12"
-                : "border-t border-line"
-              : ""
+          className={`grid gap-4 p-6 sm:grid-cols-[1fr_auto] sm:items-start lg:p-7 ${
+            i ? "border-t border-line" : ""
           }`}
           initial={{ opacity: 0, x: -12 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -257,40 +215,20 @@ export const SourcingNotes = ({
         >
           <div>
             <div className="flex items-center gap-2.5">
-              <Minus
-                className={`h-4 w-4 shrink-0 ${
-                  dark ? "text-white/45" : "text-navy-dark/45"
-                }`}
-                aria-hidden="true"
-              />
-              <h3
-                className={`text-[15.5px] font-semibold ${
-                  dark ? "text-white" : "text-navy-dark"
-                }`}
-              >
+              <X className="h-4 w-4 shrink-0 text-gap" aria-hidden="true" />
+              <h3 className="text-[16px] font-semibold text-navy-dark">
                 {r.site}
               </h3>
             </div>
-            <p
-              className={`mt-2.5 max-w-2xl pl-[26px] text-[13.5px] leading-relaxed ${
-                dark ? "text-white/70" : "text-navy-dark/75"
-              }`}
-            >
+            <p className="mt-2.5 max-w-2xl pl-[26px] text-[14px] leading-relaxed text-navy-dark/75">
               {r.reason}
             </p>
           </div>
-          <span
-            className={`shrink-0 text-[13px] font-bold tabular-nums sm:pt-1 ${
-              dark ? "text-white/70" : "text-navy-dark/70"
-            }`}
-          >
+          <span className="shrink-0 text-[13px] font-bold tabular-nums text-navy-dark/70 sm:pt-1">
             {r.metric}
           </span>
         </motion.div>
       ))}
     </div>
-  </div>
+  </>
 );
-
-/** Previous export name, kept so nothing that imported it breaks. */
-export const RejectedHere = SourcingNotes;

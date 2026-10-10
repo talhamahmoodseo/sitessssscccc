@@ -24,12 +24,12 @@ export const SERVICES = [
       { v: 96, suffix: "%", label: "Indexation rate, last 12 months" },
     ],
     problem: {
-      eyebrow: "Editorial authority",
-      pre: "Rankings follow",
-      em: "credible references",
+      eyebrow: "The problem",
+      pre: "Most link building is built to",
+      em: "invoice you, not rank you",
       paras: [
-        "Google does not read your page in isolation. It weighs how many credible, independent publications have chosen to reference it, and how closely those publications sit to your subject.",
-        "We maintain our own publisher network, earn placements through direct editorial relationships, and treat a placement as delivered once Google has indexed it and recorded it against the target page.",
+        "The industry runs on volume: marketplace inventory resold at markup, content-farm placements that never get crawled, and reports that count links instead of outcomes. The site owner never sees the domains until the invoice arrives.",
+        "We built the opposite. A publisher network we maintain ourselves, client approval before any placement, and a definition of done that includes Google indexing the link and the target keyword responding.",
       ],
     },
     deliverables: [
@@ -153,7 +153,7 @@ export const SERVICES = [
       em: "paid noise",
       paras: [
         "Most “digital PR” is a press release pushed through a wire service — distribution nobody reads, on pages no editor chose, with zero authority transfer. It produces a PDF of coverage and not a single buyer.",
-        "Real coverage is a story an editor decides to run. That needs an angle worth running and a relationship that gets it read. We build both, including across Gulf business media.",
+        "Real coverage is a story an editor decides to run. That needs an angle worth running and a relationship that gets it read. We build both — including Gulf business media most agencies cannot reach.",
       ],
     },
     deliverables: [
@@ -171,7 +171,7 @@ export const SERVICES = [
       },
       {
         t: "Gulf & international media",
-        d: "Khaleej Times, Arabian Business and regional outlets we place in regularly.",
+        d: "Khaleej Times, Arabian Business and regional outlets most agencies have no path into.",
       },
       {
         t: "Story angle development",
@@ -538,7 +538,7 @@ export const SectionLabel = ({ children }: { children: ReactNode }) => (
 
 export const SectionTitle = ({ children }: { children: ReactNode }) => (
   <motion.h1
-    className="text-balance text-[2.5rem] sm:text-5xl lg:text-[3.5rem] font-semibold text-navy-dark leading-[1.03] tracking-[-0.035em] mb-6"
+    className="text-[2.5rem] sm:text-5xl lg:text-[3.5rem] font-semibold text-navy-dark leading-[1.03] tracking-[-0.035em] mb-6"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.65, delay: 0.05 }}
@@ -630,7 +630,7 @@ export const SectionHead = ({
         {eyebrow}
       </p>
     )}
-    <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
+    <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
       {children}
     </h2>
   </motion.div>
@@ -640,7 +640,7 @@ export const SectionHead = ({
 export const OtherServices = ({ current }: { current: string }) => (
   <div className="bg-mist py-20">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-balance text-2xl font-semibold text-navy-dark tracking-[-0.02em] mb-7">
+      <h2 className="text-2xl font-semibold text-navy-dark tracking-[-0.02em] mb-7">
         Other services
       </h2>
       <div className="grid sm:grid-cols-3 gap-4">
@@ -648,12 +648,13 @@ export const OtherServices = ({ current }: { current: string }) => (
           <Link
             key={s.slug}
             to={`/services/${s.slug}`}
-            className={`group rounded-[22px] p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift ${s.tint}`}
+            className="group rounded-2xl border border-line bg-white p-6 hover:-translate-y-1 hover:shadow-lift transition-all duration-500"
           >
-            <span className="mb-10 block text-[16.5px] font-semibold text-navy-dark">
+            <span className={`block w-10 h-10 rounded-xl ${s.tint} mb-4`} />
+            <span className="block text-[16px] font-semibold text-navy-dark mb-1.5">
               {s.nav}
             </span>
-            <span className="text-[13px] font-semibold text-navy-dark/75 transition-colors duration-300 group-hover:text-navy-dark">
+            <span className="text-[13px] text-navy-dark/70 group-hover:text-navy-dark transition-colors duration-300">
               Explore →
             </span>
           </Link>

@@ -9,43 +9,6 @@ const stroke = {
   strokeLinejoin: "round",
 } as const;
 
-/**
- * The hero craft — a sketched rocket rather than a flat dart.
- *
- * The reference artifact reads as a hand-drawn character with a face, so this
- * is drawn in the same loose line work as the other figures in this file
- * (round caps, slightly irregular curves) instead of as a clean geometric
- * shape. Nose points up-right, exhaust trails from the lower left, which is
- * the direction the fluid flows.
- */
-export const CraftFigure = ({ className = "" }: FigProps) => (
-  <svg viewBox="0 0 220 180" className={className} aria-hidden="true">
-    <g
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* fuselage */}
-      <path d="M196 22 C150 30 112 56 86 94 C78 106 74 116 72 124 C84 126 96 124 108 120 C146 106 176 78 192 44 C195 37 196 29 196 22 Z" />
-      {/* nose highlight */}
-      <path d="M186 32 C176 50 162 66 146 80" strokeWidth="1.6" />
-      {/* porthole */}
-      <circle cx="150" cy="66" r="13" />
-      <circle cx="150" cy="66" r="5" strokeWidth="1.6" />
-      {/* upper fin */}
-      <path d="M126 44 C132 30 142 20 156 16 C150 28 146 38 144 50" />
-      {/* lower fin */}
-      <path d="M96 108 C80 112 66 120 58 132 C72 132 86 130 98 126" />
-      {/* exhaust ticks, pointing back down-left into the fluid */}
-      <path d="M66 134 C56 142 46 150 34 156" strokeWidth="1.8" />
-      <path d="M78 142 C70 150 62 158 52 164" strokeWidth="1.6" />
-      <path d="M54 124 C44 128 34 132 24 134" strokeWidth="1.6" />
-    </g>
-  </svg>
-);
-
 export const PaperPlaneFigure = ({ className = "" }: FigProps) => (
   <svg viewBox="0 0 130 92" className={className} aria-hidden="true">
     {/* The dart is drawn as two folded surfaces so it reads three-dimensional

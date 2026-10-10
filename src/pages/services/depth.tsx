@@ -50,7 +50,7 @@ export const RejectStrip = ({
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
           {eyebrow}
         </p>
-        <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.9rem]">
+        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2.9rem]">
           {title}
         </h2>
         <p className="mt-5 text-[15.5px] leading-relaxed text-white/70">
