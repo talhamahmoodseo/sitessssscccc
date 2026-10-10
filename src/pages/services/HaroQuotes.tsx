@@ -27,7 +27,7 @@ import { openBooking } from "@/lib/booking";
  *
  * Tone rules it holds to (see content/haroQuotes.ts):
  *   - describes our own work, experience and results; never what others do wrong
- *   - credibility from AuthorityOS™, explained openly, and from concrete figures
+ *   - credibility from our research, explained openly, and from concrete figures
  *   - exactly one comparison, aimed at a category of approach, and it sits in
  *     the process section
  *   - honest about the limits: modest volume, a third of quotes unlinked

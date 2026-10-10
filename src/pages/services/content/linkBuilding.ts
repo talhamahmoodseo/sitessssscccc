@@ -6,7 +6,7 @@
  *   - lead with the client's situation and the outcome, never with what other
  *     agencies do wrong
  *   - a named, openly explained methodology (theirs: AnswerOS™; ours:
- *     AuthorityOS™) that carries the credibility instead of a process detail
+ *     our research) that carries the credibility instead of a process detail
  *   - "For years, we've helped..." — position as established, not as the
  *     honest exception to a bad industry
  *   - exactly one comparison, aimed at a *category* of approach rather than at
@@ -23,11 +23,12 @@ export const linkBuilding = {
   eyebrow: "Link Building",
 
   h1: {
-    pre: "Your Best Pages Are Ready to Rank.",
-    em: "They're Waiting on Authority.",
+    pre: "Your best pages are close.",
+    em: "They need other sites to back them up.",
   },
   sub: "Our link building programme finds the pages closest to moving, maps the publications shaping your category, and earns the editorial links that carry those pages into the positions that generate revenue.",
-  credit: "Powered by AuthorityOS™ research. Led by senior strategists.",
+  credit:
+    "Research first, then outreach. Run by senior strategists, not account managers.",
 
   /** Hero artefact: the authority gap, the way dofollow's hero shows the
    *  visibility gap. About the client's opportunity, not anyone's failings. */
@@ -52,7 +53,7 @@ export const linkBuilding = {
         you: true,
       },
     ],
-    calloutLabel: "AuthorityOS™ opportunity",
+    calloutLabel: "our research opportunity",
     callout:
       "Find which publications are putting them there, then earn your place among them.",
   },
@@ -65,8 +66,8 @@ export const linkBuilding = {
   problem: {
     eyebrow: "Editorial authority",
     heading: {
-      pre: "Great Content Doesn't",
-      em: "Guarantee You'll Rank.",
+      pre: "A strong page still needs",
+      em: "other sites to back it up.",
     },
     paras: [
       "You can publish the strongest page in your category. Match search intent exactly. Build a brand people trust. And still sit on page two while a thinner page holds the position you want.",
@@ -106,7 +107,7 @@ export const linkBuilding = {
 
   framework: {
     eyebrow: "How the programme runs",
-    heading: { pre: "Find the Gap.", em: "Then Close It." },
+    heading: { pre: "How the work runs,", em: "month by month." },
     lede: "Knowing you need more authority is not particularly useful if nobody tells you which pages need it or where it should come from. The programme does both.",
     items: [
       {
@@ -146,7 +147,7 @@ export const linkBuilding = {
 
   movement: {
     eyebrow: "Real movement",
-    heading: { pre: "From Page Two", em: "to Page One." },
+    heading: { pre: "What this looked like", em: "for one client." },
     context: "B2B SaaS · Customer support software",
     tiles: [
       { label: "Domain Rating", value: "35 → 65" },
@@ -161,8 +162,8 @@ export const linkBuilding = {
 
   methodology: {
     eyebrow: "The intelligence behind the work",
-    heading: { pre: "Powered by", em: "AuthorityOS™" },
-    lede: "How do we know where to focus? AuthorityOS™. It is our research methodology for understanding how Google reads your category, which publications carry weight inside it, and where your authority gap actually sits.",
+    heading: { pre: "How we decide", em: "where to place." },
+    lede: "How do we know where to focus? our research. It is our research methodology for understanding how Google reads your category, which publications carry weight inside it, and where your authority gap actually sits.",
     columns: [
       {
         label: "Understand",
@@ -185,37 +186,39 @@ export const linkBuilding = {
         d: "We turn that research into a ranked plan: the target pages, the authority each needs, and the order to build it in.",
       },
     ],
-    flowFrom: { t: "AuthorityOS™", d: "Finds the opportunity" },
+    flowFrom: { t: "our research", d: "Finds the opportunity" },
     flowTo: { t: "The programme", d: "Goes after it" },
   },
 
   /* ------------------------------------------------------------- positioning */
 
   positioning: {
-    eyebrow: "Research + execution",
+    eyebrow: "How we work together",
     heading: {
-      pre: "Most Link Building Starts With a List.",
-      em: "Ours Starts With Your Pages.",
+      pre: "You decide how involved you want to be.",
+      em: "We work either way.",
     },
-    lede: "Knowing you need more links is obvious. Knowing which pages need them, and which publications will actually move those pages, is the work.",
+    lede: "Some clients want to see every domain before we approach it. Others hand us the target pages and a budget and would rather read the monthly report. Both work, and you can change your mind partway through.",
     them: {
-      label: "Most link building",
+      label: "If you want to be hands-on",
       items: [
-        "Starts from available inventory",
-        "Delivers a volume of links",
-        "Reports what was placed",
+        "Every candidate domain reaches you with its metrics first",
+        "You strike anything, for any reason",
+        "Anchors and target pages agreed before outreach starts",
+        "Common with agencies reselling to their own clients",
       ],
     },
     us: {
-      label: "This programme",
+      label: "If you want it handled",
       items: [
-        "Starts from your target pages",
-        "Builds authority where it compounds",
-        "Reports what moved",
+        "Give us the pages that matter and the budget",
+        "We source, vet, write and place against the agreed plan",
+        "You see the full list in the monthly report",
+        "We flag anything unusual rather than waiting to be asked",
       ],
     },
-    line: "Most link building starts with a list. Ours starts with your pages.",
-    ctaLabel: "See What the Programme Includes",
+    line: "Tell us which of those sounds like you on the first call.",
+    ctaLabel: "See what the programme includes",
   },
 
   /* ------------------------------------------------------------------ moves */
@@ -223,8 +226,8 @@ export const linkBuilding = {
   moves: {
     eyebrow: "The right move > more moves",
     heading: {
-      pre: "Not Every Ranking Problem",
-      em: "Needs Another Link.",
+      pre: "Sometimes links are not",
+      em: "what the page needs.",
     },
     paras: [
       "Sometimes it does. Sometimes the page needs depth before it can hold a position. Sometimes the authority is already there and the internal linking is burying it.",
@@ -261,7 +264,7 @@ export const linkBuilding = {
 
   context: {
     eyebrow: "Built on what lasts",
-    heading: { pre: "Google Changed.", em: "What Counts as a Vote Didn't." },
+    heading: { pre: "Search keeps changing.", em: "What earns trust has not." },
     paras: [
       "For years we have helped B2B and e-commerce brands build authority beyond their own websites. Algorithm updates changed how results are assembled. They did not erase the value of being referenced in the right places.",
       "We built better research around what we have always understood: where your brand is cited matters.",
@@ -276,7 +279,10 @@ export const linkBuilding = {
   /* ----------------------------------------------------------------- close */
 
   close: {
-    heading: { pre: "Find Out Where Your", em: "Authority Gap Is." },
+    heading: {
+      pre: "Find out where you stand",
+      em: "against your competitors.",
+    },
     lede: "See where your profile stands, which publications are carrying your competitors, and where there is an opportunity to change it.",
     ctaLabel: "Request Pricing",
     snapshot: {
@@ -297,11 +303,11 @@ export const linkBuilding = {
   faqs: [
     {
       q: "What exactly is the link building programme?",
-      a: "It is our managed editorial link building service. We use AuthorityOS™ research to identify which of your pages are closest to moving and where their authority gap sits, then our strategists plan and execute the placements that close it. You get the research, the strategy and the delivery as one engagement.",
+      a: "It is our managed editorial link building service. We use the research to identify which of your pages are closest to moving and where their authority gap sits, then our strategists plan and execute the placements that close it. You get the research, the strategy and the delivery as one engagement.",
     },
     {
-      q: "What is AuthorityOS™?",
-      a: "AuthorityOS™ is the research methodology behind the work. It maps how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. You do not buy AuthorityOS™. It powers how we decide where to act.",
+      q: "What is our research?",
+      a: "our research is the research methodology behind the work. It maps how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. You do not buy our research. It powers how we decide where to act.",
     },
     {
       q: "Is this a link marketplace?",
@@ -325,7 +331,7 @@ export const linkBuilding = {
     },
     {
       q: "Who manages the programme?",
-      a: "People. You work with a senior strategist who interprets the AuthorityOS™ research, sets the priority order, coordinates the outreach and decides where the next placement should point. Roughly a third of our work is delivered white-label for other agencies on the same basis.",
+      a: "People. You work with a senior strategist who interprets the the research, sets the priority order, coordinates the outreach and decides where the next placement should point. Roughly a third of our work is delivered white-label for other agencies on the same basis.",
     },
   ],
 };

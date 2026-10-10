@@ -15,9 +15,9 @@ const FAQ = () => {
           "Three things: editorial backlinks (guest posts, niche edits, authority links on DR 40+ sites), brand mentions and PR features (expert commentary, roundup inclusions, press coverage), and Gulf or international media placements. Links move your Google rankings. Mentions build the citation footprint answer engines pull from.",
       },
       {
-        question: "What is AuthorityOS™?",
+        question: "What is our research?",
         answer:
-          "AuthorityOS™ is the research methodology behind the work. It maps how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. You do not buy AuthorityOS™ — it powers how we decide where to act.",
+          "our research is the research methodology behind the work. It maps how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. You do not buy our research — it powers how we decide where to act.",
       },
       {
         question: "Can you influence ChatGPT and AI Overviews?",

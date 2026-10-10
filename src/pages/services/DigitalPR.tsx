@@ -27,7 +27,7 @@ import PageLayout from "@/components/PageLayout";
  * hero over the dark band), cards floating on clay/stone with shadow-lift and
  * shadow-deep, bordered inset panels, oversized numerals as structure, hairline
  * rules carrying the process and the ledgers, a sky pastel panel behind the
- * AuthorityOS™ diagram, and the amber band on the campaign result.
+ * our research diagram, and the amber band on the campaign result.
  */
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];

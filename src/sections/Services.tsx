@@ -67,7 +67,7 @@ const ServicesSection = () => {
         icon: Users,
         title: "A Senior Strategist on the Account",
         content:
-          "The person who interprets the AuthorityOS™ research is the person you talk to. One strategist sets the priority order, decides where the next placement should point, and is a WhatsApp or Slack message away.",
+          "The person who interprets the the research is the person you talk to. One strategist sets the priority order, decides where the next placement should point, and is a WhatsApp or Slack message away.",
       },
     ],
     s = e.slice(0, 4),
@@ -101,7 +101,7 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            What we run · Powered by AuthorityOS™
+            What we run · Powered by our research
           </motion.p>
           <motion.h2
             className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark max-w-4xl mx-auto"
@@ -121,9 +121,9 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            AuthorityOS™ research tells us which of your pages sit closest to
-            moving and which publications carry weight in your category. These
-            eight workstreams are how we act on it — read the{" "}
+            the research tells us which of your pages sit closest to moving and
+            which publications carry weight in your category. These eight
+            workstreams are how we act on it — read the{" "}
             <a
               href="/case-studies"
               className="font-semibold text-blue-accent underline underline-offset-[3px] decoration-navy-dark/30 hover:decoration-navy-dark"

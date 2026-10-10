@@ -31,10 +31,9 @@ const CountUpInline = ({ to, prefix = "", suffix = "", duration = 1.6 }) => {
 
 const ShiftChart = () => {
   const e = [
-      { x: 62, label: "Google" },
-      { x: 174, label: "AI Overviews" },
-      { x: 286, label: "ChatGPT" },
-      { x: 398, label: "Claude" },
+      { x: 86, label: "Google results" },
+      { x: 230, label: "AI Overviews" },
+      { x: 374, label: "AI assistants" },
     ],
     s: Variants = {
       hidden: { pathLength: 0, opacity: 0 },
@@ -56,7 +55,7 @@ const ShiftChart = () => {
       viewBox="0 0 460 300"
       className="w-full h-auto"
       role="img"
-      aria-label="One buyer question answered by Google, AI Overviews, ChatGPT and Claude — all fed by authority links and mentions on trusted publications"
+      aria-label="One buyer question answered in Google results, in Google's AI Overview, and by AI assistants such as ChatGPT and Claude — all drawing on the same published sources"
     >
       <motion.g
         initial={{ opacity: 0, y: -8 }}
@@ -228,20 +227,21 @@ const TheShift = () => {
             <h2 className="text-balance text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-7">
               One question.
               <span className="font-medium text-white/85">
-                Four answer engines.
+                Three places it gets answered.
               </span>
             </h2>
             <p className="text-lg text-white/65 leading-relaxed mb-5 max-w-lg">
-              Your buyers ask Google, ChatGPT, and Claude the same question —
-              and AI answers it before anyone clicks a result. If credible
-              publications don't talk about you, you don't exist in the answer.
+              A buyer researching your category types the same question into
+              Google, reads the AI Overview above the results, then asks an
+              assistant like ChatGPT or Claude to narrow it down. Often they
+              have a shortlist before they click anything.
             </p>
             <p className="text-lg text-white/65 leading-relaxed mb-10 max-w-lg">
-              {"Every one of those surfaces trusts the same thing \u2014 "}
+              {"All three draw on the same material \u2014 "}
               <span className="text-white font-semibold">
-                what real, authoritative sites say about you
+                what independent publications have already written about you
               </span>
-              . That's exactly what we build.
+              . That is the part we work on."
             </p>
             <div className="grid grid-cols-3 gap-6 mb-10">
               {e.map((s) => (

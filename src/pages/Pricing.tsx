@@ -22,7 +22,7 @@ import { openBooking } from "@/lib/booking";
  *     characterises anyone else's
  *   - exactly one comparison, aimed at four *routes* to buying authority and
  *     framed as cost and capability, not as a verdict on the vendors
- *   - credibility comes from AuthorityOS™ explained openly, and from concrete
+ *   - credibility comes from our research explained openly, and from concrete
  *     figures — never from claiming to be the honest one
  *   - domain approval is one passing clause in one FAQ answer. It is part of
  *     the process, not the product
@@ -63,7 +63,7 @@ const PRICING_TIERS = [
     includes: [
       "4–6 editorial placements a month",
       "DR 40–60 publications",
-      "AuthorityOS™ research and target mapping",
+      "Profile research and target-page mapping",
       "Indexation checks + 90-day replacement",
       "Monthly report with live URLs",
     ],
@@ -208,7 +208,7 @@ const ALLOCATION = [
     d: "A writer who knows your sector, plus an edit pass against the publication's house style before anything is pitched.",
   },
   {
-    k: "AuthorityOS™ research and vetting",
+    k: "the research and vetting",
     pct: 18,
     tone: "bg-navy-dark/50",
     d: "Topical overlap, traffic checks, relevance scoring. On one engagement that meant reviewing 31 domains to place on 14.",
@@ -409,7 +409,7 @@ const ROUTES = [
     t: "This programme",
     price: "$997–$4,997",
     unit: "per month",
-    d: "Off-page authority only, scoped to the pages closest to moving. AuthorityOS™ research, editorial placements, indexation verification and reporting, priced against a placement range rather than per link.",
+    d: "Off-page authority only, scoped to the pages closest to moving. the research, editorial placements, indexation verification and reporting, priced against a placement range rather than per link.",
     ours: true,
   },
 ];
@@ -480,7 +480,7 @@ const TERMS = [
   },
   {
     t: "No setup or onboarding fee",
-    d: "The audit, the AuthorityOS™ target mapping and the first prospect list sit inside the retainer rather than on a separate invoice.",
+    d: "The audit, the our research target mapping and the first prospect list sit inside the retainer rather than on a separate invoice.",
   },
   {
     t: "Twelve months of link monitoring",
@@ -492,7 +492,7 @@ const TERMS = [
   },
   {
     t: "The work is yours to take",
-    d: "The placement list, the reporting and the AuthorityOS™ research outputs export in full at any point, including after the last invoice.",
+    d: "The placement list, the reporting and the the research outputs export in full at any point, including after the last invoice.",
   },
 ];
 
@@ -543,7 +543,7 @@ const COMPARE_ROWS = [
   { label: "Editorial placements / month", s: "4–6", g: "10–14", a: "20+" },
   { label: "Authority range", s: "DR 40–60", g: "DR 50–75", a: "DR 60–80" },
   {
-    label: "AuthorityOS™ research refresh",
+    label: "Research refresh",
     s: "At kickoff",
     g: "Quarterly",
     a: "Monthly",
@@ -589,8 +589,8 @@ const PRICING_FAQS = [
     a: "Per month, against a placement range rather than a hard count — a DR 72 feature and a DR 45 guest post are not the same unit of work. The range is what we commit to; the report shows what landed, with live URLs.",
   },
   {
-    q: "What does AuthorityOS™ have to do with the price?",
-    a: "AuthorityOS™ is the research methodology behind the work: how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. It is not a line item you buy. It is what decides how many placements you actually need, which is usually what decides the plan.",
+    q: "What does our research have to do with the price?",
+    a: "our research is the research methodology behind the work: how Google categorises your site, which publications carry weight in your category, where competitors are earning references you are not, and which of your pages will respond fastest. It is not a line item you buy. It is what decides how many placements you actually need, which is usually what decides the plan.",
   },
   {
     q: "What is not included?",

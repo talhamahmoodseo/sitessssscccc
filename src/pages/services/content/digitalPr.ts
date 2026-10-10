@@ -5,7 +5,7 @@
  *
  *   - lead with the client's situation and the outcome of the work, never with
  *     what anyone else does badly
- *   - credibility carried by the named methodology (AuthorityOS™), explained
+ *   - credibility carried by the named methodology (our research), explained
  *     openly, and by concrete campaign numbers
  *   - exactly ONE comparison on the page, aimed at a category of approach
  *     ("most PR starts with what the brand wants to say"), framed as a
@@ -30,7 +30,7 @@ export const digitalPr = {
     em: "Right Now It Quotes Someone Else.",
   },
   sub: "Our digital PR programme finds the story inside your business, builds it into something a desk wants to run, and earns the coverage that puts your name in the publications your category already reads.",
-  credit: "Powered by AuthorityOS™ research. Pitched by senior editors.",
+  credit: "Powered by the research. Pitched by senior editors.",
 
   /** Hero artefact: three clippings, fanned. The page's signature object. */
   fan: [
@@ -234,8 +234,8 @@ export const digitalPr = {
 
   methodology: {
     eyebrow: "The intelligence behind the work",
-    heading: { pre: "Powered by", em: "AuthorityOS™" },
-    lede: "How do we know which desk to approach, and what it will run? AuthorityOS™. It is our research methodology for reading a category: what it is arguing about, which publications Google and the AI answer engines already trust inside it, and where your name is missing from the conversation.",
+    heading: { pre: "Powered by", em: "our research" },
+    lede: "How do we know which desk to approach, and what it will run? our research. It is our research methodology for reading a category: what it is arguing about, which publications Google and the AI answer engines already trust inside it, and where your name is missing from the conversation.",
     columns: [
       {
         label: "Listen",
@@ -258,7 +258,7 @@ export const digitalPr = {
         d: "Some angles are evergreen and some have a two-day life. The plan says which is which, and what order to spend them in.",
       },
     ],
-    flowFrom: { t: "AuthorityOS™", d: "Finds the angle and the desk" },
+    flowFrom: { t: "our research", d: "Finds the angle and the desk" },
     flowTo: { t: "The programme", d: "Earns the coverage" },
   },
 
@@ -440,11 +440,11 @@ export const digitalPr = {
   faqs: [
     {
       q: "What exactly is the digital PR programme?",
-      a: "It is our managed earned-coverage service. AuthorityOS™ research identifies what your category is arguing about and which desks carry weight inside it; our editorial team builds the angle into a publishable asset and pitches named journalists individually. You get the research, the assets and the outreach as one engagement.",
+      a: "It is our managed earned-coverage service. the research identifies what your category is arguing about and which desks carry weight inside it; our editorial team builds the angle into a publishable asset and pitches named journalists individually. You get the research, the assets and the outreach as one engagement.",
     },
     {
-      q: "What is AuthorityOS™?",
-      a: "AuthorityOS™ is the research methodology behind the work. It reads six months of output across the publications covering your market, maps which outlets Google and the AI answer engines already cite on your subject, matches what you hold against what those desks are short of, and tells us when each window opens. You do not buy AuthorityOS™. It powers how we decide where to pitch.",
+      q: "What is our research?",
+      a: "our research is the research methodology behind the work. It reads six months of output across the publications covering your market, maps which outlets Google and the AI answer engines already cite on your subject, matches what you hold against what those desks are short of, and tells us when each window opens. You do not buy our research. It powers how we decide where to pitch.",
     },
     {
       q: "How is this different from link building?",

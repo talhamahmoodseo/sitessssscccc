@@ -5,7 +5,7 @@
  * client approved:
  *
  *   - an established agency describing its own work, experience and results
- *   - credibility carried by the named methodology (AuthorityOS™), explained
+ *   - credibility carried by the named methodology (our research), explained
  *     openly, plus concrete figures — never by claiming to be the honest one
  *   - exactly ONE comparison on the page, aimed at a category of approach and
  *     framed as a capability difference (see `sources.comparison`)
@@ -26,8 +26,7 @@ export const brandMentions = {
     em: "It Answers From Sources.",
   },
   sub: "ChatGPT, Claude, Perplexity and AI Overviews build their view of your category from a narrow set of publications they trust. We get your brand described inside those sources, then re-run your buyer prompts across all four engines every month so you can watch the share move.",
-  credit:
-    "Powered by AuthorityOS™ research. Reported monthly across four engines.",
+  credit: "Powered by the research. Reported monthly across four engines.",
 
   /** Hero artefact: a live answer, with the brand named and the sources cited
    *  underneath it. The page's signature object. */
@@ -225,7 +224,7 @@ export const brandMentions = {
     /** The page's single comparison. Category of approach, capability framing. */
     comparison:
       "Most AI visibility work starts with a list of publications. Ours starts with the answers, and works backwards to the sources producing them.",
-    lede: "AuthorityOS™ research tells us which publications the engines currently lean on for your category. Plenty of strong domains are not on that list, and a mention on one of them does nothing for this particular goal.",
+    lede: "the research tells us which publications the engines currently lean on for your category. Plenty of strong domains are not on that list, and a mention on one of them does nothing for this particular goal.",
     standards: [
       {
         label: "Currently cited",
@@ -310,7 +309,7 @@ export const brandMentions = {
       {
         n: "02",
         t: "Source-gap analysis",
-        d: "AuthorityOS™ maps the cited sources against your current footprint. The distance between what the engines read and where you appear is the whole strategy, and it is usually narrower than people expect.",
+        d: "our research maps the cited sources against your current footprint. The distance between what the engines read and where you appear is the whole strategy, and it is usually narrower than people expect.",
         you: "Nothing.",
       },
       {
@@ -399,11 +398,11 @@ export const brandMentions = {
   faqs: [
     {
       q: "Can you actually influence what an AI says?",
-      a: "Not the model — the input. These engines answer from a set of sources they trust, and that set is identifiable, measurable and reachable through ordinary editorial work. AuthorityOS™ tells us which publications carry your category; we earn the mentions there and align how you are described across them; then we re-run the prompt set monthly and show you what moved. That is the whole mechanism, start to finish.",
+      a: "Not the model — the input. These engines answer from a set of sources they trust, and that set is identifiable, measurable and reachable through ordinary editorial work. our research tells us which publications carry your category; we earn the mentions there and align how you are described across them; then we re-run the prompt set monthly and show you what moved. That is the whole mechanism, start to finish.",
     },
     {
-      q: "What is AuthorityOS™?",
-      a: "AuthorityOS™ is the research methodology behind our work. For this service it maps how your category is described across the open web, which publications the answer engines currently draw on for it, where competitors are being cited and you are not, and which prompts are closest to turning. You do not buy AuthorityOS™. It decides where we act.",
+      q: "What is our research?",
+      a: "our research is the research methodology behind our work. For this service it maps how your category is described across the open web, which publications the answer engines currently draw on for it, where competitors are being cited and you are not, and which prompts are closest to turning. You do not buy our research. It decides where we act.",
     },
     {
       q: "How do you measure it? Is this provable?",
@@ -435,7 +434,7 @@ export const brandMentions = {
     },
     {
       q: "Who runs the programme?",
-      a: "A senior strategist who interprets the AuthorityOS™ research, sets the order of the target list, runs the outreach and decides where the next placement should point. The same person reads the monthly prompt report with you.",
+      a: "A senior strategist who interprets the the research, sets the order of the target list, runs the outreach and decides where the next placement should point. The same person reads the monthly prompt report with you.",
     },
   ],
 };

@@ -5,7 +5,7 @@
  *
  *   - lead with the client's situation and the outcome, never with what other
  *     agencies or vendors do wrong
- *   - credibility carried by the named methodology (AuthorityOS™), explained
+ *   - credibility carried by the named methodology (our research), explained
  *     openly, and by concrete figures — not by claiming to be the honest one
  *   - exactly one comparison, aimed at a *category of approach* ("most source
  *     outreach starts with the request"), framed as a capability difference
@@ -27,8 +27,7 @@ export const haroQuotes = {
     em: "You Should Be the Source They Quote.",
   },
   sub: "We document your expertise in enough detail to answer a journalist's question specifically, inside the hours it stays open, and get you named as a source in the stories your buyers and the AI engines already read.",
-  credit:
-    "Powered by AuthorityOS™ research. Drafted by editors, read by you first.",
+  credit: "Powered by the research. Drafted by editors, read by you first.",
 
   /** Hero artefact: the live request queue, with the misfit shown as a skip. */
   queue: {
@@ -157,8 +156,8 @@ export const haroQuotes = {
 
   methodology: {
     eyebrow: "The intelligence behind the work",
-    heading: { pre: "Powered by", em: "AuthorityOS™" },
-    lede: "AuthorityOS™ is our research methodology. On this programme it answers four questions before a single request is answered.",
+    heading: { pre: "Powered by", em: "our research" },
+    lede: "our research is our research methodology. On this programme it answers four questions before a single request is answered.",
     rows: [
       {
         label: "Understand",
@@ -217,7 +216,7 @@ export const haroQuotes = {
       {
         n: "03",
         t: "Monitoring and filtering",
-        d: "AuthorityOS™ research sets the filter. We watch the request platforms and our own writer list against it, and we pitch directly where a subject is yours to own.",
+        d: "the research sets the filter. We watch the request platforms and our own writer list against it, and we pitch directly where a subject is yours to own.",
         you: "Nothing.",
       },
       {
@@ -352,8 +351,8 @@ export const haroQuotes = {
       a: "The open version of it is crowded: a single request can draw several hundred replies, and a writer on deadline reads the first few that answer the question properly. What still works is the layer underneath — a documented expertise profile, a filter that keeps us to the requests where you are genuinely the right source, and writers who have used you before. That is the version we run, which is why the volume is modest and the placement rate holds.",
     },
     {
-      q: "What is AuthorityOS™?",
-      a: "AuthorityOS™ is the research methodology behind our programmes. For expert placements it maps the subjects you can credibly own, the publications writing about them, the writers who work with outside sources, and the requests worth your name. You do not buy AuthorityOS™. It decides where we spend your time.",
+      q: "What is our research?",
+      a: "our research is the research methodology behind our programmes. For expert placements it maps the subjects you can credibly own, the publications writing about them, the writers who work with outside sources, and the requests worth your name. You do not buy our research. It decides where we spend your time.",
     },
     {
       q: "Who writes the quotes, and will they sound like me?",

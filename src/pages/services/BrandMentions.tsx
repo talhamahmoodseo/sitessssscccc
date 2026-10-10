@@ -24,7 +24,7 @@ import { openBooking } from "@/lib/booking";
  *
  * Register follows content/brandMentions.ts and the approved Link Building
  * register: established agency describing its own method and results, named
- * methodology (AuthorityOS™) carrying the credibility, exactly one comparison
+ * methodology (our research) carrying the credibility, exactly one comparison
  * aimed at a category of approach, honest limits without remarks about anyone.
  *
  * Surface ladder (14 sections, no two adjacent alike, longest light run 3):

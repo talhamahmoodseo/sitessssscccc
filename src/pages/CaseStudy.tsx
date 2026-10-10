@@ -22,7 +22,7 @@ import { CASE_STUDIES } from "@/lib/content";
  * more than two consecutive light sections.
  *
  * Register: the agency reporting its own work. Credibility comes from the named
- * methodology (AuthorityOS™) and from the figures, so nothing here is defined
+ * methodology (our research) and from the figures, so nothing here is defined
  * against anybody else. Sourcing appears once, as a note inside the reporting
  * section, because some clients review every candidate domain and others leave
  * sourcing to us — it is part of the process, not the product.
@@ -216,7 +216,7 @@ const CaseStudy = () => {
               className="mt-5 text-[16px] leading-[1.72] text-navy-dark/75"
               {...rise(0.15)}
             >
-              {`The engagement opened with research rather than outreach. AuthorityOS™ mapped how Google was categorising the site, which publications its category results were being assembled from, and which of its pages already sat close enough to respond to authority. That map set the order of everything that followed.`}
+              {`The engagement opened with research rather than outreach. our research mapped how Google was categorising the site, which publications its category results were being assembled from, and which of its pages already sat close enough to respond to authority. That map set the order of everything that followed.`}
             </motion.p>
             <motion.p
               className="mt-5 text-[16px] leading-[1.72] text-navy-dark/75"
@@ -300,7 +300,7 @@ const CaseStudy = () => {
             Knowing a site needs authority is the straightforward part. The
             useful questions are which pages should receive it first, which
             publications are capable of moving those pages, and at what pace.
-            AuthorityOS™ answered the first two. The plan below answered the
+            our research answered the first two. The plan below answered the
             third.
           </motion.p>
 

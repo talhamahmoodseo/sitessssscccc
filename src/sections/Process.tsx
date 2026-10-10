@@ -11,7 +11,7 @@ const PROCESS_STEPS = [
   {
     title: "Audit",
     description:
-      "AuthorityOS™ maps your current footprint — link profile, rankings, and where you do or do not appear across Google, AI Overviews, ChatGPT and Claude. The gaps become the plan.",
+      "our research maps your current footprint — link profile, rankings, and where you do or do not appear across Google, AI Overviews, ChatGPT and Claude. The gaps become the plan.",
     deliverable: "Visibility gap analysis & anchor plan",
   },
   {
@@ -234,15 +234,15 @@ const Process = () => {
                   The Process
                 </p>
                 <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
-                  Five steps.
+                  How a campaign runs.
                   <span className="text-navy-dark/65">
-                    The research decides the order.
+                    Start to first placement.
                   </span>
                 </h2>
               </div>
               <p className="max-w-sm text-[14.5px] leading-relaxed text-navy-dark/75">
                 {
-                  "Knowing you need more authority is not useful on its own. AuthorityOS\u2122 tells us which page needs it, where it should come from, and what to do next once it lands."
+                  "Knowing you need more authority is not useful on its own. our research\u2122 tells us which page needs it, where it should come from, and what to do next once it lands."
                 }
               </p>
             </motion.div>
@@ -365,14 +365,14 @@ const Process = () => {
               The Process
             </p>
             <h2 className="text-balance text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
-              Five steps.
+              How a campaign runs.
               <span className="text-navy-dark/65">
-                The research decides the order.
+                Start to first placement.
               </span>
             </h2>
             <p className="mt-4 text-[15.5px] leading-relaxed text-navy-dark/75">
               {
-                "AuthorityOS\u2122 tells us which page needs authority, where it should come from, and what to do next once it lands."
+                "our research\u2122 tells us which page needs authority, where it should come from, and what to do next once it lands."
               }
             </p>
           </motion.div>

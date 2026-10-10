@@ -60,7 +60,7 @@ const BEATS = [
 
 const ORIGIN = [
   { n: "01", t: "A campaign that ran" },
-  { n: "02", t: "AuthorityOS™ research" },
+  { n: "02", t: "the research" },
   { n: "03", t: "Written up here" },
 ];
 
@@ -270,7 +270,7 @@ const Beats = ({ counts, onPick }) => (
           >
             The subjects differ. The question underneath them does not: where
             does your brand get referenced, and what does that reference do once
-            it is live? Most posts here begin as an AuthorityOS&trade; research
+            it is live? Most posts here begin as an our research research
             finding and end as something we changed in how we work.
           </motion.p>
         </div>
@@ -457,8 +457,6 @@ const Blog = () => {
       />
 
       <Featured post={a} />
-
-      <Beats counts={counts} onPick={pick} />
 
       <section id="archive" className="bg-white py-24 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

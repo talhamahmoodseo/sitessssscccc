@@ -264,7 +264,7 @@ const Ledger = () => (
             The same four steps each time
           </p>
           <p className="text-[13.5px] leading-relaxed text-navy-dark/80">
-            Every programme here ran on AuthorityOS™: map the authority gap,
+            Every programme here ran on our research: map the authority gap,
             pick the pages closest to moving, earn the placements that reach
             them, then measure the position change rather than the activity.
           </p>

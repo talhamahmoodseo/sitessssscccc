@@ -19,7 +19,7 @@ import { openBooking } from "@/lib/booking";
  *
  * Tone rules this page holds to:
  *   - lead with the client's outcome, never with what other agencies do wrong
- *   - the credibility comes from a named methodology (AuthorityOS™) that is
+ *   - the credibility comes from a named methodology (our research) that is
  *     explained openly, not from positioning as the honest exception
  *   - exactly one comparison, aimed at a category of approach rather than at
  *     agencies, framed as a capability difference

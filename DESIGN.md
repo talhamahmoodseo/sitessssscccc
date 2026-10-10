@@ -20,40 +20,27 @@ inconsistent and cheap, not premium.
 flat ground with no visual object in it*. The fix is a visual object — a card
 grid, a chart, a mock, a diagram — not a coloured background.
 
-## Section grounds — this is the whole list
+## Reference
 
-Reference: amplemarket.com. Their base is **black and near-white, nothing
-else.** Saturated colour appears only in small areas.
+**The WordPress theme in `wp-theme/`** — generated from commit `4eabb08`
+(6 Oct). Not amplemarket.com. If you need to check a colour, a surface or a
+structure, read that build.
+
+Its tokens are `paper 247 246 244`, `linen 240 239 236`, `mark 245 206 88`,
+with no beige of any kind. `stone`, `clay` and `espresso` were added later,
+rejected, and have been deleted from the codebase. Do not reintroduce them.
+
+## Section grounds
 
 | Token          | Use                                                       |
 | -------------- | --------------------------------------------------------- |
-| `bg-mist`      | Near-white. The default ground.                            |
-| `bg-white`     | The alternate ground, and every card.                      |
-| `bg-navy-dark` | Black. Two to three times per page, including the CTA band.|
+| `bg-mist`      | Near-white (paper). The default ground.                    |
+| `bg-linen`     | The second light tone, as the reference used it.           |
+| `bg-white`     | Cards, and the occasional alternate section.               |
+| `bg-navy-dark` | Black. Two or three times per page including the CTA band. |
 
-That is it. Three.
-
-**No beige, no brown, no tinted bands.** `stone` and `clay` were warm greys
-that read brown at section size and have been removed from the codebase.
-`espresso` is gone too. Do not reintroduce a tinted section ground of any
-kind — this has been rejected explicitly.
-
-## Where colour goes instead
-
-Amplemarket puts real colour in small, high-value places, against the
-black-and-white base:
-
-- **the client-results bento** — pastel tiles in butter / mint / lilac /
-  blush / sky, each carrying one number and one client wordmark. This is the
-  single most important colour moment on the site. It lives on the homepage as
-  `ProofGrid` and must not be removed.
-- case-study cover plates and team photo tints
-- small coloured markers in feature lists
-- the hero fluid artifact
-- the `.mark` highlighter sweep on a few words of running text
-
-The rule: colour belongs to **objects** — a tile, a chart, a plate, a few
-highlighted words. Never to a 400px-tall band.
+Colour lives on objects — the client bento tiles, cover plates, accent dots,
+the hero atmosphere — never on a tall band.
 
 ## Where depth comes from instead
 

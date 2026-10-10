@@ -133,8 +133,8 @@ ${e.message}`);
               transition={{ duration: 0.6, delay: 0.16, ease: EASE }}
             >
               Send the site and the pages that matter. A senior strategist
-              replies within 24 hours, and an AuthorityOS&trade; visibility
-              audit follows inside 48 — yours to keep whatever you decide.
+              replies within 24 hours, and a full visibility audit follows
+              inside 48 — yours to keep whatever you decide.
             </motion.p>
 
             {/* bordered inset panel on the clay ground */}
@@ -321,7 +321,7 @@ const CLOCKS = [
   },
   {
     v: "48h",
-    t: "An AuthorityOS™ visibility audit",
+    t: "An our research visibility audit",
     d: "Your current link profile, the pages sitting closest to moving, and the queries where AI engines name a competitor instead of you.",
   },
 ];
@@ -586,7 +586,7 @@ const Contact = () => (
   <PageLayout>
     <Seo
       title="Contact"
-      description="Tell us where you want to rank and get cited. A senior strategist replies within 24 hours, with an AuthorityOS™ visibility audit inside 48."
+      description="Tell us where you want to rank and get cited. A senior strategist replies within 24 hours, with an our research visibility audit inside 48."
     />
     <Enquiry />
     <Clocks />

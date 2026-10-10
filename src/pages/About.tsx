@@ -58,7 +58,7 @@ const STATS = [
 const PILLARS = [
   {
     t: "Research-led",
-    d: "Every engagement opens with AuthorityOS™ research: how your category is read, which publications carry weight inside it, and which of your pages will respond first. The plan comes out of that research — target pages, publications, and the order to build in.",
+    d: "Every engagement opens with research: how Google reads your category, which publications carry weight in it, and which of your pages are closest to moving. The plan comes out of that — target pages, publications, and the order to build in.",
   },
   {
     t: "Editorial, not inventory",
@@ -119,7 +119,7 @@ const TEAM = [
   },
   {
     role: "Research & Reporting",
-    d: "Runs the AuthorityOS™ analysis, tracks indexation, and builds the monthly reporting.",
+    d: "Runs the profile and competitor analysis, tracks indexation, and builds the monthly reporting.",
     photo: asset("/images/avatar-2.jpg"),
     tint: "bg-sky",
   },
@@ -138,8 +138,8 @@ const TIMELINE = [
   },
   {
     year: "2025",
-    t: "AuthorityOS™",
-    d: "Formalised our research into a repeatable methodology, so the decision about where to place authority is made from category data rather than instinct.",
+    t: "our research",
+    d: "Turned the way we research a category into a repeatable process, so where we place authority is decided from data rather than instinct.",
   },
   {
     year: "2026",
@@ -193,7 +193,7 @@ const About = () => (
   <PageLayout>
     <Seo
       title="About"
-      description="A link building and digital PR agency built on a publisher network of 814 publications, AuthorityOS™ research, and senior delivery."
+      description="A link building and digital PR agency built on a publisher network of 814 publications, the research, and senior delivery."
     />
 
     {/* ---- hero: short statement, the people behind it ---- */}
@@ -386,49 +386,6 @@ const About = () => (
     {/* ---- the network (data) ---- */}
     <Network />
 
-    {/* ---- what we do ---- */}
-    <div className="bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.div className="mb-12 max-w-2xl" {...rise()}>
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
-            What we do
-          </p>
-          <h2 className="text-balance text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]">
-            Four services,
-            <span className="text-navy-dark/65">one discipline.</span>
-          </h2>
-        </motion.div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {SERVICES.map((s, i) => (
-            <motion.div
-              key={s.to}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
-              <Link
-                to={s.to}
-                className={`group flex h-full flex-col rounded-[22px] p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift ${s.tint}`}
-              >
-                <h3 className="mb-2.5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
-                  {s.t}
-                </h3>
-                <p className="mb-8 text-[14px] leading-relaxed text-navy-dark/80">
-                  {s.d}
-                </p>
-                <span className="mt-auto inline-flex items-center gap-2 text-[13px] font-semibold text-navy-dark">
-                  Learn more
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-
     {/* ---- team: white cards on the warm dark ---- */}
     <div className="bg-navy-dark py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -517,46 +474,6 @@ const About = () => (
             </motion.li>
           ))}
         </ol>
-      </div>
-    </div>
-
-    {/* ---- client proof ---- */}
-    <div className="bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-balance mb-12 max-w-2xl text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.6rem]"
-          {...rise()}
-        >
-          What clients say
-          <span className="text-navy-dark/65">about working with us.</span>
-        </motion.h2>
-
-        <div className="grid gap-4 lg:grid-cols-3">
-          {PROOF.map((p, i) => (
-            <motion.figure
-              key={p.who}
-              className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-lift"
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: i * 0.09 }}
-            >
-              <blockquote className="mb-7 text-[15.5px] leading-[1.55] text-navy-dark">
-                {"“"}
-                {p.text}
-                {"”"}
-              </blockquote>
-              <figcaption className="mt-auto border-t border-line pt-5">
-                <span className="block text-[14px] font-semibold text-navy-dark">
-                  {p.who}
-                </span>
-                <span className="mt-1 block text-[12.5px] text-navy-dark/70">
-                  {p.role}
-                </span>
-              </figcaption>
-            </motion.figure>
-          ))}
-        </div>
       </div>
     </div>
 
