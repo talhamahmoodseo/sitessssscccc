@@ -190,7 +190,7 @@ export const Network = () => {
 
 const LETTER = [
   "I started this because I got tired of being the person who had to explain a link report I could not defend. I was freelancing, buying from two marketplaces, and about a third of what I placed sat on sites that had not had a real reader in years. The numbers in the sheet looked fine. The work was not.",
-  "So we stopped buying and started building. That took most of 2024, and it is the only reason the approval sheet exists: once you know every publication personally, showing the client the list before you place anything stops being brave and becomes obvious.",
+  "So we stopped buying and started building. That took most of 2024, and it is the only reason I trust what we place: once you know every publication personally, checking the keywords behind the traffic stops being extra work and becomes the job.",
   "The part I did not expect is how often the honest answer is no. One enquiry in five gets an audit telling them links are not their problem yet. One domain in five gets rejected after we have already done the work of finding it. That is an expensive way to run an agency, and it is the whole product.",
   "If you are weighing us up, read a case file first. They include the months where nothing moved, because those are the months that tell you whether somebody is going to be straight with you.",
 ];

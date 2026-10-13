@@ -223,14 +223,14 @@ const RejectionWall = () => (
           Recently rejected
         </p>
         <h2 className="text-4xl sm:text-[2.9rem] font-semibold text-navy-dark tracking-[-0.03em] leading-[1.08]">
-          Roughly one in five
+          Three sites that looked good
           <br />
-          <span className="text-navy-dark/65">never makes the sheet</span>
+          <span className="text-navy-dark/65">and still got a no</span>
         </h2>
         <p className="mt-5 text-[15.5px] text-navy-dark/75 leading-relaxed">
-          These three cleared the DR filter and still failed. Rejections appear
-          in your report too — knowing what we turned down is how you judge what
-          we accepted.
+          All three looked fine on DR or traffic. All three failed once we
+          opened the keywords and the traffic graph. This is the check most
+          link sellers skip.
         </p>
       </motion.div>
 
@@ -603,13 +603,13 @@ const LinkBuilding = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
           <div>
             <SectionHead eyebrow="The gate">
-              {"Four in five prospects "}
-              <span className="text-navy-dark/65">never make it</span>
+              {"Not every prospect "}
+              <span className="text-navy-dark/65">makes it</span>
             </SectionHead>
             <p className="text-[16.5px] text-navy-dark/75 leading-[1.75] max-w-md">
-              Every domain runs the same checks before it reaches your approval
-              sheet. High DR is not a pass — an audience is. You see what
-              survived and what we killed, every month.
+              Every domain runs the same checks before we use it. High DR is
+              not a pass — an audience is. Roughly one in five sites we find
+              fails and gets dropped.
             </p>
           </div>
           <VettingTable />

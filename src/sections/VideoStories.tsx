@@ -8,7 +8,7 @@ const VIDEO_STORIES = [
     id: "s1",
     name: "Daniel Reyes",
     role: "Founder · B2B SaaS",
-    quoteShort: "They showed us every domain before placing anything.",
+    quoteShort: "They handled everything. We just watched rankings move.",
     result: "+212% clicks",
     poster: asset("/images/vid-test-1.jpg"),
     tint: "bg-butter",

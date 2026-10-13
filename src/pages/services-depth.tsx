@@ -17,16 +17,16 @@ import { Check, Minus } from "lucide-react";
 
 const STANDARD = [
   {
-    t: "You approve every domain",
-    d: "Whatever we are placing — a guest post, a mention, an expert quote — the publication reaches you with its metrics first. Strike anything, for any reason, without explaining why.",
+    t: "Every site checked by hand",
+    d: "Whatever we are placing — a guest post, a mention, an expert quote — the publication gets the same check first: real traffic, the keywords behind it, the trend and its outbound links.",
   },
   {
     t: "Indexation is the definition of done",
     d: "A placement that Google never indexes does not count and is not billed as a win. We chase the publisher, and replace it free if it stalls past 60 days.",
   },
   {
-    t: "The rejections are in your report",
-    d: "Every month you see what we turned down on your behalf and why. On one engagement that was 31 domains against 14 placements.",
+    t: "We say no a lot",
+    d: "Roughly one in five sites we find fails the check. On one engagement that was 31 domains reviewed to place on 14.",
   },
   {
     t: "One sheet, no dashboard login",

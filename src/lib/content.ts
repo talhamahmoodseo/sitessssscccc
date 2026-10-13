@@ -92,14 +92,14 @@ const CASE_STUDIES = [
       ["b2b•••review.com", "DR 57", "EXPERT QUOTE"],
     ],
     quote: {
-      text: "First vendor that showed us every domain before placing. Three months in, ChatGPT started naming us for our category — sales noticed before we told them.",
+      text: "They took the whole link side off our plate. Three months in, ChatGPT started naming us for our category — sales noticed before we told them.",
       who: "Founder · B2B SaaS",
     },
     timeline: [
       {
         m: "Month 1",
-        t: "Audit & approval",
-        d: "Profile audit, competitor gap, first prospect list signed off.",
+        t: "Audit & site shortlist",
+        d: "Profile audit, competitor gap, first vetted site shortlist.",
       },
       {
         m: "Month 2–4",
@@ -449,10 +449,10 @@ const BLOG_POSTS = [
     ],
   },
   {
-    slug: "site-approval-workflow",
-    title: "The Site-Approval Workflow That Saves Our Clients Thousands",
+    slug: "site-vetting-checklist",
+    title: "The Site-Vetting Checklist That Saves Our Clients Thousands",
     excerpt:
-      "Most link disasters are approved by nobody. Here is the exact checklist every domain passes before a placement happens — and why clients see it first.",
+      "DR and traffic numbers lie more often than you think. Here is the exact checklist every domain passes before we place a single link on it.",
     category: "Link Building",
     date: "May 19, 2026",
     read: "7 min",
@@ -461,7 +461,7 @@ const BLOG_POSTS = [
     body: [
       {
         t: "p",
-        c: "The most expensive links in this industry are the cheap ones. A $60 placement on a site that exists only to sell placements does not just fail to help — it sits in your profile as a flag, and cleaning it up later costs more than doing it right would have. After watching new clients arrive with profiles full of those flags, we made one rule non-negotiable: nothing is placed until the client has seen the domain and said yes.",
+        c: "The most expensive links in this industry are the cheap ones. A $60 placement on a site that exists only to sell placements does not just fail to help — it sits in your profile as a flag, and cleaning it up later costs more than doing it right would have. After watching new clients arrive with profiles full of those flags, we made one rule non-negotiable: no site gets a link until someone has checked it by hand.",
       },
       { t: "h2", c: "The checks every prospect passes first" },
       {
@@ -474,10 +474,10 @@ const BLOG_POSTS = [
           "Crawl freshness — Google has to actually visit the site for the link to ever count.",
         ],
       },
-      { t: "h2", c: "Then the client sees everything" },
+      { t: "h2", c: "Then we open the keywords" },
       {
         t: "p",
-        c: "Every surviving domain goes into a sheet with its DR, traffic, niche, and a link to browse the live site. Clients approve or reject each row. Roughly one in five gets rejected — sometimes for reasons we could not have known, like a competitor relationship or an old dispute. That veto is the point. It is your link profile; you should hold the pen.",
+        c: "This is where most sites fail. A traffic number tells you nothing until you see what it ranks for. We have rejected sites with big traffic because the keywords were spammy or came from markets the client does not sell in, a DR 70 site pulling barely 1,500 visits a month, and a finance blog ranking for adult terms. Roughly one in five sites we find gets dropped at this step.",
       },
       {
         t: "quote",
@@ -486,7 +486,7 @@ const BLOG_POSTS = [
       { t: "h2", c: "What this costs us — and saves you" },
       {
         t: "p",
-        c: "Approval-first is slower. It adds days to every campaign and kills placements we could have billed for. It also means no client of ours has ever opened a report and found a domain they had never heard of. In a business running on trust, that trade is not close.",
+        c: "Checking every site by hand is slower. It adds days to every campaign and kills placements we could have billed for. It also means our clients never have to defend a link in their report. In a business running on trust, that trade is not close.",
       },
     ],
   },

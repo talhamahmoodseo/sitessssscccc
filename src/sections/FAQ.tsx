@@ -30,9 +30,9 @@ const FAQ = () => {
           "Google rankings typically compound over 3–6 months as links get discovered and credited. AI citations can move sooner when mentions land on sources the engines already pull from. Either way, you see every placement the week it goes live — no waiting in the dark.",
       },
       {
-        question: "Do I approve sites before you place anything?",
+        question: "Do you pick the sites, or do I?",
         answer:
-          "Yes — and it is the default, not a premium add-on. You receive every prospect with DR, traffic, and relevance data, and approve or reject each domain. Nothing is placed without your sign-off.",
+          "We do — that is most of the job. Every site is checked by hand for real traffic, keyword quality and outbound links before we use it. If you would rather review the shortlist before anything goes live, tell us and we will send it with DR, traffic and relevance notes.",
       },
       {
         question: "What is in the monthly report?",

@@ -146,8 +146,8 @@ export const LedgerPanel = ({
         Recently rejected
       </p>
       <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">
-        Roughly one in five sites we source fails vetting. You see these too —
-        rejections are part of your report, not hidden from it.
+        Roughly one in five sites we find fails vetting. A few recent ones,
+        and why they did not make it.
       </p>
       <ul className="mt-6 space-y-3.5">
         {rejections.map((r) => (

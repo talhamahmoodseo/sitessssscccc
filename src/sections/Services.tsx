@@ -37,7 +37,7 @@ const ServicesSection = () => {
         icon: Target,
         title: "Guest Posts & Niche Edits",
         content:
-          "Original articles on vetted, niche-relevant sites, plus contextual links inserted into aged, already-indexed content. No footers, no sidebars, no link pages. You approve every domain first.",
+          "Original articles on vetted, niche-relevant sites, plus contextual links inserted into aged, already-indexed content. No footers, no sidebars, no link pages. Every site checked by hand first.",
       },
       {
         icon: ChartColumn,
@@ -49,7 +49,7 @@ const ServicesSection = () => {
         icon: Award,
         title: "Own Publisher Network",
         content:
-          "Years of relationship building mean we place through editors and site owners we know — not marketplaces. That is why we can show you every site, with full metrics, before anything goes live.",
+          "Years of relationship building mean we place through editors and site owners we know — not marketplaces. That is how we know what we are placing on — and why it is worth placing there.",
       },
       {
         icon: Globe,
@@ -65,9 +65,9 @@ const ServicesSection = () => {
       },
       {
         icon: Users,
-        title: "You Approve Everything",
+        title: "A Real Person on Your Account",
         content:
-          "Every domain is disclosed with metrics before placement, and a dedicated manager is one WhatsApp or Slack message away. You stay in control of your link profile at every step.",
+          "A dedicated manager is one WhatsApp or Slack message away. Questions get answered by someone who knows your campaign, not a ticket queue. Want to see sites before they go live? Just ask.",
       },
     ],
     s = e.slice(0, 4),

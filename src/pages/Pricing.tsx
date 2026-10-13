@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { FigSpreadsheet } from "@/components/LineArt";
@@ -286,12 +285,12 @@ const TERMS = [
     d: "If a publisher removes or nofollows a placement inside twelve months, we replace it on an equivalent domain at no charge.",
   },
   {
-    t: "Nothing is placed without your yes",
-    d: "Every candidate domain reaches you with its metrics before outreach becomes a placement. Strike anything, for any reason, without explaining why.",
+    t: "Every site checked by hand",
+    d: "Real traffic, the keywords behind it, the trend and outbound links. Roughly one in five sites we find gets dropped. Want to see the shortlist before placement? Ask and it is yours.",
   },
   {
     t: "You keep everything if you leave",
-    d: "The placement list, the approval sheets and the reporting are yours. No part of the work is held hostage behind our dashboard.",
+    d: "The placement list and every report are yours. No part of the work is held hostage behind our dashboard.",
   },
 ];
 
@@ -355,7 +354,7 @@ const PRICING_TIERS = [
     includes: [
       "4–6 editorial placements a month",
       "DR 40–60 publications",
-      "Every domain approved by you",
+      "Every site vetted by hand",
       "Indexation checks + 90-day replacement",
       "Monthly report with live URLs",
     ],
@@ -404,7 +403,7 @@ const PRICING_TIERS = [
 const COMPARE_ROWS = [
   { label: "Editorial placements / month", s: "4–6", g: "10–14", a: "20+" },
   { label: "Authority range", s: "DR 40–60", g: "DR 50–75", a: "DR 60–80" },
-  { label: "Domain approval before placement", s: true, g: true, a: true },
+  { label: "Manual site vetting", s: true, g: true, a: true },
   { label: "Indexation verification", s: true, g: true, a: true },
   { label: "90-day replacement guarantee", s: true, g: true, a: true },
   { label: "HARO / expert quotes", s: false, g: true, a: true },
@@ -428,7 +427,7 @@ const PRICING_FAQS = [
   },
   {
     q: "What if I need something between two plans?",
-    a: "Then we scope it. These are starting points, not boxes. Tell us the target pages, the competition and the pace you want, and you get a quote against that.",
+    a: "Then we scope it. These are starting prices, not boxes. Tell us the target pages, the competition and the pace you want, and you get a quote against that.",
   },
   {
     q: "Do you charge per link or per month?",
@@ -444,7 +443,7 @@ const PRICING_FAQS = [
   },
   {
     q: "How fast can we start?",
-    a: "The audit and first prospect list usually land within a week of kickoff. Placements begin as soon as you approve the first domains.",
+    a: "The audit and first prospect list usually land within a week of kickoff. First placements usually go live in weeks two to four.",
   },
 ];
 
@@ -458,13 +457,11 @@ const FeatureCell = ({ v }) =>
   );
 
 const Pricing = () => {
-  const [e, s] = useState(false),
-    a = (r) => (e ? Math.round(r * 0.85) : r);
   return (
     <PageLayout>
       <Seo
         title="Pricing"
-        description="Transparent monthly pricing for editorial link building, digital PR, HARO placements and AI brand mentions. No lock-in, no contact-sales wall."
+        description="Starting prices for editorial link building, digital PR, HARO placements and AI brand mentions. Final quote confirmed on a short call."
       />
       <div className="bg-mist pt-32 pb-16 lg:pt-40 text-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -474,9 +471,9 @@ const Pricing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {"Plans with "}
-            <span className="text-navy-dark/65">actual prices</span>
-            {" on them."}
+            {"Starting prices, "}
+            <span className="text-navy-dark/65">out in the open</span>
+            {"."}
           </motion.h1>
           <motion.p
             className="text-[17px] text-navy-dark/70 leading-relaxed max-w-xl mx-auto mb-9"
@@ -484,39 +481,10 @@ const Pricing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            No “contact sales” wall, no annual lock-in. Pick a pace, approve
-            every site, and stop whenever the reports stop earning it.
+            Every plan starts from the price below. The final number depends on
+            the sites, the volume and your niche — we confirm it on a short
+            call, before you pay anything.
           </motion.p>
-          <motion.div
-            className="inline-flex items-center gap-3 bg-white border border-line rounded-full p-1.5"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {["Monthly", "Pay 6 months −15%"].map((r, c) => {
-              const u = (c === 1) === e;
-              return (
-                <button
-                  key={r}
-                  onClick={() => s(c === 1)}
-                  className={`relative rounded-full px-5 py-2 text-[13px] font-semibold transition-colors duration-300 ${u ? "text-white" : "text-navy-dark/70 hover:text-navy-dark"}`}
-                >
-                  {u && (
-                    <motion.span
-                      layoutId="price-pill"
-                      className="absolute inset-0 bg-navy-dark rounded-full"
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 32,
-                      }}
-                    />
-                  )}
-                  <span className="relative">{r}</span>
-                </button>
-              );
-            })}
-          </motion.div>
         </div>
       </div>
       <div className="bg-mist pb-24">
@@ -540,9 +508,12 @@ const Pricing = () => {
                   {r.tag}
                 </span>
               </div>
+              <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
+                Starting at
+              </p>
               <p className="flex items-baseline gap-1 mb-3">
                 <span className="text-[3rem] font-semibold text-navy-dark tracking-[-0.03em] leading-none">
-                  ${a(r.price).toLocaleString()}
+                  ${r.price.toLocaleString()}
                 </span>
                 <span className="text-[14px] text-navy-dark/70">{r.unit}</span>
               </p>

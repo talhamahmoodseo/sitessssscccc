@@ -41,7 +41,7 @@ export const PROOF_TILES = [
   {
     kind: "quote" as const,
     quote:
-      "First vendor that showed us every domain before placing anything. The approval sheet alone made internal sign-off trivial.",
+      "They handled everything — finding sites, writing, placing. The monthly report was clean enough to forward to our CEO without editing.",
     name: "Daniel Reyes",
     role: "Head of Growth",
     client: "CapCut",

@@ -104,7 +104,7 @@ const PRECALL = [
   },
   {
     q: "Can you work under NDA, or white-label?",
-    a: "Both. Roughly a third of our work is fulfilment for other agencies — same approval sheet under your branding, reports you can forward without editing, and we stay invisible on client calls.",
+    a: "Both. Roughly a third of our work is fulfilment for other agencies — same reporting under your branding, reports you can forward without editing, and we stay invisible on client calls.",
   },
   {
     q: "What if my site is not ready for links yet?",

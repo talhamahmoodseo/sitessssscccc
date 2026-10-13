@@ -25,7 +25,7 @@ const TIMELINE = [
   {
     year: "2024",
     head: "We stopped reselling and started building the network",
-    body: "Direct relationships with editors and site owners, one at a time. That is the year approval-first became the rule — every domain shown to the client, with metrics, before a single placement. Roughly one in five gets rejected. We kept the rule anyway.",
+    body: "Direct relationships with editors and site owners, one at a time. That is the year hand-vetting became the rule — every site checked for real traffic, real keywords and clean outbound links before a single placement. Roughly one in five gets rejected. We kept the rule anyway.",
     Fig: FigNetwork,
     tint: "bg-mint",
   },
@@ -40,12 +40,12 @@ const TIMELINE = [
 
 const PRINCIPLES = [
   {
-    t: "Show the domain first",
-    d: "You see every site, with real metrics, before anything is placed. No mystery inventory.",
+    t: "Check the site, not the DR",
+    d: "Every site checked by hand — traffic, keywords, trend, outbound links. A big number on its own proves nothing.",
   },
   {
-    t: "Your veto is the feature",
-    d: "Reject anything for any reason. It is your link profile — you should hold the pen.",
+    t: "We do the work, you see the results",
+    d: "Site selection, content and placement are on us. Want to review sites first? You can. Most clients do not need to.",
   },
   {
     t: "Indexation is the deliverable",
@@ -99,7 +99,7 @@ const About = () => (
   <PageLayout>
     <Seo
       title="About"
-      description="A founder-led link building and digital PR agency: our own publisher network, approval-first placements, and verified indexation."
+      description="A founder-led link building and digital PR agency: our own publisher network, hand-vetted placements, and verified indexation."
     />
     <div className="relative bg-mist overflow-hidden pt-28 pb-20 lg:pt-32">
       <div className="pointer-events-none absolute -left-24 top-10 w-[500px] h-[360px] rounded-full blur-[80px] opacity-55 bg-butter" />
@@ -130,7 +130,7 @@ const About = () => (
           transition={{ duration: 0.6, delay: 0.12 }}
         >
           A small, founder-led agency building editorial authority for brands
-          across the US, UK and Gulf — one approved publication at a time.
+          across the US, UK and Gulf — one vetted publication at a time.
         </motion.p>
         <motion.button
           onClick={openBooking}
@@ -172,7 +172,7 @@ const About = () => (
           {
             "Off-page SEO became an industry of mystery inventory and vanity reports. We run it the other way \u2014 "
           }
-          <span className="text-butter">disclosed, approved, verified</span>.
+          <span className="text-butter">vetted, placed, verified</span>.
         </p>
       </motion.div>
     </div>

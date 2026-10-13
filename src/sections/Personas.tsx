@@ -24,8 +24,8 @@ const PERSONAS = [
         d: "Vetted placements delivered under your logo, with reports your client can read without you translating them.",
       },
       {
-        h: "No inventory surprises",
-        d: "Every domain disclosed before placement, so you never defend a link you have not seen.",
+        h: "No links you have to defend",
+        d: "Every site is checked by hand before we use it, so you never have to explain a bad placement to your client.",
       },
     ],
   },

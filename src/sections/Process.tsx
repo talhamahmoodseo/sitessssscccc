@@ -18,13 +18,13 @@ const PROCESS_STEPS = [
     title: "Map",
     description:
       "Competitor backlink and citation analysis across our publisher network — finding the high-authority, niche-relevant sites that both rankings and AI answers are built on.",
-    deliverable: "Vetted prospect list with metrics",
+    deliverable: "Prospect list with metrics",
   },
   {
-    title: "Approve",
+    title: "Vet",
     description:
-      "You receive every prospect with DR, traffic, and relevance data — and approve or reject each domain. Nothing is placed without your sign-off. Ever.",
-    deliverable: "Approved target list",
+      "Every prospect checked by hand — real organic traffic, the keywords behind it, the traffic trend, and outbound links. Roughly one in five gets dropped. Only clean sites make the list.",
+    deliverable: "Vetted site shortlist",
   },
   {
     title: "Place",
@@ -233,7 +233,7 @@ const Process = () => {
               <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
                 {"A "}
                 <span className="text-navy-dark/65">results-driven</span>
-                {" link building process \u2014 with you in control."}
+                {" link building process \u2014 handled end to end."}
               </h2>
             </motion.div>
             <div className="grid lg:grid-cols-[44px_1fr_1.05fr] gap-8 lg:gap-12 items-start">
@@ -357,7 +357,7 @@ const Process = () => {
             <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark">
               {"A "}
               <span className="text-navy-dark/65">results-driven</span>
-              {" process \u2014 with you in control."}
+              {" process \u2014 handled end to end."}
             </h2>
           </motion.div>
           <div className="relative border-l border-line pl-7 space-y-12">

@@ -16,7 +16,7 @@ export const SERVICES = [
       em: "not just reports",
       post: ".",
     },
-    sub: "Editorial backlinks from DR 40+ publications with real traffic — sourced through our own publisher network, approved by you first, and tracked until Google actually counts them.",
+    sub: "Editorial backlinks from DR 40+ publications with real traffic — sourced through our own publisher network, checked by hand, and tracked until Google actually counts them.",
     tint: "bg-butter",
     stats: [
       { v: 800, suffix: "+", label: "Vetted publications in our network" },
@@ -28,8 +28,8 @@ export const SERVICES = [
       pre: "Most link building is built to",
       em: "invoice you, not rank you",
       paras: [
-        "The industry runs on volume: marketplace inventory resold at markup, content-farm placements that never get crawled, and reports that count links instead of outcomes. The site owner never sees the domains until the invoice arrives.",
-        "We built the opposite. A publisher network we maintain ourselves, client approval before any placement, and a definition of done that includes Google indexing the link and the target keyword responding.",
+        "The industry runs on volume: marketplace inventory resold at markup, content-farm placements that never get crawled, and reports that count links instead of outcomes. Nobody checks what sits behind the DR number.",
+        "We built the opposite. A publisher network we maintain ourselves, every site checked by hand before we use it, and a definition of done that includes Google indexing the link and the target keyword responding.",
       ],
     },
     deliverables: [
@@ -95,8 +95,8 @@ export const SERVICES = [
         d: "Link profile, rankings and the competitor gap quantified.",
       },
       {
-        t: "Approve",
-        d: "Every prospect domain with metrics — you sign off each one.",
+        t: "Vet",
+        d: "Every site checked by hand: traffic, keywords, trend, outbound links.",
       },
       { t: "Place", d: "Contextual placements inside real editorial content." },
       {
@@ -105,13 +105,13 @@ export const SERVICES = [
       },
     ],
     quote: {
-      text: "First agency that showed us every domain before placing. Our category page went from page three to position four in five months.",
+      text: "They took site selection completely off our plate. Our category page went from page three to position four in five months.",
       who: "SEO Lead · B2B SaaS",
     },
     faqs: [
       {
         q: "Are these PBNs or marketplace links?",
-        a: "No. Every site passes manual vetting — real organic traffic in Ahrefs, clean outbound profile, genuine editorial standards. We place through publisher relationships we maintain directly, which is why we can show you every domain before placement.",
+        a: "No. Every site passes manual vetting — real organic traffic in Ahrefs, clean outbound profile, genuine editorial standards. We place through publisher relationships we maintain directly, so we know exactly what we are placing on.",
       },
       {
         q: "How many links do I need?",
@@ -346,7 +346,7 @@ export const SERVICES = [
       },
       {
         t: "Target",
-        d: "Prospect list of already-cited domains — approved by you.",
+        d: "Prospect list of already-cited domains, vetted by hand.",
       },
       { t: "Place", d: "Contextual mentions inside real editorial content." },
       {

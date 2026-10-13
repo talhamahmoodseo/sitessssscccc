@@ -17,7 +17,7 @@ const PATHS = [
     n: "01",
     who: "You are buying links for the first time",
     why: "Start with how the work is supposed to be controlled, then see what one good placement actually takes end to end.",
-    slugs: ["site-approval-workflow", "anatomy-of-a-dr70-placement"],
+    slugs: ["site-vetting-checklist", "anatomy-of-a-dr70-placement"],
   },
   {
     n: "02",

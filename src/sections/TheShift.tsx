@@ -1,7 +1,7 @@
 import type { Variants } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const CountUpInline = ({ to, prefix = "", suffix = "", duration = 1.6 }) => {
   const c = useRef<any>(null),
@@ -191,6 +191,81 @@ const ShiftChart = () => {
   );
 };
 
+const PATEL_SOURCE =
+  "https://neilpatel.com/marketing-stats/ai-overview-expansion-organic-ctr-decline/";
+
+/** Neil Patel's own words, quoted verbatim from the source article. */
+const ExpertQuote = () => (
+  <motion.figure
+    className="mt-20 lg:mt-24 border-t border-white/10 pt-14 lg:pt-16"
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-80px" }}
+    transition={{ duration: 0.7 }}
+  >
+    <div className="grid lg:grid-cols-[auto_1fr] gap-6 lg:gap-12">
+      <span
+        className="text-[5.5rem] lg:text-[7rem] font-semibold leading-[0.7] text-gold select-none"
+        aria-hidden="true"
+      >
+        &ldquo;
+      </span>
+      <div>
+        <p className="text-[11px] font-semibold tracking-[0.18em] text-white/60 uppercase mb-5">
+          What the data says
+        </p>
+        <blockquote cite={PATEL_SOURCE}>
+          <p className="text-[1.3rem] sm:text-[1.55rem] lg:text-[1.75rem] text-white/85 leading-[1.45] tracking-[-0.015em] max-w-4xl">
+            Informational content is{" "}
+            <span className="mark-dark">down 61 percent</span> on CTR. Branded
+            queries are <span className="mark-dark">up 18.7 percent</span>.
+            That divergence is the most important signal in organic search
+            right now. The teams that respond by shifting production toward
+            commercial and branded content while optimizing informational
+            content for AI citation rather than direct CTR are the ones who
+            will navigate the AI Overview transition with the least revenue
+            impact.
+          </p>
+        </blockquote>
+        <figcaption className="mt-9 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
+          <div className="flex items-center gap-3.5">
+            <span
+              className="flex h-11 w-11 flex-none items-center justify-center rounded-full border border-white/20 text-[13px] font-bold text-white"
+              aria-hidden="true"
+            >
+              NP
+            </span>
+            <span>
+              <span className="block text-[15px] font-semibold text-white">
+                Neil Patel
+              </span>
+              <span className="block text-[13px] text-white/70">
+                Co-founder, Neil Patel Digital
+              </span>
+            </span>
+          </div>
+          <a
+            href={PATEL_SOURCE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 text-[13px] font-semibold text-white/70 hover:text-white transition-colors duration-300 sm:border-l sm:border-white/15 sm:pl-8"
+          >
+            Source: AI Overview expansion and organic CTR decline, neilpatel.com
+            <ArrowUpRight className="w-4 h-4 flex-none transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
+        </figcaption>
+        <p className="mt-8 max-w-2xl text-[14.5px] leading-relaxed text-white/70">
+          He put it more bluntly on LinkedIn:{" "}
+          <span className="text-white font-semibold">
+            &ldquo;You didn&rsquo;t lose your ranking. You lost the reason it
+            mattered.&rdquo;
+          </span>
+        </p>
+      </div>
+    </div>
+  </motion.figure>
+);
+
 const TheShift = () => {
   const e = [
     {
@@ -280,6 +355,7 @@ const TheShift = () => {
             <ShiftChart />
           </motion.div>
         </div>
+        <ExpertQuote />
       </div>
     </div>
   );

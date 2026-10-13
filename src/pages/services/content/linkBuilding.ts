@@ -8,7 +8,7 @@ export const linkBuilding = {
     em: "survives an audit",
     post: ".",
   },
-  sub: "Editorial backlinks from DR 40+ publications with real organic traffic. Every domain is disclosed and approved by you before anything is placed — and the ones we reject show up in your report too.",
+  sub: "Editorial backlinks from DR 40+ publications with real organic traffic. We find the sites, check every one by hand, write the content and get it placed. You get the links and a report you can actually read.",
 
   proof: [
     { v: 800, suffix: "+", label: "Vetted publications in our own network" },
@@ -22,9 +22,9 @@ export const linkBuilding = {
       em: "invoice you, not rank you",
     },
     paras: [
-      "The industry runs on volume. Marketplace inventory gets resold at markup, placements land on content farms Google stopped crawling years ago, and the monthly report counts links instead of outcomes. In most engagements the client never sees a domain until after the invoice.",
+      "The industry runs on volume. Marketplace inventory gets resold at markup, placements land on content farms Google stopped crawling years ago, and the monthly report counts links instead of outcomes. Almost nobody checks what sits behind the DR number.",
       "That model survives because the buyer has no way to check the work. A link exists, a number goes up, and nobody asks whether the page was ever indexed or whether the site had a single real visitor.",
-      "We built the opposite. A publisher network we maintain ourselves, written approval on every domain before placement, and a definition of done that includes Google indexing the link and the target page responding.",
+      "We built the opposite. A publisher network we maintain ourselves, every site checked by hand before we use it, and a definition of done that includes Google indexing the link and the target page responding.",
     ],
   },
 
@@ -85,22 +85,22 @@ export const linkBuilding = {
     ],
     rejections: [
       {
-        site: "Business magazine (anonymised)",
-        metric: "DR 71",
+        site: "Tech & business news site",
+        metric: "High traffic",
         reason:
-          "Strong DR, but organic traffic had collapsed 94% after a core update and the remaining visits came from one unrelated keyword. Authority on paper, none in practice.",
+          "Big traffic numbers in every SEO tool. Then we opened the keywords: mostly irrelevant or spammy terms, a lot of it from markets the client does not sell in. The graph kept jumping up and down. Big number, wrong visitors.",
       },
       {
-        site: "Regional tech news site",
-        metric: "DR 64",
+        site: "UK news site",
+        metric: "DR 70",
         reason:
-          "Clean-looking until we read the outbound profile: 40% of recent external links pointed to offshore gambling. Guilt by association is a real risk here.",
+          "DR around 70, but only 1–2K organic visits a month. Weak keywords and an unstable traffic graph. A high DR on its own does not make a site worth a link.",
       },
       {
-        site: "Trade publication",
-        metric: "DR 58",
+        site: "Business & finance blog",
+        metric: "Good traffic",
         reason:
-          "Genuine traffic and a real editor, but a public price list for sponsored posts meant the entire domain carried a paid-link footprint. Good site, wrong signal.",
+          "Traffic and graph looked healthy at first. The keywords told a different story: a finance site ranking for adult and spammy terms. It also openly sells guest posts and links. Easy no.",
       },
     ],
   },
@@ -120,9 +120,9 @@ export const linkBuilding = {
     },
     {
       n: "03",
-      t: "You approve the list",
-      d: "You receive every candidate domain with its metrics, traffic chart and relevance note. You strike anything you do not want. Nothing is placed without a yes.",
-      you: "One pass through the sheet, usually 15 minutes.",
+      t: "Every site checked by hand",
+      d: "Each candidate gets the full check: real organic traffic, the keywords behind it, the traffic trend, outbound links and editorial quality. Roughly one in five fails and gets dropped.",
+      you: "Nothing. If you want to see the shortlist first, just ask.",
     },
     {
       n: "04",
@@ -160,7 +160,7 @@ export const linkBuilding = {
       "You have pages that already rank between positions 5 and 20 and need authority to push them up.",
       "Your site is technically sound — crawlable, indexed, reasonable Core Web Vitals.",
       "You can commit to at least three months. Link building does not show its hand in four weeks.",
-      "You want to see and approve every domain rather than receive a list after the fact.",
+      "You want someone to handle site selection properly, so you are not checking metrics yourself.",
     ],
     bad: [
       "You need results this month. Indexation alone takes two to six weeks.",
@@ -171,9 +171,9 @@ export const linkBuilding = {
   },
 
   pricing: {
-    from: "$2,400",
-    unit: "/ month, typical starting retainer",
-    note: "We scope on delivered placements, not attempts or hours. Most clients start between $2,400 and $6,000 a month depending on the authority range they need and how fast they want to move. There is no setup fee and no lock-in beyond the agreed term.",
+    from: "$997",
+    unit: "/ month, starting price",
+    note: "We scope on delivered placements, not attempts or hours. Plans start at $997 a month; where you land depends on the authority range they need and how fast they want to move. There is no setup fee and no lock-in beyond the agreed term.",
     drivers: [
       {
         k: "Authority range",
@@ -195,15 +195,11 @@ export const linkBuilding = {
   },
 
   quote: {
-    text: "First vendor that showed us every domain before placing anything. The approval sheet alone made internal sign-off trivial.",
+    text: "They handled everything — finding sites, writing, placing. The monthly report was clean enough to forward to our CEO without editing.",
     who: "Daniel Reyes · Head of Growth, CapCut",
   },
 
   faqs: [
-    {
-      q: "Can I see the list of sites before you place anything?",
-      a: "Yes, and this is the whole point of how we work. You receive every candidate domain with its Ahrefs metrics, organic traffic chart and a relevance note before outreach converts into a placement. You strike anything you do not want and we do not place it. Most agencies answer this question defensively because they resell marketplace inventory they would rather you not inspect.",
-    },
     {
       q: "Are these PBNs or paid links?",
       a: "No. Private blog networks are sites built to sell links, and they are the thing our vetting is designed to catch. Every placement is on an independent publication with its own audience and editorial process. We do pay for editorial time on some publications, which is standard across the industry, but we will not work with a site that advertises a public price list for links because that footprint is exactly what Google looks for.",
@@ -221,16 +217,20 @@ export const linkBuilding = {
       a: "We monitor every placement for 12 months. If a publisher removes or nofollows a link inside that window we replace it on an equivalent domain at no charge. If a site's quality degrades badly after placement we will flag it to you proactively rather than wait for you to notice.",
     },
     {
+      q: "Can I see the sites before you place anything?",
+      a: "If you want to, yes. Most clients leave site selection to us, which is a big part of why they hire us. If you prefer to review the shortlist first, tell us at kickoff and you get every site with its metrics before anything goes live. Either way, every placed domain is in your report.",
+    },
+    {
       q: "Do I get to choose the anchor text?",
-      a: "You get to approve it. We propose an anchor mix in the audit — typically branded, partial-match and natural-phrase anchors in ratios that stay inside normal ranges for your niche. If you want a specific anchor on a specific page we will accommodate it unless it pushes the profile into over-optimisation, in which case we will show you the numbers and say so.",
+      a: "Yes, if you have a preference. We propose an anchor mix in the audit — typically branded, partial-match and natural-phrase anchors in ratios that stay inside normal ranges for your niche. If you want a specific anchor on a specific page we will accommodate it unless it pushes the profile into over-optimisation, in which case we will show you the numbers and say so.",
     },
     {
       q: "How does pricing work, and is there a contract?",
-      a: "Monthly retainer scoped on delivered placements. Typical range is $2,400 to $6,000 depending on authority tier and volume. No setup fee. We ask for a three-month minimum because anything shorter cannot show a result, after which it runs month to month.",
+      a: "Monthly retainer scoped on delivered placements. Plans start at $997 a month and scale with authority tier and volume — see the pricing page. No setup fee. We ask for a three-month minimum because anything shorter cannot show a result, after which it runs month to month.",
     },
     {
       q: "Do you offer white label for agencies?",
-      a: "Yes. Roughly a third of our work is fulfilment for other agencies. You get the same approval sheet under your own branding, reports you can forward to your client without editing, and we stay invisible on calls. Pricing is structured so you have margin to resell.",
+      a: "Yes. Roughly a third of our work is fulfilment for other agencies. You get the same reporting under your own branding, reports you can forward to your client without editing, and we stay invisible on calls. Pricing is structured so you have margin to resell.",
     },
   ],
 };
