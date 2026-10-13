@@ -42,7 +42,7 @@ internals are not. This affects most of `src/pages/` and `src/sections/`.
 
 Hand-written files are clean and idiomatic:
 `components/MotionKit.tsx`, `Navigation.tsx`, `BookingModal.tsx`,
-`LogoReveal.tsx`, `PlatformMarks.tsx`, `HeroAtmosphere.tsx`, `PlaneFlight.tsx`,
+`LogoReveal.tsx`, `PlatformMarks.tsx`,
 `CountUp.tsx`, `PageLayout.tsx`, `PageHero.tsx`, `LineArt.tsx`,
 `ServicePage.tsx`, `pages/services/shared.tsx`, `pages/services/sections.tsx`,
 `pages/services/LinkBuilding.tsx`, `pages/services/content/*`.
@@ -90,9 +90,7 @@ src/
     Navigation.tsx       fixed header, services dropdown, mobile sheet
     BookingModal.tsx     Calendly dialog, opens on the global event
     LogoReveal.tsx       1.8s opening curtain
-    PlaneFlight.tsx      hero paper plane, scroll-driven along a sampled curve
     brand.tsx            SectionTitle, StatTile, QuoteTile, Annotation
-    HeroAtmosphere.tsx   drifting colour blobs behind the hero
     LineArt.tsx          11 hand-drawn SVG figures
     PlatformMarks.tsx    Google / AI Overview / ChatGPT / Claude glyphs
     AgencyBlocks.tsx     timeline, principles, FaqList, Testimonial
@@ -101,10 +99,11 @@ src/
     PageHero.tsx         centred page header
     CTABand.tsx          closing call to action
     ui/                  button, accordion, dropdown-menu (shadcn-style)
-  sections/              homepage, in render order:
-                         Hero, ClientLogos, TheShift, Services, Results,
-                         Personas, Process, VideoStories, ProofGrid,
-                         FAQ, HomeContact, Footer
+  sections/
+    Footer.tsx           site-wide footer
+    home/                the homepage (see HOMEPAGE-PLAN.md): content.ts holds
+                         all copy; Hero, Intro (logos + facts), Shift, Engine,
+                         Services, Proof, People, Closing
   pages/
     About, Services, ServicePage, CaseStudies, CaseStudy,
     Blog, BlogPost, Contact, Pricing
@@ -231,14 +230,10 @@ In rough priority order.
    ~1,000-word service pages. Content, not structure.
 3. **Blog posts** run 300-480 words each. Same shape as above: the page
    template is fine, `BLOG_POSTS` bodies are short.
-4. **Scroll-driven motion is unverified in this environment.** `PlaneFlight.tsx`
-   was checked in the DOM only — the Browser pane does not composite, so the
-   page cannot scroll and the flight could not be watched. Open the site in a
-   real browser and confirm the plane tracks the curve and the contrail draws
-   in behind it.
-5. **Homepage sections** other than the hero still use the older spacing and
-   card styles. Polish only; no redesign — the owner has rejected two homepage
-   redesigns and asked for this direction to be kept.
+4. **Homepage rebuilt (Oct 2026).** New structure, copy and positioning
+   ("Get found. Get mentioned. Get recommended.") in `src/sections/home/`,
+   planned in `HOMEPAGE-PLAN.md`. Its proof, quotes and testimonials are
+   sample content until real ones are supplied.
 
 ### Design rules that are not negotiable
 
@@ -246,7 +241,7 @@ These came from the owner directly, after rejected attempts:
 
 - **Every page has its own identity.** Do not add a shared page template and do
   not copy a section from one page onto another. Current signature shapes, one
-  per page: homepage pastel bento (`ProofGrid`), service pages rejection
+  per page: homepage press-clipping hero and pastel results bento, service pages rejection
   filmstrip vs ledger and process rail vs funnel (`services/depth.tsx`),
   Case Studies numbered file index with sparklines, Pricing stacked allocation
   bar, About vertical DR-band columns + signed letter, Services hub two-way

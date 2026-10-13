@@ -100,7 +100,7 @@ designed rather than typed.
 | `QuoteTile` | A testimonial, sized to sit in the same grid. |
 | `Annotation` | Handwritten margin note with a drawn arrow. **One per section, maximum.** |
 
-`src/sections/ProofGrid.tsx` composes the first three into the bento proof grid.
+`src/sections/home/Proof.tsx` holds the homepage's pastel results bento.
 
 ### Proof strategy
 

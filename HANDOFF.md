@@ -75,7 +75,7 @@ src/
   sections/            homepage sections
   pages/               one file per route; *-depth.tsx = that page's own sections
   pages/services/      four service pages + content/ (copy lives separately)
-  components/          shared UI, LineArt figures, PlaneFlight hero animation
+  components/          shared UI, LineArt figures
   lib/content.ts       case studies + blog posts
   lib/clients.ts       client names and the homepage proof bento
 scripts/
@@ -116,6 +116,4 @@ wp-theme/              generated theme + zip (gitignored)
    "AuthorityOS" coinage, and the rewrite of the "most link building starts
    with available inventory" comparison into something that does not imply the
    reader's current way of buying is wrong.
-4. **Hero animation timing is unverified.** The browser pane used during
-   development never composited frames, so no animation could be watched run.
-   Check `PlaneFlight` in a real browser.
+4. **Homepage was rebuilt in Oct 2026** — see `HOMEPAGE-PLAN.md`.

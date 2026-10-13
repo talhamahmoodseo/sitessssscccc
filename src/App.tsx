@@ -2,24 +2,11 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 
-import { Seo, ScrollProgress, ScrollToTop } from "./components/MotionKit";
+import { ScrollProgress, ScrollToTop } from "./components/MotionKit";
 import LogoReveal from "./components/LogoReveal";
 import BookingModal from "./components/BookingModal";
-import Navigation from "./components/Navigation";
 
-import Hero from "./sections/Hero";
-import ClientLogos from "./sections/ClientLogos";
-import TheShift from "./sections/TheShift";
-import ServicesSection from "./sections/Services";
-import Results from "./sections/Results";
-import Personas from "./sections/Personas";
-import Process from "./sections/Process";
-import VideoStories from "./sections/VideoStories";
-import ProofGrid from "./sections/ProofGrid";
-import FAQ from "./sections/FAQ";
-import HomeContact from "./sections/HomeContact";
-import Footer from "./sections/Footer";
-import CTABand from "./components/CTABand";
+import Home from "./sections/home/Home";
 
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -30,65 +17,6 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
-
-const Home = () => (
-  <>
-    <Seo
-      title="Link Building & AI Visibility Agency"
-      description="Editorial backlinks, digital PR, and brand mentions that move Google rankings and get you cited by ChatGPT, Claude, and AI Overviews."
-    />
-
-    <Navigation />
-
-    <main>
-      <section id="hero">
-        <Hero />
-      </section>
-
-      <ClientLogos />
-
-      <section id="shift">
-        <TheShift />
-      </section>
-
-      <section id="services">
-        <ServicesSection />
-      </section>
-
-      <section id="results">
-        <Results />
-      </section>
-
-      <section id="personas">
-        <Personas />
-      </section>
-
-      <section id="process">
-        <Process />
-      </section>
-
-      <section id="stories">
-        <VideoStories />
-      </section>
-      <section id="testimonials">
-        <ProofGrid />
-      </section>
-
-      <section id="faq">
-        <FAQ />
-      </section>
-
-      <section id="contact">
-        <HomeContact />
-      </section>
-
-      <CTABand />
-      <section id="footer">
-        <Footer />
-      </section>
-    </main>
-  </>
-);
 
 export default function App() {
   const [loading, setLoading] = useState(true);
