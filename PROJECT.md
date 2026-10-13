@@ -201,19 +201,17 @@ The shared architecture is implemented as components in
 
 Page copy is separated from layout in `src/pages/services/content/`.
 
-**Link Building is the finished template.** Copy its shape for the others:
+**Link Building is the flagship page and is built separately.** It was
+redesigned from scratch (Oct 2026) with its own sections in
+`src/pages/services/link-building/` and copy in `content/linkBuilding.ts`.
+The story, section purposes and design rules are in
+`LINK-BUILDING-PAGE-PLAN.md` — read it before changing that page. Its spine is
+**The 5-Point Site Check**: every site checked by hand for real traffic, the
+keywords behind it, a stable graph, the right audience, and link-farm signs.
 
-| | Before | After |
-| --- | --- | --- |
-| Words | 698 | 1,395 |
-| FAQ | 0 | 8 + schema |
-| CTAs | 1 | 4, spaced |
-| Internal links | few | 8 |
-
-The positioning spine is **"The Open Ledger"** — every domain disclosed and
-approved before placement, and the rejections shown too. That is the real
-differentiator versus competitors, who answer "can I see the sites?"
-defensively. The name is a proposal and can be changed with a find-replace.
+Site approval by the client is **not** a selling point (owner's decision). We
+pick the sites; reviewing the shortlist is offered once, in the FAQ. The older
+"Open Ledger" framing below that idea has been retired.
 
 ---
 
