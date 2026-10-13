@@ -42,7 +42,7 @@ internals are not. This affects most of `src/pages/` and `src/sections/`.
 
 Hand-written files are clean and idiomatic:
 `components/MotionKit.tsx`, `Navigation.tsx`, `BookingModal.tsx`,
-`LogoReveal.tsx`, `PlatformMarks.tsx`,
+`LogoReveal.tsx`, `PlatformMarks.tsx`, `Rocket.tsx`, `Grain.tsx`,
 `CountUp.tsx`, `PageLayout.tsx`, `PageHero.tsx`, `LineArt.tsx`,
 `ServicePage.tsx`, `pages/services/shared.tsx`, `pages/services/sections.tsx`,
 `pages/services/LinkBuilding.tsx`, `pages/services/content/*`.
@@ -90,7 +90,9 @@ src/
     Navigation.tsx       fixed header, services dropdown, mobile sheet
     BookingModal.tsx     Calendly dialog, opens on the global event
     LogoReveal.tsx       1.8s opening curtain
+    Rocket.tsx           hand-drawn hero rocket: flies in on load, then floats
     brand.tsx            SectionTitle, StatTile, QuoteTile, Annotation
+    Grain.tsx            grainy colour clouds (GrainBlob) used on the homepage
     LineArt.tsx          11 hand-drawn SVG figures
     PlatformMarks.tsx    Google / AI Overview / ChatGPT / Claude glyphs
     AgencyBlocks.tsx     timeline, principles, FaqList, Testimonial
@@ -99,11 +101,11 @@ src/
     PageHero.tsx         centred page header
     CTABand.tsx          closing call to action
     ui/                  button, accordion, dropdown-menu (shadcn-style)
-  sections/
-    Footer.tsx           site-wide footer
-    home/                the homepage (see HOMEPAGE-PLAN.md): content.ts holds
-                         all copy; Hero, Intro (logos + facts), Shift, Engine,
-                         Services, Proof, People, Closing
+  sections/              homepage, in render order:
+                         Hero, ClientLogos, TheShift, Services, Results,
+                         FeaturedReview, Personas, Process, ReviewWall,
+                         BlogPreview, FAQ, HomeCTA, Footer
+                         (plan and section audit: HOMEPAGE-PLAN.md)
   pages/
     About, Services, ServicePage, CaseStudies, CaseStudy,
     Blog, BlogPost, Contact, Pricing
@@ -230,10 +232,11 @@ In rough priority order.
    ~1,000-word service pages. Content, not structure.
 3. **Blog posts** run 300-480 words each. Same shape as above: the page
    template is fine, `BLOG_POSTS` bodies are short.
-4. **Homepage rebuilt (Oct 2026).** New structure, copy and positioning
-   ("Get found. Get mentioned. Get recommended.") in `src/sections/home/`,
-   planned in `HOMEPAGE-PLAN.md`. Its proof, quotes and testimonials are
-   sample content until real ones are supplied.
+4. **Homepage improved, not rebuilt (Oct 2026).** The original structure was
+   kept; the Shift, Process, personas, FAQ and closing CTA were reworked, the
+   rocket replaced the paper plane, and reviews + blog were added. See
+   `HOMEPAGE-PLAN.md` for the section-by-section audit. A full rebuild was
+   tried and rejected: keep improving this structure rather than replacing it.
 
 ### Design rules that are not negotiable
 
@@ -241,7 +244,7 @@ These came from the owner directly, after rejected attempts:
 
 - **Every page has its own identity.** Do not add a shared page template and do
   not copy a section from one page onto another. Current signature shapes, one
-  per page: homepage press-clipping hero and pastel results bento, service pages rejection
+  per page: homepage review wall and Shift diagram, service pages rejection
   filmstrip vs ledger and process rail vs funnel (`services/depth.tsx`),
   Case Studies numbered file index with sparklines, Pricing stacked allocation
   bar, About vertical DR-band columns + signed letter, Services hub two-way

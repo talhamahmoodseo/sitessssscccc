@@ -75,7 +75,7 @@ const CTABand = () => (
           {[
             "48-hour turnaround",
             "No retainer, no lock-in",
-            "Founder reviews every audit",
+            "Reviewed by a senior strategist",
           ].map((e) => (
             <span
               key={e}

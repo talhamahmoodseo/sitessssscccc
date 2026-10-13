@@ -100,7 +100,7 @@ designed rather than typed.
 | `QuoteTile` | A testimonial, sized to sit in the same grid. |
 | `Annotation` | Handwritten margin note with a drawn arrow. **One per section, maximum.** |
 
-`src/sections/home/Proof.tsx` holds the homepage's pastel results bento.
+Pastel stat tiles appear on the case-study cards (`src/sections/Results.tsx`).
 
 ### Proof strategy
 
