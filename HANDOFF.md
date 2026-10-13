@@ -73,11 +73,13 @@ src/
   App.tsx              routes + homepage section order
   index.css            design tokens (:root custom properties)
   sections/            homepage sections
-  pages/               one file per route; *-depth.tsx = that page's own sections
+  pages/               one file per route; about/, results/, services/ hold
+                       those pages' own sections
   pages/services/      four service pages, one section folder each, kit.tsx,
                        common.tsx + content/ (copy lives separately)
   components/          shared UI, LineArt figures, Rocket hero animation
-  lib/content.ts       case studies + blog posts
+  lib/content.ts       blog posts + homepage case summaries
+  lib/cases.ts         the three sample case studies (full detail)
   lib/clients.ts       client names and the homepage proof bento
 scripts/
   build-wp-theme.mjs   React build -> WordPress theme, with self-checks

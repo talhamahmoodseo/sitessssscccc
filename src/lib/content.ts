@@ -1,356 +1,26 @@
 import { Link } from "react-router-dom";
 import { Search, X } from "lucide-react";
 import { asset } from "@/lib/booking";
+import { CASES } from "./cases";
 
-const CASE_STUDIES = [
-  {
-    slug: "b2b-saas-ai-visibility",
-    indexation: {
-      rate: "14 / 14",
-      median: "19 days",
-      slowest: "41 days",
-      note: "Two placements stalled past the four-week mark. We went back to both publishers; one re-published with an updated date and indexed in nine days, the other needed an internal link from the publication’s own category page before Google picked it up.",
-    },
-    reviewed: 31,
-    rejected: [
-      {
-        site: "Business magazine",
-        metric: "DR 71",
-        reason:
-          "Organic traffic had collapsed 94% after a core update, and the remaining visits came from one unrelated keyword. Authority on paper, none in practice.",
-      },
-      {
-        site: "Regional tech news site",
-        metric: "DR 64",
-        reason:
-          "Clean-looking until we read the outbound profile: 40% of recent external links pointed to offshore gambling.",
-      },
-      {
-        site: "Support-industry trade blog",
-        metric: "DR 52",
-        reason:
-          "Genuine traffic and a real editor, but a public price list for sponsored posts put a paid-link footprint on the whole domain.",
-      },
-    ],
-    series: [1200, 1380, 1610, 2050, 2400, 2980, 3450, 3744],
-    seriesLabel: "Monthly organic clicks, months 0–7",
-    cover: "/images/portfolio-1.jpg",
-    shot: "/images/project-1.jpg",
-    client: "B2B SaaS platform",
-    industry: "Customer support software",
-    duration: "7 months",
-    bg: "bg-butter",
-    headline: "+212%",
-    metric: "organic clicks",
-    title: "From invisible to cited everywhere",
-    line: "Twelve editorial placements turned a DR 35 site into a source AI engines quote for its category.",
-    stats: [
-      ["DR 35 → 65", "authority"],
-      ["14", "placements"],
-      ["3/3", "AI surfaces"],
-    ],
-    situation: [
-      "A support-automation platform with strong product reviews and almost no off-page footprint. Their content team published weekly, but nothing outside their own domain described what they did.",
-      "They ranked page two for their category term and appeared in zero AI answers. Buyers researching alternatives were being shown three competitors by name.",
-    ],
-    blockers: [
-      "A link profile built almost entirely from directories and their own press releases.",
-      "Two previous vendors had placed links on sites with no organic traffic — a cleanup risk, not an asset.",
-      "No third-party source described the product in language a model could repeat.",
-    ],
-    strategy: [
-      {
-        t: "Fix the foundation first",
-        d: "We audited the existing profile and quietly stopped chasing the terms their thin pages could never hold. Budget moved to two money pages instead of eight.",
-      },
-      {
-        t: "Earn links that read naturally",
-        d: "Guest posts and niche edits on support and ops publications, each link inside a sentence that survives without it.",
-      },
-      {
-        t: "Feed the machines that quote",
-        d: "Contextual brand mentions on the exact publications ChatGPT and AI Overviews were already citing for their category queries.",
-      },
-    ],
-    work: [
-      ["Editorial guest posts", "6"],
-      ["Niche edits on aged content", "5"],
-      ["Contextual brand mentions", "9"],
-      ["HARO expert quotes", "3"],
-      ["Domains reviewed and rejected", "31"],
-    ],
-    outcome: [
-      ["+212%", "organic clicks"],
-      ["DR 65", "from DR 35"],
-      ["#3", "category keyword"],
-      ["3/3", "AI surfaces citing them"],
-    ],
-    placements: [
-      ["the•••journal.com", "DR 71", "GUEST POST"],
-      ["saas•••weekly.com", "DR 61", "NICHE EDIT"],
-      ["tech•••digest.com", "DR 64", "MENTION + LINK"],
-      ["b2b•••review.com", "DR 57", "EXPERT QUOTE"],
-    ],
-    quote: {
-      text: "They took the whole link side off our plate. Three months in, ChatGPT started naming us for our category — sales noticed before we told them.",
-      who: "Founder · B2B SaaS",
-    },
-    timeline: [
-      {
-        m: "Month 1",
-        t: "Audit & site shortlist",
-        d: "Profile audit, competitor gap, first vetted site shortlist.",
-      },
-      {
-        m: "Month 2–4",
-        t: "Authority build",
-        d: "Guest posts and niche edits on the two money pages.",
-      },
-      {
-        m: "Month 4–6",
-        t: "Mention layer",
-        d: "Contextual mentions on already-cited sources; citation tracking begins.",
-      },
-      {
-        m: "Month 7",
-        t: "Compounding",
-        d: "Category keyword hits top three; brand named in AI answers.",
-      },
-    ],
-  },
-  {
-    slug: "home-services-local-pack",
-    indexation: {
-      rate: "9 / 9",
-      median: "14 days",
-      slowest: "26 days",
-      note: "Local placements indexed faster than we expected — the publications are small but crawled daily. The slowest was a monthly print-first title whose web edition goes up in a batch.",
-    },
-    reviewed: 18,
-    rejected: [
-      {
-        site: "City events directory",
-        metric: "DR 44",
-        reason:
-          "A link farm wearing a local-news coat: every page was a paid listing and nothing had an author.",
-      },
-      {
-        site: "Home-improvement content site",
-        metric: "DR 58",
-        reason:
-          "Traffic was real but entirely US-national. For an emergency-repair business in Fresno, a national audience is not relevance.",
-      },
-      {
-        site: "Contractor review portal",
-        metric: "DR 49",
-        reason:
-          "Would only place the link inside a sponsored comparison table alongside four direct competitors.",
-      },
-    ],
-    series: [640, 690, 820, 1010, 1240, 1498],
-    seriesLabel: "Monthly organic clicks, months 0–5",
-    cover: "/images/portfolio-4.jpg",
-    shot: "/images/project-2.jpg",
-    client: "Emergency HVAC company",
-    industry: "Home services · Fresno, CA",
-    duration: "5 months",
-    bg: "bg-mint",
-    headline: "Top 3",
-    metric: "for money keywords",
-    title: "Page two to the local pack",
-    line: "Local press and niche edits moved the emergency-repair pages past two national directories.",
-    stats: [
-      ["9", "placements"],
-      ["+164%", "calls"],
-      ["100%", "indexed"],
-    ],
-    situation: [
-      "A licensed HVAC firm with excellent reviews, beaten on every emergency search by national lead-gen directories that had never fixed a furnace.",
-      "The owner measured one thing: the phone. Rankings only mattered as far as they produced calls.",
-    ],
-    blockers: [
-      "Directories with enormous domain authority occupying the top three positions.",
-      "A service-area page structure that split relevance across a dozen thin pages.",
-      "No local press coverage of any kind.",
-    ],
-    strategy: [
-      {
-        t: "Consolidate before building",
-        d: "We flagged the thin service-area pages so their developer could merge them — no point pushing authority into pages that split it.",
-      },
-      {
-        t: "Local relevance over raw DR",
-        d: "Regional news and community publications beat generic DR 70 blogs for local intent, so that is where we placed.",
-      },
-      {
-        t: "Own the emergency angle",
-        d: "Every placement tied the brand to response time — the one thing directories cannot claim.",
-      },
-    ],
-    work: [
-      ["Local press features", "3"],
-      ["Regional niche edits", "4"],
-      ["Trade publication mentions", "2"],
-      ["Domains reviewed and rejected", "18"],
-    ],
-    outcome: [
-      ["Top 3", "emergency keywords"],
-      ["+164%", "tracked calls"],
-      ["100%", "links indexed"],
-      ["5 mo", "to local pack"],
-    ],
-    placements: [
-      ["fresno•••daily.com", "DR 58", "FEATURE"],
-      ["valley•••biz.org", "DR 52", "MENTION + LINK"],
-      ["home•••digest.com", "DR 64", "NICHE EDIT"],
-    ],
-    quote: {
-      text: "I do not read dashboards. I read the phone ringing more than last month. It rings, so we renewed.",
-      who: "Owner · HVAC company",
-    },
-    timeline: [
-      {
-        m: "Month 1",
-        t: "Audit & cleanup plan",
-        d: "Page consolidation flagged, local prospect list approved.",
-      },
-      {
-        m: "Month 2–3",
-        t: "Local press",
-        d: "Regional features and community coverage go live.",
-      },
-      {
-        m: "Month 4",
-        t: "Trade layer",
-        d: "Industry publications reinforce the response-time angle.",
-      },
-      {
-        m: "Month 5",
-        t: "Local pack",
-        d: "Emergency terms reach the top three; call volume follows.",
-      },
-    ],
-  },
-  {
-    slug: "ecommerce-gulf-authority",
-    indexation: {
-      rate: "21 / 22",
-      median: "23 days",
-      slowest: "68 days",
-      note: "One Gulf placement never indexed. The publisher moved the article behind a subscriber wall two weeks after publication, so we replaced it on an equivalent domain at no charge — that replacement is the 22nd row and did index.",
-    },
-    reviewed: 45,
-    rejected: [
-      {
-        site: "Regional lifestyle magazine",
-        metric: "DR 67",
-        reason:
-          "Strong brand, but the English edition was machine-translated from Arabic and read as thin content to a crawler.",
-      },
-      {
-        site: "Gulf business news site",
-        metric: "DR 61",
-        reason:
-          "Required the piece to run under a “brand voices” label, which flags it as sponsored to both readers and Google.",
-      },
-      {
-        site: "Home-decor aggregator",
-        metric: "DR 55",
-        reason:
-          "Pure syndication — every article existed on three other domains first. The link would have carried no independent signal.",
-      },
-    ],
-    series: [2100, 2240, 2610, 3180, 3790, 4420, 5130, 5880, 6410],
-    seriesLabel: "Monthly organic clicks, months 0–8",
-    cover: "/images/portfolio-6.jpg",
-    shot: "/images/project-3.jpg",
-    client: "Home & lifestyle e-commerce",
-    industry: "E-commerce · UK + GCC",
-    duration: "6 months",
-    bg: "bg-lilac",
-    headline: "4×",
-    metric: "referring domains",
-    title: "Category pages that finally rank",
-    line: "Gulf and trade press coverage rebuilt a thin profile into something Google trusts.",
-    stats: [
-      ["DR 74", "top outlet"],
-      ["21", "placements"],
-      ["+88%", "revenue"],
-    ],
-    situation: [
-      "A homeware brand expanding from the UK into the Gulf, with category pages that converted well but never ranked.",
-      "Their previous agency had bought volume: 400 links, almost none from sites with a real audience.",
-    ],
-    blockers: [
-      "A bloated profile that needed quality, not quantity, to dilute it.",
-      "No presence at all in the region they were expanding into.",
-      "Seasonal buying windows that made timing critical.",
-    ],
-    strategy: [
-      {
-        t: "Quality to outweigh volume",
-        d: "Rather than disavow aggressively, we built a counterweight of genuinely editorial links so the profile average moved up.",
-      },
-      {
-        t: "Enter the region properly",
-        d: "Gulf business and lifestyle press gave them authority and actual regional buyers at the same time.",
-      },
-      {
-        t: "Pace against the season",
-        d: "Placements front-loaded so authority landed before the peak buying window, not during it.",
-      },
-    ],
-    work: [
-      ["Gulf press features", "4"],
-      ["UK trade placements", "7"],
-      ["Product roundup inclusions", "6"],
-      ["Contextual mentions", "4"],
-      ["Domains reviewed and rejected", "44"],
-    ],
-    outcome: [
-      ["4×", "referring domains"],
-      ["+88%", "organic revenue"],
-      ["DR 74", "highest placement"],
-      ["Top 5", "core categories"],
-    ],
-    placements: [
-      ["khaleejtimes.com", "DR 74", "FEATURE"],
-      ["arabianbusiness.com", "DR 72", "FEATURE"],
-      ["retail•••review.com", "DR 60", "ROUNDUP"],
-      ["style•••editorials.com", "DR 55", "MENTION"],
-    ],
-    quote: {
-      text: "They got us into Gulf business press our previous agency called impossible. The feature still sends us traffic months later.",
-      who: "Head of Growth · E-commerce",
-    },
-    timeline: [
-      {
-        m: "Month 1",
-        t: "Profile triage",
-        d: "Existing links assessed; quality counterweight plan approved.",
-      },
-      {
-        m: "Month 2–3",
-        t: "Gulf entry",
-        d: "Regional business press secured ahead of the season.",
-      },
-      {
-        m: "Month 4–5",
-        t: "Category push",
-        d: "Trade placements and roundups aimed at core categories.",
-      },
-      {
-        m: "Month 6",
-        t: "Peak season",
-        d: "Categories in the top five as demand peaks.",
-      },
-    ],
-  },
-];
+/** Case-study summaries for the homepage results list. The full sample case
+ *  studies live in ./cases.ts. */
+const CASE_STUDIES = CASES.map((c) => ({
+  slug: c.slug,
+  bg: c.tint,
+  industry: c.sector,
+  duration: c.duration,
+  headline: c.headline[0].v,
+  metric: c.headline[0].l,
+  title: c.card,
+  line: c.summary,
+  stats: c.headline.slice(1, 4).map((h) => [h.v, h.l] as [string, string]),
+}));
 
 const BLOG_POSTS = [
   {
     slug: "why-ai-engines-cite-some-brands",
+    cover: "Why AI cites some brands",
     title: "Why AI Engines Cite Some Brands and Ignore Others",
     excerpt:
       "We tracked citations across ChatGPT, Claude, and AI Overviews for six months. The pattern is uncomfortable for most SEO playbooks — and great news for anyone doing real digital PR.",
@@ -406,6 +76,7 @@ const BLOG_POSTS = [
   },
   {
     slug: "linked-vs-unlinked-mentions",
+    cover: "Linked vs unlinked mentions",
     title: "Linked vs Unlinked Mentions: What Actually Moves the Needle",
     excerpt:
       "Links move rankings. Mentions move AI answers. Treating them as the same deliverable is how budgets get wasted — here is how we split them in real campaigns.",
@@ -450,6 +121,7 @@ const BLOG_POSTS = [
   },
   {
     slug: "site-vetting-checklist",
+    cover: "The site-vetting checklist",
     title: "The Site-Vetting Checklist That Saves Our Clients Thousands",
     excerpt:
       "DR and traffic numbers lie more often than you think. Here is the exact checklist every domain passes before we place a single link on it.",
@@ -492,6 +164,7 @@ const BLOG_POSTS = [
   },
   {
     slug: "anatomy-of-a-dr70-placement",
+    cover: "Anatomy of a DR 70 placement",
     title: "Anatomy of a DR 70 Placement: From Pitch to Indexed",
     excerpt:
       "A real placement timeline, stripped of client details: 19 days, one rewrite, two indexation checks, and the small moves that make a high-authority link actually count.",
@@ -537,6 +210,7 @@ const BLOG_POSTS = [
   },
   {
     slug: "tracking-citations-across-ai-engines",
+    cover: "Tracking AI citations",
     title: "How We Track Citations Across ChatGPT, Claude & Perplexity",
     excerpt:
       "There is no Search Console for AI answers — so we built a monthly tracking routine instead. The exact queries, cadence, and what counts as a win.",
@@ -581,6 +255,7 @@ const BLOG_POSTS = [
   },
   {
     slug: "gulf-media-placements",
+    cover: "Gulf media placements",
     title: "Gulf Media Placements: The Untapped Authority Channel",
     excerpt:
       "Khaleej Times, Arabian Business, and the regional press most agencies cannot reach — why Gulf media is quietly one of the best authority plays for international brands.",

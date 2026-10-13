@@ -1,426 +1,385 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
-import { ArrowRight, Check, Clock, Mail } from "lucide-react";
-import { FigFounder } from "@/components/LineArt";
+import { ArrowRight, CalendarDays, Check, Mail, Star } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import { openBooking } from "@/lib/booking";
+import { CARD, GlowPanel, ease, rise } from "./services/kit";
 
-const CONTACT_EMAIL = "contact@talhamahmood.com";
+const EMAIL = "contact@talhamahmood.com";
 
-/**
- * Everything below the form.
- *
- * Shapes chosen to stay distinct from the rest of the site: a horizontal
- * numbered rail (nothing else on the site runs left-to-right), a dark
- * two-column pre-call FAQ, and a three-way off-ramp for people who are not
- * ready to talk yet.
- */
+const SERVICES = [
+  "Link building",
+  "Digital PR",
+  "Brand mentions & AI visibility",
+  "HARO & expert quotes",
+  "White label for my agency",
+  "Not sure yet",
+];
 
-const AFTER = [
+const BUDGETS = [
+  "Under $1,000",
+  "$1,000–2,500",
+  "$2,500–5,000",
+  "$5,000+",
+  "Not sure yet",
+];
+
+const NEXT = [
   {
-    n: "01",
-    t: "A reply, within 24 hours",
-    d: "From whoever will actually run your account. If we are not the right fit we say so in that first reply rather than booking a call to tell you.",
+    t: "A reply within 24 hours",
+    d: "From a strategist, not an auto-responder.",
   },
   {
-    n: "02",
-    t: "A free visibility audit",
-    d: "Inside 48 hours: your current link profile, the pages closest to moving, and which competitors AI engines name instead of you.",
+    t: "A free audit within 48 hours",
+    d: "Your links, the gaps against competitors, and whether AI answers mention you.",
   },
   {
-    n: "03",
-    t: "A 30-minute call",
-    d: "We walk the audit together. No deck. You will know by the end whether there is a case for doing anything at all.",
-  },
-  {
-    n: "04",
-    t: "A scoped proposal",
-    d: "Target pages, authority range, monthly volume and the figure. One page, no lock-in beyond the agreed term.",
+    t: "A short call, if it makes sense",
+    d: "We walk through the audit. If links aren’t what you need yet, we’ll say so.",
   },
 ];
 
-const AfterRail = () => (
-  <div className="bg-linen py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <motion.div
-        className="mb-12 max-w-2xl"
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
-          What happens next
-        </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark">
-          Four steps, and you can
-          <br />
-          <span className="text-navy-dark/65">stop at any of them</span>
-        </h2>
-      </motion.div>
-
-      <div className="relative">
-        <div
-          className="absolute left-0 right-0 top-[21px] hidden h-px bg-line lg:block"
-          aria-hidden="true"
-        />
-        <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {AFTER.map((s, i) => (
-            <motion.li
-              key={s.n}
-              className="relative"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.09 }}
-            >
-              <span className="relative z-10 mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-navy-dark text-[13px] font-bold text-white tabular-nums">
-                {s.n}
-              </span>
-              <h3 className="mb-2 text-[16.5px] font-semibold leading-snug text-navy-dark">
-                {s.t}
-              </h3>
-              <p className="text-[13.5px] leading-relaxed text-navy-dark/75">
-                {s.d}
-              </p>
-            </motion.li>
-          ))}
-        </ol>
-      </div>
-    </div>
-  </div>
-);
-
-const PRECALL = [
+const ASKED = [
   {
-    q: "Will I be talking to a salesperson?",
-    a: "No. There are four of us. The person who replies to your form is the person who would run the account, and they will tell you when something is outside what we do well.",
+    q: "Is there a contract?",
+    a: "No long contract. Plans run month to month. We suggest giving it three months, because links take a few weeks to index and pages take time to move.",
   },
   {
-    q: "Is there a minimum commitment?",
-    a: "Three months, because indexation alone takes two to six weeks and anything shorter cannot show a result. After that it runs month to month.",
+    q: "Do you work with agencies?",
+    a: "Yes, about a third of our work is white label. Your branding on the reports, and we stay invisible on client calls.",
   },
   {
-    q: "Can you work under NDA, or white-label?",
-    a: "Both. Roughly a third of our work is fulfilment for other agencies — same reporting under your branding, reports you can forward without editing, and we stay invisible on client calls.",
-  },
-  {
-    q: "What if my site is not ready for links yet?",
-    a: "We will say so in the audit. Pointing authority at a thin page wastes the link, and we would rather tell you that before you pay us than four months in.",
+    q: "What if my site isn’t ready for links?",
+    a: "The audit will say so. Pointing links at a thin page wastes your money, and we’d rather tell you before you spend it.",
   },
 ];
 
-const PreCall = () => (
-  <div className="bg-navy-dark py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <motion.div
-        className="mb-14 max-w-2xl"
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
-          Before you send it
-        </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
-          The four things people
-          <br />
-          <span className="text-white/70">ask us first</span>
-        </h2>
-      </motion.div>
-
-      <dl className="grid gap-x-16 gap-y-10 sm:grid-cols-2">
-        {PRECALL.map((f, i) => (
-          <motion.div
-            key={f.q}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
+/* chips that behave like a radio group */
+const ChipGroup = ({
+  label,
+  options,
+  value,
+  onChange,
+}: {
+  label: string;
+  options: string[];
+  value: string;
+  onChange: (v: string) => void;
+}) => (
+  <fieldset>
+    <legend className="mb-2.5 text-[13px] font-semibold text-navy-dark">
+      {label}
+    </legend>
+    <div className="flex flex-wrap gap-2">
+      {options.map((o) => {
+        const on = value === o;
+        return (
+          <label
+            key={o}
+            className={`cursor-pointer rounded-full px-3.5 py-2 text-[13px] font-semibold transition-colors focus-within:ring-2 focus-within:ring-navy-dark/40 ${
+              on
+                ? "bg-navy-dark text-white"
+                : "bg-mist text-navy-dark/85 ring-1 ring-line hover:ring-navy-dark/30"
+            }`}
           >
-            <dt className="mb-3 text-[17px] font-semibold leading-snug tracking-[-0.02em] text-white">
-              {f.q}
-            </dt>
-            <dd className="text-[14.5px] leading-relaxed text-white/70">
-              {f.a}
-            </dd>
-          </motion.div>
-        ))}
-      </dl>
+            <input
+              type="radio"
+              name={label}
+              value={o}
+              checked={on}
+              onChange={() => onChange(o)}
+              className="sr-only"
+            />
+            {o}
+          </label>
+        );
+      })}
     </div>
-  </div>
+  </fieldset>
 );
 
-const OFFRAMPS = [
-  {
-    to: "/case-studies",
-    t: "Read a case file first",
-    d: "Three engagements published in full — growth charts, every placement, and the domains we rejected.",
-    cta: "Open the archive",
-  },
-  {
-    to: "/pricing",
-    t: "See what it costs",
-    d: "Retainer ranges, what moves the number up or down, and why we scope on placements rather than hours.",
-    cta: "See pricing",
-  },
-  {
-    to: "/blog",
-    t: "Judge the thinking",
-    d: "How AI engines pick sources, linked versus unlinked mentions, and what a DR 70 placement actually involves.",
-    cta: "Read the writing",
-  },
-];
+const FIELD =
+  "mt-1.5 w-full rounded-xl bg-mist px-4 py-3 text-[15px] text-navy-dark ring-1 ring-line placeholder:text-navy-dark/60 transition-shadow focus:bg-white focus:outline-none focus:ring-2 focus:ring-navy-dark/50";
 
-const OffRamps = () => (
-  <div className="bg-mist py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <motion.h2
-        className="mb-12 max-w-xl text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.03em] text-navy-dark sm:text-[2rem]"
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-      >
-        {"Not ready to talk? "}
-        <span className="text-navy-dark/65">
-          Three ways to check us out quietly.
-        </span>
-      </motion.h2>
+const ContactForm = () => {
+  const [f, setF] = useState({
+    name: "",
+    email: "",
+    website: "",
+    service: "Link building",
+    budget: "Not sure yet",
+    message: "",
+  });
+  const set = (k: keyof typeof f) => (v: string) => setF({ ...f, [k]: v });
 
-      <div className="grid gap-5 md:grid-cols-3">
-        {OFFRAMPS.map((o, i) => (
-          <motion.div
-            key={o.to}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, delay: i * 0.09 }}
-          >
-            <Link
-              to={o.to}
-              className="group flex h-full flex-col rounded-3xl border border-line bg-white p-7 transition-shadow duration-500 hover:shadow-lift"
-            >
-              <h3 className="mb-2.5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
-                {o.t}
-              </h3>
-              <p className="mb-6 text-[14px] leading-relaxed text-navy-dark/75">
-                {o.d}
-              </p>
-              <span className="mt-auto inline-flex items-center gap-2 text-[13px] font-semibold text-navy-dark">
-                {o.cta}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
+  const send = () => {
+    const subject = encodeURIComponent(
+      `Enquiry: ${f.service} (${f.website || f.name})`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${f.name}\nEmail: ${f.email}\nWebsite: ${f.website}\nService: ${f.service}\nBudget: ${f.budget}\n\n${f.message}`,
+    );
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+  };
 
-const Contact = () => {
-  const [e, s] = useState({
-      name: "",
-      email: "",
-      website: "",
-      service: "Link Building",
-      budget: "Not sure yet",
-      message: "",
-    }),
-    a = (d) => (h) => s({ ...e, [d]: h.target.value }),
-    r = () => {
-      const d = encodeURIComponent(
-          `Inquiry — ${e.service} (${e.website || e.name})`,
-        ),
-        h = encodeURIComponent(`Name: ${e.name}
-Email: ${e.email}
-Website: ${e.website}
-Service: ${e.service}
-Budget: ${e.budget}
-
-${e.message}`);
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${d}&body=${h}`;
-    },
-    c =
-      "w-full bg-transparent border-0 border-b border-line px-0 py-3 text-[15px] text-navy-dark placeholder:text-navy-dark/70 focus:outline-none focus:border-navy-dark transition-colors duration-300",
-    u =
-      "block text-[11px] font-semibold tracking-[0.14em] text-navy-dark/70 uppercase mb-1";
   return (
-    <PageLayout>
-      <Seo
-        title="Contact"
-        description="Tell us where you want to rank and get cited. A senior strategist replies within 24 hours, with a free visibility audit inside 48."
-      />
-      <div className="bg-white pt-36 pb-24 lg:pt-44 lg:pb-32">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.85fr_1.15fr] gap-16 lg:gap-24">
-          <div>
-            <motion.p
-              className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-6"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Contact
-            </motion.p>
-            <motion.h1
-              className="text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold text-navy-dark leading-[1.05] tracking-[-0.02em] mb-7"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.08 }}
-            >
-              Let's talk about
-              <br />
-              <span className="text-navy-dark/70">your visibility.</span>
-            </motion.h1>
-            <motion.p
-              className="text-[17px] text-navy-dark/70 leading-relaxed mb-12 max-w-sm"
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.16 }}
-            >
-              Tell us where you want to rank and get cited. A senior strategist
-              replies within 24 hours — with a free audit inside 48.
-            </motion.p>
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.24 }}
-            >
-              {[
-                {
-                  icon: Clock,
-                  t: "Reply within 24 hours",
-                  d: "From a strategist, not an auto-responder.",
-                },
-                {
-                  icon: Check,
-                  t: "Free visibility audit",
-                  d: "Rankings, citations, and the gap to close.",
-                },
-                {
-                  icon: Mail,
-                  t: CONTACT_EMAIL,
-                  d: "Or email us directly, any time.",
-                },
-              ].map((d) => (
-                <div
-                  key={d.t}
-                  className="flex gap-4 pb-6 border-b border-line last:border-0"
-                >
-                  <d.icon className="w-4 h-4 text-blue-accent flex-none mt-1" />
-                  <div>
-                    <p className="text-[14.5px] font-semibold text-navy-dark leading-none mb-1.5">
-                      {d.t}
-                    </p>
-                    <p className="text-[13px] text-navy-dark/70">{d.d}</p>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-            <div className="hidden lg:block text-navy-dark/70 mt-12">
-              <FigFounder className="w-24 h-auto" />
-            </div>
-            <motion.button
-              onClick={openBooking}
-              className="mt-10 inline-flex items-center gap-2 min-h-[44px] text-[14px] font-semibold text-navy-dark hover:text-blue-accent transition-colors duration-300"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.32 }}
-            >
-              Prefer a 15-minute call?
-              <ArrowRight className="w-4 h-4" />
-            </motion.button>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
-              <label className="block">
-                <span className={u}>Your name</span>
-                <input
-                  className={c}
-                  placeholder="Jane Smith"
-                  value={e.name}
-                  onChange={a("name")}
-                />
-              </label>
-              <label className="block">
-                <span className={u}>Email</span>
-                <input
-                  className={c}
-                  placeholder="jane@company.com"
-                  type="email"
-                  value={e.email}
-                  onChange={a("email")}
-                />
-              </label>
-              <label className="block">
-                <span className={u}>Website</span>
-                <input
-                  className={c}
-                  placeholder="yourbrand.com"
-                  value={e.website}
-                  onChange={a("website")}
-                />
-              </label>
-              <label className="block">
-                <span className={u}>Service</span>
-                <select className={c} value={e.service} onChange={a("service")}>
-                  <option>Link Building</option>
-                  <option>Digital PR</option>
-                  <option>Brand Mentions / AI Visibility</option>
-                  <option>HARO / Expert placements</option>
-                  <option>White-label for agency</option>
-                  <option>Something else</option>
-                </select>
-              </label>
-              <label className="block sm:col-span-2">
-                <span className={u}>Monthly budget (optional)</span>
-                <select className={c} value={e.budget} onChange={a("budget")}>
-                  <option>Not sure yet</option>
-                  <option>Under $1,000</option>
-                  <option>$1,000 – $2,500</option>
-                  <option>$2,500 – $5,000</option>
-                  <option>$5,000+</option>
-                </select>
-              </label>
-              <label className="block sm:col-span-2">
-                <span className={u}>What are you trying to achieve?</span>
-                <textarea
-                  className={`${c} min-h-[110px] resize-y`}
-                  placeholder="Keywords you want to rank for, queries you want to be cited in…"
-                  value={e.message}
-                  onChange={a("message")}
-                />
-              </label>
-            </div>
-            <div className="flex flex-wrap items-center gap-5 mt-12">
-              <button
-                onClick={r}
-                className="group inline-flex items-center gap-2 bg-navy-dark hover:bg-navy text-white rounded-xl px-9 py-4 text-[14px] font-semibold transition-colors duration-300"
-              >
-                Send inquiry
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </button>
-              <span className="text-[12px] text-navy-dark/70">
-                Opens your email app — nothing is stored on this site.
-              </span>
-            </div>
-          </motion.div>
-        </div>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        send();
+      }}
+      className={`${CARD} space-y-6 p-6 sm:p-8`}
+    >
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="block text-[13px] font-semibold text-navy-dark">
+          Your name
+          <input
+            required
+            className={FIELD}
+            placeholder="Jane Smith"
+            value={f.name}
+            onChange={(e) => set("name")(e.target.value)}
+            autoComplete="name"
+          />
+        </label>
+        <label className="block text-[13px] font-semibold text-navy-dark">
+          Work email
+          <input
+            required
+            type="email"
+            className={FIELD}
+            placeholder="jane@company.com"
+            value={f.email}
+            onChange={(e) => set("email")(e.target.value)}
+            autoComplete="email"
+          />
+        </label>
       </div>
-      <AfterRail />
-      <PreCall />
-      <OffRamps />
-    </PageLayout>
+      <label className="block text-[13px] font-semibold text-navy-dark">
+        Website
+        <input
+          className={FIELD}
+          placeholder="yourbrand.com"
+          value={f.website}
+          onChange={(e) => set("website")(e.target.value)}
+          autoComplete="url"
+        />
+      </label>
+      <ChipGroup
+        label="What do you need?"
+        options={SERVICES}
+        value={f.service}
+        onChange={set("service")}
+      />
+      <ChipGroup
+        label="Monthly budget (optional)"
+        options={BUDGETS}
+        value={f.budget}
+        onChange={set("budget")}
+      />
+      <label className="block text-[13px] font-semibold text-navy-dark">
+        What are you trying to achieve?
+        <textarea
+          className={`${FIELD} min-h-[120px] resize-y`}
+          placeholder="Pages you want to rank, keywords, markets, or the questions you want AI to name you for."
+          value={f.message}
+          onChange={(e) => set("message")(e.target.value)}
+        />
+      </label>
+      <div className="flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="submit"
+          className="group inline-flex items-center justify-center gap-2 rounded-full bg-navy-dark px-7 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black"
+        >
+          Send enquiry
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </button>
+        <p className="text-[12.5px] leading-snug text-navy-dark/70 sm:max-w-[16rem] sm:text-right">
+          Opens your email app with everything filled in. Nothing is stored on
+          this site.
+        </p>
+      </div>
+    </form>
   );
 };
+
+/**
+ * /contact: one job, so one screen. The ask on the right, everything that
+ * makes it easy to say yes on the left, and three answers underneath.
+ * Plan: PAGES-REDESIGN-2.md §3.
+ */
+const Contact = () => (
+  <PageLayout cta={false}>
+    <Seo
+      title="Contact Us"
+      description="Tell us where you want to rank and get cited. A strategist replies within 24 hours, with a free audit inside 48."
+    />
+
+    <section className="bg-mist pb-20 pt-32 lg:pb-28 lg:pt-40">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:px-8">
+        {/* left: why and how */}
+        <div className="lg:pt-4">
+          <motion.p
+            className="text-[12px] font-semibold uppercase tracking-[0.2em] text-navy-dark/70"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Contact
+          </motion.p>
+          <h1 className="mt-5">
+            <motion.span
+              className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark sm:text-[3.6rem]"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease }}
+            >
+              Let’s talk about
+            </motion.span>
+            <motion.span
+              className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark/60 sm:text-[3.6rem]"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease }}
+            >
+              your visibility.
+            </motion.span>
+          </h1>
+          <motion.p
+            className="mt-6 max-w-md text-[17px] leading-relaxed text-navy-dark/75"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease }}
+          >
+            Tell us where you want to rank and get cited. You’ll hear back from
+            a strategist, not a sales script.
+          </motion.p>
+
+          <motion.ol
+            className="mt-10 space-y-5"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease }}
+          >
+            {NEXT.map((n, i) => (
+              <li key={n.t} className="flex gap-4">
+                <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-navy-dark text-[12px] font-bold text-white">
+                  {i + 1}
+                </span>
+                <span>
+                  <span className="block text-[16px] font-semibold text-navy-dark">
+                    {n.t}
+                  </span>
+                  <span className="mt-0.5 block text-[14.5px] leading-snug text-navy-dark/75">
+                    {n.d}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </motion.ol>
+
+          <motion.div
+            className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease }}
+          >
+            <button
+              onClick={openBooking}
+              className="group flex items-center gap-3 rounded-2xl bg-white p-4 text-left ring-1 ring-line transition-shadow hover:ring-navy-dark/30"
+            >
+              <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-butter">
+                <CalendarDays className="h-5 w-5 text-navy-dark" />
+              </span>
+              <span>
+                <span className="block text-[14.5px] font-semibold text-navy-dark">
+                  Book a 15-minute call
+                </span>
+                <span className="block text-[12.5px] text-navy-dark/70">
+                  Pick a time that suits you
+                </span>
+              </span>
+            </button>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="flex items-center gap-3 rounded-2xl bg-white p-4 ring-1 ring-line transition-shadow hover:ring-navy-dark/30"
+            >
+              <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-mint">
+                <Mail className="h-5 w-5 text-navy-dark" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[14.5px] font-semibold text-navy-dark">
+                  Email us
+                </span>
+                <span className="block break-all text-[12.5px] text-navy-dark/70">
+                  {EMAIL}
+                </span>
+              </span>
+            </a>
+          </motion.div>
+
+          <motion.div
+            className="mt-8 flex items-center gap-2.5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
+          >
+            <span className="flex gap-0.5">
+              {[...Array(5)].map((_, n) => (
+                <Star
+                  key={n}
+                  className="h-3.5 w-3.5 fill-navy-dark text-navy-dark"
+                />
+              ))}
+            </span>
+            <span className="text-[13px] text-navy-dark/75">
+              Top Rated on Upwork &amp; Fiverr · 40+ brands served
+            </span>
+          </motion.div>
+        </div>
+
+        {/* right: the form */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.15, ease }}
+        >
+          <GlowPanel tone="warm" className="p-3 sm:p-8">
+            <ContactForm />
+          </GlowPanel>
+        </motion.div>
+      </div>
+    </section>
+
+    <section className="bg-white py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.p
+          className="text-[13px] font-semibold text-navy-dark/75"
+          {...rise()}
+        >
+          Before you send it
+        </motion.p>
+        <div className="mt-6 grid gap-8 md:grid-cols-3 md:gap-10">
+          {ASKED.map((a, i) => (
+            <motion.div
+              key={a.q}
+              className="border-t border-navy-dark pt-5"
+              {...rise(i * 0.07)}
+            >
+              <h2 className="flex items-start gap-2 text-[17px] font-semibold tracking-[-0.02em] text-navy-dark">
+                <Check className="mt-1 h-4 w-4 flex-none text-verified" />
+                {a.q}
+              </h2>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-navy-dark/75">
+                {a.a}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </PageLayout>
+);
 
 export default Contact;

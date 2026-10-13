@@ -1,236 +1,267 @@
-import { useRef, useState } from "react";
-import { motion } from "motion/react";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Clock, Search } from "lucide-react";
+import {
+  Link2,
+  Newspaper,
+  Search,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { Seo } from "@/components/MotionKit";
-import PageHero from "@/components/PageHero";
-import { ReadingPaths } from "./blog-depth";
 import PageLayout from "@/components/PageLayout";
 import { BLOG_POSTS } from "@/lib/content";
+import { ease, rise } from "./services/kit";
 
-const EL = ["All", "Link Building", "Digital PR", "AI Search"];
+type Post = (typeof BLOG_POSTS)[number];
 
-const BlogCover = ({ post, className = "" }) => (
-  <div className={`relative overflow-hidden bg-mist ${className}`}>
-    <div className={`absolute inset-0 ${post.grad}`} />
-    <svg
-      className="absolute inset-0 w-full h-full opacity-[0.13]"
-      aria-hidden="true"
-    >
-      <defs>
-        <pattern
-          id={`grid-${post.slug}`}
-          width="28"
-          height="28"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M 28 0 L 0 0 0 28"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.6"
-          />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#grid-${post.slug})`} />
-    </svg>
-    <span
-      className="absolute -bottom-7 -right-2 font-medium text-navy-dark/15 text-[9rem] leading-none select-none transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-3"
-      aria-hidden="true"
-    >
-      {post.glyph}
-    </span>
-    <span className="absolute top-4 left-4 text-[9px] font-extrabold tracking-[0.16em] text-navy-dark bg-white/70 border border-navy-dark/10 rounded-full px-3 py-1.5 uppercase">
-      {post.category}
-    </span>
-  </div>
-);
+const CATEGORIES = ["All", "Link Building", "Digital PR", "AI Search"];
 
-const RL = ({ post }) => {
-  const s = useRef<any>(null),
-    [a, r] = useState({ x: 0, y: 0 }),
-    c = (u) => {
-      const d = s.current?.getBoundingClientRect();
-      if (!d) return;
-      const h = (u.clientX - d.left) / d.width - 0.5,
-        x = (u.clientY - d.top) / d.height - 0.5;
-      r({ x: -x * 6, y: h * 6 });
-    };
+const CAT_ICON: Record<string, LucideIcon> = {
+  "Link Building": Link2,
+  "Digital PR": Newspaper,
+  "AI Search": Sparkles,
+};
+
+/**
+ * Editorial cover: the article's short cover line set large on its colour,
+ * with the category and a small mark. Typographic on purpose, so every cover
+ * is consistent and none of them look like stock art.
+ */
+export const BlogCover = ({
+  post,
+  className = "",
+  small = false,
+  large = false,
+}: {
+  post: Post;
+  className?: string;
+  small?: boolean;
+  large?: boolean;
+}) => {
+  const Icon = CAT_ICON[post.category] ?? Sparkles;
   return (
-    <Link
-      to={`/blog/${post.slug}`}
-      className="block group"
-      aria-label={post.title}
-    >
-      <div
-        ref={s}
-        onMouseMove={c}
-        onMouseLeave={() => r({ x: 0, y: 0 })}
-        style={{
-          transform: `perspective(900px) rotateX(${a.x}deg) rotateY(${a.y}deg)`,
-          transition: "transform 0.18s ease-out",
-        }}
-        className="bg-white rounded-2xl overflow-hidden border border-line shadow-sm group-hover:shadow-[0_30px_65px_-25px_rgba(15,17,23,0.3)] transition-shadow duration-500"
-      >
-        <BlogCover post={post} className="h-44" />
-        <div className="p-6">
-          <p className="text-[10px] font-bold tracking-[0.14em] text-navy-dark/70 uppercase mb-2.5">
-            {post.date}
-          </p>
-          <h3 className="text-[19px] font-bold text-navy-dark leading-snug mb-2.5 group-hover:text-blue-accent transition-colors duration-300">
-            {post.title}
-          </h3>
-          <p className="text-[13.5px] text-navy-dark/70 leading-relaxed line-clamp-2 mb-5">
-            {post.excerpt}
-          </p>
-          <div className="flex items-center justify-between pt-4 border-t border-line">
-            <span className="flex items-center gap-1.5 text-[11px] font-semibold text-navy-dark/70">
-              <Clock className="w-3.5 h-3.5" />
-              {post.read}
-              {" read"}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-blue-accent">
-              Read
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </div>
+    <div className={`relative overflow-hidden ${post.grad} ${className}`}>
+      <Icon
+        className={`absolute text-navy-dark/[0.12] transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-6 ${
+          small
+            ? "bottom-3 right-3 h-10 w-10"
+            : large
+              ? "-right-8 -top-8 h-56 w-56"
+              : "-right-6 -top-6 h-32 w-32"
+        }`}
+        strokeWidth={1.5}
+        aria-hidden="true"
+      />
+      {!small && (
+        <div
+          className={`relative flex h-full flex-col justify-between ${large ? "p-7 sm:p-9" : "p-5"}`}
+        >
+          <span className="w-fit rounded-full bg-white/70 px-2.5 py-1 text-[11px] font-semibold text-navy-dark">
+            {post.category}
+          </span>
+          <span
+            className={`block max-w-[90%] font-extrabold uppercase leading-[0.92] tracking-[-0.035em] text-navy-dark ${
+              large ? "text-[2.2rem] sm:text-[3rem]" : "text-[1.55rem]"
+            }`}
+          >
+            {post.cover}
+          </span>
         </div>
-      </div>
-    </Link>
+      )}
+    </div>
   );
 };
 
+const Meta = ({ p }: { p: Post }) => (
+  <p className="text-[12.5px] text-navy-dark/70">
+    {p.category} · {p.date} · {p.read} read
+  </p>
+);
+
+const FeaturedCard = ({ p, delay }: { p: Post; delay: number }) => (
+  <motion.article {...rise(delay)}>
+    <Link to={`/blog/${p.slug}`} className="group block">
+      <BlogCover
+        post={p}
+        large
+        className="aspect-[16/10] rounded-[24px] transition-transform duration-500 group-hover:-translate-y-1"
+      />
+      <div className="mt-5">
+        <Meta p={p} />
+        <h2 className="mt-2 text-[1.45rem] font-semibold leading-snug tracking-[-0.03em] text-navy-dark group-hover:underline group-hover:decoration-navy-dark/30 group-hover:underline-offset-4 sm:text-[1.65rem]">
+          {p.title}
+        </h2>
+        <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-navy-dark/75">
+          {p.excerpt}
+        </p>
+      </div>
+    </Link>
+  </motion.article>
+);
+
+const PostCard = ({ p }: { p: Post }) => (
+  <article>
+    <Link to={`/blog/${p.slug}`} className="group block">
+      <BlogCover
+        post={p}
+        className="aspect-[4/3] rounded-[20px] transition-transform duration-500 group-hover:-translate-y-1"
+      />
+      <div className="mt-4">
+        <Meta p={p} />
+        <h3 className="mt-1.5 text-[17px] font-semibold leading-snug tracking-[-0.02em] text-navy-dark group-hover:underline group-hover:decoration-navy-dark/30 group-hover:underline-offset-4">
+          {p.title}
+        </h3>
+        <p className="mt-1.5 line-clamp-2 text-[14px] leading-relaxed text-navy-dark/75">
+          {p.excerpt}
+        </p>
+      </div>
+    </Link>
+  </article>
+);
+
+/**
+ * /blog: header with filters and search, the two newest articles large, then
+ * everything else in a clean grid. Plan: PAGES-REDESIGN-2.md §4.
+ */
 const Blog = () => {
-  const [e, s] = useState("All"),
-    a = BLOG_POSTS.find((u) => u.featured) ?? BLOG_POSTS[0],
-    r = BLOG_POSTS.filter((u) => u.slug !== a.slug),
-    c = e === "All" ? r : r.filter((u) => u.category === e);
+  const [cat, setCat] = useState("All");
+  const [q, setQ] = useState("");
+
+  const browsing = cat !== "All" || q.trim() !== "";
+  const featured = BLOG_POSTS.slice(0, 2);
+  const list = useMemo(() => {
+    const term = q.trim().toLowerCase();
+    return BLOG_POSTS.filter(
+      (p) =>
+        (cat === "All" || p.category === cat) &&
+        (!term ||
+          `${p.title} ${p.excerpt} ${p.category}`.toLowerCase().includes(term)),
+    );
+  }, [cat, q]);
+  const grid = browsing ? list : list.slice(2);
+
   return (
     <PageLayout>
       <Seo
-        title="Blog"
-        description="Link building, digital PR, and AI search — written by people who place links for a living."
+        title="Blog: Link Building, Digital PR & AI Search"
+        description="Practical articles on link building, digital PR and getting named in AI answers, written by the people who do the work."
       />
-      <PageHero
-        compact={true}
-        eyebrow="The Blog"
-        title={
-          <>
-            {"Notes from "}
-            <span className="text-navy-dark/65">the field</span>.
-          </>
-        }
-        sub="Link building, digital PR, and AI search — written by people who place links for a living, not content marketers."
-      />
-      <div className="bg-linen pb-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <section className="bg-mist pb-24 pt-32 lg:pt-40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* header */}
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <motion.h1
+                className="text-[3rem] font-semibold leading-none tracking-[-0.05em] text-navy-dark sm:text-[4.4rem]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease }}
+              >
+                Blog
+              </motion.h1>
+              <motion.p
+                className="mt-4 max-w-xl text-[17px] leading-relaxed text-navy-dark/75"
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1, ease }}
+              >
+                Link building, digital PR and AI search, written by the people
+                who do the work.
+              </motion.p>
+            </div>
+          </div>
+
           <motion.div
-            initial={{ opacity: 0, y: 34 }}
+            className="mt-10 flex flex-col gap-4 border-b border-line pb-6 md:flex-row md:items-center md:justify-between"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.6, delay: 0.18, ease }}
           >
-            <Link
-              to={`/blog/${a.slug}`}
-              className="group grid lg:grid-cols-[0.95fr_1.05fr] bg-white rounded-3xl overflow-hidden border border-line shadow-lift hover:shadow-[0_40px_90px_-30px_rgba(15,17,23,0.4)] transition-shadow duration-500 -mt-6"
+            <div
+              className="flex flex-wrap gap-2"
+              role="tablist"
+              aria-label="Filter by topic"
             >
-              <BlogCover post={a} className="h-64 lg:h-auto lg:min-h-[360px]" />
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <p className="text-[10px] font-extrabold tracking-[0.2em] text-blue-accent uppercase mb-4">
-                  {"Featured \u00b7 "}
-                  {a.date}
-                </p>
-                <h2 className="text-2xl sm:text-3xl lg:text-[2.1rem] font-bold text-navy-dark leading-tight mb-4 group-hover:text-blue-accent transition-colors duration-300">
-                  {a.title}
-                </h2>
-                <p className="text-[15px] text-navy-dark/70 leading-relaxed mb-7">
-                  {a.excerpt}
-                </p>
-                <span className="inline-flex items-center gap-2 text-sm font-bold text-blue-accent">
-                  Read the breakdown
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  <span className="ml-auto flex items-center gap-1.5 text-[11px] font-semibold text-navy-dark/70">
-                    <Clock className="w-3.5 h-3.5" />
-                    {a.read}
-                  </span>
-                </span>
-              </div>
-            </Link>
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c}
+                  role="tab"
+                  aria-selected={cat === c}
+                  onClick={() => setCat(c)}
+                  className={`rounded-full px-4 py-2 text-[13.5px] font-semibold transition-colors ${
+                    cat === c
+                      ? "bg-navy-dark text-white"
+                      : "bg-white text-navy-dark/80 ring-1 ring-line hover:text-navy-dark hover:ring-navy-dark/30"
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+            <label className="relative block md:w-72">
+              <span className="sr-only">Search articles</span>
+              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-dark/60" />
+              <input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search articles"
+                className="w-full rounded-full bg-white py-2.5 pl-10 pr-4 text-[14px] text-navy-dark ring-1 ring-line placeholder:text-navy-dark/60 focus:outline-none focus:ring-2 focus:ring-navy-dark/40"
+              />
+            </label>
           </motion.div>
-          <motion.div
-            className="flex flex-wrap gap-2.5 mt-16 mb-9"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.35 }}
-          >
-            {EL.map((u) => (
+
+          {/* newest two, large */}
+          {!browsing && (
+            <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-6">
+              {featured.map((p, i) => (
+                <FeaturedCard key={p.slug} p={p} delay={0.1 + i * 0.08} />
+              ))}
+            </div>
+          )}
+
+          {/* everything else */}
+          {!browsing && grid.length > 0 && (
+            <p className="mt-16 text-[13px] font-semibold text-navy-dark/75">
+              More articles
+            </p>
+          )}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${cat}-${q}`}
+              className={`grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 ${browsing ? "mt-12" : "mt-6"}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {grid.map((p) => (
+                <PostCard key={p.slug} p={p} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {browsing && grid.length === 0 && (
+            <div className="mt-12 rounded-3xl bg-white p-10 text-center ring-1 ring-line">
+              <p className="text-[17px] font-semibold text-navy-dark">
+                No articles match that yet.
+              </p>
               <button
-                key={u}
-                onClick={() => s(u)}
-                className={`rounded-full px-5 py-3 min-h-[42px] text-[12.5px] font-semibold transition-all duration-300 ${e === u ? "bg-navy-dark text-white shadow-lg" : "bg-white text-navy-dark/70 border border-line hover:text-navy-dark hover:border-navy-dark/25"}`}
-              >
-                {u}
-              </button>
-            ))}
-          </motion.div>
-          <motion.div
-            key={e}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.09 } },
-            }}
-          >
-            {c.map((u) => (
-              <motion.div
-                key={u.slug}
-                variants={{
-                  hidden: { opacity: 0, y: 28 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] },
-                  },
+                onClick={() => {
+                  setCat("All");
+                  setQ("");
                 }}
+                className="mt-4 rounded-full bg-navy-dark px-5 py-2.5 text-[13.5px] font-semibold text-white"
               >
-                <RL post={u} />
-              </motion.div>
-            ))}
-          </motion.div>
+                Show all articles
+              </button>
+            </div>
+          )}
         </div>
-      </div>
-      <ReadingPaths />
-      <div className="bg-linen py-20">
-        <motion.div
-          className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-[11px] font-semibold tracking-[0.18em] text-navy-dark/70 uppercase mb-4">
-            The Field Notes
-          </p>
-          <h2 className="text-[2rem] sm:text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark mb-4">
-            {"One tactical email "}
-            <span className="text-navy-dark/65">a month</span>.
-          </h2>
-          <p className="text-navy-dark/75 text-[15px] leading-relaxed mb-8 max-w-md mx-auto">
-            What moved rankings and AI citations this month, from live
-            campaigns. No fluff, no funnels.
-          </p>
-          <a
-            href="mailto:contact@talhamahmood.com?subject=Subscribe%20me%20to%20The%20Field%20Notes"
-            className="inline-flex items-center gap-2 bg-navy-dark text-white hover:bg-black rounded-xl px-8 py-3.5 text-sm font-semibold transition-colors duration-300"
-          >
-            Get the next issue
-          </a>
-        </motion.div>
-      </div>
+      </section>
     </PageLayout>
   );
 };
 
-export { BlogCover };
 export default Blog;

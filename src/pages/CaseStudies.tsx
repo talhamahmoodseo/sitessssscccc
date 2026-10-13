@@ -1,475 +1,314 @@
-import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 import { ArrowRight, Check, X } from "lucide-react";
-import CountUp from "@/components/CountUp";
 import { Seo } from "@/components/MotionKit";
-import PageHero from "@/components/PageHero";
 import PageLayout from "@/components/PageLayout";
-import { CASE_STUDIES } from "@/lib/content";
-import { asset } from "@/lib/booking";
+import { CASES, CASE_TOTALS, type CaseStudy } from "@/lib/cases";
+import { Eyebrow, H2, Soft, ease, rise } from "./services/kit";
+import { SECTIONS, SampleBanner } from "./results/CaseSections";
 
-/**
- * /case-studies — the archive.
- *
- * Identity: a numbered case-file index. Rules instead of cards, tabular
- * numbers, inline sparklines. Deliberately *not* the homepage's pastel-block
- * card grid (<Results />) — that section now appears on the homepage only, so
- * landing here does not feel like scrolling the home page twice.
- */
+/* ------------------------------- case cards ------------------------------- */
 
-/* ------------------------------ sparkline ------------------------------ */
-
-const Spark = ({
-  series,
-  className = "",
-  stroke = "currentColor",
+const CaseCard = ({
+  c,
+  large = false,
+  delay = 0,
 }: {
-  series: number[];
-  className?: string;
-  stroke?: string;
-}) => {
-  const W = 120;
-  const H = 34;
-  const lo = Math.min(...series);
-  const hi = Math.max(...series);
-  const span = hi - lo || 1;
-  const pts = series.map((v, i) => [
-    (i / (series.length - 1)) * W,
-    H - ((v - lo) / span) * (H - 4) - 2,
-  ]);
-  const d = pts.map((p, i) => `${i ? "L" : "M"}${p[0]},${p[1]}`).join(" ");
-
-  return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className={className}
-      fill="none"
-      aria-hidden="true"
-      preserveAspectRatio="none"
+  c: CaseStudy;
+  large?: boolean;
+  delay?: number;
+}) => (
+  <motion.div {...rise(delay)} className={large ? "lg:col-span-2" : ""}>
+    <Link
+      to={`/case-studies/${c.slug}`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-[28px] ${c.tint} p-6 transition-transform duration-500 hover:-translate-y-1 sm:p-9`}
     >
-      <motion.path
-        d={d}
-        stroke={stroke}
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.1, ease: "easeInOut" }}
-      />
-      <circle
-        cx={pts[pts.length - 1][0]}
-        cy={pts[pts.length - 1][1]}
-        r="2.6"
-        fill={stroke}
-      />
-    </svg>
-  );
-};
-
-/* ------------------------------ the index ------------------------------ */
-
-const FileIndex = () => (
-  <div className="bg-white py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div className="mb-4 flex items-baseline justify-between border-b border-navy-dark pb-4">
-        <h2 className="text-[13px] font-bold uppercase tracking-[0.16em] text-navy-dark">
-          The index
-        </h2>
-        <span className="text-[12px] font-semibold tabular-nums text-navy-dark/70">
-          {CASE_STUDIES.length} files
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="rounded-full bg-white/80 px-3 py-1 text-[12px] font-semibold text-navy-dark">
+          {c.sector}
+        </span>
+        <span className="rounded-full bg-white/50 px-3 py-1 text-[12px] font-semibold text-navy-dark/85">
+          {c.market}
+        </span>
+        <span className="rounded-full bg-white/50 px-3 py-1 text-[12px] font-semibold text-navy-dark/85">
+          {c.duration}
         </span>
       </div>
 
-      <ol>
-        {CASE_STUDIES.map((c, i) => (
-          <motion.li
-            key={c.slug}
-            className="border-b border-line"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, delay: i * 0.08 }}
-          >
-            <Link
-              to={`/case-studies/${c.slug}`}
-              className="group grid gap-6 py-9 lg:grid-cols-[auto_200px_1fr_auto] lg:items-center lg:gap-10 lg:py-10"
-            >
-              <span className="text-[13px] font-bold tabular-nums text-navy-dark/40 lg:w-10">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              <div
-                className={`${c.bg} overflow-hidden rounded-2xl border border-line`}
-              >
-                <img
-                  src={asset(c.cover)}
-                  alt=""
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover mix-blend-luminosity opacity-90 transition-transform duration-700 group-hover:scale-[1.04]"
-                />
-              </div>
-
-              <div>
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-dark/70">
-                  {c.industry}
-                  {" · "}
-                  {c.duration}
-                </p>
-                <h3 className="max-w-md text-[22px] font-semibold leading-[1.15] tracking-[-0.025em] text-navy-dark lg:text-[26px]">
-                  {c.title}
-                </h3>
-                <p className="mt-2.5 max-w-lg text-[14px] leading-relaxed text-navy-dark/75">
-                  {c.line}
-                </p>
-                <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
-                  {c.stats.map((s) => (
-                    <div key={s[1]}>
-                      <dt className="text-[15px] font-semibold tabular-nums text-navy-dark">
-                        {s[0]}
-                      </dt>
-                      <dd className="text-[11.5px] text-navy-dark/70">
-                        {s[1]}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <span className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-navy-dark">
-                  Open the file
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </div>
-
-              <div className="lg:w-40">
-                <Spark
-                  series={c.series}
-                  className="h-10 w-full text-navy-dark/70"
-                />
-                <p className="mt-2 text-[10.5px] leading-snug text-navy-dark/70">
-                  {c.seriesLabel}
-                </p>
-              </div>
-            </Link>
-          </motion.li>
-        ))}
-      </ol>
-    </div>
-  </div>
-);
-
-/* --------------------------- aggregate ledger --------------------------- */
-
-const LEDGER = [
-  { v: 1400, suffix: "+", label: "Links and mentions placed" },
-  { custom: "DR 28 → 65", label: "Authority range moved" },
-  { v: 212, prefix: "+", suffix: "%", label: "Best organic-clicks lift" },
-  { v: 96, suffix: "%", label: "Indexation rate, 12 months" },
-  { v: 31, label: "Domains rejected on one engagement" },
-];
-
-const Ledger = () => (
-  <div className="bg-navy-dark py-24 lg:py-32">
-    <div className="mx-auto grid max-w-6xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
+      <div
+        className={
+          large ? "mt-8 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end" : "mt-8"
+        }
       >
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
-          Across every engagement
-        </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white">
-          The numbers we will
-          <br />
-          <span className="text-white/70">put in writing</span>
-        </h2>
-        <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-white/70">
-          Three published files, and the totals behind them. Every figure here
-          traces back to a placement list you can open.
-        </p>
-      </motion.div>
-
-      <dl>
-        {LEDGER.map((e, i) => (
-          <motion.div
-            key={e.label}
-            className={`flex items-baseline justify-between gap-6 py-5 ${
-              i ? "border-t border-white/10" : ""
+        <div>
+          <h2
+            className={`font-semibold leading-[1.08] tracking-[-0.035em] text-navy-dark ${
+              large
+                ? "text-[2rem] sm:text-[2.6rem]"
+                : "text-[1.6rem] sm:text-[1.9rem]"
             }`}
-            initial={{ opacity: 0, x: 14 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.07 }}
           >
-            <dt className="text-[14.5px] leading-snug text-white/70">
-              {e.label}
-            </dt>
-            <dd className="shrink-0 text-[1.9rem] font-semibold leading-none tracking-[-0.03em] text-white tabular-nums lg:text-[2.2rem]">
-              {"custom" in e && e.custom ? (
-                e.custom
-              ) : (
-                <CountUp to={e.v!} prefix={e.prefix} suffix={e.suffix} />
-              )}
-            </dd>
-          </motion.div>
-        ))}
-      </dl>
-    </div>
-  </div>
-);
-
-/* ---------------------------- what's inside ---------------------------- */
-
-const CONTENTS = [
-  {
-    t: "The growth chart",
-    d: "Organic clicks month by month from the day we started, pulled from their Search Console rather than a tool estimate.",
-  },
-  {
-    t: "Every placement",
-    d: "The full list with Domain Rating, placement type and target page. Publication names are masked because they are still live client assets.",
-  },
-  {
-    t: "The indexation report",
-    d: "Which links Google indexed, how long each took, and what we did about the ones that stalled.",
-  },
-  {
-    t: "The domains we rejected",
-    d: "On one engagement we turned down 31 sites. The reasons are in the file, because what we refused is as telling as what we placed.",
-  },
-  {
-    t: "The month-by-month timeline",
-    d: "What happened when, including the stretch in month three where nothing moved and we had to explain why.",
-  },
-];
-
-const Contents = () => (
-  <div className="bg-linen py-24 lg:py-32">
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <motion.div
-        className="mb-12 max-w-2xl"
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
-          The format
-        </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark">
-          Five things in every file,
-          <br />
-          <span className="text-navy-dark/65">including the bad months</span>
-        </h2>
-      </motion.div>
-
-      <div className="grid gap-x-12 gap-y-9 sm:grid-cols-2">
-        {CONTENTS.map((c, i) => (
-          <motion.div
-            key={c.t}
-            className={`${i === 4 ? "sm:col-span-2 sm:max-w-xl" : ""}`}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
-          >
-            <div className="mb-3 flex items-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-navy-dark text-[11px] font-bold text-white tabular-nums">
-                {i + 1}
-              </span>
-              <h3 className="text-[17px] font-semibold text-navy-dark">
-                {c.t}
-              </h3>
-            </div>
-            <p className="text-[14px] leading-relaxed text-navy-dark/75">
-              {c.d}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-/* ----------------------------- how we count ----------------------------- */
-
-const DONT = [
-  "Total backlinks acquired, with no note on how many Google indexed.",
-  "Domain Rating as the headline result, when DR moves without revenue moving.",
-  "Keyword counts in the top 100 — a number that rises on terms nobody searches.",
-  "Impressions, which grow whenever a page is shown and ignored.",
-];
-const DO = [
-  "Organic clicks on the specific pages we pointed authority at.",
-  "Position change on the keyword set agreed before any outreach started.",
-  "Indexation rate, because an unindexed link is not a link.",
-  "Where the brand gets named in AI answers, measured on a fixed prompt set.",
-];
-
-const HowWeCount = () => (
-  <div className="bg-white py-24 lg:py-32">
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
-            How we count
-          </p>
-          <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark">
-            Most reports are
-            <br />
-            <span className="text-navy-dark/65">built to look good</span>
+            {c.card}
           </h2>
-          <p className="mt-5 text-[15px] leading-relaxed text-navy-dark/75">
-            It is easy to produce a chart that climbs. Pick a metric that only
-            goes up, start the axis late, and every month is a win. The files
-            below use the four measures that can go down.
+          <p className="mt-4 max-w-xl text-[15.5px] leading-relaxed text-navy-dark/80">
+            {c.summary}
           </p>
+          <p className="mt-5 flex flex-wrap gap-1.5">
+            {c.services.map((s) => (
+              <span
+                key={s}
+                className="rounded-md bg-navy-dark/[0.07] px-2 py-1 text-[11.5px] font-semibold text-navy-dark/85"
+              >
+                {s}
+              </span>
+            ))}
+          </p>
+        </div>
 
-          <figure className="mt-8 border-t border-line pt-6">
-            <blockquote className="text-[15.5px] leading-[1.5] text-navy-dark">
-              {
-                "“The case file format sold us before the call did. Charts, placements, indexation — everything an SEO lead needs to defend the budget internally.”"
-              }
-            </blockquote>
-            <figcaption className="mt-3 text-[12.5px] font-semibold text-navy-dark/70">
-              {"Priya Raghunathan · VP Marketing, Ocuco"}
-            </figcaption>
-          </figure>
-        </motion.div>
-
-        <div className="grid gap-5 sm:grid-cols-2">
-          {[
-            { head: "What we leave out", items: DONT, bad: true },
-            { head: "What we report", items: DO, bad: false },
-          ].map((col, ci) => (
-            <motion.div
-              key={col.head}
-              className={`rounded-3xl border p-7 ${
-                col.bad ? "border-line bg-mist" : "border-navy-dark/15 bg-linen"
-              }`}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: ci * 0.1 }}
+        <div className={`grid grid-cols-2 gap-2.5 ${large ? "" : "mt-8"}`}>
+          {c.headline.slice(0, large ? 4 : 2).map((h) => (
+            <div
+              key={h.l}
+              className="rounded-2xl bg-white/70 p-4 backdrop-blur"
             >
-              <h3 className="mb-5 text-[12px] font-bold uppercase tracking-[0.14em] text-navy-dark">
-                {col.head}
-              </h3>
-              <ul className="space-y-4">
-                {col.items.map((t) => (
-                  <li key={t} className="flex gap-3">
-                    {col.bad ? (
-                      <X className="mt-0.5 h-4 w-4 shrink-0 text-gap" />
-                    ) : (
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-navy-dark" />
-                    )}
-                    <span className="text-[13.5px] leading-relaxed text-navy-dark/80">
-                      {t}
-                    </span>
+              <p className="text-[1.5rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark sm:text-[1.9rem]">
+                {h.v}
+              </p>
+              <p className="mt-2 text-[12.5px] leading-snug text-navy-dark/75">
+                {h.l}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <span className="mt-auto inline-flex items-center gap-2 pt-8 text-[14px] font-semibold text-navy-dark">
+        Read the case study
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+      </span>
+    </Link>
+  </motion.div>
+);
+
+/* ---------------------------------- page ---------------------------------- */
+
+const COUNTS = [
+  { v: CASE_TOTALS.placements, l: "editorial placements" },
+  { v: CASE_TOTALS.reviewed, l: "sites reviewed by hand" },
+  { v: CASE_TOTALS.rejected, l: "sites turned down" },
+  {
+    v: `${CASE_TOTALS.objectives} / ${CASE_TOTALS.objectives}`,
+    l: "objectives met",
+  },
+];
+
+const SECTION_NOTES: Record<string, string> = {
+  overview: "Who the client is and what they came to us for",
+  challenge: "Where they started, with the baseline numbers",
+  objectives: "What we agreed to, and what happened",
+  strategy: "The plan, and why",
+  work: "Month by month, what we actually did",
+  links: "Every type of placement, the authority spread and anchor mix",
+  results: "Before-and-after data, charts and keywords",
+  outcomes: "Business impact, lessons and what’s next",
+};
+
+const COUNTED = [
+  "Organic clicks to the pages we targeted",
+  "Ranking movement on keywords agreed at the start",
+  "Indexation, because an unindexed link is not a link",
+  "Calls, demos or revenue, where the client shares them",
+  "AI answers that name the brand, on a fixed question set",
+];
+const LEFT_OUT = [
+  "Total backlinks acquired, with no note on how many Google indexed",
+  "Domain Rating as the headline, when DR moves without revenue moving",
+  "Keyword counts padded with terms nobody searches",
+  "Impressions, which grow whenever a page is shown and ignored",
+];
+
+const CaseStudies = () => {
+  const [first, ...rest] = CASES;
+  return (
+    <PageLayout>
+      <Seo
+        title="Results: SEO & Link Building Case Studies"
+        description="How we document link building, digital PR and AI visibility projects: the challenge, the strategy, every placement and the results. Sample case studies."
+      />
+
+      {/* hero */}
+      <section className="bg-mist pb-14 pt-32 lg:pt-40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+            <div>
+              <motion.p
+                className="text-[12px] font-semibold uppercase tracking-[0.2em] text-navy-dark/70"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Results
+              </motion.p>
+              <h1 className="mt-5">
+                <motion.span
+                  className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark sm:text-[3.8rem] lg:text-[4.4rem]"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease }}
+                >
+                  The work, the data,
+                </motion.span>
+                <motion.span
+                  className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark/60 sm:text-[3.8rem] lg:text-[4.4rem]"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1, ease }}
+                >
+                  and what it changed.
+                </motion.span>
+              </h1>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease }}
+            >
+              <p className="text-[17px] leading-relaxed text-navy-dark/75">
+                Every project is written up the same way: the starting point,
+                the plan, every type of placement, and the numbers before and
+                after. No cherry-picked screenshots.
+              </p>
+            </motion.div>
+          </div>
+          <SampleBanner plural className="mt-10 max-w-3xl" />
+        </div>
+      </section>
+
+      {/* the three cases */}
+      <section className="bg-mist pb-24">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <CaseCard c={first} large />
+          {rest.map((c, i) => (
+            <CaseCard key={c.slug} c={c} delay={0.08 * (i + 1)} />
+          ))}
+        </div>
+      </section>
+
+      {/* totals */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="mb-10 text-center text-[13px] font-semibold text-navy-dark/75">
+            Across the three sample projects
+          </p>
+          <dl className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
+            {COUNTS.map((n, i) => (
+              <motion.div
+                key={n.l}
+                className={`flex flex-col-reverse px-4 text-center ${i ? "lg:border-l lg:border-line" : ""} ${i % 2 ? "border-l border-line" : ""}`}
+                {...rise(i * 0.06)}
+              >
+                <dt className="mt-3 text-[14px] text-navy-dark/75">{n.l}</dt>
+                <dd className="text-[2.6rem] font-semibold leading-none tracking-[-0.05em] text-navy-dark sm:text-[3.2rem]">
+                  {n.v}
+                </dd>
+              </motion.div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* what every case study covers */}
+      <section className="bg-mist py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div className="mb-12 max-w-3xl" {...rise()}>
+            <Eyebrow className="mb-4">How we write them up</Eyebrow>
+            <H2>
+              Eight sections, every time.
+              <br />
+              <Soft>Including the slow months.</Soft>
+            </H2>
+          </motion.div>
+          <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {SECTIONS.map((s, i) => (
+              <motion.li
+                key={s.id}
+                className="rounded-2xl bg-white p-5 ring-1 ring-line"
+                {...rise((i % 4) * 0.05)}
+              >
+                <span className="text-[12px] font-semibold tabular-nums text-navy-dark/70">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="mt-2 text-[16px] font-semibold tracking-[-0.02em] text-navy-dark">
+                  {s.t}
+                </p>
+                <p className="mt-1.5 text-[13.5px] leading-snug text-navy-dark/75">
+                  {SECTION_NOTES[s.id]}
+                </p>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* how we report */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div className="mb-12 max-w-4xl" {...rise()}>
+            <Eyebrow className="mb-4">How we report results</Eyebrow>
+            <H2>
+              Most reports are built to look good.
+              <br />
+              <Soft>Ours are built to be checked.</Soft>
+            </H2>
+          </motion.div>
+          <div className="grid gap-5 md:grid-cols-2">
+            <motion.div
+              className="rounded-3xl bg-mist p-7 ring-1 ring-line sm:p-9"
+              {...rise()}
+            >
+              <p className="flex items-center gap-2.5 text-[15px] font-semibold text-navy-dark">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-verified/[0.12]">
+                  <Check className="h-4 w-4 text-verified" />
+                </span>
+                What we count
+              </p>
+              <ul className="mt-6 space-y-3.5">
+                {COUNTED.map((t) => (
+                  <li
+                    key={t}
+                    className="border-b border-line pb-3.5 text-[15px] leading-relaxed text-navy-dark/85 last:border-0"
+                  >
+                    {t}
                   </li>
                 ))}
               </ul>
             </motion.div>
-          ))}
+            <motion.div
+              className="rounded-3xl bg-white p-7 ring-1 ring-line sm:p-9"
+              {...rise(0.08)}
+            >
+              <p className="flex items-center gap-2.5 text-[15px] font-semibold text-navy-dark">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gap/[0.12]">
+                  <X className="h-4 w-4 text-gap" />
+                </span>
+                What we leave out
+              </p>
+              <ul className="mt-6 space-y-3.5">
+                {LEFT_OUT.map((t) => (
+                  <li
+                    key={t}
+                    className="border-b border-line pb-3.5 text-[15px] leading-relaxed text-navy-dark/85 last:border-0"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-);
-
-/* ------------------------------ the pattern ------------------------------ */
-
-const PATTERN = [
-  {
-    k: "Authority went to two pages, not eight",
-    v: "In all three engagements the budget concentrated on the pages already sitting in positions 5–20. Spreading the same links across a whole site moved nothing in the one account where we tried it.",
-  },
-  {
-    k: "Nothing moved in month one",
-    v: "Indexation alone took two to six weeks per placement. Every chart in the index is flat at the start, and any agency showing you a month-one spike is showing you something else.",
-  },
-  {
-    k: "The rejections did the work",
-    v: "Across the three files we reviewed 94 domains and placed on 41. The engagements that went best are the ones where we said no the most.",
-  },
-];
-
-const Pattern = () => (
-  <div className="bg-mist py-24 lg:py-32">
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <motion.div
-        className="mb-12 max-w-2xl"
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
-          What the three have in common
-        </p>
-        <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark">
-          Different industries,
-          <br />
-          <span className="text-navy-dark/65">the same three lessons</span>
-        </h2>
-      </motion.div>
-
-      <dl className="space-y-0">
-        {PATTERN.map((p, i) => (
-          <motion.div
-            key={p.k}
-            className="grid gap-3 border-t border-line py-7 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-          >
-            <dt className="text-[17px] font-semibold leading-snug tracking-[-0.02em] text-navy-dark">
-              {p.k}
-            </dt>
-            <dd className="text-[14.5px] leading-relaxed text-navy-dark/75">
-              {p.v}
-            </dd>
-          </motion.div>
-        ))}
-      </dl>
-    </div>
-  </div>
-);
-
-/* --------------------------------- page --------------------------------- */
-
-const CaseStudies = () => (
-  <PageLayout>
-    <Seo
-      title="Case Studies"
-      description="Three published case files: growth charts, every placement, the indexation report, and the domains we rejected."
-    />
-    <PageHero
-      compact={true}
-      eyebrow="Results"
-      title={
-        <>
-          {"Proof, "}
-          <span className="text-navy-dark/65">not promises</span>.
-        </>
-      }
-      sub="Three engagements, published in full. Each file carries the growth chart, every placement with its Domain Rating, the indexation report, and the domains we turned down on the client's behalf."
-    />
-    <FileIndex />
-    <Ledger />
-    <Contents />
-    <HowWeCount />
-    <Pattern />
-  </PageLayout>
-);
+      </section>
+    </PageLayout>
+  );
+};
 
 export default CaseStudies;

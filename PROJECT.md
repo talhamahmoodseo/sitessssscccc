@@ -82,7 +82,8 @@ src/
   index.css              design tokens, emphasis system, keyframes, utilities
   lib/
     booking.ts           Calendly config + the `open-booking` window event
-    content.ts           CASE_STUDIES and BLOG_POSTS (shared across pages)
+    content.ts           BLOG_POSTS + CASE_STUDIES summaries (homepage)
+    cases.ts             the three full sample case studies (Results pages)
     clients.ts           real client names + the proof-grid tiles
     utils.ts             cn()
   components/
@@ -236,11 +237,12 @@ In rough priority order.
    the proof grid, testimonials and case-study figures are invented. The owner
    has said the site is not finished until the real client logos are in. Every
    name, figure and quote outside those three should be treated as dummy copy.
-2. **Case-study word counts.** The three files run 440-530 words. They now
-   carry everything the index promises (growth chart, indexation report,
-   rejected domains, timeline), but the narrative sections — `situation`,
-   `strategy`, `blockers` in `lib/content.ts` — are still short next to the
-   ~1,000-word service pages. Content, not structure.
+2. **Case studies are samples (Oct 2026 redesign).** `lib/cases.ts` holds
+   three complete sample studies in an eight-part structure (overview,
+   challenge, objectives, strategy, work, link building, results, outcomes),
+   each page clearly labelled as a sample. Replace every figure, domain and
+   quote with verified client data before launch. The numbers match the ones
+   quoted on the service pages, so change them together.
 3. **Blog posts** run 300-480 words each. Same shape as above: the page
    template is fine, `BLOG_POSTS` bodies are short.
 4. **Homepage improved, not rebuilt (Oct 2026).** The original structure was
@@ -258,10 +260,11 @@ These came from the owner directly, after rejected attempts:
   per page: homepage review wall and Shift diagram, Link Building site check,
   Digital PR clippings and Story Lab, Brand Mentions answer cards and
   before/after, Expert Quotes request→quote→print and two replies,
-  Case Studies numbered file index with sparklines, Pricing stacked allocation
-  bar, About vertical DR-band columns + signed letter, Services hub two-way
-  decision matrix, Contact horizontal numbered rail, Blog numbered reading
-  paths.
+  Results pastel case cards + report-style case pages with charts, Pricing
+  dark plan stage + by-service table, About drifting result tiles + scroll
+  manifesto, Services hub two-way decision matrix, Contact split form,
+  Blog typographic covers. (About, Results, Contact, Blog and Pricing were
+  redesigned in Oct 2026; see `PAGES-REDESIGN-2.md`.)
 - **`<Results />` is homepage-only.** It was previously rendered on
   `/case-studies` as well, which the owner called out directly.
 - **No red accent.** Rejected twice. `--gap` is a rust used only for rejection
@@ -333,6 +336,7 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
 | `BRAND.md` | **The visual identity. Read before any styling change.** |
 | `SERVICE-PAGES-PLAN.md` | Original content strategy for the service pages |
 | `SERVICE-PAGES-REDESIGN.md` | Audit + plan for the Digital PR, Brand Mentions and Expert Quotes redesign |
+| `PAGES-REDESIGN-2.md` | Audit + plan for the About, Results, Contact, Blog and Pricing redesign |
 | `HOSTING.md` | Netlify / static / WordPress / Hostinger deployment |
 | `REDESIGN.md` | The rejected SaaS-direction experiment, kept for context |
 

@@ -31,9 +31,7 @@ const BlogPost = () => {
     <PageLayout>
       <Seo title={s.title} description={s.excerpt} schema={u} />
       <div className="relative bg-navy-dark overflow-hidden pt-32 pb-16">
-        <div
-          className={`absolute inset-0 ${s.grad} opacity-25`}
-        />
+        <div className={`absolute inset-0 ${s.grad} opacity-25`} />
         <span
           className="absolute -bottom-16 -right-4 font-medium text-white/[0.08] text-[16rem] leading-none select-none"
           aria-hidden="true"
@@ -173,7 +171,7 @@ const BlogPost = () => {
                   to={`/blog/${d.slug}`}
                   className="group flex gap-5 bg-white rounded-2xl overflow-hidden border border-line hover:shadow-lift transition-shadow duration-500"
                 >
-                  <BlogCover post={d} className="w-32 flex-none" />
+                  <BlogCover post={d} small className="w-32 flex-none" />
                   <div className="py-5 pr-5">
                     <p className="text-[10px] font-bold tracking-wider text-navy-dark/70 uppercase mb-1.5">
                       {d.date}
