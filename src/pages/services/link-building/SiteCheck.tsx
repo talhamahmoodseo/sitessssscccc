@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useInView } from "motion/react";
 import { ArrowRight, Check, ShieldCheck, X } from "lucide-react";
 import { openBooking } from "@/lib/booking";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { CARD, Eyebrow, GlowPanel, H2, ease, rise, sparkPath } from "./kit";
+import { CARD, Eyebrow, GlowPanel, H2, ease, rise, sparkPath } from "../kit";
 
 const M = LB.method;
 

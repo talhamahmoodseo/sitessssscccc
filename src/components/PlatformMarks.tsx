@@ -71,3 +71,20 @@ export const GoogleMark = ({ className = "w-4 h-4" }: MarkProps) => (
     </text>
   </svg>
 );
+
+export const PerplexityMark = ({ className = "w-4 h-4" }: MarkProps) => (
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+    <circle cx="12" cy="12" r="11" fill="#20808D" />
+    <g
+      stroke="#ffffff"
+      strokeWidth="1.5"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 5.5v13" />
+      <path d="M7 8.2 12 11.6 17 8.2" />
+      <path d="M7 8.2v6.4l5-3M17 8.2v6.4l-5-3" />
+    </g>
+  </svg>
+);

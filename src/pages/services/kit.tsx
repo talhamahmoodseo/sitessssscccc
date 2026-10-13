@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-/** Building blocks shared by the Link Building page sections only. The page
- *  has its own type scale and glow treatment, so these are not exported to
- *  the rest of the site. */
+/** Building blocks shared by the service pages (Link Building, Digital PR,
+ *  Brand Mentions, Expert Quotes): one type scale, one glow treatment, one
+ *  card elevation. Each page builds its own sections on top of these. */
 
 export const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -79,6 +79,16 @@ const GLOWS = {
   dusk:
     "radial-gradient(60% 70% at 18% 30%, rgba(248,146,84,0.42), transparent 64%)," +
     "radial-gradient(55% 70% at 85% 70%, rgba(167,139,250,0.4), transparent 66%)",
+  /* Digital PR: newsprint warmth with a fresh green edge */
+  fresh:
+    "radial-gradient(55% 65% at 10% 20%, rgba(134,239,172,0.5), transparent 62%)," +
+    "radial-gradient(50% 60% at 92% 28%, rgba(247,214,107,0.55), transparent 64%)," +
+    "radial-gradient(60% 55% at 55% 108%, rgba(147,197,253,0.4), transparent 66%)",
+  /* Expert Quotes: blush and butter */
+  rose:
+    "radial-gradient(55% 65% at 88% 16%, rgba(244,164,200,0.55), transparent 62%)," +
+    "radial-gradient(50% 60% at 8% 72%, rgba(247,214,107,0.55), transparent 64%)," +
+    "radial-gradient(55% 50% at 60% 110%, rgba(248,146,84,0.35), transparent 66%)",
 };
 
 /** Product cards sit on a soft, grainy gradient field. This is the only place

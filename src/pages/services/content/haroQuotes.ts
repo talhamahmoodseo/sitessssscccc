@@ -1,216 +1,414 @@
-/** Content for /services/haro-links. Plan §4.4. */
+/**
+ * Copy for /services/haro-links. Plan: SERVICE-PAGES-REDESIGN.md §5.
+ *
+ * How the service really works: we place expert quotes through our own
+ * publishing connections (editors and site owners we already work with), and
+ * we answer only the source requests where the client is the right expert.
+ * Not the daily pitch-everything HARO routine.
+ *
+ * Running example: a fintech founder ("Sam Carter, YourBrand"). Requests,
+ * outlets and numbers are samples for design review.
+ */
 
 export const haroQuotes = {
-  eyebrow: "HARO & Expert Quotes",
-  h1: { pre: "Expert quotes that sound", em: "like you said them", post: "." },
-  sub: "A managed pipeline of source placements built on journalist relationships and a documented profile of your expertise — not a volunteer pitching every query that lands in an inbox.",
+  seo: {
+    title: "HARO Link Building & Expert Quote Placements",
+    description:
+      "HARO-style links without the HARO lottery. We map your expertise, place your quotes through editors we already work with, and answer only the requests you're the right expert for. You approve every word.",
+  },
 
-  proof: [
-    {
-      custom: "DR 65+",
-      label: "Two placements in month one on a typical start",
+  hero: {
+    eyebrow: "HARO & expert quotes",
+    h1a: "Get quoted as the expert.",
+    h1b: "Skip the HARO lottery.",
+    lead: "HARO-style links, done differently. We map what you actually know, place your quotes through editors and publishers we already work with, and only answer the requests you’re the right person for. You approve every word.",
+    primary: "Get me quoted",
+    request: {
+      label: "Journalist request",
+      outlet: "Business daily · DR 66",
+      ask: "Looking for founders: how are small businesses dealing with late invoices this year?",
+      closes: "Closes in 3h 12m",
     },
-    {
-      v: 2,
-      prefix: "",
-      suffix: "–6",
-      label: "Quality placements per month, scoped on delivered",
+    draft: {
+      label: "Drafted in your voice",
+      text: "“We looked at 18,000 invoices on our platform. The ones followed up on day 3 got paid nine days sooner than ones chased on day 14. Send the reminder before it’s late, not after.”",
+      status: "Approved by Sam",
+      sent: "Sent in 52 minutes",
     },
-    {
-      v: 100,
-      suffix: "%",
-      label: "Quotes approved by you before they are sent",
+    published: {
+      outlet: "Business daily",
+      desk: "Small business",
+      head: "Late invoices are the new normal. Here’s what founders are doing",
+      who: "Sam Carter, founder of YourBrand",
+      badges: ["Quoted + linked", "DR 66", "Indexed in 4 days"],
     },
-  ],
+  },
 
   problem: {
-    heading: { pre: "HARO became a", em: "volume game nobody wins" },
+    eyebrow: "The problem with HARO",
+    h2a: "HARO didn’t die.",
+    h2b: "It got crowded.",
     paras: [
-      "When the platforms got popular, response volume exploded. A journalist posting a query now receives several hundred replies within hours, most of them generic, most of them clearly written by someone who did not read the question. Editors started ignoring the inbox entirely.",
-      "The agencies servicing it responded by sending more. More replies, faster, with less care — which is exactly what broke the channel. If you have tried HARO and got nothing, this is why, and it was not your fault.",
-      "The channel still works, but only through the back door: journalists who know the source is reliable, an expertise profile that lets us answer within minutes with something specific, and the discipline to skip the eighty percent of queries where you are not genuinely the right expert.",
+      "A journalist posts one request and gets hundreds of replies within hours. Most are generic. Many come from people who didn’t read the question. More and more are written by AI.",
+      "So editors stopped reading the pile, and the agencies selling “HARO links” answered by sending even more. If you tried it and got nothing back, that’s why. It wasn’t you.",
+    ],
+    pile: {
+      count: 300,
+      label: "replies to one request",
+      lines: [
+        "As an expert with 10+ years in the industry, I believe…",
+        "Great question! There are many factors to consider…",
+        "Hi! I’d love to contribute. Here are 7 tips…",
+        "In today’s fast-paced business world…",
+        "As a seasoned professional, I can share…",
+      ],
+      foot: "Most get deleted unread.",
+    },
+    ways: {
+      t: "So we work two ways instead",
+      items: [
+        {
+          k: "Our own publishing connections",
+          d: "Editors and site owners we already work with, who take expert commentary for articles they’re writing. Your quote goes to someone expecting it.",
+          tag: "Most placements",
+        },
+        {
+          k: "Hand-picked source requests",
+          d: "We still watch the request platforms. We answer only the ones where you’re genuinely the right expert, fast, with something specific.",
+          tag: "Selected requests",
+        },
+      ],
+    },
+  },
+
+  twoReplies: {
+    eyebrow: "The craft",
+    h2a: "Same request.",
+    h2b: "Only one gets printed.",
+    request:
+      "Looking for finance experts: what’s one cash-flow mistake small businesses keep making?",
+    generic: {
+      label: "The usual reply",
+      text: "As a seasoned financial expert with over ten years of experience, I believe cash flow is the lifeblood of any business. One common mistake is not monitoring it closely enough. Businesses should use the right tools, plan ahead and stay proactive to avoid problems down the line.",
+      notes: [
+        "Starts with a bio, not an answer",
+        "Could be anyone, about anything",
+        "Nothing worth quoting",
+      ],
+      verdict: "Archived",
+    },
+    ours: {
+      label: "Our reply",
+      text: "Most small businesses chase late invoices too late. On our platform, invoices followed up on day 3 got paid nine days sooner than ones chased on day 14. Set the reminder before the due date, not after.",
+      who: "Sam Carter, Founder, YourBrand",
+      notes: [
+        "Answers in the first line",
+        "A number only they have",
+        "Under 60 words, ready to paste",
+      ],
+      verdict: "Printed · DR 66 · linked",
+    },
+  },
+
+  profile: {
+    eyebrow: "Step one",
+    h2a: "We map what you know.",
+    h2b: "Then we pitch.",
+    lead: "Speed only helps if there’s something good ready to send. One 45-minute call gives us your topics, your real opinions, the numbers only you have, and the topics we’ll never pitch you for.",
+    note: "More experts, more requests you can answer. Most clients start with one and add a second by month three.",
+    people: [
+      {
+        k: "Founder",
+        name: "Sam Carter",
+        rows: [
+          {
+            k: "Speaks to",
+            v: "Cash flow, late payments, running a lean finance team",
+          },
+          {
+            k: "Numbers only they have",
+            v: "18,000 invoices a month, average days-to-pay by industry",
+          },
+          {
+            k: "Opinions they’ll defend",
+            v: "Payment terms longer than 30 days are a loan you didn’t agree to",
+          },
+          { k: "Never pitch for", v: "Crypto, investment advice, politics" },
+          {
+            k: "Voice",
+            v: "Short sentences. Uses “customers”, never “users”. Hates jargon.",
+          },
+        ],
+      },
+      {
+        k: "Head of Product",
+        name: "Priya Shah",
+        rows: [
+          {
+            k: "Speaks to",
+            v: "Automation for small finance teams, product-led growth",
+          },
+          {
+            k: "Numbers only they have",
+            v: "Which reminders get opened, and when",
+          },
+          {
+            k: "Opinions they’ll defend",
+            v: "Most finance software is built for accountants, not owners",
+          },
+          { k: "Never pitch for", v: "AI hype pieces, funding news" },
+          {
+            k: "Voice",
+            v: "Practical, a bit dry. Likes one strong example over a list.",
+          },
+        ],
+      },
+      {
+        k: "CFO",
+        name: "Daniel Okafor",
+        rows: [
+          {
+            k: "Speaks to",
+            v: "Forecasting, fundraising readiness, unit economics",
+          },
+          {
+            k: "Numbers only they have",
+            v: "Benchmarks from 2,000 small-business customers",
+          },
+          {
+            k: "Opinions they’ll defend",
+            v: "Small firms should forecast weekly, not quarterly",
+          },
+          { k: "Never pitch for", v: "Personal finance, tax tips" },
+          {
+            k: "Voice",
+            v: "Careful, precise, happy to go on record with numbers.",
+          },
+        ],
+      },
     ],
   },
 
-  deliverables: [
-    {
-      t: "Expertise profile",
-      d: "A documented map of what you can speak to credibly, with your actual positions and phrasing — the thing that makes a fast reply sound like you rather than like anyone.",
-    },
-    {
-      t: "Query monitoring",
-      d: "Source platforms plus direct journalist requests, filtered against your profile. We skip the ones where you are not genuinely the right voice.",
-    },
-    {
-      t: "Drafted responses, in your voice",
-      d: "Written from the profile, specific to the question asked, and sent inside the window that matters. You approve every one.",
-    },
-    {
-      t: "Direct journalist relationships",
-      d: "The placements that actually land come from writers who have used you before and know you reply well. We build that list deliberately.",
-    },
-    {
-      t: "Speed where it counts",
-      d: "Most source queries are answered in the first hour. Our profile approach is what makes a considered reply possible that fast.",
-    },
-    {
-      t: "Placement reporting",
-      d: "Every published quote with the outlet, DR, link status and the question that earned it.",
-    },
-  ],
-
-  ledger: {
-    standards: [
+  filter: {
+    eyebrow: "What we skip",
+    h2a: "We say no a lot.",
+    h2b: "That’s the service.",
+    lead: "Every request gets checked against your profile and against the outlet. Most don’t make it. Here’s a sample week.",
+    requests: [
       {
-        label: "You are genuinely the right expert",
-        detail:
-          "If the question needs an expertise you do not have, we skip it. Stretching produces quotes that embarrass you and burn the journalist relationship.",
+        ask: "Founders on chasing late payments",
+        outlet: "Business daily · DR 66",
+        ok: true,
+        why: "Right expert, real data, real readers",
       },
       {
-        label: "The outlet has real readers",
-        detail:
-          "Same traffic and editorial bar as every other placement. A quote in a dead publication is a quote nobody reads.",
+        ask: "40+ experts share their top productivity tip",
+        outlet: "Lifestyle blog · DR 70",
+        ok: false,
+        why: "Roundup with 40 sources. One line each, no link",
       },
       {
-        label: "Attribution that identifies you",
-        detail:
-          "Named, with your title and company. 'An industry expert said' does nothing for you.",
+        ask: "Best crypto to buy this year?",
+        outlet: "Finance blog · DR 58",
+        ok: false,
+        why: "Outside your field. A quote you can’t defend",
       },
       {
-        label: "A question you can answer specifically",
-        detail:
-          "Generic questions produce generic quotes that get cut. We prioritise queries where a specific answer is possible.",
+        ask: "CFOs on weekly forecasting",
+        outlet: "Trade title · DR 61",
+        ok: true,
+        why: "Exactly the CFO’s profile",
       },
       {
-        label: "Journalist history",
-        detail:
-          "We track which writers actually publish their sources. Some collect quotes and never use them.",
-      },
-    ],
-    rejections: [
-      {
-        site: "Roundup query, 40+ sources",
-        metric: "DR 70",
-        reason:
-          "High authority, but a listicle collecting forty quotes gives each one a single line and no link. Volume play for the publisher, nothing for the source.",
+        ask: "Free product for a gift guide",
+        outlet: "Deals site · DR 52",
+        ok: false,
+        why: "Wants a freebie, not an expert",
       },
       {
-        site: "Query outside the client's field",
-        metric: "DR 68",
-        reason:
-          "Tempting authority on a topic the client could have bluffed. We skipped it. A quote you cannot defend in a follow-up call is a liability.",
+        ask: "Small-business tools to watch",
+        outlet: "Anonymous site · DR 72",
+        ok: false,
+        why: "Writer has never published a source we sent",
       },
       {
-        site: "Journalist with no publish history",
-        metric: "DR 72",
-        reason:
-          "We had sourced four previous quotes to this writer and none were ever published. The relationship was not reciprocal, so we stopped spending the client's time on it.",
+        ask: "How SMEs are using automation",
+        outlet: "Tech news site · DR 64",
+        ok: true,
+        why: "Head of Product’s topic",
+      },
+      {
+        ask: "Quick quote on interest rates",
+        outlet: "News site · DR 75",
+        ok: false,
+        why: "Needs an economist, not a founder",
       },
     ],
+    tally: { answered: "3 answered", skipped: "17 skipped", note: "this week" },
   },
 
-  process: [
-    {
-      n: "01",
-      t: "Expertise session",
-      d: "Forty-five minutes mapping what you can speak to, your real positions, and the phrases you naturally use. Everything downstream depends on this being honest rather than aspirational.",
-      you: "One 45-minute call.",
-    },
-    {
-      n: "02",
-      t: "Profile build",
-      d: "We turn the session into a working document — topics, positions, proof points, voice notes — that lets us draft a credible answer in minutes instead of days.",
-      you: "Read it and correct anything that is not how you would put it.",
-    },
-    {
-      n: "03",
-      t: "Monitoring and filtering",
-      d: "We watch the platforms and our direct journalist list, and filter hard. Most weeks we skip far more than we answer.",
-      you: "Nothing.",
-    },
-    {
-      n: "04",
-      t: "Draft and approve",
-      d: "We draft inside the response window and send it to you. Most clients approve in a line. Nothing goes out with your name on it unapproved.",
-      you: "A quick yes, usually within the hour.",
-    },
-    {
-      n: "05",
-      t: "Placement and follow-on",
-      d: "We report what published and keep the writer relationship warm — the second quote at the same outlet is far easier than the first.",
-      you: "Read the report.",
-    },
-  ],
+  time: {
+    eyebrow: "How it runs",
+    h2a: "One call to start.",
+    h2b: "Then a quick yes per quote.",
+    steps: [
+      {
+        t: "Expertise call",
+        us: "We run the call and take notes",
+        you: "45 min, once",
+        w: 45,
+      },
+      {
+        t: "Profile",
+        us: "We write your expertise profile",
+        you: "10 min to check it",
+        w: 10,
+      },
+      {
+        t: "Finding and filtering",
+        us: "We watch our connections and request platforms, every day",
+        you: "Nothing",
+        w: 0,
+      },
+      {
+        t: "Drafting and approval",
+        us: "We draft each quote in your voice, inside the deadline",
+        you: "About 2 min per quote",
+        w: 2,
+      },
+      {
+        t: "Report",
+        us: "Every published quote, with link status",
+        you: "5 min to read",
+        w: 5,
+      },
+    ],
+    total: "About 30 minutes a month after the first call.",
+  },
 
-  example: {
-    label: "Fintech SaaS · founder as source · 4 months",
-    headline: "Two DR 65+ quotes in month one, after a year of nothing",
+  proof: {
+    eyebrow: "One engagement, in numbers",
+    h2a: "Fewer replies.",
+    h2b: "More quotes in print.",
+    client: "Fintech SaaS · founder as the source · 4 months",
+    skipped: 180,
+    answered: 34,
+    published: 11,
     facts: [
-      { k: "Placements", v: "11" },
+      { k: "Published quotes", v: "11" },
       { k: "Average DR", v: "63" },
-      { k: "Month-one placements", v: "2" },
-      { k: "Queries answered", v: "34" },
-      { k: "Queries skipped", v: "180+" },
+      { k: "In month one", v: "2" },
     ],
-    series: [0, 2, 4, 7, 9, 11],
-    seriesLabel: "Cumulative published quotes, months 0–5",
+    before:
+      "Their previous vendor answered everything: 3 quotes published in 12 months.",
     takeaway:
-      "The ratio is the point: 34 answered against 180+ skipped. The previous vendor had answered everything and landed three placements in a year. Filtering harder produced nearly four times the result from a fifth of the sends.",
-    caseHref: "/case-studies/b2b-saas-ai-visibility",
+      "Skipping is what made the 11 possible. Every reply that went out was one an editor could use as it was, so more of them ran. Nearly four times the old result, from a fraction of the sends.",
+    quote: {
+      text: "Two placements in the first month, after a year of nothing. The difference was they skipped the requests I had no business answering.",
+      who: "Founder · fintech SaaS",
+    },
   },
 
   fit: {
+    eyebrow: "Is this right for you?",
+    h2a: "Good fit, bad fit.",
+    h2b: "And what it costs.",
     good: [
-      "Someone in the business has genuine, specific expertise and is happy to be named.",
-      "That person can approve a draft within a few hours when a window is open.",
-      "You want authority and credibility, and you accept the volume is modest.",
-      "You see value in unlinked expert mentions as well as linked ones.",
+      "Someone in the business has real, specific expertise and is happy to be named.",
+      "They can approve a draft within a few hours when a deadline is open.",
+      "You want credibility and links, and you’re fine with modest volume.",
+      "You see value in expert mentions even when there’s no link.",
     ],
     bad: [
-      "Nobody internally wants to be publicly named as a source.",
-      "You need a fixed number of placements per month — request volume varies and we scope on delivered, not promised.",
-      "Approvals take days. The window is usually hours.",
-      "You want quotes written about topics nobody internally actually knows well.",
+      "Nobody wants to be named publicly.",
+      "You need a fixed number of links every month.",
+      "Approvals take days. Deadlines are usually hours.",
     ],
+    price: {
+      label: "Expert quotes pricing",
+      from: "$2,497",
+      unit: "/month",
+      plan: "Included in our Growth plan",
+      points: [
+        "Expertise profile for each expert",
+        "Placements through our publishing connections",
+        "Hand-picked source requests, answered fast",
+        "Monthly report with every published quote",
+      ],
+      note: "Quotes only? We scope it on delivered placements, not attempts, so a quiet month costs you less.",
+    },
   },
 
-  quote: {
-    text: "Two placements in the first month after a year of nothing. The difference was that they skipped the queries I had no business answering.",
-    who: "Daniel Reyes · Head of Growth, CapCut",
+  faqHead: {
+    eyebrow: "FAQ",
+    h2a: "Questions",
+    h2b: "about expert quotes.",
+    side: "Tell us who’d be quoted and what they know. We’ll tell you which publications cover it, and how many quotes a month is realistic.",
   },
 
   faqs: [
     {
-      q: "Isn't HARO dead?",
-      a: "The free-for-all version is, and deservedly. A query now gets hundreds of near-identical replies and most journalists have stopped reading the inbox. What still works is the relationship layer underneath: writers who know a source replies fast, on topic and without needing edits. We run that layer, which is why our volume is low and our placement rate is not. If an agency is promising you twenty HARO links a month, they are running the dead version.",
+      q: "Isn’t HARO dead?",
+      a: "The free-for-all version mostly is. One request now gets hundreds of near-identical replies, and a lot of journalists stopped reading the inbox. What still works is the layer underneath: editors and publishers who know a source replies fast, on topic and without needing edits. That’s where most of our placements come from. If someone promises you twenty HARO links a month, they’re running the dead version.",
     },
     {
-      q: "Who actually writes the quotes — will they sound like me?",
-      a: "Our editorial team drafts from your expertise profile, which is built specifically to capture how you phrase things and what you actually believe. You approve every quote before it leaves, and most clients edit perhaps one in five by a few words. The profile session in step one is the whole reason this works; without it you get generic copy with your name attached, which is the failure mode everyone has experienced.",
+      q: "How is this different from normal HARO?",
+      a: "Normal HARO is answering as many requests as possible and hoping. We place most quotes through our own publishing connections, people who already take expert commentary from us, and we only answer public requests where you’re clearly the right expert. Fewer sends, far more of them published.",
     },
     {
-      q: "How many placements will I get per month?",
-      a: "Typically two to six, depending on how much your sector is being written about. We scope and bill on delivered placements rather than attempts, so a quiet month costs you less. We will not quote a fixed number because request volume is outside anyone's control and a promise would mean lowering the bar to hit it.",
+      q: "Who writes the quotes? Will they sound like me?",
+      a: "Our editorial team drafts from your expertise profile, which is built to capture how you talk and what you actually think. You approve every quote before it goes anywhere. Most clients change one in five by a few words.",
     },
     {
-      q: "What if the journalist does not include a link?",
-      a: "Roughly a third of published quotes are unlinked. That is still a win worth having: a named expert mention on a credible publication is precisely the signal AI answer engines use to decide who to cite, and it builds the entity associations that help you elsewhere. We report linked and unlinked separately so you can judge the mix.",
+      q: "How many placements will I get a month?",
+      a: "Usually two to six, depending on how much your field is being written about. We scope and bill on delivered placements, not attempts. We won’t promise a fixed number, because hitting a quota means lowering the bar.",
     },
     {
-      q: "Do I need to be available for interviews?",
-      a: "Rarely. The large majority of placements are written quotes handled over email. Occasionally a journalist wants a short call, and we brief you beforehand — it is always your choice and declining costs nothing.",
+      q: "What if the journalist doesn’t include a link?",
+      a: "It happens with some quotes, and it’s still worth having. A named expert mention on a trusted publication helps people trust you, and it’s the kind of thing AI answers pick up. We report linked and unlinked quotes separately.",
     },
     {
-      q: "How fast do I need to approve?",
-      a: "Within a few hours is ideal; same day usually works. Source queries close fast and a brilliant quote sent a day late is simply unused. If approvals are genuinely slow on your side, we can agree a standing approval for topics squarely inside your profile.",
+      q: "Do I need to do interviews?",
+      a: "Rarely. Nearly all placements are written quotes over email. Sometimes a journalist wants a short call. We brief you first, and saying no is always fine.",
     },
     {
-      q: "Can you use multiple people from our team?",
-      a: "Yes, and it usually improves results. We build a separate profile for each person — a founder, a head of engineering and a head of customer success can each answer different queries credibly, which widens the pool considerably.",
+      q: "Can you quote more than one person from our team?",
+      a: "Yes, and it usually helps. We build a profile for each person, so a founder, a head of product and a CFO can each answer different requests. More experts, more chances.",
     },
     {
       q: "What happens in a slow month?",
-      a: "We tell you, and you pay for what was delivered. We would rather report a quiet month than pad it with placements on weak outlets to hit a number. If a sector stays quiet for a sustained period we will say so and suggest moving budget to digital PR, where we create the story instead of waiting for the query.",
+      a: "We tell you, and you pay for what was delivered. We’d rather report a quiet month than pad it with weak outlets. If your field stays quiet for a while, we’ll suggest moving budget to digital PR, where we create the story instead of waiting for one.",
     },
   ],
+
+  pairs: {
+    h2: "Pairs well with",
+    items: [
+      {
+        to: "/services/digital-pr",
+        t: "Digital PR",
+        d: "When the requests are quiet, we create the story instead.",
+      },
+      {
+        to: "/services/brand-mentions",
+        t: "Brand Mentions",
+        d: "Named expert quotes are the kind of mention AI answers pick up.",
+      },
+      {
+        to: "/services/link-building",
+        t: "Link Building",
+        d: "Steady links to the pages you need to rank, alongside the quotes.",
+      },
+    ],
+  },
+
+  close: {
+    eyebrow: "Free expertise call",
+    h2a: "You know your field.",
+    h2b: "Let’s get you quoted for it.",
+    d: "On a 15‑minute call we’ll find out what you can speak to, which publications cover it, and how many quotes a month is realistic. If your field is quiet, we’ll say so.",
+    primary: "Book the call",
+    subject: "Expert quotes enquiry",
+    ticks: ["Reply within 24 hours", "No obligation", "You approve every word"],
+  },
 };

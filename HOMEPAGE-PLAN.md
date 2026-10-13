@@ -26,7 +26,7 @@ Voice: an agency. "We" and "our team". No founder-led framing on the homepage.
 | 7 | **Built for people who need authority** | Content + presentation | Sharper copy per audience, each tied to the service that fits; cleaner tab cards with a grainy glow on the selected one. |
 | 8 | **Process** | Content + design + animation | See below. |
 | 9 | Video testimonials | Remove | Owner's request. |
-| 10 | Results bento | Replace | Its numbers repeat the case studies. Replaced by the **review wall** (review placement 2): breadth of voices, not numbers. |
+| 10 | Results bento ("Real clients. Numbers they signed off on.") | Keep | Restored at the owner's request after review. Sits after Process, before the review wall. Its Ocuco quote was rewritten so it no longer repeats the featured review. |
 | 11 | Blog *(new)* | Add | Four latest articles. |
 | 12 | **FAQ** | Content + design | Agency-level questions across all services; two-column layout. |
 | 13 | **CTA** | Merge + improve | The "write to us" form and the closing band were two CTAs back to back. One closing section now: free audit, a call, or email. No founder lines. |

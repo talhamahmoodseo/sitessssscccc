@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight, Check, Mail, Minus } from "lucide-react";
 import { asset, openBooking } from "@/lib/booking";
 import { ObjectionFaq } from "../sections";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "./kit";
+import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "../kit";
 
 /* ------------------------------- fit ------------------------------- */
 

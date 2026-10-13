@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { Clock, User } from "lucide-react";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { Eyebrow, H2, rise } from "./kit";
+import { Eyebrow, H2, rise } from "../kit";
 
 const PR = LB.process;
 

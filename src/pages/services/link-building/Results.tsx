@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { asset, openBooking } from "@/lib/booking";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { DarkGlow, Eyebrow, H2, ease, rise } from "./kit";
+import { DarkGlow, Eyebrow, H2, ease, rise } from "../kit";
 
 const R = LB.proof;
 

@@ -1,212 +1,420 @@
-/** Content for /services/digital-pr. Plan §4.2. */
+/**
+ * Copy for /services/digital-pr. Plan: SERVICE-PAGES-REDESIGN.md §3.
+ *
+ * Running example: a UK + Gulf home & lifestyle e-commerce brand, the same
+ * client as the "ecommerce-gulf-authority" case study. Outlet headlines,
+ * names and numbers are samples for design review until real coverage is in.
+ */
 
 export const digitalPr = {
-  eyebrow: "Digital PR",
-  h1: { pre: "Coverage that", em: "earns the link", post: "." },
-  sub: "Story-led campaigns that put you in publications your buyers already read. Journalists link because the piece is worth linking to — not because we paid for a slot.",
+  seo: {
+    title: "Digital PR Agency: Coverage Your Buyers Actually Read",
+    description:
+      "Story-led digital PR. We find the story in your business, pitch it to editors we work with, and land features, expert quotes and roundups that bring links, mentions and trust.",
+  },
 
-  proof: [
-    { custom: "DR 74", label: "Highest-authority placement secured to date" },
-    { v: 21, suffix: "", label: "Placements in a single six-month campaign" },
-    {
-      v: 38,
-      suffix: "%",
-      label: "Pitch-to-placement rate on scoped campaigns",
+  hero: {
+    eyebrow: "Digital PR",
+    h1a: "Stories editors want to run.",
+    h1b: "Coverage your buyers actually read.",
+    lead: "We find the story inside your business, pitch it to editors we already work with, and land features, quotes and roundups on real publications. You get the links, the mentions and the “as seen in” that comes with them.",
+    primary: "Pitch us your story",
+    clippings: [
+      {
+        outlet: "Khaleej Times",
+        desk: "Business",
+        kind: "Feature",
+        dr: "DR 74",
+        head: "Why UAE shoppers won’t wait past tomorrow",
+        stand:
+          "New data from 40,000 orders shows next-day delivery is now the minimum, not the perk.",
+        mention:
+          "Orders to Dubai now arrive in 1.8 days on average, says YourBrand",
+        status: "Linked",
+      },
+      {
+        outlet: "Arabian Business",
+        desk: "Retail",
+        kind: "Expert quote",
+        dr: "DR 72",
+        head: "Retailers rethink returns as costs bite",
+        stand:
+          "“Free returns mostly win you serial returners,” one founder told us.",
+        mention: "Sara Hughes, COO at YourBrand",
+        status: "Linked",
+      },
+      {
+        outlet: "Retail Tech Weekly",
+        desk: "Roundup",
+        kind: "Roundup",
+        dr: "DR 61",
+        head: "12 online stores getting delivery right in 2026",
+        stand:
+          "Fast, honest and trackable: the brands buyers keep coming back to.",
+        mention: "#4 YourBrand",
+        status: "Mention",
+      },
+    ],
+    chips: {
+      a: { t: "Editor replied", d: "31 hours after the pitch" },
+      b: { t: "Picked up by 3 more", d: "outlets in two weeks" },
     },
-  ],
+  },
 
-  problem: {
-    heading: {
-      pre: "Most agencies sell you",
-      em: "press releases nobody reads",
+  release: {
+    eyebrow: "Why most PR doesn’t work",
+    h2a: "A press release gets pickups.",
+    h2b: "A story gets coverage.",
+    lead: "Editors get dozens of pitches every morning. They answer the few that hand them something their readers will care about. Everything else gets archived, or worse, syndicated.",
+    release: {
+      label: "The press release",
+      path: [
+        "Written about you",
+        "Sent through a wire service",
+        "Auto-posted on 200 “news” sites",
+      ],
+      stats: [
+        { k: "Pickups", v: "200+" },
+        { k: "Real readers", v: "Almost none" },
+        { k: "Links that count", v: "0" },
+        { k: "Still live in 3 months", v: "A few" },
+      ],
+      tag: "Looks great in a PDF report.",
     },
-    paras: [
-      "The default digital PR motion is to write a release, blast it to a purchased media list, and report the syndication count. Those pickups land on aggregator sites with no readership, pass no authority, and are gone from the index within weeks.",
-      "Journalists do not ignore these because they are hostile. They ignore them because the pitch leads with your company instead of their readers. An editor opens forty pitches a morning and answers the two that hand them a story.",
-      "We work the other way round. We find the angle a specific desk is already covering, build the data or expertise that makes it publishable, and pitch named journalists individually. Slower to start, and it is the only version that produces links worth having.",
+    story: {
+      label: "The story",
+      path: [
+        "Written about the reader",
+        "Pitched to one named editor",
+        "Run as a real article",
+      ],
+      stats: [
+        { k: "Features", v: "1" },
+        { k: "Read by", v: "Your buyers" },
+        { k: "Links that count", v: "1 editorial" },
+        { k: "Picked up by", v: "3 more outlets" },
+      ],
+      tag: "Looks great on your sales deck. And in Google.",
+    },
+  },
+
+  lab: {
+    eyebrow: "Where stories come from",
+    h2a: "Every business has a story.",
+    h2b: "Most never notice theirs.",
+    lead: "Finding it is the first thing we do. Here’s what that looks like with three kinds of raw material.",
+    steps: ["What you told us", "The angle we found", "What ran"],
+    tabs: [
+      {
+        t: "Data you already have",
+        note: "Delivery time to the UAE went from 4.1 days to 1.8 after we moved stock to a Dubai warehouse. Repeat orders went up 23%.",
+        angle:
+          "Next-day isn’t a perk in the UAE any more. It’s the minimum shoppers accept.",
+        why: "Their own numbers, a trend editors were already watching, and a clear reader takeaway.",
+        ran: {
+          outlet: "Khaleej Times",
+          desk: "Business",
+          head: "Why UAE shoppers won’t wait past tomorrow",
+          kind: "Feature · linked",
+          mention: "Delivery data from YourBrand",
+        },
+      },
+      {
+        t: "A view your market disagrees with",
+        note: "Everyone in our space says free returns build loyalty. Our numbers say they mostly attract people who return half of what they buy.",
+        angle: "Free returns are quietly eating small online stores’ margins.",
+        why: "A defensible disagreement with the rest of the industry, backed by data only they have.",
+        ran: {
+          outlet: "Retail Tech Weekly",
+          desk: "Opinion",
+          head: "The free-returns trap, in numbers",
+          kind: "Opinion piece · linked",
+          mention: "By Sara Hughes, COO at YourBrand",
+        },
+      },
+      {
+        t: "News you didn’t think was news",
+        note: "We hired an Arabic-speaking support team in Dubai before opening any shop there.",
+        angle:
+          "UK brands are building local service teams in the Gulf before they open a single store.",
+        why: "Small company news, framed as a bigger shift that business readers care about.",
+        ran: {
+          outlet: "Gulf Business",
+          desk: "Retail",
+          head: "UK retailers bet on local service before local stores",
+          kind: "Expert quote · mention",
+          mention: "“We hired the team first,” says YourBrand",
+        },
+      },
     ],
   },
 
-  deliverables: [
-    {
-      t: "Angle development",
-      d: "We find the story inside your business — proprietary data, a contrarian position, a trend you can evidence — and shape it into something a desk wants.",
-    },
-    {
-      t: "Named-journalist outreach",
-      d: "Individual pitches to writers who cover your subject, not a blast to a bought list. We show you the list before we send.",
-    },
-    {
-      t: "Asset production",
-      d: "Surveys, data studies, commentary and expert quotes, written to publication standard so the editor has nothing left to fix.",
-    },
-    {
-      t: "Reactive newsjacking",
-      d: "When a story breaks in your sector we move the same day with a quotable position while the window is open.",
-    },
-    {
-      t: "Relationship building",
-      d: "The second placement at a publication is far easier than the first. We invest in the relationship rather than burning it on one send.",
-    },
-    {
-      t: "Coverage reporting",
-      d: "Every placement with its DR, estimated reach, link type and the pitch that earned it — so you can see what angle worked.",
-    },
-  ],
-
-  ledger: {
-    standards: [
+  tiers: {
+    eyebrow: "Where your coverage lands",
+    h2a: "Three kinds of publication.",
+    h2b: "Each one does a different job.",
+    items: [
       {
-        label: "A real newsroom",
-        detail:
-          "A masthead with named editors and working journalists, not a syndication endpoint that republishes wire copy automatically.",
+        k: "Business & national press",
+        outlets: ["Khaleej Times", "Arabian Business", "Gulf Business"],
+        job: "Trust",
+        d: "The “as seen in” that makes a buyer stop doubting you. Hardest to get, worth the most.",
+        dr: "DR 70–80",
+        tint: "bg-mint",
       },
       {
-        label: "Readers, verified",
-        detail:
-          "Organic traffic and genuine social engagement. A DR 70 title that nobody reads is a vanity placement.",
+        k: "Trade publications",
+        outlets: [
+          "Retail Tech Weekly",
+          "Home & Living Trade",
+          "E-commerce Insider",
+        ],
+        job: "Relevance",
+        d: "The titles your buyers read for work. Smaller audiences, the right people.",
+        dr: "DR 55–70",
+        tint: "bg-butter",
       },
       {
-        label: "Editorial independence",
-        detail:
-          "If the outlet will publish anything for a fee, the link carries a paid footprint no matter how the piece reads.",
-      },
-      {
-        label: "Relevance to your buyer",
-        detail:
-          "Coverage in a title your customers actually read beats a bigger title they have never opened.",
-      },
-      {
-        label: "Links that stay",
-        detail:
-          "We track placements for twelve months. Outlets that strip links post-publication come off the list.",
+        k: "Roundups & niche sites",
+        outlets: [
+          "Best-of guides",
+          "Comparison articles",
+          "Gift and buying guides",
+        ],
+        job: "Comparison",
+        d: "The “best X for Y” pages people read before buying, and the ones AI answers quote.",
+        dr: "DR 40–55",
+        tint: "bg-sky",
       },
     ],
-    rejections: [
-      {
-        site: "National news aggregator",
-        metric: "DR 82",
-        reason:
-          "Enormous authority, but it republishes press releases automatically with no editorial pass. Every competitor is already there, which is precisely why it is worthless.",
-      },
-      {
-        site: "Industry newsletter site",
-        metric: "DR 59",
-        reason:
-          "Genuine readership, but the editor confirmed all outbound links are nofollowed site-wide and could not be changed. We placed the story elsewhere.",
-      },
-      {
-        site: "Regional business title",
-        metric: "DR 66",
-        reason:
-          "Strong on paper. Their archive showed links stripped from articles after roughly ninety days — a pattern you only catch by checking old pieces.",
-      },
-    ],
+    gulf: {
+      t: "Gulf business media",
+      d: "We’ve placed stories in Gulf business press for years. Most agencies can’t get a reply there. For brands selling into the UAE and Saudi Arabia, it’s often the quickest way to be taken seriously there.",
+    },
+    skip: {
+      t: "What we skip",
+      items: [
+        "Wire syndication sites",
+        "Pay-to-publish “news” sites",
+        "Outlets that strip links after 90 days",
+        "Big titles nobody in your market reads",
+      ],
+    },
   },
 
-  process: [
-    {
-      n: "01",
-      t: "Story audit",
-      d: "We go through your data, customers and point of view to find what is genuinely newsworthy. Most businesses have two or three stories they have never recognised as stories.",
-      you: "One 45-minute session with someone who knows the business.",
-    },
-    {
-      n: "02",
-      t: "Angle and asset build",
-      d: "We develop the strongest angle into a publishable asset — a data study, a survey, a position piece — and agree it with you before anyone is pitched.",
-      you: "Approve the angle. Supply data if it is yours.",
-    },
-    {
-      n: "03",
-      t: "Media list, shown to you",
-      d: "We build the target list of named journalists and the outlets they write for. You see it, and you can strike anyone you do not want approached.",
-      you: "One pass through the list.",
-    },
-    {
-      n: "04",
-      t: "Pitching and follow-through",
-      d: "Individual pitches, tracked and followed up. We handle journalist questions, supply quotes and images, and keep the thread warm.",
-      you: "Be reachable within a day if a journalist wants a quote.",
-    },
-    {
-      n: "05",
-      t: "Coverage and compounding",
-      d: "We report each placement and keep the relationships open. Campaign two at the same outlets costs far less effort than campaign one.",
-      you: "Read the coverage report.",
-    },
-  ],
+  returns: {
+    eyebrow: "What one story gives you",
+    h2a: "One placement.",
+    h2b: "Three things it keeps doing.",
+    items: [
+      {
+        k: "Google",
+        t: "A link you can’t buy",
+        d: "An editorial link from a publication Google already trusts. Stronger than anything on a price list.",
+      },
+      {
+        k: "AI answers",
+        t: "A source AI quotes",
+        d: "Your name on the kind of site ChatGPT and Google’s AI Overviews lean on when buyers ask for recommendations.",
+      },
+      {
+        k: "Sales",
+        t: "Proof for your buyers",
+        d: "“As seen in” for your site, your deck and your ads. People trust what they’ve read about you somewhere else.",
+      },
+    ],
+    note: "And it compounds. A good story gets picked up by other outlets for weeks, and the second pitch to the same editor is much easier than the first.",
+  },
 
-  example: {
-    label: "E-commerce · UK + GCC · 6 months",
-    headline:
-      "Gulf trade coverage rebuilt a thin profile into something Google trusts",
+  proof: {
+    eyebrow: "One campaign, start to finish",
+    h2a: "One data study.",
+    h2b: "21 placements in six months.",
+    client: "Home & lifestyle e-commerce · UK + GCC",
     facts: [
       { k: "Placements", v: "21" },
       { k: "Top outlet", v: "DR 74" },
       { k: "Referring domains", v: "4×" },
-      { k: "Revenue", v: "+88%" },
-      { k: "Campaign length", v: "6 months" },
+      { k: "Campaign", v: "6 months" },
     ],
+    // month, outlet, kind, dr
+    placements: [
+      [1, "Retail Tech Weekly", "Data study", 61],
+      [1, "E-commerce Insider", "Data study", 58],
+      [2, "Khaleej Times", "Feature", 74],
+      [2, "Gulf Business", "Expert quote", 69],
+      [2, "Home & Living Trade", "Data study", 55],
+      [3, "Arabian Business", "Expert quote", 72],
+      [3, "UAE retail news site", "Pickup", 57],
+      [3, "Gulf logistics title", "Pickup", 60],
+      [3, "E-commerce platform blog", "Roundup", 52],
+      [4, "UAE national daily", "Pickup", 71],
+      [4, "Retail Tech Weekly", "Opinion", 61],
+      [4, "Gift guide (UK)", "Roundup", 48],
+      [4, "Delivery & Ops Weekly", "Expert quote", 54],
+      [5, "Dubai business daily", "Feature", 70],
+      [5, "Home & Living Trade", "Expert quote", 55],
+      [5, "Best-of guide", "Roundup", 46],
+      [5, "UK retail blog", "Pickup", 49],
+      [6, "Arabian Business", "Feature", 72],
+      [6, "E-commerce Insider", "Expert quote", 58],
+      [6, "Buying guide", "Roundup", 45],
+      [6, "UAE retail news site", "Expert quote", 57],
+    ] as [number, string, string, number][],
     series: [40, 48, 61, 83, 104, 132, 158],
-    seriesLabel: "Referring domains, months 0–6",
+    seriesLabel: "Referring domains",
     takeaway:
-      "One data study on regional delivery expectations produced eleven of the twenty-one placements. The remaining ten came from relationships that study opened — which is the compounding effect PR has and paid links do not.",
+      "The delivery study landed 11 of the 21 placements by itself. The other 10 came from editors who’d covered it and came back for more. That’s the part paid links never give you.",
+    quote: {
+      text: "The delivery study ran in places we’d never have got into on our own. By month four, editors were emailing us.",
+      who: "Head of E-commerce · UK home & lifestyle brand",
+    },
     caseHref: "/case-studies/ecommerce-gulf-authority",
   },
 
-  fit: {
-    good: [
-      "You have data, a customer base or a point of view that is genuinely interesting to a journalist.",
-      "You can commit to six months. PR compounds and the first two months are investment.",
-      "Someone senior can be reached for a quote within a day when a journalist asks.",
-      "You want authority that competitors cannot simply buy a copy of.",
-    ],
-    bad: [
-      "You need a guaranteed number of links per month. PR does not work on fixed quotas and we will not pretend otherwise.",
-      "There is nothing distinctive about the business yet and no appetite to create it.",
-      "You need results inside eight weeks.",
-      "Nobody internally can approve a public position quickly.",
+  process: {
+    eyebrow: "How a campaign runs",
+    h2a: "We run the campaign.",
+    h2b: "You stay in the loop.",
+    steps: [
+      {
+        when: "Week 1",
+        t: "Story audit",
+        us: "We go through your data, customers and opinions to find what’s actually newsworthy.",
+        you: "One 45-minute call with someone who knows the business.",
+      },
+      {
+        when: "Weeks 2–3",
+        t: "Angle and asset",
+        us: "We shape the best angle into something publishable: a data study, a survey or a sharp opinion piece.",
+        you: "Approve the angle. Share the data if it’s yours.",
+      },
+      {
+        when: "Week 3",
+        t: "Media list",
+        us: "We pick the named journalists and outlets to pitch, and show you the list first.",
+        you: "One look. Strike anyone you don’t want approached.",
+      },
+      {
+        when: "Weeks 4–8",
+        t: "Pitching",
+        us: "One pitch per journalist, written for them. We follow up, answer questions and send quotes and images.",
+        you: "Be reachable within a day if a journalist wants a quote.",
+      },
+      {
+        when: "Every month",
+        t: "Coverage report",
+        us: "Every placement with its link, outlet metrics and the pitch that earned it. Then the next story.",
+        you: "Read it. Use the coverage in your sales material.",
+      },
     ],
   },
 
-  quote: {
-    text: "The data study did more in six weeks than a year of our old agency's press releases. Editors actually replied.",
-    who: "Amira Khan · Marketing Director, Ocuco",
+  fit: {
+    eyebrow: "Is PR right for you?",
+    h2a: "Good fit, bad fit.",
+    h2b: "And what it costs.",
+    good: [
+      "You have data, customers or opinions a journalist would find interesting.",
+      "You can give it six months. The first two are mostly groundwork.",
+      "Someone senior can give a quote within a day when an editor asks.",
+      "You want authority your competitors can’t just buy a copy of.",
+    ],
+    bad: [
+      "You need a fixed number of links every month. PR doesn’t work on quotas.",
+      "You need results inside eight weeks.",
+      "Nobody can sign off a public opinion quickly.",
+      "There’s nothing distinctive about the business yet, and no appetite to create it.",
+    ],
+    price: {
+      label: "Digital PR pricing",
+      from: "$4,997",
+      unit: "/month",
+      plan: "Full PR programme, in our Authority plan",
+      points: [
+        "Story audit and angle development",
+        "Data studies, surveys and opinion pieces",
+        "Named-journalist pitching, Gulf press included",
+        "Monthly coverage report",
+      ],
+      note: "Want to test it first? We can scope one campaign around one story. Smaller PR work also runs inside the Growth plan on request.",
+    },
+  },
+
+  faqHead: {
+    eyebrow: "FAQ",
+    h2a: "Questions",
+    h2b: "about digital PR.",
+    side: "Tell us what you’ve got. We’ll tell you on the call if there’s a story in it, and if there isn’t, which service makes more sense.",
   },
 
   faqs: [
     {
-      q: "How is this different from link building?",
-      a: "Link building goes to publications and arranges a placement. Digital PR creates a story and earns coverage, with the link as a consequence. PR reaches titles that will never sell a placement at any price, and it compounds through relationships. It is slower and less predictable per month. Most clients run both: links for steady authority on money pages, PR for the tier of outlet links cannot reach. If you only run one, start with links.",
+      q: "How is digital PR different from link building?",
+      a: "Link building goes to a publication and arranges a placement. Digital PR creates a story and earns the coverage, with the link as a result. PR reaches publications that would never sell a link at any price, and it builds relationships that make the next story easier. It’s slower and less predictable month to month. Most clients run both: links for steady authority on key pages, PR for the publications links can’t reach.",
     },
     {
-      q: "Can you guarantee a number of placements?",
-      a: "No, and treat any agency that does with suspicion — a guaranteed placement is a bought placement, which is what we are avoiding. What we do commit to is the work: an agreed number of developed angles, a named media list you approve, and individual pitches to every target with follow-up. Our scoped campaigns run around a 38% pitch-to-placement rate, but that is a track record, not a promise.",
+      q: "Can you guarantee coverage?",
+      a: "No. Editors decide what runs, and a “guaranteed” placement is a paid one, which is exactly what we’re avoiding. What we do commit to is the work: developed angles, a media list you approve, and an individual pitch to every target with follow-up. You’ll see all of it in the report.",
     },
     {
-      q: "What if we have no newsworthy story?",
-      a: "Almost every business has one and has stopped noticing it. Your transaction data, your customer survey, the thing you believe that your competitors publicly disagree with — these are stories. The story audit in step one exists precisely to find them. If we genuinely cannot find an angle we will tell you on the call and recommend link building instead.",
+      q: "What if we don’t have a story?",
+      a: "Almost every business has one and has stopped noticing it. Your order data, a customer survey, the thing you believe that your competitors disagree with: those are stories. That’s what the story audit is for. If we genuinely can’t find an angle, we’ll tell you and suggest link building instead.",
     },
     {
-      q: "Who writes the content and quotes?",
-      a: "Our editorial team drafts everything, in your voice, from the expertise session. Nothing with your name on it is sent anywhere before you have approved the wording. If your team prefers to write and have us edit and place, that works too and reduces the cost.",
+      q: "Who writes the content and the quotes?",
+      a: "Our editorial team drafts everything in your voice, from the story audit. Nothing with your name on it goes to a journalist until you’ve approved the wording.",
     },
     {
-      q: "Do all placements include a link?",
-      a: "No. Roughly a quarter of coverage is an unlinked brand mention. That is not a failure — unlinked mentions on credible publications are exactly the signal AI answer engines use when deciding who to cite, and Google uses them as corroboration. We report linked and unlinked separately so you can see both.",
+      q: "Does every placement include a link?",
+      a: "No. Some coverage is an unlinked mention of your brand. That still counts: mentions on trusted publications are what AI answers draw on, and Google uses them too. We report linked and unlinked coverage separately so you can see both.",
     },
     {
-      q: "What happens if a journalist asks for something we cannot share?",
-      a: "We tell them so directly and offer an alternative. We never commit you to data or a position you have not agreed to. If a thread stops because of that, it stops — the relationship is worth more than one placement.",
+      q: "How long before we see coverage?",
+      a: "First placements usually land between weeks four and eight. It builds from month three as editors come back and earlier coverage gets picked up elsewhere. Anyone promising coverage in week one is sending a press release to a wire service.",
     },
     {
-      q: "How long before we see anything?",
-      a: "First placements typically land in weeks four to eight. The compounding shows from month three onwards as relationships open and earlier coverage gets picked up elsewhere. Anyone promising coverage in week one is sending a press release to an aggregator.",
+      q: "Can you get us into Gulf media?",
+      a: "Often, yes. We’ve worked with Gulf business publications for years, and it’s one of the places we’re strongest. The story still has to be right for their readers, so we’ll tell you on the call if yours is.",
     },
     {
-      q: "Do you work with agencies on a white-label basis?",
-      a: "Yes. You get the angle documents, media lists and coverage reports under your branding, and we stay off client calls unless you want us on them.",
+      q: "Do you work white label for agencies?",
+      a: "Yes. Angle documents, media lists and coverage reports go out under your branding, and we stay off client calls unless you want us there.",
     },
   ],
+
+  pairs: {
+    h2: "Pairs well with",
+    items: [
+      {
+        to: "/services/link-building",
+        t: "Link Building",
+        d: "Steady authority for the pages you need to rank, while PR goes after the bigger titles.",
+      },
+      {
+        to: "/services/brand-mentions",
+        t: "Brand Mentions",
+        d: "Turn coverage into the sources AI answers quote, and track whether it’s working.",
+      },
+      {
+        to: "/services/haro-links",
+        t: "HARO & Expert Quotes",
+        d: "Quick wins between campaigns: your experts quoted in stories already being written.",
+      },
+    ],
+  },
+
+  close: {
+    eyebrow: "Free story call",
+    h2a: "Tell us one boring thing",
+    h2b: "about your business.",
+    d: "Seriously. The thing you think nobody cares about is often the story. On a 15‑minute call we’ll tell you if there’s coverage in it, and where it could run.",
+    primary: "Book a story call",
+    subject: "Digital PR enquiry",
+    ticks: [
+      "Reply within 24 hours",
+      "No obligation",
+      "A straight answer if it isn’t news",
+    ],
+  },
 };

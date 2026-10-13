@@ -14,6 +14,8 @@ export default {
       fontFamily: {
         sans: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
         hand: ["Caveat", "cursive"],
+        /* press clippings on the Digital PR / Expert Quotes pages only */
+        news: ["Newsreader", "Georgia", "serif"],
       },
       colors: {
         /* editorial ink/paper palette — the "navy"/"blue" names are historical,

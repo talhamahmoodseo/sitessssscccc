@@ -44,8 +44,8 @@ Hand-written files are clean and idiomatic:
 `components/MotionKit.tsx`, `Navigation.tsx`, `BookingModal.tsx`,
 `LogoReveal.tsx`, `PlatformMarks.tsx`, `Rocket.tsx`, `Grain.tsx`,
 `CountUp.tsx`, `PageLayout.tsx`, `PageHero.tsx`, `LineArt.tsx`,
-`ServicePage.tsx`, `pages/services/shared.tsx`, `pages/services/sections.tsx`,
-`pages/services/LinkBuilding.tsx`, `pages/services/content/*`.
+`ServicePage.tsx`, `pages/services/*` (all four service pages, their section
+folders, `kit.tsx`, `common.tsx`, `content/*`).
 
 Renaming the machine-recovered internals is safe and welcome — just do it a file
 at a time and check the page still renders.
@@ -110,12 +110,15 @@ src/
     About, Services, ServicePage, CaseStudies, CaseStudy,
     Blog, BlogPost, Contact, Pricing
     services/
-      shared.tsx         SERVICES content model + section primitives
-      sections.tsx       long-form page building blocks (see §7)
-      content/           per-page copy, separated from layout
-      ServiceTemplate.tsx  the one shape all four service pages use
       LinkBuilding.tsx  DigitalPR.tsx  BrandMentions.tsx  HaroQuotes.tsx
-                         thin wrappers: content + template
+                         each composes its own sections (see §7)
+      link-building/  digital-pr/  brand-mentions/  expert-quotes/
+                         one folder of sections per page, nothing shared
+      kit.tsx            type scale, glow panels, card elevation, rise()
+      common.tsx         utility blocks: fit + price, FAQ, pairs-with, close
+      sections.tsx       ObjectionFaq (Link Building's FAQ)
+      shared.tsx         SERVICES summaries for the /services index
+      content/           per-page copy, separated from layout
 public/images/           22 photos used by case studies and testimonials
 wordpress/               PHP templates for the WordPress theme build
 scripts/                 theme build + PHP safety check
@@ -193,14 +196,22 @@ objections, trust signals, section list and CTA placement per page. It was
 written from a teardown of dofollow.com (measured word counts and structure)
 before any rebuilding. Follow it.
 
-The shared architecture is implemented as components in
-`src/pages/services/sections.tsx`:
-
-`Section`, `ProofStrip`, `DeliverableGrid`, `LedgerPanel`, `ProcessTimeline`,
-`WorkedExample` (inline SVG chart), `FitPanel`, `PricingContext`,
-`ObjectionFaq` (emits `FAQPage` JSON-LD), `InlineCta`.
-
 Page copy is separated from layout in `src/pages/services/content/`.
+
+**Digital PR, Brand Mentions and HARO / Expert Quotes were redesigned (Oct
+2026)** to the Link Building page's quality, each with its own story, layout
+and signature visual. The audit and plan are in `SERVICE-PAGES-REDESIGN.md`.
+Read it before changing those pages.
+
+| Page | Big idea | Signature |
+| --- | --- | --- |
+| Digital PR | Stories, not press releases | Press clippings (Newsreader serif), the Story Lab |
+| Brand Mentions | AI repeats what others say about you | Live AI answer, "same question, six months apart" |
+| HARO / Expert Quotes | Be the expert who gets printed | Request → quote → published, "same request, two replies" |
+
+Only the utility blocks are shared (`common.tsx`: fit + price, FAQ, pairs-with,
+the dark close), and each carries its own copy. The shared kit (`kit.tsx`)
+holds the type scale and glow tones (`warm`, `cool`, `dusk`, `fresh`, `rose`).
 
 **Link Building is the flagship page and is built separately.** It was
 redesigned from scratch (Oct 2026) with its own sections in
@@ -244,8 +255,9 @@ These came from the owner directly, after rejected attempts:
 
 - **Every page has its own identity.** Do not add a shared page template and do
   not copy a section from one page onto another. Current signature shapes, one
-  per page: homepage review wall and Shift diagram, service pages rejection
-  filmstrip vs ledger and process rail vs funnel (`services/depth.tsx`),
+  per page: homepage review wall and Shift diagram, Link Building site check,
+  Digital PR clippings and Story Lab, Brand Mentions answer cards and
+  before/after, Expert Quotes request→quote→print and two replies,
   Case Studies numbered file index with sparklines, Pricing stacked allocation
   bar, About vertical DR-band columns + signed letter, Services hub two-way
   decision matrix, Contact horizontal numbered rail, Blog numbered reading
@@ -319,7 +331,8 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
 | --- | --- |
 | `README.md` | Quick start and stack |
 | `BRAND.md` | **The visual identity. Read before any styling change.** |
-| `SERVICE-PAGES-PLAN.md` | Content strategy for the service pages |
+| `SERVICE-PAGES-PLAN.md` | Original content strategy for the service pages |
+| `SERVICE-PAGES-REDESIGN.md` | Audit + plan for the Digital PR, Brand Mentions and Expert Quotes redesign |
 | `HOSTING.md` | Netlify / static / WordPress / Hostinger deployment |
 | `REDESIGN.md` | The rejected SaaS-direction experiment, kept for context |
 

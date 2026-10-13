@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, Lock } from "lucide-react";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { CARD, Eyebrow, GlowPanel, H2, Soft, ease, rise } from "./kit";
+import { CARD, Eyebrow, GlowPanel, H2, Soft, ease, rise } from "../kit";
 
 const T = LB.types;
 type Tab = (typeof T.tabs)[number];

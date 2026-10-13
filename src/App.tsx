@@ -14,6 +14,7 @@ import ServicesSection from "./sections/Services";
 import Results from "./sections/Results";
 import Personas from "./sections/Personas";
 import Process from "./sections/Process";
+import ProofGrid from "./sections/ProofGrid";
 import { FeaturedReview, ReviewWall } from "./sections/Testimonials";
 import BlogPreview from "./sections/BlogPreview";
 import FAQ from "./sections/FAQ";
@@ -68,6 +69,10 @@ const Home = () => (
 
       <section id="process">
         <Process />
+      </section>
+
+      <section id="proof">
+        <ProofGrid />
       </section>
 
       <section id="testimonials">

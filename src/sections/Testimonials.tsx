@@ -17,7 +17,7 @@ const FEATURED = {
   name: "Amira Khan",
   role: "Marketing Director",
   company: "Ocuco",
-  avatar: "/images/avatar-2.jpg",
+  avatar: "/images/avatar-3.jpg",
 };
 
 const WALL = [

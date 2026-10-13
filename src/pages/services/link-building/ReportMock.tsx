@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { Check, Share2 } from "lucide-react";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { CARD, Eyebrow, GlowPanel, H2, Soft, ease, rise } from "./kit";
+import { CARD, Eyebrow, GlowPanel, H2, Soft, ease, rise } from "../kit";
 
 const RP = LB.report;
 

@@ -74,7 +74,8 @@ src/
   index.css            design tokens (:root custom properties)
   sections/            homepage sections
   pages/               one file per route; *-depth.tsx = that page's own sections
-  pages/services/      four service pages + content/ (copy lives separately)
+  pages/services/      four service pages, one section folder each, kit.tsx,
+                       common.tsx + content/ (copy lives separately)
   components/          shared UI, LineArt figures, Rocket hero animation
   lib/content.ts       case studies + blog posts
   lib/clients.ts       client names and the homepage proof bento

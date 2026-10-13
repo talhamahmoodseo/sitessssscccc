@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { Check, X } from "lucide-react";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { CARD, Eyebrow, H2, Soft, ease, rise } from "./kit";
+import { CARD, Eyebrow, H2, Soft, ease, rise } from "../kit";
 
 const P = LB.problem;
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, Check, RotateCcw, X } from "lucide-react";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { DarkGlow, Eyebrow, H2, ease, rise } from "./kit";
+import { DarkGlow, Eyebrow, H2, ease, rise } from "../kit";
 
 const G = LB.gap;
 type Card = (typeof G.cards)[number];

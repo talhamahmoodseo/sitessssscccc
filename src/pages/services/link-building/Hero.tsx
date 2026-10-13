@@ -5,7 +5,7 @@ import { ArrowRight, ArrowUp, Check, Star, X } from "lucide-react";
 import { openBooking } from "@/lib/booking";
 import { CLIENTS } from "@/lib/clients";
 import { linkBuilding as LB } from "../content/linkBuilding";
-import { CARD, GlowPanel, ease, sparkPath } from "./kit";
+import { CARD, GlowPanel, ease, sparkPath } from "../kit";
 
 const CHECK_NAMES = ["Traffic", "Keywords", "Graph", "Audience", "Link farm"];
 const CYCLE_MS = 5600;
