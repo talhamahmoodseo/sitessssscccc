@@ -331,10 +331,15 @@ export const linkBuilding = {
     h2: "Seven months. Fourteen links. Two category pages on page one.",
     label: "B2B SaaS · customer support software",
     stats: [
-      { v: "+212%", k: "Organic clicks", tile: "bg-butter" },
-      { v: "35 → 65", k: "Domain Rating", tile: "bg-mint" },
-      { v: "14 / 14", k: "Links indexed", tile: "bg-lilac" },
-      { v: "#31 → #4", k: "Main category keyword", tile: "bg-sky" },
+      { v: "+212%", k: "Organic clicks", sub: "1,200 → 3,744 a month", dot: "bg-butter" },
+      { v: "35 → 65", k: "Domain Rating", sub: "In seven months", dot: "bg-mint" },
+      { v: "14 / 14", k: "Links indexed", sub: "Median: 19 days", dot: "bg-lilac" },
+      { v: "#4", k: "Main category keyword", sub: "Up from #31", dot: "bg-sky" },
+    ],
+    milestones: [
+      { at: 1, t: "First links indexed" },
+      { at: 4, t: "Category page enters the top 10" },
+      { at: 7, t: "Two category pages on page one" },
     ],
     series: [1200, 1380, 1610, 2050, 2400, 2980, 3450, 3744],
     seriesLabel: "Monthly organic clicks, months 0–7",
@@ -348,8 +353,8 @@ export const linkBuilding = {
       avatar: "/images/avatar-1.jpg",
     },
     more: [
-      { k: "Gulf e-commerce brand", v: "4× referring domains in 5 months" },
-      { k: "Home services company", v: "3 money pages into the local top 3" },
+      { k: "Gulf e-commerce brand", v: "4× referring domains", to: "/case-studies/ecommerce-gulf-authority" },
+      { k: "Home services company", v: "Top 3 in the local pack", to: "/case-studies/home-services-local-pack" },
     ],
   },
 
