@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Check, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { openBooking } from "@/lib/booking";
 import { COLOURS, GrainBlob } from "@/components/Grain";
 
@@ -14,14 +14,24 @@ const HomeCTA = () => {
 
   const requestAudit = () => {
     const subject = encodeURIComponent("Free visibility audit request");
-    const body = encodeURIComponent(`Website: ${site}\n\nPlease send me a free visibility audit.`);
+    const body = encodeURIComponent(
+      `Website: ${site}\n\nPlease send me a free visibility audit.`,
+    );
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
   };
 
   return (
     <div className="relative overflow-hidden border-b border-white/10 bg-navy-dark py-28 lg:py-36">
-      <GrainBlob color={COLOURS.orange} className="-left-[280px] top-[8%] h-[560px] w-[560px] opacity-55" duration={24} />
-      <GrainBlob color={COLOURS.lavender} className="-right-[260px] bottom-[-140px] h-[560px] w-[620px] opacity-45" duration={28} />
+      <GrainBlob
+        color={COLOURS.orange}
+        className="-left-[280px] top-[8%] h-[560px] w-[560px] opacity-55"
+        duration={24}
+      />
+      <GrainBlob
+        color={COLOURS.lavender}
+        className="-right-[260px] bottom-[-140px] h-[560px] w-[620px] opacity-45"
+        duration={28}
+      />
 
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
@@ -37,12 +47,15 @@ const HomeCTA = () => {
             Get ranked.
             <br />
             {"Get "}
-            <span className="pr-[0.08em] font-medium italic">cited</span>.
+            <span className="pr-[0.08em] font-medium italic text-mark">
+              cited
+            </span>
+            .
           </h2>
           <p className="mx-auto mt-7 max-w-2xl text-[17px] leading-relaxed text-white/75 sm:text-[18.5px]">
-            Send us your site. Within 48 hours you'll get a short audit: which of your links are
-            pulling their weight, the gaps against your competitors, and whether AI answers mention
-            you yet. Plus a straight answer on what it would take.
+            Send us your site. Within 48 hours you'll get a short audit: which
+            of your links are pulling their weight, the gaps against your
+            competitors, and whether AI answers mention you yet.
           </p>
         </motion.div>
 
@@ -78,14 +91,6 @@ const HomeCTA = () => {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </button>
           </form>
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            {["48-hour turnaround", "No retainer, no lock-in", "Reviewed by a senior strategist"].map((t) => (
-              <li key={t} className="inline-flex items-center gap-1.5 text-[13px] text-white/75">
-                <Check className="h-3.5 w-3.5 text-white/80" />
-                {t}
-              </li>
-            ))}
-          </ul>
         </motion.div>
 
         <motion.div
@@ -95,7 +100,9 @@ const HomeCTA = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="text-[14px] text-white/70">Rather talk it through?</span>
+          <span className="text-[14px] text-white/70">
+            Rather talk it through?
+          </span>
           <button
             onClick={openBooking}
             className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold text-white ring-1 ring-white/25 transition-shadow hover:ring-white/60"

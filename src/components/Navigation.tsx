@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { openBooking } from "@/lib/booking";
+import Logo from "./Logo";
 
 const serviceLinks = [
   { name: "All services", to: "/services" },
@@ -53,13 +54,8 @@ const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-navy-dark rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">tm</span>
-              </div>
-              <span className="font-semibold text-lg hidden sm:block text-navy-dark">
-                Talha Mahmood
-              </span>
+            <Link to="/" aria-label="Outreachr home">
+              <Logo />
             </Link>
           </motion.div>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, ArrowUp, Check, Star, X } from "lucide-react";
+import { ArrowRight, ArrowUp, Check, X } from "lucide-react";
 import { openBooking } from "@/lib/booking";
 import { CLIENTS } from "@/lib/clients";
 import { linkBuilding as LB } from "../content/linkBuilding";
@@ -244,12 +244,12 @@ const Hero = () => (
             {LB.hero.h1a}
           </motion.span>
           <motion.span
-            className="mt-1 block text-[2.7rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark/60 sm:text-[3.6rem] lg:text-[4.3rem]"
+            className="mt-1 block text-[2.7rem] font-semibold leading-[0.98] tracking-[-0.045em] pb-[0.06em] sm:text-[3.6rem] lg:text-[4.3rem]"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.14, ease }}
           >
-            {LB.hero.h1b}
+            <span className="accent-ink">{LB.hero.h1b}</span>
           </motion.span>
         </h1>
         <motion.p
@@ -286,14 +286,6 @@ const Hero = () => (
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <span className="flex gap-0.5">
-            {[...Array(5)].map((_, n) => (
-              <Star
-                key={n}
-                className="h-3.5 w-3.5 fill-navy-dark text-navy-dark"
-              />
-            ))}
-          </span>
           <span className="text-[13px] text-navy-dark/75">
             {LB.hero.rating}
           </span>
@@ -363,16 +355,6 @@ const Hero = () => (
               className="text-[18px] font-semibold tracking-[-0.03em] text-navy-dark/75"
             >
               {c.name}
-            </li>
-          ))}
-        </ul>
-        <ul className="flex flex-wrap gap-2">
-          {LB.trust.platforms.map((p) => (
-            <li
-              key={p}
-              className="rounded-full bg-white px-3 py-1.5 text-[11.5px] font-semibold text-navy-dark/80 ring-1 ring-line"
-            >
-              {p}
             </li>
           ))}
         </ul>

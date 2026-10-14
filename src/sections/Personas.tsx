@@ -2,15 +2,16 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Annotation, SectionTitle } from "@/components/brand";
+import Accent from "@/components/Accent";
+import { Annotation } from "@/components/brand";
 import { COLOURS, GrainBlob } from "@/components/Grain";
 import {
-  FigAiAnswers,
-  FigCategoryClimb,
-  FigCleanAudit,
-  FigLocalMap,
-  FigWhiteLabel,
-} from "@/components/LineArt";
+  FigAgency,
+  FigFounder,
+  FigInspector,
+  FigLocal,
+  FigShopper,
+} from "@/components/PersonaFigures";
 
 /** Who we work with. Each audience gets one promise, two specifics and the
  *  services that usually fit them, so the section shows the agency's range. */
@@ -18,7 +19,7 @@ const PERSONAS = [
   {
     id: "agencies",
     tab: "Agencies",
-    Fig: FigWhiteLabel,
+    Fig: FigAgency,
     title: "White-label authority, under your brand",
     lede: "Add links, PR and brand mentions to what you sell, without hiring a team to deliver them.",
     services: ["Link building", "Brand mentions", "White-label reports"],
@@ -37,11 +38,14 @@ const PERSONAS = [
   {
     id: "saas",
     tab: "SaaS Founders",
-    Fig: FigAiAnswers,
+    Fig: FigFounder,
     title: "Show up when buyers compare tools",
     lede: "On Google for your category, and in the AI answers buyers read before they ever book a demo.",
     services: ["Link building", "Brand mentions", "Digital PR"],
-    cta: { label: "See a SaaS case study", to: "/case-studies/b2b-saas-ai-visibility" },
+    cta: {
+      label: "See a SaaS case study",
+      to: "/case-studies/b2b-saas-ai-visibility",
+    },
     points: [
       {
         h: "Category pages that climb",
@@ -56,9 +60,9 @@ const PERSONAS = [
   {
     id: "seo",
     tab: "SEO Leads",
-    Fig: FigCleanAudit,
+    Fig: FigInspector,
     title: "A link partner you don't have to babysit",
-    lede: "Clean placements, honest reporting, and no surprises when you check our work.",
+    lede: "Clean placements, clear reporting, and nothing to fix when you audit our work.",
     services: ["Link building", "Expert quotes"],
     cta: { label: "Explore link building", to: "/services/link-building" },
     points: [
@@ -75,7 +79,7 @@ const PERSONAS = [
   {
     id: "ecom",
     tab: "E-commerce",
-    Fig: FigCategoryClimb,
+    Fig: FigShopper,
     title: "Rank the category pages that actually sell",
     lede: "Authority aimed at the pages that convert, timed so it lands before your buying season does.",
     services: ["Link building", "Digital PR"],
@@ -94,11 +98,14 @@ const PERSONAS = [
   {
     id: "local",
     tab: "Local Services",
-    Fig: FigLocalMap,
+    Fig: FigLocal,
     title: "Win the searches that make the phone ring",
     lede: "Beat the national directories on Google, and get named when people ask AI for someone local.",
     services: ["Link building", "Digital PR", "Brand mentions"],
-    cta: { label: "See a local case study", to: "/case-studies/home-services-local-pack" },
+    cta: {
+      label: "See a local case study",
+      to: "/case-studies/home-services-local-pack",
+    },
     points: [
       {
         h: "Local press that counts",
@@ -112,29 +119,70 @@ const PERSONAS = [
   },
 ];
 
+/** Small pencil sparks either side of the accent word, like a margin doodle. */
+const Sparks = ({
+  className = "",
+  flip = false,
+}: {
+  className?: string;
+  flip?: boolean;
+}) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={`pointer-events-none absolute h-6 w-6 text-navy-dark/70 ${flip ? "-scale-x-100" : ""} ${className}`}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    aria-hidden="true"
+  >
+    <path d="M4 14 L9 12" />
+    <path d="M7 5 L11 9" />
+    <path d="M15 2 L15.5 7.5" />
+  </svg>
+);
+
 const Personas = () => {
   const [active, setActive] = useState(0);
   const p = PERSONAS[active];
 
   return (
-    <div className="bg-mist py-20 lg:py-28">
+    <div className="bg-mist py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="relative">
-          <Annotation className="-top-2 left-0 hidden w-[140px] xl:block">pick your corner</Annotation>
-          <SectionTitle
-            align="center"
-            eyebrow="Who it's for"
-            sub="Five kinds of teams we work with most. Pick yours and see what we'd focus on."
-          >
-            Built for the people who need authority
-          </SectionTitle>
-        </div>
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
+            Who it's for
+          </p>
+          <h2 className="text-[2.5rem] font-medium leading-[1.02] tracking-[-0.045em] text-navy-dark sm:text-[3.6rem]">
+            Built for the teams
+            <br />
+            that need{" "}
+            <span className="relative inline-block">
+              <Sparks className="-left-7 top-1" />
+              <Accent className="italic">authority</Accent>
+              <Sparks flip className="-right-7 top-1" />
+            </span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-lg text-[17px] leading-relaxed text-navy-dark/75">
+            Five kinds of teams we work with most. Pick yours to see where we'd
+            start.
+          </p>
+        </motion.div>
 
-        <div className="rounded-[2rem] bg-white/70 p-3 ring-1 ring-navy-dark/[0.06] sm:p-4">
+        <div className="relative mt-14 rounded-[28px] bg-white/70 p-3 ring-1 ring-navy-dark/[0.06] sm:p-4">
+          <Annotation className="-left-36 -top-4 hidden w-[130px] xl:block">
+            pick your corner
+          </Annotation>
           <div
             role="tablist"
             aria-label="Who we work with"
-            className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5"
+            className="-mx-3 flex snap-x gap-3 overflow-x-auto px-3 pb-1 sm:mx-0 sm:grid sm:grid-cols-5 sm:overflow-visible sm:px-0 sm:pb-0"
           >
             {PERSONAS.map((item, i) => {
               const on = i === active;
@@ -144,8 +192,10 @@ const Personas = () => {
                   role="tab"
                   aria-selected={on}
                   onClick={() => setActive(i)}
-                  className={`group relative overflow-hidden rounded-2xl px-3 pb-3 pt-4 text-center transition-all duration-300 ${
-                    on ? "bg-white ring-1 ring-navy-dark/15" : "bg-transparent hover:bg-white/60"
+                  className={`group relative w-[148px] flex-none snap-start overflow-hidden rounded-[18px] px-3 pb-2 pt-4 text-center ring-1 transition-colors duration-300 sm:w-auto ${
+                    on
+                      ? "bg-white ring-navy-dark/15"
+                      : "bg-[#F3F2EF] ring-navy-dark/[0.05] hover:bg-white/80"
                   }`}
                 >
                   {on && (
@@ -156,23 +206,29 @@ const Personas = () => {
                     >
                       <GrainBlob
                         color={COLOURS.lavender}
-                        className="-bottom-24 left-1/2 h-40 w-56 -translate-x-1/2 opacity-90"
+                        className="-bottom-20 left-1/2 h-36 w-52 -translate-x-1/2 opacity-90"
                         drift={6}
                       />
-                      <GrainBlob color={COLOURS.butter} className="-bottom-28 left-[22%] h-32 w-32" drift={5} />
+                      <GrainBlob
+                        color={COLOURS.butter}
+                        className="-bottom-24 left-[12%] h-32 w-32"
+                        drift={5}
+                      />
                     </motion.span>
                   )}
                   <span
-                    className={`relative block text-[13px] font-semibold transition-colors duration-300 ${
+                    className={`relative block text-[14.5px] font-medium transition-colors duration-300 ${
                       on ? "text-navy-dark" : "text-navy-dark/70"
                     }`}
                   >
                     {item.tab}
                   </span>
-                  <span className="relative mt-3 block h-[104px]">
+                  <span className="relative mt-2 block h-[168px]">
                     <item.Fig
-                      className={`relative mx-auto h-full w-auto transition-all duration-500 ${
-                        on ? "text-navy-dark" : "text-navy-dark/30 group-hover:text-navy-dark/50"
+                      className={`mx-auto h-full w-auto transition-colors duration-500 ${
+                        on
+                          ? "text-navy-dark"
+                          : "text-navy-dark/40 group-hover:text-navy-dark/65"
                       }`}
                     />
                   </span>
@@ -181,21 +237,23 @@ const Personas = () => {
             })}
           </div>
 
-          <div className="mt-3 border-t border-navy-dark/[0.07] pt-8 sm:mt-4 sm:pt-10">
+          <div className="mt-3 border-t border-navy-dark/[0.07] sm:mt-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={p.id}
-                className="grid gap-10 px-2 pb-4 sm:px-4 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16"
+                className="grid gap-10 px-3 pb-6 pt-9 sm:px-8 sm:pt-12 lg:grid-cols-2 lg:gap-16"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               >
                 <div>
-                  <h3 className="text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy-dark sm:text-[2.2rem]">
+                  <h3 className="text-[1.9rem] font-medium leading-[1.08] tracking-[-0.035em] text-navy-dark sm:text-[2.3rem]">
                     {p.title}
                   </h3>
-                  <p className="mt-4 max-w-md text-[16px] leading-relaxed text-navy-dark/75">{p.lede}</p>
+                  <p className="mt-4 max-w-md text-[16px] leading-relaxed text-navy-dark/75">
+                    {p.lede}
+                  </p>
                   <div className="mt-6 flex flex-wrap items-center gap-2">
                     <span className="mr-1 text-[11.5px] font-semibold uppercase tracking-[0.12em] text-navy-dark/70">
                       Usually fits
@@ -211,7 +269,7 @@ const Personas = () => {
                   </div>
                   <Link
                     to={p.cta.to}
-                    className="group mt-8 inline-flex items-center gap-2 rounded-xl bg-navy-dark px-5 py-3 text-[13.5px] font-semibold text-white transition-colors duration-300 hover:bg-black"
+                    className="group mt-8 inline-flex items-center gap-2 rounded-xl px-5 py-3 text-[14px] font-semibold text-navy-dark ring-1 ring-navy-dark/25 transition-shadow duration-300 hover:ring-navy-dark/60"
                   >
                     {p.cta.label}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -220,9 +278,13 @@ const Personas = () => {
 
                 <div className="divide-y divide-navy-dark/[0.08]">
                   {p.points.map((pt) => (
-                    <div key={pt.h} className="py-5 first:pt-0 last:pb-0">
-                      <h4 className="text-[17px] font-semibold text-navy-dark">{pt.h}</h4>
-                      <p className="mt-2 text-[15px] leading-relaxed text-navy-dark/75">{pt.d}</p>
+                    <div key={pt.h} className="py-6 first:pt-0 last:pb-0">
+                      <h4 className="text-[19px] font-medium tracking-[-0.02em] text-navy-dark">
+                        {pt.h}
+                      </h4>
+                      <p className="mt-2 text-[15px] leading-relaxed text-navy-dark/75">
+                        {pt.d}
+                      </p>
                     </div>
                   ))}
                 </div>

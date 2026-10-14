@@ -406,9 +406,8 @@ export const haroQuotes = {
     eyebrow: "Free expertise call",
     h2a: "You know your field.",
     h2b: "Let’s get you quoted for it.",
-    d: "On a 15‑minute call we’ll find out what you can speak to, which publications cover it, and how many quotes a month is realistic. If your field is quiet, we’ll say so.",
+    d: "On a 15‑minute call we’ll find out what you can speak to, which publications cover it, and how many quotes a month is realistic.",
     primary: "Book the call",
     subject: "Expert quotes enquiry",
-    ticks: ["Reply within 24 hours", "No obligation", "You approve every word"],
   },
 };

@@ -132,8 +132,8 @@ const BlogPost = () => {
                 Talha Mahmood
               </p>
               <p className="text-navy-dark/70 text-[13px] leading-snug mt-1">
-                Founder. Our team places the links — then writes about what
-                worked.
+                Founder of Outreachr. Writes up what the team learns from
+                placing links and PR for clients.
               </p>
             </div>
           </div>

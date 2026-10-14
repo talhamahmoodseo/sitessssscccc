@@ -24,7 +24,7 @@ const SERVICE_SCHEMA = {
   name: "Link Building Services",
   serviceType: "Link building",
   description: LB.seo.description,
-  provider: { "@type": "Organization", name: "Talha Mahmood" },
+  provider: { "@type": "Organization", name: "Outreachr" },
   areaServed: ["US", "GB", "AE"],
   offers: {
     "@type": "Offer",

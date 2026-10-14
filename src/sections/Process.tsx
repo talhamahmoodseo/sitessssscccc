@@ -190,9 +190,8 @@ const Deliverable = ({ children }: { children: ReactNode }) => (
 
 const Heading = () => (
   <h2 className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
-    {"A "}
-    <span className="text-navy-dark/65">results-driven</span>
-    {" process, handled end to end."}
+    {"How every campaign runs, "}
+    <span className="text-navy-dark/65">from first audit to monthly report.</span>
   </h2>
 );
 

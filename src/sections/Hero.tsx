@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, Search, Star } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import {
   AiOverviewMark,
   ChatGptMark,
@@ -9,6 +9,7 @@ import {
 } from "@/components/PlatformMarks";
 import { COLOURS, GrainBlob } from "@/components/Grain";
 import Rocket from "@/components/Rocket";
+import SmokePlume from "@/components/SmokePlume";
 
 const SCENE_MS = 6400;
 
@@ -546,12 +547,29 @@ Please send me a free visibility audit.`);
     };
   return (
     <div className="relative bg-mist overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
-      {/* grainy colour, kept to the edges so the type stays clean */}
-      <GrainBlob color={COLOURS.orange} className="-left-[320px] top-[90px] h-[700px] w-[640px] opacity-90" duration={26} />
-      <GrainBlob color={COLOURS.lavender} className="-left-[180px] top-[430px] h-[560px] w-[620px] opacity-90" duration={30} drift={24} />
-      <GrainBlob color={COLOURS.lavender} className="-right-[300px] top-[520px] h-[520px] w-[560px] opacity-70" duration={28} />
-      <Rocket className="absolute right-[0.5%] top-[120px] z-0 hidden h-[380px] w-[330px] lg:block xl:right-[3%]" />
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* the rocket's smoke, drawn live; grain blobs if WebGL is missing */}
+      <SmokePlume
+        fallback={
+          <>
+            <GrainBlob
+              color={COLOURS.orange}
+              className="-left-[320px] top-[90px] h-[700px] w-[640px] opacity-90"
+              duration={26}
+            />
+            <GrainBlob
+              color={COLOURS.lavender}
+              className="-left-[180px] top-[430px] h-[560px] w-[620px] opacity-90"
+              duration={30}
+              drift={24}
+            />
+          </>
+        }
+      />
+      <Rocket className="absolute right-[2%] top-[200px] z-0 hidden h-[380px] w-[330px] xl:block 2xl:right-[5%]" />
+      <div
+        data-plume-clear
+        className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+      >
         <motion.a
           href="/services/brand-mentions"
           className="inline-flex items-center gap-2.5 bg-white border border-line rounded-full pl-1.5 pr-4 py-1.5 mb-7 hover:border-navy-dark/30 transition-colors duration-300"
@@ -576,7 +594,10 @@ Please send me a free visibility audit.`);
           Rank on Google.
           <br />
           {"Get "}
-          <span className="italic font-medium pr-[0.14em]">cited</span> by AI.
+          <span className="accent-ink italic font-medium pr-[0.14em]">
+            cited
+          </span>{" "}
+          by AI.
         </motion.h1>
         <motion.p
           className="text-[17px] sm:text-[19px] text-navy-dark/70 leading-relaxed max-w-xl mx-auto mb-9"
@@ -584,8 +605,9 @@ Please send me a free visibility audit.`);
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
         >
-          Editorial backlinks, HARO quotes and brand mentions on real
-          publications — the footprint that wins page one and the AI answer.
+          Editorial links, digital PR, expert quotes and brand mentions on real
+          publications. The kind of footprint that wins page one and the AI
+          answer.
         </motion.p>
         <motion.div
           className="max-w-lg mx-auto"
@@ -608,19 +630,9 @@ Please send me a free visibility audit.`);
               Get a free audit
             </button>
           </div>
-          <div className="flex items-center justify-center gap-3 mt-4">
-            <span className="flex gap-0.5">
-              {[...Array(5)].map((r, c) => (
-                <Star
-                  key={c}
-                  className="w-3.5 h-3.5 fill-navy-dark text-navy-dark"
-                />
-              ))}
-            </span>
-            <span className="text-[12.5px] text-navy-dark/70">
-              Top Rated on Upwork & Fiverr · 40+ brands served
-            </span>
-          </div>
+          <p className="mt-4 text-[12.5px] text-navy-dark/70">
+            1,400+ placements live for 40+ brands
+          </p>
         </motion.div>
       </div>
       <motion.div

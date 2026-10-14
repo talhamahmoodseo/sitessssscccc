@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight, Check, Mail, Minus } from "lucide-react";
-import { asset, openBooking } from "@/lib/booking";
+import { openBooking } from "@/lib/booking";
 import { ObjectionFaq } from "../sections";
 import { linkBuilding as LB } from "../content/linkBuilding";
 import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "../kit";
@@ -136,7 +136,9 @@ export const PricingStrip = () => {
                     </span>
                   </span>
                   <span className="flex items-baseline gap-1.5 text-right">
-                    <span className="hidden text-[12px] text-navy-dark/70 sm:inline">from</span>
+                    <span className="hidden text-[12px] text-navy-dark/70 sm:inline">
+                      from
+                    </span>
                     <span className="text-[1.9rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark tabular-nums">
                       {p.price}
                     </span>
@@ -165,23 +167,7 @@ export const Faq = () => {
             <Eyebrow className="mb-4">{H.eyebrow}</Eyebrow>
             <H2>{H.h2}</H2>
             <div className="mt-8 rounded-3xl bg-white p-6 ring-1 ring-line">
-              <div className="flex items-center gap-3">
-                <img
-                  src={asset("/images/talha-avatar.jpg")}
-                  alt="Talha Mahmood"
-                  className="h-11 w-11 rounded-full object-cover"
-                  loading="lazy"
-                />
-                <span>
-                  <span className="block text-[14px] font-semibold text-navy-dark">
-                    Talha Mahmood
-                  </span>
-                  <span className="block text-[12.5px] text-navy-dark/70">
-                    Founder, runs every audit call
-                  </span>
-                </span>
-              </div>
-              <p className="mt-4 text-[14.5px] leading-relaxed text-navy-dark/75">
+              <p className="text-[14.5px] leading-relaxed text-navy-dark/75">
                 {H.side}
               </p>
               <button
@@ -281,17 +267,6 @@ export const FinalCta = () => {
             {F.secondary}
           </a>
         </motion.div>
-        <ul className="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5">
-          {F.ticks.map((t) => (
-            <li
-              key={t}
-              className="inline-flex items-center gap-1.5 text-[13px] text-white/70"
-            >
-              <Check className="h-3.5 w-3.5 text-white/80" />
-              {t}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { ArrowRight, Check } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { openBooking } from "@/lib/booking";
 
 const CTABand = () => (
@@ -38,60 +39,38 @@ const CTABand = () => (
         Get ranked.
         <br />
         {"Get "}
-        <span className="italic font-medium">cited</span>.
+        <span className="italic font-medium text-mark">cited</span>.
       </motion.h2>
       <motion.p
-        className="text-[17px] sm:text-[19px] text-white/65 leading-relaxed max-w-xl mx-auto mb-10"
+        className="text-[17px] sm:text-[19px] text-white/70 leading-relaxed max-w-xl mx-auto mb-10"
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        Send us your site. Inside 48 hours you get the gap analysis, the
-        placements we'd start with, and a straight answer on what it costs.
+        Send us your site. Within 48 hours you get a short audit: where your
+        links stand, the gaps against your competitors, and where we would
+        start.
       </motion.p>
       <motion.div
-        className="max-w-lg mx-auto"
+        className="flex flex-col items-center justify-center gap-3 sm:flex-row"
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.18 }}
       >
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white/[0.07] border border-white/15 rounded-2xl p-2 sm:pl-5 backdrop-blur">
-          <input
-            id="cta-site"
-            placeholder="yourbrand.com"
-            className="flex-1 min-w-0 bg-transparent px-3 sm:px-0 py-3 text-[14.5px] text-white placeholder:text-white/70 focus:outline-none"
-          />
-          <a
-            href="/contact"
-            className="flex-none inline-flex items-center justify-center gap-2 bg-white text-navy-dark hover:bg-white/90 rounded-xl px-6 py-3.5 text-[14px] font-semibold transition-colors duration-300"
-          >
-            Get my audit
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6">
-          {[
-            "48-hour turnaround",
-            "No retainer, no lock-in",
-            "Reviewed by a senior strategist",
-          ].map((e) => (
-            <span
-              key={e}
-              className="inline-flex items-center gap-1.5 text-[12.5px] text-white/55"
-            >
-              <Check className="w-3.5 h-3.5 text-white/70" />
-              {e}
-            </span>
-          ))}
-        </div>
+        <Link
+          to="/contact"
+          className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-[14.5px] font-semibold text-navy-dark transition-colors duration-300 hover:bg-mark"
+        >
+          Get a free audit
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
         <button
           onClick={openBooking}
-          className="mt-8 inline-flex items-center gap-2 text-[13.5px] font-semibold text-white/70 hover:text-white transition-colors duration-300"
+          className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[14.5px] font-semibold text-white ring-1 ring-white/25 transition-shadow duration-300 hover:ring-white/60"
         >
-          Prefer to talk? Book a 15-minute call
-          <ArrowRight className="w-3.5 h-3.5" />
+          Book a call
         </button>
       </motion.div>
     </div>

@@ -346,7 +346,6 @@ export const ServiceClose = ({
   d,
   primary,
   subject,
-  ticks,
   children,
 }: {
   eyebrow: string;
@@ -355,7 +354,6 @@ export const ServiceClose = ({
   d: string;
   primary: string;
   subject: string;
-  ticks: string[];
   /** replaces the default buttons, e.g. with a small form */
   children?: ReactNode;
 }) => (
@@ -402,17 +400,6 @@ export const ServiceClose = ({
           </div>
         )}
       </motion.div>
-      <ul className="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5">
-        {ticks.map((t) => (
-          <li
-            key={t}
-            className="inline-flex items-center gap-1.5 text-[13px] text-white/75"
-          >
-            <Check className="h-3.5 w-3.5 text-white/80" />
-            {t}
-          </li>
-        ))}
-      </ul>
     </div>
   </section>
 );

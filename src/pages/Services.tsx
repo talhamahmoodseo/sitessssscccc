@@ -61,7 +61,7 @@ const Services = () => (
           transition={{ duration: 0.6, delay: 0.12 }}
         >
           Most clients run two or three together. Start wherever the gap is
-          biggest — we will tell you honestly which one that is.
+          biggest, and we'll help you find it.
         </motion.p>
         <motion.button
           onClick={openBooking}

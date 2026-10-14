@@ -16,7 +16,7 @@ const SERVICE_SCHEMA = {
   name: "HARO Link Building & Expert Quotes",
   serviceType: "Expert quote placements",
   description: C.seo.description,
-  provider: { "@type": "Organization", name: "Talha Mahmood" },
+  provider: { "@type": "Organization", name: "Outreachr" },
   areaServed: ["US", "GB", "AE"],
   offers: {
     "@type": "Offer",

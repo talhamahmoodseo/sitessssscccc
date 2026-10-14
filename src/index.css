@@ -64,6 +64,13 @@
     --mark-deep: 198 150 32; /* its underline */
     --emphasis: 24 24 24; /* emphasised text stays near-black */
 
+    /* Heading accent: the two colours of the hero smoke. Used on one or two
+       words per heading, never on body text. Both clear 3:1 on paper. */
+    --plume-warm: 226 84 40;
+    --plume-cool: 124 92 246;
+    --plume-warm-light: 247 160 112;
+    --plume-cool-light: 190 172 250;
+
     /* Tile palette. Reserved for stat tiles and persona illustrations —
        never for background washes, chips or decorative blobs. */
     --tile-butter: 250 229 128;
@@ -104,6 +111,33 @@
 }
 
 @layer components {
+  /* ---- heading accent ----
+     A few words of a heading set in the smoke's orange-to-violet. */
+  .accent-ink {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--plume-warm)) 0%,
+      rgb(var(--plume-cool)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .accent-ink-dark {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--plume-warm-light)) 0%,
+      rgb(var(--plume-cool-light)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
   /* ---- emphasis system ----
      One device, used consistently: a highlighter sweep under the words that
      carry the claim. Strong enough to survive a squint test. */

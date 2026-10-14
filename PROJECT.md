@@ -8,7 +8,8 @@ traps that will waste your time if you do not know about them.
 
 ## 1. What this is
 
-Marketing website for **Talha Mahmood**, a link-building / digital-PR agency.
+Marketing website for **Outreachr**, a link-building / digital-PR agency
+(founded by Talha Mahmood; the site speaks as the agency, never as one person).
 Positioning: editorial backlinks and brand mentions that move Google rankings
 *and* get the client cited by AI answer engines (ChatGPT, Claude, AI Overviews).
 
@@ -163,7 +164,14 @@ Two decisions were made by the client and should not be reversed without asking:
    grotesk display type, vermillion accent, product-style hero animation) was
    built and then **rejected** — it read as a software product rather than an
    agency. It was reverted. Do not reintroduce it.
-2. **No red / warm accent colour.** The palette is deliberately monochrome.
+2. **Colour is used selectively, not everywhere.** The base stays ink on
+   paper. Since round 3 there is exactly one heading accent: `<Accent>` (or the
+   `.accent-ink` / `.accent-ink-dark` classes in `index.css`), which sets one or
+   two words in the hero smoke's orange-to-violet. Use it once per heading at
+   most and only on headings, never body text. No new palette.
+3. **No freelancing-platform language.** No Upwork, Fiverr, Legiit, ComeUp or
+   "Top Rated" anywhere, and no founder-personally framing. Reviews show the
+   service used, not where the client came from.
 
 **Emphasis system.** Earlier the site emphasised words by making them *lighter*
 (35–50% ink over paper, ≈2.6:1) which read as faded. That was fixed sitewide:
@@ -325,7 +333,11 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
   but invented. Swap in real anonymised ones — that section is the strongest
   trust signal on the page and real data will land harder.
 - Calendly handle — `lib/booking.ts` (`CALENDLY_URL`)
-- Contact email — `pages/Contact.tsx`
+- Contact email — still `contact@talhamahmood.com` in `pages/Contact.tsx`,
+  `pages/services/common.tsx`, `sections/Footer.tsx`, `sections/HomeCTA.tsx`,
+  `sections/FAQ.tsx`, `sections/Hero.tsx` and `components/BookingModal.tsx`.
+  Switch to the Outreachr domain once it exists, along with the `url` in the
+  JSON-LD in `index.html`.
 - `YOURDOMAIN.com` entries in `public/sitemap.xml`
 
 ## 11. Other docs
@@ -337,6 +349,7 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
 | `SERVICE-PAGES-PLAN.md` | Original content strategy for the service pages |
 | `SERVICE-PAGES-REDESIGN.md` | Audit + plan for the Digital PR, Brand Mentions and Expert Quotes redesign |
 | `PAGES-REDESIGN-2.md` | Audit + plan for the About, Results, Contact, Blog and Pricing redesign |
+| `ROUND-3-NOTES.md` | Round 3: Outreachr rebrand, homepage rework, open decisions (pricing, hero demo) |
 | `HOSTING.md` | Netlify / static / WordPress / Hostinger deployment |
 | `REDESIGN.md` | The rejected SaaS-direction experiment, kept for context |
 

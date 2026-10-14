@@ -12,6 +12,7 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
+import Accent from "@/components/Accent";
 import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "../services/kit";
 import { about as A } from "./content";
 
@@ -58,7 +59,9 @@ export const Apart = () => (
         <Eyebrow dark className="mb-4">
           {A.apart.eyebrow}
         </Eyebrow>
-        <H2 dark>{A.apart.h2}</H2>
+        <H2 dark>
+          {A.apart.h2a} <Accent dark>{A.apart.h2b}</Accent>
+        </H2>
       </motion.div>
       <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-0">
         {A.apart.items.map((it, n) => {
@@ -177,21 +180,6 @@ export const Team = () => {
                   <li
                     key={m}
                     className="rounded-full bg-white/[0.08] px-3 py-1.5 text-[12.5px] font-semibold text-white ring-1 ring-white/15"
-                  >
-                    {m}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="mb-2 text-[11.5px] font-semibold text-white/70">
-                Find us on
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                {T.base.platforms.map((m) => (
-                  <li
-                    key={m}
-                    className="rounded-full bg-white px-3 py-1.5 text-[12.5px] font-semibold text-navy-dark"
                   >
                     {m}
                   </li>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, CalendarDays, Check, Mail, Star } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, Mail } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import { openBooking } from "@/lib/booking";
@@ -36,7 +36,7 @@ const NEXT = [
   },
   {
     t: "A short call, if it makes sense",
-    d: "We walk through the audit. If links aren’t what you need yet, we’ll say so.",
+    d: "We walk through the audit and the first placements we’d go after.",
   },
 ];
 
@@ -325,16 +325,9 @@ const Contact = () => (
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.55 }}
           >
-            <span className="flex gap-0.5">
-              {[...Array(5)].map((_, n) => (
-                <Star
-                  key={n}
-                  className="h-3.5 w-3.5 fill-navy-dark text-navy-dark"
-                />
-              ))}
-            </span>
             <span className="text-[13px] text-navy-dark/75">
-              Top Rated on Upwork &amp; Fiverr · 40+ brands served
+              Working with brands and agencies in the US, UK, Europe and the
+              Gulf
             </span>
           </motion.div>
         </div>

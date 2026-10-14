@@ -2,7 +2,7 @@ import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import { about as A } from "./about/content";
 import Hero from "./about/Hero";
-import { Chapters, Manifesto } from "./about/Story";
+import { Beliefs, Manifesto } from "./about/Story";
 import { Apart, Explore, Numbers, Quote, Team, Wont } from "./about/Sections";
 
 /**
@@ -17,7 +17,7 @@ const About = () => (
     <Seo title={A.seo.title} description={A.seo.description} />
     <Hero />
     <Manifesto />
-    <Chapters />
+    <Beliefs />
     <Numbers />
     <Apart />
     <Team />

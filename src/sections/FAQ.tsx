@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Mail, Plus } from "lucide-react";
+import Accent from "@/components/Accent";
 import { openBooking } from "@/lib/booking";
 
 /** Agency-level questions, across every service. Answers are short and
@@ -40,7 +41,19 @@ const FAQS = [
   },
 ];
 
-const Item = ({ n, q, a, open, onToggle }: { n: number; q: string; a: string; open: boolean; onToggle: () => void }) => (
+const Item = ({
+  n,
+  q,
+  a,
+  open,
+  onToggle,
+}: {
+  n: number;
+  q: string;
+  a: string;
+  open: boolean;
+  onToggle: () => void;
+}) => (
   <div className="border-b border-line">
     <h3>
       <button
@@ -57,7 +70,9 @@ const Item = ({ n, q, a, open, onToggle }: { n: number; q: string; a: string; op
         </span>
         <motion.span
           className={`flex h-8 w-8 flex-none items-center justify-center rounded-full ring-1 transition-colors duration-300 ${
-            open ? "bg-navy-dark text-white ring-navy-dark" : "text-navy-dark ring-navy-dark/20 group-hover:ring-navy-dark/50"
+            open
+              ? "bg-navy-dark text-white ring-navy-dark"
+              : "text-navy-dark ring-navy-dark/20 group-hover:ring-navy-dark/50"
           }`}
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.3 }}
@@ -75,7 +90,9 @@ const Item = ({ n, q, a, open, onToggle }: { n: number; q: string; a: string; op
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="max-w-2xl pb-7 pl-12 pr-2 text-[15.5px] sm:pr-12 leading-[1.75] text-navy-dark/75">{a}</p>
+          <p className="max-w-2xl pb-7 pl-12 pr-2 text-[15.5px] sm:pr-12 leading-[1.75] text-navy-dark/75">
+            {a}
+          </p>
         </motion.div>
       )}
     </AnimatePresence>
@@ -96,19 +113,25 @@ const FAQ = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
           >
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">FAQ</p>
+            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
+              FAQ
+            </p>
             <h2 className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
               Questions we
               <br />
-              <span className="text-navy-dark/65">get a lot</span>
+              <Accent>get a lot</Accent>
             </h2>
             <p className="mt-5 text-[15.5px] leading-relaxed text-navy-dark/75">
-              Straight answers about how we work, what we can and can't promise, and what it costs.
+              How we work, what we can promise, what we can't, and what it
+              costs.
             </p>
             <div className="mt-8 rounded-[20px] bg-mist p-6 ring-1 ring-line">
-              <p className="text-[16px] font-semibold text-navy-dark">Still have a question?</p>
+              <p className="text-[16px] font-semibold text-navy-dark">
+                Still have a question?
+              </p>
               <p className="mt-1.5 text-[14px] leading-relaxed text-navy-dark/75">
-                Ask us on a short call, or send it by email. We reply within a day.
+                Ask us on a short call, or send it by email. We reply within a
+                day.
               </p>
               <div className="mt-5 flex flex-wrap gap-2.5">
                 <button
@@ -138,7 +161,14 @@ const FAQ = () => {
           transition={{ duration: 0.6, delay: 0.08 }}
         >
           {FAQS.map((f, n) => (
-            <Item key={f.q} n={n} q={f.q} a={f.a} open={open === n} onToggle={() => setOpen(open === n ? -1 : n)} />
+            <Item
+              key={f.q}
+              n={n}
+              q={f.q}
+              a={f.a}
+              open={open === n}
+              onToggle={() => setOpen(open === n ? -1 : n)}
+            />
           ))}
         </motion.div>
       </div>

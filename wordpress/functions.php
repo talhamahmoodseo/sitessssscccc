@@ -1,6 +1,6 @@
 <?php
 /**
- * Talha Mahmood — Link Building & AI Visibility
+ * Outreachr — Link Building & AI Visibility
  * Theme glue: serve the React build through WordPress.
  */
 

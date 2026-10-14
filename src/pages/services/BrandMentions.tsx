@@ -18,7 +18,7 @@ const SERVICE_SCHEMA = {
   name: "Brand Mention Building for AI Search",
   serviceType: "Brand mentions and AI visibility",
   description: C.seo.description,
-  provider: { "@type": "Organization", name: "Talha Mahmood" },
+  provider: { "@type": "Organization", name: "Outreachr" },
   areaServed: ["US", "GB", "AE"],
   offers: {
     "@type": "Offer",

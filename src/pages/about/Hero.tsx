@@ -90,12 +90,12 @@ const Hero = () => {
               {H.h1a}
             </motion.span>
             <motion.span
-              className="mt-1 block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark/60 sm:text-[3.8rem] lg:text-[4.6rem]"
+              className="mt-1 block pb-[0.06em] text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-[3.8rem] lg:text-[4.6rem]"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.14, ease }}
             >
-              {H.h1b}
+              <span className="accent-ink">{H.h1b}</span>
             </motion.span>
           </h1>
           <motion.p

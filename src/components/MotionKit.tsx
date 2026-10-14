@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { useLocation } from "react-router-dom";
 
-export const SITE_NAME = "Talha Mahmood — Link Building & AI Visibility";
+export const SITE_NAME = "Outreachr";
 
 /** Thin scroll-linked progress bar pinned to the top of the viewport. */
 export const ScrollProgress = () => {

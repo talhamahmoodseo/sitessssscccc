@@ -55,10 +55,6 @@ export const digitalPr = {
         status: "Mention",
       },
     ],
-    chips: {
-      a: { t: "Editor replied", d: "31 hours after the pitch" },
-      b: { t: "Picked up by 3 more", d: "outlets in two weeks" },
-    },
   },
 
   release: {
@@ -408,13 +404,8 @@ export const digitalPr = {
     eyebrow: "Free story call",
     h2a: "Tell us one boring thing",
     h2b: "about your business.",
-    d: "Seriously. The thing you think nobody cares about is often the story. On a 15‑minute call we’ll tell you if there’s coverage in it, and where it could run.",
+    d: "The thing you think nobody cares about is often the story. On a 15‑minute call we’ll tell you if there’s coverage in it, and where it could run.",
     primary: "Book a story call",
     subject: "Digital PR enquiry",
-    ticks: [
-      "Reply within 24 hours",
-      "No obligation",
-      "A straight answer if it isn’t news",
-    ],
   },
 };

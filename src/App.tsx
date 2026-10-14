@@ -99,12 +99,27 @@ const Home = () => (
 );
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  // the logo intro plays once per visit, not on every page load
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem("or-intro");
+    } catch {
+      return false;
+    }
+  });
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1800);
+    if (!loading) return;
+    const t = setTimeout(() => {
+      setLoading(false);
+      try {
+        sessionStorage.setItem("or-intro", "1");
+      } catch {
+        /* storage blocked: the intro simply plays again next time */
+      }
+    }, 1300);
     return () => clearTimeout(t);
-  }, []);
+  }, [loading]);
 
   return (
     <MotionConfig reducedMotion="user">
@@ -113,7 +128,7 @@ export default function App() {
       </AnimatePresence>
 
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: loading ? 0 : 1 }}
         animate={{ opacity: loading ? 0 : 1 }}
         transition={{ duration: 0.5 }}
       >

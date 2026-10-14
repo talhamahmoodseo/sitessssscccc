@@ -18,7 +18,7 @@ export const linkBuilding = {
     lead: "We find the sites, check what's really behind their traffic, write the content and get your link placed. Then we track it until Google counts it. You get rankings, not a spreadsheet full of DR.",
     primary: "Book a strategy call",
     secondary: "See starting prices",
-    rating: "Top Rated on Upwork & Fiverr · 40+ brands served",
+    rating: "1,400+ placements live for 40+ brands",
   },
 
   /** The hero card cycles through these. Domains are masked on purpose. */
@@ -66,12 +66,6 @@ export const linkBuilding = {
 
   trust: {
     label: "Brands and agencies we've built links for",
-    platforms: [
-      "Top Rated · Upwork",
-      "Level 2 · Fiverr",
-      "5.0 · Legiit",
-      "5.0 · ComeUp",
-    ],
   },
 
   problem: {
@@ -331,10 +325,30 @@ export const linkBuilding = {
     h2: "Seven months. Fourteen links. Two category pages on page one.",
     label: "B2B SaaS · customer support software",
     stats: [
-      { v: "+212%", k: "Organic clicks", sub: "1,200 → 3,744 a month", dot: "bg-butter" },
-      { v: "35 → 65", k: "Domain Rating", sub: "In seven months", dot: "bg-mint" },
-      { v: "14 / 14", k: "Links indexed", sub: "Median: 19 days", dot: "bg-lilac" },
-      { v: "#4", k: "Main category keyword", sub: "Up from #31", dot: "bg-sky" },
+      {
+        v: "+212%",
+        k: "Organic clicks",
+        sub: "1,200 → 3,744 a month",
+        dot: "bg-butter",
+      },
+      {
+        v: "35 → 65",
+        k: "Domain Rating",
+        sub: "In seven months",
+        dot: "bg-mint",
+      },
+      {
+        v: "14 / 14",
+        k: "Links indexed",
+        sub: "Median: 19 days",
+        dot: "bg-lilac",
+      },
+      {
+        v: "#4",
+        k: "Main category keyword",
+        sub: "Up from #31",
+        dot: "bg-sky",
+      },
     ],
     milestones: [
       { at: 1, t: "First links indexed" },
@@ -353,8 +367,16 @@ export const linkBuilding = {
       avatar: "/images/avatar-1.jpg",
     },
     more: [
-      { k: "Gulf e-commerce brand", v: "4× referring domains", to: "/case-studies/ecommerce-gulf-authority" },
-      { k: "Home services company", v: "Top 3 in the local pack", to: "/case-studies/home-services-local-pack" },
+      {
+        k: "Gulf e-commerce brand",
+        v: "4× referring domains",
+        to: "/case-studies/ecommerce-gulf-authority",
+      },
+      {
+        k: "Home services company",
+        v: "Top 3 in the local pack",
+        to: "/case-studies/home-services-local-pack",
+      },
     ],
   },
 
@@ -371,12 +393,48 @@ export const linkBuilding = {
     ],
     month: "October",
     rows: [
-      { site: "saas•••insider.com", dr: 62, anchor: "crm for startups", to: "/features/crm", done: true },
-      { site: "growth•••weekly.com", dr: 57, anchor: "YourBrand", to: "/", done: true },
-      { site: "marketing•••lab.com", dr: 54, anchor: "sales pipeline tool", to: "/pipeline", done: true },
-      { site: "b2b•••review.io", dr: 66, anchor: "this guide", to: "/blog/pipeline-guide", done: false },
-      { site: "startup•••wire.com", dr: 49, anchor: "yourbrand.com", to: "/", done: false },
-      { site: "tech•••digest.com", dr: 71, anchor: "customer support software", to: "/support", done: false },
+      {
+        site: "saas•••insider.com",
+        dr: 62,
+        anchor: "crm for startups",
+        to: "/features/crm",
+        done: true,
+      },
+      {
+        site: "growth•••weekly.com",
+        dr: 57,
+        anchor: "YourBrand",
+        to: "/",
+        done: true,
+      },
+      {
+        site: "marketing•••lab.com",
+        dr: 54,
+        anchor: "sales pipeline tool",
+        to: "/pipeline",
+        done: true,
+      },
+      {
+        site: "b2b•••review.io",
+        dr: 66,
+        anchor: "this guide",
+        to: "/blog/pipeline-guide",
+        done: false,
+      },
+      {
+        site: "startup•••wire.com",
+        dr: 49,
+        anchor: "yourbrand.com",
+        to: "/",
+        done: false,
+      },
+      {
+        site: "tech•••digest.com",
+        dr: 71,
+        anchor: "customer support software",
+        to: "/support",
+        done: false,
+      },
     ],
   },
 
@@ -414,8 +472,8 @@ export const linkBuilding = {
 
   faqHead: {
     eyebrow: "Link building FAQ",
-    h2: "Straight answers.",
-    side: "Still not sure? Ask us anything on a 15-minute call. If links aren't what you need right now, we'll tell you.",
+    h2: "What clients ask before they start.",
+    side: "Your question isn't here? Ask it on a 15-minute call and we'll look at your site while we're at it.",
   },
 
   faqs: [
@@ -460,10 +518,22 @@ export const linkBuilding = {
   related: {
     h2: "Keep reading",
     links: [
-      { to: "/case-studies/b2b-saas-ai-visibility", k: "Case study", t: "DR 35 to 65 for a B2B SaaS brand" },
-      { to: "/blog/site-vetting-checklist", k: "Article", t: "The site-vetting checklist we use on every domain" },
+      {
+        to: "/case-studies/b2b-saas-ai-visibility",
+        k: "Case study",
+        t: "DR 35 to 65 for a B2B SaaS brand",
+      },
+      {
+        to: "/blog/site-vetting-checklist",
+        k: "Article",
+        t: "The site-vetting checklist we use on every domain",
+      },
       { to: "/services/digital-pr", k: "Service", t: "Digital PR" },
-      { to: "/services/brand-mentions", k: "Service", t: "Brand mentions for AI search" },
+      {
+        to: "/services/brand-mentions",
+        k: "Service",
+        t: "Brand mentions for AI search",
+      },
       { to: "/services/haro-links", k: "Service", t: "HARO & expert quotes" },
     ],
   },
@@ -472,14 +542,9 @@ export const linkBuilding = {
     eyebrow: "Free link audit",
     h2a: "Send us your URL.",
     h2b: "We'll tell you what it'll take.",
-    d: "On a 15-minute call we'll look at your site, your competitors' backlinks and the pages closest to page one. You get an honest answer on whether links are what you need right now. If they're not, we'll say so.",
+    d: "On a 15-minute call we look at your site, your competitors' backlinks and the pages closest to page one, then tell you what it would take to move them.",
     primary: "Book a strategy call",
     secondary: "Email us instead",
     email: "contact@talhamahmood.com",
-    ticks: [
-      "Reply within 24 hours",
-      "No obligation",
-      "You talk to the person doing the work",
-    ],
   },
 };

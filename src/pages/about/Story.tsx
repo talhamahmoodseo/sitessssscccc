@@ -68,60 +68,51 @@ export const Manifesto = () => (
   </section>
 );
 
-/** Three turning points on one line, and the rule that held through all of
+/** What we believe: four short convictions, then the one rule under all of
  *  them. */
-export const Chapters = () => {
-  const C = A.chapters;
+export const Beliefs = () => {
+  const B = A.beliefs;
   return (
     <section className="bg-mist py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div className="mb-14 max-w-3xl" {...rise()}>
-          <Eyebrow className="mb-4">{C.eyebrow}</Eyebrow>
+          <Eyebrow className="mb-4">{B.eyebrow}</Eyebrow>
           <H2>
-            {C.h2a}
+            {B.h2a}
             <br />
-            <Soft>{C.h2b}</Soft>
+            <Soft>{B.h2b}</Soft>
           </H2>
         </motion.div>
 
-        <div className="relative">
-          <motion.span
-            className="absolute left-0 right-0 top-[11px] hidden h-px origin-left bg-navy-dark/25 md:block"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1.4, ease }}
-            aria-hidden="true"
-          />
-          <ol className="grid gap-5 md:grid-cols-3">
-            {C.items.map((c, n) => (
-              <motion.li key={c.y} {...rise(0.15 + n * 0.12)}>
-                <span className="relative z-10 hidden h-[23px] w-[23px] items-center justify-center rounded-full bg-mist md:flex">
-                  <span className="h-[11px] w-[11px] rounded-full bg-navy-dark" />
-                </span>
-                <div className="mt-0 rounded-3xl bg-white p-7 ring-1 ring-line md:mt-6">
-                  <span
-                    className={`inline-flex rounded-full ${c.tint} px-3 py-1 text-[13px] font-bold text-navy-dark`}
-                  >
-                    {c.y}
-                  </span>
-                  <h3 className="mt-5 text-[1.35rem] font-semibold tracking-[-0.03em] text-navy-dark">
-                    {c.t}
-                  </h3>
-                  <p className="mt-2.5 text-[15.5px] leading-relaxed text-navy-dark/75">
-                    {c.d}
-                  </p>
-                </div>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
+        <ol className="grid gap-5 md:grid-cols-2">
+          {B.items.map((b, n) => (
+            <motion.li
+              key={b.n}
+              className="flex gap-5 rounded-3xl bg-white p-7 ring-1 ring-line sm:gap-7 sm:p-9"
+              {...rise(0.1 + n * 0.08)}
+            >
+              <span
+                className={`flex h-12 w-12 flex-none items-center justify-center rounded-2xl ${b.tint} text-[15px] font-bold tabular-nums text-navy-dark`}
+              >
+                {b.n}
+              </span>
+              <span>
+                <h3 className="text-[1.3rem] font-semibold leading-snug tracking-[-0.03em] text-navy-dark sm:text-[1.45rem]">
+                  {b.t}
+                </h3>
+                <p className="mt-3 text-[15.5px] leading-relaxed text-navy-dark/75">
+                  {b.d}
+                </p>
+              </span>
+            </motion.li>
+          ))}
+        </ol>
 
         <motion.p
-          className="mt-10 rounded-2xl bg-navy-dark px-6 py-5 text-[16px] font-semibold text-white sm:px-8"
+          className="mt-5 rounded-2xl bg-navy-dark px-6 py-5 text-[16px] font-semibold text-white sm:px-8"
           {...rise(0.1)}
         >
-          {C.rule}
+          {B.rule}
         </motion.p>
       </div>
     </section>

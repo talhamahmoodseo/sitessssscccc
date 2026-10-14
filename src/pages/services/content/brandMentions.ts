@@ -366,6 +366,5 @@ export const brandMentions = {
     d: "Send us your brand and your category. We’ll run 10 real buyer questions through ChatGPT, Perplexity and Google’s AI Overviews, and send you what comes back: who gets named, how you’re described, and which sources they use.",
     primary: "Send me my AI check",
     subject: "Free AI visibility check",
-    ticks: ["Results within 48 hours", "Screenshots included", "No obligation"],
   },
 };
