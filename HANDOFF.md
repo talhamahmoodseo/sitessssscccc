@@ -1,124 +1,116 @@
-# Handoff — Talha Mahmood link-building agency site
+# Handoff — Outreachr website
 
-Everything needed to continue this project in another session, on another
-machine, or with another assistant.
+Start here. This file is the entry point for any developer or AI agent taking
+over the site. It tells you what exists, where everything lives, what the
+owner wants, and what is still open.
 
-## What this is
+## 1. What this is
 
-A React 19 + Vite 6 + TypeScript marketing site for a link-building and
-digital-PR agency, which also ships as an installable **WordPress theme** (the
-owner hosts on Hostinger).
+Marketing website for **Outreachr**, a link building and digital PR agency
+(founder: Talha Mahmood, Faisalabad, Pakistan). Services: Link Building,
+Digital PR, Brand Mentions for AI search, HARO & Expert Quotes.
 
-## Current state — read this first
+- React 19 + Vite 6 + TypeScript + Tailwind 3 + Motion (Framer Motion v12)
+- Static SPA, no backend, no CMS. All copy lives in TypeScript files.
+- Also ships as an installable **WordPress theme** (owner hosts on Hostinger).
+- Design quality reference: **amplemarket.com** (quality bar only — content
+  and layout must stay original).
 
-The working tree has been **restored to commit `4eabb08` (6 Oct 15:18)**. That
-is the version the owner confirmed as preferred. Several later design passes
-were rejected and have been set aside — not deleted.
+## 2. See it without running anything
 
-Two tags mark the ends of that range:
+| Where | What |
+| --- | --- |
+| `docs/screenshots/desktop/` | Full-page screenshot of every page at 1440px |
+| `docs/screenshots/mobile/` | Same pages at 390px |
+| `docs/downloads/outreachr-wordpress-theme.zip` | Ready-to-upload WordPress theme of the current build |
 
-| Tag                 | Commit    | What it is                                  |
-| ------------------- | --------- | ------------------------------------------- |
-| `preferred-version` | `4eabb08` | What the tree is restored to. The good one.  |
-| `rejected-latest`   | `dcfbfa5` | The rejected line of work, kept for salvage. |
+Pages: home, about, services, link-building, digital-pr, brand-mentions,
+haro-expert-quotes, results (case studies), case-study, blog, contact,
+pricing, plus the booking popup.
 
-To inspect or cherry-pick anything from the rejected work:
-
-```bash
-git diff preferred-version rejected-latest -- src/
-git checkout rejected-latest -- path/to/file
-```
-
-**Do not** `git reset --hard` past these tags — the rejected branch contains a
-few fixes that are still wanted (see "Known outstanding" below).
-
-## Run it
+## 3. Run it
 
 ```bash
 npm install
-npm run dev        # development, localhost:5173
-npm run preview    # serves the production build on localhost:4173
-```
-
-```bash
+npm run dev        # localhost:5173
 npm run build      # production build -> dist/
-npm run build:wp   # WordPress theme -> wp-theme/talha-site.zip
+npm run preview    # serve dist/ on localhost:4173
+npm run build:wp   # WordPress theme -> wp-theme/talha-site.zip (run `npm run build` after)
+npx tsc --noEmit   # typecheck (no test suite, no linter configured)
 ```
 
-The WordPress zip in `wp-theme/` is already built from the restored version:
-77 entries, forward-slash paths, CRC clean. Upload via
-**Appearance → Themes → Add New → Upload Theme → Activate**, then
-**Settings → Permalinks → Save Changes** once so the SPA routes resolve.
+## 4. Where things are
 
-## Push to GitHub
+| Path | What |
+| --- | --- |
+| `src/App.tsx` | Routes + homepage section order |
+| `src/sections/` | Homepage sections (Hero, TheShift, Services, Personas, Process, ProofGrid, Results, Testimonials, FAQ, HomeCTA, Footer…) |
+| `src/pages/` | Other routes (About, Contact, Pricing, Blog, CaseStudies…) |
+| `src/pages/services/` | The four service pages. Copy in `content/*.ts`, layout in per-service folders, shared kit in `kit.tsx` and `common.tsx` |
+| `src/pages/about/content.ts` | All About page copy |
+| `src/lib/cases.ts` | The three sample case studies |
+| `src/lib/content.ts` | Blog posts and homepage results data |
+| `src/lib/booking.ts` | Calendly URL (placeholder) + `openBooking()` |
+| `src/components/` | Shared UI: Logo, Navigation, BookingModal, SmokePlume (hero WebGL smoke), Rocket, PersonaFigures (sketch illustrations), Accent (heading colour), PlatformMarks (Google/ChatGPT/etc. icons) |
+| `src/index.css` | Colour tokens (RGB triples on `:root`) and the `.accent-ink` heading accent |
+| `wordpress/` | WordPress theme source (PHP + style.css). `scripts/build-wp-theme.mjs` packages it |
+| `public/` | Images, avatars, sitemap |
 
-This repo has **no remote**. It has never been pushed — there was no GitHub
-auth available in the session that built it (no `gh` CLI, and the credential
-manager needs an interactive prompt).
+## 5. Rules the owner has set (do not break)
 
-Create an empty **private** repo on github.com, then:
+1. **Agency, not freelancer.** Never mention Upwork, Fiverr, Legiit, ComeUp or
+   "Top Rated". No "the founder personally handles every call" framing.
+2. **Human copy.** Short, plain, conversational. No AI filler: no tick rows
+   like "No retainer, no lock-in", no "Straight answers", no "results-driven",
+   no "here's the thing", no em-dash-heavy marketing voice.
+3. **Agency look, not SaaS.** Ink on warm paper, Plus Jakarta Sans.
+4. **Colour selectively.** One heading accent only: `<Accent>` (orange→violet,
+   the hero smoke colours). One accent per heading at most. No new palette.
+5. **Pricing:** do not change prices or the pricing page until the owner has
+   agreed a strategy (see §7).
+6. **Data claims must be verified** against the original source and linked.
+7. Every sample (case studies, reviews, clippings) stays labelled as a sample
+   until real data replaces it.
 
-```bash
-git remote add origin https://github.com/<you>/<repo>.git
-git push -u origin main --tags
-```
+## 6. History
 
-`--tags` matters: it carries `preferred-version` and `rejected-latest` so the
-next person can see both lines.
+| Commit | Round |
+| --- | --- |
+| `708d997` | Round 3: Outreachr rebrand, hero WebGL smoke, Shift previews + sourced data, 4-service section, personas sketches, booking popup, About rewrite, Digital PR fan restored |
+| `729d237` | Round 2: About, Results + 3 case studies, Contact, Blog, Pricing |
+| `260577c` | Service pages redesign (Digital PR, Brand Mentions, Expert Quotes) |
 
-## Layout
+Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
+`SERVICE-PAGES-REDESIGN.md`, `HOMEPAGE-PLAN.md`, `BRAND.md`, `PROJECT.md`
+(conventions and traps), `HOSTING.md` (deployment).
 
-```
-src/
-  App.tsx              routes + homepage section order
-  index.css            design tokens (:root custom properties)
-  sections/            homepage sections
-  pages/               one file per route; about/, results/, services/ hold
-                       those pages' own sections
-  pages/services/      four service pages, one section folder each, kit.tsx,
-                       common.tsx + content/ (copy lives separately)
-  components/          shared UI, LineArt figures, Rocket hero animation
-  lib/content.ts       blog posts + homepage case summaries
-  lib/cases.ts         the three sample case studies (full detail)
-  lib/clients.ts       client names and the homepage proof bento
-scripts/
-  build-wp-theme.mjs   React build -> WordPress theme, with self-checks
-  check-theme-php.mjs  guards against invented WP functions (has caught a fatal)
-wp-theme/              generated theme + zip (gitignored)
-```
+## 7. Open work (owner's list, not done yet)
 
-## Traps worth knowing
+- **Pricing strategy** — owner wants a lower-risk entry (pilot order around
+  $100–150 was floated), exact placement counts instead of ranges, and a
+  decision on public vs "from" prices. Current site: Starter $997 / Growth
+  $2,497 / Authority $4,997. Undecided.
+- **Hero demo** (`src/sections/Hero.tsx`, `SearchTheatre`) — weak: HVAC/Fresno
+  example, tiny labels. Proposed replacement: a "campaign view" product panel
+  showing placements going live and what they moved. Not approved yet.
+- Owner says many more fixes are still needed across the site; compare each
+  page against Amplemarket's quality and the screenshots in `docs/`.
 
-- **Colour names are historical.** `navy-dark` is near-black ink, `blue-accent`
-  is also near-black, `mist` is warm paper, `gold` is the amber highlight.
-  Everything references them already; renaming is a large sweep.
-- **Keep `lucide-react` on 0.x.** 1.x renames exports (`Linkedin` →
-  `LinkedinIcon`) and changes icon geometry. Pinned at 0.577.
-- **`noImplicitAny` is `false`** and `npm run build` does not typecheck
-  (esbuild strips types). Run `npx tsc --noEmit` yourself.
-- **`app.js` / `app.css` are not content-hashed**, preserved from the original
-  build. Caching must revalidate or users get stale code after deploy;
-  `public/.htaccess` handles this for Apache/LiteSpeed.
-- **Measure contrast with full alpha compositing**, including any absolutely
-  positioned earlier sibling that covers the text, and treat gradient scrims as
-  unmeasurable rather than failed. Simpler methods produced both false passes
-  and false failures on this codebase.
+## 8. Placeholders to replace before launch
 
-## Known outstanding
+- Calendly URL in `src/lib/booking.ts` (booking popup shows a loading state).
+- Email `contact@talhamahmood.com` (used in Contact, common.tsx, Footer,
+  HomeCTA, FAQ, Hero, BookingModal) and the site URL in `index.html` JSON-LD.
+- Case studies, reviews, press clippings, client figures: samples.
+- `YOURDOMAIN.com` in `public/sitemap.xml`.
 
-1. **Client logos are placeholders.** CapCut, Ocuco and Khaleej Times are real
-   clients used as typographic wordmarks; every figure, quote and case study is
-   invented. The owner considers the site unfinished until real logos land.
-2. **A Neil Patel statement is wanted** under the zero-click stat on the
-   homepage, properly attributed. It was not added because the exact wording
-   could not be verified — three neilpatel.com URLs returned 404. Do not
-   invent one; get the real sentence and source.
-3. **Worth salvaging from `rejected-latest`:** the conceptual fix to the
-   "answer engines" section (Google / AI Overviews / AI assistants, instead of
-   listing ChatGPT and Claude as separate categories), the removal of the
-   "AuthorityOS" coinage, and the rewrite of the "most link building starts
-   with available inventory" comparison into something that does not imply the
-   reader's current way of buying is wrong.
-4. **Hero animation timing is unverified.** The browser pane used during
-   development never composited frames, so no animation could be watched run.
-   Check the hero `Rocket` animation in a real browser.
+## 9. Gotchas
+
+- Motion components override Tailwind `transform` classes — pass rotate/scale
+  through motion props or wrap the element.
+- Tailwind opacity steps: only defaults (`/5`, `/10`…); others need brackets
+  (`/[0.12]`).
+- `.accent-ink` text is transparent with a gradient clip, so contrast checkers
+  report it as 1:1 — false positive.
+- The intro curtain (`LogoReveal`) plays once per browser session.
+- The smoke plume needs WebGL; without it the hero falls back to grain blobs.

@@ -1,10 +1,10 @@
-# Talha Mahmood — Link Building & AI Visibility
+# Outreachr — Link Building & AI Visibility
 
 Marketing website for a link-building and digital-PR agency. Static React SPA,
 no backend. Editorial ink-on-paper design, 20 routes, content held in
 TypeScript rather than a CMS.
 
-> **New to this project? Read [PROJECT.md](PROJECT.md) first.** It explains
+> **New to this project? Start with [HANDOFF.md](HANDOFF.md)**, then [PROJECT.md](PROJECT.md). It explains
 > where the code came from, the conventions that are not obvious, what is
 > unfinished, and the traps worth knowing before you change anything.
 
