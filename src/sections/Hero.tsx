@@ -7,31 +7,28 @@ import {
   ClaudeMark,
   GoogleMark,
 } from "@/components/PlatformMarks";
-import { COLOURS, GrainBlob } from "@/components/Grain";
 import Rocket from "@/components/Rocket";
-import SmokePlume from "@/components/SmokePlume";
+import { asset } from "@/lib/booking";
 
 const SCENE_MS = 6400;
 
 const DEMO_QUERY = "best emergency hvac service in fresno";
 
+/** Milliseconds since the scene started. Ticks ~16 times a second rather than
+ *  every frame: plenty for the typing effect, and it keeps React off the main
+ *  thread so taps and clicks stay responsive (INP). */
 const useElapsed = (e) => {
   const [s, a] = useState(0);
-  return (
-    useEffect(() => {
-      if (!e) {
-        a(999999);
-        return;
-      }
-      let r = 0;
-      const c = performance.now(),
-        u = (d) => {
-          (a(d - c), (r = requestAnimationFrame(u)));
-        };
-      return ((r = requestAnimationFrame(u)), () => cancelAnimationFrame(r));
-    }, [e]),
-    s
-  );
+  useEffect(() => {
+    if (!e) {
+      a(999999);
+      return;
+    }
+    const c = performance.now();
+    const t = setInterval(() => a(performance.now() - c), 60);
+    return () => clearInterval(t);
+  }, [e]);
+  return s;
 };
 
 const typeSlice = (e, s, a, r = 40) =>
@@ -547,29 +544,20 @@ Please send me a free visibility audit.`);
     };
   return (
     <div className="relative bg-mist overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
-      {/* the rocket's smoke, drawn live; grain blobs if WebGL is missing */}
-      <SmokePlume
-        fallback={
-          <>
-            <GrainBlob
-              color={COLOURS.orange}
-              className="-left-[320px] top-[90px] h-[700px] w-[640px] opacity-90"
-              duration={26}
-            />
-            <GrainBlob
-              color={COLOURS.lavender}
-              className="-left-[180px] top-[430px] h-[560px] w-[620px] opacity-90"
-              duration={30}
-              drift={24}
-            />
-          </>
-        }
+      {/* the rocket's smoke: one frame of the old live shader, saved as an
+          image (54 KB). Same look, no GPU or main-thread cost. Centred so the
+          trail meets the rocket's nozzle at every width from 1280px up. */}
+      <img
+        src={asset("/images/hero-smoke.webp")}
+        alt=""
+        width={704}
+        height={634}
+        decoding="async"
+        className="pointer-events-none absolute left-[calc(50%-960px)] top-0 z-0 h-[1268px] w-[1408px] max-w-none select-none"
+        aria-hidden="true"
       />
-      <Rocket className="absolute right-[2%] top-[200px] z-0 hidden h-[380px] w-[330px] xl:block 2xl:right-[5%]" />
-      <div
-        data-plume-clear
-        className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-      >
+      <Rocket className="absolute left-[calc(50%+361px)] top-[200px] z-0 hidden h-[380px] w-[330px] xl:block" />
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.a
           href="/services/brand-mentions"
           className="inline-flex items-center gap-2.5 bg-white border border-line rounded-full pl-1.5 pr-4 py-1.5 mb-7 hover:border-navy-dark/30 transition-colors duration-300"

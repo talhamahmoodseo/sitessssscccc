@@ -28,9 +28,13 @@ const navLinks = [
   { name: "Contact", to: "/contact" },
 ];
 
-const Navigation = () => {
+/** `onDark`: the page opens on a dark hero, so the bar starts light-on-dark
+ *  until it scrolls and gains its white background. */
+const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const light = onDark && !scrolled && !mobileOpen;
+  const ink = light ? "text-white" : "text-navy-dark";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -55,7 +59,7 @@ const Navigation = () => {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <Link to="/" aria-label="Outreachr home">
-              <Logo />
+              <Logo invert={light} />
             </Link>
           </motion.div>
 
@@ -66,7 +70,9 @@ const Navigation = () => {
               transition={{ delay: 0.3, duration: 0.4 }}
             >
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-navy-dark hover:text-blue-accent transition-colors">
+                <DropdownMenuTrigger
+                  className={`flex items-center gap-1 text-sm font-medium ${ink} hover:opacity-80 transition-colors`}
+                >
                   Services
                   <ChevronDown className="w-4 h-4" />
                 </DropdownMenuTrigger>
@@ -94,7 +100,7 @@ const Navigation = () => {
               >
                 <Link
                   to={item.to}
-                  className="relative inline-flex items-center min-h-[44px] text-sm font-medium text-navy-dark hover:text-blue-accent transition-colors group"
+                  className={`relative inline-flex items-center min-h-[44px] text-sm font-medium ${ink} hover:opacity-80 transition-colors group`}
                 >
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-accent transition-all duration-300 group-hover:w-full" />
@@ -104,7 +110,7 @@ const Navigation = () => {
 
             <motion.a
               href="/pricing"
-              className="relative inline-flex items-center min-h-[44px] text-sm font-medium text-navy-dark hover:text-blue-accent transition-colors group"
+              className={`relative inline-flex items-center min-h-[44px] text-sm font-medium ${ink} hover:opacity-80 transition-colors group`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.4 }}
@@ -122,7 +128,7 @@ const Navigation = () => {
           >
             <Button
               onClick={openBooking}
-              className="bg-brand hover:bg-brand-deep text-brand-on rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 hover:scale-105"
+              className={`${light ? "bg-white text-navy-dark hover:bg-white/90" : "bg-brand hover:bg-brand-deep text-brand-on"} rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 hover:scale-105`}
             >
               Book a Free Consultation
             </Button>
@@ -134,9 +140,9 @@ const Navigation = () => {
             aria-label="Toggle menu"
           >
             {mobileOpen ? (
-              <X className="w-6 h-6 text-navy-dark" />
+              <X className={`w-6 h-6 ${ink}`} />
             ) : (
-              <Menu className="w-6 h-6 text-navy-dark" />
+              <Menu className={`w-6 h-6 ${ink}`} />
             )}
           </button>
         </div>

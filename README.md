@@ -25,7 +25,7 @@ Then open http://localhost:5173.
 | Script | What it does |
 | --- | --- |
 | `npm run dev` | Dev server with hot reload |
-| `npm run build` | Production build into `dist/` |
+| `npm run build` | Production build into `dist/`, every page prerendered to HTML |
 | `npm run preview` | Serve the built `dist/` on :4173 |
 | `npm run build:wp` | Build an installable WordPress theme (`wp-theme/talha-site.zip`) |
 

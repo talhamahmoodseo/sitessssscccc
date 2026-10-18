@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Clock, Search } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import NotFound from "./NotFound";
 import { asset } from "@/lib/booking";
 import { BLOG_POSTS } from "@/lib/content";
 import { BlogCover } from "@/pages/Blog";
@@ -10,7 +11,7 @@ import { BlogCover } from "@/pages/Blog";
 const BlogPost = () => {
   const { slug: e } = useParams(),
     s = BLOG_POSTS.find((d) => d.slug === e);
-  if (!s) return <Navigate to="/blog" replace={true} />;
+  if (!s) return <NotFound />;
   const a = BLOG_POSTS.filter(
       (d) => d.category === s.category && d.slug !== s.slug,
     ).slice(0, 2),
@@ -24,12 +25,12 @@ const BlogPost = () => {
       "@type": "Article",
       headline: s.title,
       description: s.excerpt,
-      datePublished: s.date,
+      datePublished: new Date(s.date).toISOString().slice(0, 10),
       author: { "@type": "Person", name: "Talha Mahmood" },
     };
   return (
-    <PageLayout>
-      <Seo title={s.title} description={s.excerpt} schema={u} />
+    <PageLayout navOnDark>
+      <Seo title={s.title} description={s.excerpt} schema={u} type="article" />
       <div className="relative bg-navy-dark overflow-hidden pt-32 pb-16">
         <div className={`absolute inset-0 ${s.grad} opacity-25`} />
         <span

@@ -7,7 +7,7 @@
  * from (70,250) to (230,90); every point below is measured from that axis.
  *
  * It holds still, flame included: the movement in the hero comes from the
- * smoke (SmokePlume), which starts at the `data-nozzle` marker below.
+ * smoke image behind it (sections/Hero.tsx, public/images/hero-smoke.webp).
  */
 
 const Drawing = () => (
@@ -209,11 +209,6 @@ const Rocket = ({ className = "" }: { className?: string }) => (
   <div className={`pointer-events-none ${className}`} aria-hidden="true">
     <div className="relative h-full w-full">
       <Drawing />
-      {/* where the smoke leaves the nozzle, read by SmokePlume */}
-      <span
-        data-nozzle
-        className="absolute left-[24.6%] top-[81.4%] h-px w-px"
-      />
     </div>
   </div>
 );

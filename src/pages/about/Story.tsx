@@ -27,7 +27,11 @@ const Word = ({
 /* one line of the manifesto: its words go from grey to ink as it scrolls up */
 const Line = ({ text }: { text: string }) => {
   const ref = useRef<HTMLParagraphElement>(null);
-  const reduced = useReducedMotion();
+  // plain text for reduced motion, and in the prerendered HTML (fully legible
+  // before JavaScript runs)
+  const reduced =
+    useReducedMotion() ||
+    (typeof window !== "undefined" && (window as any).__PRERENDER__);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.9", "start 0.4"],

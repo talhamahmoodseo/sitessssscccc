@@ -40,6 +40,16 @@ if (existsSync(join(dist, "images"))) {
   await cp(join(dist, "images"), join(theme, "images"), { recursive: true });
 }
 
+// 1b. prerendered pages + icons (see scripts/prerender.mjs)
+if (!existsSync(join(dist, "prerender", "index.json"))) {
+  console.error("\n  ERROR: dist/prerender/ is missing. Run `npm run build:wp`, which prerenders first.\n");
+  process.exit(1);
+}
+await cp(join(dist, "prerender"), join(theme, "prerender"), { recursive: true });
+for (const f of ["favicon.svg", "favicon-32.png", "apple-touch-icon.png"]) {
+  if (existsSync(join(dist, f))) await cp(join(dist, f), join(theme, f));
+}
+
 // 2. PHP templates
 for (const f of await readdir(tpl)) {
   await cp(join(tpl, f), join(theme, f));

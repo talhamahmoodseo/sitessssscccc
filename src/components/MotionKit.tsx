@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { useLocation } from "react-router-dom";
 
-export const SITE_NAME = "Outreachr";
+export { SITE_NAME } from "./Seo";
 
 /** Thin scroll-linked progress bar pinned to the top of the viewport. */
 export const ScrollProgress = () => {
@@ -33,41 +33,4 @@ export const ScrollToTop = () => {
   return null;
 };
 
-type SeoProps = {
-  title: string;
-  description: string;
-  schema?: unknown;
-};
-
-/** Swaps document title / description / JSON-LD per route and restores on unmount. */
-export const Seo = ({ title, description, schema }: SeoProps) => {
-  useEffect(() => {
-    const prevTitle = document.title;
-    document.title = `${title} | ${SITE_NAME}`;
-
-    let metaDesc = document.querySelector('meta[name="description"]');
-    const prevDesc = metaDesc?.getAttribute("content") ?? null;
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.setAttribute("name", "description");
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute("content", description);
-
-    let ld: HTMLScriptElement | null = null;
-    if (schema) {
-      ld = document.createElement("script");
-      ld.type = "application/ld+json";
-      ld.text = JSON.stringify(schema);
-      document.head.appendChild(ld);
-    }
-
-    return () => {
-      document.title = prevTitle;
-      if (prevDesc !== null) metaDesc?.setAttribute("content", prevDesc);
-      if (ld) document.head.removeChild(ld);
-    };
-  }, [title, description, schema]);
-
-  return null;
-};
+export { Seo } from "./Seo";

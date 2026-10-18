@@ -1,6 +1,7 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import NotFound from "./NotFound";
 import { CASES, caseBySlug } from "@/lib/cases";
 import {
   CaseHeader,
@@ -25,7 +26,7 @@ import {
 const CaseStudy = () => {
   const { slug } = useParams();
   const c = caseBySlug(slug);
-  if (!c) return <Navigate to="/case-studies" replace />;
+  if (!c) return <NotFound />;
   const next = CASES[(CASES.indexOf(c) + 1) % CASES.length];
 
   return (

@@ -329,18 +329,13 @@ const ServicesSection = () => {
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
           {/* the list */}
-          <div
-            role="tablist"
-            aria-label="Our services"
-            className="border-t border-navy-dark/10"
-          >
+          <div className="border-t border-navy-dark/10">
             {SERVICES.map((s, i) => {
               const on = i === active;
               return (
                 <div key={s.n} className="border-b border-navy-dark/10">
                   <button
-                    role="tab"
-                    aria-selected={on}
+                    aria-expanded={on}
                     onClick={() => setActive(i)}
                     className="group flex w-full items-baseline gap-5 py-6 text-left"
                   >

@@ -33,11 +33,30 @@ pricing, plus the booking popup.
 ```bash
 npm install
 npm run dev        # localhost:5173
-npm run build      # production build -> dist/
+npm run build      # production build + prerender every page -> dist/
 npm run preview    # serve dist/ on localhost:4173
-npm run build:wp   # WordPress theme -> wp-theme/talha-site.zip (run `npm run build` after)
+npm run build:wp   # WordPress theme -> wp-theme/talha-site.zip (prerendered pages inside)
 npx tsc --noEmit   # typecheck (no test suite, no linter configured)
 ```
+
+The build prerenders pages with Playwright's Chromium. On a new machine run
+`npx playwright install chromium` once (or set `CHROME_PATH`).
+
+### How pages reach Google (read before changing routing or <head>)
+
+- `scripts/prerender.mjs` crawls the built site from `/`, saves every page as
+  HTML (plus `prerender/<page>.json` for WordPress), inlines critical CSS,
+  and writes the sitemap. **A new page must be linked from somewhere** or the
+  crawler won't find it.
+- `src/components/Seo.tsx` owns every page's title, description, canonical,
+  robots, social tags and JSON-LD. Use `<Seo …/>` on each page; never add
+  these tags to `index.html` or the WordPress theme.
+- `src/routes.tsx` code-splits pages; `main.tsx` preloads the current page
+  before rendering so the prerendered HTML is replaced without a flash.
+- The WordPress theme (`wordpress/functions.php`) serves the prerendered page
+  for each URL with the right status, fills in the domain, and serves
+  `/sitemap.xml` + `/robots.txt`. **Do not install Yoast/Rank Math.**
+- Unknown URLs must stay real 404s (`NotFound` page, `noindex`).
 
 ## 4. Where things are
 
@@ -51,7 +70,9 @@ npx tsc --noEmit   # typecheck (no test suite, no linter configured)
 | `src/lib/cases.ts` | The three sample case studies |
 | `src/lib/content.ts` | Blog posts and homepage results data |
 | `src/lib/booking.ts` | Calendly URL (placeholder) + `openBooking()` |
-| `src/components/` | Shared UI: Logo, Navigation, BookingModal, SmokePlume (hero WebGL smoke), Rocket, PersonaFigures (sketch illustrations), Accent (heading colour), PlatformMarks (Google/ChatGPT/etc. icons) |
+| `src/components/` | Shared UI: Seo (all head tags), Logo, Navigation, BookingModal, Rocket, PersonaFigures (sketch illustrations), Accent (heading colour), PlatformMarks (Google/ChatGPT/etc. icons) |
+| `src/routes.tsx` | Code-split pages + preload before first render |
+| `scripts/prerender.mjs` | Prerenders every page, critical CSS, sitemap |
 | `src/index.css` | Colour tokens (RGB triples on `:root`) and the `.accent-ink` heading accent |
 | `wordpress/` | WordPress theme source (PHP + style.css). `scripts/build-wp-theme.mjs` packages it |
 | `public/` | Images, avatars, sitemap |
@@ -76,11 +97,12 @@ npx tsc --noEmit   # typecheck (no test suite, no linter configured)
 
 | Commit | Round |
 | --- | --- |
+| (this round) | Technical SEO: prerendering, per-page head tags, real 404s, sitemap/robots in the theme, smoke → image, code splitting, critical CSS |
 | `708d997` | Round 3: Outreachr rebrand, hero WebGL smoke, Shift previews + sourced data, 4-service section, personas sketches, booking popup, About rewrite, Digital PR fan restored |
 | `729d237` | Round 2: About, Results + 3 case studies, Contact, Blog, Pricing |
 | `260577c` | Service pages redesign (Digital PR, Brand Mentions, Expert Quotes) |
 
-Technical SEO: `TECHNICAL-SEO-AUDIT.md` (findings + plan, not yet implemented).
+Technical SEO: `TECHNICAL-SEO-AUDIT.md` (findings, what was fixed, before/after scores).
 Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 `SERVICE-PAGES-REDESIGN.md`, `HOMEPAGE-PLAN.md`, `BRAND.md`, `PROJECT.md`
 (conventions and traps), `HOSTING.md` (deployment).
@@ -103,7 +125,8 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 - Email `contact@talhamahmood.com` (used in Contact, common.tsx, Footer,
   HomeCTA, FAQ, Hero, BookingModal) and the site URL in `index.html` JSON-LD.
 - Case studies, reviews, press clippings, client figures: samples.
-- `YOURDOMAIN.com` in `public/sitemap.xml`.
+- Static hosting only: build with `SITE_URL=https://yourdomain.com npm run build`
+  (WordPress fills in the domain itself).
 
 ## 9. Gotchas
 
@@ -113,5 +136,8 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
   (`/[0.12]`).
 - `.accent-ink` text is transparent with a gradient clip, so contrast checkers
   report it as 1:1 — false positive.
-- The intro curtain (`LogoReveal`) plays once per browser session.
-- The smoke plume needs WebGL; without it the hero falls back to grain blobs.
+- The hero smoke is a still image (`public/images/hero-smoke.webp`), centred
+  so it meets the rocket's nozzle; the rocket sits at `left-[calc(50%+361px)]`.
+  Move one, move the other.
+- Code that must behave differently in the prerender can check
+  `window.__PRERENDER__` (the About manifesto does).

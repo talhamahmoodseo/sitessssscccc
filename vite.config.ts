@@ -24,8 +24,14 @@ export default defineConfig({
     outDir: "dist",
     rollupOptions: {
       output: {
-        entryFileNames: "assets/app.js",
-        chunkFileNames: "assets/[name].js",
+        // hashed: page chunks import the entry by this exact name, so it must not
+        // need a ?ver= query to bust caches (that would load it twice)
+        entryFileNames: "assets/app-[hash].js",
+        // hashed so a redeploy never serves a stale page chunk
+        chunkFileNames: "assets/[name]-[hash].js",
+        // one shared icon chunk instead of a dozen tiny per-icon files
+        manualChunks: (id) =>
+          id.includes("node_modules/lucide-react") ? "icons" : undefined,
         assetFileNames: (info) =>
           info.name && /\.css$/.test(info.name)
             ? "assets/app.css"

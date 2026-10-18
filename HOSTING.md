@@ -77,22 +77,29 @@ Hostinger's LiteSpeed cache will serve the old page otherwise:
 Re-run `npm run build:wp` and upload the new zip. WordPress will notice the
 theme already exists — choose *Replace current with uploaded*.
 
-A normal content or design edit only changes `assets/`, so you can also skip
-the upload screen entirely: in File Manager, replace
-`wp-content/themes/talha-site/assets/` with the new one.
+Content edits change `assets/` **and** `prerender/` (the prerendered pages),
+so always upload the whole new zip rather than swapping single folders.
 
 Either way, purge the cache afterwards.
 
 ### Things that will break it
 
-- **JS optimisation plugins.** The bundle is an ES module. Any plugin that
-  combines, defers, or minifies it again (LiteSpeed Cache, Autoptimize,
-  WP Rocket, Jetpack Boost) will stop it from running. In LiteSpeed Cache turn
-  off *Page Optimization → JS Combine* and *JS Defer*, or add `app.js` to the
-  JS excludes list.
+- **JS optimisation in LiteSpeed Cache (Hostinger installs it).** Keep the
+  plugin for page caching, but in *LiteSpeed Cache → Page Optimization* turn
+  **off** *JS Minify*, *JS Combine*, *JS Defer/Delay* and *CSS Combine*, and
+  *Load CSS Asynchronously* (the theme already inlines critical CSS). These
+  rewrite the ES-module bundle and stop it running. Leave compression (gzip /
+  Brotli) **on**. Same goes for Autoptimize, WP Rocket, Jetpack Boost.
+- **An SEO plugin (Yoast, Rank Math, AIOSEO).** Not needed: the theme already
+  outputs each page's title, description, canonical, social tags, schema,
+  `/sitemap.xml` and `/robots.txt`. A plugin would add a second, conflicting
+  set. If a WordPress blog is ever added, connect the two properly first.
+- **"Discourage search engines" ticked** (*Settings → Reading*). Hostinger
+  sometimes ticks it on new installs. Untick it before launch, or Google is
+  told to stay away.
 - **Expecting WordPress pages to appear.** While this theme is active every URL
-  renders the React app. WordPress posts and pages will not show. If you want
-  a WordPress blog alongside it, use Option C instead.
+  renders the prerendered React page for that path. WordPress posts and pages
+  will not show. If you want a WordPress blog alongside it, use Option C.
 - **A re-zipped or nested archive.** `style.css` must sit at `talha-site/style.css`
   inside the zip, with forward slashes. Use the zip `npm run build:wp` produces.
   See the warning in step 1.
@@ -169,8 +176,10 @@ npm run build -- --base=/site/
 </script>
 ```
 
-3. In `public/.htaccess`, change `RewriteBase /` to `RewriteBase /site/` and
-   `RewriteRule . /index.html [L]` to `RewriteRule . /site/index.html [L]`.
+3. In `public/.htaccess`, change `RewriteBase /` to `RewriteBase /site/`, the
+   two rewrite targets `/$1` to `/site/$1`, and `ErrorDocument 404 /404.html`
+   to `/site/404.html`. Note: prerendered links point at `/…` paths, so a
+   subfolder install also needs the links rebased — root installs are simpler.
 
 Then upload `dist/` into `public_html/site/`. WordPress's own `.htaccess` at
 the root skips requests that resolve to a real directory, so it will leave
@@ -180,14 +189,14 @@ the root skips requests that resolve to a real directory, so it will leave
 
 ## Troubleshooting
 
-**Blank white page.** Open the browser console (F12). A 404 on
-`assets/app.js` means the upload path is wrong or the base path does not match
+**Page shows but nothing animates / menus don't open.** Open the browser
+console (F12). A 404 on `assets/app-….js` means the upload path is wrong or the base path does not match
 where the files sit. A syntax error usually means a caching or optimisation
 plugin rewrote the module — see the warning in Option A.
 
-**Home page works, other pages 404.** The rewrite is not active. Option A:
-re-save Permalinks. Options B/C: `.htaccess` is missing (it is a hidden file)
-or `RewriteBase` does not match the folder.
+**Home page works, other pages 404.** Option A: re-save Permalinks
+(*Settings → Permalinks → Save Changes*). Options B/C: `.htaccess` is missing
+(it is a hidden file) or `RewriteBase` does not match the folder.
 
 **Fonts look wrong / text falls back to Arial.** The `.woff2` files did not
 upload, or the server does not know the type. The shipped `.htaccess` declares

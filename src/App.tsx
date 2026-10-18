@@ -1,154 +1,46 @@
-import { useEffect, useState } from "react";
+import { MotionConfig } from "motion/react";
 import { Routes, Route } from "react-router-dom";
-import { AnimatePresence, MotionConfig, motion } from "motion/react";
 
-import { Seo, ScrollProgress, ScrollToTop } from "./components/MotionKit";
-import LogoReveal from "./components/LogoReveal";
+import { ScrollProgress, ScrollToTop } from "./components/MotionKit";
 import BookingModal from "./components/BookingModal";
-import Navigation from "./components/Navigation";
+import {
+  About,
+  Blog,
+  BlogPost,
+  CaseStudies,
+  CaseStudy,
+  Contact,
+  Home,
+  NotFound,
+  Pricing,
+  ServicePage,
+  Services,
+} from "./routes";
 
-import Hero from "./sections/Hero";
-import ClientLogos from "./sections/ClientLogos";
-import TheShift from "./sections/TheShift";
-import ServicesSection from "./sections/Services";
-import Results from "./sections/Results";
-import Personas from "./sections/Personas";
-import Process from "./sections/Process";
-import ProofGrid from "./sections/ProofGrid";
-import { FeaturedReview, ReviewWall } from "./sections/Testimonials";
-import BlogPreview from "./sections/BlogPreview";
-import FAQ from "./sections/FAQ";
-import HomeCTA from "./sections/HomeCTA";
-import Footer from "./sections/Footer";
-
-import About from "./pages/About";
-import Services from "./pages/Services";
-import ServicePage from "./pages/ServicePage";
-import CaseStudies from "./pages/CaseStudies";
-import CaseStudy from "./pages/CaseStudy";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Contact from "./pages/Contact";
-import Pricing from "./pages/Pricing";
-
-const Home = () => (
-  <>
-    <Seo
-      title="Link Building & AI Visibility Agency"
-      description="A link building and digital PR agency. Editorial backlinks, PR and brand mentions that move Google rankings and get you cited in AI answers."
-    />
-
-    <Navigation />
-
-    <main>
-      <section id="hero">
-        <Hero />
-      </section>
-
-      <ClientLogos />
-
-      <section id="shift">
-        <TheShift />
-      </section>
-
-      <section id="services">
-        <ServicesSection />
-      </section>
-
-      <section id="review">
-        <FeaturedReview />
-      </section>
-
-      <section id="results">
-        <Results />
-      </section>
-
-      <section id="personas">
-        <Personas />
-      </section>
-
-      <section id="process">
-        <Process />
-      </section>
-
-      <section id="proof">
-        <ProofGrid />
-      </section>
-
-      <section id="testimonials">
-        <ReviewWall />
-      </section>
-
-      <section id="blog">
-        <BlogPreview />
-      </section>
-
-      <section id="faq">
-        <FAQ />
-      </section>
-
-      <section id="contact">
-        <HomeCTA />
-      </section>
-
-      <section id="footer">
-        <Footer />
-      </section>
-    </main>
-  </>
-);
-
+/**
+ * Pages are code-split (see routes.tsx): each URL downloads only its own page.
+ * The intro curtain was removed in the SEO round because it held back the
+ * first paint by ~1.3s.
+ */
 export default function App() {
-  // the logo intro plays once per visit, not on every page load
-  const [loading, setLoading] = useState(() => {
-    try {
-      return !sessionStorage.getItem("or-intro");
-    } catch {
-      return false;
-    }
-  });
-
-  useEffect(() => {
-    if (!loading) return;
-    const t = setTimeout(() => {
-      setLoading(false);
-      try {
-        sessionStorage.setItem("or-intro", "1");
-      } catch {
-        /* storage blocked: the intro simply plays again next time */
-      }
-    }, 1300);
-    return () => clearTimeout(t);
-  }, [loading]);
-
   return (
     <MotionConfig reducedMotion="user">
-      <AnimatePresence mode="wait">
-        {loading && <LogoReveal key="loader" />}
-      </AnimatePresence>
-
-      <motion.div
-        initial={{ opacity: loading ? 0 : 1 }}
-        animate={{ opacity: loading ? 0 : 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <ScrollToTop />
-        <ScrollProgress />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/:slug" element={<ServicePage />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/case-studies/:slug" element={<CaseStudy />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-        <BookingModal />
-      </motion.div>
+      <ScrollToTop />
+      <ScrollProgress />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServicePage />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/case-studies/:slug" element={<CaseStudy />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <BookingModal />
     </MotionConfig>
   );
 }

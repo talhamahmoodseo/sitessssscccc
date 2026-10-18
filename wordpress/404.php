@@ -1,6 +1,6 @@
 <?php
 /**
- * A URL WordPress does not know is almost always a client-side route, so serve
- * the app shell. functions.php has already rewritten the status to 200.
+ * WordPress routes URLs it doesn't know here. index.php serves the right page
+ * (or the not-found page with a 404 status — see tm_route in functions.php).
  */
 require get_template_directory() . '/index.php';

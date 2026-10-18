@@ -2,8 +2,5 @@
   command = "npm run build"
   publish = "dist"
 
-# client-side routing: every path must serve the SPA shell
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Every page is prerendered to <path>/index.html, so no SPA rewrite is needed.
+# Unknown URLs get dist/404.html with a real 404 status.

@@ -8,12 +8,15 @@ import Footer from "../sections/Footer";
 const PageLayout = ({
   children,
   cta = true,
+  navOnDark = false,
 }: {
   children: ReactNode;
   cta?: boolean;
+  /** the page opens on a dark hero */
+  navOnDark?: boolean;
 }) => (
   <>
-    <Navigation />
+    <Navigation onDark={navOnDark} />
     <main>{children}</main>
     {cta && <CTABand />}
     <section id="footer">
