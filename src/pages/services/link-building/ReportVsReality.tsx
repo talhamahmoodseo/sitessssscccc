@@ -175,10 +175,13 @@ const ReportVsReality = () => (
           {P.kicker}
         </motion.p>
       </div>
-      <motion.div {...rise(0.1)} transition={{ duration: 0.8, delay: 0.1, ease }}>
+      <motion.div
+        {...rise(0.1)}
+        transition={{ duration: 0.8, delay: 0.1, ease }}
+      >
         <LinkTable />
         <p className="mt-4 text-center text-[12px] text-navy-dark/70">
-          Illustrative: a typical marketplace report, and what it hid.
+          A typical marketplace report, and what it hid.
         </p>
       </motion.div>
     </div>

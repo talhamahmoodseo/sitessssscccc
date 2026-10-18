@@ -19,7 +19,7 @@ const SERVICE_SCHEMA = {
   areaServed: ["US", "GB", "AE", "SA"],
   offers: {
     "@type": "Offer",
-    price: "4997",
+    price: "2497",
     priceCurrency: "USD",
     description: "Starting monthly price for the full PR programme",
   },

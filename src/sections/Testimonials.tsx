@@ -200,11 +200,11 @@ export const ReviewWall = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
-            Client reviews
+            Testimonials
           </p>
           <h2 className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-white sm:text-[2.6rem]">
-            {"What our clients "}
-            <span className="text-white/65">say about the work</span>
+            {"Trusted by teams who "}
+            <span className="text-white/65">answer for the numbers</span>
           </h2>
         </motion.div>
         <div

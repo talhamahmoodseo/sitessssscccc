@@ -1,24 +1,22 @@
 /**
- * Copy for /about. Plan: PAGES-REDESIGN-2.md §1 (content rewritten in round 3).
- *
- * Outreachr in its own voice: who we are, what we believe, how the team works
- * and what makes us different. No marketplace history, no founder framing.
- * Figures in `numbers` need confirming before launch; the hero tiles are
- * sample results (the same samples the case studies use).
+ * Copy for /about. Rewritten in round 5: short, credible, every section with
+ * one job. Who we are → the numbers → what we specialise in → how we work →
+ * why clients trust us → a client's words → where to go next.
+ * Figures in `numbers` need confirming before launch.
  */
 
 export const about = {
   seo: {
     title: "About Outreachr: Link Building & Digital PR Agency",
     description:
-      "Outreachr is a link building and digital PR agency. We place brands on publications their buyers read, so they rank in Google and get named in AI answers.",
+      "Outreachr is a link building and digital PR agency. We earn placements on publications your buyers read, so you rank on Google and get recommended in AI answers.",
   },
 
   hero: {
     eyebrow: "About Outreachr",
-    h1a: "We earn brands a place",
-    h1b: "on the sites that matter.",
-    lead: "Outreachr is a link building and digital PR agency. We get brands onto real publications their buyers already read. That’s what moves rankings in Google, and it’s what gets them named when someone asks AI for a recommendation.",
+    h1a: "We build the authority",
+    h1b: "that gets brands found.",
+    lead: "Outreachr is a link building and digital PR agency for SaaS, e-commerce and service brands, and the agencies that serve them. We earn placements on publications your buyers read, so you rank on Google and get recommended in AI answers.",
     primary: "Book a call",
     secondary: "See our results",
     // value, label, sector, tint, position (desktop), depth (0 = sharp)
@@ -77,45 +75,10 @@ export const about = {
   story: {
     eyebrow: "Who we are",
     lines: [
-      "Outreachr started with a simple frustration. Most link building is sold by the spreadsheet.",
-      "A list of domains, a DR score next to each one, and a report that counts links instead of results.",
-      "We built the agency the other way round. Real relationships with editors and site owners first. Every site checked by hand. Results reported in numbers you can verify.",
-      "Then search changed. People still Google, but now they also ask ChatGPT. And both lean on the same trusted publications.",
-      "So our job is simple to describe and hard to do: get you onto the sites that matter, and show you what it moved.",
+      "We started Outreachr because most link building is sold by the spreadsheet: a list of domains, a DR score next to each, and little proof any of it worked.",
+      "We built ours the other way round. Direct relationships with editors, every site checked by hand, and reporting tied to rankings, traffic and AI visibility.",
+      "Today our specialist team runs campaigns for brands and agencies across the US, UK, Europe and the Gulf.",
     ],
-  },
-
-  beliefs: {
-    eyebrow: "What we believe",
-    h2a: "Four things we believe.",
-    h2b: "They shape every campaign.",
-    items: [
-      {
-        n: "01",
-        t: "A link is only as good as the site’s readers.",
-        d: "If nobody reads a site, Google stops trusting it and AI tools never quote it. We judge a site by its audience, not by its DR.",
-        tint: "bg-butter",
-      },
-      {
-        n: "02",
-        t: "Being talked about now counts as much as being linked.",
-        d: "AI answers lean on which brands get mentioned in trusted places, link or no link. So we plan for both.",
-        tint: "bg-mint",
-      },
-      {
-        n: "03",
-        t: "Fewer, better placements win.",
-        d: "Ten links from sites with real readers will beat fifty from sites without them. We’d rather send a shorter report that moved something.",
-        tint: "bg-lilac",
-      },
-      {
-        n: "04",
-        t: "You should be able to check everything.",
-        d: "Every placement comes with the live URL, the site’s numbers and the reason we picked it. Nothing hides behind a dashboard login.",
-        tint: "bg-blush",
-      },
-    ],
-    rule: "One rule hasn’t changed since day one: no client link goes on a site nobody on our team has checked by hand.",
   },
 
   numbers: [
@@ -125,103 +88,86 @@ export const about = {
     { v: "8", l: "countries" },
   ],
 
+  focus: {
+    eyebrow: "What we specialise in",
+    h2a: "Off-page authority.",
+    h2b: "Nothing else.",
+    lead: "We don't do ads, web design or on-page SEO. We do the work that happens on other people's websites, and we do it well.",
+    items: [
+      {
+        to: "/services/link-building",
+        t: "Link Building",
+        d: "Editorial links on relevant sites with real readers.",
+      },
+      {
+        to: "/services/digital-pr",
+        t: "Digital PR",
+        d: "Stories that earn coverage on news and trade publications.",
+      },
+      {
+        to: "/services/brand-mentions",
+        t: "Brand Mentions",
+        d: "Mentions on the sources AI answers quote.",
+      },
+      {
+        to: "/services/haro-links",
+        t: "HARO & Expert Quotes",
+        d: "Your experts quoted by journalists.",
+      },
+    ],
+  },
+
+  beliefs: {
+    eyebrow: "How we work",
+    h2a: "Our approach.",
+    h2b: "Four principles on every campaign.",
+    items: [
+      {
+        n: "01",
+        t: "Relevance before metrics.",
+        d: "A link from a site in your industry, read by your buyers, beats a higher DR from anywhere else.",
+        tint: "bg-butter",
+      },
+      {
+        n: "02",
+        t: "Every site checked by hand.",
+        d: "Eight checks before a site gets near your link, starting with relevance. About one in five fails.",
+        tint: "bg-mint",
+      },
+      {
+        n: "03",
+        t: "Built for Google and AI search.",
+        d: "We plan links and mentions on the sources that rank you and the sources AI answers quote.",
+        tint: "bg-lilac",
+      },
+      {
+        n: "04",
+        t: "Results you can verify.",
+        d: "Live URLs, indexing, rankings and AI visibility in every monthly report.",
+        tint: "bg-blush",
+      },
+    ],
+  },
+
   apart: {
-    eyebrow: "Why clients choose us",
-    h2a: "What makes us",
-    h2b: "different",
+    eyebrow: "Why clients trust us",
+    h2a: "Why brands",
+    h2b: "trust us",
     items: [
       {
         icon: "network",
         t: "Our own publisher network",
-        d: "We work directly with more than 800 editors and site owners. No marketplace lists, and nobody in the middle adding a markup.",
+        d: "We work directly with more than 800 editors and site owners. No marketplaces, no resellers, no markup on someone else's list.",
       },
       {
         icon: "check",
-        t: "Checked by hand, every time",
-        d: "Traffic, the keywords behind it, the trend, the audience and the outbound links. Roughly one in five sites we look at doesn’t make it.",
+        t: "A protected investment",
+        d: "Every link is monitored for 12 months. If a publisher removes or changes it, we replace it at no cost.",
       },
       {
         icon: "chart",
-        t: "Built for Google and AI answers",
-        d: "Links that move rankings, and mentions on the sources AI tools quote. One plan, reported in one place every month.",
-      },
-    ],
-  },
-
-  team: {
-    eyebrow: "How the team works",
-    h2a: "Five specialist teams.",
-    h2b: "One strategist you deal with.",
-    lead: "Every account runs through the same five teams. Your strategist is your single point of contact, and keeps everything else moving.",
-    desks: [
-      {
-        icon: "compass",
-        t: "Strategy",
-        d: "Audits your site and competitors, picks the target pages and plans each month.",
-        hands: "Your plan and target pages",
-      },
-      {
-        icon: "shield",
-        t: "Site vetting",
-        d: "Checks every publication by hand before it reaches a shortlist, and turns down about one in five.",
-        hands: "A shortlist worth using",
-      },
-      {
-        icon: "handshake",
-        t: "Publisher relations",
-        d: "Looks after our editors and site owners, and opens new ones in your niche.",
-        hands: "Access to the right sites",
-      },
-      {
-        icon: "pen",
-        t: "Editorial",
-        d: "Writes the articles, pitches and quotes to each publication’s standard, in your voice.",
-        hands: "Content editors accept",
-      },
-      {
-        icon: "chart",
-        t: "Reporting",
-        d: "Confirms every link is live and indexed, tracks rankings and AI mentions, and writes the report.",
-        hands: "One clear monthly report",
-      },
-    ],
-    base: {
-      t: "Where we work",
-      d: "Our team is based in Faisalabad, Pakistan. Our working day overlaps with the UK, Europe and the Gulf, and US clients hear back within one working day.",
-      markets: [
-        "United States",
-        "United Kingdom",
-        "Europe",
-        "UAE & Saudi Arabia",
-      ],
-    },
-  },
-
-  wont: {
-    eyebrow: "Where we draw the line",
-    h2a: "Five things",
-    h2b: "we won’t do.",
-    lead: "However big the budget. Now and then they cost us a deal. They’re also why clients stay.",
-    items: [
-      {
-        t: "Resell marketplace inventory",
-        d: "If we can’t reach the editor or owner directly, the site isn’t in our network.",
-      },
-      {
-        t: "Guarantee rankings or AI citations",
-        d: "Nobody controls Google or ChatGPT. We give ranges we can back up and report what actually happened.",
-      },
-      {
-        t: "Use PBNs or link farms",
-        d: "A site that exists only to sell links doesn’t get used, whatever its DR.",
-      },
-      {
-        t: "Take gambling, adult or payday work",
-        d: "Our publishers won’t touch it, and we won’t risk the network for one account.",
-      },
-      {
-        t: "Sell you links you don’t need",
-        d: "If your pages aren’t ready for links yet, the audit shows it before you spend anything.",
+        t: "Complete transparency",
+        d: "You see every site, every placement and every result. The reports and the links are yours to keep.",
       },
     ],
   },
@@ -238,19 +184,19 @@ export const about = {
       {
         to: "/case-studies",
         t: "See the results",
-        d: "Three projects in full: the challenge, the work, every placement and what changed.",
+        d: "Projects in full: the challenge, the work, every placement and what changed.",
         cta: "Read the case studies",
       },
       {
-        to: "/services",
-        t: "What we do",
+        to: "/#services",
+        t: "Our solutions",
         d: "Link building, digital PR, brand mentions for AI search, and expert quotes.",
-        cta: "See our services",
+        cta: "See our solutions",
       },
       {
         to: "/pricing",
         t: "What it costs",
-        d: "Starting prices for every plan, and what changes the number.",
+        d: "A $497 pilot, then monthly plans with exact placement counts.",
         cta: "See pricing",
       },
     ],

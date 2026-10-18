@@ -17,19 +17,36 @@ import { ServiceFaq } from "./services/common";
  * 12 months of link monitoring with free replacement.
  */
 
+/**
+ * The ladder: a one-off pilot, then three monthly plans with exact counts.
+ * Placement minimums: DR 40+ and 1,000+ organic visits a month, every site
+ * through the 8-Point Site Check.
+ */
+const PILOT = {
+  price: "$497",
+  includes: [
+    "3 vetted placements, DR 40+",
+    "1,000+ organic visits a month on each site",
+    "Content written for you",
+    "Site-vetting report for every placement",
+  ],
+};
+
 const TIERS = [
   {
     id: "starter",
     name: "Starter",
-    tag: "Testing the water",
-    price: "$997",
-    blurb: "For one site that needs steady, safe authority.",
+    tag: "First campaign",
+    price: "$597",
+    from: false,
+    blurb: "Steady, safe authority for one site and a few key pages.",
     cta: "Start with Starter",
     featured: false,
     includes: [
-      "4–6 editorial placements a month",
-      "DR 40–60 publications",
-      "Every site checked by hand",
+      "3 editorial placements a month",
+      "DR 40+, 1,000+ organic visits a month",
+      "Every site through the 8-Point Site Check",
+      "Content written for you",
       "Indexation checks and 12-month link monitoring",
       "Monthly report with live URLs",
     ],
@@ -38,33 +55,34 @@ const TIERS = [
     id: "growth",
     name: "Growth",
     tag: "Most chosen",
-    price: "$2,497",
-    blurb: "Links, expert quotes and AI mentions running as one campaign.",
+    price: "$997",
+    from: false,
+    blurb: "Links and expert quotes running as one campaign.",
     cta: "Start with Growth",
     featured: true,
     includes: [
-      "10–14 placements a month",
-      "DR 50–75 publications",
+      "6 editorial placements a month",
+      "2 of them DR 60+",
       "HARO and expert quotes included",
-      "Brand mentions for AI answers",
-      "AI visibility tracking",
       "Anchor and target-page strategy",
+      "Keyword and AI visibility tracking",
       "A senior strategist on every call",
     ],
   },
   {
     id: "authority",
     name: "Authority",
-    tag: "Category leaders",
-    price: "$4,997",
-    blurb: "Full pace for competitive niches and multi-market brands.",
+    tag: "Custom",
+    price: "$2,497",
+    from: true,
+    blurb: "Links, digital PR and brand mentions for competitive markets.",
     cta: "Talk about Authority",
     featured: false,
     includes: [
-      "20+ placements a month",
-      "DR 60–80, Gulf business press included",
-      "Full digital PR programme",
-      "Multi-site and multi-market support",
+      "12+ placements a month, DR 50–80",
+      "Digital PR campaigns",
+      "Brand mentions for AI answers",
+      "Gulf and international press",
       "Competitor gap monitoring",
       "Slack channel and weekly check-ins",
     ],
@@ -76,14 +94,14 @@ const BY_SERVICE = [
     to: "/services/link-building",
     t: "Link Building",
     d: "Editorial guest posts, niche edits and authority placements.",
-    from: "$997",
-    where: "Every plan",
+    from: "$597",
+    where: "Every plan, or a $497 pilot",
   },
   {
     to: "/services/haro-links",
     t: "HARO & Expert Quotes",
     d: "Your experts quoted in stories that are already being written.",
-    from: "$2,497",
+    from: "$997",
     where:
       "Growth and Authority. Quotes-only is scoped on delivered placements.",
   },
@@ -92,21 +110,21 @@ const BY_SERVICE = [
     t: "Brand Mentions & AI visibility",
     d: "Mentions on the sources AI answers trust, tracked every month.",
     from: "$2,497",
-    where: "Growth and Authority",
+    where: "Authority, or added to Growth",
   },
   {
     to: "/services/digital-pr",
     t: "Digital PR",
     d: "Story-led campaigns on business and trade publications.",
-    from: "$4,997",
+    from: "$2,497",
     where: "Authority. Single campaigns quoted on a call.",
   },
   {
     to: "/contact",
     t: "White label for agencies",
-    d: "Any of the above under your brand, with volume pricing.",
-    from: "Custom",
-    where: "Quoted per client volume",
+    d: "Any of the above under your brand. Single placements from $149.",
+    from: "$149",
+    where: "Per placement, or volume pricing per client",
   },
 ];
 
@@ -118,8 +136,19 @@ const COMPARE: {
   {
     group: "Placements",
     rows: [
-      { label: "Editorial placements a month", s: "4–6", g: "10–14", a: "20+" },
-      { label: "Authority range", s: "DR 40–60", g: "DR 50–75", a: "DR 60–80" },
+      { label: "Editorial placements a month", s: "3", g: "6", a: "12+" },
+      {
+        label: "Authority",
+        s: "DR 40+",
+        g: "DR 40+, 2 at DR 60+",
+        a: "DR 50–80",
+      },
+      {
+        label: "Minimum organic traffic per site",
+        s: "1,000+ / mo",
+        g: "1,000+ / mo",
+        a: "1,000+ / mo",
+      },
       { label: "Every site checked by hand", s: true, g: true, a: true },
       { label: "Indexation checks", s: true, g: true, a: true },
       {
@@ -134,7 +163,12 @@ const COMPARE: {
     group: "Services",
     rows: [
       { label: "HARO and expert quotes", s: false, g: true, a: true },
-      { label: "Brand mentions for AI answers", s: false, g: true, a: true },
+      {
+        label: "Brand mentions for AI answers",
+        s: false,
+        g: "Add-on",
+        a: true,
+      },
       { label: "Digital PR campaigns", s: false, g: "On request", a: true },
       {
         label: "Gulf and international press",
@@ -179,7 +213,7 @@ const INCLUDED = [
   },
   {
     t: "Every site checked by hand",
-    d: "Real traffic, the keywords behind it, a steady graph and clean outbound links. About one in five fails.",
+    d: "Relevance first, then real traffic, keywords, trend, audience, authority, indexing and editorial standards. About one in five fails.",
   },
   {
     t: "12 months of link monitoring",
@@ -221,6 +255,10 @@ const DRIVERS = [
 
 const FAQS = [
   {
+    q: "Can we try you before committing to a plan?",
+    a: "Yes. The $497 pilot gets you three vetted placements (DR 40+, 1,000+ organic visits a month) and the vetting report for each site. If you continue, we credit it to your first month.",
+  },
+  {
     q: "Is there a contract or lock-in?",
     a: "No. Plans run month to month. We suggest giving it three months, because links take a few weeks to index and pages take time to move, but you’re free to stop at any point.",
   },
@@ -230,7 +268,7 @@ const FAQS = [
   },
   {
     q: "Do you charge per link or per month?",
-    a: "Per month, with a placement range rather than a hard count, because a DR 72 feature and a DR 45 guest post are not the same amount of work. The range is what we commit to; the report shows what landed.",
+    a: "Per month, with an exact number of placements in every plan. Agencies can also buy single placements from $149. Bigger PR and brand-mention work is quoted to scope.",
   },
   {
     q: "What happens if a link disappears?",
@@ -312,13 +350,57 @@ const Pricing = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
           >
-            Every plan starts from the price below. The final number depends on
-            the sites, the volume and your niche, and we confirm it on a short
-            call before you pay anything.
+            Start with a one-off pilot, then pick a monthly plan. Every plan
+            states exactly how many placements you get, and every site meets the
+            same minimums.
           </motion.p>
         </div>
 
-        <div className="mt-14 grid items-stretch gap-4 lg:grid-cols-3">
+        {/* the pilot: the low-risk first step */}
+        <motion.div
+          className="mt-14 grid gap-6 rounded-[24px] bg-[rgb(var(--mark)/0.12)] p-7 ring-1 ring-mark/40 sm:p-8 lg:grid-cols-[1fr_1.3fr_auto] lg:items-center lg:gap-10"
+          initial={{ opacity: 0, y: 26 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.22, ease }}
+        >
+          <div>
+            <span className="rounded-full bg-mark px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-dark">
+              Start here
+            </span>
+            <h2 className="mt-4 text-[22px] font-semibold tracking-[-0.02em] text-white">
+              Pilot
+            </h2>
+            <p className="mt-1 flex items-baseline gap-2">
+              <span className="text-[2.6rem] font-semibold leading-none tracking-[-0.045em] text-white tabular-nums">
+                {PILOT.price}
+              </span>
+              <span className="text-[14px] text-white/70">one-time</span>
+            </p>
+            <p className="mt-2 text-[13.5px] text-white/75">
+              Credited to your first month if you continue.
+            </p>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {PILOT.includes.map((x) => (
+              <li
+                key={x}
+                className="flex gap-2.5 text-[14.5px] leading-snug text-white/85"
+              >
+                <Check className="mt-0.5 h-4 w-4 flex-none text-mark" />
+                {x}
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={openBooking}
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-[14.5px] font-semibold text-navy-dark transition-colors hover:bg-mark"
+          >
+            Start a pilot
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </button>
+        </motion.div>
+
+        <div className="mt-4 grid items-stretch gap-4 lg:grid-cols-3">
           {TIERS.map((t, i) => (
             <motion.div
               key={t.id}
@@ -351,11 +433,13 @@ const Pricing = () => (
                 {t.blurb}
               </p>
               <p className="mt-6 flex items-baseline gap-2">
-                <span
-                  className={`text-[13px] ${t.featured ? "text-navy-dark/70" : "text-white/70"}`}
-                >
-                  from
-                </span>
+                {t.from && (
+                  <span
+                    className={`text-[13px] ${t.featured ? "text-navy-dark/70" : "text-white/70"}`}
+                  >
+                    from
+                  </span>
+                )}
                 <span className="text-[3rem] font-semibold leading-none tracking-[-0.045em] tabular-nums">
                   {t.price}
                 </span>
@@ -402,7 +486,7 @@ const Pricing = () => (
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           Every plan: month to month · no setup fee · 12 months of link
-          monitoring
+          monitoring · agencies: single placements from $149
         </motion.p>
       </div>
     </section>
@@ -624,10 +708,7 @@ const Pricing = () => (
           surprises on an invoice since.”
         </blockquote>
         <figcaption className="mt-6 text-[14px] text-navy-dark/70">
-          Marketing Manager, e-commerce brand ·{" "}
-          <span className="font-semibold uppercase tracking-[0.1em] text-[11.5px]">
-            Sample quote
-          </span>
+          Marketing Manager, e-commerce brand
         </figcaption>
       </motion.figure>
     </section>

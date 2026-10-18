@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { Check, Mail, X } from "lucide-react";
 import { haroQuotes as C } from "../content/haroQuotes";
 import { CARD, Eyebrow, H2, Soft, ease, rise } from "../kit";
-import { SampleNote } from "../common";
 
 /**
  * The craft, side by side: the reply a journalist deletes against the one
@@ -123,9 +122,6 @@ const TwoReplies = () => {
             </ul>
           </motion.div>
         </div>
-        <SampleNote className="mt-8 text-center">
-          Sample request and replies
-        </SampleNote>
       </div>
     </section>
   );

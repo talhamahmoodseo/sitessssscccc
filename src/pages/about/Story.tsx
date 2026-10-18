@@ -111,13 +111,6 @@ export const Beliefs = () => {
             </motion.li>
           ))}
         </ol>
-
-        <motion.p
-          className="mt-5 rounded-2xl bg-navy-dark px-6 py-5 text-[16px] font-semibold text-white sm:px-8"
-          {...rise(0.1)}
-        >
-          {B.rule}
-        </motion.p>
       </div>
     </section>
   );

@@ -27,7 +27,17 @@ export const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (!hash) window.scrollTo(0, 0);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    // links like /#services: scroll once the page has rendered
+    const t = setTimeout(() => {
+      document
+        .getElementById(hash.slice(1))
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 120);
+    return () => clearTimeout(t);
   }, [pathname, hash]);
 
   return null;

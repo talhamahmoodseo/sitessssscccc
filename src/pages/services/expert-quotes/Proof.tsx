@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { haroQuotes as C } from "../content/haroQuotes";
 import { Eyebrow, H2, Soft, rise } from "../kit";
-import { SampleNote } from "../common";
 
 /**
  * Every request from the engagement as one square: skipped, answered, or
@@ -110,9 +109,6 @@ const Proof = () => {
           <p className="mt-6 border-t border-line pt-5 text-[15px] leading-relaxed text-navy-dark/80">
             {P.takeaway}
           </p>
-          <SampleNote className="mt-5">
-            Sample figures until client sign-off
-          </SampleNote>
         </motion.div>
       </div>
     </section>

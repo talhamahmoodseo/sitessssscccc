@@ -15,7 +15,10 @@ const ArticleMock = ({ tab }: { tab: Tab }) => {
       <div className="flex items-center gap-2 border-b border-line px-4 py-3">
         <span className="flex gap-1.5" aria-hidden="true">
           {[0, 1, 2].map((n) => (
-            <span key={n} className="h-2.5 w-2.5 rounded-full bg-navy-dark/[0.12]" />
+            <span
+              key={n}
+              className="h-2.5 w-2.5 rounded-full bg-navy-dark/[0.12]"
+            />
           ))}
         </span>
         <span className="mx-auto inline-flex items-center gap-1.5 rounded-full bg-linen px-3.5 py-1 font-mono text-[11px] text-navy-dark/75">
@@ -78,7 +81,13 @@ const ArticleMock = ({ tab }: { tab: Tab }) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.9 }}
         >
-          <svg width="34" height="22" viewBox="0 0 34 22" fill="none" aria-hidden="true">
+          <svg
+            width="34"
+            height="22"
+            viewBox="0 0 34 22"
+            fill="none"
+            aria-hidden="true"
+          >
             <path
               d="M2 18 C 10 18, 20 14, 28 5"
               stroke="currentColor"
@@ -141,7 +150,11 @@ const LinkTypes = () => {
                     <motion.span
                       layoutId="lt-pill"
                       className="absolute inset-0 rounded-[18px] bg-navy-dark sm:rounded-full"
-                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 420,
+                        damping: 34,
+                      }}
                     />
                   )}
                   <span className="relative">{t.name}</span>

@@ -136,9 +136,11 @@ export const PricingStrip = () => {
                     </span>
                   </span>
                   <span className="flex items-baseline gap-1.5 text-right">
-                    <span className="hidden text-[12px] text-navy-dark/70 sm:inline">
-                      from
-                    </span>
+                    {n === 2 && (
+                      <span className="hidden text-[12px] text-navy-dark/70 sm:inline">
+                        from
+                      </span>
+                    )}
                     <span className="text-[1.9rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark tabular-nums">
                       {p.price}
                     </span>

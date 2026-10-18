@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { Check } from "lucide-react";
 import { brandMentions as C } from "../content/brandMentions";
 import { CARD, Eyebrow, H2, Soft, ease, rise } from "../kit";
-import { SampleNote } from "../common";
 import { EngineMark } from "./Engine";
 
 /* 2 = named and recommended, 1 = mentioned, 0 = not named */
@@ -173,9 +172,6 @@ const Report = () => {
               </ul>
             </div>
           </motion.div>
-          <SampleNote className="lg:col-start-2 lg:-mt-6">
-            Sample report
-          </SampleNote>
         </div>
       </div>
     </section>

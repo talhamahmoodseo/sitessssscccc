@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "How much does it cost, and do you guarantee results?",
-    a: "Plans start at $997 a month, and the final price depends on the services, volume and niche. We don't guarantee rankings or AI citations, because nobody honestly can. We do guarantee the work: the placements in your plan, indexation checks, and a free replacement if a link drops.",
+    a: "You can start with a $497 pilot (three vetted placements). Monthly plans start at $597, with an exact number of placements in each. We don't guarantee rankings or AI citations, because nobody honestly can. We do guarantee the work: the placements in your plan, indexation checks, and a free replacement if a link drops.",
   },
 ];
 

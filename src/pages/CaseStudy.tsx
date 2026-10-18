@@ -31,7 +31,7 @@ const CaseStudy = () => {
 
   return (
     <PageLayout>
-      <Seo title={`Case study (sample): ${c.card}`} description={c.summary} />
+      <Seo title={`Case study: ${c.card}`} description={c.summary} />
       <CaseHeader c={c} />
       <HeroChart c={c} />
       <div className="bg-white py-16 lg:py-24">

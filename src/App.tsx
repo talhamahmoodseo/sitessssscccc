@@ -1,5 +1,5 @@
 import { MotionConfig } from "motion/react";
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 
 import { ScrollProgress, ScrollToTop } from "./components/MotionKit";
 import BookingModal from "./components/BookingModal";
@@ -14,7 +14,6 @@ import {
   NotFound,
   Pricing,
   ServicePage,
-  Services,
 } from "./routes";
 
 /**
@@ -30,7 +29,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
+        {/* the old services index now lives on the homepage */}
+        <Route
+          path="/services"
+          element={<Navigate to="/#services" replace />}
+        />
         <Route path="/services/:slug" element={<ServicePage />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-studies/:slug" element={<CaseStudy />} />

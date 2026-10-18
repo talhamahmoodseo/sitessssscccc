@@ -17,11 +17,12 @@ const SERVICES = [
   "Not sure yet",
 ];
 
+/* matches the pricing ladder: pilot, Starter, Growth, Authority */
 const BUDGETS = [
-  "Under $1,000",
-  "$1,000–2,500",
-  "$2,500–5,000",
-  "$5,000+",
+  "Pilot ($497)",
+  "$597–997 / month",
+  "$1,000–2,500 / month",
+  "$2,500+ / month",
   "Not sure yet",
 ];
 
@@ -173,7 +174,7 @@ const ContactForm = () => {
         onChange={set("service")}
       />
       <ChipGroup
-        label="Monthly budget (optional)"
+        label="Budget"
         options={BUDGETS}
         value={f.budget}
         onChange={set("budget")}

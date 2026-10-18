@@ -126,14 +126,6 @@ const Hero = () => {
               {H.secondary}
             </Link>
           </motion.div>
-          <motion.p
-            className="mt-8 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-dark/70 lg:mt-24"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            Tiles show sample results
-          </motion.p>
         </div>
 
         {/* phones and tablets: the sharp tiles in a row instead of floating */}

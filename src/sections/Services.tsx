@@ -12,7 +12,7 @@ import { CARD, GlowPanel } from "@/pages/services/kit";
  * panel on the right shows the thing that service actually produces (a
  * placement, a clipping, an AI answer, a quote), in the same colours its own
  * page uses. On small screens the artefact opens under the chosen service.
- * Every artefact is a sample.
+ * The artefacts are examples of the format.
  */
 
 /* ------------------------------ the artefacts ------------------------------ */
@@ -221,7 +221,7 @@ const SERVICES: Service[] = [
     line: "Editorial links on sites with real readers.",
     d: "Guest posts and niche edits on publications we've checked by hand, aimed at the pages you need to rank.",
     points: [
-      "Every site checked for traffic, audience and outbound links",
+      "Every site passes an 8-point check, starting with relevance",
       "Articles written to each publication's standard",
       "Monitored for 12 months, replaced if a link drops",
     ],
@@ -313,7 +313,7 @@ const ServicesSection = () => {
         >
           <div>
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-dark/70">
-              What we do
+              Solutions
             </p>
             <h2 className="text-[2.3rem] font-semibold leading-[1.04] tracking-[-0.04em] text-navy-dark sm:text-[3.2rem]">
               Four services.
@@ -410,9 +410,6 @@ const ServicesSection = () => {
                     <cur.Art />
                   </motion.div>
                 </AnimatePresence>
-                <p className="absolute bottom-4 right-5 text-[11px] font-medium text-navy-dark/60">
-                  Sample
-                </p>
               </GlowPanel>
             </div>
           </div>

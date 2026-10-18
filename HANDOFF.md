@@ -70,7 +70,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | `src/lib/cases.ts` | The three sample case studies |
 | `src/lib/content.ts` | Blog posts and homepage results data |
 | `src/lib/booking.ts` | Calendly URL (placeholder) + `openBooking()` |
-| `src/components/` | Shared UI: Seo (all head tags), Logo, Navigation, BookingModal, Rocket, PersonaFigures (sketch illustrations), Accent (heading colour), PlatformMarks (Google/ChatGPT/etc. icons) |
+| `src/components/` | Shared UI: Seo (all head tags), Logo, Navigation, BookingModal, PersonaFigures (sketch illustrations), Accent (heading colour), PlatformMarks (Google/ChatGPT/etc. icons) |
 | `src/routes.tsx` | Code-split pages + preload before first render |
 | `scripts/prerender.mjs` | Prerenders every page, critical CSS, sitemap |
 | `src/index.css` | Colour tokens (RGB triples on `:root`) and the `.accent-ink` heading accent |
@@ -97,7 +97,8 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
-| (this round) | Technical SEO: prerendering, per-page head tags, real 404s, sitemap/robots in the theme, smoke → image, code splitting, critical CSS |
+| (round 5) | Campaign-view hero (rocket removed), Ahrefs/Semrush/Neil Patel data cards, 8-Point Site Check (relevance first) site-wide, real rejected sites (techbullion.com, dsnews.co.uk, entrepreneursbreak.com), pilot + new pricing ladder, Digital PR story rewrite, shorter About, services index removed, "sample" labels removed |
+| (round 4) | Technical SEO: prerendering, per-page head tags, real 404s, sitemap/robots in the theme, smoke → image, code splitting, critical CSS |
 | `708d997` | Round 3: Outreachr rebrand, hero WebGL smoke, Shift previews + sourced data, 4-service section, personas sketches, booking popup, About rewrite, Digital PR fan restored |
 | `729d237` | Round 2: About, Results + 3 case studies, Contact, Blog, Pricing |
 | `260577c` | Service pages redesign (Digital PR, Brand Mentions, Expert Quotes) |
@@ -109,17 +110,24 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 
 ## 7. Open work (owner's list, not done yet)
 
-- **Pricing strategy** — owner wants a lower-risk entry (pilot order around
-  $100–150 was floated), exact placement counts instead of ranges, and a
-  decision on public vs "from" prices. Current site: Starter $997 / Growth
-  $2,497 / Authority $4,997. Undecided.
-- **Hero demo** (`src/sections/Hero.tsx`, `SearchTheatre`) — weak: HVAC/Fresno
-  example, tiny labels. Proposed replacement: a "campaign view" product panel
-  showing placements going live and what they moved. Not approved yet.
+- **Pricing numbers** — structure approved and live: Pilot $497 (3 placements,
+  credited) → Starter $597/mo (3) → Growth $997/mo (6, 2 at DR 60+) →
+  Authority from $2,497 (custom); single placements from $149 for agencies.
+  The exact figures were proposed without the owner's cost data — confirm
+  margins (cost per placement by DR band, capacity) and adjust in
+  `src/pages/Pricing.tsx` + service content files.
 - Owner says many more fixes are still needed across the site; compare each
   page against Amplemarket's quality and the screenshots in `docs/`.
 
 ## 8. Placeholders to replace before launch
+
+**Important:** the public "sample" labels were removed at the owner's request
+(round 5). The case studies (`src/lib/cases.ts`), client figures and quotes
+(`src/lib/clients.ts`), review wall (`src/sections/Testimonials.tsx`), press
+clippings and dashboard figures are still **examples, not verified client
+data**. Replace them with real, permission-cleared data before launch —
+publishing invented testimonials or results as real breaks consumer-protection
+rules (e.g. the US FTC rule on fake reviews) and Google's review guidelines.
 
 - Calendly URL in `src/lib/booking.ts` (booking popup shows a loading state).
 - Email `contact@talhamahmood.com` (used in Contact, common.tsx, Footer,
@@ -136,8 +144,10 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
   (`/[0.12]`).
 - `.accent-ink` text is transparent with a gradient clip, so contrast checkers
   report it as 1:1 — false positive.
-- The hero smoke is a still image (`public/images/hero-smoke.webp`), centred
-  so it meets the rocket's nozzle; the rocket sits at `left-[calc(50%+361px)]`.
-  Move one, move the other.
+- The homepage hero panel is `src/sections/CampaignView.tsx` (placements going
+  live, what they moved, the month in numbers). The rocket and smoke were
+  removed at the owner's request.
+- `/services` (the old services index) was removed on purpose and 301s to
+  `/#services` (React route, WordPress theme, `.htaccess`). Nav says "Solutions".
 - Code that must behave differently in the prerender can check
   `window.__PRERENDER__` (the About manifesto does).

@@ -7,7 +7,17 @@ import { CLIENTS } from "@/lib/clients";
 import { linkBuilding as LB } from "../content/linkBuilding";
 import { CARD, GlowPanel, ease, sparkPath } from "../kit";
 
-const CHECK_NAMES = ["Traffic", "Keywords", "Graph", "Audience", "Link farm"];
+/** short names for the 8-Point Site Check, in the content's order */
+const CHECK_NAMES = [
+  "Relevance",
+  "Traffic",
+  "Keywords",
+  "Trend",
+  "Audience",
+  "Authority",
+  "Indexed",
+  "Editorial",
+];
 const CYCLE_MS = 5600;
 
 /** The hero's proof-in-five-seconds: a site being inspected, flagged and
@@ -16,7 +26,7 @@ const SiteCheckCard = () => {
   const reduced = useReducedMotion();
   const [i, setI] = useState(0);
   const site = LB.heroChecks[i];
-  const results = site.pass ? [1, 1, 1, 1, 1] : [0, 0, 0, 0, 1];
+  const results = site.checks;
 
   useEffect(() => {
     if (reduced) return;
@@ -146,7 +156,7 @@ const SiteCheckCard = () => {
             </ul>
           </div>
 
-          {/* the five checks */}
+          {/* the eight checks */}
           <div className="flex flex-wrap gap-1.5 px-5 pt-4">
             {CHECK_NAMES.map((c, n) => (
               <motion.span
@@ -158,7 +168,7 @@ const SiteCheckCard = () => {
                 }`}
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 1.5 + n * 0.12 }}
+                transition={{ duration: 0.3, delay: 1.5 + n * 0.08 }}
               >
                 {results[n] ? (
                   <Check className="h-3 w-3" />

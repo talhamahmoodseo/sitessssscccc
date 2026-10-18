@@ -5,7 +5,7 @@ import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import { CASES, CASE_TOTALS, type CaseStudy } from "@/lib/cases";
 import { Eyebrow, H2, Soft, ease, rise } from "./services/kit";
-import { SECTIONS, SampleBanner } from "./results/CaseSections";
+import { SECTIONS } from "./results/CaseSections";
 
 /* ------------------------------- case cards ------------------------------- */
 
@@ -133,7 +133,7 @@ const CaseStudies = () => {
     <PageLayout>
       <Seo
         title="Results: SEO & Link Building Case Studies"
-        description="How we document link building, digital PR and AI visibility projects: the challenge, the strategy, every placement and the results. Sample case studies."
+        description="How we document link building, digital PR and AI visibility projects: the challenge, the strategy, every placement and the results."
       />
 
       {/* hero */}
@@ -180,7 +180,6 @@ const CaseStudies = () => {
               </p>
             </motion.div>
           </div>
-          <SampleBanner plural className="mt-10 max-w-3xl" />
         </div>
       </section>
 
@@ -198,7 +197,7 @@ const CaseStudies = () => {
       <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="mb-10 text-center text-[13px] font-semibold text-navy-dark/75">
-            Across the three sample projects
+            Across these three projects
           </p>
           <dl className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
             {COUNTS.map((n, i) => (

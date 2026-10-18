@@ -100,9 +100,6 @@ const Results = ({ standalone = false }) => (
             See all case studies
             <ArrowRight className="w-4 h-4" />
           </a>
-          <span className="text-[13px] text-navy-dark/70">
-            Sample data — real client files shared on the call.
-          </span>
         </div>
       )}
     </div>

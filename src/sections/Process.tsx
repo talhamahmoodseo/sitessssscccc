@@ -31,7 +31,7 @@ const PROCESS_STEPS = [
   {
     title: "Vet",
     description:
-      "Every publication is checked by hand: real traffic, the keywords behind it, a steady graph and no link-selling footprint. Roughly one in five fails.",
+      "Every publication goes through our 8-point check, starting with relevance: is it about your industry? Then real traffic, the keywords behind it, the trend, the audience, authority, indexing and editorial standards. Roughly one in five fails.",
     deliverable: "Vetted publication list",
   },
   {
@@ -64,11 +64,25 @@ const Card = ({ title, children }: { title: string; children: ReactNode }) => (
   </div>
 );
 
-const Meter = ({ k, v, pct, bad }: { k: string; v: string; pct: number; bad?: boolean }) => (
+const Meter = ({
+  k,
+  v,
+  pct,
+  bad,
+}: {
+  k: string;
+  v: string;
+  pct: number;
+  bad?: boolean;
+}) => (
   <div>
     <div className="flex items-baseline justify-between text-[12.5px]">
       <span className="text-navy-dark/75">{k}</span>
-      <span className={`font-semibold tabular-nums ${bad ? "text-gap" : "text-navy-dark"}`}>{v}</span>
+      <span
+        className={`font-semibold tabular-nums ${bad ? "text-gap" : "text-navy-dark"}`}
+      >
+        {v}
+      </span>
     </div>
     <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-navy-dark/[0.07]">
       <motion.div
@@ -81,17 +95,33 @@ const Meter = ({ k, v, pct, bad }: { k: string; v: string; pct: number; bad?: bo
   </div>
 );
 
-const Row = ({ ok, children, note }: { ok: boolean; children: ReactNode; note?: string }) => (
+const Row = ({
+  ok,
+  children,
+  note,
+}: {
+  ok: boolean;
+  children: ReactNode;
+  note?: string;
+}) => (
   <div className="flex items-center gap-3 py-1.5">
     <span
       className={`flex h-5 w-5 flex-none items-center justify-center rounded-full ${
         ok ? "bg-verified/[0.12]" : "bg-gap/[0.12]"
       }`}
     >
-      {ok ? <Check className="h-3 w-3 text-verified" /> : <X className="h-3 w-3 text-gap" />}
+      {ok ? (
+        <Check className="h-3 w-3 text-verified" />
+      ) : (
+        <X className="h-3 w-3 text-gap" />
+      )}
     </span>
-    <span className="min-w-0 flex-1 truncate text-[12.5px] text-navy-dark/85">{children}</span>
-    {note && <span className="flex-none text-[11.5px] text-navy-dark/70">{note}</span>}
+    <span className="min-w-0 flex-1 truncate text-[12.5px] text-navy-dark/85">
+      {children}
+    </span>
+    {note && (
+      <span className="flex-none text-[11.5px] text-navy-dark/70">{note}</span>
+    )}
   </div>
 );
 
@@ -112,8 +142,13 @@ const VISUALS: ReactNode[] = [
         ["Category comparisons", "Brand mentions"],
         ["Your team's expertise", "Expert quotes"],
       ].map(([page, svc]) => (
-        <div key={page} className="flex items-center justify-between gap-3 py-1.5">
-          <span className="truncate font-mono text-[11.5px] text-navy-dark/80">{page}</span>
+        <div
+          key={page}
+          className="flex items-center justify-between gap-3 py-1.5"
+        >
+          <span className="truncate font-mono text-[11.5px] text-navy-dark/80">
+            {page}
+          </span>
           <span className="flex-none rounded-full bg-mist px-2 py-0.5 text-[11px] font-semibold text-navy-dark ring-1 ring-line">
             {svc}
           </span>
@@ -122,10 +157,18 @@ const VISUALS: ReactNode[] = [
     </div>
   </Card>,
   <Card key="vet" title="Publication check">
-    <Row ok note="DR 62 · 41K">saas•••insider.com</Row>
-    <Row ok={false} note="few real readers">uk•••news.co.uk</Row>
-    <Row ok note="DR 57 · 18K">growth•••weekly.com</Row>
-    <Row ok={false} note="sells links">fin•••daily.com</Row>
+    <Row ok note="relevant · 41K">
+      saas•••insider.com
+    </Row>
+    <Row ok={false} note="off-topic">
+      crypto•••bets.io
+    </Row>
+    <Row ok note="relevant · 18K">
+      growth•••weekly.com
+    </Row>
+    <Row ok={false} note="sells links">
+      fin•••daily.com
+    </Row>
   </Card>,
   <Card key="place" title="Published · The Business Review">
     <p className="font-serif text-[16px] leading-snug text-navy-dark">
@@ -135,7 +178,10 @@ const VISUALS: ReactNode[] = [
       …more often it's{" "}
       <span
         className="font-semibold text-navy-dark underline decoration-navy-dark/40 underline-offset-2"
-        style={{ background: "linear-gradient(transparent 55%, rgb(var(--mark) / 0.7) 55%)" }}
+        style={{
+          background:
+            "linear-gradient(transparent 55%, rgb(var(--mark) / 0.7) 55%)",
+        }}
       >
         better customer support software
       </span>{" "}
@@ -146,7 +192,9 @@ const VISUALS: ReactNode[] = [
         <span
           key={t}
           className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${
-            n === 0 ? "bg-navy-dark text-white ring-navy-dark" : "bg-mist text-navy-dark ring-line"
+            n === 0
+              ? "bg-navy-dark text-white ring-navy-dark"
+              : "bg-mist text-navy-dark ring-line"
           }`}
         >
           {t}
@@ -155,24 +203,39 @@ const VISUALS: ReactNode[] = [
     </div>
   </Card>,
   <Card key="report" title="Monthly report · October">
-    <Row ok note="14 of 14">Links indexed by Google</Row>
-    <Row ok note="#14 → #4">/pricing ranking</Row>
-    <Row ok note="2 of 3">AI tools now mentioning you</Row>
-    <Row ok note="+22%">Branded searches</Row>
+    <Row ok note="14 of 14">
+      Links indexed by Google
+    </Row>
+    <Row ok note="#14 → #4">
+      /pricing ranking
+    </Row>
+    <Row ok note="2 of 3">
+      AI tools now mentioning you
+    </Row>
+    <Row ok note="+22%">
+      Branded searches
+    </Row>
   </Card>,
 ];
 
 /* --------------------------------- pieces --------------------------------- */
 
 const RollingDigit = ({ digit }: { digit: number }) => (
-  <span className="relative inline-block overflow-hidden align-top" style={{ height: "1em" }}>
+  <span
+    className="relative inline-block overflow-hidden align-top"
+    style={{ height: "1em" }}
+  >
     <motion.span
       className="flex flex-col"
       animate={{ y: `${-digit}em` }}
       transition={{ type: "spring", stiffness: 80, damping: 16, mass: 0.9 }}
     >
       {Array.from({ length: 10 }, (_, a) => (
-        <span key={a} className="block" style={{ height: "1em", lineHeight: "1em" }}>
+        <span
+          key={a}
+          className="block"
+          style={{ height: "1em", lineHeight: "1em" }}
+        >
           {a}
         </span>
       ))}
@@ -183,7 +246,9 @@ const RollingDigit = ({ digit }: { digit: number }) => (
 const Deliverable = ({ children }: { children: ReactNode }) => (
   <div className="inline-flex items-center gap-2.5 rounded-full bg-white py-2 pl-3 pr-4 ring-1 ring-line">
     <span className="h-1.5 w-1.5 rounded-full bg-mark-deep" />
-    <span className="text-[11px] font-bold uppercase tracking-wider text-navy-dark/70">You get</span>
+    <span className="text-[11px] font-bold uppercase tracking-wider text-navy-dark/70">
+      You get
+    </span>
     <span className="text-[13px] font-semibold text-navy-dark">{children}</span>
   </div>
 );
@@ -191,7 +256,9 @@ const Deliverable = ({ children }: { children: ReactNode }) => (
 const Heading = () => (
   <h2 className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
     {"How every campaign runs, "}
-    <span className="text-navy-dark/65">from first audit to monthly report.</span>
+    <span className="text-navy-dark/65">
+      from first audit to monthly report.
+    </span>
   </h2>
 );
 
@@ -200,14 +267,26 @@ const Heading = () => (
 const Process = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(0);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const smooth = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 24,
+    mass: 0.4,
+  });
   const fill = useTransform(smooth, [0, 1], ["0%", "100%"]);
 
   useEffect(
     () =>
       scrollYProgress.on("change", (v) =>
-        setStep(Math.min(Math.floor(v * PROCESS_STEPS.length), PROCESS_STEPS.length - 1)),
+        setStep(
+          Math.min(
+            Math.floor(v * PROCESS_STEPS.length),
+            PROCESS_STEPS.length - 1,
+          ),
+        ),
       ),
     [scrollYProgress],
   );
@@ -242,7 +321,8 @@ const Process = () => {
                 <Heading />
               </div>
               <p className="max-w-xs pb-1 text-[14.5px] leading-relaxed text-navy-dark/75">
-                The same five steps whether you hire us for links, PR, mentions or all of it.
+                The same five steps whether you hire us for links, PR, mentions
+                or all of it.
               </p>
             </motion.div>
 
@@ -250,7 +330,10 @@ const Process = () => {
               {/* the rail */}
               <div className="relative flex h-[420px] justify-center">
                 <div className="relative h-full w-px bg-navy-dark/10">
-                  <motion.div className="absolute left-0 top-0 w-full origin-top bg-navy-dark" style={{ height: fill }} />
+                  <motion.div
+                    className="absolute left-0 top-0 w-full origin-top bg-navy-dark"
+                    style={{ height: fill }}
+                  />
                   <motion.div
                     className="absolute left-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-linen bg-mark-deep shadow-[0_0_0_1px_rgba(14,14,14,0.25)]"
                     style={{ top: fill }}
@@ -262,11 +345,15 @@ const Process = () => {
                     onClick={() => goTo(m)}
                     aria-label={`Go to step ${m + 1}: ${x.title}`}
                     className="group absolute left-1/2 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
-                    style={{ top: `${((m + 0.5) / PROCESS_STEPS.length) * 100}%` }}
+                    style={{
+                      top: `${((m + 0.5) / PROCESS_STEPS.length) * 100}%`,
+                    }}
                   >
                     <span
                       className={`block rounded-full transition-all duration-500 ${
-                        m <= step ? "h-2 w-2 bg-navy-dark" : "h-1.5 w-1.5 bg-navy-dark/25 group-hover:bg-navy-dark/50"
+                        m <= step
+                          ? "h-2 w-2 bg-navy-dark"
+                          : "h-1.5 w-1.5 bg-navy-dark/25 group-hover:bg-navy-dark/50"
                       }`}
                     />
                   </button>
@@ -281,7 +368,10 @@ const Process = () => {
                 >
                   <RollingDigit digit={0} />
                   <RollingDigit digit={step + 1} />
-                  <span className="inline-block align-top text-navy-dark" style={{ height: "1em", lineHeight: "1em" }}>
+                  <span
+                    className="inline-block align-top text-navy-dark"
+                    style={{ height: "1em", lineHeight: "1em" }}
+                  >
                     .
                   </span>
                 </div>
@@ -321,8 +411,12 @@ const Process = () => {
                       <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-navy-dark/70">
                         Step {m + 1} of {PROCESS_STEPS.length}
                       </p>
-                      <h3 className="mb-5 text-3xl font-bold text-navy-dark xl:text-4xl">{x.title}</h3>
-                      <p className="mb-7 max-w-md text-lg leading-relaxed text-navy-dark/75">{x.description}</p>
+                      <h3 className="mb-5 text-3xl font-bold text-navy-dark xl:text-4xl">
+                        {x.title}
+                      </h3>
+                      <p className="mb-7 max-w-md text-lg leading-relaxed text-navy-dark/75">
+                        {x.description}
+                      </p>
                       <Deliverable>{x.deliverable}</Deliverable>
                     </motion.div>
                   );
@@ -337,18 +431,27 @@ const Process = () => {
                   onClick={() => goTo(m)}
                   aria-label={`Step ${m + 1}`}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
-                    step === m ? "w-8 bg-navy-dark" : "w-1.5 bg-navy-dark/20 hover:bg-navy-dark/40"
+                    step === m
+                      ? "w-8 bg-navy-dark"
+                      : "w-1.5 bg-navy-dark/20 hover:bg-navy-dark/40"
                   }`}
                 />
               ))}
               <span className="ml-4 text-[13px] text-navy-dark/70">
                 {step < PROCESS_STEPS.length - 1 ? (
                   <>
-                    Next: <span className="font-semibold text-navy-dark">{PROCESS_STEPS[step + 1].title}</span>
+                    Next:{" "}
+                    <span className="font-semibold text-navy-dark">
+                      {PROCESS_STEPS[step + 1].title}
+                    </span>
                   </>
                 ) : (
-                  <a href="#contact" className="inline-flex items-center gap-1.5 font-semibold text-navy-dark">
-                    Start with a free audit <ArrowRight className="h-3.5 w-3.5" />
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-1.5 font-semibold text-navy-dark"
+                  >
+                    Start with a free audit{" "}
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                 )}
               </span>
@@ -384,9 +487,15 @@ const Process = () => {
                 transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
               >
                 <span className="absolute -left-[34px] top-1.5 h-3.5 w-3.5 rounded-full border-[3px] border-linen bg-mark-deep" />
-                <p className="mb-2 text-[15px] font-semibold tabular-nums text-navy-dark/70">Step 0{m + 1}</p>
-                <h3 className="mb-3 text-2xl font-bold text-navy-dark">{x.title}</h3>
-                <p className="mb-4 leading-relaxed text-navy-dark/75">{x.description}</p>
+                <p className="mb-2 text-[15px] font-semibold tabular-nums text-navy-dark/70">
+                  Step 0{m + 1}
+                </p>
+                <h3 className="mb-3 text-2xl font-bold text-navy-dark">
+                  {x.title}
+                </h3>
+                <p className="mb-4 leading-relaxed text-navy-dark/75">
+                  {x.description}
+                </p>
                 <Deliverable>{x.deliverable}</Deliverable>
                 <div className="mt-6">{VISUALS[m]}</div>
               </motion.div>

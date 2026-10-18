@@ -27,7 +27,7 @@ export const PROOF_TILES = [
   {
     kind: "stat" as const,
     value: "+212%",
-    label: "organic clicks in 7 months",
+    label: "growth in organic clicks, in 7 months",
     client: "CapCut",
     tile: "butter" as const,
   },
@@ -41,7 +41,7 @@ export const PROOF_TILES = [
   {
     kind: "quote" as const,
     quote:
-      "They handled everything — finding sites, writing, placing. The monthly report was clean enough to forward to our CEO without editing.",
+      "They took the whole thing off our plate: finding sites, writing, placing. The monthly report goes straight to our CEO, unedited.",
     name: "Daniel Reyes",
     role: "Head of Growth",
     client: "CapCut",
@@ -61,14 +61,14 @@ export const PROOF_TILES = [
   {
     kind: "stat" as const,
     value: "14/14",
-    label: "placements indexed",
+    label: "placements live and indexed by Google",
     client: "Ocuco",
     tile: "lilac" as const,
   },
   {
     kind: "stat" as const,
     value: "3/4",
-    label: "AI engines citing the brand",
+    label: "major AI assistants now recommend the brand",
     client: "CapCut",
     tile: "blush" as const,
   },
@@ -77,14 +77,14 @@ export const PROOF_TILES = [
   {
     kind: "stat" as const,
     value: "DR 74",
-    label: "top placement secured",
+    label: "feature landed in Gulf business press",
     client: "Khaleej Times",
     tile: "sky" as const,
   },
   {
     kind: "stat" as const,
     value: "1 in 5",
-    label: "sourced sites rejected at vetting",
+    label: "sites turned down before they reached the client",
     client: "Ocuco",
     tile: "butter" as const,
   },

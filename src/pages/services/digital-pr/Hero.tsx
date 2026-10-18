@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { digitalPr as C } from "../content/digitalPr";
 import { ease } from "../kit";
-import { HeroButtons, HeroChip, SampleNote } from "../common";
+import { HeroButtons, HeroChip } from "../common";
 
 /* the fan: tint and turn for each of the three press previews */
 const FAN = [
@@ -114,9 +114,6 @@ const Hero = () => {
           aria-hidden="true"
         />
         <PlacementFan />
-        <SampleNote className="relative mt-8 text-center">
-          Sample coverage
-        </SampleNote>
       </div>
     </section>
   );

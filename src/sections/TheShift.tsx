@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Accent from "@/components/Accent";
+import { asset } from "@/lib/booking";
 import { COLOURS, GrainBlob } from "@/components/Grain";
 import { AiOverviewMark } from "@/components/PlatformMarks";
 
@@ -442,19 +443,8 @@ const Diagram = () => {
  */
 const DATA = [
   {
-    source: "Neil Patel",
-    big: "−61%",
-    title: "AI Overview Expansion Is Cutting Organic CTR by Up to 61%",
-    url: "https://neilpatel.com/marketing-stats/ai-overview-expansion-organic-ctr-decline/",
-    summary:
-      "When an AI Overview shows, click-through on informational searches drops 61%. On branded searches it rises 18.7%. Data aggregated from four research sources.",
-    bars: [
-      { l: "Informational searches", v: "−61% CTR", w: 61, tone: "warm" },
-      { l: "Branded searches", v: "+18.7% CTR", w: 18.7, tone: "cool" },
-    ],
-  },
-  {
     source: "Ahrefs",
+    logo: "/images/sources/ahrefs.webp",
     big: "0.664",
     title:
       "An Analysis of AI Overview Brand Visibility Factors (75K Brands Studied)",
@@ -468,6 +458,7 @@ const DATA = [
   },
   {
     source: "Semrush",
+    logo: "/images/sources/semrush.webp",
     big: "4.4×",
     title: "We Studied the Impact of AI Search on SEO Traffic",
     url: "https://www.semrush.com/blog/ai-search-seo-traffic-study/",
@@ -478,7 +469,53 @@ const DATA = [
       { l: "Organic search visitor", v: "1×", w: 22.7, tone: "dim" },
     ],
   },
+  {
+    source: "Neil Patel",
+    photo: "/images/sources/neil-patel.webp",
+    role: "Co-founder, NP Digital",
+    big: "−61%",
+    title: "AI Overview Expansion Is Cutting Organic CTR by Up to 61%",
+    url: "https://neilpatel.com/marketing-stats/ai-overview-expansion-organic-ctr-decline/",
+    summary:
+      "When an AI Overview shows, click-through on informational searches drops 61%. On branded searches it rises 18.7%. Data aggregated from four research sources.",
+    bars: [
+      { l: "Informational searches", v: "−61% CTR", w: 61, tone: "warm" },
+      { l: "Branded searches", v: "+18.7% CTR", w: 18.7, tone: "cool" },
+    ],
+  },
 ] as const;
+
+type Data = (typeof DATA)[number];
+
+/** Who the number comes from: the publisher's logo, or the person. */
+const SourceHead = ({ d }: { d: Data }) =>
+  "photo" in d ? (
+    <div className="flex items-center gap-3">
+      <img
+        src={asset(d.photo)}
+        alt={d.source}
+        width={40}
+        height={40}
+        loading="lazy"
+        className="h-10 w-10 rounded-full object-cover ring-2 ring-white/20"
+      />
+      <span>
+        <span className="block text-[14px] font-semibold text-white">
+          {d.source}
+        </span>
+        <span className="block text-[12px] text-white/70">{d.role}</span>
+      </span>
+    </div>
+  ) : (
+    <span className="inline-flex h-11 w-fit items-center self-start rounded-xl bg-white px-3.5">
+      <img
+        src={asset(d.logo)}
+        alt={d.source}
+        loading="lazy"
+        className={d.source === "Semrush" ? "h-8 w-auto" : "h-5 w-auto"}
+      />
+    </span>
+  );
 
 const TONE = {
   warm: "bg-[rgb(var(--plume-warm-light))]",
@@ -520,9 +557,7 @@ const Evidence = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.12 + n * 0.1 }}
           >
-            <p className="text-[13px] font-semibold text-white/85">
-              {d.source}
-            </p>
+            <SourceHead d={d} />
             <p className="mt-4 text-[3rem] font-semibold leading-none tracking-[-0.045em] text-white tabular-nums">
               {d.big}
             </p>

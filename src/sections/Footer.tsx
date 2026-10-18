@@ -7,7 +7,7 @@ const EMAIL = "contact@talhamahmood.com";
 
 const COLUMNS = [
   {
-    title: "Services",
+    title: "Solutions",
     links: [
       { name: "Link Building", to: "/services/link-building" },
       { name: "Digital PR", to: "/services/digital-pr" },
@@ -37,8 +37,9 @@ const Footer = () => (
             <Logo invert />
           </Link>
           <p className="mt-5 text-[14.5px] leading-relaxed text-white/65">
-            Link building and digital PR agency. We earn placements on real
-            publications, so brands rank on Google and get named in AI answers.
+            Outreachr builds the authority that decides who gets found:
+            editorial links, digital PR and brand mentions that move Google
+            rankings and AI recommendations.
           </p>
         </div>
 
@@ -64,7 +65,7 @@ const Footer = () => (
 
         <div>
           <h3 className="text-[12px] font-semibold uppercase tracking-[0.14em] text-mark">
-            Get in touch
+            Talk to us
           </h3>
           <a
             href={`mailto:${EMAIL}`}

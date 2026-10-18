@@ -40,6 +40,9 @@ const FlipCard = ({ card, index }: { card: Card; index: number }) => {
             <span className="mt-5 block text-[21px] font-semibold leading-snug tracking-[-0.02em] text-white">
               {card.site}
             </span>
+            <span className="mt-1 block font-mono text-[13px] text-white/70">
+              {card.domain}
+            </span>
             <span className="mt-5 block space-y-2.5">
               {card.looks.map((l) => (
                 <span key={l} className="flex items-center gap-2.5">
@@ -68,7 +71,7 @@ const FlipCard = ({ card, index }: { card: Card; index: number }) => {
           >
             <span className="flex items-center justify-between">
               <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/70">
-                What we found
+                {card.domain}
               </span>
               <span className="rounded-full bg-gap/[0.12] px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-gap">
                 Rejected

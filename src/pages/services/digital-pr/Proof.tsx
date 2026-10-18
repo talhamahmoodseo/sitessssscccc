@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { digitalPr as C } from "../content/digitalPr";
 import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "../kit";
-import { SampleNote } from "../common";
 
 const KIND_TINT: Record<string, string> = {
   "Data study": "bg-sky text-navy-dark",
@@ -196,9 +195,6 @@ const Proof = () => {
             </figcaption>
           </motion.figure>
         </div>
-        <SampleNote dark className="mt-8">
-          Sample figures until client sign-off
-        </SampleNote>
       </div>
     </section>
   );

@@ -28,9 +28,9 @@ const ProofGrid = () => (
         </Annotation>
 
         <h2 className="mx-auto max-w-2xl text-center text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
-          Real clients.
+          Results our clients
           <br />
-          <span className="text-navy-dark/65">Numbers they signed off on.</span>
+          <span className="text-navy-dark/65">take to their boards.</span>
         </h2>
       </div>
 

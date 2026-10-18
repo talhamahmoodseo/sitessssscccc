@@ -8,7 +8,6 @@ import {
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { digitalPr as C } from "../content/digitalPr";
 import { CARD, Eyebrow, H2, Soft, ease, rise } from "../kit";
-import { SampleNote } from "../common";
 import Clipping from "./Clipping";
 
 const CYCLE_MS = 9000;
@@ -184,7 +183,6 @@ const StoryLab = () => {
               </motion.div>
             </motion.div>
           </AnimatePresence>
-          <SampleNote className="mt-8 text-center">Sample stories</SampleNote>
         </div>
       </div>
     </section>

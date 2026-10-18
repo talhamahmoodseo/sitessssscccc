@@ -14,7 +14,6 @@ import { openBooking } from "@/lib/booking";
 import Logo from "./Logo";
 
 const serviceLinks = [
-  { name: "All services", to: "/services" },
   { name: "Link Building", to: "/services/link-building" },
   { name: "Digital PR", to: "/services/digital-pr" },
   { name: "Brand Mentions", to: "/services/brand-mentions" },
@@ -73,7 +72,7 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
                 <DropdownMenuTrigger
                   className={`flex items-center gap-1 text-sm font-medium ${ink} hover:opacity-80 transition-colors`}
                 >
-                  Services
+                  Solutions
                   <ChevronDown className="w-4 h-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -159,7 +158,7 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
           >
             <div className="px-4 py-6 space-y-1">
               <p className="text-[10px] font-extrabold tracking-[0.2em] text-navy-dark/70 uppercase px-2 pb-1">
-                Services
+                Solutions
               </p>
               {serviceLinks.map((item) => (
                 <Link

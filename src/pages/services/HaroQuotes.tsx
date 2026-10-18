@@ -20,7 +20,7 @@ const SERVICE_SCHEMA = {
   areaServed: ["US", "GB", "AE"],
   offers: {
     "@type": "Offer",
-    price: "2497",
+    price: "997",
     priceCurrency: "USD",
     description: "Starting monthly price (Growth plan)",
   },

@@ -193,7 +193,7 @@ export const haroQuotes = {
     eyebrow: "What we skip",
     h2a: "We say no a lot.",
     h2b: "That’s the service.",
-    lead: "Every request gets checked against your profile and against the outlet. Most don’t make it. Here’s a sample week.",
+    lead: "Every request gets checked against your profile and against the outlet. Most don’t make it. Here’s a typical week.",
     requests: [
       {
         ask: "Founders on chasing late payments",
@@ -326,7 +326,7 @@ export const haroQuotes = {
     ],
     price: {
       label: "Expert quotes pricing",
-      from: "$2,497",
+      from: "$997",
       unit: "/month",
       plan: "Included in our Growth plan",
       points: [

@@ -104,6 +104,12 @@ function tm_route() {
 		exit;
 	}
 
+	// the old services index now lives on the homepage
+	if ( '/services' === untrailingslashit( $path ) ) {
+		wp_safe_redirect( home_url( '/#services' ), 301 );
+		exit;
+	}
+
 	if ( '/' !== $path && '/' === substr( $path, -1 ) ) {
 		$query = isset( $_SERVER['QUERY_STRING'] ) && '' !== $_SERVER['QUERY_STRING']
 			? '?' . wp_unslash( $_SERVER['QUERY_STRING'] )

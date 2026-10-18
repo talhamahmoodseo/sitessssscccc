@@ -59,38 +59,73 @@ export const digitalPr = {
 
   release: {
     eyebrow: "Why most PR doesn’t work",
-    h2a: "A press release gets pickups.",
-    h2b: "A story gets coverage.",
-    lead: "Editors get dozens of pitches every morning. They answer the few that hand them something their readers will care about. Everything else gets archived, or worse, syndicated.",
+    h2a: "Most PR buys pickups.",
+    h2b: "What moves you is coverage.",
+    lead: "The usual approach is a press release sent through a wire service. It gets copied word for word onto hundreds of automated “news” sites. The report says 200 pickups. But nobody reads those sites, Google treats the copies as duplicates, and the links don’t count. Here is the difference, step by step.",
     release: {
-      label: "The press release",
+      label: "What most PR agencies do",
       path: [
-        "Written about you",
-        "Sent through a wire service",
-        "Auto-posted on 200 “news” sites",
+        {
+          t: "Write a release about you",
+          d: "Your news, in your words. Nothing a reader or editor asked for.",
+        },
+        {
+          t: "Pay a wire service to send it",
+          d: "One distribution fee pushes it to hundreds of sites at once.",
+        },
+        {
+          t: "Count the copies",
+          d: "Automated sites repost it unchanged. That list becomes the report.",
+        },
       ],
       stats: [
         { k: "Pickups", v: "200+" },
         { k: "Real readers", v: "Almost none" },
-        { k: "Links that count", v: "0" },
+        { k: "Links Google counts", v: "0" },
         { k: "Still live in 3 months", v: "A few" },
       ],
-      tag: "Looks great in a PDF report.",
+      tag: "Impressive in a PDF. Does little for rankings or sales.",
     },
     story: {
-      label: "The story",
+      label: "What we do instead",
       path: [
-        "Written about the reader",
-        "Pitched to one named editor",
-        "Run as a real article",
+        {
+          t: "Find a story readers want",
+          d: "Your data or expertise turned into an angle the publication’s audience cares about.",
+        },
+        {
+          t: "Pitch the right editor",
+          d: "One named journalist who covers your field, not a mailing list.",
+        },
+        {
+          t: "Earn a real article",
+          d: "Written and published by the outlet, linking to you, and often picked up by others.",
+        },
       ],
       stats: [
         { k: "Features", v: "1" },
         { k: "Read by", v: "Your buyers" },
-        { k: "Links that count", v: "1 editorial" },
+        { k: "Links Google counts", v: "1 editorial" },
         { k: "Picked up by", v: "3 more outlets" },
       ],
-      tag: "Looks great on your sales deck. And in Google.",
+      tag: "Read by your buyers, counted by Google, quoted by AI.",
+    },
+    matters: {
+      h: "Why it matters to you",
+      items: [
+        {
+          t: "Links that count",
+          d: "Google weighs one editorial link above hundreds of duplicate copies.",
+        },
+        {
+          t: "Buyers who see it",
+          d: "Real publications have real readers, including the people you sell to.",
+        },
+        {
+          t: "Sources AI trusts",
+          d: "AI answers cite established publications, not syndicated reposts.",
+        },
+      ],
     },
   },
 
@@ -324,7 +359,7 @@ export const digitalPr = {
     ],
     price: {
       label: "Digital PR pricing",
-      from: "$4,997",
+      from: "$2,497",
       unit: "/month",
       plan: "Full PR programme, in our Authority plan",
       points: [

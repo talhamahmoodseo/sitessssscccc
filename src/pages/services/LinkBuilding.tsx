@@ -28,9 +28,9 @@ const SERVICE_SCHEMA = {
   areaServed: ["US", "GB", "AE"],
   offers: {
     "@type": "Offer",
-    price: "997",
+    price: "497",
     priceCurrency: "USD",
-    description: "Starting monthly price",
+    description: "Pilot: 3 vetted placements, then plans from $597 a month",
   },
 };
 

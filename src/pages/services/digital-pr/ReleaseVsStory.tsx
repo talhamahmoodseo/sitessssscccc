@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import { digitalPr as C } from "../content/digitalPr";
 import { Eyebrow, H2, Soft, ease, rise } from "../kit";
 import Clipping from "./Clipping";
@@ -122,12 +122,25 @@ const Panel = ({
     <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-navy-dark/75">
       {side.label}
     </p>
-    <ol className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[13.5px] text-navy-dark/80">
+    <ol className="mt-5 space-y-3.5">
       {side.path.map((p, n) => (
-        <li key={p} className="inline-flex items-center gap-2">
-          {n > 0 && <ArrowRight className="h-3.5 w-3.5 text-navy-dark/45" />}
-          <span className={strong ? "font-semibold text-navy-dark" : ""}>
-            {p}
+        <li key={p.t} className="flex gap-3.5">
+          <span
+            className={`flex h-7 w-7 flex-none items-center justify-center rounded-full text-[12.5px] font-semibold ${
+              strong
+                ? "bg-navy-dark text-white"
+                : "bg-white text-navy-dark/80 ring-1 ring-line"
+            }`}
+          >
+            {n + 1}
+          </span>
+          <span>
+            <span className="block text-[15px] font-semibold text-navy-dark">
+              {p.t}
+            </span>
+            <span className="mt-0.5 block text-[13.5px] leading-snug text-navy-dark/75">
+              {p.d}
+            </span>
           </span>
         </li>
       ))}
@@ -188,6 +201,27 @@ const ReleaseVsStory = () => {
           />
           <Panel side={R.story} visual={<StoryRipple />} strong delay={0.1} />
         </div>
+
+        {/* the point of it, for the reader */}
+        <motion.div
+          className="mt-5 grid gap-6 rounded-3xl bg-navy-dark p-7 sm:p-9 lg:grid-cols-[0.7fr_1fr_1fr_1fr] lg:items-start lg:gap-8"
+          {...rise(0.1)}
+        >
+          <p className="text-[19px] font-semibold leading-snug tracking-[-0.02em] text-white">
+            {R.matters.h}
+          </p>
+          {R.matters.items.map((m) => (
+            <div key={m.t}>
+              <p className="flex items-center gap-2 text-[15px] font-semibold text-white">
+                <Check className="h-4 w-4 text-mint" />
+                {m.t}
+              </p>
+              <p className="mt-1.5 text-[14px] leading-relaxed text-white/75">
+                {m.d}
+              </p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

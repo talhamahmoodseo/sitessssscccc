@@ -38,9 +38,6 @@ const Profile = () => {
             <span className="text-[12.5px] font-semibold text-navy-dark">
               Expertise profile
             </span>
-            <span className="ml-auto text-[11.5px] text-navy-dark/70">
-              Sample
-            </span>
           </div>
           <div
             className="flex gap-1 overflow-x-auto border-b border-line px-3 pt-3"

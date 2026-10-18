@@ -51,12 +51,22 @@ const Bar = ({
   </div>
 );
 
-const Kw = ({ k, pos, bad = false }: { k: string; pos: number; bad?: boolean }) => (
+const Kw = ({
+  k,
+  pos,
+  bad = false,
+}: {
+  k: string;
+  pos: number;
+  bad?: boolean;
+}) => (
   <div className="flex items-center gap-3 py-1">
     <span className="w-7 flex-none text-[11.5px] font-semibold tabular-nums text-navy-dark/70">
       #{pos}
     </span>
-    <span className={`truncate text-[12.5px] ${bad ? "text-gap" : "text-navy-dark/85"}`}>
+    <span
+      className={`truncate text-[12.5px] ${bad ? "text-gap" : "text-navy-dark/85"}`}
+    >
       {k}
     </span>
   </div>
@@ -69,8 +79,30 @@ const Out = ({ d, bad = false }: { d: string; bad?: boolean }) => (
     ) : (
       <Check className="h-3.5 w-3.5 flex-none text-verified" />
     )}
-    <span className={`truncate font-mono text-[12px] ${bad ? "text-gap" : "text-navy-dark/85"}`}>
+    <span
+      className={`truncate font-mono text-[12px] ${bad ? "text-gap" : "text-navy-dark/85"}`}
+    >
       {d}
+    </span>
+  </div>
+);
+
+/** one labelled fact: name on the left, value on the right */
+const Fact = ({
+  k,
+  v,
+  bad = false,
+}: {
+  k: string;
+  v: string;
+  bad?: boolean;
+}) => (
+  <div className="flex items-baseline justify-between gap-3 border-b border-navy-dark/[0.06] py-1.5 last:border-0">
+    <span className="text-[12px] text-navy-dark/70">{k}</span>
+    <span
+      className={`text-right text-[12.5px] font-semibold ${bad ? "text-gap" : "text-navy-dark"}`}
+    >
+      {v}
     </span>
   </div>
 );
@@ -79,7 +111,12 @@ const STEADY = [12, 13, 13, 15, 16, 16, 18, 19, 21, 22, 24, 25];
 const CLIFF = [14, 22, 13, 25, 18, 27, 24, 26, 11, 10, 9, 10];
 
 const Spark = ({ data, bad }: { data: number[]; bad?: boolean }) => (
-  <svg viewBox="0 0 220 56" className="h-14 w-full" fill="none" aria-hidden="true">
+  <svg
+    viewBox="0 0 220 56"
+    className="h-14 w-full"
+    fill="none"
+    aria-hidden="true"
+  >
     <motion.path
       d={sparkPath(data, 220, 56, 5)}
       stroke={bad ? "rgb(var(--gap))" : "rgb(var(--ink))"}
@@ -104,7 +141,31 @@ const Spark = ({ data, bad }: { data: number[]; bad?: boolean }) => (
   </svg>
 );
 
-const VISUALS: { pass: ReactNode; passNote: string; fail: ReactNode; failNote: string }[] = [
+/** One pass and one fail example per check, in the content's order. */
+const VISUALS: {
+  pass: ReactNode;
+  passNote: string;
+  fail: ReactNode;
+  failNote: string;
+}[] = [
+  {
+    pass: (
+      <div>
+        <Fact k="Site covers" v="B2B software" />
+        <Fact k="Section" v="Sales & CRM, weekly" />
+        <Fact k="Article" v="Choosing a CRM for small teams" />
+      </div>
+    ),
+    passNote: "Same subject from site to page to link",
+    fail: (
+      <div>
+        <Fact k="Site covers" v="Crypto & betting" bad />
+        <Fact k="Section" v="None for software" bad />
+        <Fact k="Article" v="'Top 10 CRMs' (one-off)" bad />
+      </div>
+    ),
+    failNote: "No reason for this site to link to you",
+  },
   {
     pass: (
       <div className="space-y-3">
@@ -129,15 +190,15 @@ const VISUALS: { pass: ReactNode; passNote: string; fail: ReactNode; failNote: s
         <Kw k="b2b lead scoring" pos={9} />
       </div>
     ),
-    passNote: "On-topic, buyer-intent keywords",
+    passNote: "On-topic keywords your buyers search",
     fail: (
       <div>
         <Kw k="free movie download hd" pos={2} bad />
         <Kw k="casino bonus codes" pos={5} bad />
-        <Kw k="instant loan apply" pos={8} bad />
+        <Kw k="celebrity net worth" pos={8} bad />
       </div>
     ),
-    failNote: "A finance site? Not with these",
+    failNote: "Traffic with nothing to do with the topic",
   },
   {
     pass: <Spark data={STEADY} />,
@@ -161,6 +222,42 @@ const VISUALS: { pass: ReactNode; passNote: string; fail: ReactNode; failNote: s
       </div>
     ),
     failNote: "Authority on paper only",
+  },
+  {
+    pass: (
+      <div>
+        <Fact k="Domain Rating" v="52" />
+        <Fact k="Organic traffic" v="18.6K / month" />
+        <Fact k="Referring domains" v="Mostly editorial" />
+      </div>
+    ),
+    passNote: "Authority backed by real readers",
+    fail: (
+      <div>
+        <Fact k="dsnews.co.uk · DR" v="~70" />
+        <Fact k="Organic traffic" v="1–2K / month" bad />
+        <Fact k="Graph" v="Unstable" bad />
+      </div>
+    ),
+    failNote: "High DR, almost no readers",
+  },
+  {
+    pass: (
+      <div>
+        <Fact k="Recent posts indexed" v="20 of 20" />
+        <Fact k="Time to index" v="2–5 days" />
+        <Fact k="Pages in Google" v="4,100+" />
+      </div>
+    ),
+    passNote: "Google crawls and trusts it",
+    fail: (
+      <div>
+        <Fact k="Recent posts indexed" v="12 of 20" bad />
+        <Fact k="Time to index" v="Never, for 8" bad />
+        <Fact k="Pages in Google" v="Falling" bad />
+      </div>
+    ),
+    failNote: "A link Google may never see",
   },
   {
     pass: (
@@ -192,7 +289,7 @@ const Inspector = ({ active }: { active: number }) => {
       <div className="border-b border-line px-5 py-4">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/70">
-            Check {step.n} of 05
+            Check {step.n} of {String(M.steps.length).padStart(2, "0")}
           </span>
           <span className="flex gap-1">
             {M.steps.map((s, n) => (
@@ -271,7 +368,7 @@ const Step = ({
   return (
     <div
       ref={ref}
-      className={`relative py-10 transition-opacity duration-500 lg:flex lg:min-h-[58vh] lg:items-center lg:py-0 ${
+      className={`relative py-10 transition-opacity duration-500 lg:flex lg:min-h-[42vh] lg:items-center lg:py-0 ${
         active ? "lg:opacity-100" : "lg:opacity-35"
       }`}
     >

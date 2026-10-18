@@ -4,7 +4,6 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { brandMentions as C } from "../content/brandMentions";
 import { Eyebrow, H2, Soft, rise } from "../kit";
-import { SampleNote } from "../common";
 
 const STEP_MS = 900;
 
@@ -155,9 +154,6 @@ const Proof = () => {
               ))}
             </div>
           </div>
-          <SampleNote className="mt-6">
-            Sample figures until client sign-off
-          </SampleNote>
         </motion.div>
       </div>
     </section>

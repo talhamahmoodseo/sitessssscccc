@@ -181,15 +181,21 @@ export const Seo = ({
                 name: "Home",
                 item: `${base}/`,
               },
-              ...parts.map((p, i) => ({
-                "@type": "ListItem",
-                position: i + 2,
-                name:
-                  i === parts.length - 1 && (i > 0 || !CRUMB[p])
-                    ? title
-                    : (CRUMB[p] ?? title),
-                item: `${base}/${parts.slice(0, i + 1).join("/")}`,
-              })),
+              // the /services index no longer exists, so that level is skipped
+              ...parts
+                .map((p, i) => ({ p, i }))
+                .filter(
+                  ({ p, i }) => !(p === "services" && i < parts.length - 1),
+                )
+                .map(({ p, i }, k) => ({
+                  "@type": "ListItem",
+                  position: k + 2,
+                  name:
+                    i === parts.length - 1 && (i > 0 || !CRUMB[p])
+                      ? title
+                      : (CRUMB[p] ?? title),
+                  item: `${base}/${parts.slice(0, i + 1).join("/")}`,
+                })),
             ],
           }
         : null,

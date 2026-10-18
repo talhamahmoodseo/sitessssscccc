@@ -12,6 +12,9 @@ DirectorySlash Off
   RewriteEngine On
   RewriteBase /
 
+  # the old services index now lives on the homepage
+  RewriteRule ^services/?$ /#services [R=301,NE,L]
+
   # one URL per page: /about/ -> /about
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^(.+)/$ /$1 [R=301,L]

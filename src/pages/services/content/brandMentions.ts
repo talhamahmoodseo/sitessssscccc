@@ -127,7 +127,7 @@ export const brandMentions = {
       },
     ],
     total: 42,
-    note: "Sample answer. Real reports use screenshots of live answers.",
+    note: "In your report, every answer is a screenshot of the live result.",
   },
 
   anatomy: {
@@ -289,7 +289,7 @@ export const brandMentions = {
       label: "Brand mentions pricing",
       from: "$2,497",
       unit: "/month",
-      plan: "Included in our Growth plan",
+      plan: "Included in our Authority plan, or added to Growth",
       points: [
         "Buyer-question baseline across the main AI tools",
         "Mentions on the sources AI already cites",

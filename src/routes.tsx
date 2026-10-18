@@ -25,7 +25,6 @@ const page = (load: Loader) => {
 
 export const Home = page(() => import("./pages/Home"));
 export const About = page(() => import("./pages/About"));
-export const Services = page(() => import("./pages/Services"));
 export const CaseStudies = page(() => import("./pages/CaseStudies"));
 export const CaseStudy = page(() => import("./pages/CaseStudy"));
 export const Blog = page(() => import("./pages/Blog"));
@@ -55,7 +54,7 @@ export const preloadRoute = (pathname: string) => {
   const pick = (() => {
     if (p === "/") return Home;
     if (a === "about" && !b) return About;
-    if (a === "services") return b ? (SERVICE_PAGES[b] ?? NotFound) : Services;
+    if (a === "services") return b ? (SERVICE_PAGES[b] ?? NotFound) : Home;
     if (a === "case-studies") return b ? CaseStudy : CaseStudies;
     if (a === "blog") return b ? BlogPost : Blog;
     if (a === "contact" && !b) return Contact;

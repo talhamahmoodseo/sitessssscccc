@@ -448,22 +448,3 @@ export const HeroButtons = ({
     </Link>
   </motion.div>
 );
-
-/** Small "sample" note under illustrative visuals. */
-export const SampleNote = ({
-  children = "Sample for illustration",
-  dark = false,
-  className = "",
-}: {
-  children?: ReactNode;
-  dark?: boolean;
-  className?: string;
-}) => (
-  <p
-    className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${
-      dark ? "text-white/70" : "text-navy-dark/70"
-    } ${className}`}
-  >
-    {children}
-  </p>
-);

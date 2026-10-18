@@ -8,7 +8,6 @@ import {
 import { Check, X } from "lucide-react";
 import { brandMentions as C } from "../content/brandMentions";
 import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "../kit";
-import { SampleNote } from "../common";
 import { EngineMark } from "./Engine";
 
 /**
@@ -242,9 +241,6 @@ const BeforeAfter = () => {
             </div>
           </div>
         </div>
-        <SampleNote dark className="mt-8 text-center">
-          {B.note}
-        </SampleNote>
       </div>
     </section>
   );

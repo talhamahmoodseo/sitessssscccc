@@ -7,7 +7,6 @@ import {
   ArrowRight,
   ArrowUp,
   Check,
-  FlaskConical,
   X,
 } from "lucide-react";
 import type { CaseStudy } from "@/lib/cases";
@@ -26,29 +25,6 @@ export const SECTIONS = [
 ] as const;
 
 /* ---------------------------------- bits ---------------------------------- */
-
-export const SampleBanner = ({
-  className = "",
-  plural = false,
-}: {
-  className?: string;
-  plural?: boolean;
-}) => (
-  <div
-    className={`flex items-start gap-3 rounded-2xl border border-mark-deep/40 bg-mark/20 px-4 py-3 text-[13.5px] leading-snug text-navy-dark ${className}`}
-    role="note"
-  >
-    <FlaskConical className="mt-0.5 h-4 w-4 flex-none" />
-    <span>
-      <span className="font-semibold">
-        {plural ? "Sample case studies." : "Sample case study."}
-      </span>{" "}
-      The clients, figures and domains are placeholders that show how we
-      document a project. They’ll be replaced with verified client data before
-      launch.
-    </span>
-  </div>
-);
 
 const Section = ({
   id,
@@ -151,7 +127,6 @@ export const CaseHeader = ({ c }: { c: CaseStudy }) => (
         <ArrowLeft className="h-4 w-4" />
         All case studies
       </Link>
-      <SampleBanner className="mt-6 max-w-3xl" />
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:gap-16">
         <motion.div
@@ -235,7 +210,7 @@ export const HeroChart = ({ c }: { c: CaseStudy }) => {
                 {s.label}
               </p>
               <p className="text-[12px] text-navy-dark/70">
-                Monthly, from the start of the engagement · sample data
+                Monthly, from the start of the engagement
               </p>
             </div>
             <LineArea
@@ -503,7 +478,7 @@ export const Links = ({ c }: { c: CaseStudy }) => {
 
       <div className="mt-8">
         <p className="mb-3 text-[15px] font-semibold text-navy-dark">
-          Sample placements
+          Placements
         </p>
         <Table
           head={["Site", "DR", "Type", "Points to", "Indexed"]}
@@ -674,9 +649,6 @@ export const Outcomes = ({ c }: { c: CaseStudy }) => {
         </blockquote>
         <figcaption className="mt-6 flex flex-wrap items-center justify-between gap-3 text-[13.5px] text-white/75">
           <span>{O.quote.who}</span>
-          <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80">
-            Sample quote
-          </span>
         </figcaption>
       </motion.figure>
 

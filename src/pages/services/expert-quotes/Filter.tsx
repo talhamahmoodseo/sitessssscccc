@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { Check, X } from "lucide-react";
 import { haroQuotes as C } from "../content/haroQuotes";
 import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "../kit";
-import { SampleNote } from "../common";
 
 /**
  * A sample week of requests, sorted in front of you: each one lands, then gets
@@ -106,9 +105,6 @@ const Filter = () => {
             </motion.li>
           ))}
         </ul>
-        <SampleNote dark className="mt-8">
-          Sample week
-        </SampleNote>
       </div>
     </section>
   );
