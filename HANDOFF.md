@@ -80,6 +80,7 @@ npx tsc --noEmit   # typecheck (no test suite, no linter configured)
 | `729d237` | Round 2: About, Results + 3 case studies, Contact, Blog, Pricing |
 | `260577c` | Service pages redesign (Digital PR, Brand Mentions, Expert Quotes) |
 
+Technical SEO: `TECHNICAL-SEO-AUDIT.md` (findings + plan, not yet implemented).
 Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 `SERVICE-PAGES-REDESIGN.md`, `HOMEPAGE-PLAN.md`, `BRAND.md`, `PROJECT.md`
 (conventions and traps), `HOSTING.md` (deployment).
