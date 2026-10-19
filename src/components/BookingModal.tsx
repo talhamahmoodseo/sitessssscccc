@@ -7,7 +7,7 @@ import { GlowPanel } from "@/pages/services/kit";
 import Accent from "./Accent";
 import { LogoMark } from "./Logo";
 
-const EMAIL = "contact@talhamahmood.com";
+const EMAIL = "contact@editorialhq.com";
 
 /** Global booking dialog. Opens on the `open-booking` window event so any CTA
  *  on any page can summon it without prop drilling. */
@@ -62,7 +62,7 @@ const BookingModal = () => {
           transition={{ duration: 0.25 }}
           role="dialog"
           aria-modal="true"
-          aria-label="Book a call with Outreachr"
+          aria-label="Book a call with Editorial HQ"
         >
           <div
             className="absolute inset-0 bg-navy-dark/80 backdrop-blur-sm"
@@ -90,7 +90,7 @@ const BookingModal = () => {
                 <span className="flex items-center gap-2">
                   <LogoMark className="h-7 w-7" />
                   <span className="text-[15px] font-bold tracking-[-0.03em] text-navy-dark">
-                    Outreachr
+                    Editorial HQ
                   </span>
                 </span>
 

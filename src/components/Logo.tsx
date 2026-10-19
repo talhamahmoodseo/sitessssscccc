@@ -1,5 +1,5 @@
 /**
- * Outreachr logo. The mark is a lowercase "o" with one line reaching out of it
+ * Editorial HQ logo. The mark is a ring with one line reaching out of it
  * to an amber dot: a brand, and the placement it earns somewhere else.
  */
 
@@ -50,7 +50,7 @@ const Logo = ({
         invert ? "text-white" : "text-navy-dark"
       } ${hideWordOnMobile ? "hidden sm:block" : ""}`}
     >
-      Outreachr
+      Editorial HQ
     </span>
   </span>
 );

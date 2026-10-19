@@ -1,4 +1,4 @@
-# Handoff — Outreachr website
+# Handoff — Editorial HQ website
 
 Start here. This file is the entry point for any developer or AI agent taking
 over the site. It tells you what exists, where everything lives, what the
@@ -6,7 +6,7 @@ owner wants, and what is still open.
 
 ## 1. What this is
 
-Marketing website for **Outreachr**, a link building and digital PR agency
+Marketing website for **Editorial HQ** (editorialhq.com; called Outreachr until round 6), a link building and digital PR agency
 (founder: Talha Mahmood, Faisalabad, Pakistan). Services: Link Building,
 Digital PR, Brand Mentions for AI search, HARO & Expert Quotes.
 
@@ -22,7 +22,7 @@ Digital PR, Brand Mentions for AI search, HARO & Expert Quotes.
 | --- | --- |
 | `docs/screenshots/desktop/` | Full-page screenshot of every page at 1440px |
 | `docs/screenshots/mobile/` | Same pages at 390px |
-| `docs/downloads/outreachr-wordpress-theme.zip` | Ready-to-upload WordPress theme of the current build |
+| `docs/downloads/editorialhq-wordpress-theme.zip` | Ready-to-upload WordPress theme of the current build |
 
 Pages: home, about, services, link-building, digital-pr, brand-mentions,
 haro-expert-quotes, results (case studies), case-study, blog, contact,
@@ -97,6 +97,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
+| (round 6) | Rebrand Outreachr → Editorial HQ (domain editorialhq.com): logo wordmark, site name in titles/OG/schema, social image, contact@editorialhq.com everywhere, theme name |
 | (round 5) | Campaign-view hero (rocket removed), Ahrefs/Semrush/Neil Patel data cards, 8-Point Site Check (relevance first) site-wide, real rejected sites (techbullion.com, dsnews.co.uk, entrepreneursbreak.com), pilot + new pricing ladder, Digital PR story rewrite, shorter About, services index removed, "sample" labels removed |
 | (round 4) | Technical SEO: prerendering, per-page head tags, real 404s, sitemap/robots in the theme, smoke → image, code splitting, critical CSS |
 | `708d997` | Round 3: Outreachr rebrand, hero WebGL smoke, Shift previews + sourced data, 4-service section, personas sketches, booking popup, About rewrite, Digital PR fan restored |
@@ -130,8 +131,8 @@ publishing invented testimonials or results as real breaks consumer-protection
 rules (e.g. the US FTC rule on fake reviews) and Google's review guidelines.
 
 - Calendly URL in `src/lib/booking.ts` (booking popup shows a loading state).
-- Email `contact@talhamahmood.com` (used in Contact, common.tsx, Footer,
-  HomeCTA, FAQ, Hero, BookingModal) and the site URL in `index.html` JSON-LD.
+- Mailbox `contact@editorialhq.com` must be created in Hostinger (Emails) —
+  the site already uses that address everywhere.
 - Case studies, reviews, press clippings, client figures: samples.
 - Static hosting only: build with `SITE_URL=https://yourdomain.com npm run build`
   (WordPress fills in the domain itself).

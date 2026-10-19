@@ -57,7 +57,7 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <Link to="/" aria-label="Outreachr home">
+            <Link to="/" aria-label="Editorial HQ home">
               <Logo invert={light} />
             </Link>
           </motion.div>

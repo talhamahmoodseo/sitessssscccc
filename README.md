@@ -1,4 +1,4 @@
-# Outreachr — Link Building & AI Visibility
+# Editorial HQ — Link Building & AI Visibility
 
 Marketing website for a link-building and digital-PR agency. Static React SPA,
 no backend. Editorial ink-on-paper design, 20 routes, content held in

@@ -142,7 +142,7 @@ const FAQ = () => {
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </button>
                 <a
-                  href="mailto:contact@talhamahmood.com"
+                  href="mailto:contact@editorialhq.com"
                   className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13.5px] font-semibold text-navy-dark ring-1 ring-navy-dark/20 transition-shadow hover:ring-navy-dark/50"
                 >
                   <Mail className="h-3.5 w-3.5" />

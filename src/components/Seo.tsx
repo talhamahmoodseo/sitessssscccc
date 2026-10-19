@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
  * the WordPress theme / static build swaps for the real domain.
  */
 
-export const SITE_NAME = "Outreachr";
+export const SITE_NAME = "Editorial HQ";
 const DEFAULT_IMAGE = "/images/og-default.jpg";
 
 const siteUrl = () =>

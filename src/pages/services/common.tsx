@@ -19,7 +19,7 @@ import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "./kit";
  * The copy is always the page's own; only the layout is shared.
  */
 
-export const EMAIL = "contact@talhamahmood.com";
+export const EMAIL = "contact@editorialhq.com";
 
 /* ---------------------------- fit + price ---------------------------- */
 

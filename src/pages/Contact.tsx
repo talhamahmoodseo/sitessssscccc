@@ -6,7 +6,7 @@ import PageLayout from "@/components/PageLayout";
 import { openBooking } from "@/lib/booking";
 import { CARD, GlowPanel, ease, rise } from "./services/kit";
 
-const EMAIL = "contact@talhamahmood.com";
+const EMAIL = "contact@editorialhq.com";
 
 const SERVICES = [
   "Link building",

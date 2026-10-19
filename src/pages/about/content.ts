@@ -7,16 +7,16 @@
 
 export const about = {
   seo: {
-    title: "About Outreachr: Link Building & Digital PR Agency",
+    title: "About Editorial HQ: Link Building & Digital PR Agency",
     description:
-      "Outreachr is a link building and digital PR agency. We earn placements on publications your buyers read, so you rank on Google and get recommended in AI answers.",
+      "Editorial HQ is a link building and digital PR agency. We earn placements on publications your buyers read, so you rank on Google and get recommended in AI answers.",
   },
 
   hero: {
-    eyebrow: "About Outreachr",
+    eyebrow: "About Editorial HQ",
     h1a: "We build the authority",
     h1b: "that gets brands found.",
-    lead: "Outreachr is a link building and digital PR agency for SaaS, e-commerce and service brands, and the agencies that serve them. We earn placements on publications your buyers read, so you rank on Google and get recommended in AI answers.",
+    lead: "Editorial HQ is a link building and digital PR agency for SaaS, e-commerce and service brands, and the agencies that serve them. We earn placements on publications your buyers read, so you rank on Google and get recommended in AI answers.",
     primary: "Book a call",
     secondary: "See our results",
     // value, label, sector, tint, position (desktop), depth (0 = sharp)
@@ -75,7 +75,7 @@ export const about = {
   story: {
     eyebrow: "Who we are",
     lines: [
-      "We started Outreachr because most link building is sold by the spreadsheet: a list of domains, a DR score next to each, and little proof any of it worked.",
+      "We started Editorial HQ because most link building is sold by the spreadsheet: a list of domains, a DR score next to each, and little proof any of it worked.",
       "We built ours the other way round. Direct relationships with editors, every site checked by hand, and reporting tied to rankings, traffic and AI visibility.",
       "Today our specialist team runs campaigns for brands and agencies across the US, UK, Europe and the Gulf.",
     ],

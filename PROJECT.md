@@ -8,7 +8,7 @@ traps that will waste your time if you do not know about them.
 
 ## 1. What this is
 
-Marketing website for **Outreachr**, a link-building / digital-PR agency
+Marketing website for **Editorial HQ** (formerly Outreachr), a link-building / digital-PR agency
 (founded by Talha Mahmood; the site speaks as the agency, never as one person).
 Positioning: editorial backlinks and brand mentions that move Google rankings
 *and* get the client cited by AI answer engines (ChatGPT, Claude, AI Overviews).
@@ -333,11 +333,9 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
   but invented. Swap in real anonymised ones — that section is the strongest
   trust signal on the page and real data will land harder.
 - Calendly handle — `lib/booking.ts` (`CALENDLY_URL`)
-- Contact email — still `contact@talhamahmood.com` in `pages/Contact.tsx`,
+- Contact email — `contact@editorialhq.com` in `pages/Contact.tsx`,
   `pages/services/common.tsx`, `sections/Footer.tsx`, `sections/HomeCTA.tsx`,
   `sections/FAQ.tsx`, `sections/Hero.tsx` and `components/BookingModal.tsx`.
-  Switch to the Outreachr domain once it exists, along with the `url` in the
-  JSON-LD in `index.html`.
 - `YOURDOMAIN.com` entries in `public/sitemap.xml`
 
 ## 11. Other docs

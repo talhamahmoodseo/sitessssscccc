@@ -15,7 +15,7 @@ const SERVICE_SCHEMA = {
   name: "Digital PR",
   serviceType: "Digital PR",
   description: C.seo.description,
-  provider: { "@type": "Organization", name: "Outreachr" },
+  provider: { "@type": "Organization", name: "Editorial HQ" },
   areaServed: ["US", "GB", "AE", "SA"],
   offers: {
     "@type": "Offer",

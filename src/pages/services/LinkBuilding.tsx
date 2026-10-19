@@ -24,7 +24,7 @@ const SERVICE_SCHEMA = {
   name: "Link Building Services",
   serviceType: "Link building",
   description: LB.seo.description,
-  provider: { "@type": "Organization", name: "Outreachr" },
+  provider: { "@type": "Organization", name: "Editorial HQ" },
   areaServed: ["US", "GB", "AE"],
   offers: {
     "@type": "Offer",

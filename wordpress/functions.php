@@ -1,6 +1,6 @@
 <?php
 /**
- * Outreachr — Link Building & AI Visibility
+ * Editorial HQ — Link Building & AI Visibility
  * Theme glue: serve the prerendered React site through WordPress.
  *
  * How a request is answered

@@ -6,7 +6,7 @@ import CampaignView from "./CampaignView";
 const Hero = () => {
   const [e, s] = useState(""),
     a = () => {
-      const r = "contact@talhamahmood.com",
+      const r = "contact@editorialhq.com",
         c = encodeURIComponent("Free visibility audit request"),
         u = encodeURIComponent(`Website / email: ${e}
 

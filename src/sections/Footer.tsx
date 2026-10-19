@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/Logo";
 import { openBooking } from "@/lib/booking";
 
-const EMAIL = "contact@talhamahmood.com";
+const EMAIL = "contact@editorialhq.com";
 
 const COLUMNS = [
   {
@@ -33,11 +33,11 @@ const Footer = () => (
     <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 lg:px-8 lg:pt-20">
       <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr]">
         <div className="max-w-sm">
-          <Link to="/" aria-label="Outreachr home">
+          <Link to="/" aria-label="Editorial HQ home">
             <Logo invert />
           </Link>
           <p className="mt-5 text-[14.5px] leading-relaxed text-white/65">
-            Outreachr builds the authority that decides who gets found:
+            Editorial HQ builds the authority that decides who gets found:
             editorial links, digital PR and brand mentions that move Google
             rankings and AI recommendations.
           </p>
@@ -87,7 +87,7 @@ const Footer = () => (
       </div>
 
       <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-[13px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Outreachr. All rights reserved.</p>
+        <p>© 2026 Editorial HQ. All rights reserved.</p>
         <p>Link building · Digital PR · AI visibility</p>
       </div>
     </div>

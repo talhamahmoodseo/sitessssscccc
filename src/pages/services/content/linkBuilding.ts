@@ -581,6 +581,6 @@ export const linkBuilding = {
     d: "On a 15-minute call we look at your site, your competitors' backlinks and the pages closest to page one, then tell you what it would take to move them.",
     primary: "Book a strategy call",
     secondary: "Email us instead",
-    email: "contact@talhamahmood.com",
+    email: "contact@editorialhq.com",
   },
 };

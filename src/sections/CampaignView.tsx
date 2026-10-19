@@ -9,7 +9,7 @@ import { ArrowUp, Check, CircleDashed } from "lucide-react";
 import { ChatGptMark } from "@/components/PlatformMarks";
 
 /**
- * Homepage hero panel: what a month of an Outreachr campaign looks like.
+ * Homepage hero panel: what a month of an Editorial HQ campaign looks like.
  * Placements go live one by one (publication, type, DR, indexed), one is
  * opened to show what it moved, and a strip sums up the month.
  *

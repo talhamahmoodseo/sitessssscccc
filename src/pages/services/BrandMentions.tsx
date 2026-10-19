@@ -18,7 +18,7 @@ const SERVICE_SCHEMA = {
   name: "Brand Mention Building for AI Search",
   serviceType: "Brand mentions and AI visibility",
   description: C.seo.description,
-  provider: { "@type": "Organization", name: "Outreachr" },
+  provider: { "@type": "Organization", name: "Editorial HQ" },
   areaServed: ["US", "GB", "AE"],
   offers: {
     "@type": "Offer",
