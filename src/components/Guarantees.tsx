@@ -10,6 +10,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { asset } from "@/lib/booking";
 import { DarkGlow, Eyebrow, H2, Soft, rise } from "@/pages/services/kit";
 
 /**
@@ -219,16 +220,35 @@ export const GuaranteeBand = ({ terms = true }: { terms?: boolean }) => (
         </p>
         <div className="mt-9 flex items-center gap-6">
           <Seal className="h-32 w-32 flex-none sm:h-36 sm:w-36" />
-          {terms && (
-            <Link
-              to="/pricing#guarantee-terms"
-              className="group inline-flex items-center gap-2 text-[14.5px] font-semibold text-white"
-            >
-              Read the full terms
-              <ArrowRight className="h-4 w-4 text-mark transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          )}
+          {/* the founder's own word on it, the way the best agencies sign theirs */}
+          <figure>
+            <blockquote className="text-[15px] font-medium leading-snug text-white">
+              “If a link isn't what you paid for, you don't pay for it. Simple
+              as that.”
+            </blockquote>
+            <figcaption className="mt-3 flex items-center gap-2.5">
+              <img
+                src={asset("/images/talha-avatar.jpg")}
+                alt="Talha Mahmood"
+                className="h-8 w-8 rounded-full object-cover ring-2 ring-mark/50"
+                loading="lazy"
+              />
+              <span className="text-[13px] text-white/75">
+                <span className="font-semibold text-white">Talha Mahmood</span>
+                , Founder
+              </span>
+            </figcaption>
+          </figure>
         </div>
+        {terms && (
+          <Link
+            to="/pricing#guarantee-terms"
+            className="group mt-7 inline-flex items-center gap-2 text-[14.5px] font-semibold text-white"
+          >
+            Read the full terms
+            <ArrowRight className="h-4 w-4 text-mark transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        )}
       </motion.div>
 
       <ul className="grid gap-4 sm:grid-cols-2">

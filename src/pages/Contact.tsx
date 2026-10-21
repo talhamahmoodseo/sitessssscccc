@@ -23,11 +23,26 @@ const PACKAGES: Record<string, string> = {
   starter: "Starter, 5 links ($695)",
   growth: "Growth, 10 links ($1,290)",
   authority: "Authority, 10 links DR 50+ ($2,190)",
+  dr30: "Single link, DR 30+ ($110)",
+  dr40: "Single link, DR 40+ ($150)",
+  dr50: "Single link, DR 50+ ($240)",
+  dr60: "Single link, DR 60+ ($349)",
+  dr70: "Single link, DR 70+ (from $499)",
   custom: "Custom order",
   campaign: "Monthly campaign",
   unsure: "Not sure yet",
 };
-const PACKAGE_OPTIONS = Object.values(PACKAGES);
+/* the chips show the main choices; a single-link order arriving from the
+   price grid is added in front so it stays selected */
+const MAIN_PACKAGES = [
+  "trial",
+  "starter",
+  "growth",
+  "authority",
+  "custom",
+  "campaign",
+  "unsure",
+].map((k) => PACKAGES[k]);
 
 const packageFromUrl = () =>
   PACKAGES[new URLSearchParams(window.location.search).get("package") || ""] ||
@@ -182,7 +197,11 @@ const ContactForm = () => {
       />
       <ChipGroup
         label="Package"
-        options={PACKAGE_OPTIONS}
+        options={
+          MAIN_PACKAGES.includes(f.budget)
+            ? MAIN_PACKAGES
+            : [f.budget, ...MAIN_PACKAGES]
+        }
         value={f.budget}
         onChange={set("budget")}
       />

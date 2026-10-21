@@ -115,7 +115,10 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 - **Pricing** (round 7, owner-approved basis of ~$150/link): Trial $129 (1× DR 40+,
   one per new client) · Starter $695 (5× DR 40+) · Growth $1,290 (10× DR 40+) ·
   Authority $2,190 (10× DR 50+) · singles DR 30+ $110, 40+ $150, 50+ $240,
-  60+ $349, 70+ from $499. Below FatJoe's blogger-outreach list at every tier.
+  60+ $349, 70+ from $499. FatJoe blogger outreach in USD (checked Oct 2026):
+  DR 30+ $137, 40+ $247, 50+ $384, 60+ $521, so we sit 20–40% below at every tier.
+  Single placements show as a FatJoe-style card grid with a "What every link
+  includes" panel and a bulk-buyer bar; order buttons pass `?package=dr40` etc.
   Confirm margins per DR band. Prices live in `src/pages/Pricing.tsx`,
   `content/linkBuilding.ts` (strip + FAQ), `sections/FAQ.tsx`, `pages/Contact.tsx`.
 - **Guarantee terms need the owner's sign-off** — `src/components/Guarantees.tsx`

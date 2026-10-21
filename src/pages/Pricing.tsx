@@ -74,23 +74,32 @@ const PACK_INCLUDES = [
   "Most links live in 2–4 weeks",
 ];
 
-/** single placements, by authority */
+/** single placements, by authority. Keys match PACKAGES in Contact.tsx. */
 const PRICE_LIST = [
-  { dr: "DR 30+", price: "$110", use: "New sites and supporting blog posts" },
+  { id: "dr30", dr: "DR 30+", price: "$110", use: "New sites and supporting blog posts" },
   {
+    id: "dr40",
     dr: "DR 40+",
     price: "$150",
     use: "Most service pages and blog content",
     popular: true,
   },
-  { dr: "DR 50+", price: "$240", use: "Competitive service pages" },
-  { dr: "DR 60+", price: "$349", use: "Category pages and tougher keywords" },
-  {
-    dr: "DR 70+",
-    price: "$499",
-    from: true,
-    use: "Homepage and head terms",
-  },
+  { id: "dr50", dr: "DR 50+", price: "$240", use: "Competitive service pages" },
+  { id: "dr60", dr: "DR 60+", price: "$349", use: "Category pages and tougher keywords" },
+  { id: "dr70", dr: "DR 70+", price: "$499", from: true, use: "Homepage and head terms" },
+];
+
+/** the side panel next to the price grid: what every placement comes with */
+const EVERY_LINK = [
+  "Live in 2–4 weeks",
+  "DR guaranteed at the tier you order",
+  "Article written by our team",
+  "1 anchor and 1 target URL",
+  "Dofollow, in the body of the article",
+  "No duplicate domains",
+  "White-label report",
+  "Lifetime link guarantee",
+  "100% money-back guarantee",
 ];
 
 const STEPS = [
@@ -274,7 +283,10 @@ const Pricing = () => (
         </motion.div>
 
         {/* packs */}
-        <div className="mt-4 grid items-stretch gap-4 lg:grid-cols-3">
+        <div
+          id="packs"
+          className="mt-4 grid scroll-mt-24 items-stretch gap-4 lg:grid-cols-3"
+        >
           {PACKS.map((p, i) => (
             <motion.div
               key={p.id}
@@ -361,9 +373,167 @@ const Pricing = () => (
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          Prices in USD · no contract · no setup fee · ordering 20+ links a
-          month? Ask about volume pricing
+          Prices in USD · no contract · no setup fee · single links from $110,
+          priced by authority below
         </motion.p>
+      </div>
+    </section>
+
+    {/* single placements: one card per authority tier, like the price grids
+        buyers know from other agencies, with what every link includes */}
+    <section className="bg-mist py-24 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="mb-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16"
+          {...rise()}
+        >
+          <div>
+            <Eyebrow className="mb-4">Single placements</Eyebrow>
+            <H2>
+              Pick your authority.
+              <br />
+              <Soft>Pay per placement.</Soft>
+            </H2>
+          </div>
+          <p className="text-[17px] leading-relaxed text-navy-dark/75">
+            Any quantity, any mix. Every link gets the same content, site check,
+            report and guarantees as a pack.
+          </p>
+        </motion.div>
+
+        <div className="grid gap-4 lg:grid-cols-[1fr_300px]">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {PRICE_LIST.map((r, i) => (
+              <motion.li
+                key={r.id}
+                className={`relative flex flex-col overflow-hidden rounded-3xl ${
+                  r.popular
+                    ? "bg-navy-dark text-white"
+                    : "bg-white text-navy-dark ring-1 ring-line"
+                }`}
+                {...rise(i * 0.04)}
+              >
+                {r.popular && (
+                  <span className="absolute right-4 top-4 rounded-full bg-mark px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-navy-dark">
+                    Most popular
+                  </span>
+                )}
+                <div
+                  className={`px-6 pb-5 pt-6 ${r.popular ? "bg-white/[0.06]" : "bg-mist/60"}`}
+                >
+                  <p className="text-[22px] font-semibold tracking-[-0.03em]">
+                    {r.dr}
+                  </p>
+                  <p
+                    className={`mt-1 min-h-[40px] text-[13.5px] leading-snug ${r.popular ? "text-white/70" : "text-navy-dark/70"}`}
+                  >
+                    {r.use}
+                  </p>
+                </div>
+                <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
+                  <p className="flex items-baseline gap-1.5">
+                    {r.from && (
+                      <span
+                        className={`text-[13px] ${r.popular ? "text-white/70" : "text-navy-dark/70"}`}
+                      >
+                        from
+                      </span>
+                    )}
+                    <span className="text-[2.2rem] font-semibold leading-none tracking-[-0.045em] tabular-nums">
+                      {r.price}
+                    </span>
+                    <span
+                      className={`text-[13.5px] ${r.popular ? "text-white/70" : "text-navy-dark/70"}`}
+                    >
+                      / placement
+                    </span>
+                  </p>
+                  <Link
+                    to={order(r.id)}
+                    className={`mt-5 inline-flex items-center justify-center rounded-full px-5 py-3 text-[14px] font-semibold transition-colors ${
+                      r.popular
+                        ? "bg-mark text-navy-dark hover:bg-white"
+                        : "ring-1 ring-navy-dark/20 hover:bg-navy-dark hover:text-white"
+                    }`}
+                  >
+                    Order now
+                  </Link>
+                </div>
+              </motion.li>
+            ))}
+            {/* sixth tile: point bigger orders at the packs */}
+            <motion.li
+              className="flex flex-col justify-between rounded-3xl bg-butter p-6"
+              {...rise(0.2)}
+            >
+              <div>
+                <p className="text-[22px] font-semibold tracking-[-0.03em] text-navy-dark">
+                  5 links or more?
+                </p>
+                <p className="mt-2 text-[14px] leading-relaxed text-navy-dark/80">
+                  Packs bring a DR 40+ link down to $129. Save up to 14% per
+                  link.
+                </p>
+              </div>
+              <a
+                href="#packs"
+                className="group mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-navy-dark"
+              >
+                See the packs
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </motion.li>
+          </ul>
+
+          {/* what's included */}
+          <motion.aside
+            className="rounded-3xl bg-white p-6 ring-1 ring-line sm:p-7"
+            {...rise(0.1)}
+          >
+            <p className="text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
+              What every link includes
+            </p>
+            <ul className="mt-5 space-y-3">
+              {EVERY_LINK.map((x) => (
+                <li
+                  key={x}
+                  className="flex gap-2.5 text-[14.5px] leading-snug text-navy-dark/85"
+                >
+                  <Check className="mt-0.5 h-4 w-4 flex-none text-verified" />
+                  {x}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#guarantee-terms"
+              className="group mt-6 inline-flex items-center gap-2 border-t border-line pt-5 text-[14px] font-semibold text-navy-dark"
+            >
+              Read the guarantee terms
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </motion.aside>
+        </div>
+
+        {/* bulk buyers */}
+        <motion.div
+          className="mt-4 flex flex-col items-start justify-between gap-4 rounded-3xl bg-white px-6 py-5 ring-1 ring-line sm:flex-row sm:items-center sm:px-8"
+          {...rise(0.1)}
+        >
+          <p className="text-[15.5px] font-semibold text-navy-dark">
+            Agency or bulk buyer? Ordering 20+ links a month gets you volume
+            pricing.
+          </p>
+          <Link
+            to={order("custom")}
+            className="group inline-flex flex-none items-center gap-2 rounded-full bg-navy-dark px-6 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-black"
+          >
+            Ask for volume pricing
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </motion.div>
+        <p className="mt-5 text-[13.5px] text-navy-dark/70">
+          DR is Ahrefs' Domain Rating, recorded on the day your link goes live.
+        </p>
       </div>
     </section>
 
@@ -371,7 +541,7 @@ const Pricing = () => (
     <section className="bg-white py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div className="mb-12 max-w-3xl" {...rise()}>
-          <Eyebrow className="mb-4">How it works</Eyebrow>
+          <Eyebrow className="mb-4">How ordering works</Eyebrow>
           <H2>
             Three steps.
             <br />
@@ -397,77 +567,6 @@ const Pricing = () => (
             </motion.li>
           ))}
         </ol>
-      </div>
-    </section>
-
-    {/* single placements by authority */}
-    <section className="bg-mist py-24 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="mb-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16"
-          {...rise()}
-        >
-          <div>
-            <Eyebrow className="mb-4">Single placements</Eyebrow>
-            <H2>
-              Building your own order?
-              <br />
-              <Soft>Price per link, by authority.</Soft>
-            </H2>
-          </div>
-          <p className="text-[17px] leading-relaxed text-navy-dark/75">
-            Any quantity, any mix. Every placement gets the same content, site
-            check, report and guarantees as a pack. Packs save up to 14% per
-            link.
-          </p>
-        </motion.div>
-        <motion.ul
-          className="overflow-hidden rounded-3xl bg-white ring-1 ring-line"
-          {...rise(0.05)}
-        >
-          {PRICE_LIST.map((r, i) => (
-            <li
-              key={r.dr}
-              className={`grid grid-cols-[auto_1fr_auto] items-center gap-4 px-6 py-5 sm:gap-8 sm:px-8 ${i ? "border-t border-line" : ""}`}
-            >
-              <span className="w-[4.5rem] text-[17px] font-semibold tracking-[-0.02em] text-navy-dark sm:w-24">
-                {r.dr}
-              </span>
-              <span className="flex flex-wrap items-center gap-2 text-[14.5px] text-navy-dark/75">
-                {r.use}
-                {r.popular && (
-                  <span className="rounded-full bg-butter px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.06em] text-navy-dark">
-                    Most ordered
-                  </span>
-                )}
-              </span>
-              <span className="flex items-baseline gap-1.5 justify-self-end">
-                {r.from && (
-                  <span className="text-[12.5px] text-navy-dark/70">from</span>
-                )}
-                <span className="text-[1.6rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark tabular-nums">
-                  {r.price}
-                </span>
-              </span>
-            </li>
-          ))}
-        </motion.ul>
-        <motion.div
-          className="mt-6 flex flex-wrap items-center justify-between gap-4"
-          {...rise(0.1)}
-        >
-          <p className="text-[14px] text-navy-dark/75">
-            DR is Ahrefs' Domain Rating, recorded on the day your link goes
-            live.
-          </p>
-          <Link
-            to={order("custom")}
-            className="group inline-flex items-center gap-2 rounded-full bg-navy-dark px-6 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-black"
-          >
-            Build a custom order
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </motion.div>
       </div>
     </section>
 
