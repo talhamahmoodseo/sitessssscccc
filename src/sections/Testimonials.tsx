@@ -29,9 +29,9 @@ const WALL = [
   },
   {
     name: "Omar Haddad",
-    role: "Marketing Manager, Dubai",
+    role: "Marketing Manager, e-commerce",
     via: "Digital PR",
-    text: "Getting into Gulf business press always felt impossible for us. They got us three features in two months.",
+    text: "Getting into international business press always felt impossible for us. They got us three features in two months.",
   },
   {
     name: "Jessica Lane",

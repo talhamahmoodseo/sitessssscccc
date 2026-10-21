@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight, Check, Mail, Minus } from "lucide-react";
 import { openBooking } from "@/lib/booking";
 import { ObjectionFaq } from "../sections";
+import { GuaranteeChips } from "@/components/Guarantees";
 import { linkBuilding as LB } from "../content/linkBuilding";
 import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "../kit";
 
@@ -98,7 +99,7 @@ export const PricingStrip = () => {
                 to="/pricing"
                 className="group inline-flex items-center gap-2 rounded-full bg-navy-dark px-7 py-3.5 text-[14.5px] font-semibold text-white transition-colors duration-300 hover:bg-black"
               >
-                See all plans
+                See full pricing
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
               <button
@@ -108,6 +109,7 @@ export const PricingStrip = () => {
                 Get a quote on a call
               </button>
             </div>
+            <GuaranteeChips className="mt-8" />
           </motion.div>
 
           <motion.ul
@@ -120,14 +122,14 @@ export const PricingStrip = () => {
                   to="/pricing"
                   className={`group flex items-center justify-between gap-4 px-5 py-6 sm:gap-6 sm:px-7 transition-colors duration-300 hover:bg-mist ${
                     n ? "border-t border-line" : ""
-                  } ${n === 1 ? "bg-butter/60 hover:bg-butter" : ""}`}
+                  } ${n === 2 ? "bg-butter/60 hover:bg-butter" : ""}`}
                 >
                   <span>
                     <span className="flex flex-wrap items-center gap-2 text-[17px] font-semibold text-navy-dark">
                       {p.name}
-                      {n === 1 && (
+                      {n === 2 && (
                         <span className="rounded-full bg-navy-dark px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-white">
-                          Most chosen
+                          Most popular
                         </span>
                       )}
                     </span>
@@ -136,15 +138,9 @@ export const PricingStrip = () => {
                     </span>
                   </span>
                   <span className="flex items-baseline gap-1.5 text-right">
-                    {n === 2 && (
-                      <span className="hidden text-[12px] text-navy-dark/70 sm:inline">
-                        from
-                      </span>
-                    )}
                     <span className="text-[1.9rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark tabular-nums">
                       {p.price}
                     </span>
-                    <span className="text-[12px] text-navy-dark/70">/mo</span>
                     <ArrowUpRight className="ml-2 hidden h-4 w-4 self-center text-navy-dark/40 transition-colors duration-300 group-hover:text-navy-dark sm:block" />
                   </span>
                 </Link>

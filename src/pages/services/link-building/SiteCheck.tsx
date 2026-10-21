@@ -17,13 +17,11 @@ const Bar = ({
   value,
   pct,
   bad = false,
-  ghost = false,
 }: {
   label: string;
   value: string;
   pct: number;
   bad?: boolean;
-  ghost?: boolean;
 }) => (
   <div>
     <div className="flex items-baseline justify-between text-[12px]">
@@ -37,9 +35,7 @@ const Bar = ({
     <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-navy-dark/[0.07]">
       <motion.div
         className={`h-full rounded-full ${
-          ghost
-            ? "bg-[repeating-linear-gradient(135deg,rgb(var(--ink)/0.25)_0_4px,transparent_4px_8px)]"
-            : bad
+          bad
               ? "bg-gap"
               : "bg-navy-dark"
         }`}
@@ -168,22 +164,6 @@ const VISUALS: {
   },
   {
     pass: (
-      <div className="space-y-3">
-        <Bar label="Ahrefs" value="14.2K" pct={74} />
-        <Bar label="Semrush" value="12.8K" pct={67} />
-      </div>
-    ),
-    passNote: "Real, and both tools agree",
-    fail: (
-      <div className="space-y-3">
-        <Bar label="Seller's sheet" value="95K" pct={96} ghost />
-        <Bar label="Ahrefs" value="1.4K" pct={4} bad />
-      </div>
-    ),
-    failNote: "The sheet was 68× higher",
-  },
-  {
-    pass: (
       <div>
         <Kw k="best crm for startups" pos={3} />
         <Kw k="sales pipeline template" pos={6} />
@@ -198,48 +178,48 @@ const VISUALS: {
         <Kw k="celebrity net worth" pos={8} bad />
       </div>
     ),
-    failNote: "Traffic with nothing to do with the topic",
+    failNote: "Visibility with nothing to do with the topic",
   },
   {
     pass: <Spark data={STEADY} />,
-    passNote: "+38% over 12 months, no spikes",
+    passNote: "Steady growth over 12 months, no spikes",
     fail: <Spark data={CLIFF} bad />,
     failNote: "Core update: lost 60% overnight",
   },
   {
     pass: (
       <div className="space-y-2.5">
-        <Bar label="United States" value="64%" pct={64} />
+        <Bar label="Keywords ranking in the US" value="64%" pct={64} />
         <Bar label="United Kingdom" value="14%" pct={14} />
         <Bar label="Canada" value="8%" pct={8} />
       </div>
     ),
-    passNote: "Readers where the client sells",
+    passNote: "Ranks where the client sells",
     fail: (
       <div className="space-y-2.5">
         <Bar label="Markets the client sells in" value="18%" pct={18} />
         <Bar label="Markets it doesn't" value="82%" pct={82} bad />
       </div>
     ),
-    failNote: "Authority on paper only",
+    failNote: "Visible to the wrong market",
   },
   {
     pass: (
       <div>
         <Fact k="Domain Rating" v="52" />
-        <Fact k="Organic traffic" v="18.6K / month" />
+        <Fact k="Ranking keywords" v="On topic, page one" />
         <Fact k="Referring domains" v="Mostly editorial" />
       </div>
     ),
-    passNote: "Authority backed by real readers",
+    passNote: "Authority backed by real rankings",
     fail: (
       <div>
         <Fact k="dsnews.co.uk · DR" v="~70" />
-        <Fact k="Organic traffic" v="1–2K / month" bad />
+        <Fact k="Keywords" v="Weak, few buyer terms" bad />
         <Fact k="Graph" v="Unstable" bad />
       </div>
     ),
-    failNote: "High DR, almost no readers",
+    failNote: "High DR, little behind it",
   },
   {
     pass: (
@@ -435,7 +415,7 @@ const SiteCheck = () => {
                 <Inspector active={active} />
                 <motion.p
                   className="mt-5 flex items-center justify-center gap-2 text-[13px] font-semibold text-navy-dark"
-                  animate={{ opacity: active === 4 ? 1 : 0.0001 }}
+                  animate={{ opacity: active === M.steps.length - 1 ? 1 : 0.0001 }}
                   transition={{ duration: 0.4 }}
                 >
                   <ShieldCheck className="h-4 w-4 text-verified" />

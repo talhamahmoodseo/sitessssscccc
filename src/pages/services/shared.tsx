@@ -8,7 +8,7 @@ export const SERVICES = [
     slug: "link-building",
     nav: "Link Building",
     tint: "bg-butter",
-    sub: "Editorial backlinks from DR 40+ publications with real traffic — sourced through our own publisher network, checked by hand, and tracked until Google actually counts them.",
+    sub: "Editorial backlinks on relevant DR 40+ publications, sourced through our own publisher network, checked by hand, and tracked until Google actually counts them.",
     deliverables: [
       {
         t: "Guest posts",
@@ -28,7 +28,7 @@ export const SERVICES = [
     slug: "digital-pr",
     nav: "Digital PR",
     tint: "bg-mint",
-    sub: "Stories editors want to run, on publications your buyers actually read. Features, expert quotes and roundups that bring links, mentions and trust, Gulf business press included.",
+    sub: "Stories editors want to run, on publications your buyers actually read. Features, expert quotes and roundups that bring links, mentions and trust, in the markets you sell in.",
     deliverables: [
       {
         t: "Story audit and angle development",
@@ -36,7 +36,7 @@ export const SERVICES = [
       },
       {
         t: "Named-journalist pitching",
-        d: "One pitch per journalist, written for them. Gulf business press included.",
+        d: "One pitch per journalist, written for them, wherever your buyers read.",
       },
       {
         t: "Data studies, surveys and opinion pieces",

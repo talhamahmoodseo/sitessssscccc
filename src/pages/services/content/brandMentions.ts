@@ -289,14 +289,14 @@ export const brandMentions = {
       label: "Brand mentions pricing",
       from: "$2,497",
       unit: "/month",
-      plan: "Included in our Authority plan, or added to Growth",
+      plan: "Monthly campaign, links included",
       points: [
         "Buyer-question baseline across the main AI tools",
         "Mentions on the sources AI already cites",
         "Editorial links in the same plan",
         "Monthly AI visibility report",
       ],
-      note: "Authority adds screenshots of every answer and competitor tracking. Need mentions only? We’ll scope it on a call.",
+      note: "Need mentions only, or screenshots of every answer and competitor tracking? We’ll scope it on a call.",
     },
   },
 

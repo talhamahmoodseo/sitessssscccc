@@ -97,6 +97,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
+| (round 7) | Guarantees (money-back, lifetime link, no PBNs, white label) as a band on home + link building + pricing, with full terms on /pricing#guarantee-terms (`components/Guarantees.tsx`); pricing rebuilt per placement (trial $129, packs 5/10 links, price list by DR, 3-step ordering, contact form preselects the package via `?package=`); 8-Point → 7-Point Site Check (traffic check removed, no traffic claims); About rewritten around 10,000+ backlinks, global positioning (schema areaServed "Worldwide", Gulf-only copy generalised) |
 | (round 6) | Rebrand Outreachr → Editorial HQ (domain editorialhq.com): logo wordmark, site name in titles/OG/schema, social image, contact@editorialhq.com everywhere, theme name |
 | (round 5) | Campaign-view hero (rocket removed), Ahrefs/Semrush/Neil Patel data cards, 8-Point Site Check (relevance first) site-wide, real rejected sites (techbullion.com, dsnews.co.uk, entrepreneursbreak.com), pilot + new pricing ladder, Digital PR story rewrite, shorter About, services index removed, "sample" labels removed |
 | (round 4) | Technical SEO: prerendering, per-page head tags, real 404s, sitemap/robots in the theme, smoke → image, code splitting, critical CSS |
@@ -111,12 +112,17 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 
 ## 7. Open work (owner's list, not done yet)
 
-- **Pricing numbers** — structure approved and live: Pilot $497 (3 placements,
-  credited) → Starter $597/mo (3) → Growth $997/mo (6, 2 at DR 60+) →
-  Authority from $2,497 (custom); single placements from $149 for agencies.
-  The exact figures were proposed without the owner's cost data — confirm
-  margins (cost per placement by DR band, capacity) and adjust in
-  `src/pages/Pricing.tsx` + service content files.
+- **Pricing** (round 7, owner-approved basis of ~$150/link): Trial $129 (1× DR 40+,
+  one per new client) · Starter $695 (5× DR 40+) · Growth $1,290 (10× DR 40+) ·
+  Authority $2,190 (10× DR 50+) · singles DR 30+ $110, 40+ $150, 50+ $240,
+  60+ $349, 70+ from $499. Below FatJoe's blogger-outreach list at every tier.
+  Confirm margins per DR band. Prices live in `src/pages/Pricing.tsx`,
+  `content/linkBuilding.ts` (strip + FAQ), `sections/FAQ.tsx`, `pages/Contact.tsx`.
+- **Guarantee terms need the owner's sign-off** — `src/components/Guarantees.tsx`
+  states: 30-day refund window, "indexed within 30 days" as part of the order
+  spec, lifetime replacement on same-or-higher DR (check in 2 business days,
+  replace within 30 days), refund if a placement turns out to be a PBN, neutral
+  outreach identity for white label. Edit there if any differ from practice.
 - Owner says many more fixes are still needed across the site; compare each
   page against Amplemarket's quality and the screenshots in `docs/`.
 

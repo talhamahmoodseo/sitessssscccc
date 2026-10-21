@@ -16,7 +16,7 @@ const SERVICE_SCHEMA = {
   serviceType: "Digital PR",
   description: C.seo.description,
   provider: { "@type": "Organization", name: "Editorial HQ" },
-  areaServed: ["US", "GB", "AE", "SA"],
+  areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
     price: "2497",

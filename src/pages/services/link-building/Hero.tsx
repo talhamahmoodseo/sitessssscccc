@@ -7,10 +7,9 @@ import { CLIENTS } from "@/lib/clients";
 import { linkBuilding as LB } from "../content/linkBuilding";
 import { CARD, GlowPanel, ease, sparkPath } from "../kit";
 
-/** short names for the 8-Point Site Check, in the content's order */
+/** short names for the 7-Point Site Check, in the content's order */
 const CHECK_NAMES = [
   "Relevance",
-  "Traffic",
   "Keywords",
   "Trend",
   "Audience",
@@ -81,14 +80,14 @@ const SiteCheckCard = () => {
             </div>
             <div>
               <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-navy-dark/70">
-                Organic / mo
+                Keywords
               </p>
               <p
                 className={`mt-1 text-[26px] font-semibold leading-none tracking-[-0.03em] tabular-nums ${
                   site.pass ? "text-navy-dark" : "text-gap"
                 }`}
               >
-                {site.traffic}
+                {site.kws}
               </p>
             </div>
             <svg
@@ -156,7 +155,7 @@ const SiteCheckCard = () => {
             </ul>
           </div>
 
-          {/* the eight checks */}
+          {/* the seven checks */}
           <div className="flex flex-wrap gap-1.5 px-5 pt-4">
             {CHECK_NAMES.map((c, n) => (
               <motion.span

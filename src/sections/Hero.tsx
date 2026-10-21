@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { GuaranteeChips } from "@/components/Guarantees";
 import CampaignView from "./CampaignView";
 
 const Hero = () => {
@@ -88,8 +89,9 @@ Please send me a free visibility audit.`);
             </button>
           </div>
           <p className="mt-4 text-[12.5px] text-navy-dark/70">
-            1,400+ placements live for 40+ brands
+            10,000+ backlinks delivered for brands and agencies worldwide
           </p>
+          <GuaranteeChips compact className="mt-5 justify-center" />
         </motion.div>
       </div>
       <motion.div

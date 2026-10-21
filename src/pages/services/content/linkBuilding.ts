@@ -8,17 +8,17 @@ export const linkBuilding = {
   seo: {
     title: "Link Building Services That Move Rankings",
     description:
-      "Done-for-you link building services: guest posts, niche edits and authority placements on hand-vetted sites with real organic traffic. Pilot from $497, plans from $597/month.",
+      "Done-for-you link building: guest posts, niche edits and authority placements on hand-checked, relevant sites. No PBNs, lifetime link guarantee, 100% money-back. Trial placement $129.",
   },
 
   hero: {
     eyebrow: "Link building services",
     h1a: "Links that move rankings.",
     h1b: "From sites that still have readers.",
-    lead: "We find the sites, check what's really behind their traffic, write the content and get your link placed. Then we track it until Google counts it. You get rankings, not a spreadsheet full of DR.",
+    lead: "We find the sites, check what they really rank for, write the content and get your link placed. Then we track it until Google counts it. You get rankings, not a spreadsheet full of DR.",
     primary: "Book a strategy call",
     secondary: "See starting prices",
-    rating: "1,400+ placements live for 40+ brands",
+    rating: "10,000+ backlinks delivered · No PBNs · 100% money-back guarantee",
   },
 
   /** The hero card cycles through these. Placements we use are masked to
@@ -27,44 +27,44 @@ export const linkBuilding = {
     {
       domain: "saas•••insider.com",
       dr: 62,
-      traffic: "41.3K",
+      kws: "2.4K",
       trend: [22, 24, 23, 27, 29, 31, 34, 36, 39, 41],
       keywords: [
         { k: "best crm for startups", geo: "US", ok: true },
         { k: "sales pipeline template", geo: "US", ok: true },
         { k: "cold email software", geo: "UK", ok: true },
       ],
-      checks: [1, 1, 1, 1, 1, 1, 1, 1],
+      checks: [1, 1, 1, 1, 1, 1, 1],
       pass: true,
-      verdict: "Passed all 8 checks",
+      verdict: "Passed all 7 checks",
     },
     {
       domain: "deals•••hub.net",
       dr: 64,
-      traffic: "2.1K",
+      kws: "310",
       trend: [9, 4, 11, 3, 8, 2, 7, 3, 6, 2],
       keywords: [
         { k: "free movie download hd", geo: "IN", ok: false },
         { k: "celebrity net worth", geo: "US", ok: false },
         { k: "instant loan apply", geo: "IN", ok: false },
       ],
-      checks: [0, 0, 0, 0, 0, 0, 1, 0],
+      checks: [0, 0, 0, 0, 0, 1, 0],
       pass: false,
-      verdict: "Rejected · DR 64 with almost no relevant readers",
+      verdict: "Rejected · DR 64, ranks for nothing relevant",
     },
     {
       domain: "growth•••weekly.com",
       dr: 57,
-      traffic: "18.6K",
+      kws: "1.6K",
       trend: [12, 13, 13, 14, 15, 15, 16, 17, 18, 19],
       keywords: [
         { k: "b2b lead scoring", geo: "US", ok: true },
         { k: "saas pricing pages", geo: "US", ok: true },
         { k: "churn rate formula", geo: "CA", ok: true },
       ],
-      checks: [1, 1, 1, 1, 1, 1, 1, 1],
+      checks: [1, 1, 1, 1, 1, 1, 1],
       pass: true,
-      verdict: "Passed all 8 checks",
+      verdict: "Passed all 7 checks",
     },
   ],
 
@@ -89,8 +89,8 @@ export const linkBuilding = {
         site: "tech•••blog.com",
         dr: 58,
         traffic: "48K",
-        real: "312 visits",
-        note: "Traffic from one viral post",
+        real: "One viral post",
+        note: "Every other page ranks for nothing",
         ok: false,
       },
       {
@@ -113,8 +113,8 @@ export const linkBuilding = {
         site: "startup•••wire.com",
         dr: 49,
         traffic: "9.4K",
-        real: "9.1K visits",
-        note: "Real readers, right topic",
+        real: "Right topic",
+        note: "Ranks for what buyers search",
         ok: true,
       },
       {
@@ -129,8 +129,8 @@ export const linkBuilding = {
         site: "saas•••review.io",
         dr: 47,
         traffic: "12K",
-        real: "11.8K visits",
-        note: "Page one for 40 keywords",
+        real: "Page one ×40",
+        note: "Page one for 40 relevant keywords",
         ok: true,
       },
     ],
@@ -152,8 +152,8 @@ export const linkBuilding = {
         looks: ["Large traffic in SEO tools", "Thousands of ranking pages"],
         found: [
           "Most ranking keywords were irrelevant to its topic, or spam",
-          "Much of the traffic came from markets our client doesn't sell in, mainly India",
-          "An unstable traffic graph, rising and falling month to month",
+          "Most of its rankings were in markets our client doesn't sell in, mainly India",
+          "An unstable visibility graph, rising and falling month to month",
         ],
         verdict: "Big number. Wrong visitors.",
       },
@@ -163,9 +163,9 @@ export const linkBuilding = {
         domain: "dsnews.co.uk",
         looks: ["DR around 70", "An established UK domain"],
         found: [
-          "Only about 1,000–2,000 organic visits a month for a DR 70 site",
+          "SEO tools estimated only 1,000–2,000 visits a month for a DR 70 site",
           "Weak keywords: very little a buyer would search for",
-          "An unstable traffic graph",
+          "An unstable visibility graph",
         ],
         verdict: "High DR. Almost no readers.",
       },
@@ -186,9 +186,9 @@ export const linkBuilding = {
 
   method: {
     eyebrow: "How we vet every site",
-    badge: "The 8-Point Site Check",
-    h2: "Eight checks, in order. Relevance comes first.",
-    lead: "A link only helps if Google sees it as a real recommendation from a site your buyers read. So before any site gets your link, someone on our team opens the data and checks these eight things. No tool makes the call.",
+    badge: "The 7-Point Site Check",
+    h2: "Seven checks, in order. Relevance comes first.",
+    lead: "A link only helps if Google sees it as a real recommendation from a site your buyers read. So before any site gets your link, someone on our team opens the data and checks these seven things. We only check what we can actually see. No tool makes the call.",
     steps: [
       {
         n: "01",
@@ -198,51 +198,45 @@ export const linkBuilding = {
       },
       {
         n: "02",
-        t: "Is the traffic real?",
-        d: "We pull organic traffic from Ahrefs and Semrush ourselves and ignore the number on a seller's sheet. We look for at least 1,000 organic visits a month, with both tools roughly agreeing.",
-        flag: "95K visits on the seller's sheet, 1.4K in Ahrefs.",
-      },
-      {
-        n: "03",
-        t: "What brings that traffic?",
-        d: "We read the top ranking keywords one by one. They should match the site's topic and include searches your buyers make. Spam, adult, casino or 'net worth' keywords mean the traffic is padding.",
+        t: "What does it rank for?",
+        d: "We read the site's top ranking keywords one by one. They should match its topic and include searches your buyers make. Spam, adult, casino or 'net worth' keywords mean the site's visibility is padding.",
         flag: "A business site whose top keywords are adult terms.",
       },
       {
-        n: "04",
+        n: "03",
         t: "Is the trend healthy?",
-        d: "We check 12–24 months of traffic. Steady or growing is good. Sharp spikes, a saw-tooth pattern or a collapse after a Google update mean the traffic, and the link's value, won't last.",
-        flag: "Lost 60% of its traffic in the last core update.",
+        d: "We look at 12–24 months of search visibility. Tools only estimate traffic, so we don't trust the number itself, but the shape tells you a lot. Steady or growing is good. Sharp spikes, a saw-tooth pattern or a collapse after a Google update are not.",
+        flag: "Visibility fell off a cliff in the last core update.",
+      },
+      {
+        n: "04",
+        t: "Is it in your market?",
+        d: "The keywords it ranks for are searched in the countries you sell in, and the site writes for that audience. A US brand needs a site that ranks in the US.",
+        flag: "Almost all of its rankings are in countries the client doesn't sell in.",
       },
       {
         n: "05",
-        t: "Are the readers in your market?",
-        d: "Most of the site's traffic should come from the countries you sell in. A US brand needs US readers; a Gulf launch needs Gulf readers.",
-        flag: "Most visits from countries the client doesn't sell in.",
+        t: "Does the authority hold up?",
+        d: "DR on its own proves nothing. We compare it with what the site actually ranks for and look at the referring domains behind it. A high DR that ranks for almost nothing usually means bought, expired or recycled links.",
+        flag: "DR 70 with weak keywords and an unstable graph.",
       },
       {
         n: "06",
-        t: "Does the authority hold up?",
-        d: "DR on its own proves nothing. We compare it with real traffic and look at the referring domains behind it. A high DR with very little traffic usually means bought, expired or recycled links.",
-        flag: "DR 70 with only 1–2K organic visits a month.",
-      },
-      {
-        n: "07",
         t: "Does Google index it?",
         d: "We check that the site's pages, and its recent articles, are in Google's index. A link on a page Google never indexes passes nothing.",
         flag: "Over a third of last month's posts not indexed.",
       },
       {
-        n: "08",
+        n: "07",
         t: "Is it a real publication?",
-        d: "Named authors, edited content and a sensible number of relevant outbound links. No public price list for links, and no casino, CBD or loan links next to every topic.",
+        d: "Named authors, edited content and a sensible number of relevant outbound links. No public price list for links, no private blog network, and no casino, CBD or loan links next to every topic.",
         flag: "'Write for us: $80 per post' on the homepage.",
       },
     ],
-    pass: "Passes all eight. Now it's allowed near your link.",
+    pass: "Passes all seven. Now it's allowed near your link.",
     cta: {
       t: "Curious how your current backlinks would do?",
-      d: "Send us your site. We'll run your existing links through the same eight checks and show you which ones are pulling their weight. Free.",
+      d: "Send us your site. We'll run your existing links through the same seven checks and show you which ones are pulling their weight. Free.",
       button: "Get a free link audit",
     },
   },
@@ -312,7 +306,7 @@ export const linkBuilding = {
       "Content writing",
       "Anchor text planning",
       "Indexation tracking",
-      "12-month link monitoring",
+      "Lifetime link guarantee",
     ],
   },
 
@@ -329,7 +323,7 @@ export const linkBuilding = {
       {
         when: "Week 1–2",
         t: "Find and check sites",
-        d: "We shortlist sites from our own network and fresh outreach, then run every one through the 8-Point Site Check.",
+        d: "We shortlist sites from our own network and fresh outreach, then run every one through the 7-Point Site Check.",
         you: "Nothing. Want the shortlist? Just ask",
       },
       {
@@ -341,7 +335,7 @@ export const linkBuilding = {
       {
         when: "Every month",
         t: "Index, track, report",
-        d: "We make sure every link gets indexed, track your target pages and send one clear report. If a link drops in the first 12 months, we replace it.",
+        d: "We make sure every link gets indexed, track your target pages and send one clear report. If a link ever drops, we replace it free.",
         you: "Read the report. About 10 minutes",
       },
     ],
@@ -396,7 +390,7 @@ export const linkBuilding = {
     },
     more: [
       {
-        k: "Gulf e-commerce brand",
+        k: "International e-commerce brand",
         v: "4× referring domains",
         to: "/case-studies/ecommerce-gulf-authority",
       },
@@ -414,7 +408,7 @@ export const linkBuilding = {
     h2b: "Nothing to log into.",
     lead: "Every link we build goes into one live sheet. Clean enough to forward to your boss or your client exactly as it is.",
     points: [
-      "Every link with its DR, traffic, anchor and target page",
+      "Every link with its DR, anchor and target page",
       "Indexation status, checked every week",
       "Ranking movement on the pages we're pushing",
       "A white-label version for agencies",
@@ -489,20 +483,12 @@ export const linkBuilding = {
 
   pricing: {
     eyebrow: "Link building pricing",
-    h2: "Start with a $497 pilot. Plans from $597 a month.",
-    d: "Every placement is DR 40+ with 1,000+ organic visits a month, and includes content, the 8-Point Site Check, indexation tracking and a monthly report.",
+    h2: "Try one link for $129. Packs from 5 links.",
+    d: "Every placement is DR 40+ on a relevant, hand-checked site, with content written for you, a white-label report, a lifetime link guarantee and a 100% money-back guarantee.",
     plans: [
-      { name: "Starter", price: "$597", note: "3 placements a month, DR 40+" },
-      {
-        name: "Growth",
-        price: "$997",
-        note: "6 placements a month, 2 at DR 60+",
-      },
-      {
-        name: "Authority",
-        price: "$2,497",
-        note: "12+ placements, PR and mentions",
-      },
+      { name: "Trial", price: "$129", note: "1 placement, DR 40+" },
+      { name: "Starter", price: "$695", note: "5 placements, DR 40+" },
+      { name: "Growth", price: "$1,290", note: "10 placements, DR 40+" },
     ],
   },
 
@@ -515,11 +501,11 @@ export const linkBuilding = {
   faqs: [
     {
       q: "Are these PBNs or paid links?",
-      a: "No. Private blog networks are sites built only to sell links, and catching them is exactly what our site check is for. Every placement is on a real publication with its own readers. Some publishers charge an editorial fee, which is normal across the industry, but we skip any site that openly sells links on a price list. That footprint is what Google looks for.",
+      a: "No, and we never will be. Private blog networks are sites built only to sell links, and catching them is exactly what our site check is for. Every placement is on a real publication with its own readers. Some publishers charge an editorial fee, which is normal across the industry, but we skip any site that openly sells links on a price list. That footprint is what Google looks for.",
     },
     {
       q: "Do you pick the sites, or do I?",
-      a: "We do. That's a big part of what you're paying for. Every site goes through the 8-Point Site Check before it gets near your link. If you'd like to see the shortlist before anything goes live, tell us at kickoff and we'll send it. Most clients don't bother.",
+      a: "We do. That's a big part of what you're paying for. Every site goes through the 7-Point Site Check before it gets near your link. If you'd like to see the shortlist before anything goes live, tell us at kickoff and we'll send it. Most clients don't bother.",
     },
     {
       q: "How long until I see results?",
@@ -535,7 +521,7 @@ export const linkBuilding = {
     },
     {
       q: "What happens if a link gets removed?",
-      a: "We monitor every link for 12 months. If a publisher removes it or turns it nofollow in that time, we replace it on a similar site for free.",
+      a: "Every link comes with a lifetime guarantee. If a publisher ever removes it or turns it nofollow, tell us and we replace it on a site of the same or higher DR, free. The full terms are on the pricing page.",
     },
     {
       q: "Do I get to choose the anchor text?",
@@ -543,7 +529,7 @@ export const linkBuilding = {
     },
     {
       q: "How much does link building cost?",
-      a: "A $497 pilot gets you three vetted placements, credited to your first month if you continue. Monthly plans start at $597 for three placements. The price depends on the authority of the sites, how many links you need and your niche. We recommend at least three months, because links take time to show results. Full plans are on the pricing page.",
+      a: "A single trial placement is $129 (DR 40+), so you can check our quality first. After that, packs start at $695 for five placements, and single links are priced by authority: from $110 at DR 30+ to $349 at DR 60+. Every order is covered by our 100% money-back guarantee. Full prices are on the pricing page.",
     },
     {
       q: "Do you work white label for agencies?",

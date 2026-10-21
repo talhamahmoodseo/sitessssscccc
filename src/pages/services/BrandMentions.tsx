@@ -19,12 +19,12 @@ const SERVICE_SCHEMA = {
   serviceType: "Brand mentions and AI visibility",
   description: C.seo.description,
   provider: { "@type": "Organization", name: "Editorial HQ" },
-  areaServed: ["US", "GB", "AE"],
+  areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
     price: "2497",
     priceCurrency: "USD",
-    description: "Starting monthly price (Growth plan)",
+    description: "Starting monthly price",
   },
 };
 

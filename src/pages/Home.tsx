@@ -1,5 +1,6 @@
 import { Seo } from "@/components/MotionKit";
 import Navigation from "@/components/Navigation";
+import { GuaranteeBand } from "@/components/Guarantees";
 import Hero from "@/sections/Hero";
 import ClientLogos from "@/sections/ClientLogos";
 import TheShift from "@/sections/TheShift";
@@ -36,6 +37,10 @@ const Home = () => (
 
       <section id="services">
         <ServicesSection />
+      </section>
+
+      <section id="guarantees">
+        <GuaranteeBand />
       </section>
 
       <section id="review">

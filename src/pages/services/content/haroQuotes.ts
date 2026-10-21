@@ -328,7 +328,7 @@ export const haroQuotes = {
       label: "Expert quotes pricing",
       from: "$997",
       unit: "/month",
-      plan: "Included in our Growth plan",
+      plan: "Monthly campaign, no long contract",
       points: [
         "Expertise profile for each expert",
         "Placements through our publishing connections",

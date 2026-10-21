@@ -152,7 +152,7 @@ export const Seo = ({
           logo: `${assetBase}/images/logo.png`,
           description:
             "Link building and digital PR agency. Editorial links, digital PR, expert quotes and brand mentions that move Google rankings and get brands named in AI answers.",
-          areaServed: ["US", "GB", "AE", "SA", "EU"],
+          areaServed: "Worldwide",
           founder: { "@type": "Person", name: "Talha Mahmood" },
         },
         {

@@ -1,4 +1,5 @@
 import { Seo } from "@/components/MotionKit";
+import { GuaranteeBand } from "@/components/Guarantees";
 import PageLayout from "@/components/PageLayout";
 import { linkBuilding as LB } from "./content/linkBuilding";
 import Hero from "./link-building/Hero";
@@ -25,12 +26,12 @@ const SERVICE_SCHEMA = {
   serviceType: "Link building",
   description: LB.seo.description,
   provider: { "@type": "Organization", name: "Editorial HQ" },
-  areaServed: ["US", "GB", "AE"],
+  areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
-    price: "497",
+    price: "129",
     priceCurrency: "USD",
-    description: "Pilot: 3 vetted placements, then plans from $597 a month",
+    description: "Trial placement: one DR 40+ link. Packs from 5 links for $695.",
   },
 };
 
@@ -38,8 +39,8 @@ const SERVICE_SCHEMA = {
  * /services/link-building — the flagship service page.
  *
  * Story, in order: the promise → the report that lied → why (DR is easy to
- * fake) → the method (5-Point Site Check) → what you get → how a month runs →
- * proof → the report → fit, price, objections → send us your URL.
+ * fake) → the method (7-Point Site Check) → what you get → how a month runs →
+ * proof → the report → fit, the guarantees, price, objections → send us your URL.
  * Full reasoning in LINK-BUILDING-PAGE-PLAN.md.
  */
 const LinkBuilding = () => (
@@ -58,6 +59,7 @@ const LinkBuilding = () => (
     <Results />
     <ReportMock />
     <Fit />
+    <GuaranteeBand />
     <PricingStrip />
     <Faq />
     <Related />

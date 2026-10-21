@@ -17,12 +17,12 @@ const SERVICE_SCHEMA = {
   serviceType: "Expert quote placements",
   description: C.seo.description,
   provider: { "@type": "Organization", name: "Editorial HQ" },
-  areaServed: ["US", "GB", "AE"],
+  areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
     price: "997",
     priceCurrency: "USD",
-    description: "Starting monthly price (Growth plan)",
+    description: "Starting monthly price",
   },
 };
 

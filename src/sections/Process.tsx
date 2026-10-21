@@ -31,7 +31,7 @@ const PROCESS_STEPS = [
   {
     title: "Vet",
     description:
-      "Every publication goes through our 8-point check, starting with relevance: is it about your industry? Then real traffic, the keywords behind it, the trend, the audience, authority, indexing and editorial standards. Roughly one in five fails.",
+      "Every publication goes through our 7-point check, starting with relevance: is it about your industry? Then what it ranks for, its trend, its market, authority, indexing and editorial standards. No PBNs, ever. Roughly one in five fails.",
     deliverable: "Vetted publication list",
   },
   {

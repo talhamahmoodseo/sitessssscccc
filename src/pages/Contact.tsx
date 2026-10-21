@@ -17,14 +17,21 @@ const SERVICES = [
   "Not sure yet",
 ];
 
-/* matches the pricing ladder: pilot, Starter, Growth, Authority */
-const BUDGETS = [
-  "Pilot ($497)",
-  "$597–997 / month",
-  "$1,000–2,500 / month",
-  "$2,500+ / month",
-  "Not sure yet",
-];
+/* matches /pricing; the order buttons there link to /contact?package=<key> */
+const PACKAGES: Record<string, string> = {
+  trial: "Trial link ($129)",
+  starter: "Starter, 5 links ($695)",
+  growth: "Growth, 10 links ($1,290)",
+  authority: "Authority, 10 links DR 50+ ($2,190)",
+  custom: "Custom order",
+  campaign: "Monthly campaign",
+  unsure: "Not sure yet",
+};
+const PACKAGE_OPTIONS = Object.values(PACKAGES);
+
+const packageFromUrl = () =>
+  PACKAGES[new URLSearchParams(window.location.search).get("package") || ""] ||
+  PACKAGES.unsure;
 
 const NEXT = [
   {
@@ -44,7 +51,7 @@ const NEXT = [
 const ASKED = [
   {
     q: "Is there a contract?",
-    a: "No long contract. Plans run month to month. We suggest giving it three months, because links take a few weeks to index and pages take time to move.",
+    a: "No. You order per package and pay per order. Want to test us first? Start with a single $129 trial link. Every order has a 100% money-back guarantee.",
   },
   {
     q: "Do you work with agencies?",
@@ -109,7 +116,7 @@ const ContactForm = () => {
     email: "",
     website: "",
     service: "Link building",
-    budget: "Not sure yet",
+    budget: packageFromUrl(),
     message: "",
   });
   const set = (k: keyof typeof f) => (v: string) => setF({ ...f, [k]: v });
@@ -119,7 +126,7 @@ const ContactForm = () => {
       `Enquiry: ${f.service} (${f.website || f.name})`,
     );
     const body = encodeURIComponent(
-      `Name: ${f.name}\nEmail: ${f.email}\nWebsite: ${f.website}\nService: ${f.service}\nBudget: ${f.budget}\n\n${f.message}`,
+      `Name: ${f.name}\nEmail: ${f.email}\nWebsite: ${f.website}\nService: ${f.service}\nPackage: ${f.budget}\n\n${f.message}`,
     );
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
   };
@@ -174,8 +181,8 @@ const ContactForm = () => {
         onChange={set("service")}
       />
       <ChipGroup
-        label="Budget"
-        options={BUDGETS}
+        label="Package"
+        options={PACKAGE_OPTIONS}
         value={f.budget}
         onChange={set("budget")}
       />
@@ -327,8 +334,7 @@ const Contact = () => (
             transition={{ duration: 0.6, delay: 0.55 }}
           >
             <span className="text-[13px] text-navy-dark/75">
-              Working with brands and agencies in the US, UK, Europe and the
-              Gulf
+              10,000+ backlinks delivered for brands and agencies worldwide
             </span>
           </motion.div>
         </div>

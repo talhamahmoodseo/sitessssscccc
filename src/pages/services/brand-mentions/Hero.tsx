@@ -211,7 +211,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
           >
             <span className="text-[13px] text-navy-dark/75">
-              1,400+ placements live for 40+ brands
+              10,000+ backlinks delivered for brands and agencies worldwide
             </span>
           </motion.div>
         </div>

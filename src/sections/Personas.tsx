@@ -91,7 +91,7 @@ const PERSONAS = [
       },
       {
         h: "Press across markets",
-        d: "UK, US and Gulf coverage for brands that sell in more than one country.",
+        d: "Coverage in every country you sell in, for brands that sell in more than one.",
       },
     ],
   },

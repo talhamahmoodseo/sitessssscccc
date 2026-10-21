@@ -219,8 +219,8 @@ export const digitalPr = {
       },
     ],
     gulf: {
-      t: "Gulf business media",
-      d: "We’ve placed stories in Gulf business press for years. Most agencies can’t get a reply there. For brands selling into the UAE and Saudi Arabia, it’s often the quickest way to be taken seriously there.",
+      t: "Press in every market you sell in",
+      d: "We pitch business and trade publications wherever your buyers read, from the US and UK to Europe, the Middle East and Asia. One story, adapted for each market’s editors, so a launch abroad gets coverage from day one.",
     },
     skip: {
       t: "What we skip",
@@ -361,14 +361,14 @@ export const digitalPr = {
       label: "Digital PR pricing",
       from: "$2,497",
       unit: "/month",
-      plan: "Full PR programme, in our Authority plan",
+      plan: "Full PR programme, run monthly",
       points: [
         "Story audit and angle development",
         "Data studies, surveys and opinion pieces",
-        "Named-journalist pitching, Gulf press included",
+        "Named-journalist pitching, in the markets you sell in",
         "Monthly coverage report",
       ],
-      note: "Want to test it first? We can scope one campaign around one story. Smaller PR work also runs inside the Growth plan on request.",
+      note: "Want to test it first? We can scope one campaign around one story. Smaller PR work can run alongside a link building order.",
     },
   },
 
@@ -405,8 +405,8 @@ export const digitalPr = {
       a: "First placements usually land between weeks four and eight. It builds from month three as editors come back and earlier coverage gets picked up elsewhere. Anyone promising coverage in week one is sending a press release to a wire service.",
     },
     {
-      q: "Can you get us into Gulf media?",
-      a: "Often, yes. We’ve worked with Gulf business publications for years, and it’s one of the places we’re strongest. The story still has to be right for their readers, so we’ll tell you on the call if yours is.",
+      q: "Can you get coverage outside the US and UK?",
+      a: "Yes. We pitch business and trade publications in the markets you sell in and adapt each story for local editors. The story still has to be right for their readers, so we’ll tell you on the call if yours is.",
     },
     {
       q: "Do you work white label for agencies?",

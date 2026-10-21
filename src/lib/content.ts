@@ -140,11 +140,10 @@ const BLOG_POSTS = [
         t: "ul",
         c: [
           "Relevance: the site covers your industry, and the article is about the same subject as the page it links to.",
-          "Real traffic: at least 1,000 organic visits a month in Ahrefs and Semrush, not the seller's number.",
-          "The keywords behind it: topic-matched searches, not spam, adult, casino or 'net worth' terms.",
-          "A healthy trend: 12–24 months steady or growing, no spikes or collapse after a core update.",
-          "The right audience: most readers in the countries you sell in.",
-          "Authority that holds up: DR backed by real traffic and editorial referring domains.",
+          "What it ranks for: topic-matched searches, not spam, adult, casino or 'net worth' terms.",
+          "A healthy trend: 12–24 months of steady or growing visibility, no spikes or collapse after a core update.",
+          "The right market: it ranks in the countries you sell in.",
+          "Authority that holds up: DR backed by real rankings and editorial referring domains.",
           "Indexing: its recent articles are actually in Google's index.",
           "A real publication: named authors, edited content, no public link price list.",
         ],
@@ -152,7 +151,7 @@ const BLOG_POSTS = [
       { t: "h2", c: "Then we open the keywords" },
       {
         t: "p",
-        c: "This is where most sites fail. A traffic number tells you nothing until you see what it ranks for. We have rejected techbullion.com because its keywords were mostly irrelevant or spammy and much of its traffic came from markets the client does not sell in; dsnews.co.uk, a DR 70 site pulling only 1,000–2,000 visits a month; and entrepreneursbreak.com, a business site ranking for adult terms and openly selling guest posts. Roughly one in five sites we find gets dropped at this step.",
+        c: "This is where most sites fail. A traffic number in an SEO tool is only an estimate, and it tells you nothing until you see what the site ranks for. We have rejected techbullion.com because its keywords were mostly irrelevant or spammy and most of its rankings were in markets the client does not sell in; dsnews.co.uk, a DR 70 site with weak keywords and an unstable graph; and entrepreneursbreak.com, a business site ranking for adult terms and openly selling guest posts. Roughly one in five sites we find gets dropped at this step.",
       },
       {
         t: "quote",

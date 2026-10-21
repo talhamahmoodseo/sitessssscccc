@@ -14,11 +14,11 @@ export type Client = {
 
 export const CLIENTS: Client[] = [
   { name: "CapCut", sector: "Creative software" },
-  { name: "Ocuco", sector: "Healthcare tech" },
   { name: "Khaleej Times", sector: "Media" },
+  { name: "Ocuco", sector: "Healthcare tech" },
   { name: "Arabian Business", sector: "Media" },
-  { name: "Gulf Business", sector: "Media" },
   { name: "Tech Daily", sector: "Media" },
+  { name: "Gulf Business", sector: "Media" },
 ];
 
 /** Bento grid for the proof section: numbers and quotes, interleaved. */
@@ -77,7 +77,7 @@ export const PROOF_TILES = [
   {
     kind: "stat" as const,
     value: "DR 74",
-    label: "feature landed in Gulf business press",
+    label: "feature landed in national business press",
     client: "Khaleej Times",
     tile: "sky" as const,
   },

@@ -38,7 +38,7 @@ const Placement = () => (
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2 text-center">
         {[
-          ["48K", "visits / mo"],
+          ["2.1K", "keywords"],
           ["71%", "US & UK"],
           ["Rising", "12-mo trend"],
         ].map(([v, l]) => (
@@ -72,7 +72,7 @@ const Placement = () => (
       </div>
     </div>
     <span className="absolute -right-3 -top-4 rotate-[4deg] rounded-full bg-navy-dark px-3 py-1.5 text-[11.5px] font-semibold text-white shadow-lg sm:-right-6">
-      Passed 5 of 5 site checks
+      Passed 7 of 7 site checks
     </span>
   </div>
 );
@@ -218,12 +218,12 @@ const SERVICES: Service[] = [
   {
     n: "01",
     name: "Link Building",
-    line: "Editorial links on sites with real readers.",
+    line: "Editorial links on real, relevant sites.",
     d: "Guest posts and niche edits on publications we've checked by hand, aimed at the pages you need to rank.",
     points: [
-      "Every site passes an 8-point check, starting with relevance",
+      "Every site passes a 7-point check. No PBNs, ever",
       "Articles written to each publication's standard",
-      "Monitored for 12 months, replaced if a link drops",
+      "Lifetime link guarantee and 100% money back",
     ],
     to: "/services/link-building",
     tone: "warm",
@@ -237,7 +237,7 @@ const SERVICES: Service[] = [
     points: [
       "Data stories, expert commentary and reactive news",
       "Coverage on news and trade sites, most of it linked",
-      "Strong in the UK, US and Gulf business press",
+      "Business and trade press in the markets you sell in",
     ],
     to: "/services/digital-pr",
     tone: "fresh",
