@@ -20,6 +20,10 @@ const serviceLinks = [
   { name: "HARO & Expert Quotes", to: "/services/haro-links" },
 ];
 
+const industryLinks = [
+  { name: "Home Services", to: "/industries/home-services" },
+];
+
 const navLinks = [
   { name: "Results", to: "/case-studies" },
   { name: "Blog", to: "/blog" },
@@ -80,6 +84,16 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
                   className="bg-white border border-gray-200"
                 >
                   {serviceLinks.map((item) => (
+                    <DropdownMenuItem key={item.name} asChild>
+                      <Link to={item.to} className="cursor-pointer">
+                        {item.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                  <p className="mt-1 border-t border-line px-2 pb-1 pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-dark/60">
+                    Industries
+                  </p>
+                  {industryLinks.map((item) => (
                     <DropdownMenuItem key={item.name} asChild>
                       <Link to={item.to} className="cursor-pointer">
                         {item.name}
@@ -160,7 +174,7 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
               <p className="text-[10px] font-extrabold tracking-[0.2em] text-navy-dark/70 uppercase px-2 pb-1">
                 Solutions
               </p>
-              {serviceLinks.map((item) => (
+              {[...serviceLinks, ...industryLinks].map((item) => (
                 <Link
                   key={item.name}
                   to={item.to}

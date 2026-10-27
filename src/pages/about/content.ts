@@ -1,23 +1,22 @@
 /**
- * Copy for /about. Rewritten in round 7 around the one figure the owner has
- * confirmed (10,000+ backlinks delivered) and a global client base. Who we
- * are → the numbers → what we specialise in → how we work → why clients trust
- * us → a client's words → where to go next. The other "numbers" are policies
- * (no PBNs, the guarantees), not claims that need data.
+ * Copy for /about. Round 8: no volume claims. The page leads with who we
+ * work for, how we work and the guarantees, and points to real case
+ * studies for proof. Who we are → what we stand by → what we specialise
+ * in → how we work → why clients trust us → a client's words → next.
  */
 
 export const about = {
   seo: {
     title: "About Editorial HQ: Link Building & Digital PR Agency",
     description:
-      "Editorial HQ is a link building agency with 10,000+ backlinks delivered for brands and agencies worldwide. Real sites, checked by hand, guaranteed for life.",
+      "Editorial HQ is a link building agency for brands and SEO agencies. Editorial links and brand mentions on real, relevant sites, checked by hand and backed by a money-back guarantee.",
   },
 
   hero: {
     eyebrow: "About Editorial HQ",
     h1a: "We build the authority",
     h1b: "that gets brands found.",
-    lead: "Editorial HQ is a link building and digital PR agency. We've delivered 10,000+ backlinks for brands and agencies around the world, on real publications your buyers read, so you rank on Google and show up in AI answers.",
+    lead: "Editorial HQ is a link building and digital PR agency. We work with brands and SEO agencies around the world, earning links and mentions on publications their buyers read, so they rank on Google and show up in AI answers.",
     primary: "Book a call",
     secondary: "See our results",
     // value, label, sector, tint, position (desktop), depth (0 = sharp)
@@ -76,24 +75,24 @@ export const about = {
   story: {
     eyebrow: "Who we are",
     lines: [
-      "We've delivered more than 10,000 backlinks. We learned this work the slow way: one site, one editor, one article at a time.",
-      "So we know what moves rankings and what only fills a report. Relevant sites beat big numbers, and a link that vanishes in three months was never worth buying.",
-      "Today we work with SaaS companies, online stores and agencies all over the world. Some order one link. Some resell thousands under their own name. Everyone gets the same standard.",
+      "We started Editorial HQ because too much link building is sold by the spreadsheet: a list of domains, a DR next to each, and very little proof any of it worked.",
+      "We do it the slow way. Every site is chosen for one client and checked by hand. Every link sits in an article someone would actually read. And every report shows what the work changed.",
+      "Today we work with brands like CapCut, SmileTutor and Ocuco, and with agencies who put our work in front of their own clients. Each of them gets the same standard, and a founder who answers their emails.",
     ],
   },
 
   numbers: [
-    { v: "10,000+", l: "backlinks delivered" },
-    { v: "0", l: "PBNs, ever" },
     { v: "100%", l: "money-back guarantee" },
-    { v: "Lifetime", l: "link guarantee" },
+    { v: "Free", l: "link replacement" },
+    { v: "7", l: "checks on every site" },
+    { v: "Direct", l: "line to the founder" },
   ],
 
   focus: {
     eyebrow: "What we specialise in",
     h2a: "Off-page authority.",
     h2b: "Nothing else.",
-    lead: "We don't do ads, web design or on-page SEO. We do the work that happens on other people's websites, and after 10,000+ links we're very good at it.",
+    lead: "We don't do ads, web design or on-page SEO. We do the work that happens on other people's websites, and we do it properly.",
     items: [
       {
         to: "/services/link-building",
@@ -137,8 +136,8 @@ export const about = {
       },
       {
         n: "03",
-        t: "No shortcuts. No PBNs.",
-        d: "Real publications with real editors, and never a network built to sell links. It's slower. It's also why our links stay live.",
+        t: "Real publications only.",
+        d: "Sites with their own editors and their own readers. It takes longer to place a link that way, and it's also why our links stay live.",
         tint: "bg-lilac",
       },
       {
@@ -158,12 +157,12 @@ export const about = {
       {
         icon: "network",
         t: "Relationships, not a marketplace",
-        d: "We work directly with the editors and site owners we've built up over 10,000+ placements. No marketplaces, no resellers, no markup on someone else's list.",
+        d: "We work directly with editors and site owners we know. No marketplaces, no resellers, no markup on someone else's list.",
       },
       {
         icon: "check",
         t: "A protected investment",
-        d: "A 100% money-back guarantee on every order, and a lifetime link guarantee. If a publisher ever removes your link, we replace it free.",
+        d: "A 100% money-back guarantee on every order. If a publisher ever removes your link, we replace it free.",
       },
       {
         icon: "chart",
@@ -174,9 +173,9 @@ export const about = {
   },
 
   quote: {
-    text: "Every link came with a reason, and every report showed what it moved. That’s rarer in this industry than it should be.",
-    who: "Head of SEO",
-    org: "B2B SaaS company",
+    text: "You helped us jumpstart our product launch and create awareness by securing listicle article reviews of our product.",
+    who: "Defender",
+    org: "Client feedback on a product launch",
   },
 
   explore: {
@@ -197,7 +196,7 @@ export const about = {
       {
         to: "/pricing",
         t: "What it costs",
-        d: "Try one link for $129, then order packs from five links.",
+        d: "$150 a placement, or a single $170 trial link to test us first.",
         cta: "See pricing",
       },
     ],

@@ -1,46 +1,46 @@
 import { motion } from "motion/react";
-
+import { Link } from "react-router-dom";
+import { asset } from "@/lib/booking";
 import { CLIENTS } from "@/lib/clients";
 
-const CLIENT_LOGOS = CLIENTS.map((c) => ({
-  name: c.name,
-  sub: c.sector ?? "",
-}));
-
-const LogoRow = ({ name, sub }) => (
-  <span className="flex items-baseline gap-1.5 whitespace-nowrap">
-    <span className="text-[19px] font-bold tracking-[-0.02em] text-navy-dark">
-      {name}
-    </span>
-    {sub && (
-      <span className="text-[10px] font-semibold tracking-[0.16em] text-navy-dark/70">
-        {sub}
-      </span>
-    )}
-  </span>
+/** The clients' own logos in one tone, each linking to its case study. */
+export const LogoStrip = ({ className = "" }: { className?: string }) => (
+  <ul
+    className={`flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-16 ${className}`}
+  >
+    {CLIENTS.map((c) => (
+      <li key={c.name}>
+        <Link
+          to={`/case-studies/${c.slug}`}
+          className="block opacity-55 transition-opacity duration-300 hover:opacity-90"
+          aria-label={`${c.name} case study`}
+        >
+          <img
+            src={asset(c.logo)}
+            alt={c.name}
+            style={{ height: c.h }}
+            className="w-auto brightness-0"
+            loading="lazy"
+          />
+        </Link>
+      </li>
+    ))}
+  </ul>
 );
 
 const ClientLogos = () => (
   <div className="bg-mist pb-16 pt-2">
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <motion.p
-        className="text-center text-[13px] font-medium text-navy-dark/70 mb-8"
+        className="mb-8 text-center text-[13px] font-medium text-navy-dark/70"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        Trusted by teams at
+        Brands we've built authority for
       </motion.p>
-      <div className="relative overflow-hidden marquee-wrap">
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-mist to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-mist to-transparent z-10" />
-        <div className="flex items-center gap-16 w-max marquee-left opacity-55">
-          {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((e, s) => (
-            <LogoRow key={s} name={e.name} sub={e.sub} />
-          ))}
-        </div>
-      </div>
+      <LogoStrip />
     </div>
   </div>
 );

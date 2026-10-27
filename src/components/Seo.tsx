@@ -181,11 +181,12 @@ export const Seo = ({
                 name: "Home",
                 item: `${base}/`,
               },
-              // the /services index no longer exists, so that level is skipped
+              // /services and /industries have no index page, so that level is skipped
               ...parts
                 .map((p, i) => ({ p, i }))
                 .filter(
-                  ({ p, i }) => !(p === "services" && i < parts.length - 1),
+                  ({ p, i }) =>
+                  !((p === "services" || p === "industries") && i < parts.length - 1),
                 )
                 .map(({ p, i }, k) => ({
                   "@type": "ListItem",

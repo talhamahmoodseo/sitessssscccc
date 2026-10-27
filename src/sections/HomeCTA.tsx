@@ -47,7 +47,7 @@ const HomeCTA = () => {
             Get ranked.
             <br />
             {"Get "}
-            <span className="pr-[0.08em] font-medium italic text-mark">
+            <span className="accent-ink-dark pr-[0.14em] font-medium italic">
               cited
             </span>
             .

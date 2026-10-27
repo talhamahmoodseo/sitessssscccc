@@ -14,6 +14,7 @@ import {
   NotFound,
   Pricing,
   ServicePage,
+  IndustryPage,
 } from "./routes";
 
 /**
@@ -35,6 +36,7 @@ export default function App() {
           element={<Navigate to="/#services" replace />}
         />
         <Route path="/services/:slug" element={<ServicePage />} />
+        <Route path="/industries/:slug" element={<IndustryPage />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-studies/:slug" element={<CaseStudy />} />
         <Route path="/blog" element={<Blog />} />

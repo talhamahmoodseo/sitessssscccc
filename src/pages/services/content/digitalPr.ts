@@ -257,51 +257,6 @@ export const digitalPr = {
     note: "And it compounds. A good story gets picked up by other outlets for weeks, and the second pitch to the same editor is much easier than the first.",
   },
 
-  proof: {
-    eyebrow: "One campaign, start to finish",
-    h2a: "One data study.",
-    h2b: "21 placements in six months.",
-    client: "Home & lifestyle e-commerce · UK + GCC",
-    facts: [
-      { k: "Placements", v: "21" },
-      { k: "Top outlet", v: "DR 74" },
-      { k: "Referring domains", v: "4×" },
-      { k: "Campaign", v: "6 months" },
-    ],
-    // month, outlet, kind, dr
-    placements: [
-      [1, "Retail Tech Weekly", "Data study", 61],
-      [1, "E-commerce Insider", "Data study", 58],
-      [2, "Khaleej Times", "Feature", 74],
-      [2, "Gulf Business", "Expert quote", 69],
-      [2, "Home & Living Trade", "Data study", 55],
-      [3, "Arabian Business", "Expert quote", 72],
-      [3, "UAE retail news site", "Pickup", 57],
-      [3, "Gulf logistics title", "Pickup", 60],
-      [3, "E-commerce platform blog", "Roundup", 52],
-      [4, "UAE national daily", "Pickup", 71],
-      [4, "Retail Tech Weekly", "Opinion", 61],
-      [4, "Gift guide (UK)", "Roundup", 48],
-      [4, "Delivery & Ops Weekly", "Expert quote", 54],
-      [5, "Dubai business daily", "Feature", 70],
-      [5, "Home & Living Trade", "Expert quote", 55],
-      [5, "Best-of guide", "Roundup", 46],
-      [5, "UK retail blog", "Pickup", 49],
-      [6, "Arabian Business", "Feature", 72],
-      [6, "E-commerce Insider", "Expert quote", 58],
-      [6, "Buying guide", "Roundup", 45],
-      [6, "UAE retail news site", "Expert quote", 57],
-    ] as [number, string, string, number][],
-    series: [40, 48, 61, 83, 104, 132, 158],
-    seriesLabel: "Referring domains",
-    takeaway:
-      "The delivery study landed 11 of the 21 placements by itself. The other 10 came from editors who’d covered it and came back for more. That’s the part paid links never give you.",
-    quote: {
-      text: "The delivery study ran in places we’d never have got into on our own. By month four, editors were emailing us.",
-      who: "Head of E-commerce · UK home & lifestyle brand",
-    },
-    caseHref: "/case-studies/ecommerce-gulf-authority",
-  },
 
   process: {
     eyebrow: "How a campaign runs",

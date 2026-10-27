@@ -286,28 +286,6 @@ export const haroQuotes = {
     total: "About 30 minutes a month after the first call.",
   },
 
-  proof: {
-    eyebrow: "One engagement, in numbers",
-    h2a: "Fewer replies.",
-    h2b: "More quotes in print.",
-    client: "Fintech SaaS · founder as the source · 4 months",
-    skipped: 180,
-    answered: 34,
-    published: 11,
-    facts: [
-      { k: "Published quotes", v: "11" },
-      { k: "Average DR", v: "63" },
-      { k: "In month one", v: "2" },
-    ],
-    before:
-      "Their previous vendor answered everything: 3 quotes published in 12 months.",
-    takeaway:
-      "Skipping is what made the 11 possible. Every reply that went out was one an editor could use as it was, so more of them ran. Nearly four times the old result, from a fraction of the sends.",
-    quote: {
-      text: "Two placements in the first month, after a year of nothing. The difference was they skipped the requests I had no business answering.",
-      who: "Founder · fintech SaaS",
-    },
-  },
 
   fit: {
     eyebrow: "Is this right for you?",

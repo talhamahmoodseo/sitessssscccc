@@ -2,6 +2,9 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import { casesFor } from "@/lib/cases";
+import { ClientWork } from "../results/CaseParts";
+
 import { brandMentions as C } from "./content/brandMentions";
 import { EMAIL, FitPrice, PairsWith, ServiceClose, ServiceFaq } from "./common";
 import Hero from "./brand-mentions/Hero";
@@ -10,7 +13,6 @@ import BeforeAfter from "./brand-mentions/BeforeAfter";
 import Anatomy from "./brand-mentions/Anatomy";
 import Report from "./brand-mentions/Report";
 import Loop from "./brand-mentions/Loop";
-import Proof from "./brand-mentions/Proof";
 
 const SERVICE_SCHEMA = {
   "@context": "https://schema.org",
@@ -100,7 +102,7 @@ const BrandMentions = () => (
     <Anatomy />
     <Report />
     <Loop />
-    <Proof />
+    <ClientWork cases={casesFor("brand-mentions")} eyebrow="Client work" title="Brands we've got named" soft="where buyers compare." />
     <FitPrice c={C.fit} tint="bg-lilac" bg="bg-white" />
     <ServiceFaq
       eyebrow={C.faqHead.eyebrow}

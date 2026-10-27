@@ -89,7 +89,7 @@ Please send me a free visibility audit.`);
             </button>
           </div>
           <p className="mt-4 text-[12.5px] text-navy-dark/70">
-            10,000+ backlinks delivered for brands and agencies worldwide
+            Trusted by CapCut, SmileTutor, Ocuco and Defender
           </p>
           <GuaranteeChips compact className="mt-5 justify-center" />
         </motion.div>

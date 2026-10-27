@@ -97,6 +97,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
+| (round 8) | Real portfolio: 5 case studies (SmileTutor, Defender, Ocuco, CapCut, agency partner) on a new evidence-led template (`lib/cases.ts`, `pages/results/CaseParts.tsx`), client logos, all invented quotes/stats/reviews removed, volume claims removed, guarantees cut to money-back + link replacement, pricing $150 standard (3+) / $170 trial, Home Services industry page (`/industries/home-services`), gradient second line on every section heading (`Soft` in kit), new homepage process timeline, Clutch/Trustpilot badges wired but hidden (`lib/reviews.ts`), testimonial drafts in `TESTIMONIAL-DRAFTS.md` |
 | (round 7) | Guarantees (money-back, lifetime link, no PBNs, white label) as a band on home + link building + pricing, with full terms on /pricing#guarantee-terms (`components/Guarantees.tsx`); pricing rebuilt per placement (trial $129, packs 5/10 links, price list by DR, 3-step ordering, contact form preselects the package via `?package=`); 8-Point → 7-Point Site Check (traffic check removed, no traffic claims); About rewritten around 10,000+ backlinks, global positioning (schema areaServed "Worldwide", Gulf-only copy generalised) |
 | (round 6) | Rebrand Outreachr → Editorial HQ (domain editorialhq.com): logo wordmark, site name in titles/OG/schema, social image, contact@editorialhq.com everywhere, theme name |
 | (round 5) | Campaign-view hero (rocket removed), Ahrefs/Semrush/Neil Patel data cards, 8-Point Site Check (relevance first) site-wide, real rejected sites (techbullion.com, dsnews.co.uk, entrepreneursbreak.com), pilot + new pricing ladder, Digital PR story rewrite, shorter About, services index removed, "sample" labels removed |
@@ -113,6 +114,9 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 
 ## 7. Open work (owner's list, not done yet)
 
+- **Pricing (round 8, owner-set):** standard placement $150 on orders of 3+,
+  trial placement $170 once per company (deliberately above standard),
+  20+ links a month / DR 70+ quoted. The round 7 notes below are superseded.
 - **Pricing** (round 7, owner-approved basis of ~$150/link): Trial $129 (1× DR 40+,
   one per new client) · Starter $695 (5× DR 40+) · Growth $1,290 (10× DR 40+) ·
   Authority $2,190 (10× DR 50+) · singles DR 30+ $110, 40+ $150, 50+ $240,
@@ -124,28 +128,31 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
   `content/linkBuilding.ts` (strip + FAQ), `sections/FAQ.tsx`, `pages/Contact.tsx`.
 - **Guarantee terms need the owner's sign-off** — `src/components/Guarantees.tsx`
   states: 30-day refund window, "indexed within 30 days" as part of the order
-  spec, lifetime replacement on same-or-higher DR (check in 2 business days,
-  replace within 30 days), refund if a placement turns out to be a PBN, neutral
-  outreach identity for white label. Edit there if any differ from practice.
+  spec, link replacement on same-or-higher DR with no time limit (check in
+  2 business days, replace within 30 days). Since round 8 only these two
+  guarantees are shown. Edit there if any differ from practice.
 - Owner says many more fixes are still needed across the site; compare each
   page against Amplemarket's quality and the screenshots in `docs/`.
 
 ## 8. Placeholders to replace before launch
 
-**Important:** the public "sample" labels were removed at the owner's request
-(round 5). The case studies (`src/lib/cases.ts`), client figures and quotes
-(`src/lib/clients.ts`), review wall (`src/sections/Testimonials.tsx`), press
-clippings and dashboard figures are still **examples, not verified client
-data**. Replace them with real, permission-cleared data before launch —
-publishing invented testimonials or results as real breaks consumer-protection
-rules (e.g. the US FTC rule on fake reviews) and Google's review guidelines.
+Round 8 removed every invented testimonial, review, client figure and proof
+tile. What remains to finish:
 
+- **Testimonials:** drafts in `TESTIMONIAL-DRAFTS.md`. A quote only appears on
+  the site once the client approves it and `testimonial.approved` is set to
+  `true` in `src/lib/cases.ts`. Only Defender's genuine feedback is live.
+- **Review badges:** fill `url`, `rating` and `count` in `src/lib/reviews.ts`
+  for Clutch and Trustpilot. Badges stay hidden until all three are set.
+- **Case study details still needed from the owner:** engagement dates and
+  link counts per client, sample live URLs (CapCut, Defender, more for
+  Ocuco), the Defender product and contact name, the agency partner's name,
+  and permission to publish names, photos and numbers. CryptoDesk is left out
+  on purpose (company closed).
 - Calendly URL in `src/lib/booking.ts` (booking popup shows a loading state).
-- Mailbox `contact@editorialhq.com` must be created in Hostinger (Emails) —
-  the site already uses that address everywhere.
-- Case studies, reviews, press clippings, client figures: samples.
-- Static hosting only: build with `SITE_URL=https://yourdomain.com npm run build`
-  (WordPress fills in the domain itself).
+- Mailbox `contact@editorialhq.com` must exist in Hostinger (Emails).
+- The Digital PR page's running example (UAE delivery study) and the blog
+  post on Gulf media are illustrations/articles, not client claims.
 
 ## 9. Gotchas
 

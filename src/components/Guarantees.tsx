@@ -1,21 +1,13 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import {
-  ArrowRight,
-  Ban,
-  Check,
-  EyeOff,
-  Infinity as Lifetime,
-  Minus,
-  RotateCcw,
-} from "lucide-react";
+import { ArrowRight, Check, Minus, RefreshCw, RotateCcw } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { asset } from "@/lib/booking";
 import { DarkGlow, Eyebrow, H2, Soft, rise } from "@/pages/services/kit";
 
 /**
- * The four promises behind every order: money back, a lifetime link
- * guarantee (placement + free replacement), no PBNs, white label.
+ * The two promises behind every order: your money back if we can't deliver
+ * what you ordered, and a free replacement if a link is ever removed.
  *
  * One source of truth for the wording. The short lines show up on the
  * homepage, the link building page and the pricing page; the full terms
@@ -55,11 +47,11 @@ export const GUARANTEES: Guarantee[] = [
       "Email us within 30 days of delivery with the link in question. Refunds go back to your original payment method.",
   },
   {
-    id: "lifetime",
-    Icon: Lifetime,
-    title: "Lifetime link guarantee",
-    chip: "Lifetime link guarantee",
-    line: "Your link stays live for good. If it ever drops, we replace it free.",
+    id: "replacement",
+    Icon: RefreshCw,
+    title: "Link replacement guarantee",
+    chip: "Free link replacement",
+    line: "If a publisher ever removes your link or changes it to nofollow, we replace it free.",
     covered: [
       "The publisher removes your link, deletes the article or changes the link to nofollow.",
       "The site goes offline or drops out of Google's index.",
@@ -73,36 +65,6 @@ export const GUARANTEES: Guarantee[] = [
     ],
     claim:
       "Send us the link and what happened. We check it within two business days and replace it within 30 days.",
-  },
-  {
-    id: "no-pbns",
-    Icon: Ban,
-    title: "No PBNs. Ever.",
-    chip: "No PBNs",
-    line: "Real publications only. Never private blog networks, link farms or sites we own.",
-    covered: [
-      "Every site has its own editor, its own content and real rankings in Google.",
-      "Every site passes our 7-Point Site Check by hand before it's offered to you.",
-      "If a site we placed you on turns out to be part of a PBN, we refund that placement in full.",
-    ],
-    notCovered: [],
-    claim:
-      "Every report lists the site and the live URL, so you can check any placement yourself.",
-  },
-  {
-    id: "white-label",
-    Icon: EyeOff,
-    title: "100% white-label outreach",
-    chip: "100% white label",
-    line: "Our name never appears anywhere. Your clients only ever see you.",
-    covered: [
-      "Outreach runs under a neutral identity. Publishers never hear your agency's or your client's name from us.",
-      "Unbranded reports as a Google Sheet, CSV or PDF, ready for your logo.",
-      "We never contact your clients. NDA on request.",
-    ],
-    notCovered: [],
-    claim:
-      "Tell us it's a white-label order when you place it. Everything after that is unbranded by default.",
   },
 ];
 
@@ -215,8 +177,8 @@ export const GuaranteeBand = ({ terms = true }: { terms?: boolean }) => (
           <Soft dark>If it's wrong, it's on us.</Soft>
         </H2>
         <p className="mt-6 max-w-md text-[17px] leading-relaxed text-white/75">
-          Every order, from a single trial link to a 10-link pack, comes with
-          the same four promises. In writing, with the terms spelled out.
+          Every order, from a single trial link to a full campaign, comes with
+          the same two promises, with the terms written out in full.
         </p>
         <div className="mt-9 flex items-center gap-6">
           <Seal className="h-32 w-32 flex-none sm:h-36 sm:w-36" />

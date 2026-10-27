@@ -122,12 +122,12 @@ export const PricingStrip = () => {
                   to="/pricing"
                   className={`group flex items-center justify-between gap-4 px-5 py-6 sm:gap-6 sm:px-7 transition-colors duration-300 hover:bg-mist ${
                     n ? "border-t border-line" : ""
-                  } ${n === 2 ? "bg-butter/60 hover:bg-butter" : ""}`}
+                  } ${n === 1 ? "bg-butter/60 hover:bg-butter" : ""}`}
                 >
                   <span>
                     <span className="flex flex-wrap items-center gap-2 text-[17px] font-semibold text-navy-dark">
                       {p.name}
-                      {n === 2 && (
+                      {n === 1 && (
                         <span className="rounded-full bg-navy-dark px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-white">
                           Most popular
                         </span>

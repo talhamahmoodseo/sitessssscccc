@@ -1,21 +1,6 @@
 import { Link } from "react-router-dom";
 import { Search, X } from "lucide-react";
 import { asset } from "@/lib/booking";
-import { CASES } from "./cases";
-
-/** Case-study summaries for the homepage results list. The full sample case
- *  studies live in ./cases.ts. */
-const CASE_STUDIES = CASES.map((c) => ({
-  slug: c.slug,
-  bg: c.tint,
-  industry: c.sector,
-  duration: c.duration,
-  headline: c.headline[0].v,
-  metric: c.headline[0].l,
-  title: c.card,
-  line: c.summary,
-  stats: c.headline.slice(1, 4).map((h) => [h.v, h.l] as [string, string]),
-}));
 
 const BLOG_POSTS = [
   {
@@ -299,4 +284,4 @@ const BLOG_POSTS = [
   },
 ];
 
-export { CASE_STUDIES, BLOG_POSTS };
+export { BLOG_POSTS };

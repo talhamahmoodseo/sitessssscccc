@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { BLOG_POSTS } from "@/lib/content";
+import Accent from "@/components/Accent";
 
 /** The four latest articles, as cover cards. */
 const BlogPreview = () => {
@@ -22,7 +23,7 @@ const BlogPreview = () => {
             </p>
             <h2 className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.035em] text-navy-dark sm:text-[2.6rem]">
               {"Learn how search "}
-              <span className="pr-[0.08em] font-medium italic">really</span>
+              <Accent className="pr-[0.08em] font-medium italic">really</Accent>
               {" works now"}
             </h2>
           </motion.div>

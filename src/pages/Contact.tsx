@@ -19,30 +19,12 @@ const SERVICES = [
 
 /* matches /pricing; the order buttons there link to /contact?package=<key> */
 const PACKAGES: Record<string, string> = {
-  trial: "Trial link ($129)",
-  starter: "Starter, 5 links ($695)",
-  growth: "Growth, 10 links ($1,290)",
-  authority: "Authority, 10 links DR 50+ ($2,190)",
-  dr30: "Single link, DR 30+ ($110)",
-  dr40: "Single link, DR 40+ ($150)",
-  dr50: "Single link, DR 50+ ($240)",
-  dr60: "Single link, DR 60+ ($349)",
-  dr70: "Single link, DR 70+ (from $499)",
-  custom: "Custom order",
+  trial: "Trial placement ($170)",
+  standard: "Standard placements (3+, $150 each)",
   campaign: "Monthly campaign",
   unsure: "Not sure yet",
 };
-/* the chips show the main choices; a single-link order arriving from the
-   price grid is added in front so it stays selected */
-const MAIN_PACKAGES = [
-  "trial",
-  "starter",
-  "growth",
-  "authority",
-  "custom",
-  "campaign",
-  "unsure",
-].map((k) => PACKAGES[k]);
+const MAIN_PACKAGES = Object.values(PACKAGES);
 
 const packageFromUrl = () =>
   PACKAGES[new URLSearchParams(window.location.search).get("package") || ""] ||
@@ -66,11 +48,11 @@ const NEXT = [
 const ASKED = [
   {
     q: "Is there a contract?",
-    a: "No. You order per package and pay per order. Want to test us first? Start with a single $129 trial link. Every order has a 100% money-back guarantee.",
+    a: "No. You pay per order. Placements are $150 each on orders of three or more, or you can test us first with a single $170 trial link. Every order has a 100% money-back guarantee.",
   },
   {
     q: "Do you work with agencies?",
-    a: "Yes, about a third of our work is white label. Your branding on the reports, and we stay invisible on client calls.",
+    a: "Yes. We work with agencies as well as brands. Your branding on the reports, and we stay invisible on client calls.",
   },
   {
     q: "What if my site isn’t ready for links?",
@@ -353,7 +335,7 @@ const Contact = () => (
             transition={{ duration: 0.6, delay: 0.55 }}
           >
             <span className="text-[13px] text-navy-dark/75">
-              10,000+ backlinks delivered for brands and agencies worldwide
+              Trusted by CapCut, SmileTutor, Ocuco and Defender
             </span>
           </motion.div>
         </div>

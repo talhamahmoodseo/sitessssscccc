@@ -634,7 +634,7 @@ const TheShift = () => (
           <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
             The Shift
           </p>
-          <h2 className="text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
+          <h2 className="text-4xl font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.4rem]">
             One question.
             <br />
             <span className="font-medium">

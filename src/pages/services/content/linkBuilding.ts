@@ -8,7 +8,7 @@ export const linkBuilding = {
   seo: {
     title: "Link Building Services That Move Rankings",
     description:
-      "Done-for-you link building: guest posts, niche edits and authority placements on hand-checked, relevant sites. No PBNs, lifetime link guarantee, 100% money-back. Trial placement $129.",
+      "Done-for-you link building: guest posts, niche edits and authority placements on hand-checked, relevant sites. Free link replacement and a 100% money-back guarantee. Trial placement $170.",
   },
 
   hero: {
@@ -18,7 +18,7 @@ export const linkBuilding = {
     lead: "We find the sites, check what they really rank for, write the content and get your link placed. Then we track it until Google counts it. You get rankings, not a spreadsheet full of DR.",
     primary: "Book a strategy call",
     secondary: "See starting prices",
-    rating: "10,000+ backlinks delivered · No PBNs · 100% money-back guarantee",
+    rating: "Trusted by CapCut, SmileTutor, Ocuco and Defender",
   },
 
   /** The hero card cycles through these. Placements we use are masked to
@@ -306,7 +306,7 @@ export const linkBuilding = {
       "Content writing",
       "Anchor text planning",
       "Indexation tracking",
-      "Lifetime link guarantee",
+      "Free link replacement",
     ],
   },
 
@@ -342,65 +342,6 @@ export const linkBuilding = {
     total: "Your time, all in: about 30 minutes a month.",
   },
 
-  proof: {
-    eyebrow: "Link building results",
-    h2: "Seven months. Fourteen links. Two category pages on page one.",
-    label: "B2B SaaS · customer support software",
-    stats: [
-      {
-        v: "+212%",
-        k: "Organic clicks",
-        sub: "1,200 → 3,744 a month",
-        dot: "bg-butter",
-      },
-      {
-        v: "35 → 65",
-        k: "Domain Rating",
-        sub: "In seven months",
-        dot: "bg-mint",
-      },
-      {
-        v: "14 / 14",
-        k: "Links indexed",
-        sub: "Median: 19 days",
-        dot: "bg-lilac",
-      },
-      {
-        v: "#4",
-        k: "Main category keyword",
-        sub: "Up from #31",
-        dot: "bg-sky",
-      },
-    ],
-    milestones: [
-      { at: 1, t: "First links indexed" },
-      { at: 4, t: "Category page enters the top 10" },
-      { at: 7, t: "Two category pages on page one" },
-    ],
-    series: [1200, 1380, 1610, 2050, 2400, 2980, 3450, 3744],
-    seriesLabel: "Monthly organic clicks, months 0–7",
-    takeaway:
-      "Twelve of the fourteen links pointed at two category pages, not the homepage. Those pages were already sitting between positions 8 and 15. That's where links move the needle fastest.",
-    caseHref: "/case-studies/b2b-saas-ai-visibility",
-    quote: {
-      text: "They handled everything: finding sites, writing, placing. The monthly report was clean enough to forward to our CEO without editing.",
-      name: "Daniel Reyes",
-      role: "Head of Growth, CapCut",
-      avatar: "/images/avatar-1.jpg",
-    },
-    more: [
-      {
-        k: "International e-commerce brand",
-        v: "4× referring domains",
-        to: "/case-studies/ecommerce-gulf-authority",
-      },
-      {
-        k: "Home services company",
-        v: "Top 3 in the local pack",
-        to: "/case-studies/home-services-local-pack",
-      },
-    ],
-  },
 
   report: {
     eyebrow: "Reporting",
@@ -477,18 +418,18 @@ export const linkBuilding = {
     ],
     agency: {
       t: "Running an agency?",
-      d: "About a third of our work is white label. Same site check, your logo on the reports, and we stay invisible on client calls.",
+      d: "We work with agencies as well as brands. Same site check, your logo on the reports, and we stay invisible on client calls.",
     },
   },
 
   pricing: {
     eyebrow: "Link building pricing",
-    h2: "Try one link for $129. Packs from 5 links.",
-    d: "Every placement is DR 40+ on a relevant, hand-checked site, with content written for you, a white-label report, a lifetime link guarantee and a 100% money-back guarantee.",
+    h2: "Start with one trial link. Then $150 a placement.",
+    d: "Every placement is DR 40+ on a relevant, hand-checked site, with content written for you, a white-label report, free link replacement and a 100% money-back guarantee.",
     plans: [
-      { name: "Trial", price: "$129", note: "1 placement, DR 40+" },
-      { name: "Starter", price: "$695", note: "5 placements, DR 40+" },
-      { name: "Growth", price: "$1,290", note: "10 placements, DR 40+" },
+      { name: "Trial placement", price: "$170", note: "One link, once per company" },
+      { name: "Standard placement", price: "$150", note: "Per link, from 3 links an order" },
+      { name: "Larger campaigns", price: "Quote", note: "20+ links a month, or DR 70+ sites" },
     ],
   },
 
@@ -521,7 +462,7 @@ export const linkBuilding = {
     },
     {
       q: "What happens if a link gets removed?",
-      a: "Every link comes with a lifetime guarantee. If a publisher ever removes it or turns it nofollow, tell us and we replace it on a site of the same or higher DR, free. The full terms are on the pricing page.",
+      a: "Every link is covered by our replacement guarantee. If a publisher ever removes it or turns it nofollow, tell us and we replace it on a site of the same or higher DR, free. The full terms are on the pricing page.",
     },
     {
       q: "Do I get to choose the anchor text?",
@@ -529,11 +470,11 @@ export const linkBuilding = {
     },
     {
       q: "How much does link building cost?",
-      a: "A single trial placement is $129 (DR 40+), so you can check our quality first. After that, packs start at $695 for five placements, and single links are priced by authority: from $110 at DR 30+ to $349 at DR 60+. Every order is covered by our 100% money-back guarantee. Full prices are on the pricing page.",
+      a: "A standard placement is $150, on orders of three or more. If you'd like to test us first, a single trial placement is $170, once per company. Larger monthly campaigns and DR 70+ placements are quoted. Every order is covered by our money-back guarantee.",
     },
     {
       q: "Do you work white label for agencies?",
-      a: "Yes. About a third of our work is for agencies. Same site check, same quality, reports with your branding, and we stay invisible on client calls.",
+      a: "Yes. We work with agencies as well as brands. Same site check, same quality, reports with your branding, and we stay invisible on client calls.",
     },
   ],
 
@@ -541,9 +482,9 @@ export const linkBuilding = {
     h2: "Keep reading",
     links: [
       {
-        to: "/case-studies/b2b-saas-ai-visibility",
+        to: "/case-studies/smiletutor",
         k: "Case study",
-        t: "DR 35 to 65 for a B2B SaaS brand",
+        t: "SmileTutor: number one for “tuition” in Singapore",
       },
       {
         to: "/blog/site-vetting-checklist",

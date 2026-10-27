@@ -13,6 +13,7 @@ const COLUMNS = [
       { name: "Digital PR", to: "/services/digital-pr" },
       { name: "Brand Mentions", to: "/services/brand-mentions" },
       { name: "HARO & Expert Quotes", to: "/services/haro-links" },
+      { name: "Home Services", to: "/industries/home-services" },
     ],
   },
   {

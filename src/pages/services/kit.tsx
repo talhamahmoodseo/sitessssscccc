@@ -50,7 +50,11 @@ export const H2 = ({
   </h2>
 );
 
-/** The quieter second half of a two-part heading. */
+/**
+ * The second half of a two-part heading, set in the brand gradient (the
+ * hero smoke's orange to violet). Every section heading on the site uses
+ * this one device, so the highlight reads as a system, not decoration.
+ */
 export const Soft = ({
   children,
   dark = false,
@@ -58,7 +62,7 @@ export const Soft = ({
   children: ReactNode;
   dark?: boolean;
 }) => (
-  <span className={dark ? "text-white/60" : "text-navy-dark/60"}>
+  <span className={`pb-[0.06em] ${dark ? "accent-ink-dark" : "accent-ink"}`}>
     {children}
   </span>
 );

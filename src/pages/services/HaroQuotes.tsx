@@ -1,5 +1,8 @@
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import { CASES, casesFor } from "@/lib/cases";
+import { ClientWork } from "../results/CaseParts";
+
 import { haroQuotes as C } from "./content/haroQuotes";
 import { FitPrice, PairsWith, ServiceClose, ServiceFaq } from "./common";
 import Hero from "./expert-quotes/Hero";
@@ -8,7 +11,6 @@ import TwoReplies from "./expert-quotes/TwoReplies";
 import Profile from "./expert-quotes/Profile";
 import Filter from "./expert-quotes/Filter";
 import Time from "./expert-quotes/Time";
-import Proof from "./expert-quotes/Proof";
 
 const SERVICE_SCHEMA = {
   "@context": "https://schema.org",
@@ -47,7 +49,7 @@ const HaroQuotes = () => (
     <Profile />
     <Filter />
     <Time />
-    <Proof />
+    <ClientWork cases={CASES} eyebrow="Client work" title="Recent work" soft="for brands and agencies." />
     <FitPrice c={C.fit} tint="bg-blush" bg="bg-white" />
     <ServiceFaq
       eyebrow={C.faqHead.eyebrow}

@@ -249,26 +249,6 @@ export const brandMentions = {
     ],
   },
 
-  proof: {
-    eyebrow: "One campaign, in numbers",
-    h2a: "Named in 0 answers.",
-    h2b: "Six months later, 26.",
-    client: "B2B SaaS · customer support software · 6 months",
-    series: [0, 2, 6, 11, 17, 22, 26],
-    total: 42,
-    facts: [
-      { k: "Engines naming them", v: "3 of 4" },
-      { k: "Placements", v: "14" },
-      { k: "Of those, comparison articles", v: "9" },
-    ],
-    takeaway:
-      "Volume wasn’t the trick. Nine of the 14 placements were comparison articles, the “best tools” and “alternatives to” pages AI leans on most. Those did most of the work.",
-    quote: {
-      text: "We’d never seen what ChatGPT said about us. The first report was uncomfortable. The sixth one was fun to forward.",
-      who: "VP Marketing · B2B SaaS",
-    },
-    caseHref: "/case-studies/b2b-saas-ai-visibility",
-  },
 
   fit: {
     eyebrow: "Is this right for you?",

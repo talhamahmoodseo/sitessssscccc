@@ -39,7 +39,7 @@ const CTABand = () => (
         Get ranked.
         <br />
         {"Get "}
-        <span className="italic font-medium text-mark">cited</span>.
+        <span className="accent-ink-dark pr-[0.14em] italic font-medium">cited</span>.
       </motion.h2>
       <motion.p
         className="text-[17px] sm:text-[19px] text-white/70 leading-relaxed max-w-xl mx-auto mb-10"

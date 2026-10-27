@@ -1,995 +1,525 @@
 /**
- * The three sample case studies. Plan: PAGES-REDESIGN-2.md §2.
+ * Real client case studies, built from the owner's portfolio (round 8).
  *
- * STATUS: SAMPLES. Client descriptions, figures, domains and quotes are
- * placeholders that show the format. Replace every value with verified
- * client data (and get sign-off) before launch. The numbers here match the
- * ones quoted on the service pages and homepage, so change them together.
+ * Rules for this file:
+ * - Every number comes from a client screenshot or report the owner shared
+ *   (SmileTutor: Semrush, October 2026). Client facts in `about` come from the
+ *   client's own website. Nothing is estimated.
+ * - `testimonial.approved` stays false until the client has signed off the
+ *   wording. Unapproved testimonials are never rendered; the drafts live in
+ *   TESTIMONIAL-DRAFTS.md for the owner to send.
+ * - Where a project has no published figures yet, `results` is left out and
+ *   the page shows the work instead. Do not fill gaps with estimates.
  */
 
-export type Kpi = { k: string; before: string; after: string; change: string };
+export type Metric = {
+  v: string;
+  l: string;
+  /** previous value, for before/after bars */
+  from?: number;
+  to?: number;
+};
+
+export type Ranking = { k: string; vol: string; pos: string };
+
+export type Shot = { src: string; alt: string; caption: string };
+
+export type Placement = {
+  site: string;
+  url?: string;
+  kind: string;
+  note: string;
+};
 
 export type CaseStudy = {
   slug: string;
   client: string;
+  url: string;
+  domain: string;
   sector: string;
   market: string;
-  duration: string;
-  plan: string;
   services: string[];
+  /** which service pages show this case */
+  tags: ("link-building" | "brand-mentions" | "digital-pr" | "haro" | "agency")[];
   tint: string;
-  /** short card title for the results index */
+  /** client's own homepage, as the case header visual */
+  site?: string;
+  /** short card title for the index */
   card: string;
   title: string;
   summary: string;
-  headline: { v: string; l: string }[];
-
-  overview: { paras: string[]; glance: [string, string][] };
-  challenge: {
+  /** big numbers for the header and cards; empty when the project has none */
+  headline: Metric[];
+  about: { paras: string[]; facts: [string, string][]; source: string };
+  challenge: { paras: string[]; points: string[] };
+  approach: { lead: string; steps: { t: string; d: string }[] };
+  placements?: Placement[];
+  results?: {
+    lead: string;
+    bars?: { label: string; unit: string; from: number; to: number; fromL: string; toL: string }[];
+    rankings?: Ranking[];
     paras: string[];
-    points: string[];
-    baseline: [string, string][];
+    source: string;
   };
-  objectives: { t: string; target: string; result: string }[];
-  strategy: { lead: string; pillars: { t: string; d: string }[] };
-  work: { when: string; t: string; items: string[] }[];
-  links: {
-    reviewed: number;
-    rejected: number;
-    indexed: string;
-    mix: { k: string; n: number }[];
-    dr: { k: string; n: number }[];
-    anchors: { k: string; pct: number }[];
-    samples: {
-      site: string;
-      dr: number;
-      type: string;
-      target: string;
-      indexed: string;
-    }[];
-    turnedDown: { site: string; dr: string; why: string }[];
-  };
-  results: {
-    kpis: Kpi[];
-    main: {
-      label: string;
-      unit: string;
-      series: number[];
-      notes: { at: number; t: string }[];
-    };
-    second: {
-      label: string;
-      unit: string;
-      series: number[];
-      kind: "line" | "bars";
-    };
-    positions: { m: string; top3: number; top10: number; top20: number }[];
-    keywords: { k: string; vol: string; before: string; after: string }[];
-  };
-  outcomes: {
-    items: { v: string; l: string }[];
-    takeaways: { t: string; d: string }[];
-    quote: { text: string; who: string };
-    next: string;
+  evidence?: Shot[];
+  testimonial?: {
+    text: string;
+    who: string;
+    role: string;
+    photo?: string;
+    approved: boolean;
   };
 };
 
 export const CASES: CaseStudy[] = [
-  /* ------------------------------------------------------------------ 1 */
+  /* ------------------------------------------------------------ SmileTutor */
   {
-    slug: "b2b-saas-ai-visibility",
-    client: "B2B SaaS platform",
-    sector: "Customer support software",
-    market: "United States & United Kingdom",
-    duration: "7 months",
-    plan: "Growth",
-    services: ["Link building", "Brand mentions", "Expert quotes"],
-    tint: "bg-lilac",
-    card: "How a help desk platform got from page two to the shortlist",
-    title: "From page two to the shortlist, in Google and in ChatGPT",
-    summary:
-      "A help desk platform with great reviews and almost no authority beyond its own site. Seven months of editorial links and brand mentions took its category pages into the top five and got it named in AI answers.",
-    headline: [
-      { v: "+212%", l: "organic clicks" },
-      { v: "DR 35 → 65", l: "Domain Rating" },
-      { v: "26 / 42", l: "AI answers naming them" },
-      { v: "5 of 6", l: "main terms in the top 5" },
-    ],
-
-    overview: {
-      paras: [
-        "The client sells help desk software to small and mid-size support teams in the US and UK. The product was strong, customers were loyal and the blog went out every week. But almost nothing outside their own site described what they did.",
-        "They came to us with two goals: get the two main category pages onto page one, and stop losing shortlists to three competitors who kept getting named when buyers asked AI tools for a recommendation.",
-      ],
-      glance: [
-        ["Sector", "Customer support software"],
-        ["Market", "US & UK"],
-        ["Duration", "7 months"],
-        ["Services", "Link building, brand mentions, expert quotes"],
-        ["Plan", "Growth"],
-        ["Pages targeted", "2 category pages + homepage"],
-      ],
-    },
-
-    challenge: {
-      paras: [
-        "Their link profile looked fine in a tool and did very little in practice. Most referring domains were directories, their own press releases, and a batch of guest posts a previous vendor had placed on sites with no real traffic.",
-      ],
-      points: [
-        "Category pages stuck between positions 11 and 18 for their main terms.",
-        "About half of the 140 referring domains were low-quality directories.",
-        "Named in 0 of 42 tracked AI answers, while three competitors were named in most of them.",
-        "No independent article described the product in a way an AI tool could repeat.",
-      ],
-      baseline: [
-        ["Domain Rating", "35"],
-        ["Referring domains", "140"],
-        ["Organic clicks / month", "1,200"],
-        ["Keywords in the top 10", "38"],
-        ["AI answers naming the brand", "0 of 42"],
-      ],
-    },
-
-    objectives: [
-      {
-        t: "Get the category pages onto page one",
-        target: "Top 10 for 6 main terms",
-        result: "5 of 6 in the top 5",
-      },
-      {
-        t: "Grow organic traffic",
-        target: "+100% in 6 months",
-        result: "+212% by month 7",
-      },
-      {
-        t: "Get named in AI answers",
-        target: "10 of 42 tracked answers",
-        result: "26 of 42",
-      },
-      {
-        t: "Remove the risky links",
-        target: "Disavow the old vendor’s links",
-        result: "37 domains disavowed",
-      },
-    ],
-
-    strategy: {
-      lead: "Two pages, three kinds of placement, and one way of measuring all of it.",
-      pillars: [
-        {
-          t: "Focus the authority",
-          d: "Instead of spreading links across eight pages, we pointed most of them at the two category pages closest to page one.",
-        },
-        {
-          t: "Earn links that read naturally",
-          d: "Guest posts and niche edits on support, CX and SaaS publications, each link inside a sentence that makes sense without it.",
-        },
-        {
-          t: "Get described where AI looks",
-          d: "Brand mentions in the comparison and “best tools” articles that ChatGPT and AI Overviews were already citing for this category.",
-        },
-      ],
-    },
-
-    work: [
-      {
-        when: "Month 1",
-        t: "Audit and plan",
-        items: [
-          "Backlink audit and a disavow file for 37 risky domains",
-          "Competitor gap: 212 domains linking to competitors, 64 winnable",
-          "Target pages, anchor plan and a 42-question AI baseline",
-        ],
-      },
-      {
-        when: "Months 2–4",
-        t: "Authority build",
-        items: [
-          "8 guest posts on SaaS and customer-experience publications",
-          "6 niche edits on aged articles that already ranked",
-          "3 expert quotes from the founder in business press",
-        ],
-      },
-      {
-        when: "Months 4–6",
-        t: "Mention layer",
-        items: [
-          "9 inclusions in comparison and “best tools” articles",
-          "5 mentions in trade press and review roundups",
-          "One consistent product description across the profiles that matter",
-        ],
-      },
-      {
-        when: "Month 7",
-        t: "Compound and report",
-        items: [
-          "Internal links from new blog posts to the category pages",
-          "Final report and a plan for the next quarter",
-        ],
-      },
-    ],
-
-    links: {
-      reviewed: 156,
-      rejected: 31,
-      indexed: "14 / 14 links",
-      mix: [
-        { k: "Guest posts", n: 8 },
-        { k: "Niche edits", n: 6 },
-        { k: "Comparison mentions", n: 9 },
-        { k: "Trade & review mentions", n: 5 },
-        { k: "Expert quotes", n: 3 },
-      ],
-      dr: [
-        { k: "DR 30–49", n: 7 },
-        { k: "DR 50–59", n: 11 },
-        { k: "DR 60–69", n: 9 },
-        { k: "DR 70+", n: 4 },
-      ],
-      anchors: [
-        { k: "Branded", pct: 43 },
-        { k: "Partial match", pct: 29 },
-        { k: "Naked URL", pct: 14 },
-        { k: "Exact match", pct: 7 },
-        { k: "Generic", pct: 7 },
-      ],
-      samples: [
-        {
-          site: "saas•••weekly.com",
-          dr: 61,
-          type: "Guest post",
-          target: "/help-desk-software",
-          indexed: "6 days",
-        },
-        {
-          site: "cx•••today.com",
-          dr: 66,
-          type: "Niche edit",
-          target: "/shared-inbox",
-          indexed: "3 days",
-        },
-        {
-          site: "the•••journal.com",
-          dr: 71,
-          type: "Expert quote",
-          target: "Homepage",
-          indexed: "9 days",
-        },
-        {
-          site: "b2b•••digest.com",
-          dr: 64,
-          type: "Guest post",
-          target: "/help-desk-software",
-          indexed: "12 days",
-        },
-        {
-          site: "support•••review.com",
-          dr: 58,
-          type: "Comparison mention",
-          target: "Brand mention",
-          indexed: "—",
-        },
-      ],
-      turnedDown: [
-        {
-          site: "Business magazine",
-          dr: "DR 71",
-          why: "Organic traffic had dropped 94% after a core update, and what was left came from one unrelated keyword.",
-        },
-        {
-          site: "Regional tech news site",
-          dr: "DR 64",
-          why: "40% of recent outbound links pointed to offshore gambling sites.",
-        },
-        {
-          site: "Support-industry blog",
-          dr: "DR 52",
-          why: "A real editor and real traffic, but a public price list for sponsored posts.",
-        },
-      ],
-    },
-
-    results: {
-      kpis: [
-        {
-          k: "Organic clicks / month",
-          before: "1,200",
-          after: "3,744",
-          change: "+212%",
-        },
-        { k: "Domain Rating", before: "35", after: "65", change: "+30" },
-        { k: "Referring domains", before: "140", after: "212", change: "+51%" },
-        {
-          k: "Keywords in the top 10",
-          before: "38",
-          after: "117",
-          change: "3×",
-        },
-        {
-          k: "AI answers naming the brand",
-          before: "0 of 42",
-          after: "26 of 42",
-          change: "+26",
-        },
-        {
-          k: "Demo requests from organic / month",
-          before: "41",
-          after: "96",
-          change: "+134%",
-        },
-      ],
-      main: {
-        label: "Organic clicks per month",
-        unit: "clicks",
-        series: [1200, 1380, 1610, 2050, 2400, 2980, 3450, 3744],
-        notes: [
-          { at: 2, t: "First guest posts live" },
-          { at: 4, t: "Comparison mentions start" },
-          { at: 7, t: "5 of 6 terms in the top 5" },
-        ],
-      },
-      second: {
-        label: "AI answers naming the brand (of 42)",
-        unit: "answers",
-        series: [0, 2, 6, 11, 17, 22, 26],
-        kind: "bars",
-      },
-      positions: [
-        { m: "Start", top3: 4, top10: 38, top20: 91 },
-        { m: "M2", top3: 6, top10: 49, top20: 104 },
-        { m: "M4", top3: 11, top10: 72, top20: 128 },
-        { m: "M7", top3: 19, top10: 117, top20: 164 },
-      ],
-      keywords: [
-        {
-          k: "help desk software for small teams",
-          vol: "1.9K",
-          before: "14",
-          after: "3",
-        },
-        {
-          k: "shared inbox for customer support",
-          vol: "1.3K",
-          before: "18",
-          after: "4",
-        },
-        { k: "best help desk software", vol: "8.1K", before: "22", after: "9" },
-        {
-          k: "customer support ticketing system",
-          vol: "2.4K",
-          before: "16",
-          after: "5",
-        },
-        { k: "help desk with live chat", vol: "880", before: "31", after: "2" },
-      ],
-    },
-
-    outcomes: {
-      items: [
-        { v: "+212%", l: "organic clicks in 7 months" },
-        { v: "+134%", l: "demo requests from organic" },
-        { v: "26 / 42", l: "AI answers now name them" },
-      ],
-      takeaways: [
-        {
-          t: "Focus beats spread",
-          d: "Two pages getting most of the links moved faster than eight pages getting a few each.",
-        },
-        {
-          t: "Comparison articles carry AI answers",
-          d: "Nine comparison placements did more for AI visibility than everything else combined.",
-        },
-        {
-          t: "Clean up before you build",
-          d: "Disavowing the old vendor’s links in month one removed the risk before new authority arrived.",
-        },
-      ],
-      quote: {
-        text: "We’d never seen what ChatGPT said about us. The first report was uncomfortable. The sixth one was fun to forward.",
-        who: "VP Marketing, B2B SaaS",
-      },
-      next: "Quarter three moves to two new feature pages and a second round of comparison placements in UK publications.",
-    },
-  },
-
-  /* ------------------------------------------------------------------ 2 */
-  {
-    slug: "home-services-local-pack",
-    client: "Family-run HVAC company",
-    sector: "Home services (heating & cooling)",
-    market: "Fresno & Clovis, California",
-    duration: "5 months",
-    plan: "Starter",
-    services: ["Local link building", "Local digital PR"],
-    tint: "bg-mint",
-    card: "How a Fresno HVAC company got into the map pack",
-    title: "From page two to the local map pack in five months",
-    summary:
-      "A family-run HVAC company was invisible for its most valuable searches while national directories took the calls. Local links and two local press features put it in the map pack and more than doubled calls from search.",
-    headline: [
-      { v: "7 of 10", l: "terms in the map pack" },
-      { v: "+164%", l: "calls from search" },
-      { v: "9 / 9", l: "placements indexed" },
-      { v: "DR 12 → 31", l: "Domain Rating" },
-    ],
-
-    overview: {
-      paras: [
-        "A 14-truck heating and cooling company serving Fresno and Clovis. Good reviews, a decent website and a Google Business Profile set up years ago.",
-        "The first page for their money searches belonged to national directories and two bigger competitors. Every call those directories sent cost them a fee.",
-      ],
-      glance: [
-        ["Sector", "Home services (HVAC)"],
-        ["Market", "Fresno & Clovis, CA"],
-        ["Duration", "5 months"],
-        ["Services", "Local link building, local digital PR"],
-        ["Plan", "Starter"],
-        ["Pages targeted", "3 service pages + Google Business Profile"],
-      ],
-    },
-
-    challenge: {
-      paras: [
-        "Local rankings come from relevance, distance and prominence. They couldn’t change the first two. Prominence, how much the local web talks about you, was where they were losing.",
-      ],
-      points: [
-        "Positions 14–22 for “emergency AC repair Fresno” and similar searches.",
-        "Outside the map pack for 9 of 10 tracked terms.",
-        "23 referring domains, none of them from local sites.",
-        "Name, address and phone listed three different ways across the web.",
-      ],
-      baseline: [
-        ["Domain Rating", "12"],
-        ["Referring domains", "23"],
-        ["Map pack (top 3) terms", "1 of 10"],
-        ["Calls from search / month", "62"],
-        ["Organic clicks / month", "640"],
-      ],
-    },
-
-    objectives: [
-      {
-        t: "Get into the map pack",
-        target: "Top 3 for 5 of 10 terms",
-        result: "7 of 10",
-      },
-      {
-        t: "Rank the emergency pages",
-        target: "Page one for emergency terms",
-        result: "Positions 2–6",
-      },
-      {
-        t: "More calls from search",
-        target: "+50% in 5 months",
-        result: "+164%",
-      },
-      {
-        t: "Build local trust signals",
-        target: "5 local placements",
-        result: "9 local and trade placements",
-      },
-    ],
-
-    strategy: {
-      lead: "Win the local web first, then add just enough trade authority.",
-      pillars: [
-        {
-          t: "Fix the basics first",
-          d: "Name, address and phone made consistent across 34 listings before any links went live.",
-        },
-        {
-          t: "Local before big",
-          d: "Links from Fresno news, business and community sites tell Google this company belongs in local results.",
-        },
-        {
-          t: "A little trade relevance",
-          d: "A few placements on home-services publications for topical authority on the service pages.",
-        },
-      ],
-    },
-
-    work: [
-      {
-        when: "Month 1",
-        t: "Local audit",
-        items: [
-          "Citation cleanup across 34 listings",
-          "Map pack analysis of the top three competitors",
-          "26 local and trade sites found, 17 passed vetting",
-        ],
-      },
-      {
-        when: "Months 2–3",
-        t: "Local placements",
-        items: [
-          "2 local news features from a heat-wave safety story",
-          "3 guest posts on home-services publications",
-          "2 Fresno business and community links",
-        ],
-      },
-      {
-        when: "Months 4–5",
-        t: "Strengthen",
-        items: [
-          "2 niche edits on ranking home-improvement articles",
-          "Service-page and internal-link updates with their team",
-        ],
-      },
-    ],
-
-    links: {
-      reviewed: 26,
-      rejected: 9,
-      indexed: "9 / 9 links",
-      mix: [
-        { k: "Local news features", n: 2 },
-        { k: "Home-services guest posts", n: 3 },
-        { k: "Local business & community", n: 2 },
-        { k: "Niche edits", n: 2 },
-      ],
-      dr: [
-        { k: "DR 20–39", n: 3 },
-        { k: "DR 40–49", n: 3 },
-        { k: "DR 50–59", n: 2 },
-        { k: "DR 60+", n: 1 },
-      ],
-      anchors: [
-        { k: "Branded", pct: 45 },
-        { k: "Service + location", pct: 22 },
-        { k: "Naked URL", pct: 22 },
-        { k: "Generic", pct: 11 },
-      ],
-      samples: [
-        {
-          site: "fresno•••news.com",
-          dr: 58,
-          type: "Local feature",
-          target: "/emergency-ac-repair",
-          indexed: "5 days",
-        },
-        {
-          site: "home•••digest.com",
-          dr: 64,
-          type: "Guest post",
-          target: "/ac-repair",
-          indexed: "8 days",
-        },
-        {
-          site: "hvac•••insider.com",
-          dr: 49,
-          type: "Niche edit",
-          target: "/furnace-repair",
-          indexed: "4 days",
-        },
-        {
-          site: "valley•••business.com",
-          dr: 41,
-          type: "Business profile",
-          target: "Homepage",
-          indexed: "11 days",
-        },
-        {
-          site: "clovis•••community.org",
-          dr: 33,
-          type: "Community link",
-          target: "Homepage",
-          indexed: "14 days",
-        },
-      ],
-      turnedDown: [
-        {
-          site: "Regional “news” site",
-          dr: "DR 52",
-          why: "Published anything for $50 and had almost no local readers.",
-        },
-        {
-          site: "Home-improvement blog",
-          dr: "DR 47",
-          why: "80% of its traffic came from outside the US. None of it was local.",
-        },
-        {
-          site: "Directory network",
-          dr: "DR 38",
-          why: "200 near-identical city pages built to sell listings.",
-        },
-      ],
-    },
-
-    results: {
-      kpis: [
-        {
-          k: "Map pack (top 3) terms",
-          before: "1 of 10",
-          after: "7 of 10",
-          change: "+6",
-        },
-        {
-          k: "Calls from search / month",
-          before: "62",
-          after: "164",
-          change: "+164%",
-        },
-        {
-          k: "Organic clicks / month",
-          before: "640",
-          after: "1,480",
-          change: "+131%",
-        },
-        { k: "Domain Rating", before: "12", after: "31", change: "+19" },
-        { k: "Referring domains", before: "23", after: "41", change: "+78%" },
-      ],
-      main: {
-        label: "Calls from search per month",
-        unit: "calls",
-        series: [62, 70, 88, 112, 141, 164],
-        notes: [
-          { at: 1, t: "Listings cleaned up" },
-          { at: 3, t: "Local features live" },
-          { at: 5, t: "7 of 10 in the map pack" },
-        ],
-      },
-      second: {
-        label: "Terms in the map pack (of 10)",
-        unit: "terms",
-        series: [1, 1, 3, 4, 6, 7],
-        kind: "bars",
-      },
-      positions: [
-        { m: "Start", top3: 1, top10: 4, top20: 9 },
-        { m: "M2", top3: 2, top10: 6, top20: 11 },
-        { m: "M3", top3: 4, top10: 9, top20: 14 },
-        { m: "M5", top3: 7, top10: 13, top20: 17 },
-      ],
-      keywords: [
-        {
-          k: "emergency ac repair fresno",
-          vol: "390",
-          before: "17",
-          after: "2",
-        },
-        { k: "ac repair fresno", vol: "880", before: "14", after: "3" },
-        { k: "furnace repair fresno", vol: "320", before: "22", after: "5" },
-        { k: "hvac company clovis", vol: "170", before: "19", after: "1" },
-        { k: "heating and air fresno", vol: "260", before: "12", after: "4" },
-      ],
-    },
-
-    outcomes: {
-      items: [
-        { v: "+164%", l: "calls from search" },
-        { v: "7 of 10", l: "money terms in the map pack" },
-        { v: "Month 3", l: "when it paid for itself" },
-      ],
-      takeaways: [
-        {
-          t: "Local beats big",
-          d: "A DR 33 community site did more for map rankings than a big national blog would have.",
-        },
-        {
-          t: "Fix listings before links",
-          d: "Consistent name, address and phone made every later link count for more.",
-        },
-        {
-          t: "A seasonal story travels",
-          d: "The heat-wave safety piece was picked up by two more local outlets without any extra pitching.",
-        },
-      ],
-      quote: {
-        text: "We used to pay a directory for every lead. Now people find us first.",
-        who: "Owner, HVAC company, Fresno",
-      },
-      next: "Next: the same playbook for the Clovis and Madera service areas, plus a winter furnace-safety story.",
-    },
-  },
-
-  /* ------------------------------------------------------------------ 3 */
-  {
-    slug: "ecommerce-gulf-authority",
-    client: "Home & lifestyle online store",
-    sector: "E-commerce (home & lifestyle)",
-    market: "United Kingdom + UAE & Saudi Arabia",
-    duration: "6 months",
-    plan: "Authority",
-    services: ["Digital PR", "Link building"],
+    slug: "smiletutor",
+    client: "SmileTutor",
+    url: "https://smiletutor.sg/",
+    domain: "smiletutor.sg",
+    sector: "Education · Home tuition",
+    market: "Singapore",
+    services: ["Link building", "Brand mentions"],
+    tags: ["link-building", "brand-mentions"],
     tint: "bg-butter",
-    card: "How one data study built authority in two markets",
-    title: "One data study, 21 placements and category pages that finally rank",
+    site: "/images/cases/smiletutor-site.webp",
+    card: "Number one on Google for “tuition” in Singapore",
+    title: "How SmileTutor took the top spot for “tuition” in Singapore",
     summary:
-      "A UK homeware brand expanding into the Gulf had great products and a thin link profile. A delivery-data study, Gulf business press and links to the pages that sell built authority in both markets.",
+      "SmileTutor matches Singapore families with home and online tutors. Our links and brand mentions helped it reach number one on Google for “tuition”, “tuition sg” and “online tuition”, and nearly triple its non-branded search traffic.",
     headline: [
-      { v: "21", l: "editorial placements" },
-      { v: "DR 74", l: "top outlet" },
-      { v: "4×", l: "referring domains" },
-      { v: "+88%", l: "organic revenue" },
+      { v: "#1", l: "on Google for “tuition” (33,100 searches a month)" },
+      { v: "+169%", l: "organic traffic, October 2024 to October 2026" },
+      { v: "146", l: "keywords ranking at number one in Singapore" },
     ],
 
-    overview: {
+    about: {
       paras: [
-        "A UK home and lifestyle store that had just opened a Dubai warehouse. Its UK category pages sat on page two, and in the UAE and Saudi Arabia it had no visibility at all.",
-        "Buyers in the Gulf check a brand before ordering from it. Without coverage in the publications they read, the new warehouse was a cost, not a channel.",
+        "SmileTutor is a tuition agency in Singapore. Parents tell it what their child needs, and within a day the team sends back a shortlist of tutors to choose from. It covers every level, from primary school to junior college and IB, at home or online.",
+        "The business runs on search. Almost every family that needs a tutor starts on Google, and in Singapore that means competing with a long list of agencies, tutor marketplaces and directories for the same handful of terms.",
       ],
-      glance: [
-        ["Sector", "Home & lifestyle e-commerce"],
-        ["Market", "UK + UAE & Saudi Arabia"],
-        ["Duration", "6 months"],
-        ["Services", "Digital PR, link building"],
-        ["Plan", "Authority"],
-        ["Pages targeted", "6 category pages (3 UK, 3 UAE)"],
+      facts: [
+        ["Business", "Tutor-matching agency"],
+        ["Market", "Singapore"],
+        ["How it works", "Request, shortlist within 24 hours, first lesson"],
+        ["Online lessons", "From S$20 an hour"],
       ],
+      source: "Business details from smiletutor.sg",
     },
 
     challenge: {
       paras: [
-        "Competitors with bigger PR budgets owned the “best of” lists in both markets. The brand had good stories to tell, it just hadn’t noticed them.",
+        "Tuition is one of the most contested local searches in Singapore. The terms that bring in new families, “tuition”, “tuition singapore”, “home tuition”, “online tuition”, are the same ones every agency in the country is chasing.",
+        "SmileTutor already had a well-built site and a recognised name. What it needed was authority from outside its own pages, from places that families and educators actually read, so Google would treat it as the clear first choice.",
       ],
       points: [
-        "40 referring domains, mostly supplier and directory links.",
-        "UK category pages on page two; UAE pages not ranking at all.",
-        "No coverage in Gulf media, where buyers check a brand before ordering.",
-        "Paid ads carrying almost all Gulf traffic at a rising cost.",
-      ],
-      baseline: [
-        ["Domain Rating", "29"],
-        ["Referring domains", "40"],
-        ["Organic clicks / month", "2,100"],
-        ["UK category pages on page one", "0 of 3"],
-        ["UAE category pages on page one", "0 of 3"],
+        "Hold the top position for the broad head terms, not just the brand name",
+        "Lift the subject pages too, like primary school maths and O-level science",
+        "Show up in Google's AI Overview, which now sits above the results for tuition searches",
       ],
     },
 
-    objectives: [
-      {
-        t: "Coverage in Gulf business press",
-        target: "3 tier-one features",
-        result: "4 features, top outlet DR 74",
-      },
-      {
-        t: "Grow referring domains",
-        target: "2× in 6 months",
-        result: "4× (40 → 158)",
-      },
-      { t: "Category pages on page one", target: "4 of 6", result: "5 of 6" },
-      { t: "Grow organic revenue", target: "+40%", result: "+88%" },
-    ],
-
-    strategy: {
-      lead: "One story worth covering, the right press in each market, and links pointed at the pages that sell.",
-      pillars: [
+    approach: {
+      lead: "We built authority where SmileTutor's buyers already were: education, parenting and Singapore-focused publications. Every site went through our site check first.",
+      steps: [
         {
-          t: "One story worth covering",
-          d: "Their own delivery data from 40,000 orders became a study on how fast Gulf shoppers now expect delivery.",
+          t: "Relevant sites only",
+          d: "Education, family and local Singapore sites with real readers and a real editorial standard. Sites that rank for unrelated or spammy terms were dropped, however good their DR looked.",
         },
         {
-          t: "Gulf press first, then UK trade",
-          d: "Business media in the UAE for trust, then UK retail and home publications for relevance.",
+          t: "Links into the pages that earn enquiries",
+          d: "The homepage for the head terms, plus the online tuition page and subject pages. Anchors stayed natural: mostly the brand name and plain descriptions, never a wall of exact-match keywords.",
         },
         {
-          t: "Links to the pages that sell",
-          d: "Guest posts and niche edits pointed at the six category pages, so the PR authority reached revenue.",
-        },
-      ],
-    },
-
-    work: [
-      {
-        when: "Month 1",
-        t: "Story audit and data study",
-        items: [
-          "Story audit with the founders and ops team",
-          "Delivery-time study built from 40,000 orders",
-          "Media list of 64 named journalists, approved by the client",
-        ],
-      },
-      {
-        when: "Months 2–3",
-        t: "Launch and pitching",
-        items: [
-          "Study pitched to Gulf business desks and UK retail trade",
-          "4 features and 7 data-study pieces in the first wave",
-          "Founder quotes supplied for follow-up stories",
-        ],
-      },
-      {
-        when: "Months 3–5",
-        t: "Follow-on coverage and links",
-        items: [
-          "5 expert quotes and 4 buying-guide inclusions",
-          "Category-page links through guest posts and niche edits",
-          "Arabic-market product pages internally linked from coverage",
-        ],
-      },
-      {
-        when: "Month 6",
-        t: "Report and next story",
-        items: [
-          "Coverage report with every placement and the pitch that earned it",
-          "Angle for the next study: returns behaviour by market",
-        ],
-      },
-    ],
-
-    links: {
-      reviewed: 72,
-      rejected: 18,
-      indexed: "21 / 21 placements",
-      mix: [
-        { k: "Features", n: 4 },
-        { k: "Data-study coverage", n: 7 },
-        { k: "Expert quotes", n: 5 },
-        { k: "Buying guides & roundups", n: 4 },
-        { k: "Opinion piece", n: 1 },
-      ],
-      dr: [
-        { k: "DR 40–49", n: 4 },
-        { k: "DR 50–59", n: 7 },
-        { k: "DR 60–69", n: 6 },
-        { k: "DR 70+", n: 4 },
-      ],
-      anchors: [
-        { k: "Branded", pct: 52 },
-        { k: "Naked URL", pct: 24 },
-        { k: "Partial match", pct: 14 },
-        { k: "Generic", pct: 10 },
-      ],
-      samples: [
-        {
-          site: "UAE national daily",
-          dr: 74,
-          type: "Feature",
-          target: "Homepage",
-          indexed: "2 days",
-        },
-        {
-          site: "Gulf business magazine",
-          dr: 72,
-          type: "Expert quote",
-          target: "/uae/outdoor-furniture",
-          indexed: "4 days",
-        },
-        {
-          site: "UK retail trade title",
-          dr: 61,
-          type: "Data study",
-          target: "/delivery-study",
-          indexed: "3 days",
-        },
-        {
-          site: "Dubai business daily",
-          dr: 70,
-          type: "Feature",
-          target: "/uae",
-          indexed: "5 days",
-        },
-        {
-          site: "UK home & interiors blog",
-          dr: 48,
-          type: "Buying guide",
-          target: "/garden-furniture",
-          indexed: "9 days",
-        },
-      ],
-      turnedDown: [
-        {
-          site: "Regional lifestyle magazine",
-          dr: "DR 67",
-          why: "The English edition was machine-translated and read as thin content.",
-        },
-        {
-          site: "Gulf business news site",
-          dr: "DR 61",
-          why: "Required a “brand voices” label, which marks the piece as sponsored.",
-        },
-        {
-          site: "Home-decor aggregator",
-          dr: "DR 55",
-          why: "Pure syndication: every article already lived on three other domains.",
+          t: "Brand mentions as well as links",
+          d: "Mentions in articles that compare tuition options. They help Google understand who SmileTutor is, and they are the kind of source AI Overviews quote.",
         },
       ],
     },
 
     results: {
-      kpis: [
-        { k: "Referring domains", before: "40", after: "158", change: "4×" },
-        { k: "Domain Rating", before: "29", after: "52", change: "+23" },
+      lead: "SmileTutor now leads the search results for the terms that matter most to a tuition agency in Singapore.",
+      bars: [
         {
-          k: "Organic clicks / month",
-          before: "2,100",
-          after: "5,130",
-          change: "+144%",
+          label: "Non-branded organic traffic a month",
+          unit: "",
+          from: 12000,
+          to: 36200,
+          fromL: "12K",
+          toL: "36.2K",
         },
         {
-          k: "UK category pages on page one",
-          before: "0 of 3",
-          after: "3 of 3",
-          change: "+3",
+          label: "Organic traffic from Singapore a month",
+          unit: "",
+          from: 12900,
+          to: 34300,
+          fromL: "12.9K",
+          toL: "34.3K",
         },
         {
-          k: "UAE category pages on page one",
-          before: "0 of 3",
-          after: "2 of 3",
-          change: "+2",
-        },
-        {
-          k: "Organic revenue",
-          before: "Baseline",
-          after: "+88%",
-          change: "+88%",
+          label: "Keywords in the top three positions",
+          unit: "",
+          from: 213,
+          to: 617,
+          fromL: "213",
+          toL: "617",
         },
       ],
-      main: {
-        label: "Referring domains",
-        unit: "domains",
-        series: [40, 48, 61, 83, 104, 132, 158],
-        notes: [
-          { at: 2, t: "Study launches" },
-          { at: 3, t: "First Gulf features" },
-          { at: 6, t: "Editors start pitching back" },
-        ],
-      },
-      second: {
-        label: "Organic clicks per month",
-        unit: "clicks",
-        series: [2100, 2240, 2610, 3180, 3790, 4420, 5130],
-        kind: "line",
-      },
-      positions: [
-        { m: "Start", top3: 2, top10: 21, top20: 58 },
-        { m: "M2", top3: 3, top10: 26, top20: 66 },
-        { m: "M4", top3: 8, top10: 44, top20: 89 },
-        { m: "M6", top3: 14, top10: 63, top20: 112 },
+      rankings: [
+        { k: "tuition", vol: "33,100", pos: "1" },
+        { k: "tuition sg", vol: "14,800", pos: "1" },
+        { k: "tuition singapore", vol: "6,600", pos: "1" },
+        { k: "singapore tuition", vol: "5,400", pos: "1" },
+        { k: "primary 3 math tuition", vol: "5,400", pos: "1" },
+        { k: "online tuition", vol: "2,400", pos: "1" },
+        { k: "tuition agency", vol: "1,600", pos: "1" },
+        { k: "mathematics tutor", vol: "1,300", pos: "1" },
       ],
-      keywords: [
-        { k: "outdoor furniture dubai", vol: "2.9K", before: "—", after: "6" },
-        {
-          k: "rattan garden furniture uk",
-          vol: "6.6K",
-          before: "15",
-          after: "7",
-        },
-        { k: "homeware online uae", vol: "1.6K", before: "—", after: "9" },
-        { k: "linen bedding uk", vol: "4.4K", before: "12", after: "5" },
-        { k: "garden furniture sale", vol: "12K", before: "19", after: "10" },
+      paras: [
+        "Non-branded traffic, the visitors who searched for tuition rather than for SmileTutor by name, went from about 12,000 to 36,200 a month. It now makes up 94% of the site's search traffic, up from 84%.",
+        "Google's AI Overview for “online tuition” now opens with SmileTutor and links to it as its source.",
+      ],
+      source:
+        "Semrush, Google Singapore, October 2026 compared with October 2024. Search volumes are Semrush's monthly estimates for Singapore.",
+    },
+
+    evidence: [
+      {
+        src: "/images/cases/smiletutor-serp-tuition.webp",
+        alt: "Google results for 'tuition' with SmileTutor as the first organic result",
+        caption: "“tuition”: SmileTutor is the first organic result, under Google's dictionary panel.",
+      },
+      {
+        src: "/images/cases/smiletutor-ai-overview.webp",
+        alt: "Google AI Overview for 'online tuition' naming SmileTutor first",
+        caption: "“online tuition”: the AI Overview names SmileTutor first and cites it as the source.",
+      },
+      {
+        src: "/images/cases/smiletutor-semrush-growth.webp",
+        alt: "Semrush comparison of SmileTutor organic traffic, 2024 and 2026",
+        caption: "Semrush, 2024 against 2026: organic traffic, keywords and top positions.",
+      },
+      {
+        src: "/images/cases/smiletutor-semrush-positions.webp",
+        alt: "Semrush list of keywords where SmileTutor ranks first",
+        caption: "146 keywords at number one on Google Singapore, led by “tuition sg” and “tuition”.",
+      },
+    ],
+
+    testimonial: {
+      text: "",
+      who: "Rum Tan",
+      role: "Owner, SmileTutor",
+      photo: "/images/cases/person-rum-tan.webp",
+      approved: false,
+    },
+  },
+
+  /* -------------------------------------------------------------- Defender */
+  {
+    slug: "defender",
+    client: "Defender",
+    url: "https://www.defendercameras.com/",
+    domain: "defendercameras.com",
+    sector: "Consumer electronics · Home security",
+    market: "United States & Canada",
+    services: ["Brand mentions", "Product reviews"],
+    tags: ["brand-mentions", "digital-pr"],
+    tint: "bg-blush",
+    site: "/images/cases/defender-site.webp",
+    card: "Getting a new security camera into the buyer's guides",
+    title: "Putting Defender's new camera on the lists shoppers read before they buy",
+    summary:
+      "Defender has made DIY security cameras since 1999. For a product launch, we earned placements in “best security camera” roundups and review articles, so the new camera was in front of buyers at the moment they were comparing options.",
+    headline: [],
+
+    about: {
+      paras: [
+        "Defender started in 1999, after its founder's electronics store was emptied overnight by thieves and the security systems on offer cost $10,000 and needed a professional to install. He built the alternative: cameras people can set up themselves, at a price that makes sense for a home or a small business.",
+        "Today Defender sells wired, wireless and 4G cameras direct to customers, mostly in North America.",
+      ],
+      facts: [
+        ["Founded", "1999"],
+        ["Products", "DIY wired, Wi-Fi and 4G security cameras"],
+        ["Customers", "Homes and small businesses"],
+        ["Used in", "80+ countries"],
+      ],
+      source: "Company details from defendercameras.com",
+    },
+
+    challenge: {
+      paras: [
+        "People rarely buy a security camera from a product page alone. They search “best security camera”, “best outdoor camera without Wi-Fi” or “best camera for a small business”, and they read the roundups that come back.",
+        "A new camera that isn't on those lists is close to invisible, however good it is. Defender needed the launch to show up where the comparison actually happens.",
+      ],
+      points: [
+        "Get the new camera into the buyer's guides people read before they buy",
+        "Build awareness quickly, around the launch window",
+        "Earn coverage on sites that review products properly, not paid directories",
       ],
     },
 
-    outcomes: {
-      items: [
-        { v: "+88%", l: "organic revenue" },
-        { v: "4×", l: "referring domains" },
-        { v: "5 of 6", l: "category pages on page one" },
-      ],
-      takeaways: [
+    approach: {
+      lead: "We treated the launch like a shortlist problem: find the articles buyers trust, and give their editors a good reason to include the camera.",
+      steps: [
         {
-          t: "One study, many stories",
-          d: "The delivery study produced 11 of the 21 placements. The rest came from editors who covered it and came back.",
+          t: "Map the roundups that matter",
+          d: "We listed the “best security camera” and review articles that rank for the searches Defender's buyers make, and checked each publication's audience and editorial standard.",
         },
         {
-          t: "Gulf media opens doors",
-          d: "Coverage in Gulf business press made the new market trust the brand faster than ads alone.",
+          t: "Pitch the product, not a link",
+          d: "Editors were offered what they need to review a camera fairly: specs, use cases and what sets it apart. The goal was a genuine listing with a clear description.",
         },
         {
-          t: "Point PR at the pages that sell",
-          d: "Links to the category pages are what turned coverage into revenue.",
+          t: "Placements that keep working",
+          d: "Roundups get updated and re-rank for years, so each placement keeps sending buyers after launch week.",
         },
       ],
-      quote: {
-        text: "The delivery study ran in places we’d never have got into on our own. By month four, editors were emailing us.",
-        who: "Head of E-commerce, UK home & lifestyle brand",
+    },
+
+    testimonial: {
+      text: "You helped us jumpstart our product launch and create awareness by securing listicle article reviews of our product.",
+      who: "Defender",
+      role: "Client feedback",
+      approved: true,
+    },
+  },
+
+  /* ----------------------------------------------------------------- Ocuco */
+  {
+    slug: "ocuco",
+    client: "Ocuco",
+    url: "https://www.ocuco.com/",
+    domain: "ocuco.com",
+    sector: "B2B software · Eyecare",
+    market: "Global",
+    services: ["Editorial placements", "Brand mentions"],
+    tags: ["link-building", "brand-mentions"],
+    tint: "bg-mint",
+    site: "/images/cases/ocuco-site.webp",
+    card: "Bringing Acuitas 3 into the conversations opticians read",
+    title: "Putting Acuitas 3 in front of the practices choosing their next system",
+    summary:
+      "Ocuco builds software used by more than 6,750 optical practices in 88 countries. We earned editorial placements and brand mentions for Acuitas 3, its platform for independent practices, inside articles about how eyecare businesses run.",
+    headline: [],
+
+    about: {
+      paras: [
+        "Ocuco is an eyecare technology company. Its software runs clinics, labs and optical retailers, from single independent practices to large chains, and it has grown by acquisition across Europe and North America.",
+        "Acuitas 3 is its cloud platform for independent practices. It brings bookings, patient records, eye exams, stock and payments into one system, and it is certified to ISO 27001 and SOC 2.",
+      ],
+      facts: [
+        ["Practices using Ocuco", "6,750+"],
+        ["Countries", "88"],
+        ["Team", "350+ staff"],
+        ["Product we supported", "Acuitas 3"],
+      ],
+      source: "Company details from ocuco.com",
+    },
+
+    challenge: {
+      paras: [
+        "Practice management software is a narrow market with a long decision. An independent optician might change systems once in ten years, and before they do, they read about how other practices work.",
+        "Very few publications write about eyecare operations at all. Ocuco needed Acuitas 3 named in the places practice owners research: articles about clinical workflow, retail, stock and running a modern practice.",
+      ],
+      points: [
+        "Earn mentions of Acuitas 3 in relevant, editorial articles, not ads",
+        "Point readers and search engines to Ocuco's own guide on practice software",
+        "Stay credible in a niche where readers know the subject well",
+      ],
+    },
+
+    approach: {
+      lead: "We looked for publications whose readers overlap with independent practice owners: e-commerce, retail operations and healthcare business.",
+      steps: [
+        {
+          t: "Find the overlap",
+          d: "Opticians are also retailers. Platforms that write for small retailers and practice owners were a natural fit for a story about joining clinical and retail work.",
+        },
+        {
+          t: "Write something worth publishing",
+          d: "Articles explained how practice software is changing eyecare: cloud access, stock linked to sales, fewer separate systems. Acuitas 3 appears as an example, in context.",
+        },
+        {
+          t: "Link to the right page",
+          d: "Links point to Ocuco's guide on practice management software for independent opticians, the page that helps a practice owner compare their options.",
+        },
+      ],
+    },
+
+    placements: [
+      {
+        site: "OpenCart",
+        url: "https://www.opencart.com/blog/how-practice-management-software-is-revolutionizing-eye-care-in-2025",
+        kind: "Editorial article",
+        note: "“How Practice Management Software Is Revolutionizing Eye Care in 2025”, with Acuitas 3 cited as an example of cloud access across clinics.",
       },
-      next: "Next: a returns-behaviour study across both markets, and the Saudi category pages.",
+    ],
+
+    evidence: [
+      {
+        src: "/images/cases/ocuco-opencart-placement.webp",
+        alt: "OpenCart blog article mentioning Acuitas 3",
+        caption: "OpenCart's blog: Acuitas 3 named in an article about cloud-based practice management.",
+      },
+    ],
+
+    testimonial: {
+      text: "",
+      who: "Kieran Fallon",
+      role: "Head of Marketing, Ocuco",
+      photo: "/images/cases/person-kieran-fallon.webp",
+      approved: false,
+    },
+  },
+
+  /* ---------------------------------------------------------------- CapCut */
+  {
+    slug: "capcut",
+    client: "CapCut",
+    url: "https://www.capcut.com/",
+    domain: "capcut.com",
+    sector: "Consumer software · Video and photo editing",
+    market: "Global",
+    services: ["Guest posts", "Niche edits", "Brand mentions"],
+    tags: ["link-building", "brand-mentions"],
+    tint: "bg-sky",
+    site: "/images/cases/capcut-site.webp",
+    card: "Editorial links and mentions for one of the world's most-used video editors",
+    title: "Building editorial authority for CapCut's editing tools",
+    summary:
+      "CapCut is the photo and video editor behind a huge share of the short videos on social media. We built guest posts, niche edits and brand mentions on creator, marketing and technology sites, aimed at the pages for its individual tools.",
+    headline: [],
+
+    about: {
+      paras: [
+        "CapCut is a free photo and video editor for creators and businesses, available on desktop, mobile and the web. Alongside the editor, it offers AI tools such as background removal, image enhancement, text to speech and video generation.",
+        "Many of those tools have their own landing pages, and each one competes in search with dedicated single-purpose products.",
+      ],
+      facts: [
+        ["Product", "Photo and video editor with AI tools"],
+        ["Platforms", "Desktop, mobile and web"],
+        ["Users", "Creators, marketers and businesses"],
+      ],
+      source: "Product details from capcut.com",
+    },
+
+    challenge: {
+      paras: [
+        "A famous brand doesn't rank every page automatically. A search like “background remover” or “text to speech” is a fight with tools built for exactly that one job.",
+        "CapCut needed links and mentions on relevant sites, pointed at specific tool pages, without anything that looked like a link scheme for a brand that size.",
+      ],
+      points: [
+        "Authority for individual tool pages, not just the homepage",
+        "Sites that creators and marketers actually read",
+        "A clean, natural link profile that suits a global brand",
+      ],
+    },
+
+    approach: {
+      lead: "We used three kinds of placement, each for a different job.",
+      steps: [
+        {
+          t: "Guest posts",
+          d: "New articles on creator, marketing and tech sites, written for their readers, with CapCut linked where a tool genuinely helps the reader do something.",
+        },
+        {
+          t: "Niche edits",
+          d: "Links added to existing, already-ranking articles about editing and content creation. These are indexed fast and carry the authority of a page with history.",
+        },
+        {
+          t: "Brand mentions",
+          d: "CapCut named in roundups and how-to articles, which shape how both Google and AI assistants describe the product.",
+        },
+      ],
+    },
+
+    testimonial: {
+      text: "",
+      who: "Julia Jiang",
+      role: "CapCut",
+      approved: false,
+    },
+  },
+
+  /* ---------------------------------------------------- Agency partnership */
+  {
+    slug: "agency-partner",
+    client: "White-label agency partner",
+    url: "",
+    domain: "",
+    sector: "SEO agency · White label",
+    market: "Agency clients",
+    services: ["White-label guest posts", "Niche edits"],
+    tags: ["agency", "link-building"],
+    tint: "bg-lilac",
+    card: "The link building team behind an SEO agency's client work",
+    title: "Working as the link building team behind an SEO agency",
+    summary:
+      "An agency owner hands us her clients' link building: guest posts and niche edits, delivered under her brand, with reports she sends on as her own.",
+    headline: [],
+
+    about: {
+      paras: [
+        "Our partner runs an SEO agency with clients across different industries. Her team owns strategy, content and reporting. Link building is the part they hand to us.",
+      ],
+      facts: [
+        ["Type", "SEO agency"],
+        ["Our role", "White-label link building"],
+        ["What we deliver", "Guest posts and niche edits"],
+      ],
+      source: "Partner details shared with permission",
+    },
+
+    challenge: {
+      paras: [
+        "Agencies live and die by the quality of the links they put in front of clients. One bad batch, a client spots a spammy site in a report, and the account is in trouble.",
+        "Our partner needed a link supplier she could trust with her name: consistent quality across very different client niches, and nothing that ever points back to us.",
+      ],
+      points: [
+        "Relevant sites for every client, in very different industries",
+        "Reports her clients can read without explanation",
+        "Complete discretion: her brand, never ours",
+      ],
+    },
+
+    approach: {
+      lead: "We work like an extension of her team, not a vendor she has to manage.",
+      steps: [
+        {
+          t: "One brief per client",
+          d: "Niche, target pages and anchor preferences, agreed once and reused for every order, so each new batch fits the client's existing profile.",
+        },
+        {
+          t: "Guest posts and niche edits, matched to the client",
+          d: "Every site goes through the same site check we use for direct clients, so the agency never has to defend a placement.",
+        },
+        {
+          t: "Unbranded reporting",
+          d: "Live URLs and site details in a format she can pass on as her own. Our name never appears.",
+        },
+      ],
+    },
+
+    testimonial: {
+      text: "",
+      who: "Tiffany Lei",
+      role: "Agency owner",
+      photo: "/images/cases/person-tiffany-lei.webp",
+      approved: false,
     },
   },
 ];
 
 export const caseBySlug = (slug?: string) => CASES.find((c) => c.slug === slug);
 
-/** Totals across all three, for the results index. */
-export const CASE_TOTALS = {
-  placements: CASES.reduce(
-    (n, c) => n + c.links.mix.reduce((a, m) => a + m.n, 0),
-    0,
-  ),
-  reviewed: CASES.reduce((n, c) => n + c.links.reviewed, 0),
-  rejected: CASES.reduce((n, c) => n + c.links.rejected, 0),
-  objectives: CASES.reduce((n, c) => n + c.objectives.length, 0),
-};
+/** cases to show on a service page, flagship first */
+export const casesFor = (tag: CaseStudy["tags"][number]) =>
+  CASES.filter((c) => c.tags.includes(tag));
+
+/** approved testimonials only: never render a draft */
+export const approvedQuotes = () =>
+  CASES.filter((c) => c.testimonial?.approved && c.testimonial.text).map(
+    (c) => ({ ...c.testimonial!, client: c.client, slug: c.slug }),
+  );

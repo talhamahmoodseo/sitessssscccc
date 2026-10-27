@@ -20,8 +20,8 @@ const FAQS = [
     a: "Nobody controls what an AI says, so be careful with anyone who guarantees it. What we can do is get you mentioned on the publications AI answers already lean on, then track where you show up each month in Google's AI Overviews, ChatGPT and other assistants. Some people call this GEO or AEO. The work behind it is the same: be worth mentioning, on sites people trust.",
   },
   {
-    q: "Are these PBNs or link farms?",
-    a: "No. Every publication is checked by hand: real organic traffic, the keywords behind it, a steady traffic graph and no link-selling footprint. If a site exists only to sell links, we don't use it, whatever its DR.",
+    q: "What kind of sites do you use?",
+    a: "Real publications with their own editors and readers. Every site is checked by hand first: is it relevant to you, what does it rank for, is it healthy, and does it act like a real publication. If a site exists only to sell links, we don't use it, whatever its DR.",
   },
   {
     q: "How long until we see results?",
@@ -33,11 +33,11 @@ const FAQS = [
   },
   {
     q: "Do you work with agencies?",
-    a: "Yes, a lot. Around a third of our work is white label: your branding on the reports, volume pricing, NDA on request, and we stay invisible on client calls.",
+    a: "Yes. We work with agencies as well as brands: your branding on the reports, volume pricing, NDA on request, and we stay invisible on client calls.",
   },
   {
     q: "How much does it cost, and do you guarantee results?",
-    a: "You can start with a single trial placement for $129. Packs start at $695 for five placements, and every order has a 100% money-back guarantee and a lifetime link guarantee. We don't guarantee rankings or AI citations, because nobody honestly can. We guarantee the work: the placements you order, at the authority you order, live for good.",
+    a: "A standard placement is $150, on orders of three or more. To test us first, a single trial placement is $170, once per company. Every order has a 100% money-back guarantee and free link replacement. We don't guarantee rankings or AI citations, because nobody honestly can. We guarantee the work itself.",
   },
 ];
 

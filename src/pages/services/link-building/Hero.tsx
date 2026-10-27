@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ArrowUp, Check, X } from "lucide-react";
 import { openBooking } from "@/lib/booking";
-import { CLIENTS } from "@/lib/clients";
+import { LogoStrip } from "@/sections/ClientLogos";
 import { linkBuilding as LB } from "../content/linkBuilding";
 import { CARD, GlowPanel, ease, sparkPath } from "../kit";
 
@@ -357,16 +357,7 @@ const Hero = () => (
         <p className="flex-none text-[12.5px] font-medium text-navy-dark/70 lg:max-w-[11rem]">
           {LB.trust.label}
         </p>
-        <ul className="flex flex-1 flex-wrap items-center gap-x-9 gap-y-3">
-          {CLIENTS.map((c) => (
-            <li
-              key={c.name}
-              className="text-[18px] font-semibold tracking-[-0.03em] text-navy-dark/75"
-            >
-              {c.name}
-            </li>
-          ))}
-        </ul>
+        <LogoStrip className="flex-1 !justify-start" />
       </div>
     </motion.div>
   </section>

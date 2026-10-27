@@ -1,12 +1,14 @@
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import { casesFor } from "@/lib/cases";
+import { ClientWork } from "../results/CaseParts";
+
 import { digitalPr as C } from "./content/digitalPr";
 import { FitPrice, PairsWith, ServiceClose, ServiceFaq } from "./common";
 import Hero from "./digital-pr/Hero";
 import ReleaseVsStory from "./digital-pr/ReleaseVsStory";
 import StoryLab from "./digital-pr/StoryLab";
 import { Returns, Tiers } from "./digital-pr/Coverage";
-import Proof from "./digital-pr/Proof";
 import Process from "./digital-pr/Process";
 
 const SERVICE_SCHEMA = {
@@ -45,7 +47,7 @@ const DigitalPR = () => (
     <StoryLab />
     <Tiers />
     <Returns />
-    <Proof />
+    <ClientWork cases={casesFor("digital-pr")} eyebrow="Client work" title="Coverage that put a launch" soft="in front of buyers." />
     <Process />
     <FitPrice c={C.fit} tint="bg-mint" />
     <ServiceFaq

@@ -1,6 +1,8 @@
 import { Seo } from "@/components/MotionKit";
 import { GuaranteeBand } from "@/components/Guarantees";
 import PageLayout from "@/components/PageLayout";
+import { casesFor } from "@/lib/cases";
+import { ClientWork } from "../results/CaseParts";
 import { linkBuilding as LB } from "./content/linkBuilding";
 import Hero from "./link-building/Hero";
 import ReportVsReality from "./link-building/ReportVsReality";
@@ -8,7 +10,6 @@ import FakeMetrics from "./link-building/FakeMetrics";
 import SiteCheck from "./link-building/SiteCheck";
 import LinkTypes from "./link-building/LinkTypes";
 import Timeline from "./link-building/Timeline";
-import Results from "./link-building/Results";
 import ReportMock from "./link-building/ReportMock";
 import {
   Faq,
@@ -29,9 +30,9 @@ const SERVICE_SCHEMA = {
   areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
-    price: "129",
+    price: "150",
     priceCurrency: "USD",
-    description: "Trial placement: one DR 40+ link. Packs from 5 links for $695.",
+    description: "Standard placement, on orders of three or more. Trial placement $170.",
   },
 };
 
@@ -56,7 +57,7 @@ const LinkBuilding = () => (
     <SiteCheck />
     <LinkTypes />
     <Timeline />
-    <Results />
+    <ClientWork cases={casesFor("link-building")} eyebrow="Link building results" title="Real clients." soft="Results you can check." />
     <ReportMock />
     <Fit />
     <GuaranteeBand />

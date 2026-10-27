@@ -23,7 +23,7 @@ const PERSONAS = [
     title: "White-label authority, under your brand",
     lede: "Add links, PR and brand mentions to what you sell, without hiring a team to deliver them.",
     services: ["Link building", "Brand mentions", "White-label reports"],
-    cta: { label: "Talk to us about white label", to: "/contact" },
+    cta: { label: "How we work with agencies", to: "/case-studies/agency-partner" },
     points: [
       {
         h: "Fulfilment you can resell",
@@ -43,8 +43,8 @@ const PERSONAS = [
     lede: "On Google for your category, and in the AI answers buyers read before they ever book a demo.",
     services: ["Link building", "Brand mentions", "Digital PR"],
     cta: {
-      label: "See a SaaS case study",
-      to: "/case-studies/b2b-saas-ai-visibility",
+      label: "See the Ocuco case study",
+      to: "/case-studies/ocuco",
     },
     points: [
       {
@@ -68,7 +68,7 @@ const PERSONAS = [
     points: [
       {
         h: "Links that survive an audit",
-        d: "Real editorial sites with organic audiences. No PBNs, no high-DR shells with nobody reading them.",
+        d: "Real editorial sites with real audiences, and nothing you would be uncomfortable showing a client.",
       },
       {
         h: "Reports you can forward",
@@ -103,8 +103,8 @@ const PERSONAS = [
     lede: "Beat the national directories on Google, and get named when people ask AI for someone local.",
     services: ["Link building", "Digital PR", "Brand mentions"],
     cta: {
-      label: "See a local case study",
-      to: "/case-studies/home-services-local-pack",
+      label: "Link building for home services",
+      to: "/industries/home-services",
     },
     points: [
       {

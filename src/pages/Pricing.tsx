@@ -8,115 +8,84 @@ import {
   GuaranteeChips,
   GuaranteeTerms,
 } from "@/components/Guarantees";
-import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "./services/kit";
+import { ReviewBadges } from "@/sections/Testimonials";
+import { DarkGlow, Eyebrow, H2, ease, rise } from "./services/kit";
 import { ServiceFaq } from "./services/common";
 
 /**
- * /pricing. Round 7: priced per placement, like the agencies buyers compare
- * us with. A one-link trial to test quality, packs from five links, a price
- * list by authority, three ordering steps, then the guarantees and their
- * terms. Prices are the owner's (approved round 7); change them here, in
- * content/linkBuilding.ts (pricing strip + FAQ), sections/FAQ.tsx and the
- * package list in Contact.tsx together.
+ * /pricing. Round 8: one standard price and a trial, nothing to decode.
+ * Standard placement $150 on orders of 3+; trial placement $170, once per
+ * company (priced above standard on purpose, so it can't be reused as a
+ * discount). Larger campaigns and DR 70+ are quoted. Change prices here and
+ * in content/linkBuilding.ts, sections/FAQ.tsx and pages/Contact.tsx.
  */
 
 const order = (pkg: string) => `/contact?package=${pkg}`;
 
-const TRIAL = {
-  price: "$129",
+const STANDARD = {
+  price: "$150",
+  min: "Orders of 3 placements or more",
   includes: [
-    "1 placement on a relevant DR 40+ site",
-    "Article written for you",
-    "Dofollow link in the body of the article",
-    "Report with the live URL",
+    "An editorial link on a relevant DR 40+ site",
+    "The article written by our team",
+    "A dofollow link in the body of the article",
+    "Every site checked by hand before we use it",
+    "A report with the live URL, ready to share",
   ],
 };
 
-const PACKS = [
-  {
-    id: "starter",
-    name: "Starter",
-    links: 5,
-    dr: "DR 40+",
-    price: "$695",
-    each: "$139",
-    blurb: "A first batch of links for one site and a few key pages.",
-    featured: false,
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    links: 10,
-    dr: "DR 40+",
-    price: "$1,290",
-    each: "$129",
-    blurb: "Enough links to move a set of pages, at our lowest rate per link.",
-    featured: true,
-  },
-  {
-    id: "authority",
-    name: "Authority",
-    links: 10,
-    dr: "DR 50+",
-    price: "$2,190",
-    each: "$219",
-    blurb: "Stronger sites for competitive pages and tougher keywords.",
-    featured: false,
-  },
-];
+const TRIAL = {
+  price: "$170",
+  min: "One placement, once per company",
+  includes: [
+    "The same placement, content and checks",
+    "No minimum order",
+    "A simple way to see our work first",
+  ],
+};
 
-const PACK_INCLUDES = [
-  "Articles written for you",
-  "Dofollow links in the body of the article",
-  "A different site for every link",
-  "Every site through the 7-Point Site Check",
-  "White-label report with live URLs",
-  "Most links live in 2–4 weeks",
-];
-
-/** single placements, by authority. Keys match PACKAGES in Contact.tsx. */
-const PRICE_LIST = [
-  { id: "dr30", dr: "DR 30+", price: "$110", use: "New sites and supporting blog posts" },
+const EVERY = [
   {
-    id: "dr40",
-    dr: "DR 40+",
-    price: "$150",
-    use: "Most service pages and blog content",
-    popular: true,
+    t: "Chosen for you",
+    d: "Sites picked for your niche and your target page, not pulled from a list.",
   },
-  { id: "dr50", dr: "DR 50+", price: "$240", use: "Competitive service pages" },
-  { id: "dr60", dr: "DR 60+", price: "$349", use: "Category pages and tougher keywords" },
-  { id: "dr70", dr: "DR 70+", price: "$499", from: true, use: "Homepage and head terms" },
-];
-
-/** the side panel next to the price grid: what every placement comes with */
-const EVERY_LINK = [
-  "Live in 2–4 weeks",
-  "DR guaranteed at the tier you order",
-  "Article written by our team",
-  "1 anchor and 1 target URL",
-  "Dofollow, in the body of the article",
-  "No duplicate domains",
-  "White-label report",
-  "Lifetime link guarantee",
-  "100% money-back guarantee",
+  {
+    t: "Written properly",
+    d: "Articles written for the site's readers, to the publisher's standard.",
+  },
+  {
+    t: "In the right place",
+    d: "Your link sits in the body of the article, where readers and Google pay attention.",
+  },
+  {
+    t: "Checked before it's used",
+    d: "Relevance, rankings, health and editorial standards, reviewed by a person.",
+  },
+  {
+    t: "Reported clearly",
+    d: "The live URL, the site's DR on the day it went live, and indexing status.",
+  },
+  {
+    t: "Yours to approve",
+    d: "Want to see the sites before anything is published? Just ask when you order.",
+  },
 ];
 
 const STEPS = [
   {
     n: "1",
-    t: "Place your order",
-    d: "Pick a package and send us your target pages and anchor text. Not sure which to pick? Tell us your site and we'll suggest one.",
+    t: "Send your order",
+    d: "Your target pages and any anchor text preferences. Not sure where to start? Tell us your site and we'll suggest a plan.",
   },
   {
     n: "2",
-    t: "We find the site and publish",
-    d: "We pick a relevant site that passes our 7-Point Site Check, write the article and get it published with your link inside.",
+    t: "We find, write and publish",
+    d: "We choose a relevant site, write the article and get it published with your link inside.",
   },
   {
     n: "3",
     t: "You get the report",
-    d: "The live URL, the DR on the day it went live and whether Google has indexed it. Unbranded, if you're an agency.",
+    d: "Every live link, with its details. Unbranded, if you're an agency passing it to a client.",
   },
 ];
 
@@ -146,36 +115,32 @@ const OTHER = [
 
 const FAQS = [
   {
-    q: "Why start with a trial link?",
-    a: "Because it's the easiest way to judge us. For $129 you get one DR 40+ placement, written and published, with the same guarantees as a big order. If you like what you see, order a pack. One trial per new client.",
+    q: "Why does the trial cost more than a standard placement?",
+    a: "The trial is for new clients who want to see our work before placing a larger order. It's the same placement, on a one-off order with no minimum, and it's priced slightly higher on purpose so it can't be used as a repeat discount. One trial per company. After that, every placement is $150 on orders of three or more.",
   },
   {
-    q: "How do I place an order?",
-    a: "Choose a package and send us your target pages and anchors through the order form, or by email. We confirm the details and send an invoice. Work starts as soon as it's paid.",
+    q: "What do I get for $150?",
+    a: "An editorial link on a relevant DR 40+ site, the article written by our team, the site checked by hand before we use it, and a report with the live URL. If a link is ever removed, we replace it free.",
   },
   {
     q: "Can I approve the sites first?",
-    a: "Yes. Tell us when you order and we'll send the shortlist before anything is published. If you'd rather not, we pick the sites for you. That's what most clients do.",
+    a: "Yes. Tell us when you order and we'll send the shortlist before anything is published. If you'd rather not, we choose the sites for you.",
   },
   {
-    q: "What happens if a link gets removed?",
-    a: "Every link has a lifetime guarantee. If a publisher removes it or turns it nofollow, at any point, we replace it on a site of the same or higher DR, free. The full terms are above.",
+    q: "How long does it take?",
+    a: "Most links go live within two to four weeks of your order.",
   },
   {
     q: "Do you guarantee rankings?",
-    a: "No, and be wary of anyone who does. Nobody controls Google. We guarantee what we can control: the placements you order, at the authority you order, live for good, or your money back.",
+    a: "No, and be careful with anyone who does. Nobody controls Google. We guarantee the work itself: placements that match what you ordered, or your money back, and a free replacement if a link is ever removed.",
   },
   {
-    q: "Do you work white label for agencies?",
-    a: "Yes, a lot of our orders come from agencies. Outreach under a neutral identity, unbranded reports and no contact with your clients. Ordering 20+ links a month? Ask about volume pricing.",
-  },
-  {
-    q: "Do you run monthly campaigns?",
-    a: "Yes. For ongoing link building, digital PR or brand mentions we run monthly campaigns, priced to your goals. Book a call and we'll put a plan together.",
+    q: "Do you work with agencies?",
+    a: "Yes, as well as brands. Everything can be delivered white label, with unbranded reports and no contact with your clients. If you need 20 or more links a month, ask us about volume pricing.",
   },
   {
     q: "Are there niches you don't take?",
-    a: "We don't take adult, gambling or similar niches. If you're unsure about yours, ask before you order and we'll tell you honestly.",
+    a: "We don't take adult, gambling or similar niches. If you're unsure about yours, ask before you order.",
   },
 ];
 
@@ -184,15 +149,14 @@ const FAQS = [
 const Pricing = () => (
   <PageLayout>
     <Seo
-      title="Link Building Pricing: Trial Link & Packages"
-      description="Link building priced per placement. Try one DR 40+ link for $129, or order packs from 5 links. 100% money-back guarantee, lifetime link guarantee, no PBNs."
+      title="Link Building Pricing"
+      description="Editorial link placements for $150 each on orders of three or more, or a single $170 trial placement. Every order has a 100% money-back guarantee and free link replacement."
     />
 
-    {/* packages, on a dark stage */}
     <section className="relative overflow-hidden bg-navy-dark pb-24 pt-32 lg:pb-28 lg:pt-40">
       <DarkGlow className="-left-40 top-10 h-[520px] w-[760px] opacity-55" />
       <DarkGlow className="-right-56 bottom-0 h-[460px] w-[700px] opacity-45" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <motion.p
             className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70"
@@ -209,15 +173,15 @@ const Pricing = () => (
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease }}
             >
-              Simple pricing.
+              One clear price.
             </motion.span>
             <motion.span
-              className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-white/60 sm:text-[3.8rem] lg:text-[4.2rem]"
+              className="block pb-[0.06em] text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-[3.8rem] lg:text-[4.2rem]"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease }}
             >
-              Every link guaranteed.
+              <span className="accent-ink-dark">No guesswork.</span>
             </motion.span>
           </h1>
           <motion.p
@@ -226,8 +190,8 @@ const Pricing = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
           >
-            You pay per placement. Try one link first, then order in packs. If
-            we can't deliver what you ordered, you get your money back.
+            Every placement is an editorial link on a relevant site we've
+            checked by hand, written and published for you.
           </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
@@ -235,324 +199,164 @@ const Pricing = () => (
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <GuaranteeChips dark className="mt-8 justify-center" />
+            <ReviewBadges dark className="mt-3 justify-center" />
           </motion.div>
         </div>
 
-        {/* the trial: one link, the low-risk first step */}
-        <motion.div
-          className="mt-14 grid gap-6 rounded-[24px] bg-[rgb(var(--mark)/0.12)] p-7 ring-1 ring-mark/40 sm:p-8 lg:grid-cols-[1fr_1.3fr_auto] lg:items-center lg:gap-10"
-          initial={{ opacity: 0, y: 26 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.22, ease }}
-        >
-          <div>
-            <span className="rounded-full bg-mark px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-navy-dark">
-              Start here
-            </span>
-            <h2 className="mt-4 text-[22px] font-semibold tracking-[-0.02em] text-white">
-              Trial placement
-            </h2>
-            <p className="mt-1 flex items-baseline gap-2">
-              <span className="text-[2.6rem] font-semibold leading-none tracking-[-0.045em] text-white tabular-nums">
-                {TRIAL.price}
+        <div className="mt-14 grid items-stretch gap-4 lg:grid-cols-[1.25fr_1fr]">
+          {/* standard */}
+          <motion.div
+            className="flex flex-col rounded-[28px] bg-white p-8 text-navy-dark sm:p-10"
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease }}
+          >
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-navy-dark/70">
+              Standard placement
+            </p>
+            <p className="mt-4 flex items-baseline gap-2">
+              <span className="text-[4rem] font-semibold leading-none tracking-[-0.05em] tabular-nums">
+                {STANDARD.price}
               </span>
-              <span className="text-[14px] text-white/70">one link</span>
+              <span className="text-[15px] text-navy-dark/70">per placement</span>
             </p>
-            <p className="mt-2 text-[13.5px] text-white/75">
-              Test our quality before a bigger order. One per new client.
+            <p className="mt-3 text-[14.5px] font-semibold text-navy-dark/80">
+              {STANDARD.min}
             </p>
-          </div>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {TRIAL.includes.map((x) => (
-              <li
-                key={x}
-                className="flex gap-2.5 text-[14.5px] leading-snug text-white/85"
-              >
-                <Check className="mt-0.5 h-4 w-4 flex-none text-mark" />
-                {x}
-              </li>
-            ))}
-          </ul>
-          <Link
-            to={order("trial")}
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-[14.5px] font-semibold text-navy-dark transition-colors hover:bg-mark"
-          >
-            Order a trial link
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </motion.div>
-
-        {/* packs */}
-        <div
-          id="packs"
-          className="mt-4 grid scroll-mt-24 items-stretch gap-4 lg:grid-cols-3"
-        >
-          {PACKS.map((p, i) => (
-            <motion.div
-              key={p.id}
-              className={`flex flex-col rounded-[24px] p-7 sm:p-8 ${
-                p.featured
-                  ? "bg-white text-navy-dark"
-                  : "bg-white/[0.05] text-white ring-1 ring-white/[0.12]"
-              }`}
-              initial={{ opacity: 0, y: 26 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 + i * 0.08, ease }}
-            >
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-[20px] font-semibold tracking-[-0.02em]">
-                  {p.name}
-                </h2>
-                <span
-                  className={`rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] ${
-                    p.featured
-                      ? "bg-butter text-navy-dark"
-                      : "bg-white/10 text-white/80"
-                  }`}
-                >
-                  {p.featured ? "Most popular" : `${p.links} links`}
-                </span>
-              </div>
-              <p
-                className={`mt-2 min-h-[44px] text-[14.5px] leading-snug ${p.featured ? "text-navy-dark/75" : "text-white/75"}`}
-              >
-                {p.blurb}
-              </p>
-
-              {/* what you get, in one line */}
-              <p
-                className={`mt-6 text-[15px] font-semibold ${p.featured ? "text-navy-dark" : "text-white"}`}
-              >
-                {p.links} placements · {p.dr}
-              </p>
-              <p className="mt-2 flex items-baseline gap-2">
-                <span className="text-[3rem] font-semibold leading-none tracking-[-0.045em] tabular-nums">
-                  {p.price}
-                </span>
-                <span
-                  className={`text-[14px] ${p.featured ? "text-navy-dark/70" : "text-white/70"}`}
-                >
-                  {p.each} per link
-                </span>
-              </p>
-
-              <Link
-                to={order(p.id)}
-                className={`group mt-7 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[14.5px] font-semibold transition-colors ${
-                  p.featured
-                    ? "bg-navy-dark text-white hover:bg-black"
-                    : "bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/15"
-                }`}
-              >
-                Order {p.name}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-
-              <ul
-                className={`mt-7 space-y-3 border-t pt-7 ${p.featured ? "border-line" : "border-white/10"}`}
-              >
-                {PACK_INCLUDES.map((x) => (
-                  <li
-                    key={x}
-                    className={`flex gap-2.5 text-[14.5px] leading-snug ${p.featured ? "text-navy-dark/85" : "text-white/85"}`}
-                  >
-                    <Check
-                      className={`mt-0.5 h-4 w-4 flex-none ${p.featured ? "text-verified" : "text-white"}`}
-                    />
-                    {x}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.p
-          className="mt-8 text-center text-[13.5px] text-white/75"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          Prices in USD · no contract · no setup fee · single links from $110,
-          priced by authority below
-        </motion.p>
-      </div>
-    </section>
-
-    {/* single placements: one card per authority tier, like the price grids
-        buyers know from other agencies, with what every link includes */}
-    <section className="bg-mist py-24 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="mb-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16"
-          {...rise()}
-        >
-          <div>
-            <Eyebrow className="mb-4">Single placements</Eyebrow>
-            <H2>
-              Pick your authority.
-              <br />
-              <Soft>Pay per placement.</Soft>
-            </H2>
-          </div>
-          <p className="text-[17px] leading-relaxed text-navy-dark/75">
-            Any quantity, any mix. Every link gets the same content, site check,
-            report and guarantees as a pack.
-          </p>
-        </motion.div>
-
-        <div className="grid gap-4 lg:grid-cols-[1fr_300px]">
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {PRICE_LIST.map((r, i) => (
-              <motion.li
-                key={r.id}
-                className={`relative flex flex-col overflow-hidden rounded-3xl ${
-                  r.popular
-                    ? "bg-navy-dark text-white"
-                    : "bg-white text-navy-dark ring-1 ring-line"
-                }`}
-                {...rise(i * 0.04)}
-              >
-                {r.popular && (
-                  <span className="absolute right-4 top-4 rounded-full bg-mark px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-navy-dark">
-                    Most popular
-                  </span>
-                )}
-                <div
-                  className={`px-6 pb-5 pt-6 ${r.popular ? "bg-white/[0.06]" : "bg-mist/60"}`}
-                >
-                  <p className="text-[22px] font-semibold tracking-[-0.03em]">
-                    {r.dr}
-                  </p>
-                  <p
-                    className={`mt-1 min-h-[40px] text-[13.5px] leading-snug ${r.popular ? "text-white/70" : "text-navy-dark/70"}`}
-                  >
-                    {r.use}
-                  </p>
-                </div>
-                <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
-                  <p className="flex items-baseline gap-1.5">
-                    {r.from && (
-                      <span
-                        className={`text-[13px] ${r.popular ? "text-white/70" : "text-navy-dark/70"}`}
-                      >
-                        from
-                      </span>
-                    )}
-                    <span className="text-[2.2rem] font-semibold leading-none tracking-[-0.045em] tabular-nums">
-                      {r.price}
-                    </span>
-                    <span
-                      className={`text-[13.5px] ${r.popular ? "text-white/70" : "text-navy-dark/70"}`}
-                    >
-                      / placement
-                    </span>
-                  </p>
-                  <Link
-                    to={order(r.id)}
-                    className={`mt-5 inline-flex items-center justify-center rounded-full px-5 py-3 text-[14px] font-semibold transition-colors ${
-                      r.popular
-                        ? "bg-mark text-navy-dark hover:bg-white"
-                        : "ring-1 ring-navy-dark/20 hover:bg-navy-dark hover:text-white"
-                    }`}
-                  >
-                    Order now
-                  </Link>
-                </div>
-              </motion.li>
-            ))}
-            {/* sixth tile: point bigger orders at the packs */}
-            <motion.li
-              className="flex flex-col justify-between rounded-3xl bg-butter p-6"
-              {...rise(0.2)}
-            >
-              <div>
-                <p className="text-[22px] font-semibold tracking-[-0.03em] text-navy-dark">
-                  5 links or more?
-                </p>
-                <p className="mt-2 text-[14px] leading-relaxed text-navy-dark/80">
-                  Packs bring a DR 40+ link down to $129. Save up to 14% per
-                  link.
-                </p>
-              </div>
-              <a
-                href="#packs"
-                className="group mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-navy-dark"
-              >
-                See the packs
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </motion.li>
-          </ul>
-
-          {/* what's included */}
-          <motion.aside
-            className="rounded-3xl bg-white p-6 ring-1 ring-line sm:p-7"
-            {...rise(0.1)}
-          >
-            <p className="text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
-              What every link includes
-            </p>
-            <ul className="mt-5 space-y-3">
-              {EVERY_LINK.map((x) => (
+            <ul className="mt-7 space-y-3 border-t border-line pt-7">
+              {STANDARD.includes.map((x) => (
                 <li
                   key={x}
-                  className="flex gap-2.5 text-[14.5px] leading-snug text-navy-dark/85"
+                  className="flex gap-2.5 text-[15px] leading-snug text-navy-dark/85"
                 >
                   <Check className="mt-0.5 h-4 w-4 flex-none text-verified" />
                   {x}
                 </li>
               ))}
             </ul>
-            <a
-              href="#guarantee-terms"
-              className="group mt-6 inline-flex items-center gap-2 border-t border-line pt-5 text-[14px] font-semibold text-navy-dark"
+            <Link
+              to={order("standard")}
+              className="group mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-navy-dark px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-black"
+              style={{ marginTop: "2.25rem" }}
             >
-              Read the guarantee terms
+              Place an order
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-          </motion.aside>
+            </Link>
+          </motion.div>
+
+          {/* trial */}
+          <motion.div
+            className="flex flex-col rounded-[28px] bg-white/[0.05] p-8 text-white ring-1 ring-white/[0.14] sm:p-10"
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.33, ease }}
+          >
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
+              Trial placement
+            </p>
+            <p className="mt-4 flex items-baseline gap-2">
+              <span className="text-[4rem] font-semibold leading-none tracking-[-0.05em] tabular-nums">
+                {TRIAL.price}
+              </span>
+              <span className="text-[15px] text-white/70">one link</span>
+            </p>
+            <p className="mt-3 text-[14.5px] font-semibold text-white/85">
+              {TRIAL.min}
+            </p>
+            <ul className="mt-7 space-y-3 border-t border-white/10 pt-7">
+              {TRIAL.includes.map((x) => (
+                <li
+                  key={x}
+                  className="flex gap-2.5 text-[15px] leading-snug text-white/85"
+                >
+                  <Check className="mt-0.5 h-4 w-4 flex-none text-mark" />
+                  {x}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 rounded-2xl bg-white/[0.06] p-4 text-[13.5px] leading-relaxed text-white/75">
+              The trial is priced a little above a standard placement on
+              purpose. It's there so new clients can judge our work, not as a
+              repeat discount.
+            </p>
+            <Link
+              to={order("trial")}
+              className="group mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-4 text-[15px] font-semibold text-white ring-1 ring-white/20 transition-colors hover:bg-white/15"
+              style={{ marginTop: "2.25rem" }}
+            >
+              Order a trial placement
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </motion.div>
         </div>
 
-        {/* bulk buyers */}
-        <motion.div
-          className="mt-4 flex flex-col items-start justify-between gap-4 rounded-3xl bg-white px-6 py-5 ring-1 ring-line sm:flex-row sm:items-center sm:px-8"
-          {...rise(0.1)}
+        <motion.p
+          className="mt-8 text-center text-[14px] text-white/75"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <p className="text-[15.5px] font-semibold text-navy-dark">
-            Agency or bulk buyer? Ordering 20+ links a month gets you volume
-            pricing.
-          </p>
+          Need 20+ links a month, DR 70+ publications or a campaign across
+          several clients?{" "}
           <Link
-            to={order("custom")}
-            className="group inline-flex flex-none items-center gap-2 rounded-full bg-navy-dark px-6 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-black"
+            to={order("campaign")}
+            className="font-semibold text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
           >
-            Ask for volume pricing
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            We'll quote it.
           </Link>
+        </motion.p>
+      </div>
+    </section>
+
+    {/* what every placement includes */}
+    <section className="bg-white py-24 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div className="mb-12 max-w-3xl" {...rise()}>
+          <Eyebrow className="mb-4">Every placement</Eyebrow>
+          <H2>
+            What you're paying for
+            <br />
+            <span className="accent-ink">is the care, not the link.</span>
+          </H2>
         </motion.div>
-        <p className="mt-5 text-[13.5px] text-navy-dark/70">
-          DR is Ahrefs' Domain Rating, recorded on the day your link goes live.
-        </p>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {EVERY.map((x, i) => (
+            <motion.li
+              key={x.t}
+              className="rounded-3xl bg-mist p-7 ring-1 ring-line"
+              {...rise(i * 0.05)}
+            >
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-verified/[0.12]">
+                <Check className="h-4 w-4 text-verified" />
+              </span>
+              <h3 className="mt-5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
+                {x.t}
+              </h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-navy-dark/75">
+                {x.d}
+              </p>
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </section>
 
     {/* how ordering works */}
-    <section className="bg-white py-24 lg:py-28">
+    <section className="bg-mist py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div className="mb-12 max-w-3xl" {...rise()}>
           <Eyebrow className="mb-4">How ordering works</Eyebrow>
           <H2>
-            Three steps.
+            Three steps,
             <br />
-            <Soft>That's the whole process.</Soft>
+            <span className="accent-ink">most of them ours.</span>
           </H2>
         </motion.div>
         <ol className="grid gap-4 md:grid-cols-3">
           {STEPS.map((s, i) => (
             <motion.li
               key={s.n}
-              className="rounded-3xl bg-mist p-7 ring-1 ring-line"
+              className="rounded-3xl bg-white p-7 ring-1 ring-line"
               {...rise(i * 0.06)}
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-navy-dark text-[15px] font-semibold text-white">
@@ -567,6 +371,9 @@ const Pricing = () => (
             </motion.li>
           ))}
         </ol>
+        <p className="mt-6 text-[14px] text-navy-dark/70">
+          Most links go live within two to four weeks.
+        </p>
       </div>
     </section>
 
@@ -579,9 +386,9 @@ const Pricing = () => (
         <motion.div className="mb-12 max-w-3xl" {...rise()}>
           <Eyebrow className="mb-4">Beyond link building</Eyebrow>
           <H2>
-            Need PR or AI visibility?
+            PR and AI visibility
             <br />
-            <Soft>These run as campaigns.</Soft>
+            <span className="accent-ink">run as campaigns.</span>
           </H2>
         </motion.div>
         <motion.ul
@@ -604,15 +411,11 @@ const Pricing = () => (
                 </span>
                 <span className="flex items-center gap-4 sm:justify-end">
                   <span className="flex items-baseline gap-1.5">
-                    <span className="text-[12.5px] text-navy-dark/70">
-                      from
-                    </span>
+                    <span className="text-[12.5px] text-navy-dark/70">from</span>
                     <span className="text-[1.6rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark tabular-nums">
                       {s.from}
                     </span>
-                    <span className="text-[12.5px] text-navy-dark/70">
-                      {s.per}
-                    </span>
+                    <span className="text-[12.5px] text-navy-dark/70">{s.per}</span>
                   </span>
                   <ArrowUpRight className="h-4 w-4 text-navy-dark/40 transition-colors group-hover:text-navy-dark" />
                 </span>
@@ -627,7 +430,7 @@ const Pricing = () => (
       eyebrow="FAQ"
       h2a="Questions"
       h2b="about pricing."
-      side="Not sure which package fits? Send us your site and we'll suggest one. No obligation."
+      side="Not sure what you need? Send us your site and we'll tell you honestly."
       faqs={FAQS}
       bg="bg-white"
     />

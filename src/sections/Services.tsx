@@ -221,9 +221,9 @@ const SERVICES: Service[] = [
     line: "Editorial links on real, relevant sites.",
     d: "Guest posts and niche edits on publications we've checked by hand, aimed at the pages you need to rank.",
     points: [
-      "Every site passes a 7-point check. No PBNs, ever",
+      "Every site passes a 7-point check before we use it",
       "Articles written to each publication's standard",
-      "Lifetime link guarantee and 100% money back",
+      "Free link replacement and a 100% money-back guarantee",
     ],
     to: "/services/link-building",
     tone: "warm",

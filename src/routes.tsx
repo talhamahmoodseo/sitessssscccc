@@ -40,6 +40,17 @@ const SERVICE_PAGES: Record<string, ReturnType<typeof page>> = {
   "haro-links": page(() => import("./pages/services/HaroQuotes")),
 };
 
+const INDUSTRY_PAGES: Record<string, ReturnType<typeof page>> = {
+  "home-services": page(() => import("./pages/industries/HomeServices")),
+};
+
+/** /industries/:slug → that industry's page, or the 404 page. */
+export const IndustryPage = () => {
+  const { slug = "" } = useParams();
+  const Page = INDUSTRY_PAGES[slug] ?? NotFound;
+  return <Page />;
+};
+
 /** /services/:slug → that service's page, or the 404 page. */
 export const ServicePage = () => {
   const { slug = "" } = useParams();
@@ -55,6 +66,7 @@ export const preloadRoute = (pathname: string) => {
     if (p === "/") return Home;
     if (a === "about" && !b) return About;
     if (a === "services") return b ? (SERVICE_PAGES[b] ?? NotFound) : Home;
+    if (a === "industries") return b ? (INDUSTRY_PAGES[b] ?? NotFound) : NotFound;
     if (a === "case-studies") return b ? CaseStudy : CaseStudies;
     if (a === "blog") return b ? BlogPost : Blog;
     if (a === "contact" && !b) return Contact;
