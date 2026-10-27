@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { resetChoice } from "@/lib/analytics";
 import { A, H, L, LegalPage, P } from "./LegalPage";
 
-const EMAIL = "contact@editorialhq.com";
+const EMAIL = "team@editorialhq.com";
 
 /**
  * /privacy. Describes what the site actually does: the contact form

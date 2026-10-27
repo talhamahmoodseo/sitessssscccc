@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/Logo";
 import { openBooking } from "@/lib/booking";
 
-const EMAIL = "contact@editorialhq.com";
+const EMAIL = "team@editorialhq.com";
 
 const COLUMNS = [
   {

@@ -128,7 +128,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | (round 9) | Restored what round 8 removed, at a higher standard: the case study report layout (numbered sections, contents rail, charts, link-building activity, results, outcomes) with six real clients incl. CryptoDesk; homepage featured review (Rum Tan), case-study rows, "see the numbers" bento and the review wall with Clutch/Trustpilot badges; the pinned scroll-through process with realistic product screens per step (`sections/Process.tsx`); the four-promise guarantee band; the full pricing page (trial $200, Starter/Growth/Authority at $190 a link, Custom, comparison table). Home Services rewritten long-form and taken out of the header. Plan: `PLAN-ROUND-9.md` |
 | (round 8) | Real portfolio: 5 case studies (SmileTutor, Defender, Ocuco, CapCut, agency partner) on a new evidence-led template (`lib/cases.ts`, `pages/results/CaseParts.tsx`), client logos, all invented quotes/stats/reviews removed, volume claims removed, guarantees cut to money-back + link replacement, pricing $150 standard (3+) / $170 trial, Home Services industry page (`/industries/home-services`), gradient second line on every section heading (`Soft` in kit), new homepage process timeline, Clutch/Trustpilot badges wired but hidden (`lib/reviews.ts`), testimonial drafts in `TESTIMONIAL-DRAFTS.md` |
 | (round 7) | Guarantees (money-back, lifetime link, no PBNs, white label) as a band on home + link building + pricing, with full terms on /pricing#guarantee-terms (`components/Guarantees.tsx`); pricing rebuilt per placement (trial $129, packs 5/10 links, price list by DR, 3-step ordering, contact form preselects the package via `?package=`); 8-Point → 7-Point Site Check (traffic check removed, no traffic claims); About rewritten around 10,000+ backlinks, global positioning (schema areaServed "Worldwide", Gulf-only copy generalised) |
-| (round 6) | Rebrand Outreachr → Editorial HQ (domain editorialhq.com): logo wordmark, site name in titles/OG/schema, social image, contact@editorialhq.com everywhere, theme name |
+| (round 6) | Rebrand Outreachr → Editorial HQ (domain editorialhq.com): logo wordmark, site name in titles/OG/schema, social image, team@editorialhq.com everywhere, theme name |
 | (round 5) | Campaign-view hero (rocket removed), Ahrefs/Semrush/Neil Patel data cards, 8-Point Site Check (relevance first) site-wide, real rejected sites (techbullion.com, dsnews.co.uk, entrepreneursbreak.com), pilot + new pricing ladder, Digital PR story rewrite, shorter About, services index removed, "sample" labels removed |
 | (round 4) | Technical SEO: prerendering, per-page head tags, real 404s, sitemap/robots in the theme, smoke → image, code splitting, critical CSS |
 | `708d997` | Round 3: Outreachr rebrand, hero WebGL smoke, Shift previews + sourced data, 4-service section, personas sketches, booking popup, About rewrite, Digital PR fan restored |
@@ -181,7 +181,7 @@ review badges hidden.
   there, no analytics load. Then in GA4, mark `generate_lead` and `book_call`
   as key events.
 - Settings > General > **Contact form sends to**: leave empty for
-  contact@editorialhq.com, which must exist in Hostinger (Emails). Install WP
+  team@editorialhq.com, which must exist in Hostinger (Emails). Install WP
   Mail SMTP so the emails arrive. Every enquiry is also kept under
   **Enquiries** in the dashboard.
 - Send a test enquiry from /contact and check it arrives.

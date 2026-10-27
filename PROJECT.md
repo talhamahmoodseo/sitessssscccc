@@ -333,7 +333,7 @@ failures). Last verified state: **0 contrast failures, 0 broken images across
   but invented. Swap in real anonymised ones — that section is the strongest
   trust signal on the page and real data will land harder.
 - Calendly handle — `lib/booking.ts` (`CALENDLY_URL`)
-- Contact email — `contact@editorialhq.com` in `pages/Contact.tsx`,
+- Contact email — `team@editorialhq.com` in `pages/Contact.tsx`,
   `pages/services/common.tsx`, `sections/Footer.tsx`, `sections/HomeCTA.tsx`,
   `sections/FAQ.tsx`, `sections/Hero.tsx` and `components/BookingModal.tsx`.
 - `YOURDOMAIN.com` entries in `public/sitemap.xml`

@@ -508,6 +508,6 @@ export const linkBuilding = {
     d: "On a 30-minute call we look at your site, your competitors' backlinks and the pages closest to page one, then tell you what it would take to move them.",
     primary: "Book a strategy call",
     secondary: "Email us instead",
-    email: "contact@editorialhq.com",
+    email: "team@editorialhq.com",
   },
 };

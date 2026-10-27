@@ -364,7 +364,7 @@ function tm_ga4_id() {
 
 function tm_contact_to() {
 	$to = sanitize_email( (string) get_option( 'tm_contact_email', '' ) );
-	return $to ? $to : 'contact@editorialhq.com';
+	return $to ? $to : 'team@editorialhq.com';
 }
 
 function tm_clean_ga4( $value ) {
@@ -386,7 +386,7 @@ function tm_ga4_field() {
 
 function tm_contact_email_field() {
 	printf(
-		'<input name="tm_contact_email" id="tm_contact_email" type="email" class="regular-text" placeholder="contact@editorialhq.com" value="%s" />' .
+		'<input name="tm_contact_email" id="tm_contact_email" type="email" class="regular-text" placeholder="team@editorialhq.com" value="%s" />' .
 		'<p class="description">Where contact form enquiries are emailed. A copy of each is also kept under Enquiries in this dashboard.</p>',
 		esc_attr( (string) get_option( 'tm_contact_email', '' ) )
 	);

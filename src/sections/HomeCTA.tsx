@@ -5,7 +5,7 @@ import { ArrowRight, Mail } from "lucide-react";
 import { contactLink, openBooking } from "@/lib/booking";
 import { COLOURS, GrainBlob } from "@/components/Grain";
 
-const EMAIL = "contact@editorialhq.com";
+const EMAIL = "team@editorialhq.com";
 
 /** The homepage's one closing call to action. Replaces the separate contact
  *  form and closing band, which asked twice in a row. Three ways in: a free

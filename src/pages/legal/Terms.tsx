@@ -3,7 +3,7 @@ import { GUARANTEES } from "@/components/Guarantees";
 import { PER_LINK, TRIAL_PRICE, usd } from "@/lib/pricing";
 import { A, H, L, LegalPage, P } from "./LegalPage";
 
-const EMAIL = "contact@editorialhq.com";
+const EMAIL = "team@editorialhq.com";
 
 const linkCls = "font-semibold text-navy-dark underline underline-offset-2";
 

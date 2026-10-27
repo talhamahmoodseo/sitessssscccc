@@ -8,7 +8,7 @@ import { GlowPanel } from "@/pages/services/kit";
 import Accent from "./Accent";
 import { LogoMark } from "./Logo";
 
-const EMAIL = "contact@editorialhq.com";
+const EMAIL = "team@editorialhq.com";
 
 /** Global booking dialog. Opens on the `open-booking` window event so any CTA
  *  on any page can summon it without prop drilling. */

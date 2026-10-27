@@ -9,7 +9,7 @@ import { openBooking } from "@/lib/booking";
 import { PACKAGE_LABELS } from "@/lib/pricing";
 import { CARD, GlowPanel, ease, rise } from "./services/kit";
 
-const EMAIL = "contact@editorialhq.com";
+const EMAIL = "team@editorialhq.com";
 
 const SERVICES = [
   "Link building",
