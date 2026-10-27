@@ -78,16 +78,44 @@ const TILE: Record<Tile, string> = {
 
 /** A single result: number top, client wordmark anchored bottom-left.
  *  The pastel lives here and nowhere else. */
+/** A client's logo in one ink tone, or its wordmark when there is none. */
+export const ClientMark = ({
+  client,
+  logo,
+  h = 22,
+  className = "",
+}: {
+  client: string;
+  logo?: string;
+  h?: number;
+  className?: string;
+}) =>
+  logo ? (
+    <img
+      src={asset(logo)}
+      alt={client}
+      loading="lazy"
+      style={{ height: h }}
+      className={`w-auto brightness-0 ${className}`}
+    />
+  ) : (
+    <Wordmark name={client} className={`text-[19px] text-navy-dark ${className}`} />
+  );
+
 export const StatTile = ({
   value,
   label,
   client,
+  logo,
+  logoH,
   tile,
   delay = 0,
 }: {
   value: string;
   label: string;
   client: string;
+  logo?: string;
+  logoH?: number;
   tile: Tile;
   delay?: number;
 }) => (
@@ -106,7 +134,7 @@ export const StatTile = ({
         {label}
       </div>
     </div>
-    <Wordmark name={client} className="text-[19px] text-navy-dark" />
+    <ClientMark client={client} logo={logo} h={logoH} className="self-start" />
   </motion.div>
 );
 
@@ -118,6 +146,8 @@ export const QuoteTile = ({
   name,
   role,
   client,
+  logo,
+  logoH,
   avatar,
   delay = 0,
 }: {
@@ -125,6 +155,8 @@ export const QuoteTile = ({
   name: string;
   role: string;
   client: string;
+  logo?: string;
+  logoH?: number;
   avatar?: string;
   delay?: number;
 }) => (

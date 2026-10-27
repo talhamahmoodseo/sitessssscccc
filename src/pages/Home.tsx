@@ -8,7 +8,8 @@ import ServicesSection from "@/sections/Services";
 import Results from "@/sections/Results";
 import Personas from "@/sections/Personas";
 import Process from "@/sections/Process";
-import ClientVoices from "@/sections/Testimonials";
+import { FeaturedReview, ReviewWall } from "@/sections/Testimonials";
+import ProofGrid from "@/sections/ProofGrid";
 import BlogPreview from "@/sections/BlogPreview";
 import FAQ from "@/sections/FAQ";
 import HomeCTA from "@/sections/HomeCTA";
@@ -38,6 +39,14 @@ const Home = () => (
         <ServicesSection />
       </section>
 
+      <section id="guarantees">
+        <GuaranteeBand />
+      </section>
+
+      <section id="review">
+        <FeaturedReview />
+      </section>
+
       <section id="results">
         <Results />
       </section>
@@ -50,12 +59,12 @@ const Home = () => (
         <Process />
       </section>
 
-      <section id="guarantees">
-        <GuaranteeBand />
+      <section id="proof">
+        <ProofGrid />
       </section>
 
       <section id="testimonials">
-        <ClientVoices />
+        <ReviewWall />
       </section>
 
       <section id="blog">
