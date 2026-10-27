@@ -7,9 +7,9 @@
 
 export const about = {
   seo: {
-    title: "About Editorial HQ: Link Building & Digital PR Agency",
+    title: "About Us: Link Building & Digital PR Agency",
     description:
-      "Editorial HQ is a link building agency for brands and SEO agencies. Editorial links and brand mentions on real, relevant sites, checked by hand and backed by a money-back guarantee.",
+      "A link building agency for brands and SEO agencies. Editorial links and brand mentions on real sites, checked by hand, with a money-back guarantee.",
   },
 
   hero: {

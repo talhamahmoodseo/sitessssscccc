@@ -14,7 +14,9 @@
  *      domain is hard-coded in the build,
  *   4. loads the React app on top, which takes over for animations and
  *      navigation.
- * It also serves /sitemap.xml and /robots.txt for those pages.
+ * It also serves /sitemap.xml and /robots.txt for those pages, takes the
+ * contact form (see "contact form" below), and keeps WordPress's public
+ * defaults (feeds, the user list, XML-RPC) switched off.
  *
  * No SEO plugin is needed (or wanted): titles, descriptions, canonicals,
  * Open Graph and schema are already in each page. Yoast or Rank Math would add
@@ -53,7 +55,7 @@ function tm_page() {
 	$dir    = get_template_directory() . '/prerender/';
 	$status = 200;
 
-	if ( '404' === $key || ! preg_match( '/^[a-z0-9_-]+$/', $key ) || ! is_readable( $dir . $key . '.json' ) ) {
+	if ( ! empty( $GLOBALS['tm_force_404'] ) || '404' === $key || ! preg_match( '/^[a-z0-9_-]+$/', $key ) || ! is_readable( $dir . $key . '.json' ) ) {
 		$key    = '404';
 		$status = 404;
 	}
@@ -88,13 +90,60 @@ function tm_fill( $html ) {
 }
 
 /**
- * Runs before WordPress picks a template: sitemap, one URL per page (no
- * trailing slash), and the right status code.
+ * Pages that moved, old path => new path (one 301 hop each). The three sample
+ * case studies from round 6 were indexed before the real ones replaced them.
+ */
+function tm_moved() {
+	return array(
+		'/services'                              => '/#services',
+		'/case-studies/b2b-saas-ai-visibility'   => '/case-studies',
+		'/case-studies/ecommerce-gulf-authority' => '/case-studies',
+		'/case-studies/home-services-local-pack' => '/industries/home-services',
+	);
+}
+
+/**
+ * One hostname: www.editorialhq.com 301s to editorialhq.com (or the other way
+ * round, whichever Settings > General uses). WordPress would normally do this
+ * in redirect_canonical, which this theme switches off (see below).
+ */
+function tm_canonical_host() {
+	$want = strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) );
+	$have = isset( $_SERVER['HTTP_HOST'] ) ? strtolower( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
+	$have = preg_replace( '/:\d+$/', '', $have );
+	if ( '' === $want || '' === $have || $have === $want ) {
+		return;
+	}
+	// only www <-> bare domain; anything else is left alone
+	if ( 'www.' . $want !== $have && 'www.' . $have !== $want ) {
+		return;
+	}
+	$uri    = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '/';
+	$scheme = (string) wp_parse_url( home_url(), PHP_URL_SCHEME );
+	wp_safe_redirect( ( $scheme ? $scheme : 'https' ) . '://' . $want . '/' . ltrim( $uri, '/' ), 301 );
+	exit;
+}
+
+/**
+ * Runs before WordPress picks a template: hostname, moved pages, sitemap, one
+ * URL per page (no trailing slash), and the right status code.
  */
 function tm_route() {
-	// robots.txt, /favicon.ico and feeds are answered by WordPress itself
-	if ( is_robots() || is_favicon() || is_feed() || is_trackback() ) {
+	tm_canonical_host();
+
+	// robots.txt and /favicon.ico are answered by WordPress itself
+	if ( is_robots() || is_favicon() ) {
 		return;
+	}
+
+	// Feeds and trackbacks are off: the feed listed the default post and the
+	// admin's login name. They get the site's 404 page.
+	if ( is_feed() || is_trackback() ) {
+		$GLOBALS['tm_force_404'] = true;
+		status_header( 404 );
+		nocache_headers();
+		include get_template_directory() . '/index.php';
+		exit;
 	}
 
 	$path = tm_request_path();
@@ -104,9 +153,10 @@ function tm_route() {
 		exit;
 	}
 
-	// the old services index now lives on the homepage
-	if ( '/services' === untrailingslashit( $path ) ) {
-		wp_safe_redirect( home_url( '/#services' ), 301 );
+	$moved = tm_moved();
+	$clean = '/' === $path ? '/' : untrailingslashit( $path );
+	if ( isset( $moved[ $clean ] ) ) {
+		wp_safe_redirect( home_url( $moved[ $clean ] ), 301 );
 		exit;
 	}
 
@@ -204,7 +254,9 @@ function tm_enqueue_app() {
 		'tm-app',
 		'window.__TM_BASE_PATH__=' . wp_json_encode( $base ) . ';' .
 		'window.__TM_ASSET_BASE__=' . wp_json_encode( untrailingslashit( $uri ) ) . ';' .
-		'window.__SITE_URL__=' . wp_json_encode( untrailingslashit( home_url() ) ) . ';',
+		'window.__SITE_URL__=' . wp_json_encode( untrailingslashit( home_url() ) ) . ';' .
+		'window.__TM_CONTACT_API__=' . wp_json_encode( rest_url( 'editorialhq/v1/contact' ) ) . ';' .
+		'window.__GA4_ID__=' . wp_json_encode( tm_ga4_id() ) . ';',
 		'before'
 	);
 
@@ -263,3 +315,217 @@ add_action( 'after_setup_theme', 'tm_theme_support' );
  * Hide it on the front end; it stays available in /wp-admin.
  */
 add_filter( 'show_admin_bar', '__return_false' );
+
+/* ----------------------------------------------- WordPress public defaults */
+
+/*
+ * XML-RPC is a common target for password guessing, and nothing on this site
+ * uses it (the Jetpack and mobile apps would; this site has neither).
+ */
+add_filter( 'xmlrpc_enabled', '__return_false' );
+add_filter( 'xmlrpc_methods', '__return_empty_array' );
+
+/** No X-Pingback header pointing at xmlrpc.php. */
+function tm_no_pingback_header( $headers ) {
+	unset( $headers['X-Pingback'] );
+	return $headers;
+}
+add_filter( 'wp_headers', 'tm_no_pingback_header' );
+
+/**
+ * /wp-json/wp/v2/users lists every author's login name to anyone. Keep it for
+ * logged-in users (the editor needs it), hide it from everyone else.
+ */
+function tm_hide_rest_users( $endpoints ) {
+	if ( ! is_user_logged_in() ) {
+		unset( $endpoints['/wp/v2/users'], $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
+	}
+	return $endpoints;
+}
+add_filter( 'rest_endpoints', 'tm_hide_rest_users' );
+
+/** oEmbed responses would also carry the author's name and profile URL. */
+function tm_oembed_no_author( $data ) {
+	unset( $data['author_name'], $data['author_url'] );
+	return $data;
+}
+add_filter( 'oembed_response_data', 'tm_oembed_no_author' );
+
+/* ----------------------------------------------------------------- settings */
+
+/**
+ * Two fields under Settings > General, so the owner can change them without a
+ * new theme build: the GA4 Measurement ID and the contact form's inbox.
+ */
+function tm_ga4_id() {
+	$id = strtoupper( trim( (string) get_option( 'tm_ga4_id', '' ) ) );
+	return preg_match( '/^G-[A-Z0-9]{4,20}$/', $id ) ? $id : '';
+}
+
+function tm_contact_to() {
+	$to = sanitize_email( (string) get_option( 'tm_contact_email', '' ) );
+	return $to ? $to : 'contact@editorialhq.com';
+}
+
+function tm_clean_ga4( $value ) {
+	$value = strtoupper( trim( (string) $value ) );
+	return preg_match( '/^G-[A-Z0-9]{4,20}$/', $value ) ? $value : '';
+}
+
+function tm_clean_email( $value ) {
+	return sanitize_email( (string) $value );
+}
+
+function tm_ga4_field() {
+	printf(
+		'<input name="tm_ga4_id" id="tm_ga4_id" type="text" class="regular-text code" placeholder="G-XXXXXXXXXX" value="%s" />' .
+		'<p class="description">From Google Analytics: Admin, Data streams, your web stream. Leave empty to switch analytics off. Visitors in the UK and EU are asked first.</p>',
+		esc_attr( tm_ga4_id() )
+	);
+}
+
+function tm_contact_email_field() {
+	printf(
+		'<input name="tm_contact_email" id="tm_contact_email" type="email" class="regular-text" placeholder="contact@editorialhq.com" value="%s" />' .
+		'<p class="description">Where contact form enquiries are emailed. A copy of each is also kept under Enquiries in this dashboard.</p>',
+		esc_attr( (string) get_option( 'tm_contact_email', '' ) )
+	);
+}
+
+function tm_settings() {
+	register_setting( 'general', 'tm_ga4_id', array( 'type' => 'string', 'sanitize_callback' => 'tm_clean_ga4', 'default' => '' ) );
+	register_setting( 'general', 'tm_contact_email', array( 'type' => 'string', 'sanitize_callback' => 'tm_clean_email', 'default' => '' ) );
+	add_settings_field( 'tm_ga4_id', 'GA4 Measurement ID', 'tm_ga4_field', 'general', 'default', array( 'label_for' => 'tm_ga4_id' ) );
+	add_settings_field( 'tm_contact_email', 'Contact form sends to', 'tm_contact_email_field', 'general', 'default', array( 'label_for' => 'tm_contact_email' ) );
+}
+add_action( 'admin_init', 'tm_settings' );
+
+/* ------------------------------------------------------------- contact form */
+
+/**
+ * The /contact form posts JSON to /wp-json/editorialhq/v1/contact. Each
+ * enquiry is emailed to tm_contact_to() (WP Mail SMTP makes that reliable) and
+ * saved as a private "Enquiry" in the dashboard, so nothing is lost if an
+ * email bounces.
+ */
+function tm_register_inquiries() {
+	register_post_type(
+		'tm_inquiry',
+		array(
+			'labels'              => array(
+				'name'          => 'Enquiries',
+				'singular_name' => 'Enquiry',
+				'all_items'     => 'All enquiries',
+				'edit_item'     => 'Enquiry',
+				'search_items'  => 'Search enquiries',
+				'not_found'     => 'No enquiries yet',
+			),
+			'public'              => false,
+			'publicly_queryable'  => false,
+			'exclude_from_search' => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_rest'        => false,
+			'menu_position'       => 3,
+			'menu_icon'           => 'dashicons-email-alt',
+			'supports'            => array( 'title', 'editor' ),
+			'capability_type'     => 'post',
+			'capabilities'        => array( 'create_posts' => 'do_not_allow' ),
+			'map_meta_cap'        => true,
+			'rewrite'             => false,
+			'query_var'           => false,
+		)
+	);
+}
+add_action( 'init', 'tm_register_inquiries' );
+
+function tm_register_contact_route() {
+	register_rest_route(
+		'editorialhq/v1',
+		'/contact',
+		array(
+			'methods'             => 'POST',
+			'callback'            => 'tm_contact',
+			'permission_callback' => '__return_true',
+		)
+	);
+}
+add_action( 'rest_api_init', 'tm_register_contact_route' );
+
+/** A short, single-line, trimmed field. */
+function tm_field( $params, $key, $max = 200 ) {
+	$v = isset( $params[ $key ] ) && is_scalar( $params[ $key ] ) ? (string) $params[ $key ] : '';
+	return mb_substr( trim( sanitize_text_field( $v ) ), 0, $max );
+}
+
+function tm_contact( $request ) {
+	$p = (array) $request->get_json_params();
+
+	// bots fill every field, people never see this one
+	if ( '' !== tm_field( $p, 'company_site' ) ) {
+		return new WP_REST_Response( array( 'ok' => true ), 200 );
+	}
+
+	$name    = tm_field( $p, 'name', 100 );
+	$email   = sanitize_email( tm_field( $p, 'email', 150 ) );
+	$website = tm_field( $p, 'website', 200 );
+	$service = tm_field( $p, 'service', 100 );
+	$package = tm_field( $p, 'package', 100 );
+	$found   = tm_field( $p, 'found', 100 );
+	$source  = tm_field( $p, 'source', 300 );
+	$page    = tm_field( $p, 'page', 200 );
+	$message = isset( $p['message'] ) && is_scalar( $p['message'] )
+		? mb_substr( trim( sanitize_textarea_field( (string) $p['message'] ) ), 0, 5000 )
+		: '';
+
+	if ( '' === $name || ! is_email( $email ) ) {
+		return new WP_REST_Response( array( 'ok' => false, 'error' => 'Please add your name and a valid email.' ), 400 );
+	}
+
+	// at most 5 enquiries an hour from one address
+	$ip   = isset( $_SERVER['REMOTE_ADDR'] ) ? (string) wp_unslash( $_SERVER['REMOTE_ADDR'] ) : '';
+	$slot = 'tm_contact_' . md5( $ip );
+	$sent = (int) get_transient( $slot );
+	if ( $sent >= 5 ) {
+		return new WP_REST_Response( array( 'ok' => false, 'error' => 'Too many messages. Please email us instead.' ), 429 );
+	}
+	set_transient( $slot, $sent + 1, HOUR_IN_SECONDS );
+
+	$lines = array(
+		'Name: ' . $name,
+		'Email: ' . $email,
+		'Website: ' . ( $website ? $website : '-' ),
+		'Service: ' . ( $service ? $service : '-' ),
+		'Package: ' . ( $package ? $package : '-' ),
+		'Found us via: ' . ( $found ? $found : '-' ),
+		'First visit: ' . ( $source ? $source : '-' ),
+		'Sent from: ' . ( $page ? $page : '/contact' ),
+		'',
+		$message ? $message : '(no message)',
+	);
+	$body  = implode( "\n", $lines );
+	$title = $name . ( $website ? ' (' . $website . ')' : '' );
+
+	$saved = wp_insert_post(
+		array(
+			'post_type'    => 'tm_inquiry',
+			'post_status'  => 'private',
+			'post_title'   => $title,
+			'post_content' => $body,
+		),
+		true
+	);
+	$saved = ! is_wp_error( $saved ) && $saved > 0;
+
+	$mailed = wp_mail(
+		tm_contact_to(),
+		'New enquiry: ' . ( $service ? $service : 'website' ) . ' - ' . $title,
+		$body . "\n\n-- \nSent by the contact form on " . home_url( '/' ),
+		array( 'Reply-To: ' . str_replace( array( "\r", "\n", '<', '>' ), '', $name ) . ' <' . $email . '>' )
+	);
+
+	if ( ! $saved && ! $mailed ) {
+		return new WP_REST_Response( array( 'ok' => false, 'error' => 'We could not send that. Please email us instead.' ), 500 );
+	}
+	return new WP_REST_Response( array( 'ok' => true ), 200 );
+}

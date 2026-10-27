@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
+import { contactLink } from "@/lib/booking";
 import { casesFor } from "@/lib/cases";
 import { ClientWork } from "../results/CaseParts";
 
 import { brandMentions as C } from "./content/brandMentions";
-import { EMAIL, FitPrice, PairsWith, ServiceClose, ServiceFaq } from "./common";
+import { FitPrice, PairsWith, ServiceClose, ServiceFaq } from "./common";
 import Hero from "./brand-mentions/Hero";
 import HowAiDecides from "./brand-mentions/HowAiDecides";
 import BeforeAfter from "./brand-mentions/BeforeAfter";
@@ -35,13 +37,14 @@ const SERVICE_SCHEMA = {
 const CheckForm = () => {
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
-  const send = () => {
-    const subject = encodeURIComponent(C.close.subject);
-    const body = encodeURIComponent(
-      `Brand: ${brand}\nCategory: ${category}\n\nPlease run the free AI visibility check.`,
+  const navigate = useNavigate();
+  const send = () =>
+    navigate(
+      contactLink({
+        service: "Brand mentions & AI visibility",
+        message: `Please run the free AI visibility check.\nBrand: ${brand}\nCategory: ${category}`,
+      }),
     );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-  };
   return (
     <form
       onSubmit={(e) => {

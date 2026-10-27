@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight, Mail } from "lucide-react";
-import { openBooking } from "@/lib/booking";
+import { contactLink, openBooking } from "@/lib/booking";
 import { COLOURS, GrainBlob } from "@/components/Grain";
 
 const EMAIL = "contact@editorialhq.com";
@@ -10,15 +11,16 @@ const EMAIL = "contact@editorialhq.com";
  *  form and closing band, which asked twice in a row. Three ways in: a free
  *  audit (the main one), a call, or an email. */
 const HomeCTA = () => {
+  const navigate = useNavigate();
   const [site, setSite] = useState("");
 
-  const requestAudit = () => {
-    const subject = encodeURIComponent("Free visibility audit request");
-    const body = encodeURIComponent(
-      `Website: ${site}\n\nPlease send me a free visibility audit.`,
+  const requestAudit = () =>
+    navigate(
+      contactLink({
+        website: site,
+        message: "Please send me a free visibility audit.",
+      }),
     );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-  };
 
   return (
     <div className="relative overflow-hidden border-b border-white/10 bg-navy-dark py-28 lg:py-36">
@@ -107,7 +109,7 @@ const HomeCTA = () => {
             onClick={openBooking}
             className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold text-white ring-1 ring-white/25 transition-shadow hover:ring-white/60"
           >
-            Book a 15-minute call
+            Book a 30-minute call
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </button>
           <a

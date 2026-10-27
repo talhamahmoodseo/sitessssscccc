@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ExternalLink, Mail, X } from "lucide-react";
 
+import { track } from "@/lib/analytics";
 import { CALENDLY_EMBED, CALENDLY_URL } from "@/lib/booking";
 import { GlowPanel } from "@/pages/services/kit";
 import Accent from "./Accent";
@@ -22,6 +23,19 @@ const BookingModal = () => {
     };
     window.addEventListener("open-booking", onOpen);
     return () => window.removeEventListener("open-booking", onOpen);
+  }, []);
+
+  // Calendly tells the page when a call is booked (it needs embed_domain)
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== "https://calendly.com") return;
+      const ev = (e.data as { event?: string } | null)?.event;
+      if (ev === "calendly.event_scheduled") {
+        track("generate_lead", { method: "booking" });
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
   }, []);
 
   useEffect(() => {
@@ -100,7 +114,7 @@ const BookingModal = () => {
                   site <Accent>together</Accent>.
                 </h3>
                 <p className="mt-4 text-[15px] leading-relaxed text-navy-dark/80">
-                  A 15-minute call with one of our strategists. We'll go through
+                  A 30-minute call with one of our strategists. We'll go through
                   where you rank, who links to your competitors, and whether AI
                   answers mention you yet.
                 </p>
@@ -142,7 +156,7 @@ const BookingModal = () => {
             <div className="relative flex max-h-[92vh] min-h-[540px] flex-col bg-white">
               <div className="border-b border-line px-5 pb-4 pt-5 pr-16 lg:hidden">
                 <p className="text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">
-                  Book a 15-minute call
+                  Book a 30-minute call
                 </p>
                 <p className="mt-1 text-[13px] leading-snug text-navy-dark/75">
                   Pick a time. We'll look at your site before we talk.
@@ -170,7 +184,7 @@ const BookingModal = () => {
 
                 <iframe
                   title="Pick a time for your call"
-                  src={CALENDLY_EMBED}
+                  src={`${CALENDLY_EMBED}&embed_type=Inline&embed_domain=${encodeURIComponent(window.location.host)}`}
                   className="h-full min-h-[540px] w-full flex-1"
                   onLoad={() => setLoaded(true)}
                 />

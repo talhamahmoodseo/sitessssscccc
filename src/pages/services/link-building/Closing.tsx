@@ -172,7 +172,7 @@ export const Faq = () => {
                 onClick={openBooking}
                 className="group mt-5 inline-flex items-center gap-2 rounded-full bg-navy-dark px-5 py-3 text-[13.5px] font-semibold text-white transition-colors duration-300 hover:bg-black"
               >
-                Book a 15-minute call
+                Book a 30-minute call
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </button>
             </div>

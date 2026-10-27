@@ -8,9 +8,9 @@
 
 export const brandMentions = {
   seo: {
-    title: "Brand Mention Building for AI Search (ChatGPT, AI Overviews)",
+    title: "Brand Mentions for AI Search & ChatGPT",
     description:
-      "Get your brand named when buyers ask ChatGPT, Perplexity and Google's AI Overviews. We place contextual brand mentions on the sources AI answers already cite, then track your share of the answer every month.",
+      "Get named when buyers ask ChatGPT, Perplexity and Google's AI Overviews. We place brand mentions on the sources AI answers cite, and track them monthly.",
   },
 
   hero: {

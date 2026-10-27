@@ -10,7 +10,11 @@ type CountUpProps = {
 };
 
 /** Counts from 0 to `to` the first time it scrolls into view, on an ease-out
- *  cubic so the last digits settle rather than snap. */
+ *  cubic so the last digits settle rather than snap.
+ *
+ *  The first render shows the final number, so the prerendered HTML carries
+ *  the real figure and the browser can hydrate it. Straight after that it
+ *  resets to 0 and waits to be seen. */
 const CountUp = ({
   to = 0,
   prefix = "",
@@ -19,10 +23,16 @@ const CountUp = ({
 }: CountUpProps) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(to);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!started.current) setValue(0);
+  }, []);
 
   useEffect(() => {
     if (!inView) return;
+    started.current = true;
     let frame = 0;
     const start = performance.now();
     const tick = (now: number) => {

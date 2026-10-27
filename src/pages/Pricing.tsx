@@ -258,7 +258,7 @@ const Pricing = () => {
     <PageLayout>
       <Seo
         title="Link Building Pricing & Packages"
-        description={`Link building packages of 3, 5 and 10 editorial placements at ${usd(PER_LINK)} a link, a ${usd(TRIAL_PRICE)} trial placement, or a custom package. No contract, no setup fee, 100% money-back guarantee.`}
+        description={`Packages of 3, 5 and 10 editorial links at ${usd(PER_LINK)} a link, a ${usd(TRIAL_PRICE)} trial link, or a custom package. No contract, no setup fee, 100% money-back guarantee.`}
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",

@@ -1,17 +1,13 @@
-# Testimonial drafts: for client approval
+# Testimonials: approved
 
-These are **drafts**, written from what each client has already told you and
-what we can see in their results. As you asked in round 9, they're shown on
-the site now (case studies, homepage, review wall) without a "draft" label,
-because the zip isn't going live until you have approval.
+**Status (27 Oct 2026): approved.** The owner confirmed every client has
+approved their quote below, and `testimonial.approved` is `true` for all six
+cases in `src/lib/cases.ts`. The text on the site is the text below. If a
+client later asks for a change, edit `text` in `src/lib/cases.ts` (and the
+short version in `src/lib/clients.ts`, `PROOF_TILES`); to remove a quote,
+delete its `text` and it disappears everywhere.
 
-**Before you upload the theme:** send each client their draft, get their OK
-(or their own wording), then set `testimonial.approved: true` and paste the
-approved text into `text` in `src/lib/cases.ts`. The short versions on the
-homepage grid live in `src/lib/clients.ts` (`PROOF_TILES`): update those too.
-If a client says no, delete their `text` and the quote disappears everywhere.
-
-Ask each client to confirm three things:
+What each client was asked to confirm:
 
 1. we can publish the quote with their name and job title;
 2. we can use their photo (and logo);

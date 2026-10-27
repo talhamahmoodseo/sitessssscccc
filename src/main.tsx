@@ -1,9 +1,10 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { MotionGlobalConfig } from "motion/react";
 import App from "./App";
 import { preloadRoute } from "./routes";
+import { initAnalytics } from "./lib/analytics";
 import "./index.css";
 
 /* When the site is served from a subfolder (e.g. yourdomain.com/app/), the
@@ -25,13 +26,26 @@ const start = async () => {
     window.location.pathname.slice(basename.replace(/\/$/, "").length) || "/";
   await preloadRoute(path);
   if (prerendered) MotionGlobalConfig.skipAnimations = true;
-  createRoot(root).render(
+  const app = (
     <StrictMode>
       <BrowserRouter basename={basename}>
         <App />
       </BrowserRouter>
-    </StrictMode>,
+    </StrictMode>
   );
+  // Reuse the prerendered HTML instead of replacing it. Replacing it made the
+  // browser count the hero as painted a second time, which pushed mobile LCP
+  // from about 0.3 s to 2.8 s. If a page ever renders differently in the
+  // browser, React recovers by rendering it fresh, as before.
+  if (prerendered) {
+    hydrateRoot(root, app, {
+      onRecoverableError: (err) => {
+        if ((window as any).__TM_DEBUG_HYDRATION__) console.warn("hydration:", err);
+      },
+    });
+  } else {
+    createRoot(root).render(app);
+  }
   if (prerendered) {
     setTimeout(() => {
       MotionGlobalConfig.skipAnimations = false;
@@ -40,3 +54,4 @@ const start = async () => {
 };
 
 start();
+initAnalytics();

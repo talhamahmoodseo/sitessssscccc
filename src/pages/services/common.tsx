@@ -253,7 +253,7 @@ export const ServiceFaq = ({
                   onClick={openBooking}
                   className="group inline-flex items-center gap-2 rounded-full bg-navy-dark px-5 py-2.5 text-[13.5px] font-semibold text-white transition-colors hover:bg-black"
                 >
-                  Book a 15-minute call
+                  Book a 30-minute call
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </button>
                 <a

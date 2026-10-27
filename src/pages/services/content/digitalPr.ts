@@ -8,9 +8,9 @@
 
 export const digitalPr = {
   seo: {
-    title: "Digital PR Agency: Coverage Your Buyers Actually Read",
+    title: "Digital PR Agency: Coverage Buyers Read",
     description:
-      "Story-led digital PR. We find the story in your business, pitch it to editors we work with, and land features, expert quotes and roundups that bring links, mentions and trust.",
+      "Story-led digital PR. We find the story in your business, pitch editors we work with, and land features, quotes and roundups that bring links and trust.",
   },
 
   hero: {

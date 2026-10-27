@@ -1,19 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { GuaranteeChips } from "@/components/Guarantees";
+import { contactLink } from "@/lib/booking";
 import CampaignView from "./CampaignView";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [e, s] = useState(""),
-    a = () => {
-      const r = "contact@editorialhq.com",
-        c = encodeURIComponent("Free visibility audit request"),
-        u = encodeURIComponent(`Website / email: ${e}
-
-Please send me a free visibility audit.`);
-      window.location.href = `mailto:${r}?subject=${c}&body=${u}`;
-    };
+    a = () =>
+      navigate(
+        contactLink({
+          [e.includes("@") ? "email" : "website"]: e,
+          message: "Please send me a free visibility audit.",
+        }),
+      );
   return (
     <div className="relative bg-mist overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
       {/* soft colour from the brand accent, kept to the edges and below the

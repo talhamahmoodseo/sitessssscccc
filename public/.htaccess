@@ -15,6 +15,10 @@ DirectorySlash Off
   # the old services index now lives on the homepage
   RewriteRule ^services/?$ /#services [R=301,NE,L]
 
+  # the round 6 sample case studies, replaced by real ones
+  RewriteRule ^case-studies/(b2b-saas-ai-visibility|ecommerce-gulf-authority)/?$ /case-studies [R=301,L]
+  RewriteRule ^case-studies/home-services-local-pack/?$ /industries/home-services [R=301,L]
+
   # one URL per page: /about/ -> /about
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^(.+)/$ /$1 [R=301,L]

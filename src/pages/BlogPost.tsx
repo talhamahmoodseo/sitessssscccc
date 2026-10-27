@@ -5,7 +5,7 @@ import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import NotFound from "./NotFound";
 import { asset } from "@/lib/booking";
-import { BLOG_POSTS } from "@/lib/content";
+import { BLOG_POSTS, POST_SEO } from "@/lib/content";
 import { BlogCover } from "@/pages/Blog";
 
 const BlogPost = () => {
@@ -30,7 +30,12 @@ const BlogPost = () => {
     };
   return (
     <PageLayout navOnDark>
-      <Seo title={s.title} description={s.excerpt} schema={u} type="article" />
+      <Seo
+        title={POST_SEO[s.slug]?.title ?? s.title}
+        description={POST_SEO[s.slug]?.description ?? s.excerpt}
+        schema={u}
+        type="article"
+      />
       <div className="relative bg-navy-dark overflow-hidden pt-32 pb-16">
         <div className={`absolute inset-0 ${s.grad} opacity-25`} />
         <span

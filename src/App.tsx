@@ -3,6 +3,7 @@ import { Navigate, Routes, Route } from "react-router-dom";
 
 import { ScrollProgress, ScrollToTop } from "./components/MotionKit";
 import BookingModal from "./components/BookingModal";
+import ConsentBanner from "./components/ConsentBanner";
 import {
   About,
   Blog,
@@ -13,6 +14,8 @@ import {
   Home,
   NotFound,
   Pricing,
+  Privacy,
+  Terms,
   ServicePage,
   IndustryPage,
 } from "./routes";
@@ -43,9 +46,12 @@ export default function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <BookingModal />
+      <ConsentBanner />
     </MotionConfig>
   );
 }

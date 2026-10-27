@@ -285,3 +285,32 @@ const BLOG_POSTS = [
 ];
 
 export { BLOG_POSTS };
+
+/** Search titles and descriptions for the posts, short enough that Google
+ *  shows them whole. The post page itself uses `title` and `excerpt`. */
+export const POST_SEO: Record<string, { title: string; description?: string }> = {
+  "anatomy-of-a-dr70-placement": {
+    title: "Anatomy of a DR 70 Placement",
+    description:
+      "A real placement timeline with client details removed: 19 days, one rewrite, two indexing checks, and the small moves that make a high-authority link count.",
+  },
+  "gulf-media-placements": {
+    title: "Gulf Media Placements: An Untapped Channel",
+    description:
+      "Khaleej Times, Arabian Business and the regional press most agencies can't reach, and why Gulf media is a strong authority play for international brands.",
+  },
+  "linked-vs-unlinked-mentions": {
+    title: "Linked vs Unlinked Mentions: What Matters",
+  },
+  "site-vetting-checklist": {
+    title: "Our Site-Vetting Checklist for Every Link",
+  },
+  "tracking-citations-across-ai-engines": {
+    title: "Tracking Citations in ChatGPT & Perplexity",
+  },
+  "why-ai-engines-cite-some-brands": {
+    title: "Why AI Engines Cite Some Brands, Not Others",
+    description:
+      "We tracked citations across ChatGPT, Claude and AI Overviews for six months. The pattern is bad news for most SEO playbooks, and good news for real digital PR.",
+  },
+};

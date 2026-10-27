@@ -341,8 +341,10 @@ const Step = ({
   const centred = useInView(ref, { margin: "-48% 0px -48% 0px" });
   const s = M.steps[index];
 
+  // the prerender scrolls through the page; keep it on step one, which is
+  // where the browser starts when it takes the page over
   useEffect(() => {
-    if (centred) onActive(index);
+    if (centred && !(window as any).__PRERENDER__) onActive(index);
   }, [centred, index, onActive]);
 
   return (

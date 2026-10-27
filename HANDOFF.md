@@ -11,7 +11,9 @@ Marketing website for **Editorial HQ** (editorialhq.com; called Outreachr until 
 Digital PR, Brand Mentions for AI search, HARO & Expert Quotes.
 
 - React 19 + Vite 6 + TypeScript + Tailwind 3 + Motion (Framer Motion v12)
-- Static SPA, no backend, no CMS. All copy lives in TypeScript files.
+- Static SPA, no CMS. All copy lives in TypeScript files. The only server
+  code is in the WordPress theme: the contact form endpoint and a few
+  settings (§3, "Round 10").
 - Also ships as an installable **WordPress theme** (owner hosts on Hostinger).
 - Design quality reference: **amplemarket.com** (quality bar only — content
   and layout must stay original).
@@ -26,7 +28,7 @@ Digital PR, Brand Mentions for AI search, HARO & Expert Quotes.
 
 Pages: home, about, link-building, digital-pr, brand-mentions,
 haro-expert-quotes, results (case studies), case-study (SmileTutor),
-home-services, blog, contact, pricing, plus the booking popup.
+home-services, blog, contact, pricing, privacy, terms, plus the booking popup.
 
 ## 3. Run it
 
@@ -34,7 +36,10 @@ home-services, blog, contact, pricing, plus the booking popup.
 npm install
 npm run dev        # localhost:5173
 npm run build      # production build + prerender every page -> dist/
-npm run preview    # serve dist/ on localhost:4173
+npm run preview    # serve dist/ on localhost:4173 (careful: it answers every URL
+                   # with the HOMEPAGE html, so it can't test other pages'
+                   # prerendered HTML; use any static server that serves
+                   # <path>/index.html, or the WordPress theme)
 npm run build:wp   # WordPress theme -> wp-theme/talha-site.zip (prerendered pages inside)
 npx tsc --noEmit   # typecheck (no test suite, no linter configured)
 ```
@@ -51,8 +56,22 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 - `src/components/Seo.tsx` owns every page's title, description, canonical,
   robots, social tags and JSON-LD. Use `<Seo …/>` on each page; never add
   these tags to `index.html` or the WordPress theme.
-- `src/routes.tsx` code-splits pages; `main.tsx` preloads the current page
-  before rendering so the prerendered HTML is replaced without a flash.
+- `src/routes.tsx` code-splits pages; `main.tsx` preloads the current page,
+  then **hydrates** the prerendered HTML (`hydrateRoot`) instead of replacing
+  it. Replacing it made the browser count the hero as painted twice (mobile
+  LCP 2.8 s in the lab; 0.3–0.5 s with hydration). If a page renders
+  differently in the browser, React silently falls back to a fresh render,
+  so a mismatch costs speed, not correctness.
+- **Keep pages hydratable.** The first render in the browser must match the
+  prerendered HTML: don't read the URL, storage, screen size or the clock
+  during render (do it in `useEffect`, as `Contact.tsx` does for
+  `?package=`). The prerender helps: it stops `setInterval` and any
+  `setTimeout` of 1 s or more (demo cycles stay on step one), scrolls back
+  to the top before saving, and separates adjacent text nodes with `<!-- -->`
+  the way React's server renderer does. Counters render their final number
+  first, then reset to 0 (`CountUp.tsx`). To check a page, set
+  `window.__TM_DEBUG_HYDRATION__ = true` before load: mismatches are logged
+  as `hydration:` warnings.
 - The WordPress theme (`wordpress/functions.php`) serves the prerendered page
   for each URL with the right status, fills in the domain, and serves
   `/sitemap.xml` + `/robots.txt`. **Do not install Yoast/Rank Math.**
@@ -70,14 +89,16 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | `src/lib/cases.ts` | The six client case studies (SmileTutor, CryptoDesk, Ocuco, CapCut, Defender, agency partner). Report sections in `pages/results/CaseSections.tsx`, charts in `charts.tsx`, shared cards in `CaseParts.tsx`. Every number's source: `CASE-STUDY-DRAFTS.md` |
 | `src/lib/clients.ts` | Client logos (homepage strip) and the "see the numbers" proof tiles |
 | `src/lib/pricing.ts` | **All prices.** Pricing page, contact form, link building page, FAQs and About read from here |
-| `src/lib/reviews.ts` | Clutch / Trustpilot badge data (placeholders, see §8) |
+| `src/lib/reviews.ts` | Clutch / Trustpilot badges, hidden until the real profiles exist (§8) |
 | `src/lib/content.ts` | Blog posts |
-| `src/lib/booking.ts` | Calendly URL (placeholder) + `openBooking()` |
+| `src/lib/booking.ts` | Calendly URL (calendly.com/talhaseoexpert/30min) + `openBooking()` + `contactLink()` for the quick forms |
+| `src/lib/analytics.ts` | GA4 + Consent Mode v2, `track()`, first-visit source for the contact form. Banner: `components/ConsentBanner.tsx` |
+| `src/pages/legal/` | Privacy policy and terms of service |
 | `src/components/` | Shared UI: Seo (all head tags), Logo, Navigation, BookingModal, PersonaFigures (sketch illustrations), Accent (heading colour), PlatformMarks (Google/ChatGPT/etc. icons) |
 | `src/routes.tsx` | Code-split pages + preload before first render |
 | `scripts/prerender.mjs` | Prerenders every page, critical CSS, sitemap |
 | `src/index.css` | Colour tokens (RGB triples on `:root`) and the `.accent-ink` heading accent |
-| `wordpress/` | WordPress theme source (PHP + style.css). `scripts/build-wp-theme.mjs` packages it |
+| `wordpress/` | WordPress theme source (PHP + style.css). `scripts/build-wp-theme.mjs` packages it. `functions.php` also holds the contact endpoint, the Enquiries list, the GA4 and inbox settings, redirects and the security switches |
 | `public/` | Images, avatars, sitemap |
 
 ## 5. Rules the owner has set (do not break)
@@ -103,6 +124,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
+| (round 10) | Go-live fixes from the SEO plan's step 0. Testimonials approved by the clients and case study figures approved by the owner. Booking goes to calendly.com/talhaseoexpert/30min ("30-minute call" site-wide). Placeholder Clutch/Trustpilot badges hidden. Real contact form: posts to `/wp-json/editorialhq/v1/contact`, emails the inbox set in Settings > General and keeps a copy under Enquiries in wp-admin (honeypot, 5 an hour per IP); the homepage and brand mentions quick forms now open it prefilled. GA4 via a Settings > General field, Consent Mode v2 banner for UK/Europe, events `generate_lead` (form sent, call booked) and `book_call` (booking opened). Theme: 301s for the three round 6 sample case studies and www → bare domain, feeds and trackbacks 404, `/wp/v2/users` hidden from visitors, XML-RPC off. Privacy and Terms pages, linked in the footer. Hydration instead of re-rendering (see §3). Titles under 60 and descriptions under 160 characters on every page |
 | (round 9) | Restored what round 8 removed, at a higher standard: the case study report layout (numbered sections, contents rail, charts, link-building activity, results, outcomes) with six real clients incl. CryptoDesk; homepage featured review (Rum Tan), case-study rows, "see the numbers" bento and the review wall with Clutch/Trustpilot badges; the pinned scroll-through process with realistic product screens per step (`sections/Process.tsx`); the four-promise guarantee band; the full pricing page (trial $200, Starter/Growth/Authority at $190 a link, Custom, comparison table). Home Services rewritten long-form and taken out of the header. Plan: `PLAN-ROUND-9.md` |
 | (round 8) | Real portfolio: 5 case studies (SmileTutor, Defender, Ocuco, CapCut, agency partner) on a new evidence-led template (`lib/cases.ts`, `pages/results/CaseParts.tsx`), client logos, all invented quotes/stats/reviews removed, volume claims removed, guarantees cut to money-back + link replacement, pricing $150 standard (3+) / $170 trial, Home Services industry page (`/industries/home-services`), gradient second line on every section heading (`Soft` in kit), new homepage process timeline, Clutch/Trustpilot badges wired but hidden (`lib/reviews.ts`), testimonial drafts in `TESTIMONIAL-DRAFTS.md` |
 | (round 7) | Guarantees (money-back, lifetime link, no PBNs, white label) as a band on home + link building + pricing, with full terms on /pricing#guarantee-terms (`components/Guarantees.tsx`); pricing rebuilt per placement (trial $129, packs 5/10 links, price list by DR, 3-step ordering, contact form preselects the package via `?package=`); 8-Point → 7-Point Site Check (traffic check removed, no traffic claims); About rewritten around 10,000+ backlinks, global positioning (schema areaServed "Worldwide", Gulf-only copy generalised) |
@@ -147,25 +169,36 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 - Owner says many more fixes are still needed across the site; compare each
   page against Amplemarket's quality and the screenshots in `docs/`.
 
-## 8. Placeholders to replace before launch
+## 8. Before and after launch
 
-- **Testimonials:** the drafts in `TESTIMONIAL-DRAFTS.md` are shown on the
-  site (owner's call: the zip isn't uploaded until clients approve). Get
-  each client's OK before going live, then set `approved: true`.
-- **Review badges (design preview):** `src/lib/reviews.ts` has PLACEHOLDER
-  ratings (Clutch 4.9/18, Trustpilot 4.8/42) and no links, marked
-  `preview: true`. Replace with the real profile URL, rating and count, and
-  set `preview: false`, before launch.
-- **Case study numbers:** `CASE-STUDY-DRAFTS.md` lists every figure as real
-  or proposed. The proposed ones (link counts, mixes, DR spreads, timelines)
-  need the owner's confirmation. No outcome metrics were invented for
-  CapCut, Ocuco or Defender; add them when the owner has real data.
-- Still needed: Defender product and contact name, CapCut contact's title,
-  the agency partner's name or permission to stay anonymous.
-- Calendly URL in `src/lib/booking.ts` (booking popup shows a loading state).
-- Mailbox `contact@editorialhq.com` must exist in Hostinger (Emails).
+Done in round 10 (27 Oct 2026): testimonials approved by the clients,
+case study figures approved by the owner, Calendly link set, placeholder
+review badges hidden.
+
+**Owner, in WordPress after uploading the theme:**
+
+- Settings > General > **GA4 Measurement ID**: paste the G-… ID. Until it's
+  there, no analytics load. Then in GA4, mark `generate_lead` and `book_call`
+  as key events.
+- Settings > General > **Contact form sends to**: leave empty for
+  contact@editorialhq.com, which must exist in Hostinger (Emails). Install WP
+  Mail SMTP so the emails arrive. Every enquiry is also kept under
+  **Enquiries** in the dashboard.
+- Send a test enquiry from /contact and check it arrives.
+
+**Still open:**
+
+- **Review badges:** `src/lib/reviews.ts` holds design-preview numbers and
+  is switched off. When the Clutch or Trustpilot profile has real reviews,
+  paste its URL, rating and count exactly as shown there.
+- **Privacy policy:** says enquiries that don't become work are kept "up to
+  2 years". That's a proposed policy: the owner should confirm it. Both legal
+  pages are plain-English drafts, not legal advice; worth a lawyer's read.
+- Defender: product name and contact name; CapCut: Julia's job title; the
+  agency partner's name (or permission to stay anonymous).
 - The Digital PR page's running example (UAE delivery study) and the blog
-  post on Gulf media are illustrations/articles, not client claims.
+  post on Gulf media are illustrations/articles, not client claims. The SEO
+  plan suggests retiring the Gulf post with a 301 to /services/digital-pr.
 
 ## 9. Gotchas
 

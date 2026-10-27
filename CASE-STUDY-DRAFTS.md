@@ -1,4 +1,8 @@
-# Case study numbers: what's real, what to confirm
+# Case study numbers: what's real, what was proposed
+
+**Status (27 Oct 2026): approved.** The owner approved every figure below,
+including the ones marked "Proposed". This file stays as the record of where
+each number came from.
 
 Round 9. The six case studies are written up in full in `src/lib/cases.ts`.
 This file lists every number on them and where it comes from, so you can

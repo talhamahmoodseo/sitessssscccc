@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import NotFound from "./NotFound";
-import { CASES, caseBySlug } from "@/lib/cases";
+import { CASE_SEO, CASES, caseBySlug } from "@/lib/cases";
 import {
   CaseHeader,
   CaseVisual,
@@ -33,8 +33,8 @@ const CaseStudy = () => {
   return (
     <PageLayout>
       <Seo
-        title={`${c.client} case study: ${c.card}`}
-        description={c.summary}
+        title={CASE_SEO[c.slug]?.title ?? `${c.client} case study: ${c.card}`}
+        description={CASE_SEO[c.slug]?.description ?? c.summary}
         schema={{
           "@context": "https://schema.org",
           "@type": "Article",

@@ -134,8 +134,8 @@ const CaseStudies = () => {
   return (
     <PageLayout>
       <Seo
-        title="Case Studies: Link Building & Digital PR Results"
-        description="Real client work from Editorial HQ: SmileTutor to number one for “tuition” in Singapore, CryptoDesk to #1 in Dubai in five months, plus Ocuco, CapCut, Defender and an agency partner."
+        title="Case Studies: Link Building & PR Results"
+        description="Real client work: SmileTutor to #1 for “tuition” in Singapore, CryptoDesk to #1 in Dubai in five months, plus Ocuco, CapCut, Defender and an agency partner."
       />
 
       {/* hero */}

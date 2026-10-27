@@ -4,14 +4,20 @@ import { Handshake, Inbox, Trash2 } from "lucide-react";
 import { haroQuotes as C } from "../content/haroQuotes";
 import { Eyebrow, H2, Soft, ease, rise } from "../kit";
 
-/* counts up to 300+ when the pile comes into view */
+/* counts up to 300+ when the pile comes into view. The first render shows
+   the final number (it's in the prerendered HTML), then it resets to 0. */
 const Counter = ({ to }: { to: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const reduced = useReducedMotion();
-  const [v, setV] = useState(reduced ? to : 0);
+  const [v, setV] = useState(to);
+  const started = useRef(false);
+  useEffect(() => {
+    if (!reduced && !started.current) setV(0);
+  }, [reduced]);
   useEffect(() => {
     if (!inView || reduced) return;
+    started.current = true;
     const c = animate(0, to, {
       duration: 2.2,
       ease: "easeOut",

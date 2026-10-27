@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -28,10 +28,13 @@ const Word = ({
 const Line = ({ text }: { text: string }) => {
   const ref = useRef<HTMLParagraphElement>(null);
   // plain text for reduced motion, and in the prerendered HTML (fully legible
-  // before JavaScript runs)
-  const reduced =
-    useReducedMotion() ||
-    (typeof window !== "undefined" && (window as any).__PRERENDER__);
+  // before JavaScript runs). The browser's first render is plain text too, so
+  // it matches that HTML; the words split straight after.
+  const [split, setSplit] = useState(false);
+  useEffect(() => {
+    if (!(window as any).__PRERENDER__) setSplit(true);
+  }, []);
+  const reduced = useReducedMotion() || !split;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.9", "start 0.4"],

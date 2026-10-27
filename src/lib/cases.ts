@@ -10,11 +10,11 @@
  *   the press features and sample sites) and two Google screenshots.
  * - Ocuco, CapCut, Defender, agency partner: the work described in the
  *   owner's portfolio. Deliverable counts (placements, DR spread, anchors,
- *   sites reviewed) are PROPOSED and listed in CASE-STUDY-DRAFTS.md for the
- *   owner to confirm against their records before the site goes live.
- * - Testimonials are drafts written from what each client told the owner.
- *   `approved` tracks sign-off; the owner gets approval before uploading.
- *   Drafts: TESTIMONIAL-DRAFTS.md.
+ *   sites reviewed) were proposed in CASE-STUDY-DRAFTS.md and approved by
+ *   the owner on 27 Oct 2026.
+ * - Testimonials were drafted from what each client told the owner, and the
+ *   clients approved them (27 Oct 2026). `approved` tracks that sign-off;
+ *   a new quote starts as false until its client says yes.
  *
  * Every section except overview, challenge, strategy and outcomes is
  * optional: the page only shows what a case has data for.
@@ -372,7 +372,7 @@ export const CASES: CaseStudy[] = [
       who: "Rum Tan",
       role: "Owner, SmileTutor",
       photo: "/images/cases/person-rum-tan.webp",
-      approved: false,
+      approved: true,
     },
   },
 
@@ -601,7 +601,7 @@ export const CASES: CaseStudy[] = [
       who: "Asad Abaas",
       role: "SEO Manager, CryptoDesk",
       photo: "/images/cases/person-asad-abaas.webp",
-      approved: false,
+      approved: true,
     },
   },
 
@@ -796,7 +796,7 @@ export const CASES: CaseStudy[] = [
       who: "Kieran Fallon",
       role: "Head of Marketing, Ocuco",
       photo: "/images/cases/person-kieran-fallon.webp",
-      approved: false,
+      approved: true,
     },
   },
 
@@ -938,7 +938,7 @@ export const CASES: CaseStudy[] = [
       text: "We needed links and mentions for specific CapCut tools, on sites creators actually read, and nothing that looked out of place for a brand our size. Editorial HQ delivered guest posts, niche edits and mentions that fit naturally, with clear reporting on every placement.",
       who: "Julia Jiang",
       role: "CapCut",
-      approved: false,
+      approved: true,
     },
   },
 
@@ -1194,7 +1194,7 @@ export const CASES: CaseStudy[] = [
       who: "Tiffany Lei",
       role: "Agency owner",
       photo: "/images/cases/person-tiffany-lei.webp",
-      approved: false,
+      approved: true,
     },
   },
 ];
@@ -1223,4 +1223,40 @@ export const CASE_TOTALS = {
   reviewed: CASES.reduce((n, c) => n + (c.links?.reviewed ?? 0), 0),
   rejected: CASES.reduce((n, c) => n + (c.links?.rejected ?? 0), 0),
   objectives: CASES.reduce((n, c) => n + (c.objectives?.length ?? 0), 0),
+};
+
+/**
+ * Search titles and descriptions for the case study pages, kept short so
+ * Google shows them whole (title under 60 characters with " | Editorial HQ",
+ * description under 160). The page itself uses `title` and `summary`.
+ */
+export const CASE_SEO: Record<string, { title: string; description?: string }> = {
+  "agency-partner": {
+    title: "Agency Partner Case Study: White Label Links",
+  },
+  "capcut": {
+    title: "CapCut Case Study: Links for AI Tool Pages",
+    description:
+      "Guest posts, niche edits and brand mentions on creator, marketing and tech sites, aimed at the pages for CapCut's individual AI tools.",
+  },
+  "cryptodesk": {
+    title: "CryptoDesk Case Study: #1 in Dubai, 5 Months",
+    description:
+      "100+ links, a Cointelegraph Magazine feature and Investing.com coverage took a Dubai crypto desk to first place for its main keywords in five months.",
+  },
+  "defender": {
+    title: "Defender Case Study: Launching a New Camera",
+    description:
+      "For a product launch, we got Defender's new security camera reviewed and listed in the “best security camera” roundups buyers read before they choose.",
+  },
+  "ocuco": {
+    title: "Ocuco Case Study: Mentions for Acuitas 3",
+    description:
+      "Editorial placements and brand mentions for Acuitas 3, Ocuco's platform for independent optical practices, in the articles eyecare businesses read.",
+  },
+  "smiletutor": {
+    title: "SmileTutor Case Study: #1 for “Tuition”",
+    description:
+      "Around 70 links and brand mentions took SmileTutor to first place on Google for “tuition”, “tuition sg” and “online tuition”. Organic traffic is up 169%.",
+  },
 };

@@ -88,7 +88,15 @@ const Footer = () => (
       </div>
 
       <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-[13px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Editorial HQ. All rights reserved.</p>
+        <p className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span>© 2026 Editorial HQ. All rights reserved.</span>
+          <Link to="/privacy" className="transition-colors hover:text-white">
+            Privacy
+          </Link>
+          <Link to="/terms" className="transition-colors hover:text-white">
+            Terms
+          </Link>
+        </p>
         <p>Link building · Digital PR · AI visibility</p>
       </div>
     </div>

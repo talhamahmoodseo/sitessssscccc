@@ -14,7 +14,7 @@ export const haroQuotes = {
   seo: {
     title: "HARO Link Building & Expert Quote Placements",
     description:
-      "HARO-style links without the HARO lottery. We map your expertise, place your quotes through editors we already work with, and answer only the requests you're the right expert for. You approve every word.",
+      "HARO-style links without the lottery. We place your quotes through editors we already work with, and only answer requests you're the right expert for.",
   },
 
   hero: {

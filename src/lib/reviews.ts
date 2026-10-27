@@ -1,11 +1,12 @@
 /**
  * Public review profiles (Clutch, Trustpilot).
  *
- * DESIGN PREVIEW: the owner asked to see the badges in the design before
- * sending the real profile links. `rating` and `count` below are
- * PLACEHOLDERS and `url` is empty. Before the site goes live, replace all
- * three with exactly what each profile shows, and set `preview` to false.
- * A badge with `preview: false` and an empty url is not rendered.
+ * HIDDEN FOR LAUNCH (round 10): Editorial HQ has no Clutch or Trustpilot
+ * profile yet, so the ratings below are the design-preview placeholders and
+ * `preview` is false, which hides every badge (a badge needs a url or
+ * `preview: true` to render). When a real profile has reviews, paste its URL,
+ * rating and count exactly as the profile shows them, and the badge appears
+ * on the homepage review wall and the pricing hero.
  */
 
 export type ReviewProfile = {
@@ -18,8 +19,8 @@ export type ReviewProfile = {
 };
 
 export const REVIEW_PROFILES: ReviewProfile[] = [
-  { platform: "Clutch", url: "", rating: "4.9", count: "18", preview: true },
-  { platform: "Trustpilot", url: "", rating: "4.8", count: "42", preview: true },
+  { platform: "Clutch", url: "", rating: "4.9", count: "18", preview: false },
+  { platform: "Trustpilot", url: "", rating: "4.8", count: "42", preview: false },
 ];
 
 export const liveProfiles = () =>

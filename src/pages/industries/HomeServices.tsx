@@ -949,7 +949,7 @@ const HomeServices = () => (
   <PageLayout>
     <Seo
       title="Link Building for Home Services Businesses"
-      description="Link building for roofers, plumbers, HVAC, electricians and remodelers, and the agencies that market them. Local and industry links that build the prominence Google uses to rank local businesses."
+      description="Link building for roofers, plumbers, HVAC firms and electricians, and the agencies that market them: local and industry links that help Google rank you."
       schema={{
         "@context": "https://schema.org",
         "@type": "Service",

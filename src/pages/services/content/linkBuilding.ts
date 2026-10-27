@@ -8,7 +8,7 @@ export const linkBuilding = {
   seo: {
     title: "Link Building Services That Move Rankings",
     description:
-      "Done-for-you link building: guest posts, niche edits and authority placements on hand-checked, relevant sites. Packages from 3 links, $190 a placement, or a $200 trial link. Free link replacement and a 100% money-back guarantee.",
+      "Done-for-you link building: guest posts and niche edits on hand-checked sites. $190 a link or a $200 trial link, backed by a money-back guarantee.",
   },
 
   hero: {
@@ -436,7 +436,7 @@ export const linkBuilding = {
   faqHead: {
     eyebrow: "Link building FAQ",
     h2: "What clients ask before they start.",
-    side: "Your question isn't here? Ask it on a 15-minute call and we'll look at your site while we're at it.",
+    side: "Your question isn't here? Ask it on a 30-minute call and we'll look at your site while we're at it.",
   },
 
   faqs: [
@@ -505,7 +505,7 @@ export const linkBuilding = {
     eyebrow: "Free link audit",
     h2a: "Send us your URL.",
     h2b: "We'll tell you what it'll take.",
-    d: "On a 15-minute call we look at your site, your competitors' backlinks and the pages closest to page one, then tell you what it would take to move them.",
+    d: "On a 30-minute call we look at your site, your competitors' backlinks and the pages closest to page one, then tell you what it would take to move them.",
     primary: "Book a strategy call",
     secondary: "Email us instead",
     email: "contact@editorialhq.com",

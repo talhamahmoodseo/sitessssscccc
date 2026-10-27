@@ -96,6 +96,12 @@ await context.addInitScript(() => {
   window.__SITE_URL__ = "__SITE_URL__";
   window.__TM_ASSET_BASE__ = "__ASSET_BASE__";
   window.__PRERENDER__ = true;
+  // The demos (rotating sites, typing answers, cycling steps) run on timers.
+  // Stop them, so each page is saved at the step the browser starts on: the
+  // browser hydrates this HTML, and a later step would not match.
+  const later = window.setTimeout;
+  window.setInterval = () => 0;
+  window.setTimeout = (fn, ms, ...args) => (ms >= 1000 ? 0 : later(fn, ms, ...args));
 });
 
 const beasties = new Beasties({
@@ -124,8 +130,11 @@ const render = async (path) => {
     await page.waitForTimeout(90);
   }
   await page.waitForTimeout(1500);
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await page.waitForTimeout(400);
+  // back to the top, instantly (the site scrolls smoothly), so scroll-driven
+  // state such as the header's background is captured as a visitor first
+  // sees it. The browser hydrates this HTML, so it has to match.
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await page.waitForTimeout(900);
 
   const data = await page.evaluate(() => {
     const head = [
@@ -144,6 +153,15 @@ const render = async (path) => {
       e.style.opacity = "";
       e.style.transform = "";
     });
+    // React renders "Last updated " and a date as two text nodes; the
+    // serialised HTML would merge them and hydration would fail. React's own
+    // server renderer separates them with an empty comment, so do the same.
+    const walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT);
+    const joins = [];
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.previousSibling && n.previousSibling.nodeType === Node.TEXT_NODE) joins.push(n);
+    }
+    joins.forEach((n) => n.parentNode.insertBefore(document.createComment(" "), n));
     const links = [...rootEl.querySelectorAll("a[href]")].map((a) =>
       a.getAttribute("href"),
     );
