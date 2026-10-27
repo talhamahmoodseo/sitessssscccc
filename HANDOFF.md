@@ -106,6 +106,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | `260577c` | Service pages redesign (Digital PR, Brand Mentions, Expert Quotes) |
 
 Technical SEO: `TECHNICAL-SEO-AUDIT.md` (findings, what was fixed, before/after scores).
+Competitor study: `USERP-COMPETITOR-ANALYSIS.md` (uSERP, Oct 2026: their offer, SEO, industry pages, proof, and our prioritised plan).
 Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 `SERVICE-PAGES-REDESIGN.md`, `HOMEPAGE-PLAN.md`, `BRAND.md`, `PROJECT.md`
 (conventions and traps), `HOSTING.md` (deployment).
