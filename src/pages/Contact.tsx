@@ -4,6 +4,7 @@ import { ArrowRight, CalendarDays, Check, Mail } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import { openBooking } from "@/lib/booking";
+import { PACKAGE_LABELS } from "@/lib/pricing";
 import { CARD, GlowPanel, ease, rise } from "./services/kit";
 
 const EMAIL = "contact@editorialhq.com";
@@ -18,12 +19,7 @@ const SERVICES = [
 ];
 
 /* matches /pricing; the order buttons there link to /contact?package=<key> */
-const PACKAGES: Record<string, string> = {
-  trial: "Trial placement ($170)",
-  standard: "Standard placements (3+, $150 each)",
-  campaign: "Monthly campaign",
-  unsure: "Not sure yet",
-};
+const PACKAGES = PACKAGE_LABELS;
 const MAIN_PACKAGES = Object.values(PACKAGES);
 
 const packageFromUrl = () =>
@@ -48,7 +44,7 @@ const NEXT = [
 const ASKED = [
   {
     q: "Is there a contract?",
-    a: "No. You pay per order. Placements are $150 each on orders of three or more, or you can test us first with a single $170 trial link. Every order has a 100% money-back guarantee.",
+    a: "No. You pay per order: packages of 3, 5 or 10 links at $190 a placement, a custom package, or a single $200 trial link to test us first. Every order has a 100% money-back guarantee.",
   },
   {
     q: "Do you work with agencies?",

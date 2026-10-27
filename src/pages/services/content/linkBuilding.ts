@@ -8,7 +8,7 @@ export const linkBuilding = {
   seo: {
     title: "Link Building Services That Move Rankings",
     description:
-      "Done-for-you link building: guest posts, niche edits and authority placements on hand-checked, relevant sites. Free link replacement and a 100% money-back guarantee. Trial placement $170.",
+      "Done-for-you link building: guest posts, niche edits and authority placements on hand-checked, relevant sites. Packages from 3 links, $190 a placement, or a $200 trial link. Free link replacement and a 100% money-back guarantee.",
   },
 
   hero: {
@@ -424,12 +424,12 @@ export const linkBuilding = {
 
   pricing: {
     eyebrow: "Link building pricing",
-    h2: "Start with one trial link. Then $150 a placement.",
+    h2: "Start with one trial link. Then $190 a placement.",
     d: "Every placement is DR 40+ on a relevant, hand-checked site, with content written for you, a white-label report, free link replacement and a 100% money-back guarantee.",
     plans: [
-      { name: "Trial placement", price: "$170", note: "One link, once per company" },
-      { name: "Standard placement", price: "$150", note: "Per link, from 3 links an order" },
-      { name: "Larger campaigns", price: "Quote", note: "20+ links a month, or DR 70+ sites" },
+      { name: "Trial placement", price: "$200", note: "One link, once per company" },
+      { name: "Starter, Growth, Authority", price: "$190", note: "Per link, in packages of 3, 5 or 10 links" },
+      { name: "Custom package", price: "Quote", note: "More links, higher traffic, or links plus PR" },
     ],
   },
 
@@ -470,7 +470,7 @@ export const linkBuilding = {
     },
     {
       q: "How much does link building cost?",
-      a: "A standard placement is $150, on orders of three or more. If you'd like to test us first, a single trial placement is $170, once per company. Larger monthly campaigns and DR 70+ placements are quoted. Every order is covered by our money-back guarantee.",
+      a: "A placement is $190. Packages come in 3, 5 or 10 links ($570, $950 or $1,900), with higher-traffic sites in the bigger packages. If you'd like to test us first, a single trial placement is $200, once per company. Anything else, like more links, a monthly plan or DR 70+ sites, is a custom package we quote. Every order is covered by our money-back guarantee.",
     },
     {
       q: "Do you work white label for agencies?",

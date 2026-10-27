@@ -18,6 +18,7 @@ import type { LucideIcon } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import { GuaranteeChips } from "@/components/Guarantees";
+import { PER_LINK } from "@/lib/pricing";
 import { openBooking } from "@/lib/booking";
 import { CARD, DarkGlow, Eyebrow, GlowPanel, H2, Soft, ease, rise } from "../services/kit";
 import { ServiceFaq } from "../services/common";
@@ -131,7 +132,7 @@ const FAQS = [
   },
   {
     q: "What does it cost?",
-    a: "Placements are $150 each on orders of three or more. To test us first, a single trial placement is $170. Every order has a 100% money-back guarantee and free link replacement.",
+    a: "Placements are $190 each, in packages of 3, 5 or 10 links. To test us first, a single trial placement is $200. Every order has a 100% money-back guarantee and free link replacement.",
   },
 ];
 
@@ -256,7 +257,7 @@ const Calculator = () => {
   const [extra, setExtra] = useState(2);
   const [links, setLinks] = useState(6);
   const year = job * extra * 12;
-  const cost = links * 150;
+  const cost = links * PER_LINK;
   const breakEven = job > 0 ? Math.max(1, Math.ceil(cost / job)) : 0;
 
   return (
@@ -301,7 +302,7 @@ const Calculator = () => {
               label="Placements"
               value={links}
               onChange={setLinks}
-              hint="At $150 each"
+              hint="At $190 each"
             />
           </div>
           <div className="mt-7 grid gap-3 sm:grid-cols-3">
@@ -354,7 +355,7 @@ const HomeServices = () => (
         provider: { "@type": "Organization", name: "Editorial HQ" },
         audience: { "@type": "BusinessAudience", name: "Home service businesses and their agencies" },
         areaServed: "Worldwide",
-        offers: { "@type": "Offer", price: "150", priceCurrency: "USD" },
+        offers: { "@type": "Offer", price: "190", priceCurrency: "USD" },
       }}
     />
 

@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowRight, Check, Minus, RefreshCw, RotateCcw } from "lucide-react";
+import { ArrowRight, Ban, Check, EyeOff, Minus, RefreshCw, RotateCcw } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { asset } from "@/lib/booking";
 import { DarkGlow, Eyebrow, H2, Soft, rise } from "@/pages/services/kit";
 
 /**
- * The two promises behind every order: your money back if we can't deliver
- * what you ordered, and a free replacement if a link is ever removed.
+ * The four promises behind every order: money back, free link replacement,
+ * no PBNs (white-hat outreach only) and white label.
  *
- * One source of truth for the wording. The short lines show up on the
- * homepage, the link building page and the pricing page; the full terms
- * live on /pricing#guarantee-terms. Terms are the owner's policy: confirm
- * any change with them before editing.
+ * One source of truth for the wording. The band (homepage, link building,
+ * pricing) and the terms (/pricing#guarantee-terms) show all four. The
+ * small chips in heroes show only the two `core` ones, so "no PBNs" and
+ * "white-hat" aren't repeated all over the site. Terms are the owner's
+ * policy: confirm any change with them before editing.
  */
 
 type Guarantee = {
   id: string;
+  /** shown in the small hero chips too */
+  core: boolean;
   Icon: LucideIcon;
   title: string;
   chip: string;
@@ -29,6 +32,7 @@ type Guarantee = {
 export const GUARANTEES: Guarantee[] = [
   {
     id: "money-back",
+    core: true,
     Icon: RotateCcw,
     title: "100% money-back guarantee",
     chip: "100% money-back",
@@ -48,6 +52,7 @@ export const GUARANTEES: Guarantee[] = [
   },
   {
     id: "replacement",
+    core: true,
     Icon: RefreshCw,
     title: "Link replacement guarantee",
     chip: "Free link replacement",
@@ -65,6 +70,39 @@ export const GUARANTEES: Guarantee[] = [
     ],
     claim:
       "Send us the link and what happened. We check it within two business days and replace it within 30 days.",
+  },
+  {
+    id: "no-pbns",
+    core: false,
+    Icon: Ban,
+    title: "No PBNs. White-hat only.",
+    chip: "No PBNs",
+    line: "Real publications with real editors. Never private blog networks, link farms or sites we own.",
+    covered: [
+      "Every site has its own editor, its own readers and real rankings in Google.",
+      "Every site passes our 7-point site check by hand before it's offered to you.",
+      "Outreach is white-hat: we pitch editors with content their readers want. No hacked sites, no spam comments, no link schemes.",
+      "If a site we placed you on turns out to be part of a PBN, we refund that placement in full.",
+    ],
+    notCovered: [],
+    claim:
+      "Every report lists the site and the live URL, so you can check any placement yourself.",
+  },
+  {
+    id: "white-label",
+    core: false,
+    Icon: EyeOff,
+    title: "100% white label",
+    chip: "100% white label",
+    line: "For agencies: our name never appears anywhere. Your clients only ever see you.",
+    covered: [
+      "Outreach runs under a neutral identity. Publishers never hear your agency's or your client's name from us.",
+      "Unbranded reports as a Google Sheet, CSV or PDF, ready for your logo.",
+      "We never contact your clients. NDA on request.",
+    ],
+    notCovered: [],
+    claim:
+      "Tell us it's a white-label order when you place it. Everything after that is unbranded by default.",
   },
 ];
 
@@ -128,7 +166,7 @@ export const Seal = ({ className = "h-40 w-40" }: { className?: string }) => (
 
 /* ----------------------------------- chips --------------------------------- */
 
-/** One line of the four promises, for heroes and next to order buttons. */
+/** The two core promises on one line, for heroes and next to order buttons. */
 export const GuaranteeChips = ({
   dark = false,
   compact = false,
@@ -140,7 +178,7 @@ export const GuaranteeChips = ({
   className?: string;
 }) => (
   <ul className={`flex flex-wrap ${compact ? "gap-1.5" : "gap-2"} ${className}`}>
-    {GUARANTEES.map(({ id, Icon, chip }) => (
+    {GUARANTEES.filter((g) => g.core).map(({ id, Icon, chip }) => (
       <li
         key={id}
         className={`inline-flex items-center gap-1.5 rounded-full font-semibold ${
@@ -178,7 +216,7 @@ export const GuaranteeBand = ({ terms = true }: { terms?: boolean }) => (
         </H2>
         <p className="mt-6 max-w-md text-[17px] leading-relaxed text-white/75">
           Every order, from a single trial link to a full campaign, comes with
-          the same two promises, with the terms written out in full.
+          the same four promises, with the terms written out in full.
         </p>
         <div className="mt-9 flex items-center gap-6">
           <Seal className="h-32 w-32 flex-none sm:h-36 sm:w-36" />

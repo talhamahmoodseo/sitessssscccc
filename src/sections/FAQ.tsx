@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "How much does it cost, and do you guarantee results?",
-    a: "A standard placement is $150, on orders of three or more. To test us first, a single trial placement is $170, once per company. Every order has a 100% money-back guarantee and free link replacement. We don't guarantee rankings or AI citations, because nobody honestly can. We guarantee the work itself.",
+    a: "A placement is $190, in packages of 3, 5 or 10 links ($570, $950 or $1,900). To test us first, a single trial placement is $200, once per company. Need something else? We'll build a custom package. Every order has a 100% money-back guarantee and free link replacement. We don't guarantee rankings or AI citations, because nobody honestly can. We guarantee the work itself.",
   },
 ];
 

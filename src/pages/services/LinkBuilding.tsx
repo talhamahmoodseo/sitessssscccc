@@ -30,9 +30,9 @@ const SERVICE_SCHEMA = {
   areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
-    price: "150",
+    price: "190",
     priceCurrency: "USD",
-    description: "Standard placement, on orders of three or more. Trial placement $170.",
+    description: "Per placement, in packages of 3, 5 or 10 links. Trial placement $200.",
   },
 };
 

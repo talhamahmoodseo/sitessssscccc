@@ -196,7 +196,7 @@ export const about = {
       {
         to: "/pricing",
         t: "What it costs",
-        d: "$150 a placement, or a single $170 trial link to test us first.",
+        d: "Packages from 3 links at $190 a placement, or a single $200 trial link to test us first.",
         cta: "See pricing",
       },
     ],
