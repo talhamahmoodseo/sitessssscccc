@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, startTransition, useEffect, type ReactNode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { MotionGlobalConfig } from "motion/react";
@@ -21,6 +21,18 @@ const root = document.getElementById("root")!;
    first render. Animations further down the page still play on scroll. */
 const prerendered = root.childElementCount > 0;
 
+/** Turns entrance animations back on once the prerendered page is hydrated.
+ *  Its effect runs after every child's, so nothing on screen replays. */
+const Hydrated = ({ children }: { children: ReactNode }) => {
+  useEffect(() => {
+    const t = setTimeout(() => {
+      MotionGlobalConfig.skipAnimations = false;
+    }, 120);
+    return () => clearTimeout(t);
+  }, []);
+  return <>{children}</>;
+};
+
 const start = async () => {
   const path =
     window.location.pathname.slice(basename.replace(/\/$/, "").length) || "/";
@@ -29,7 +41,9 @@ const start = async () => {
   const app = (
     <StrictMode>
       <BrowserRouter basename={basename}>
-        <App />
+        <Hydrated>
+          <App />
+        </Hydrated>
       </BrowserRouter>
     </StrictMode>
   );
@@ -37,19 +51,20 @@ const start = async () => {
   // browser count the hero as painted a second time, which pushed mobile LCP
   // from about 0.3 s to 2.8 s. If a page ever renders differently in the
   // browser, React recovers by rendering it fresh, as before.
+  // Hydrating inside a transition lets React work in small slices and give
+  // the browser the main thread in between, instead of one long block
+  // (about 0.9 s on a throttled phone), which is what Lighthouse counts as
+  // Total Blocking Time. The page is already visible, so nothing waits on it.
   if (prerendered) {
-    hydrateRoot(root, app, {
-      onRecoverableError: (err) => {
-        if ((window as any).__TM_DEBUG_HYDRATION__) console.warn("hydration:", err);
-      },
+    startTransition(() => {
+      hydrateRoot(root, app, {
+        onRecoverableError: (err) => {
+          if ((window as any).__TM_DEBUG_HYDRATION__) console.warn("hydration:", err);
+        },
+      });
     });
   } else {
     createRoot(root).render(app);
-  }
-  if (prerendered) {
-    setTimeout(() => {
-      MotionGlobalConfig.skipAnimations = false;
-    }, 400);
   }
 };
 

@@ -16,7 +16,7 @@ import { asset } from "@/lib/booking";
 import type { CaseStudy } from "@/lib/cases";
 import { CARD, GlowPanel, ease, rise } from "../services/kit";
 import { BrowserFrame, LogoChip } from "./CaseParts";
-import { Columns, LineArea, Positions, StackBar } from "./charts";
+import { Columns, GrowthChart, Positions, StackBar } from "./charts";
 
 /**
  * The case study report (restored from round 7 and extended in round 9):
@@ -251,37 +251,29 @@ const TONE: Record<string, "warm" | "cool" | "fresh" | "rose"> = {
   "bg-blush": "rose",
 };
 
-/** SmileTutor: the real Semrush trend, this year against two years ago */
+/** SmileTutor: the real Semrush numbers, drawn from zero so the growth looks
+ *  as big as it is. The headline pair is the month the work started against
+ *  the latest month; the bars underneath are every month of both years. */
 const TrafficBand = ({ c }: { c: CaseStudy }) => {
   const m = c.results!.main!;
+  const change = c.results!.kpis?.[0]?.change ?? "";
   return (
     <div className={`${CARD} p-5 sm:p-8`}>
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-[15px] font-semibold text-navy-dark">{m.label}</p>
-          <p className="mt-1 text-[12px] text-navy-dark/70">{m.note}</p>
-        </div>
-        <div className="flex items-center gap-4 text-[12.5px] text-navy-dark/80">
-          <span className="flex items-center gap-2">
-            <span className="h-[3px] w-5 rounded-full bg-navy-dark" />
-            {m.seriesLabel}
-          </span>
-          {m.compare && (
-            <span className="flex items-center gap-2">
-              <span className="w-5 border-t-2 border-dashed border-[rgb(var(--plume-cool))]" />
-              {m.compare.label}
-            </span>
-          )}
-        </div>
+      <div className="mb-8">
+        <p className="text-[15px] font-semibold text-navy-dark">{m.label}</p>
+        <p className="mt-1 text-[12px] text-navy-dark/70">{m.note}</p>
       </div>
-      <LineArea
-        series={m.series}
-        compare={m.compare?.series}
-        labels={m.labels}
-        notes={m.notes}
-        height={280}
-      />
-      <p className="mt-5 text-[11.5px] text-navy-dark/60">
+      {m.compare ? (
+        <GrowthChart
+          labels={m.labels}
+          now={m.series}
+          then={m.compare.series}
+          nowLabel={m.seriesLabel ?? ""}
+          thenLabel={m.compare.label}
+          change={change}
+        />
+      ) : null}
+      <p className="mt-8 text-[11.5px] text-navy-dark/60">
         Source: {c.results!.source}
       </p>
     </div>

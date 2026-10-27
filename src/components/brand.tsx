@@ -120,21 +120,21 @@ export const StatTile = ({
   delay?: number;
 }) => (
   <motion.div
-    className={`flex aspect-square flex-col justify-between rounded-[26px] p-6 sm:p-7 ${TILE[tile]}`}
+    className={`flex h-full min-h-[172px] flex-col justify-between gap-5 rounded-[22px] p-5 sm:aspect-square sm:min-h-0 sm:rounded-[26px] sm:p-7 ${TILE[tile]}`}
     initial={{ opacity: 0, y: 18 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] }}
   >
     <div>
-      <div className="text-[2.4rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark sm:text-[2.9rem]">
+      <div className="text-[1.9rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark sm:text-[2.9rem]">
         {value}
       </div>
-      <div className="mt-2 text-[14px] leading-snug text-navy-dark/70">
+      <div className="mt-2 text-[12.5px] leading-snug text-navy-dark/70 sm:text-[14px]">
         {label}
       </div>
     </div>
-    <ClientMark client={client} logo={logo} h={logoH} className="self-start" />
+    <ClientMark client={client} logo={logo} h={logoH} className="max-w-full self-start origin-left scale-[0.85] sm:scale-100" />
   </motion.div>
 );
 
@@ -161,17 +161,17 @@ export const QuoteTile = ({
   delay?: number;
 }) => (
   <motion.figure
-    className="flex h-full flex-col justify-between rounded-[26px] bg-linen/70 p-6 sm:p-8"
+    className="flex h-full flex-col justify-between rounded-[22px] bg-linen/70 p-5 sm:rounded-[26px] sm:p-8"
     initial={{ opacity: 0, y: 18 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] }}
   >
-    <blockquote className="text-[18px] leading-[1.42] tracking-[-0.018em] text-navy-dark sm:text-[20px]">
+    <blockquote className="text-[16.5px] leading-[1.45] tracking-[-0.015em] text-navy-dark sm:text-[20px]">
       “{quote}”
     </blockquote>
 
-    <figcaption className="mt-8 flex items-center gap-3">
+    <figcaption className="mt-6 flex items-center gap-3 sm:mt-8">
       {avatar && (
         <img
           src={asset(avatar)}

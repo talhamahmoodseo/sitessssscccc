@@ -281,3 +281,47 @@
     }
   }
 }
+
+/* ---- loops that run on the compositor: transform and opacity only, no
+   JavaScript per frame (round 11, see HANDOFF "Performance") ---- */
+@keyframes ehq-pop {
+  0% { opacity: 0; transform: translateY(6px) scale(0.9); }
+  14% { opacity: 1; transform: none; }
+  72% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+@keyframes ehq-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(var(--drift), calc(var(--drift) * -0.7), 0); }
+  66% { transform: translate3d(calc(var(--drift) * -0.6), calc(var(--drift) * 0.5), 0); }
+}
+@keyframes ehq-scroll-up {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -50%, 0); }
+}
+@keyframes ehq-scroll-down {
+  from { transform: translate3d(0, -50%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ehq-drift,
+  .ehq-scroll {
+    animation: none !important;
+  }
+}
+
+/* ---- homepage sections below the fold: skipped until near the screen
+   (see cv() in pages/Home.tsx) ---- */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--cis-m, 1000px);
+}
+@media (min-width: 1024px) {
+  .cv-auto {
+    contain-intrinsic-size: auto var(--cis-d, 1000px);
+  }
+}
+/* set before a jump to an anchor (components/MotionKit.tsx), so it lands exactly */
+.cv-off .cv-auto {
+  content-visibility: visible;
+}

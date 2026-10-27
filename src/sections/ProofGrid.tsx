@@ -15,9 +15,10 @@ import { PROOF_TILES } from "@/lib/clients";
  * to it.
  */
 
-/* a quote takes half a row, a stat takes a quarter */
+/* a quote takes half a row, a stat takes a quarter. On phones two stats sit
+   side by side and a quote takes the full width. */
 const span = (kind: "stat" | "quote") =>
-  kind === "quote" ? "sm:col-span-2 lg:col-span-6" : "lg:col-span-3";
+  kind === "quote" ? "col-span-2 lg:col-span-6" : "col-span-1 lg:col-span-3";
 
 const ProofGrid = () => (
   <div className="relative bg-mist py-20 lg:py-28">
@@ -34,7 +35,7 @@ const ProofGrid = () => (
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-12">
         {PROOF_TILES.map((t, i) => (
           <Link
             key={t.kind === "stat" ? `${t.client}-${t.value}` : t.name}

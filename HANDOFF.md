@@ -62,6 +62,25 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
   LCP 2.8 s in the lab; 0.3–0.5 s with hydration). If a page renders
   differently in the browser, React silently falls back to a fresh render,
   so a mismatch costs speed, not correctness.
+- **Performance (round 11), keep these when you change the homepage:**
+  - Hydration runs inside `startTransition` (`main.tsx`) so it's sliced
+    into short tasks; `<Hydrated>` turns entrance animations back on after
+    it commits.
+  - Homepage sections below the hero have `content-visibility: auto`
+    (`cv()` in `pages/Home.tsx`) with measured phone/desktop heights. If a
+    section's height changes a lot, re-measure it. The process section is
+    left out on purpose (its height follows the screen). Before any anchor
+    jump, `ScrollToTop` adds `.cv-off` so the jump lands exactly.
+  - Never animate `height: "auto"` or mix units (0 → "62%") on anything that
+    changes while scrolling: motion then measures the page and calls
+    `window.scrollTo`, which cancels smooth scrolling and forces reflows.
+    Use transform (scale), or the CSS grid-rows trick as in `Process.tsx`.
+  - Loops that run forever (colour blobs, review columns, the logo strip)
+    are CSS animations of transform/opacity (`ehq-*` in `index.css`), never
+    motion animations, so they cost nothing on the main thread.
+  - The review wall renders each quote once in the HTML and builds its
+    looping columns after load; loop copies are `inert` and `aria-hidden`.
+  - Images: size them to about 3× their display size at most.
 - **Keep pages hydratable.** The first render in the browser must match the
   prerendered HTML: don't read the URL, storage, screen size or the clock
   during render (do it in `useEffect`, as `Contact.tsx` does for
@@ -124,6 +143,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
+| (round 11) | New homepage hero (`sections/SearchStory.tsx`, replaces `CampaignView`): one Google results page for one search; three editorial links go live, the client's result climbs #4 → #1, then the AI Overview names it. Plays once when the results come into view, with captions and a Replay button. SmileTutor chart redrawn from zero (`GrowthChart` in `pages/results/charts.tsx`): Oct 2024 14.3K vs Oct 2026 38.5K, then every month of both years. "Results our clients take to their boards" (`ProofGrid`) is two stats per row on phones (3,412 → 1,624 px). Speed: hydration in a transition, homepage sections skipped until near the screen, review wall rendered once, colour blobs and review columns as CSS animations, process steps open with CSS instead of `height: auto`, oversized logos resized, theme `.htaccess` for long cache lifetimes, Hostinger Reach script removed, font preloads. See §3 "Performance" |
 | (round 10) | Go-live fixes from the SEO plan's step 0. Testimonials approved by the clients and case study figures approved by the owner. Booking goes to calendly.com/talhaseoexpert/30min ("30-minute call" site-wide). Placeholder Clutch/Trustpilot badges hidden. Real contact form: posts to `/wp-json/editorialhq/v1/contact`, emails the inbox set in Settings > General and keeps a copy under Enquiries in wp-admin (honeypot, 5 an hour per IP); the homepage and brand mentions quick forms now open it prefilled. GA4 via a Settings > General field, Consent Mode v2 banner for UK/Europe, events `generate_lead` (form sent, call booked) and `book_call` (booking opened). Theme: 301s for the three round 6 sample case studies and www → bare domain, feeds and trackbacks 404, `/wp/v2/users` hidden from visitors, XML-RPC off. Privacy and Terms pages, linked in the footer. Hydration instead of re-rendering (see §3). Titles under 60 and descriptions under 160 characters on every page |
 | (round 9) | Restored what round 8 removed, at a higher standard: the case study report layout (numbered sections, contents rail, charts, link-building activity, results, outcomes) with six real clients incl. CryptoDesk; homepage featured review (Rum Tan), case-study rows, "see the numbers" bento and the review wall with Clutch/Trustpilot badges; the pinned scroll-through process with realistic product screens per step (`sections/Process.tsx`); the four-promise guarantee band; the full pricing page (trial $200, Starter/Growth/Authority at $190 a link, Custom, comparison table). Home Services rewritten long-form and taken out of the header. Plan: `PLAN-ROUND-9.md` |
 | (round 8) | Real portfolio: 5 case studies (SmileTutor, Defender, Ocuco, CapCut, agency partner) on a new evidence-led template (`lib/cases.ts`, `pages/results/CaseParts.tsx`), client logos, all invented quotes/stats/reviews removed, volume claims removed, guarantees cut to money-back + link replacement, pricing $150 standard (3+) / $170 trial, Home Services industry page (`/industries/home-services`), gradient second line on every section heading (`Soft` in kit), new homepage process timeline, Clutch/Trustpilot badges wired but hidden (`lib/reviews.ts`), testimonial drafts in `TESTIMONIAL-DRAFTS.md` |
@@ -208,9 +228,11 @@ review badges hidden.
   (`/[0.12]`).
 - `.accent-ink` text is transparent with a gradient clip, so contrast checkers
   report it as 1:1 — false positive.
-- The homepage hero panel is `src/sections/CampaignView.tsx` (placements going
-  live, what they moved, the month in numbers). The rocket and smoke were
-  removed at the owner's request.
+- The homepage hero panel is `src/sections/SearchStory.tsx` (round 11). It
+  replaced `CampaignView`, which the owner found hard to read. Its companies
+  and publications are made up on purpose: it illustrates how a campaign
+  works, it isn't a client result. The rocket and smoke were removed earlier
+  at the owner's request.
 - The pinned process (`sections/Process.tsx`) runs on a 340vh scroll track on
   desktop. The screens size to `calc(100vh - 380px)` so the section fits
   short laptop screens; check at 1440×800 after changing it.

@@ -92,6 +92,7 @@ const Results = () => (
                   ))}
                   <Link
                     to={`/case-studies/${c.slug}`}
+                    aria-label={`Open the ${c.client} case file`}
                     className="ml-auto inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-navy-dark transition-all duration-300 group-hover:gap-2.5"
                   >
                     Open the case file

@@ -260,6 +260,12 @@ function tm_enqueue_app() {
 		'before'
 	);
 
+	// Hostinger Reach (an email-signup plugin) loads a script on every page.
+	// The site has no Reach forms, so it's only weight. Removing it here keeps
+	// it off even if the plugin is switched back on.
+	wp_dequeue_script( 'hostinger-reach-embed' );
+	wp_deregister_script( 'hostinger-reach-embed' );
+
 	// block-editor styles this theme never uses
 	wp_dequeue_style( 'wp-block-library' );
 	wp_dequeue_style( 'wp-block-library-theme' );

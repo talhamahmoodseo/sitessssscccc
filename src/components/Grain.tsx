@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "motion/react";
+import type React from "react";
 
 /** Alpha noise. Used as a mask so colour dissolves into grain at its edges,
  *  the way risograph ink does, instead of fading smoothly. */
@@ -24,12 +24,17 @@ export const GrainBlob = ({
   className?: string;
   drift?: number;
   duration?: number;
-}) => {
-  const reduced = useReducedMotion();
-  return (
-    <motion.div
-      className={`pointer-events-none absolute rounded-full ${className}`}
-      style={{
+}) => (
+  // The drift is a CSS animation of transform only, so it runs on the
+  // compositor with no JavaScript per frame (it used to be a motion
+  // animation, which cost main-thread time on every frame, even off screen).
+  // Reduced motion stops it in index.css.
+  <div
+    className={`ehq-drift pointer-events-none absolute rounded-full ${className}`}
+    style={
+      {
+        "--drift": `${drift}px`,
+        animation: `ehq-drift ${duration}s ease-in-out infinite`,
         background: `radial-gradient(closest-side, ${color} 0%, ${color} 38%, transparent 100%)`,
         WebkitMaskImage: `${NOISE}, radial-gradient(closest-side, #000 55%, transparent 100%)`,
         maskImage: `${NOISE}, radial-gradient(closest-side, #000 55%, transparent 100%)`,
@@ -37,17 +42,8 @@ export const GrainBlob = ({
         maskComposite: "intersect",
         WebkitMaskSize: "220px 220px, 100% 100%",
         maskSize: "220px 220px, 100% 100%",
-      }}
-      animate={
-        reduced
-          ? undefined
-          : {
-              x: [0, drift, -drift * 0.6, 0],
-              y: [0, -drift * 0.7, drift * 0.5, 0],
-            }
-      }
-      transition={{ duration, repeat: Infinity, ease: "easeInOut" }}
-      aria-hidden="true"
-    />
-  );
-};
+      } as React.CSSProperties
+    }
+    aria-hidden="true"
+  />
+);

@@ -813,24 +813,25 @@ const Process = () => {
                               {s.when}
                             </span>
                           </span>
-                          <AnimatePresence initial={false}>
-                            {on && (
-                              <motion.span
-                                className="block overflow-hidden"
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.45, ease }}
-                              >
-                                <span className="mt-2 block max-w-md text-[15px] leading-relaxed text-navy-dark/75">
-                                  {s.d}
-                                </span>
-                                <span className="mt-4 block pb-1">
-                                  <GetChip>{s.get}</GetChip>
-                                </span>
-                              </motion.span>
-                            )}
-                          </AnimatePresence>
+                          {/* Opens with a CSS grid-rows transition. Animating
+                              height to "auto" made motion measure the page and
+                              call window.scrollTo on every step change, which
+                              cancelled smooth scrolling (links like #contact
+                              stopped short) and forced reflows while scrolling. */}
+                          <span
+                            className="grid transition-[grid-template-rows,opacity] duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                            style={{ gridTemplateRows: on ? "1fr" : "0fr", opacity: on ? 1 : 0 }}
+                            aria-hidden={!on}
+                          >
+                            <span className="block overflow-hidden">
+                              <span className="mt-2 block max-w-md text-[15px] leading-relaxed text-navy-dark/75">
+                                {s.d}
+                              </span>
+                              <span className="mt-4 block pb-1">
+                                <GetChip>{s.get}</GetChip>
+                              </span>
+                            </span>
+                          </span>
                         </span>
                       </button>
                     </li>

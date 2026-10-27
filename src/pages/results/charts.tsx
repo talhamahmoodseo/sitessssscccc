@@ -363,3 +363,169 @@ export const Positions = ({
     </div>
   );
 };
+
+/* --------------------------- growth: before, after --------------------------- */
+
+/** 14,300 -> "14.3K": one decimal, the way Semrush shows it */
+const k1 = (n: number) => `${(n / 1000).toFixed(1)}K`;
+
+/**
+ * Traffic growth drawn so the size of the change is the size you see: every
+ * bar starts at zero, the same scale is used throughout, and the two numbers
+ * that matter (the month the work started and the latest month) are written
+ * on the bars. Built for SmileTutor's Semrush data (2024 against 2026).
+ */
+export const GrowthChart = ({
+  labels,
+  now,
+  then,
+  nowLabel,
+  thenLabel,
+  change,
+}: {
+  labels: string[];
+  /** this year, month by month */
+  now: number[];
+  /** the same months two years earlier */
+  then: number[];
+  nowLabel: string;
+  thenLabel: string;
+  change: string;
+}) => {
+  const last = labels.length - 1;
+  const start = then[last];
+  const end = now[last];
+  const peak = now.indexOf(Math.max(...now));
+  const step = 25000;
+  const top = Math.ceil(Math.max(...now, ...then) / step) * step;
+  const ticks = Array.from({ length: top / step + 1 }, (_, i) => i * step);
+  const grow = (delay: number) => ({
+    initial: { scaleY: 0 },
+    whileInView: { scaleY: 1 },
+    viewport: { once: true, margin: "-40px" },
+    transition: { duration: 0.8, delay, ease },
+  });
+
+  return (
+    <div className="grid gap-10 lg:grid-cols-[0.8fr_1.6fr] lg:gap-12">
+      {/* the headline comparison */}
+      <div>
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-navy-dark/60">
+          {labels[last]} {thenLabel} vs {labels[last]} {nowLabel}
+        </p>
+        <div className="mt-5 flex h-[230px] items-end gap-5 border-b border-navy-dark/15 sm:h-[260px]">
+          {[
+            { v: start, k: `${labels[last]} ${thenLabel}`, ink: false },
+            { v: end, k: `${labels[last]} ${nowLabel}`, ink: true },
+          ].map((b, i) => (
+            <div key={b.k} className="flex h-full flex-1 flex-col justify-end">
+              <span className="mb-2 text-[1.6rem] font-semibold leading-none tracking-[-0.03em] tabular-nums text-navy-dark sm:text-[1.9rem]">
+                {k1(b.v)}
+              </span>
+              <motion.span
+                className={`block w-full rounded-t-xl ${b.ink ? "bg-navy-dark" : "bg-[rgb(var(--plume-cool)/0.45)]"}`}
+                style={{ height: `${(b.v / end) * 82}%`, transformOrigin: "bottom" }}
+                {...grow(0.1 + i * 0.25)}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 flex gap-5">
+          <span className="flex-1 text-[12px] leading-snug text-navy-dark/70">
+            {labels[last]} {thenLabel}
+            <br />
+            when the work started
+          </span>
+          <span className="flex-1 text-[12px] leading-snug text-navy-dark/70">
+            {labels[last]} {nowLabel}
+            <br />
+            two years later
+          </span>
+        </div>
+        <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-mint px-3.5 py-1.5 text-[13px] font-semibold text-navy-dark">
+          {change} organic traffic, {(end / start).toFixed(1)}× the visits
+        </p>
+      </div>
+
+      {/* every month, both years */}
+      <div>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-navy-dark/60">
+            Month by month
+          </p>
+          <div className="flex items-center gap-4 text-[12px] text-navy-dark/80">
+            <span className="flex items-center gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-[3px] bg-[rgb(var(--plume-cool)/0.45)]" />
+              {thenLabel}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-[3px] bg-navy-dark" />
+              {nowLabel}
+            </span>
+          </div>
+        </div>
+        <div className="mt-5 flex gap-3">
+          {/* y axis */}
+          <div className="relative h-[230px] w-8 flex-none sm:h-[260px]">
+            {ticks.map((t) => (
+              <span
+                key={t}
+                className="absolute right-0 translate-y-1/2 text-[10.5px] tabular-nums text-navy-dark/55"
+                style={{ bottom: `${(t / top) * 100}%` }}
+              >
+                {t ? `${t / 1000}K` : "0"}
+              </span>
+            ))}
+          </div>
+          <div className="relative h-[230px] flex-1 sm:h-[260px]">
+            {ticks.map((t) => (
+              <span
+                key={t}
+                className={`absolute inset-x-0 border-t ${t ? "border-dashed border-navy-dark/10" : "border-navy-dark/20"}`}
+                style={{ bottom: `${(t / top) * 100}%` }}
+              />
+            ))}
+            <div className="absolute inset-0 flex items-end gap-1.5 sm:gap-3">
+              {labels.map((l, i) => (
+                <div
+                  key={l}
+                  className="relative flex h-full flex-1 items-end justify-center gap-[2px] sm:gap-1"
+                  title={`${l}: ${then[i].toLocaleString()} in ${thenLabel}, ${now[i].toLocaleString()} in ${nowLabel}`}
+                >
+                  <motion.span
+                    className="block w-[42%] max-w-[18px] rounded-t-[4px] bg-[rgb(var(--plume-cool)/0.45)]"
+                    style={{ height: `${(then[i] / top) * 100}%`, transformOrigin: "bottom" }}
+                    {...grow(i * 0.04)}
+                  />
+                  <motion.span
+                    className="block w-[42%] max-w-[18px] rounded-t-[4px] bg-navy-dark"
+                    style={{ height: `${(now[i] / top) * 100}%`, transformOrigin: "bottom" }}
+                    {...grow(0.15 + i * 0.04)}
+                  />
+                  {(i === peak || i === last) && (
+                    <span
+                      className={`absolute whitespace-nowrap rounded-md bg-navy-dark px-1.5 py-0.5 text-[10.5px] font-bold tabular-nums text-white ${i === last ? "right-0" : "left-1/2 -translate-x-1/2"}`}
+                      style={{ bottom: `calc(${(now[i] / top) * 100}% + 6px)` }}
+                    >
+                      {k1(now[i])}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="mt-2 flex gap-3">
+          <span className="w-8 flex-none" />
+          <div className="flex flex-1 gap-1.5 sm:gap-3">
+            {labels.map((l) => (
+              <span key={l} className="flex-1 text-center text-[10.5px] text-navy-dark/65 sm:text-[11px]">
+                {l}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

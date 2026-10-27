@@ -290,7 +290,7 @@ export const CASES: CaseStudy[] = [
       ],
       main: {
         label: "Organic traffic per month",
-        note: "January to October, 2026 against 2024",
+        note: "Semrush, Google Singapore: October 2024, when the work started, against October 2026, then every month of both years",
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
         seriesLabel: "2026",
         series: [31800, 33500, 31200, 32300, 90200, 50500, 31800, 39700, 56200, 38500],

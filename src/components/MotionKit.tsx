@@ -22,15 +22,34 @@ export const ScrollProgress = () => {
   );
 };
 
+/**
+ * Homepage sections below the fold are skipped until they're near the screen
+ * (.cv-auto, see pages/Home.tsx). Their heights are estimates until then, so
+ * before any jump to an anchor, lay everything out for real: the jump then
+ * lands exactly where it should.
+ */
+const showAllSections = () => document.documentElement.classList.add("cv-off");
+
 /** Reset scroll on route change, but leave in-page hash links alone. */
 export const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
+
+  // in-page links (<a href="#contact">): runs before the browser scrolls
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.("a[href*='#']");
+      if (a) showAllSections();
+    };
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, []);
 
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
       return;
     }
+    showAllSections();
     // links like /#services: scroll once the page has rendered
     const t = setTimeout(() => {
       document

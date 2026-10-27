@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { GuaranteeChips } from "@/components/Guarantees";
 import { contactLink } from "@/lib/booking";
-import CampaignView from "./CampaignView";
+import SearchStory from "./SearchStory";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -97,14 +97,12 @@ const Hero = () => {
         </motion.div>
       </div>
       <motion.div
-        className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16"
+        className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 lg:mt-16"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="rounded-[1.4rem] border border-line bg-white p-2 shadow-deep">
-          <CampaignView />
-        </div>
+        <SearchStory />
       </motion.div>
     </div>
   );

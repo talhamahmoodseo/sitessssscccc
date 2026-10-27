@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
 import { asset } from "@/lib/booking";
 import { CASES, caseBySlug, clientQuotes } from "@/lib/cases";
@@ -232,42 +233,74 @@ const ReviewCard = ({ r }: { r: Review }) => (
   </figure>
 );
 
-/** A column that drifts slowly; content is doubled so the loop is seamless. */
+/**
+ * A column that drifts slowly. When it loops, the content is doubled so the
+ * loop is seamless; the copies are hidden from screen readers and can't take
+ * focus (`inert`). The drift is a CSS animation of transform only, so it runs
+ * on the compositor, not the main thread.
+ */
 const Column = ({
   items,
   duration,
   reverse,
+  loop,
 }: {
   items: Review[];
   duration: number;
   reverse?: boolean;
+  loop: boolean;
 }) => {
-  const reduced = useReducedMotion();
   // short columns repeat so the loop never shows an empty gap
-  const base = items.length < 4 ? [...items, ...items] : items;
+  const base = loop && items.length < 4 ? [...items, ...items] : items;
+  const all = loop ? [...base, ...base] : base;
   return (
     <div className="overflow-hidden">
-      <motion.div
-        className="space-y-4"
-        animate={
-          reduced ? undefined : { y: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }
+      <div
+        className={loop ? "ehq-scroll space-y-4" : "space-y-4"}
+        style={
+          loop
+            ? { animation: `${reverse ? "ehq-scroll-down" : "ehq-scroll-up"} ${duration}s linear infinite` }
+            : undefined
         }
-        transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
-        {[...base, ...base].map((r, n) => (
-          <div key={n} aria-hidden={n >= items.length}>
-            <ReviewCard r={r} />
-          </div>
-        ))}
-      </motion.div>
+        {all.map((r, n) =>
+          n < items.length ? (
+            <div key={n}>
+              <ReviewCard r={r} />
+            </div>
+          ) : (
+            <div key={n} aria-hidden="true" inert>
+              <ReviewCard r={r} />
+            </div>
+          ),
+        )}
+      </div>
     </div>
   );
 };
 
 export const ReviewWall = () => {
   const wall = clientQuotes();
-  const cols = [0, 1, 2].map((c) => wall.filter((_, n) => n % 3 === c));
-  const halves = [0, 1].map((c) => wall.filter((_, n) => n % 2 === c));
+  // 0 on the first render: every quote once, standing still. That's the
+  // prerendered HTML too, so the page ships each quote once instead of six
+  // times. In the browser it then builds the columns for this screen size.
+  const [cols, setCols] = useState(0);
+  useEffect(() => {
+    if ((window as any).__PRERENDER__) return;
+    const lg = window.matchMedia("(min-width: 1024px)");
+    const sm = window.matchMedia("(min-width: 640px)");
+    const pick = () => setCols(lg.matches ? 3 : sm.matches ? 2 : 1);
+    pick();
+    lg.addEventListener("change", pick);
+    sm.addEventListener("change", pick);
+    return () => {
+      lg.removeEventListener("change", pick);
+      sm.removeEventListener("change", pick);
+    };
+  }, []);
+  const split = (k: number) =>
+    Array.from({ length: k }, (_, c) => wall.filter((_, n) => n % k === c));
+  const DURATION: Record<number, number[]> = { 1: [70], 2: [52, 58], 3: [44, 49, 54] };
   return (
     <div className="relative overflow-hidden bg-navy-dark py-24 lg:py-32">
       <GrainBlob
@@ -298,7 +331,7 @@ export const ReviewWall = () => {
           <ReviewBadges dark className="mt-8 justify-center" />
         </motion.div>
         <div
-          className="relative mt-14 grid h-[620px] gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          className="relative mt-14 grid h-[620px] gap-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-3"
           style={{
             WebkitMaskImage:
               "linear-gradient(transparent, #000 14%, #000 84%, transparent)",
@@ -306,20 +339,17 @@ export const ReviewWall = () => {
               "linear-gradient(transparent, #000 14%, #000 84%, transparent)",
           }}
         >
-          <div className="sm:hidden">
-            <Column items={wall} duration={70} />
-          </div>
-          <div className="hidden sm:block lg:hidden">
-            <Column items={halves[0]} duration={52} />
-          </div>
-          <div className="hidden sm:block lg:hidden">
-            <Column items={halves[1]} duration={58} reverse />
-          </div>
-          {cols.map((col, i) => (
-            <div key={i} className="hidden lg:block">
-              <Column items={col} duration={44 + i * 5} reverse={i === 1} />
-            </div>
-          ))}
+          {cols === 0
+            ? split(3).map((col, i) => (
+                <div key={i} className={i === 0 ? "" : i === 1 ? "hidden sm:block" : "hidden lg:block"}>
+                  <Column items={col} duration={0} loop={false} />
+                </div>
+              ))
+            : split(cols).map((col, i) => (
+                <div key={`${cols}-${i}`}>
+                  <Column items={col} duration={DURATION[cols][i]} reverse={i === 1} loop />
+                </div>
+              ))}
         </div>
       </div>
     </div>
