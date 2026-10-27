@@ -1,12 +1,17 @@
 # Testimonial drafts: for client approval
 
 These are **drafts**, written from what each client has already told you and
-what we can see in their results. None of them is on the website yet. The
-site only shows a testimonial once `testimonial.approved` is set to `true` in
-`src/lib/cases.ts`, with the client's approved wording in `text`.
+what we can see in their results. As you asked in round 9, they're shown on
+the site now (case studies, homepage, review wall) without a "draft" label,
+because the zip isn't going live until you have approval.
 
-**How to use this:** send each client their draft. Ask them to edit it freely
-or write their own, and to confirm three things:
+**Before you upload the theme:** send each client their draft, get their OK
+(or their own wording), then set `testimonial.approved: true` and paste the
+approved text into `text` in `src/lib/cases.ts`. The short versions on the
+homepage grid live in `src/lib/clients.ts` (`PROOF_TILES`): update those too.
+If a client says no, delete their `text` and the quote disappears everywhere.
+
+Ask each client to confirm three things:
 
 1. we can publish the quote with their name and job title;
 2. we can use their photo (and logo);
@@ -21,13 +26,9 @@ word, use their version.
 
 > "Tuition is one of the most competitive searches in Singapore, and we'd tried
 > link building before without knowing what we were paying for. Talha's team
-> was different: every site was relevant to parents and education, and we
+> was different. Every site was relevant to parents and education, and we
 > could see exactly where each link went. Today we're number one for
-> 'tuition' and 'online tuition', and organic search brings in more new
-> families than any other channel."
-
-*Check with the client:* the last claim (search bringing in the most new
-families) is theirs to confirm. Remove it if it isn't true.
+> "tuition" and "online tuition"."
 
 **Email to send:**
 
@@ -39,6 +40,22 @@ families) is theirs to confirm. Remove it if it isn't true.
 
 ---
 
+## CryptoDesk · Asad Abaas, SEO Manager
+
+> "Crypto is a hard niche for links. Most good sites won't touch it, and the
+> ones that will are usually junk. Editorial HQ found real publications, got
+> our CEO into Cointelegraph, and in five months we were first on Google for
+> the searches that brought customers to our office."
+
+Short version on the homepage: "Most good sites won't touch crypto. They
+found real publications, got our CEO into Cointelegraph, and in five months
+we were first on Google."
+
+*Note:* CryptoDesk has closed, so Asad is approving as its former SEO manager.
+Check he's comfortable being named with a company that no longer trades.
+
+---
+
 ## Ocuco · Kieran Fallon, Head of Marketing
 
 > "Eyecare software is a niche, and most link building agencies don't know
@@ -46,15 +63,14 @@ families) is theirs to confirm. Remove it if it isn't true.
 > independent practices, wrote content that respected the subject, and got
 > Acuitas 3 mentioned in the right conversations."
 
-*Check with the client:* any result they can share (more demo requests,
-rankings for "optometry practice management software" and so on) would make
-this case study much stronger.
+*Ask too:* any result he can share (demo requests, rankings for "optometry
+practice management software") would make this case study much stronger.
 
 ---
 
 ## Defender · (contact name needed)
 
-Their real feedback, already approved for the site as it stands:
+Their real feedback, already approved:
 
 > "You helped us jumpstart our product launch and create awareness by
 > securing listicle article reviews of our product."
@@ -78,9 +94,10 @@ which product it was.
 > Editorial HQ delivered guest posts, niche edits and mentions that fit
 > naturally, with clear reporting on every placement."
 
-*Note:* large brands are often strict about public endorsements. If CapCut
-won't approve a named quote, keep the case study and leave the quote out,
-or ask whether "CapCut marketing team" is acceptable.
+*Note:* big brands are often strict about public endorsements. If CapCut
+won't approve a named quote, keep the case study and remove the quote, or
+ask whether "CapCut marketing team" is acceptable. Also ask Julia for her job
+title.
 
 ---
 

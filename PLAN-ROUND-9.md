@@ -1,7 +1,7 @@
 # Round 9 plan: restore, then raise the quality
 
-Status: **waiting for the owner's approval and answers (section 7).** Nothing
-is built until then.
+Status: **built (round 9).** The owner's answers are in section 8. Every
+number on the case studies is listed in `CASE-STUDY-DRAFTS.md`.
 
 ## 1. What went wrong in round 8
 
@@ -21,8 +21,10 @@ is built until then.
 
 1. **Restore first.** Bring back every section the owner liked, in the earlier
    design, then improve it. Nothing gets removed without asking.
-2. **Real clients in every proof slot:** SmileTutor, Ocuco, CapCut, Defender
-   and the agency partner (Tiffany Lei). CryptoDesk stays out (company closed).
+2. **Real clients in every proof slot:** SmileTutor, CryptoDesk, Ocuco,
+   CapCut, Defender and the agency partner (Tiffany Lei). CryptoDesk is
+   included on the owner's request, written in the past tense with no link
+   to its closed site.
 3. **Plan, then content, then design, then build**, with one review between
    content and build.
 4. **Quality bar: Amplemarket.** Every visual is a crisp, realistic product
@@ -112,3 +114,18 @@ It will be removed from the header menu and linked from the footer only.
 3. **Review wall:** please paste your Clutch and Trustpilot reviews (reviewer name, role, company and text), plus the profile links and ratings.
 4. **Draft testimonials:** should the approved-in-principle drafts appear on the site now, under the clients' names, or only after each client confirms the wording?
 5. **Case study data:** for each client, when the work started, roughly how many links, a few live link URLs, and any results they've shared (screenshots are perfect). For Defender: the product name and the contact's name and role. For the agency partner: the agency's name.
+
+## 8. The owner's answers (round 9) and what was built
+
+- **Pricing:** trial = $200 (replaces the Pilot). Packages of 3, 5 and 10
+  links at $190 each ($570 / $950 / $1,900), average traffic 5,000+ /
+  10,000+ / 50,000+ per site, plus a Custom card ("Customize package" or
+  "Book a call").
+- **Clutch / Trustpilot:** shown as badges with placeholder ratings for the
+  design review. The owner sends the real links later.
+- **Testimonials:** shown without "not approved" labels; the owner gets
+  client approval before uploading.
+- **Case studies:** real numbers recorded; SmileTutor ~70 links; CryptoDesk
+  100+ links with Bitcoin.com, Investing.com and Cointelegraph. For clients
+  without data, deliverable counts were proposed for the owner to confirm.
+  Outcome metrics (traffic, sign-ups) were not invented for named brands.

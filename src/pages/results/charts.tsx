@@ -1,5 +1,5 @@
-import { useId } from "react";
-import { motion } from "motion/react";
+import { useId, useRef } from "react";
+import { motion, useInView } from "motion/react";
 import { ease } from "../services/kit";
 
 /**
@@ -34,6 +34,8 @@ export const LineArea = ({
   const pad = { t: 18, b: 10 };
   const max = Math.max(...series, ...(compare ?? [])) * 1.08;
   const clip = `reveal-${useId().replace(/:/g, "")}`;
+  const box = useRef<HTMLDivElement>(null);
+  const seen = useInView(box, { once: true, margin: "-60px" });
   const peak = series.indexOf(Math.max(...series));
   const min = 0;
   const x = (i: number) => (i / (series.length - 1)) * W;
@@ -50,7 +52,7 @@ export const LineArea = ({
   const grid = [0.25, 0.5, 0.75].map((f) => max * f);
 
   return (
-    <div>
+    <div ref={box}>
       <div className="relative" style={{ height: H }}>
         <svg
           viewBox={`0 0 ${W} ${H}`}
@@ -65,8 +67,7 @@ export const LineArea = ({
                 y={0}
                 height={H}
                 initial={{ width: 0 }}
-                whileInView={{ width: W }}
-                viewport={{ once: true, margin: "-60px" }}
+                animate={{ width: seen ? W : 0 }}
                 transition={{ duration: 1.6, ease }}
               />
             </clipPath>
