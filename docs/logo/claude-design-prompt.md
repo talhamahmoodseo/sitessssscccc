@@ -1,59 +1,57 @@
 # Prompt for Claude Design: Editorial HQ logo
 
-Upload with it: `2-linkE-symbol.svg`, `2-linkE-lockup.svg` and the three
-reference logos (BackyLinks, Undefeated Marketing, LinkFactory).
+Upload with it: the three reference logos (BackyLinks, Undefeated Marketing,
+LinkFactory).
 
 ---
 
-You're a senior brand identity designer. Design the final logo and a small brand kit for **Editorial HQ** (editorialhq.com).
+You're a senior brand identity designer. Design a logo and a small brand kit for **Editorial HQ** (editorialhq.com), starting from zero.
 
 ## The business
-- A link building and digital PR agency. We place editorial backlinks (guest posts, niche edits), digital PR, brand mentions and expert quotes on real publications.
+- A link building and digital PR agency. We place editorial backlinks (guest posts, niche edits), digital PR, brand mentions and expert quotes on real publications, so clients rank on Google and get cited in AI answers.
 - Clients: SEO agencies (often white label), SaaS founders, business owners and marketing teams in the US, UK and Europe.
-- Site headline: "Rank on Google. Get cited by AI."
+- Website headline: "Rank on Google. Get cited by AI."
 - Personality: trustworthy, sharp, modern, a bit bold. A premium agency, not a cheap link seller. Not corporate, not playful.
 
-## The concept to develop (already chosen)
-The attached `2-linkE-symbol.svg` is the starting point. Refine it; don't replace it.
-- A bold, rounded, geometric capital **E** for "Editorial".
-- Its **middle arm is a chain link**: an outlined stadium-shaped loop hooked through the E's spine. The top of the loop passes over the spine and the bottom passes under it, so it really interlocks.
-- Meaning: editorial + links in one shape. The E is the publication; the link is what we place in it.
+## What the logo should do
+- The symbol should come from the name: the **E** of Editorial, the **H** or **Q** of HQ, or the **EHQ** initials.
+- Give it a smart second meaning connected to what we do: links between websites, editorial publishing (articles, pages, publications), or getting found in search.
+- It must work at 16px (browser tab), as a LinkedIn profile picture (circle crop), on white and dark backgrounds, and in one colour.
+- The wordmark "Editorial HQ" should feel crafted, not just typed out. For example, set "Editorial" and "HQ" apart with colour or weight.
 
-What to improve:
-1. Balance and optical weight. The E's arms, spine and link stroke should feel like one family, and the link must not look thin next to the solid E.
-2. The link currently sticks out to the left of the spine. Try a few versions: a shorter overhang, the link fully inside, and the link replacing the middle arm exactly. Show 3–4 variations side by side and say which is strongest and why.
-3. The over/under gaps must stay clear at small sizes.
-4. It must still read as an **E** at 16px (browser tab) and as a symbol on its own (LinkedIn avatar).
+## References (attached, inspiration only, don't copy)
+- **BackyLinks:** the "B" is built from two link loops. A letter made out of the service.
+- **Undefeated Marketing:** a "U" with an up arrow in its negative space, two strong colours, a clean wordmark with a spaced-out second line.
+- **LinkFactory:** the symbol reads as L, F and a hashtag at once; the wordmark splits into bold "Link" and lighter "Factory".
 
-## Colours
-- Dark ink: `#14122B` (deep navy-violet) for the E and "Editorial".
-- Accent gradient, left to right: orange `#E25428` → violet `#7C5CF6`. It's used on the chain link and on "HQ". The same gradient is on the website headings, so keep these exact colours.
-- Light background: `#FFFFFF` or paper `#F7F6F4`.
-- Also make a **one-colour version** (all ink, and all white) for places where gradients don't work: stamps, embroidery, fax-quality print, small favicons if needed.
+What I like in all three: the symbol is the brand's own letter, it hides a clever meaning, the colour is confident, and the name is split into two tones.
+
+## Brand colours (from the website)
+- Dark ink: `#14122B` (deep navy-violet), or near-black `#0E0E0E`.
+- Accent gradient, used on the website headings: orange `#E25428` → violet `#7C5CF6`.
+- Highlighter amber `#F5CE58`, an occasional accent on the site.
+- Backgrounds: white `#FFFFFF` and paper `#F7F6F4`.
+
+The logo should sit naturally with these colours. If you think a different accent works better, show it as an extra option and explain why.
 
 ## Typography
-- Wordmark: **Outfit Bold (700)**, Google Fonts. "Editorial" in ink and "HQ" in the orange-to-violet gradient. Normal word space between them.
-- Tight but not cramped tracking (about -1% to -2%). Kern the pairs, especially "Ed", "it" and "HQ".
-- The wordmark's cap height should line up with the E symbol's height: optically centred, not mathematically.
-- Website body font, for mockups: Plus Jakarta Sans.
-
-## References (inspiration only, don't copy)
-- **BackyLinks:** the "B" is made of two link loops. Take this: a letter built from links.
-- **Undefeated Marketing:** a "U" with an up arrow in its negative space, two colours, a clean wordmark. Take this: a simple letter with a hidden meaning, confident colour.
-- **LinkFactory:** the symbol reads as L, F and a hashtag; the wordmark splits into bold "Link" and lighter "Factory". Take this: smart geometry and a wordmark split by colour or weight.
+- The website uses **Plus Jakarta Sans**. The wordmark can use it or another strong geometric sans from Google Fonts. Choose what makes the best logo and tell me why.
 
 ## Avoid
-- A symbol inside a rounded square (generic app-icon look). The symbol stands on its own.
-- Clip-art chain links, globes, rockets, magnifying glasses, arrows going up.
-- Thin lines that disappear at small sizes, and drop shadows, 3D, glows or bevels.
-- More than the colours above.
+- A symbol inside a rounded square (generic app-icon look).
+- Clip-art chain links, globes, rockets, magnifying glasses, generic up arrows.
+- Thin lines that disappear at small sizes; drop shadows, 3D, glows or bevels.
 - Anything that looks like a template from a logo generator.
 
-## Deliverables
-1. **Logo variations:** horizontal lockup (symbol + "Editorial HQ"), stacked lockup (symbol above the name), symbol only, and wordmark only.
-2. Each on **white, on dark `#14122B`, and in one colour** (black and white).
-3. **Size test:** the symbol at 16, 32, 64 and 512 px, and the horizontal lockup at 120 px wide.
-4. **Clear space and minimum size** rules: use the height of the link loop as the clear-space unit.
+## Process
+1. **Show 4–5 different logo concepts first.** For each one: the symbol, the horizontal lockup, a one-line explanation of the idea, and a quick 16px/32px test. Tell me which is strongest and why. Stop there so I can pick.
+2. After I pick, refine it and deliver the kit below.
+
+## Deliverables (after I pick)
+1. **Logo variations:** horizontal lockup, stacked lockup, symbol only, wordmark only.
+2. Each on **white, on dark, and in one colour** (black and white).
+3. **Size test:** the symbol at 16, 32, 64 and 512 px.
+4. **Clear space and minimum size** rules.
 5. **Mockups:**
    - Website header: the logo on the left, nav links on the right.
    - Browser tab with the favicon.
@@ -65,4 +63,4 @@ What to improve:
    - A sticker or merch item (laptop sticker, mug or t-shirt).
 6. **A one-page brand sheet:** logo, colours (HEX and RGB), fonts and the do's and don'ts.
 
-Give the logo files as **SVG** (vector) with text converted to outlines, plus PNG at 2x. Before the mockups, show me the 3–4 symbol variations and your recommendation so I can pick one.
+Give the logo files as **SVG** (vector) with text converted to outlines, plus PNG at 2x.
