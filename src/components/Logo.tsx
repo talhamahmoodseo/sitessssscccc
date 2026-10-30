@@ -1,7 +1,19 @@
+import { useId } from "react";
+
 /**
- * Editorial HQ logo. The mark is a ring with one line reaching out of it
- * to an amber dot: a brand, and the placement it earns somewhere else.
+ * Editorial HQ logo (the "Link E", docs/branding/). A bold E for Editorial
+ * whose middle arm is a chain link hooked through the letter: over the spine
+ * at the top, under it at the bottom. Drawn on a 100-unit grid; the wordmark
+ * is Outfit Bold converted to outlines, so the site loads no extra font.
  */
+
+const BRACKET =
+  "M37 8 H81 A9 9 0 0 1 81 26 H40 V74 H81 A9 9 0 0 1 81 92 H37 A15 15 0 0 1 22 77 V23 A15 15 0 0 1 37 8 Z";
+const LINK =
+  "M13 38.5 H62 A11.5 11.5 0 0 1 62 61.5 H13 A11.5 11.5 0 0 1 13 38.5 Z";
+
+const WORDMARK =
+  "M57.5 0L6.8 0L6.8-70.6L57-70.6L57-57.1L22.5-57.1L22.5-42.6L54-42.6L54-29.5L22.5-29.5L22.5-13.6L57.5-13.6L57.5 0ZM85.2 1L85.2 1Q78.3 1 73.0-2.3Q67.6-5.6 64.5-11.3Q61.5-17 61.5-24.3Q61.5-31.6 64.5-37.3Q67.6-43 73.0-46.3Q78.3-49.6 85.2-49.6L85.2-49.6Q90.2-49.6 94.3-47.7L94.3-47.7Q96.2-46.8 97.9-45.5L97.9-45.5L97.9-72.6L113.2-72.6L113.2 0L98.2 0L98.2-3.6Q96.5-2.1 94.3-1.1L94.3-1.1Q90.2 1 85.2 1ZM87.9-12.8L87.9-12.8Q91.2-12.8 93.6-14.3Q96-15.7 97.4-18.3Q98.8-20.9 98.8-24.3Q98.8-27.7 97.5-30.3Q96.1-32.8 93.7-34.3Q91.2-35.8 88-35.8Q84.8-35.8 82.3-34.3Q79.9-32.8 78.5-30.2Q77-27.6 77-24.3Q77-21 78.4-18.4Q79.8-15.8 82.3-14.3Q84.8-12.8 87.9-12.8ZM137.3 0L122 0L122-48.6L137.3-48.6L137.3 0ZM129.7-55.3L129.7-55.3Q126.1-55.3 123.8-57.8Q121.4-60.2 121.4-63.7L121.4-63.7Q121.4-67.3 123.8-69.7Q126.1-72.1 129.7-72.1L129.7-72.1Q133.3-72.1 135.6-69.7Q137.9-67.3 137.9-63.7L137.9-63.7Q137.9-60.2 135.6-57.8Q133.3-55.3 129.7-55.3ZM168.3 0L153 0L153-35.6L142-35.6L142-48.6L153-48.6L153-68.7L168.3-68.7L168.3-48.6L179.3-48.6L179.3-35.6L168.3-35.6L168.3 0ZM206.4 1.1L206.4 1.1Q198.9 1.1 192.8-2.3Q186.8-5.6 183.3-11.4Q179.8-17.2 179.8-24.4L179.8-24.4Q179.8-31.6 183.3-37.3Q186.8-43 192.8-46.4Q198.8-49.7 206.4-49.7L206.4-49.7Q214-49.7 220-46.4Q226-43.1 229.5-37.4Q233-31.6 233-24.4L233-24.4Q233-17.2 229.5-11.4Q226-5.6 220-2.3Q214 1.1 206.4 1.1ZM206.4-12.8L206.4-12.8Q209.7-12.8 212.2-14.3Q214.7-15.7 216.1-18.4Q217.4-21 217.4-24.4L217.4-24.4Q217.4-27.8 216-30.4Q214.6-32.9 212.2-34.4Q209.7-35.8 206.4-35.8L206.4-35.8Q203.2-35.8 200.7-34.4Q198.2-32.9 196.8-30.3Q195.4-27.7 195.4-24.3L195.4-24.3Q195.4-21 196.8-18.4Q198.2-15.7 200.7-14.3Q203.2-12.8 206.4-12.8ZM253.9 0L238.6 0L238.6-48.6L253.9-48.6L253.9-44.9Q258.4-49.6 266.4-49.6L266.4-49.6Q269.9-49.6 272.6-48.6Q275.2-47.5 277.2-45.3L277.2-45.3L268.1-33.8Q267.1-34.9 265.6-35.5Q264.1-36.1 262.2-36.1L262.2-36.1Q258.4-36.1 256.1-33.8Q253.9-31.4 253.9-26.7L253.9-26.7L253.9 0ZM294.5 0L279.2 0L279.2-48.6L294.5-48.6L294.5 0ZM286.9-55.3L286.9-55.3Q283.3-55.3 280.9-57.8Q278.6-60.2 278.6-63.7L278.6-63.7Q278.6-67.3 280.9-69.7Q283.3-72.1 286.9-72.1L286.9-72.1Q290.5-72.1 292.8-69.7Q295.1-67.3 295.1-63.7L295.1-63.7Q295.1-60.2 292.8-57.8Q290.5-55.3 286.9-55.3ZM323.6 1L323.6 1Q316.9 1 311.7-2.3Q306.4-5.6 303.4-11.3Q300.3-17 300.3-24.3Q300.3-31.6 303.4-37.3Q306.4-43 311.7-46.3Q316.9-49.6 323.6-49.6L323.6-49.6Q328.5-49.6 332.5-47.7L332.5-47.7Q335.0-46.5 337.0-44.6L337.0-44.6L337.0-48.6L352.0-48.6L352.0 0L337.0 0L337.0-3.9Q335.1-2.1 332.5-0.9L332.5-0.9Q328.5 1 323.6 1ZM326.7-12.8L326.7-12.8Q331.6-12.8 334.6-16.1Q337.6-19.3 337.6-24.3L337.6-24.3Q337.6-27.7 336.3-30.3Q334.9-32.9 332.5-34.4Q330.0-35.8 326.8-35.8Q323.6-35.8 321.2-34.4Q318.7-32.9 317.3-30.3Q315.8-27.7 315.8-24.3L315.8-24.3Q315.8-21 317.2-18.4Q318.6-15.8 321.1-14.3Q323.6-12.8 326.7-12.8ZM376.1 0L360.8 0L360.8-72.6L376.1-72.6L376.1 0ZM419.0 0L403.3 0L403.3-70.6L419.0-70.6L419.0-43.1L447.0-43.1L447.0-70.6L462.8-70.6L462.8 0L447.0 0L447.0-29.5L419.0-29.5L419.0 0ZM508.0 1.2L508.0 1.2Q500.1 1.2 493.3-1.6Q486.5-4.4 481.5-9.4Q476.4-14.4 473.6-21.1Q470.7-27.7 470.7-35.4L470.7-35.4Q470.7-43.2 473.5-49.8Q476.3-56.4 481.4-61.4Q486.4-66.3 493.2-69.0Q499.9-71.8 507.8-71.8L507.8-71.8Q515.8-71.8 522.6-69.0Q529.3-66.3 534.4-61.4Q539.4-56.4 542.2-49.8Q545-43.1 545-35.3L545-35.3Q545-27.6 542.2-21L542.2-21Q540.6-17.1 538.2-13.9L538.2-13.9L548.6-3.5L539.5 5.6L528.9-5Q526-3 522.6-1.6L522.6-1.6Q515.9 1.2 508.0 1.2ZM507.8-13.1L507.8-13.1Q513.8-13.1 518.3-15.6L518.3-15.6L506.5-27.4L515.6-36.5L526.9-25.2Q528.9-29.7 528.9-35.4L528.9-35.4Q528.9-40.4 527.4-44.5Q525.9-48.5 523.1-51.5Q520.3-54.4 516.5-56.0Q512.6-57.5 507.8-57.5L507.8-57.5Q501.5-57.5 496.8-54.8Q492.1-52 489.5-47.1Q486.8-42.1 486.8-35.4L486.8-35.4Q486.8-30.4 488.3-26.3Q489.8-22.2 492.6-19.3Q495.4-16.3 499.3-14.7Q503.1-13.1 507.8-13.1Z";
 
 export const LogoMark = ({
   className = "h-10 w-10",
@@ -10,26 +22,46 @@ export const LogoMark = ({
   className?: string;
   invert?: boolean;
 }) => {
-  const tile = invert ? "#FFFFFF" : "rgb(var(--ink))";
-  const line = invert ? "rgb(var(--ink))" : "#FFFFFF";
+  const id = useId().replace(/:/g, "");
+  const letter = invert ? "#FFFFFF" : "rgb(var(--ink))";
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <rect width="40" height="40" rx="11" fill={tile} />
-      <circle
-        cx="17"
-        cy="23"
-        r="7.5"
-        fill="none"
-        stroke={line}
-        strokeWidth="3.6"
-      />
+    <svg viewBox="-6 6 98 88" className={className} aria-hidden="true">
+      <defs>
+        <linearGradient
+          id={`${id}g`}
+          gradientUnits="userSpaceOnUse"
+          x1="1.5"
+          y1="0"
+          x2="73.5"
+          y2="0"
+        >
+          <stop offset="0" stopColor="#E25428" />
+          <stop offset="1" stopColor="#7C5CF6" />
+        </linearGradient>
+        <clipPath id={`${id}c`}>
+          <rect x="-20" y="-20" width="140" height="70" />
+        </clipPath>
+        {/* the link passes under the spine at the bottom... */}
+        <mask id={`${id}u`} maskUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
+          <rect x="-20" y="-20" width="140" height="140" fill="#fff" />
+          <rect x="18.4" y="50" width="25.2" height="70" fill="#000" />
+        </mask>
+        {/* ...and over it at the top */}
+        <mask id={`${id}o`} maskUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
+          <rect x="-20" y="-20" width="140" height="140" fill="#fff" />
+          <g clipPath={`url(#${id}c)`}>
+            <path d={LINK} fill="none" stroke="#000" strokeWidth="17.7" />
+          </g>
+        </mask>
+      </defs>
+      <path d={BRACKET} fill={letter} mask={`url(#${id}o)`} />
       <path
-        d="M22.6 17.4 L28.6 11.4"
-        stroke={line}
-        strokeWidth="3.6"
-        strokeLinecap="round"
+        d={LINK}
+        fill="none"
+        stroke={`url(#${id}g)`}
+        strokeWidth="10.5"
+        mask={`url(#${id}u)`}
       />
-      <circle cx="29.6" cy="10.4" r="3.6" fill="rgb(var(--mark))" />
     </svg>
   );
 };
@@ -43,15 +75,18 @@ const Logo = ({
   className?: string;
   hideWordOnMobile?: boolean;
 }) => (
-  <span className={`flex items-center gap-2.5 ${className}`}>
-    <LogoMark invert={invert} className="h-9 w-9 flex-none" />
-    <span
-      className={`text-[1.3rem] font-bold tracking-[-0.04em] ${
-        invert ? "text-white" : "text-navy-dark"
-      } ${hideWordOnMobile ? "hidden sm:block" : ""}`}
+  <span className={`flex items-center gap-3.5 ${className}`}>
+    <LogoMark invert={invert} className="h-[34px] w-[38px] flex-none" />
+    <svg
+      viewBox="6.8 -72.6 541.8 78.2"
+      className={`h-[19px] w-auto ${invert ? "text-white" : "text-navy-dark"} ${
+        hideWordOnMobile ? "hidden sm:block" : ""
+      }`}
+      role="img"
+      aria-label="Editorial HQ"
     >
-      Editorial HQ
-    </span>
+      <path d={WORDMARK} fill="currentColor" />
+    </svg>
   </span>
 );
 
