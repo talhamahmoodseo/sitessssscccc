@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 112 112" width="112" height="112"><defs><linearGradient id="fcg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="80" y2="0"><stop offset="0" stop-color="#E25428"/><stop offset="1" stop-color="#7C5CF6"/></linearGradient>
+  <clipPath id="fcc"><rect x="-10" y="-10" width="120" height="60"/></clipPath>
+  <mask id="fcm1" maskUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140"><rect x="-20" y="-20" width="140" height="140" fill="#fff"/><rect x="18.8" y="50" width="26.4" height="60" fill="#000"/></mask>
+  <mask id="fcm2" maskUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140"><rect x="-20" y="-20" width="140" height="140" fill="#fff"/><g clip-path="url(#fcc)"><path d="M14 39.5 H64 A10.5 10.5 0 0 1 64 60.5 H14 A10.5 10.5 0 0 1 14 39.5 Z" fill="none" stroke="#000" stroke-width="15.4"/></g></mask></defs>
+  <path d="M38 8 H80 A10 10 0 0 1 80 28 H42 V72 H80 A10 10 0 0 1 80 92 H38 A16 16 0 0 1 22 76 V24 A16 16 0 0 1 38 8 Z" fill="#14122B" mask="url(#fcm2)"/>
+  <path d="M14 39.5 H64 A10.5 10.5 0 0 1 64 60.5 H14 A10.5 10.5 0 0 1 14 39.5 Z" fill="none" stroke="url(#fcg)" stroke-width="9" mask="url(#fcm1)"/></svg>

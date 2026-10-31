@@ -1,0 +1,515 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import { ArrowRight, CalendarDays, Check, Mail } from "lucide-react";
+import { Seo } from "@/components/MotionKit";
+import PageLayout from "@/components/PageLayout";
+import { firstVisit, track } from "@/lib/analytics";
+import { openBooking } from "@/lib/booking";
+import { PACKAGE_LABELS } from "@/lib/pricing";
+import { CARD, GlowPanel, ease, rise } from "./services/kit";
+
+const EMAIL = "team@editorialhq.com";
+
+const SERVICES = [
+  "Link building",
+  "Digital PR",
+  "Brand mentions & AI visibility",
+  "HARO & expert quotes",
+  "White label for my agency",
+  "Not sure yet",
+];
+
+/* matches /pricing; the order buttons there link to /contact?package=<key> */
+const PACKAGES = PACKAGE_LABELS;
+const MAIN_PACKAGES = Object.values(PACKAGES);
+
+const packageFromUrl = () =>
+  PACKAGES[new URLSearchParams(window.location.search).get("package") || ""] ||
+  PACKAGES.unsure;
+
+const FOUND = [
+  "Google",
+  "LinkedIn",
+  "ChatGPT or another AI tool",
+  "Instagram",
+  "A friend or colleague",
+  "An email from us",
+  "Other",
+];
+
+/** The theme's endpoint (wordpress/functions.php). Static hosting has none,
+ *  so the form falls back to the visitor's email app there. */
+const contactApi = () =>
+  (typeof window !== "undefined" && (window as any).__TM_CONTACT_API__) || "";
+
+const NEXT = [
+  {
+    t: "A reply within 24 hours",
+    d: "From a strategist, not an auto-responder.",
+  },
+  {
+    t: "A free audit within 48 hours",
+    d: "Your links, the gaps against competitors, and whether AI answers mention you.",
+  },
+  {
+    t: "A short call, if it makes sense",
+    d: "We walk through the audit and the first placements we’d go after.",
+  },
+];
+
+const ASKED = [
+  {
+    q: "Is there a contract?",
+    a: "No. You pay per order: packages of 3, 5 or 10 links at $190 a placement, a custom package, or a single $200 trial link to test us first. Every order has a 100% money-back guarantee.",
+  },
+  {
+    q: "Do you work with agencies?",
+    a: "Yes. We work with agencies as well as brands. Your branding on the reports, and we stay invisible on client calls.",
+  },
+  {
+    q: "What if my site isn’t ready for links?",
+    a: "The audit will say so. Pointing links at a thin page wastes your money, and we’d rather tell you before you spend it.",
+  },
+];
+
+/* chips that behave like a radio group */
+const ChipGroup = ({
+  label,
+  options,
+  value,
+  onChange,
+}: {
+  label: string;
+  options: string[];
+  value: string;
+  onChange: (v: string) => void;
+}) => (
+  <fieldset>
+    <legend className="mb-2.5 text-[13px] font-semibold text-navy-dark">
+      {label}
+    </legend>
+    <div className="flex flex-wrap gap-2">
+      {options.map((o) => {
+        const on = value === o;
+        return (
+          <label
+            key={o}
+            className={`cursor-pointer rounded-full px-3.5 py-2 text-[13px] font-semibold transition-colors focus-within:ring-2 focus-within:ring-navy-dark/40 ${
+              on
+                ? "bg-navy-dark text-white"
+                : "bg-mist text-navy-dark/85 ring-1 ring-line hover:ring-navy-dark/30"
+            }`}
+          >
+            <input
+              type="radio"
+              name={label}
+              value={o}
+              checked={on}
+              onChange={() => onChange(o)}
+              className="sr-only"
+            />
+            {o}
+          </label>
+        );
+      })}
+    </div>
+  </fieldset>
+);
+
+const FIELD =
+  "mt-1.5 w-full rounded-xl bg-mist px-4 py-3 text-[15px] text-navy-dark ring-1 ring-line placeholder:text-navy-dark/60 transition-shadow focus:bg-white focus:outline-none focus:ring-2 focus:ring-navy-dark/50";
+
+const ContactForm = () => {
+  const [f, setF] = useState({
+    name: "",
+    email: "",
+    website: "",
+    service: "Link building",
+    budget: PACKAGES.unsure,
+    found: "",
+    message: "",
+  });
+  const [trap, setTrap] = useState("");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
+  const set = (k: keyof typeof f) => (v: string) => setF({ ...f, [k]: v });
+
+  // read ?package=, ?website= and the rest after the first render, so the
+  // first render matches the prerendered page
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const fromUrl = packageFromUrl();
+    setF((cur) => ({
+      ...cur,
+      budget: fromUrl,
+      website: q.get("website") || cur.website,
+      email: q.get("email") || cur.email,
+      service: SERVICES.includes(q.get("service") || "") ? q.get("service")! : cur.service,
+      message: q.get("message") || cur.message,
+    }));
+  }, []);
+
+  const mailto = () => {
+    const subject = encodeURIComponent(
+      `Enquiry: ${f.service} (${f.website || f.name})`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${f.name}\nEmail: ${f.email}\nWebsite: ${f.website}\nService: ${f.service}\nPackage: ${f.budget}\n\n${f.message}`,
+    );
+    return `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+  };
+
+  const send = async () => {
+    const api = contactApi();
+    if (!api) {
+      window.location.href = mailto();
+      return;
+    }
+    setState("sending");
+    try {
+      const res = await fetch(api, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: f.name,
+          email: f.email,
+          website: f.website,
+          service: f.service,
+          package: f.budget,
+          found: f.found,
+          message: f.message,
+          source: firstVisit(),
+          page: window.location.pathname + window.location.search,
+          company_site: trap,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || "");
+      track("generate_lead", { method: "form", service: f.service });
+      setState("sent");
+    } catch (e) {
+      setError((e as Error).message || "");
+      setState("error");
+    }
+  };
+
+  if (state === "sent") {
+    return (
+      <div className={`${CARD} p-8 sm:p-10`} role="status">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-mint">
+          <Check className="h-5 w-5 text-navy-dark" />
+        </span>
+        <h2 className="mt-6 text-[1.7rem] font-semibold leading-tight tracking-[-0.03em] text-navy-dark">
+          Thanks{f.name ? `, ${f.name.split(" ")[0]}` : ""}. It's with us.
+        </h2>
+        <p className="mt-3 max-w-md text-[15.5px] leading-relaxed text-navy-dark/75">
+          A strategist will reply to {f.email} within 24 hours. If you'd
+          rather talk sooner, pick a time for a call.
+        </p>
+        <button
+          onClick={openBooking}
+          className="group mt-7 inline-flex items-center gap-2 rounded-full bg-navy-dark px-6 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black"
+        >
+          Book a 30-minute call
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        send();
+      }}
+      className={`${CARD} space-y-6 p-6 sm:p-8`}
+    >
+      {/* spam trap: hidden from people, filled in by bots */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label>
+          Company site
+          <input
+            tabIndex={-1}
+            autoComplete="off"
+            value={trap}
+            onChange={(e) => setTrap(e.target.value)}
+          />
+        </label>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="block text-[13px] font-semibold text-navy-dark">
+          Your name
+          <input
+            required
+            className={FIELD}
+            placeholder="Jane Smith"
+            value={f.name}
+            onChange={(e) => set("name")(e.target.value)}
+            autoComplete="name"
+          />
+        </label>
+        <label className="block text-[13px] font-semibold text-navy-dark">
+          Work email
+          <input
+            required
+            type="email"
+            className={FIELD}
+            placeholder="jane@company.com"
+            value={f.email}
+            onChange={(e) => set("email")(e.target.value)}
+            autoComplete="email"
+          />
+        </label>
+      </div>
+      <label className="block text-[13px] font-semibold text-navy-dark">
+        Website
+        <input
+          className={FIELD}
+          placeholder="yourbrand.com"
+          value={f.website}
+          onChange={(e) => set("website")(e.target.value)}
+          autoComplete="url"
+        />
+      </label>
+      <ChipGroup
+        label="What do you need?"
+        options={SERVICES}
+        value={f.service}
+        onChange={set("service")}
+      />
+      <ChipGroup
+        label="Package"
+        options={
+          MAIN_PACKAGES.includes(f.budget)
+            ? MAIN_PACKAGES
+            : [f.budget, ...MAIN_PACKAGES]
+        }
+        value={f.budget}
+        onChange={set("budget")}
+      />
+      <label className="block text-[13px] font-semibold text-navy-dark">
+        What are you trying to achieve?
+        <textarea
+          className={`${FIELD} min-h-[120px] resize-y`}
+          placeholder="Pages you want to rank, keywords, markets, or the questions you want AI to name you for."
+          value={f.message}
+          onChange={(e) => set("message")(e.target.value)}
+        />
+      </label>
+      <label className="block text-[13px] font-semibold text-navy-dark">
+        How did you find us? <span className="font-normal text-navy-dark/60">(optional)</span>
+        <select
+          className={FIELD}
+          value={f.found}
+          onChange={(e) => set("found")(e.target.value)}
+        >
+          <option value="">Choose one</option>
+          {FOUND.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </select>
+      </label>
+      {state === "error" && (
+        <p role="alert" className="rounded-xl bg-[rgb(var(--mark)/0.15)] px-4 py-3 text-[13.5px] leading-snug text-navy-dark">
+          {error || "Something went wrong on our side."}{" "}
+          <a href={mailto()} className="font-semibold underline underline-offset-2">
+            Send it by email instead
+          </a>{" "}
+          and nothing you typed is lost.
+        </p>
+      )}
+      <div className="flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="submit"
+          disabled={state === "sending"}
+          className="group inline-flex items-center justify-center gap-2 rounded-full bg-navy-dark px-7 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black disabled:opacity-60"
+        >
+          {state === "sending" ? "Sending…" : "Send enquiry"}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </button>
+        <p className="text-[12.5px] leading-snug text-navy-dark/70 sm:max-w-[16rem] sm:text-right">
+          Goes straight to our inbox. We only use it to reply.{" "}
+          <Link to="/privacy" className="underline underline-offset-2 hover:text-navy-dark">
+            Privacy
+          </Link>
+        </p>
+      </div>
+    </form>
+  );
+};
+
+/**
+ * /contact: one job, so one screen. The ask on the right, everything that
+ * makes it easy to say yes on the left, and three answers underneath.
+ * Plan: PAGES-REDESIGN-2.md §3.
+ */
+const Contact = () => (
+  <PageLayout cta={false}>
+    <Seo
+      title="Contact Us"
+      description="Tell us where you want to rank and get cited. A strategist replies within 24 hours, with a free audit inside 48."
+    />
+
+    <section className="bg-mist pb-20 pt-32 lg:pb-28 lg:pt-40">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:px-8">
+        {/* left: why and how */}
+        <div className="lg:pt-4">
+          <motion.p
+            className="text-[12px] font-semibold uppercase tracking-[0.2em] text-navy-dark/70"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Contact
+          </motion.p>
+          <h1 className="mt-5">
+            <motion.span
+              className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark sm:text-[3.6rem]"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease }}
+            >
+              Let’s talk about
+            </motion.span>
+            <motion.span
+              className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-navy-dark/60 sm:text-[3.6rem]"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease }}
+            >
+              your visibility.
+            </motion.span>
+          </h1>
+          <motion.p
+            className="mt-6 max-w-md text-[17px] leading-relaxed text-navy-dark/75"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease }}
+          >
+            Tell us where you want to rank and get cited. You’ll hear back from
+            a strategist, not a sales script.
+          </motion.p>
+
+          <motion.ol
+            className="mt-10 space-y-5"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease }}
+          >
+            {NEXT.map((n, i) => (
+              <li key={n.t} className="flex gap-4">
+                <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-navy-dark text-[12px] font-bold text-white">
+                  {i + 1}
+                </span>
+                <span>
+                  <span className="block text-[16px] font-semibold text-navy-dark">
+                    {n.t}
+                  </span>
+                  <span className="mt-0.5 block text-[14.5px] leading-snug text-navy-dark/75">
+                    {n.d}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </motion.ol>
+
+          <motion.div
+            className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease }}
+          >
+            <button
+              onClick={openBooking}
+              className="group flex items-center gap-3 rounded-2xl bg-white p-4 text-left ring-1 ring-line transition-shadow hover:ring-navy-dark/30"
+            >
+              <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-butter">
+                <CalendarDays className="h-5 w-5 text-navy-dark" />
+              </span>
+              <span>
+                <span className="block text-[14.5px] font-semibold text-navy-dark">
+                  Book a 30-minute call
+                </span>
+                <span className="block text-[12.5px] text-navy-dark/70">
+                  Pick a time that suits you
+                </span>
+              </span>
+            </button>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="flex items-center gap-3 rounded-2xl bg-white p-4 ring-1 ring-line transition-shadow hover:ring-navy-dark/30"
+            >
+              <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-mint">
+                <Mail className="h-5 w-5 text-navy-dark" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[14.5px] font-semibold text-navy-dark">
+                  Email us
+                </span>
+                <span className="block break-all text-[12.5px] text-navy-dark/70">
+                  {EMAIL}
+                </span>
+              </span>
+            </a>
+          </motion.div>
+
+          <motion.div
+            className="mt-8 flex items-center gap-2.5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
+          >
+            <span className="text-[13px] text-navy-dark/75">
+              Trusted by CapCut, SmileTutor, Ocuco and Defender
+            </span>
+          </motion.div>
+        </div>
+
+        {/* right: the form */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.15, ease }}
+        >
+          <GlowPanel tone="warm" className="p-3 sm:p-8">
+            <ContactForm />
+          </GlowPanel>
+        </motion.div>
+      </div>
+    </section>
+
+    <section className="bg-white py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.p
+          className="text-[13px] font-semibold text-navy-dark/75"
+          {...rise()}
+        >
+          Before you send it
+        </motion.p>
+        <div className="mt-6 grid gap-8 md:grid-cols-3 md:gap-10">
+          {ASKED.map((a, i) => (
+            <motion.div
+              key={a.q}
+              className="border-t border-navy-dark pt-5"
+              {...rise(i * 0.07)}
+            >
+              <h2 className="flex items-start gap-2 text-[17px] font-semibold tracking-[-0.02em] text-navy-dark">
+                <Check className="mt-1 h-4 w-4 flex-none text-verified" />
+                {a.q}
+              </h2>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-navy-dark/75">
+                {a.a}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </PageLayout>
+);
+
+export default Contact;

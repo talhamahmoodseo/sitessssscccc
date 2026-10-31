@@ -1,0 +1,364 @@
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/500-italic.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/800.css";
+@import "@fontsource/caveat/500.css";
+@import "@fontsource/caveat/600.css";
+@import "@fontsource/newsreader/600.css";
+@import "@fontsource/newsreader/500-italic.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 96.5%;
+    --foreground: 30 11% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 30 11% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 11% 7%;
+    --primary: 342 61% 30%;
+    --primary-foreground: 38 44% 96%;
+    --secondary: 38 28% 92%;
+    --secondary-foreground: 30 11% 7%;
+    --muted: 38 28% 92%;
+    --muted-foreground: 30 9% 39%;
+    --accent: 38 28% 92%;
+    --accent-foreground: 30 11% 7%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 38 22% 86%;
+    --input: 38 22% 86%;
+    --ring: 342 61% 30%;
+    --radius: 0.625rem;
+  }
+
+  /* editorial ink-on-paper palette */
+  :root {
+    --ink: 14 14 14;
+    --ink-soft: 24 24 24;
+    --ink-raised: 38 38 38;
+    --paper: 247 246 244;
+    --linen: 240 239 236;
+    --line: 226 224 219;
+    --brand: 14 14 14;
+    --brand-deep: 0 0 0;
+    --brand-wash: 236 235 232;
+    --brand-soft: 236 235 232;
+    --brand-on: 255 255 255;
+    --brand-text: 14 14 14;
+    --brand-2: 124 92 246;
+    --brand-2-on: 255 255 255;
+    --muted-ink: 122 120 114;
+    --verified: 26 104 70;
+    --gap: 176 62 38;
+
+    /* Emphasis. The old highlight resolved to a pale grey, which made the
+       words we most wanted read fade out. These are deliberately strong
+       enough to register without shouting. */
+    --mark: 245 206 88; /* highlighter amber */
+    --mark-deep: 198 150 32; /* its underline */
+    --emphasis: 24 24 24; /* emphasised text stays near-black */
+
+    /* Heading accent: the two colours of the hero smoke. Used on one or two
+       words per heading, never on body text. Both clear 3:1 on paper. */
+    --plume-warm: 226 84 40;
+    --plume-cool: 124 92 246;
+    --plume-warm-light: 247 160 112;
+    --plume-cool-light: 190 172 250;
+
+    /* Tile palette. Reserved for stat tiles and persona illustrations —
+       never for background washes, chips or decorative blobs. */
+    --tile-butter: 250 229 128;
+    --tile-mint: 182 231 203;
+    --tile-lilac: 209 204 248;
+    --tile-blush: 250 207 227;
+    --tile-sky: 193 222 250;
+
+    /* legacy aliases */
+    --butter: 250 229 128;
+    --mint: 182 231 203;
+    --lilac: 209 204 248;
+    --blush: 250 207 227;
+    --sky: 193 222 250;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background: rgb(var(--mark) / 0.45);
+    color: rgb(var(--ink));
+  }
+}
+
+@layer components {
+  /* ---- heading accent ----
+     A few words of a heading set in the smoke's orange-to-violet. */
+  .accent-ink {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--plume-warm)) 0%,
+      rgb(var(--plume-cool)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .accent-ink-dark {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--plume-warm-light)) 0%,
+      rgb(var(--plume-cool-light)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* ---- emphasis system ----
+     One device, used consistently: a highlighter sweep under the words that
+     carry the claim. Strong enough to survive a squint test. */
+  .mark {
+    position: relative;
+    display: inline;
+    font-weight: 700;
+    color: rgb(var(--ink));
+    background-image: linear-gradient(
+      to bottom,
+      transparent 54%,
+      rgb(var(--mark) / 0.9) 54%,
+      rgb(var(--mark) / 0.9) 92%,
+      transparent 92%
+    );
+    padding-inline: 0.1em;
+    border-radius: 2px;
+  }
+
+  /* for emphasis on dark sections */
+  .mark-dark {
+    color: rgb(var(--ink));
+    background-color: rgb(var(--mark));
+    padding-inline: 0.22em;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* a quieter emphasis: full-strength ink, no wash */
+  .mark-ink {
+    color: rgb(var(--ink));
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  /* ---- logo / testimonial marquees ---- */
+  @keyframes marqueeLeft {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes marqueeRight {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  .marquee-left {
+    animation: marqueeLeft 46s linear infinite;
+  }
+  .marquee-right {
+    animation: marqueeRight 52s linear infinite;
+  }
+  .marquee-wrap:hover .marquee-left,
+  .marquee-wrap:hover .marquee-right {
+    animation-play-state: paused;
+  }
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
+  .paused {
+    animation-play-state: paused;
+  }
+  .running {
+    animation-play-state: running;
+  }
+
+  /* ---- fanned testimonial stack ---- */
+  .fan-scale {
+    transform: scale(0.58);
+    transform-origin: center top;
+    margin-bottom: -3.5rem;
+  }
+
+  /* ---- rocket line-art ---- */
+  @keyframes rrFlame {
+    0%,
+    100% {
+      transform: scale(1) translate(0, 0);
+      opacity: 0.85;
+    }
+    50% {
+      transform: scaleX(1.06) scaleY(1.02) translate(-6px, 4px);
+      opacity: 1;
+    }
+  }
+  @keyframes rrStreak {
+    to {
+      stroke-dashoffset: -60;
+    }
+  }
+  @keyframes rrCurl {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: translate(0, 0);
+    }
+    50% {
+      opacity: 0.8;
+      transform: translate(-5px, 4px);
+    }
+  }
+  .rr-flame {
+    transform-origin: 262px 198px;
+    animation: rrFlame 2.6s ease-in-out infinite;
+  }
+  .rr-streak {
+    animation: rrStreak 2.2s linear infinite;
+  }
+  .rr-curl {
+    transform-origin: 246px 200px;
+    animation: rrCurl 2.8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rr-flame,
+    .rr-streak,
+    .rr-curl,
+    .marquee-left,
+    .marquee-right {
+      animation: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ---- loops that run on the compositor: transform and opacity only, no
+   JavaScript per frame (round 11, see HANDOFF "Performance") ---- */
+@keyframes ehq-pop {
+  0% { opacity: 0; transform: translateY(6px) scale(0.9); }
+  14% { opacity: 1; transform: none; }
+  72% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+@keyframes ehq-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(var(--drift), calc(var(--drift) * -0.7), 0); }
+  66% { transform: translate3d(calc(var(--drift) * -0.6), calc(var(--drift) * 0.5), 0); }
+}
+@keyframes ehq-scroll-up {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -50%, 0); }
+}
+@keyframes ehq-scroll-down {
+  from { transform: translate3d(0, -50%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ehq-drift,
+  .ehq-scroll {
+    animation: none !important;
+  }
+}
+
+/* ---- the homepage results stage (round 13, sections/ResultStage.tsx) ----
+   A link tile travels along one of the stage's lines: six points per track,
+   set as --x0…--y5 on the element, so it stays a transform animation. */
+@keyframes ehq-travel {
+  0% { transform: translate3d(var(--x0), var(--y0), 0); opacity: 0; }
+  12% { opacity: 1; }
+  20% { transform: translate3d(var(--x1), var(--y1), 0); }
+  40% { transform: translate3d(var(--x2), var(--y2), 0); }
+  60% { transform: translate3d(var(--x3), var(--y3), 0); }
+  80% { transform: translate3d(var(--x4), var(--y4), 0); opacity: 1; }
+  100% { transform: translate3d(var(--x5), var(--y5), 0); opacity: 0; }
+}
+.ehq-travel {
+  animation: ehq-travel 6.9s linear infinite;
+  will-change: transform, opacity;
+}
+/* the active tab's timer: when it ends, the stage moves to the next client */
+@keyframes ehq-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.ehq-progress {
+  animation-name: ehq-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+/* hover, focus or scrolling away pauses every loop inside */
+.ehq-paused .ehq-travel,
+.ehq-paused .ehq-progress {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ehq-travel {
+    display: none;
+  }
+}
+
+/* ---- homepage sections below the fold: skipped until near the screen
+   (see cv() in pages/Home.tsx) ---- */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--cis-m, 1000px);
+}
+@media (min-width: 1024px) {
+  .cv-auto {
+    contain-intrinsic-size: auto var(--cis-d, 1000px);
+  }
+}
+/* set before a jump to an anchor (components/MotionKit.tsx), so it lands exactly */
+.cv-off .cv-auto {
+  content-visibility: visible;
+}
