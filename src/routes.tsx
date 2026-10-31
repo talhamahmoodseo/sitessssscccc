@@ -31,6 +31,7 @@ export const Blog = page(() => import("./pages/Blog"));
 export const BlogPost = page(() => import("./pages/BlogPost"));
 export const Contact = page(() => import("./pages/Contact"));
 export const Pricing = page(() => import("./pages/Pricing"));
+export const Pilot = page(() => import("./pages/Pilot"));
 export const NotFound = page(() => import("./pages/NotFound"));
 export const Privacy = page(() => import("./pages/legal/Privacy"));
 export const Terms = page(() => import("./pages/legal/Terms"));
@@ -73,6 +74,7 @@ export const preloadRoute = (pathname: string) => {
     if (a === "blog") return b ? BlogPost : Blog;
     if (a === "contact" && !b) return Contact;
     if (a === "pricing" && !b) return Pricing;
+    if (a === "pilot" && !b) return Pilot;
     if (a === "privacy" && !b) return Privacy;
     if (a === "terms" && !b) return Terms;
     return NotFound;

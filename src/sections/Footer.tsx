@@ -22,6 +22,7 @@ const COLUMNS = [
       { name: "About", to: "/about" },
       { name: "Results", to: "/case-studies" },
       { name: "Pricing", to: "/pricing" },
+      { name: "Pilot offer", to: "/pilot" },
       { name: "Blog", to: "/blog" },
       { name: "Contact", to: "/contact" },
     ],

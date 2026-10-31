@@ -13,6 +13,7 @@ import {
   Contact,
   Home,
   NotFound,
+  Pilot,
   Pricing,
   Privacy,
   Terms,
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/pilot" element={<Pilot />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />

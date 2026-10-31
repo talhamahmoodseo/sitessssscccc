@@ -60,7 +60,7 @@ export const planPrice = (p: Plan) => usd(p.links * PER_LINK);
 
 /** the order buttons link to /contact?package=<key>; the form preselects it */
 export const PACKAGE_LABELS: Record<string, string> = {
-  trial: `Trial placement (${usd(TRIAL_PRICE)})`,
+  trial: `Pilot: one trial link (${usd(TRIAL_PRICE)})`,
   ...Object.fromEntries(
     PLANS.map((p) => [p.id, `${p.name} (${p.links} links, ${planPrice(p)})`]),
   ),

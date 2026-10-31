@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { GuaranteeChips } from "@/components/Guarantees";
 import { contactLink } from "@/lib/booking";
-import SearchStory from "./SearchStory";
+import { TRIAL_PRICE, usd } from "@/lib/pricing";
+import ResultStage from "./ResultStage";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -18,17 +19,6 @@ const Hero = () => {
       );
   return (
     <div className="relative bg-mist overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
-      {/* soft colour from the brand accent, kept to the edges and below the
-          fold line so the type stays clean. Static: no animation cost. */}
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%]"
-        style={{
-          background:
-            "radial-gradient(45% 55% at 12% 70%, rgb(var(--plume-warm) / 0.16), transparent 70%)," +
-            "radial-gradient(45% 55% at 88% 60%, rgb(var(--plume-cool) / 0.18), transparent 70%)",
-        }}
-        aria-hidden="true"
-      />
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.a
           href="/services/brand-mentions"
@@ -65,9 +55,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
         >
-          Editorial links, digital PR, expert quotes and brand mentions on real
-          publications. The kind of footprint that wins page one and the AI
-          answer.
+          We get your brand onto real publications, so you're the name people
+          find first on Google and the one AI answers recommend. Here's what
+          that did for a few of our clients.
         </motion.p>
         <motion.div
           className="max-w-lg mx-auto"
@@ -90,19 +80,25 @@ const Hero = () => {
               Get a free audit
             </button>
           </div>
-          <p className="mt-4 text-[12.5px] text-navy-dark/70">
-            Trusted by CapCut, SmileTutor, Ocuco and Defender
+          <p className="mt-4 text-[13px] text-navy-dark/70">
+            Want to see our work first?{" "}
+            <Link
+              to="/pilot"
+              className="font-semibold text-navy-dark underline decoration-navy-dark/30 underline-offset-[3px] transition-colors hover:decoration-navy-dark"
+            >
+              Start with one {usd(TRIAL_PRICE)} pilot link
+            </Link>
           </p>
           <GuaranteeChips compact className="mt-5 justify-center" />
         </motion.div>
       </div>
       <motion.div
-        className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 lg:mt-16"
+        className="relative mx-auto mt-16 max-w-6xl px-4 sm:px-6 lg:mt-24 lg:px-8"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <SearchStory />
+        <ResultStage />
       </motion.div>
     </div>
   );

@@ -28,7 +28,7 @@ Digital PR, Brand Mentions for AI search, HARO & Expert Quotes.
 
 Pages: home, about, link-building, digital-pr, brand-mentions,
 haro-expert-quotes, results (case studies), case-study (SmileTutor),
-home-services, blog, contact, pricing, privacy, terms, plus the booking popup.
+home-services, blog, contact, pricing, pilot, privacy, terms, plus the booking popup.
 
 ## 3. Run it
 
@@ -75,9 +75,11 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
     changes while scrolling: motion then measures the page and calls
     `window.scrollTo`, which cancels smooth scrolling and forces reflows.
     Use transform (scale), or the CSS grid-rows trick as in `Process.tsx`.
-  - Loops that run forever (colour blobs, review columns, the logo strip)
-    are CSS animations of transform/opacity (`ehq-*` in `index.css`), never
-    motion animations, so they cost nothing on the main thread.
+  - Loops that run forever (colour blobs, review columns, the logo strip,
+    the hero's travelling link tiles and tab timer) are CSS animations of
+    transform/opacity (`ehq-*` in `index.css`), never motion animations, so
+    they cost nothing on the main thread. The hero's loops pause together
+    through the `ehq-paused` class (hover, focus, off screen).
   - The review wall renders each quote once in the HTML and builds its
     looping columns after load; loop copies are `inert` and `aria-hidden`.
   - Images: size them to about 3× their display size at most.
@@ -107,6 +109,9 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | `src/pages/about/content.ts` | All About page copy |
 | `src/lib/cases.ts` | The six client case studies (SmileTutor, CryptoDesk, Ocuco, CapCut, Defender, agency partner). Report sections in `pages/results/CaseSections.tsx`, charts in `charts.tsx`, shared cards in `CaseParts.tsx`. Every number's source: `CASE-STUDY-DRAFTS.md` |
 | `src/lib/clients.ts` | Client logos (homepage strip) and the "see the numbers" proof tiles |
+| `src/lib/stories.ts` | The homepage hero's five client stories (round 13): quotes, facts and evidence, all taken from `cases.ts` or copied word for word from the evidence screenshots |
+| `src/components/proof.tsx` | Shared proof kit: `SiteShot` (a client's homepage in a browser frame), `Avatar`, `ProofChip` (Google result, AI Overview, press, lists) and `ResultCard` (case card used on /case-studies and /pilot) |
+| `src/pages/Pilot.tsx` | /pilot, the pilot offer page (the $200 trial link, round 13) |
 | `src/lib/pricing.ts` | **All prices.** Pricing page, contact form, link building page, FAQs and About read from here |
 | `src/lib/reviews.ts` | Clutch / Trustpilot badges, hidden until the real profiles exist (§8) |
 | `src/lib/content.ts` | Blog posts |
@@ -143,6 +148,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
+| (round 13) | Results-first pages, after Amplemarket and uSERP (plan: `PLAN-ROUND-13.md`). **Homepage hero:** `ResultStage` replaces `SearchStory`: one client at a time, set like a post (their approved words, their homepage with the result pinned on it, three figures), two pieces of evidence beside it (Google #1, AI Overview, press, the placement), link tiles flying in, the client's colour behind, five tabs that cycle. Subline rewritten, plus a link to the pilot. **Pricing:** Amplemarket order: short ✓/✗ package cards with a pilot bar, the logos and one big quote on the dark stage, a line-by-line comparison (first column pinned on phones), guarantee band, the results bento and review wall from the homepage, full guarantee terms (`#guarantee-terms` kept), other services, FAQ. "Three steps", "the terms in plain words" and "five things move a custom quote" now live in the FAQ. The nav is white on the dark stage (`navOnDark`; it was invisible before). **Case studies:** results-at-a-glance hero, logo strip, SmileTutor featured, service filters and `ResultCard`s with each client's homepage, a pilot card, the review wall, then the totals, what we count / leave out and the eight parts. **Pilot (/pilot, new):** the existing $200 trial link presented as a pilot, after uSERP's /pilot structure (start form → contact with `?package=trial`). Linked from the hero, pricing, case studies and the footer. The contact form's package label reads "Pilot: one trial link ($200)" |
 | (round 12) | New logo, the "Link E" (Direction B in `docs/branding/`): a bold E with an orange-to-violet chain link hooked through it, wordmark "Editorial HQ" in Outfit Bold converted to outlines (no font loaded). `components/Logo.tsx` draws both from fixed paths; masks use `useId` so several logos can share a page. New favicon (svg, 32px, apple-touch), schema logo `public/images/logo.png`, and the logo in `og-default.jpg`. Brand kit (logo files, avatars, LinkedIn/X banners, post template) in `docs/branding/kit/`; competitor visual analysis, direction boards and the business profiles playbook (`docs/business-profiles-guide.md`) sit beside it |
 | (round 11) | New homepage hero (`sections/SearchStory.tsx`, replaces `CampaignView`): one Google results page for one search; three editorial links go live, the client's result climbs #4 → #1, then the AI Overview names it. Plays once when the results come into view, with captions and a Replay button. SmileTutor chart redrawn from zero (`GrowthChart` in `pages/results/charts.tsx`): Oct 2024 14.3K vs Oct 2026 38.5K, then every month of both years. "Results our clients take to their boards" (`ProofGrid`) is two stats per row on phones (3,412 → 1,624 px). Speed: hydration in a transition, homepage sections skipped until near the screen, review wall rendered once, colour blobs and review columns as CSS animations, process steps open with CSS instead of `height: auto`, oversized logos resized, theme `.htaccess` for long cache lifetimes, Hostinger Reach script removed, font preloads. See §3 "Performance" |
 | (round 10) | Go-live fixes from the SEO plan's step 0. Testimonials approved by the clients and case study figures approved by the owner. Booking goes to calendly.com/talhaseoexpert/30min ("30-minute call" site-wide). Placeholder Clutch/Trustpilot badges hidden. Real contact form: posts to `/wp-json/editorialhq/v1/contact`, emails the inbox set in Settings > General and keeps a copy under Enquiries in wp-admin (honeypot, 5 an hour per IP); the homepage and brand mentions quick forms now open it prefilled. GA4 via a Settings > General field, Consent Mode v2 banner for UK/Europe, events `generate_lead` (form sent, call booked) and `book_call` (booking opened). Theme: 301s for the three round 6 sample case studies and www → bare domain, feeds and trackbacks 404, `/wp/v2/users` hidden from visitors, XML-RPC off. Privacy and Terms pages, linked in the footer. Hydration instead of re-rendering (see §3). Titles under 60 and descriptions under 160 characters on every page |
@@ -164,6 +170,7 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 
 ## 7. Open work (owner's list, not done yet)
 
+- **Pilot terms (round 13):** /pilot sells the trial link that already exists ($200, one per company, same guarantees). If the owner wants a free pilot like uSERP's, that's a new offer: he sets the terms (free or paid, how many links, who qualifies, spots a month) and `pages/Pilot.tsx` + `lib/pricing.ts` change with it.
 - **Pricing (round 9, owner-set):** $190 a placement; trial $200, one per
   company; Starter 3 links ($570, avg 5,000+ visits/site), Growth 5 links
   ($950, 10,000+), Authority 10 links ($1,900, 50,000+); Custom quoted.
@@ -229,11 +236,14 @@ review badges hidden.
   (`/[0.12]`).
 - `.accent-ink` text is transparent with a gradient clip, so contrast checkers
   report it as 1:1 — false positive.
-- The homepage hero panel is `src/sections/SearchStory.tsx` (round 11). It
-  replaced `CampaignView`, which the owner found hard to read. Its companies
-  and publications are made up on purpose: it illustrates how a campaign
-  works, it isn't a client result. The rocket and smoke were removed earlier
-  at the owner's request.
+- The homepage hero panel is `src/sections/ResultStage.tsx` (round 13). It
+  replaced `SearchStory` (round 11), whose made-up CRM search the owner
+  didn't like, and before it `CampaignView`. Everything on the stage is real
+  client data (`lib/stories.ts`); keep it that way. It cycles through five
+  clients on a CSS timer: the tab's progress bar ends, then `animationend`
+  moves on. The first render is always SmileTutor and the prerender never
+  advances, so hydration matches. The side chips and link lines only show
+  from `xl` / `lg` up; the rocket and smoke were removed long ago.
 - The pinned process (`sections/Process.tsx`) runs on a 340vh scroll track on
   desktop. The screens size to `calc(100vh - 380px)` so the section fits
   short laptop screens; check at 1440×800 after changing it.

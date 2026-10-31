@@ -310,6 +310,43 @@
   }
 }
 
+/* ---- the homepage results stage (round 13, sections/ResultStage.tsx) ----
+   A link tile travels along one of the stage's lines: six points per track,
+   set as --x0…--y5 on the element, so it stays a transform animation. */
+@keyframes ehq-travel {
+  0% { transform: translate3d(var(--x0), var(--y0), 0); opacity: 0; }
+  12% { opacity: 1; }
+  20% { transform: translate3d(var(--x1), var(--y1), 0); }
+  40% { transform: translate3d(var(--x2), var(--y2), 0); }
+  60% { transform: translate3d(var(--x3), var(--y3), 0); }
+  80% { transform: translate3d(var(--x4), var(--y4), 0); opacity: 1; }
+  100% { transform: translate3d(var(--x5), var(--y5), 0); opacity: 0; }
+}
+.ehq-travel {
+  animation: ehq-travel 6.9s linear infinite;
+  will-change: transform, opacity;
+}
+/* the active tab's timer: when it ends, the stage moves to the next client */
+@keyframes ehq-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.ehq-progress {
+  animation-name: ehq-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+/* hover, focus or scrolling away pauses every loop inside */
+.ehq-paused .ehq-travel,
+.ehq-paused .ehq-progress {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ehq-travel {
+    display: none;
+  }
+}
+
 /* ---- homepage sections below the fold: skipped until near the screen
    (see cv() in pages/Home.tsx) ---- */
 .cv-auto {
