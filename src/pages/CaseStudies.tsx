@@ -8,7 +8,7 @@ import { Avatar, ProofChip, ResultCard, SiteShot } from "@/components/proof";
 import { ClientMark } from "@/components/brand";
 import { openBooking } from "@/lib/booking";
 import { CASES, CASE_TOTALS, caseBySlug, type CaseStudy } from "@/lib/cases";
-import { TRIAL_PRICE, usd } from "@/lib/pricing";
+import { PILOT } from "@/lib/pilot";
 import { STORIES } from "@/lib/stories";
 import { LogoStrip } from "@/sections/ClientLogos";
 import { ReviewWall } from "@/sections/Testimonials";
@@ -211,11 +211,11 @@ const NextCard = () => (
           Your site next
         </p>
         <p className="mt-4 text-[1.6rem] font-semibold leading-[1.15] tracking-[-0.03em]">
-          See what we'd do for your site, one link at a time.
+          See it on your own site before you pay a thing.
         </p>
         <p className="mt-4 text-[14.5px] leading-relaxed text-white/75">
-          Start with one pilot link for {usd(TRIAL_PRICE)}, on a page you
-          choose. If it isn't what we promised, you get your money back.
+          If your business qualifies, we'll earn your first {PILOT.links}{" "}
+          editorial links for free. No card, no contract, and you keep them.
         </p>
       </div>
       <div className="mt-8 flex flex-wrap gap-2">
@@ -223,7 +223,7 @@ const NextCard = () => (
           to="/pilot"
           className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-[14px] font-semibold text-navy-dark transition-colors hover:bg-mark"
         >
-          See the pilot
+          See if you qualify
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
         <button
@@ -449,7 +449,7 @@ const CaseStudies = () => (
                 to="/pilot"
                 className="group inline-flex items-center gap-2 rounded-full bg-navy-dark px-6 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black"
               >
-                Start with a {usd(TRIAL_PRICE)} pilot link
+                Get {PILOT.links} backlinks free
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <button

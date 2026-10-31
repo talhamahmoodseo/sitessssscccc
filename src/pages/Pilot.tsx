@@ -1,115 +1,239 @@
-import { useState, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, type FormEvent, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowRight, CalendarDays, Check, Lock, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, Check, CircleCheck, Lock, UserRound, X } from "lucide-react";
 import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
-import { Avatar, ResultCard, SiteShot } from "@/components/proof";
-import { contactLink, openBooking } from "@/lib/booking";
+import { Avatar, ResultCard } from "@/components/proof";
+import { firstVisit, track } from "@/lib/analytics";
 import { caseBySlug } from "@/lib/cases";
+import { PILOT } from "@/lib/pilot";
 import { PER_LINK, TRIAL_PRICE, usd } from "@/lib/pricing";
 import { LogoStrip } from "@/sections/ClientLogos";
 import { DarkGlow, Eyebrow, H2, Soft, ease, rise } from "./services/kit";
 import { ServiceFaq } from "./services/common";
 
 /**
- * /pilot, round 13: the pilot offer on its own page, after the structure of
- * uSERP's /pilot (the owner's brief, 31 Oct 2026).
+ * /pilot, round 14: the free three-link pilot, by application, after the
+ * structure of uSERP's /pilot (the owner's brief, 31 Oct 2026). The bar on
+ * every page (components/PilotBar.tsx) links here.
  *
- * The offer is the one we already sell, nothing new: one trial placement at
- * TRIAL_PRICE, once per company, the same placement as a package link, with
- * the money-back guarantee and free replacement that cover every order.
- * Every promise below comes from the terms, the guarantee terms, the pricing
- * FAQ or the contact page (reply within 24 hours). Prices from lib/pricing.
+ * Numbers live in lib/pilot.ts (links, spots a month, thresholds, value).
+ * The application posts to the same endpoint as the contact form, so it
+ * lands in the owner's inbox and under Enquiries in wp-admin, marked
+ * "Free pilot application". Like uSERP's, the page is noindex: it converts
+ * visitors who are already on the site and stays out of Google.
  */
 
-const PRICE = usd(TRIAL_PRICE);
+const { links: N, spots: SPOTS, value: VALUE, revenue: REV, employees: EMP, days: DAYS } = PILOT;
+const EMAIL = "team@editorialhq.com";
 
-/* ------------------------------------------------------------ start form */
+/* ------------------------------------------------------------ application */
 
-const StartPilot = ({ id }: { id: string }) => {
-  const navigate = useNavigate();
-  const [site, setSite] = useState("");
-  const [email, setEmail] = useState("");
-  const [page, setPage] = useState("");
-  const go = (e: FormEvent) => {
+const REVENUE = ["Under $1M", "$1M to $5M", "$5M to $20M", "$20M to $100M", "$100M+"];
+const PEOPLE = ["1 to 9", "10 to 24", "25 to 99", "100 to 499", "500+"];
+
+const contactApi = () =>
+  (typeof window !== "undefined" && (window as unknown as { __TM_CONTACT_API__?: string }).__TM_CONTACT_API__) || "";
+
+const Apply = ({ id }: { id: string }) => {
+  const [f, setF] = useState({
+    name: "",
+    email: "",
+    role: "",
+    website: "",
+    revenue: "",
+    people: "",
+    pages: "",
+    owner: false,
+  });
+  const [trap, setTrap] = useState("");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
+  const set = (k: keyof typeof f) => (e: { target: { value: string } }) =>
+    setF({ ...f, [k]: e.target.value });
+
+  const message = () =>
+    [
+      `FREE PILOT APPLICATION (${N} links)`,
+      `Job title: ${f.role}`,
+      `Annual revenue: ${f.revenue}`,
+      `Employees: ${f.people}`,
+      `SEO budget owner joins the call: ${f.owner ? "yes" : "no"}`,
+      "",
+      "Pages they want to rank:",
+      f.pages || "(not given)",
+    ].join("\n");
+
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
-    navigate(
-      contactLink({
-        package: "trial",
-        website: site,
-        email,
-        message: page ? `Pilot link for this page: ${page}` : "I'd like to start a pilot link.",
-      }),
-    );
+    const api = contactApi();
+    if (!api) {
+      // no WordPress endpoint (local or static hosting): fall back to email
+      const s = encodeURIComponent(`Free pilot application: ${f.website}`);
+      const b = encodeURIComponent(`Name: ${f.name}\nEmail: ${f.email}\nWebsite: ${f.website}\n\n${message()}`);
+      window.location.href = `mailto:${EMAIL}?subject=${s}&body=${b}`;
+      return;
+    }
+    setState("sending");
+    try {
+      const res = await fetch(api, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: f.name,
+          email: f.email,
+          website: f.website,
+          service: "Free pilot application",
+          package: `Free pilot (${N} links)`,
+          found: "",
+          message: message(),
+          source: firstVisit(),
+          page: window.location.pathname + window.location.search,
+          company_site: trap,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || "");
+      track("generate_lead", { method: "pilot", service: "Free pilot" });
+      setState("sent");
+    } catch (err) {
+      setError((err as Error).message || "");
+      setState("error");
+    }
   };
+
   const field =
-    "mt-1.5 w-full rounded-xl bg-mist px-3.5 py-3 text-[14.5px] text-navy-dark ring-1 ring-line placeholder:text-navy-dark/45 focus:outline-none focus:ring-2 focus:ring-navy-dark/30";
+    "mt-1.5 w-full rounded-xl bg-mist px-3.5 py-2.5 text-[14.5px] text-navy-dark ring-1 ring-line placeholder:text-navy-dark/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-navy-dark/30";
+  const label = "block text-[12.5px] font-semibold text-navy-dark";
+
+  if (state === "sent") {
+    return (
+      <div className="rounded-[26px] bg-white p-7 text-left shadow-[0_40px_90px_-40px_rgb(0_0_0/0.7)]" role="status">
+        <CircleCheck className="h-9 w-9 text-verified" aria-hidden="true" />
+        <p className="mt-4 text-[22px] font-semibold tracking-[-0.02em] text-navy-dark">
+          Thanks{f.name ? `, ${f.name.split(" ")[0]}` : ""}. Your application is in.
+        </p>
+        <p className="mt-2 text-[15px] leading-relaxed text-navy-dark/75">
+          A person reads every one. We'll email {f.email} within 24 hours to
+          say whether you're approved, and if you are, we'll set up the call.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <form
-      onSubmit={go}
+      onSubmit={submit}
       className="rounded-[26px] bg-white p-6 text-left shadow-[0_40px_90px_-40px_rgb(0_0_0/0.7)] sm:p-7"
       aria-labelledby={`${id}-title`}
     >
       <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/60">
-        One link · {PRICE}
+        Apply for the pilot
       </p>
-      <h2 id={`${id}-title`} className="mt-2 text-[22px] font-semibold tracking-[-0.02em] text-navy-dark">
-        Start your pilot
+      <h2 id={`${id}-title`} className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-navy-dark">
+        See if your business qualifies
       </h2>
       <p className="mt-1 text-[13.5px] text-navy-dark/70">
-        Takes a minute. We reply within 24 hours.
+        Takes about two minutes. We reply within 24 hours.
       </p>
-      <div className="mt-5 space-y-3.5">
-        <label className="block text-[13px] font-semibold text-navy-dark">
-          Your website
-          <input
-            required
-            value={site}
-            onChange={(e) => setSite(e.target.value)}
-            placeholder="yourbrand.com"
-            className={field}
-            inputMode="url"
-            autoComplete="url"
-          />
+
+      <div className="mt-5 grid gap-3.5 sm:grid-cols-2">
+        <label className={label}>
+          Name
+          <input required value={f.name} onChange={set("name")} className={field} autoComplete="name" />
         </label>
-        <label className="block text-[13px] font-semibold text-navy-dark">
+        <label className={label}>
+          Job title
+          <input required value={f.role} onChange={set("role")} className={field} autoComplete="organization-title" />
+        </label>
+        <label className={label}>
           Work email
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@yourbrand.com"
-            className={field}
-            autoComplete="email"
-          />
+          <input required type="email" value={f.email} onChange={set("email")} className={field} autoComplete="email" />
         </label>
-        <label className="block text-[13px] font-semibold text-navy-dark">
-          The page you want to rank{" "}
-          <span className="font-normal text-navy-dark/55">(optional)</span>
-          <input
-            value={page}
-            onChange={(e) => setPage(e.target.value)}
-            placeholder="yourbrand.com/your-best-page"
-            className={field}
+        <label className={label}>
+          Company website
+          <input required value={f.website} onChange={set("website")} placeholder="yourbrand.com" className={field} autoComplete="url" />
+        </label>
+        <label className={label}>
+          Annual revenue
+          <select required value={f.revenue} onChange={set("revenue")} className={field}>
+            <option value="" disabled>
+              Choose one
+            </option>
+            {REVENUE.map((o) => (
+              <option key={o}>{o}</option>
+            ))}
+          </select>
+        </label>
+        <label className={label}>
+          Employees
+          <select required value={f.people} onChange={set("people")} className={field}>
+            <option value="" disabled>
+              Choose one
+            </option>
+            {PEOPLE.map((o) => (
+              <option key={o}>{o}</option>
+            ))}
+          </select>
+        </label>
+        <label className={`${label} sm:col-span-2`}>
+          The pages you'd like to rank <span className="font-normal text-navy-dark/55">(optional)</span>
+          <textarea
+            value={f.pages}
+            onChange={set("pages")}
+            rows={2}
+            placeholder="yourbrand.com/product, yourbrand.com/compare"
+            className={`${field} resize-none`}
           />
         </label>
       </div>
+      <label className="mt-4 flex items-start gap-2.5 text-[13px] leading-snug text-navy-dark/80">
+        <input
+          type="checkbox"
+          required
+          checked={f.owner}
+          onChange={(e) => setF({ ...f, owner: e.target.checked })}
+          className="mt-0.5 h-4 w-4 flex-none accent-[rgb(var(--ink))]"
+        />
+        I own our SEO budget, or the person who does will join the 30-minute call.
+      </label>
+      {/* people never see this one; bots fill it in */}
+      <input
+        tabIndex={-1}
+        autoComplete="off"
+        value={trap}
+        onChange={(e) => setTrap(e.target.value)}
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        aria-hidden="true"
+        name="company_site"
+      />
+
       <button
         type="submit"
-        className="group mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-navy-dark px-5 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black"
+        disabled={state === "sending"}
+        className="group mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-navy-dark px-5 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black disabled:opacity-70"
       >
-        Start my pilot
+        {state === "sending" ? "Sending…" : "Send my application"}
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
       </button>
+      {state === "error" && (
+        <p className="mt-3 text-[13px] text-gap" role="alert">
+          {error || "We couldn't send that."} You can also email{" "}
+          <a href={`mailto:${EMAIL}`} className="font-semibold underline">
+            {EMAIL}
+          </a>
+          .
+        </p>
+      )}
       <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-[12px] text-navy-dark/65">
         <span className="inline-flex items-center gap-1.5">
           <Lock className="h-3 w-3" aria-hidden="true" />
-          You pay once we've confirmed your site fits
+          No card, no contract
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
-          100% money-back
+          <UserRound className="h-3.5 w-3.5" aria-hidden="true" />
+          Read by a person, not a bot
         </span>
       </p>
     </form>
@@ -120,562 +244,542 @@ const StartPilot = ({ id }: { id: string }) => {
 
 const WHY = [
   {
-    t: "A sample is someone else's link. This one is yours.",
-    d: "Every agency shows screenshots from other clients' campaigns. A placement pointing at your own page is something you can open, check and keep.",
+    t: "A pitch is a promise. A link is proof.",
+    d: "Every agency shows the same logos and the same charts. A live placement on a real publication, pointing at your page, is something you can open and check yourself.",
   },
   {
-    t: "One link shows you how we work.",
-    d: "The site we pick and why, the article, the anchor and the report. You see the whole process before you decide on a package.",
+    t: "It costs us less than chasing you.",
+    d: "Weeks of calls, proposals and follow-ups cost more than earning three links. We'd rather put that effort into work you get to keep.",
   },
   {
-    t: "If it's wrong, it's on us.",
-    d: "The pilot carries the same 100% money-back guarantee and free link replacement as every order.",
+    t: "The only catch is the obvious one.",
+    d: "We think that once you see the placements, you'll want more. If you don't, you keep the links and that's the end of it. No invoice, nothing to cancel.",
   },
 ];
 
 const VERSUS: [string, string][] = [
-  ["Sample links from other clients' campaigns", "A link pointing at a page on your own site"],
-  ["A 5 or 10-link package before you see one", `One link, ${PRICE}, no minimum`],
-  ["Case studies you have to take on trust", "The live URL, the site and the anchor in your report"],
-  ["Refund terms buried in small print", "A money-back guarantee written in plain English"],
-  ["Months before you can judge the quality", "Live in two to four weeks"],
+  ["Sample links from other clients' campaigns", `${N} links earned for your own pages`],
+  ["Case studies you have to take on trust", "Placements you can open in a browser"],
+  ["A contract before the first link", "No contract, no card, nothing to cancel"],
+  ["You find out about quality in month three", `You see the quality in about ${DAYS} days`],
 ];
 
 const STEPS = [
   {
-    t: "Send us your site",
-    d: "Your website and the page you'd like to rank. That's all we need to start.",
+    t: "Apply in two minutes",
+    d: "Tell us about your company and the pages you care about. It's a short form, and a person reads every one.",
   },
   {
     t: "Hear back within 24 hours",
-    d: "We look at your site and niche. If we can't find a relevant site for it, we tell you, and you pay nothing.",
+    d: "We look at your site and your niche by hand and email you to say whether you're approved. If you are, we set up the call.",
   },
   {
-    t: "We find, write and publish",
-    d: "We shortlist relevant DR 40+ sites, check each one by hand, write the article and get it published. Want to approve the site first? Just ask.",
+    t: "Pick your pages on a 30-minute call",
+    d: "With whoever owns your SEO budget. We look at the pages that outrank you, agree where links will help most, and tell you honestly how big the gap is.",
   },
   {
-    t: "You get the report",
-    d: "The live URL, the site, the anchor and its DR on the day it went live, so you can check it yourself.",
+    t: `We earn ${N} editorial links`,
+    d: "Outreach to publications in or next to your niche. Same team, same site checks, same standard as paid work. They stay live whatever you decide.",
   },
 ];
 
 const NUMBERS = [
-  { v: "24 h", l: "to hear back" },
-  { v: "2–4 wks", l: "to a live link" },
-  { v: PRICE, l: "one link, no minimum" },
-  { v: "100%", l: "money-back guarantee" },
-  { v: "1", l: "pilot per company" },
+  { v: "2 min", l: "to apply" },
+  { v: "24 h", l: "to hear if you're approved" },
+  { v: "30 min", l: "one call to choose the pages" },
+  { v: `~${DAYS} days`, l: `from the call to all ${N} live` },
+  { v: "$0", l: "no card, no contract" },
 ];
 
 const INCLUDED = [
   {
-    t: "A real publication",
-    d: "A relevant DR 40+ site with its own editors and readers, checked by hand against our 7-point site check.",
+    t: "Real publications",
+    d: "Sites with their own editors, real readers and real organic traffic. No link farms, no private blog networks, no sites that exist to sell links.",
   },
   {
-    t: "An editorial link",
-    d: "A dofollow link in the body of an article, not in a footer or an author bio.",
+    t: "Editorial links",
+    d: "Inside relevant articles, not in author bios, footers or sidebars.",
   },
   {
-    t: "Your page, your anchor",
-    d: "Pointed at the page you choose, with your anchor text preferences.",
+    t: "Your pages, your priorities",
+    d: "Pointed at the pages you choose on the call, with anchors planned around what already ranks.",
   },
   {
-    t: "A report you can check",
-    d: "The live URL, the site, the anchor and its DR on the day it goes live.",
+    t: "A reason for every link",
+    d: "Each placement comes with the site, its authority and traffic, the anchor, and why that link matters for that page.",
   },
   {
     t: "Yours to keep",
-    d: "If a publisher ever removes the link or turns it nofollow, we replace it on a similar site for free.",
+    d: "The links stay live whether or not you ever pay us a dollar.",
   },
+];
+
+const EXAMPLE = [
+  { site: "Industry publication", d: "DR 70+ · in-article link to your product page", s: "Live" },
+  { site: "Business news site", d: "DR 60+ · in-article link to your service page", s: "Live" },
+  { site: "Niche blog with real readers", d: "DR 50+ · in-article link to a category page", s: "In editing" },
 ];
 
 const FAQS = [
   {
-    q: "Why does the pilot cost more than a standard placement?",
-    a: `The pilot is one trial link for new clients who want to see our work before a bigger order. It's the same placement with no minimum, priced a little higher (${PRICE}) on purpose so it can't be used as a repeat discount. One pilot per company. After that, every placement is ${usd(PER_LINK)}.`,
+    q: "Is this really free?",
+    a: `Yes. No card, no contract, no setup fee and no invoice later. If you're approved, we earn ${N} editorial links to your pages and you keep them.`,
   },
   {
-    q: "What exactly do I get?",
-    a: "One editorial placement on a relevant DR 40+ site, the article written by our team, a dofollow link in the body of the article, the 7-point site check, and a report with the live URL.",
+    q: "What's the catch?",
+    a: "We hope you'll like the placements enough to hire us for more. If you don't, nothing else happens. You keep the links.",
   },
   {
-    q: "How long does it take?",
-    a: "Most links go live within two to four weeks of your order. We reply to your request within 24 hours.",
+    q: "Who qualifies?",
+    a: `Established businesses with ${REV}+ in annual revenue and ${EMP}+ employees, a live site with pages worth ranking, and the person who owns the SEO budget on the call. It's ${SPOTS} businesses a month.`,
   },
   {
-    q: "Can I approve the site first?",
-    a: "Yes. Tell us when you order and we'll send the shortlist before anything is published. If you'd rather not, we choose the site for you.",
+    q: `Why only ${SPOTS} a month?`,
+    a: "Free placements never jump ahead of paying clients. When the month's spots are taken, applications roll to the next month.",
   },
   {
-    q: "What if the placement isn't what you promised?",
-    a: "If it doesn't match your order (a relevant DR 40+ site, a dofollow link in the body of the article, indexed by Google within 30 days), we replace it, or refund you in full if you'd rather. The full guarantee terms are on the pricing page.",
+    q: "How fast will we hear back?",
+    a: "Within 24 hours. A person reviews your site and niche and emails you either way.",
   },
   {
-    q: "Will one link move my rankings?",
-    a: "On its own, usually not for a competitive page, and we won't pretend otherwise. The pilot shows you the quality of our work. Rankings come from the right number of links over time, and we can tell you roughly what your page needs.",
+    q: "Will three links move our rankings?",
+    a: "On a competitive page, not on their own, and we won't pretend otherwise. On the call we tell you roughly how many links stand between your page and the ones outranking it. The pilot covers the first three and shows you what the rest would look like.",
   },
   {
-    q: "What happens after the pilot?",
-    a: `Nothing, unless you want more. There's no contract and nothing renews. If you'd like to carry on, packages start at 3 links at ${usd(PER_LINK)} a placement.`,
+    q: "What kind of sites will the links be on?",
+    a: "Real publications in or next to your niche, with their own editors and readers, that pass the same 7-point site check as every paid placement.",
   },
   {
-    q: "Can agencies use the pilot?",
-    a: "Yes. It's a simple way to test us on one client before ordering more. Everything can be delivered white label, with an unbranded report.",
+    q: "We already have an agency or an in-house team. Can we apply?",
+    a: "Yes. The pilot is a simple way to compare our links with what you're getting now.",
   },
   {
-    q: "Are there niches you don't take?",
-    a: "We don't take adult, gambling or similar niches. If you're unsure about yours, ask before you order.",
+    q: "Can agencies apply for a client?",
+    a: `Not for the free pilot. Agencies can still test us with a single paid trial link (${usd(TRIAL_PRICE)}) and order white label after that.`,
+  },
+  {
+    q: "What happens after the three links?",
+    a: `Nothing, unless you want more. If you do, packages start at 3 links at ${usd(PER_LINK)} a placement, with no contract.`,
   },
 ];
 
+const Ok = ({ children, dark = false }: { children: ReactNode; dark?: boolean }) => (
+  <li className={`flex items-start gap-2.5 text-[14.5px] ${dark ? "text-white/80" : "text-navy-dark"}`}>
+    <Check className={`mt-0.5 h-4 w-4 flex-none ${dark ? "text-white/60" : "text-verified"}`} aria-hidden="true" />
+    {children}
+  </li>
+);
+
 /* ------------------------------------------------------------------- page */
 
-const Pilot = () => {
-  const ocuco = caseBySlug("ocuco")!;
-  return (
-    <PageLayout navOnDark cta={false}>
-      <Seo
-        title={`Pilot Offer: Try One Link for ${PRICE}`}
-        description={`Try us with one editorial link on your own site for ${PRICE}: a relevant DR 40+ placement, written and published for you, with a 100% money-back guarantee.`}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "Offer",
-          name: "Pilot placement (one trial link)",
-          price: String(TRIAL_PRICE),
-          priceCurrency: "USD",
-          seller: { "@type": "Organization", name: "Editorial HQ" },
-        }}
-      />
+const Pilot = () => (
+  <PageLayout navOnDark cta={false}>
+    <Seo
+      title={`Free Link Building Pilot: ${N} Backlinks`}
+      description={`Get ${N} editorial backlinks free, no catch and no contract. For established businesses that qualify, ${SPOTS} a month, by application.`}
+      noindex
+    />
 
-      {/* 1. the offer */}
-      <section className="relative overflow-hidden bg-navy-dark pb-20 pt-32 lg:pb-28 lg:pt-40">
-        <DarkGlow className="-left-40 top-0 h-[560px] w-[780px] opacity-55" />
-        <DarkGlow className="-right-56 bottom-[-120px] h-[480px] w-[700px] opacity-40" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16 lg:px-8">
-          <div>
-            <motion.p
-              className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              The pilot · one trial link
-            </motion.p>
-            <h1 className="mt-5">
-              <motion.span
-                className="block text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-[3.7rem] lg:text-[4.1rem]"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease }}
-              >
-                One link on your site.
-              </motion.span>
-              <motion.span
-                className="block pb-[0.06em] text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-[3.7rem] lg:text-[4.1rem]"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease }}
-              >
-                <span className="accent-ink-dark">Then decide.</span>
-              </motion.span>
-            </h1>
-            <motion.p
-              className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/75"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease }}
-            >
-              Every link builder says their links are better. We'd rather show
-              you. Order one editorial placement for {PRICE}, pointed at a page
-              you choose. If it isn't what we promised, you get your money back.
-            </motion.p>
-            <motion.ul
-              className="mt-7 space-y-2.5"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.28, ease }}
-            >
-              {[
-                "One editorial link on a relevant DR 40+ site",
-                "Pointed at the page you choose, with the article written for you",
-                "Live in two to four weeks, with a report you can check",
-              ].map((x) => (
-                <li key={x} className="flex items-start gap-2.5 text-[15px] text-white/85">
-                  <Check className="mt-0.5 h-4 w-4 flex-none text-mark" aria-hidden="true" />
-                  {x}
-                </li>
-              ))}
-            </motion.ul>
-            <motion.p
-              className="mt-7 flex flex-wrap gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.36 }}
-            >
-              {["One pilot per company", "No minimum", "No contract"].map((x) => (
-                <span
-                  key={x}
-                  className="rounded-full bg-white/[0.08] px-3 py-1.5 text-[12.5px] font-semibold text-white/85 ring-1 ring-white/15"
-                >
-                  {x}
-                </span>
-              ))}
-            </motion.p>
-          </div>
-          <motion.div
-            id="start"
-            className="scroll-mt-28"
-            initial={{ opacity: 0, y: 26 }}
+    {/* 1. the offer, and the application */}
+    <section className="relative overflow-hidden bg-navy-dark pb-20 pt-32 lg:pb-28 lg:pt-40">
+      <DarkGlow className="-left-40 top-0 h-[560px] w-[780px] opacity-55" />
+      <DarkGlow className="-right-56 bottom-[-120px] h-[480px] w-[700px] opacity-40" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-14 lg:px-8">
+        <div className="lg:pt-6">
+          <motion.p
+            className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70"
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25, ease }}
+            transition={{ duration: 0.5 }}
           >
-            <StartPilot id="pilot-top" />
-          </motion.div>
+            Free link building pilot · by application
+          </motion.p>
+          <h1 className="mt-5">
+            <motion.span
+              className="block text-[2.5rem] font-semibold leading-[1] tracking-[-0.045em] text-white sm:text-[3.5rem] lg:text-[3.9rem]"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease }}
+            >
+              Get {N} editorial backlinks.
+            </motion.span>
+            <motion.span
+              className="block pb-[0.06em] text-[2.5rem] font-semibold leading-[1] tracking-[-0.045em] sm:text-[3.5rem] lg:text-[3.9rem]"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease }}
+            >
+              <span className="accent-ink-dark">Free. No catch, no contract.</span>
+            </motion.span>
+          </h1>
+          <motion.p
+            className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/75"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease }}
+          >
+            Every link building agency says its links are better. We'd rather
+            show you. If your business qualifies, we earn {N} editorial links
+            to the pages you choose, on real publications, at the same standard
+            our clients pay for. You keep them no matter what.
+          </motion.p>
+          <motion.ul
+            className="mt-7 space-y-2.5"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.28, ease }}
+          >
+            <Ok dark>{N} editorial links, built by the team behind SmileTutor's #1 for “tuition”</Ok>
+            <Ok dark>Pointed at the pages you choose on a 30-minute call</Ok>
+            <Ok dark>No card, no contract, and the links are yours to keep</Ok>
+          </motion.ul>
+          <motion.p
+            className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] text-white/70"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.36 }}
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/[0.08] px-3 py-1.5 font-semibold text-white ring-1 ring-white/15">
+              <span className="h-2 w-2 rounded-full bg-mint" aria-hidden="true" />
+              {SPOTS} businesses a month
+            </span>
+            For businesses with {REV}+ in annual revenue and {EMP}+ employees.
+          </motion.p>
         </div>
-      </section>
+        <motion.div
+          id="apply"
+          className="scroll-mt-28"
+          initial={{ opacity: 0, y: 26 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.25, ease }}
+        >
+          <Apply id="apply-top" />
+        </motion.div>
+      </div>
+    </section>
 
-      {/* 2. who it's from */}
-      <section className="border-b border-line bg-mist py-12">
-        <p className="mb-7 text-center text-[13px] font-medium text-navy-dark/70">
-          The same team builds links for
-        </p>
-        <LogoStrip className="px-4" />
-      </section>
+    {/* 2. who we build for */}
+    <section className="border-b border-line bg-mist py-12">
+      <p className="mb-7 text-center text-[13px] font-medium text-navy-dark/70">
+        The same team builds authority for brands like
+      </p>
+      <LogoStrip className="px-4" />
+    </section>
 
-      {/* 3. why a pilot */}
-      <section className="bg-white py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div className="max-w-3xl" {...rise()}>
-            <Eyebrow className="mb-4">Why a pilot</Eyebrow>
-            <H2>
-              One live link proves more
-              <br />
-              <Soft>than any sales deck.</Soft>
-            </H2>
-            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-dark/75">
-              It isn't a discount and it isn't a trick. It's the simplest
-              honest way we know to earn your next order.
-            </p>
-          </motion.div>
-
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {WHY.map((w, i) => (
-              <motion.div key={w.t} className="rounded-3xl bg-mist p-7 ring-1 ring-line" {...rise(i * 0.06)}>
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-dark text-[14px] font-semibold text-white">
-                  {i + 1}
-                </span>
-                <h3 className="mt-6 text-[19px] font-semibold leading-snug tracking-[-0.02em] text-navy-dark">
-                  {w.t}
-                </h3>
-                <p className="mt-2.5 text-[15px] leading-relaxed text-navy-dark/75">{w.d}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div className="mt-6 overflow-hidden rounded-3xl ring-1 ring-line" {...rise(0.05)}>
-            <div className="grid grid-cols-2 bg-navy-dark text-[11.5px] font-semibold uppercase tracking-[0.12em] text-white sm:text-[12px]">
-              <p className="px-4 py-4 sm:px-6">The usual way to try a link builder</p>
-              <p className="px-4 py-4 sm:px-6">The Editorial HQ pilot</p>
-            </div>
-            {VERSUS.map(([a, b], i) => (
-              <div key={a} className={`grid grid-cols-2 ${i % 2 ? "bg-white" : "bg-mist"}`}>
-                <p className="flex items-start gap-2.5 px-4 py-4 text-[14px] leading-snug text-navy-dark/70 sm:px-6 sm:text-[14.5px]">
-                  <X className="mt-0.5 h-4 w-4 flex-none text-gap" aria-label="The usual way" />
-                  {a}
-                </p>
-                <p className="flex items-start gap-2.5 px-4 py-4 text-[14px] font-medium leading-snug text-navy-dark sm:px-6 sm:text-[14.5px]">
-                  <Check className="mt-0.5 h-4 w-4 flex-none text-verified" aria-label="The pilot" />
-                  {b}
-                </p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 4. how it works */}
-      <section className="bg-mist py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div className="max-w-3xl" {...rise()}>
-            <Eyebrow className="mb-4">How it works</Eyebrow>
-            <H2>
-              From your site to a live link
-              <br />
-              <Soft>in two to four weeks.</Soft>
-            </H2>
-          </motion.div>
-          <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s, i) => (
-              <motion.li key={s.t} className="rounded-3xl bg-white p-7 ring-1 ring-line" {...rise(i * 0.06)}>
-                <span className="text-[12px] font-semibold tabular-nums text-navy-dark/55">
-                  Step {i + 1}
-                </span>
-                <h3 className="mt-3 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">{s.t}</h3>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-navy-dark/75">{s.d}</p>
-              </motion.li>
-            ))}
-          </ol>
-          <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {NUMBERS.map((n, i) => (
-              <motion.div key={n.l} className="flex flex-col-reverse rounded-2xl bg-white px-5 py-4 ring-1 ring-line" {...rise(i * 0.04)}>
-                <dt className="mt-1 text-[12.5px] text-navy-dark/70">{n.l}</dt>
-                <dd className="text-[1.5rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark">
-                  {n.v}
-                </dd>
-              </motion.div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* 5. what you get */}
-      <section className="bg-white py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div className="max-w-3xl" {...rise()}>
-            <Eyebrow className="mb-4">What you get</Eyebrow>
-            <H2>
-              The same placement
-              <br />
-              <Soft>our clients pay for.</Soft>
-            </H2>
-            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-dark/75">
-              A pilot only proves something if it's the real product. It goes
-              through the same site check, the same writers and the same
-              report as every package link.
-            </p>
-          </motion.div>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-            <motion.ul className="divide-y divide-line overflow-hidden rounded-3xl bg-mist ring-1 ring-line" {...rise()}>
-              {INCLUDED.map((x) => (
-                <li key={x.t} className="grid gap-1.5 px-6 py-5 sm:grid-cols-[0.42fr_0.58fr] sm:gap-6 sm:px-7">
-                  <span className="flex items-start gap-2.5 text-[15.5px] font-semibold text-navy-dark">
-                    <Check className="mt-1 h-4 w-4 flex-none text-verified" aria-hidden="true" />
-                    {x.t}
-                  </span>
-                  <span className="text-[14.5px] leading-relaxed text-navy-dark/75">{x.d}</span>
-                </li>
-              ))}
-            </motion.ul>
-
-            <motion.div className="space-y-4" {...rise(0.08)}>
-              <div className="rounded-3xl bg-white p-6 ring-1 ring-line sm:p-7">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/60">
-                  What it costs
-                </p>
-                <div className="mt-4 flex items-baseline justify-between gap-4 border-b border-line pb-4 text-[14.5px] text-navy-dark/75">
-                  <span>A placement in a package (from 3 links)</span>
-                  <span className="font-semibold tabular-nums text-navy-dark">{usd(PER_LINK)}</span>
-                </div>
-                <div className="flex items-baseline justify-between gap-4 pt-4">
-                  <span className="text-[15px] font-semibold text-navy-dark">The pilot, one link, no minimum</span>
-                  <span className="text-[2rem] font-semibold leading-none tracking-[-0.04em] tabular-nums text-navy-dark">
-                    {PRICE}
-                  </span>
-                </div>
-                <p className="mt-4 text-[13px] leading-relaxed text-navy-dark/65">
-                  Why a little more? So it can't be reused as a discount. One
-                  pilot per company.
-                </p>
-              </div>
-
-              <figure className="rounded-3xl bg-mint/60 p-4 sm:p-5">
-                <SiteShot
-                  src="/images/cases/ocuco-opencart-placement.webp"
-                  domain="opencart.com"
-                  alt="An OpenCart article naming Ocuco's Acuitas 3"
-                  ratio="aspect-[16/8]"
-                  pos="0% 72%"
-                />
-                <figcaption className="mt-3 px-1 text-[13px] leading-relaxed text-navy-dark/75">
-                  <span className="font-semibold text-navy-dark">A real placement:</span>{" "}
-                  {ocuco.client}'s Acuitas 3 named in an OpenCart article on
-                  practice software.{" "}
-                  <Link to="/case-studies/ocuco" className="font-semibold text-navy-dark underline underline-offset-2">
-                    See the case
-                  </Link>
-                </figcaption>
-              </figure>
+    {/* 3. why it's free */}
+    <section className="bg-white py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div className="max-w-3xl" {...rise()}>
+          <Eyebrow className="mb-4">Why it's free</Eyebrow>
+          <H2>
+            Three live links prove more
+            <br />
+            <Soft>than any sales deck.</Soft>
+          </H2>
+          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-dark/75">
+            It isn't charity and it isn't a trick. It's the most honest way we
+            know to win your business.
+          </p>
+        </motion.div>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {WHY.map((w, i) => (
+            <motion.div key={w.t} className="rounded-3xl bg-mist p-7 ring-1 ring-line" {...rise(i * 0.06)}>
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-dark text-[14px] font-semibold text-white">
+                {i + 1}
+              </span>
+              <h3 className="mt-6 text-[19px] font-semibold leading-snug tracking-[-0.02em] text-navy-dark">{w.t}</h3>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-navy-dark/75">{w.d}</p>
             </motion.div>
-          </div>
-
-          {/* 6. the honest part */}
-          <motion.figure
-            className="mt-10 flex flex-col gap-5 rounded-3xl p-6 ring-1 ring-line sm:flex-row sm:items-start sm:p-8"
-            {...rise()}
-          >
-            <Avatar name="Talha Mahmood" photo="/images/talha-avatar.jpg" size={52} />
-            <div>
-              <p className="text-[17px] font-semibold tracking-[-0.01em] text-navy-dark">
-                What one link won't do
-              </p>
-              <blockquote className="mt-2 text-[15.5px] leading-relaxed text-navy-dark/80">
-                One link won't move a competitive page on its own, and we won't
-                pretend it will. What it shows you is how we work: the site we
-                choose, the article and the report. If you like what you see,
-                packages start at three links.
-              </blockquote>
-              <figcaption className="mt-3 text-[13px] text-navy-dark/65">
-                <span className="font-semibold text-navy-dark">Talha Mahmood</span>, Founder
-              </figcaption>
-            </div>
-          </motion.figure>
+          ))}
         </div>
-      </section>
-
-      {/* 7. who it's for */}
-      <section className="relative overflow-hidden bg-navy-dark py-24 lg:py-32">
-        <DarkGlow className="-right-40 top-0 h-[520px] w-[760px] opacity-45" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div className="max-w-3xl" {...rise()}>
-            <Eyebrow dark className="mb-4">Who it's for</Eyebrow>
-            <H2 dark>
-              Open to most businesses.
-              <br />
-              <Soft dark>One per company.</Soft>
-            </H2>
-          </motion.div>
-          <div className="mt-12 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-            <motion.div className="rounded-3xl bg-white p-7 sm:p-8" {...rise()}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/60">
-                A good fit if
+        <motion.div className="mt-6 overflow-hidden rounded-3xl ring-1 ring-line" {...rise(0.05)}>
+          <div className="grid grid-cols-2 bg-navy-dark text-[11.5px] font-semibold uppercase tracking-[0.12em] text-white sm:text-[12px]">
+            <p className="px-4 py-4 sm:px-6">The usual way to pick a link building agency</p>
+            <p className="px-4 py-4 sm:px-6">The {N}-link pilot</p>
+          </div>
+          {VERSUS.map(([a, b], i) => (
+            <div key={a} className={`grid grid-cols-2 ${i % 2 ? "bg-white" : "bg-mist"}`}>
+              <p className="flex items-start gap-2.5 px-4 py-4 text-[14px] leading-snug text-navy-dark/70 sm:px-6 sm:text-[14.5px]">
+                <X className="mt-0.5 h-4 w-4 flex-none text-gap" aria-label="The usual way" />
+                {a}
               </p>
-              <ul className="mt-5 space-y-3">
+              <p className="flex items-start gap-2.5 px-4 py-4 text-[14px] font-medium leading-snug text-navy-dark sm:px-6 sm:text-[14.5px]">
+                <Check className="mt-0.5 h-4 w-4 flex-none text-verified" aria-label="The pilot" />
+                {b}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+
+    {/* 4. how it works */}
+    <section className="bg-mist py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div className="max-w-3xl" {...rise()}>
+          <Eyebrow className="mb-4">How it works</Eyebrow>
+          <H2>
+            From application to live links
+            <br />
+            <Soft>in about {DAYS} days.</Soft>
+          </H2>
+          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-dark/75">
+            Four steps. All we need from you is the two-minute application and
+            one 30-minute call.
+          </p>
+        </motion.div>
+        <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((s, i) => (
+            <motion.li key={s.t} className="rounded-3xl bg-white p-7 ring-1 ring-line" {...rise(i * 0.06)}>
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-navy-dark text-[13px] font-semibold text-white">
+                {i + 1}
+              </span>
+              <h3 className="mt-5 text-[18px] font-semibold tracking-[-0.02em] text-navy-dark">{s.t}</h3>
+              <p className="mt-2 text-[14.5px] leading-relaxed text-navy-dark/75">{s.d}</p>
+            </motion.li>
+          ))}
+        </ol>
+        <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {NUMBERS.map((n, i) => (
+            <motion.div key={n.l} className="flex flex-col-reverse rounded-2xl bg-white px-5 py-4 ring-1 ring-line" {...rise(i * 0.04)}>
+              <dt className="mt-1 text-[12.5px] text-navy-dark/70">{n.l}</dt>
+              <dd className="text-[1.5rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark">{n.v}</dd>
+            </motion.div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    {/* 5. what you get */}
+    <section className="bg-white py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div className="max-w-3xl" {...rise()}>
+          <Eyebrow className="mb-4">What you get</Eyebrow>
+          <H2>
+            The same links
+            <br />
+            <Soft>our clients pay for.</Soft>
+          </H2>
+          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-dark/75">
+            A free sample only proves something if it's the real product. These
+            links go through the same site checks and the same team as every
+            paid placement.
+          </p>
+        </motion.div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+          <motion.ul className="divide-y divide-line overflow-hidden rounded-3xl bg-mist ring-1 ring-line" {...rise()}>
+            {INCLUDED.map((x) => (
+              <li key={x.t} className="grid gap-1.5 px-6 py-5 sm:grid-cols-[0.42fr_0.58fr] sm:gap-6 sm:px-7">
+                <span className="flex items-start gap-2.5 text-[15.5px] font-semibold text-navy-dark">
+                  <Check className="mt-1 h-4 w-4 flex-none text-verified" aria-hidden="true" />
+                  {x.t}
+                </span>
+                <span className="text-[14.5px] leading-relaxed text-navy-dark/75">{x.d}</span>
+              </li>
+            ))}
+          </motion.ul>
+
+          <motion.div className="space-y-4" {...rise(0.08)}>
+            <div className="rounded-3xl bg-white p-6 ring-1 ring-line shadow-[0_30px_60px_-40px_rgb(var(--ink)/0.4)] sm:p-7">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/60">
+                  Your pilot, link by link
+                </p>
+                <span className="rounded-full bg-lilac px-2.5 py-0.5 text-[11px] font-semibold text-navy-dark">Example</span>
+              </div>
+              <ul className="mt-4 space-y-2.5">
+                {EXAMPLE.map((e, i) => (
+                  <li key={e.site} className="flex items-center gap-3 rounded-2xl bg-mist px-3.5 py-3 ring-1 ring-line">
+                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-lg bg-navy-dark text-[12px] font-semibold text-white">
+                      {i + 1}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[14px] font-semibold text-navy-dark">{e.site}</span>
+                      <span className="block text-[12px] text-navy-dark/65">{e.d}</span>
+                    </span>
+                    <span
+                      className={`flex-none rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                        e.s === "Live" ? "bg-mint text-navy-dark" : "bg-butter text-navy-dark"
+                      }`}
+                    >
+                      {e.s}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-[12px] text-navy-dark/60">
+                Illustrative. Your placements depend on your niche and the pages you choose.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-white p-6 ring-2 ring-navy-dark sm:p-7">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/60">
+                What it would cost
+              </p>
+              <div className="mt-4 flex items-baseline justify-between gap-4 border-b border-line pb-4 text-[14.5px] text-navy-dark/75">
+                <span>{N} placements at our standard rate</span>
+                <span className="font-semibold tabular-nums text-navy-dark">{VALUE}</span>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 pt-4">
+                <span className="text-[15px] font-semibold text-navy-dark">Your cost</span>
+                <span className="text-[2.2rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark">$0</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* the honest part */}
+        <motion.figure className="mt-10 flex flex-col gap-5 rounded-3xl p-6 ring-1 ring-line sm:flex-row sm:items-start sm:p-8" {...rise()}>
+          <Avatar name="Talha Mahmood" photo="/images/talha-avatar.jpg" size={52} />
+          <div>
+            <p className="text-[17px] font-semibold tracking-[-0.01em] text-navy-dark">What {N} links won't do</p>
+            <blockquote className="mt-2 text-[15.5px] leading-relaxed text-navy-dark/80">
+              Three links won't move a competitive page on their own, and we
+              won't pretend they will. On the call we'll tell you roughly how
+              many links stand between your page and the ones outranking it.
+              The pilot covers the first three and shows you exactly what the
+              rest would look like.
+            </blockquote>
+            <figcaption className="mt-3 text-[13px] text-navy-dark/65">
+              <span className="font-semibold text-navy-dark">Talha Mahmood</span>, Founder
+            </figcaption>
+          </div>
+        </motion.figure>
+      </div>
+    </section>
+
+    {/* 6. who qualifies */}
+    <section className="relative overflow-hidden bg-navy-dark py-24 lg:py-32">
+      <DarkGlow className="-right-40 top-0 h-[520px] w-[760px] opacity-45" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div className="max-w-3xl" {...rise()}>
+          <Eyebrow dark className="mb-4">Who qualifies</Eyebrow>
+          <H2 dark>
+            Built for established businesses.
+            <br />
+            <Soft dark>Limited to {SPOTS} a month.</Soft>
+          </H2>
+          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/75">
+            Free placements never jump ahead of paying clients, so the pilot is
+            limited and the criteria are published. If you clear them, apply.
+          </p>
+        </motion.div>
+        <div className="mt-12 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <motion.div className="rounded-3xl bg-white p-7 sm:p-8" {...rise()}>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-dark/60">You qualify if</p>
+            <p className="mt-2 text-[20px] font-semibold tracking-[-0.02em] text-navy-dark">Your business clears all four</p>
+            <ul className="mt-5 space-y-3">
+              <Ok><b>{REV} or more</b>&nbsp;in annual revenue</Ok>
+              <Ok><b>{EMP} or more</b>&nbsp;employees</Ok>
+              <Ok>A live site with pages worth ranking: product, service, category or comparison pages</Ok>
+              <Ok>The person who owns the SEO budget joins the 30-minute call</Ok>
+            </ul>
+            <a
+              href="#apply"
+              className="group mt-7 inline-flex items-center gap-2 rounded-full bg-navy-dark px-6 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black"
+            >
+              See if you qualify
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </motion.div>
+          <div className="space-y-4">
+            <motion.div className="rounded-3xl bg-white/[0.05] p-7 ring-1 ring-white/10" {...rise(0.06)}>
+              <p className="text-[15px] font-semibold text-white">Not eligible</p>
+              <ul className="mt-3 space-y-2">
                 {[
-                  "You have a live site with pages you want to rank",
-                  "You'd like to see our work before buying a package",
-                  "You're a brand, or an agency testing us on one client",
+                  "Gambling, adult and other grey-area niches",
+                  "Agencies, resellers, and anyone applying for a client",
+                  "A second pilot for a company that has already had one",
                 ].map((x) => (
-                  <li key={x} className="flex items-start gap-2.5 text-[15.5px] text-navy-dark">
-                    <Check className="mt-0.5 h-4 w-4 flex-none text-verified" aria-hidden="true" />
+                  <li key={x} className="flex items-start gap-2.5 text-[14.5px] text-white/75">
+                    <X className="mt-0.5 h-4 w-4 flex-none text-white/50" aria-hidden="true" />
                     {x}
                   </li>
                 ))}
               </ul>
-              <a
-                href="#start"
-                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-navy-dark px-6 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:bg-black"
-              >
-                Start my pilot
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
             </motion.div>
-            <div className="space-y-4">
-              <motion.div className="rounded-3xl bg-white/[0.05] p-7 ring-1 ring-white/10" {...rise(0.06)}>
-                <p className="text-[15px] font-semibold text-white">Not eligible</p>
-                <ul className="mt-3 space-y-2">
-                  {["Adult, gambling and similar niches", "A second pilot for a company that already had one"].map((x) => (
-                    <li key={x} className="flex items-start gap-2.5 text-[14.5px] text-white/75">
-                      <X className="mt-0.5 h-4 w-4 flex-none text-white/50" aria-hidden="true" />
-                      {x}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-              <motion.div className="rounded-3xl bg-white/[0.05] p-7 ring-1 ring-white/10" {...rise(0.1)}>
-                <p className="text-[15px] font-semibold text-white">Good to know</p>
-                <ul className="mt-3 space-y-2">
-                  {[
-                    "You pay once we've confirmed your site fits",
-                    "If we can't find a relevant site for your niche, you get a full refund",
-                    "Want to approve the site first? Ask when you order",
-                    `After the pilot, placements are ${usd(PER_LINK)} in packages from 3`,
-                  ].map((x) => (
-                    <li key={x} className="flex items-start gap-2.5 text-[14.5px] text-white/75">
-                      <Check className="mt-0.5 h-4 w-4 flex-none text-white/60" aria-hidden="true" />
-                      {x}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
+            <motion.div className="rounded-3xl bg-white/[0.05] p-7 ring-1 ring-white/10" {...rise(0.1)}>
+              <p className="text-[15px] font-semibold text-white">Good to know</p>
+              <ul className="mt-3 space-y-2">
+                <Ok dark>{SPOTS} businesses a month. When the spots are taken, applications roll to the next month.</Ok>
+                <Ok dark>Meeting the criteria gets you reviewed. Final selection depends on how well our publishers fit your niche.</Ok>
+                <Ok dark>No card, no contract, no auto-renewal. There's nothing to cancel.</Ok>
+              </ul>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* 8. what a full campaign did */}
-      <section className="bg-mist py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="mb-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16"
-            {...rise()}
-          >
-            <div>
-              <Eyebrow className="mb-4">What a full campaign does</Eyebrow>
-              <H2>
-                One link is a sample.
-                <br />
-                <Soft>This is what more did.</Soft>
-              </H2>
-            </div>
-            <p className="text-[17px] leading-relaxed text-navy-dark/75">
-              Three of our clients, in their own numbers. Every card opens the
-              full case file, with the screenshots.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {["smiletutor", "cryptodesk", "ocuco"].map((s, i) => (
-              <ResultCard key={s} c={caseBySlug(s)!} delay={i * 0.07} />
+    {/* 7. what the full programme does */}
+    <section className="bg-mist py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div className="mb-12 max-w-3xl" {...rise()}>
+          <Eyebrow className="mb-4">What the full programme does</Eyebrow>
+          <H2>
+            Three links are a sample.
+            <br />
+            <Soft>This is what happens when they keep coming.</Soft>
+          </H2>
+        </motion.div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {["smiletutor", "cryptodesk", "ocuco"].map((s, i) => (
+            <ResultCard key={s} c={caseBySlug(s)!} delay={i * 0.07} />
+          ))}
+        </div>
+        <Link to="/case-studies" className="group mt-8 inline-flex items-center gap-2 text-[14.5px] font-semibold text-navy-dark">
+          See all case studies
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
+    </section>
+
+    {/* 8. questions */}
+    <ServiceFaq
+      eyebrow="Questions"
+      h2a="Before"
+      h2b="you apply."
+      side="Not sure you qualify? Ask us, and we'll tell you honestly."
+      faqs={FAQS}
+    />
+
+    {/* 9. apply */}
+    <section className="relative overflow-hidden bg-navy-dark py-24 lg:py-32">
+      <DarkGlow className="-left-48 -top-20 h-[520px] w-[760px] opacity-50" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8">
+        <motion.div {...rise()}>
+          <H2 dark>
+            {N} links. Zero dollars.
+            <br />
+            <Soft dark>Your call after that.</Soft>
+          </H2>
+          <p className="mt-6 max-w-md text-[17px] leading-relaxed text-white/75">
+            If you're approved, the next step is a 30-minute call to pick your
+            pages.
+          </p>
+          <ol className="mt-8 space-y-4">
+            {[
+              ["We reply within 24 hours.", "A person reviews your application and tells you whether you're approved."],
+              ["We choose the pages together.", "One 30-minute call with whoever owns the SEO budget."],
+              [`${N} editorial links go live.`, `In about ${DAYS} days, and they're yours to keep.`],
+            ].map(([t, d], i) => (
+              <li key={t} className="flex gap-3.5">
+                <span className="flex h-7 w-7 flex-none items-center justify-center rounded-lg bg-white/10 text-[12.5px] font-semibold text-white">
+                  {i + 1}
+                </span>
+                <p className="text-[15px] leading-relaxed text-white/75">
+                  <span className="font-semibold text-white">{t}</span> {d}
+                </p>
+              </li>
             ))}
-          </div>
-          <Link
-            to="/case-studies"
-            className="group mt-8 inline-flex items-center gap-2 text-[14.5px] font-semibold text-navy-dark"
-          >
-            See all case studies
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-      </section>
-
-      {/* 9. questions */}
-      <ServiceFaq
-        eyebrow="Questions"
-        h2a="Before you"
-        h2b="start a pilot."
-        side="Not sure the pilot is right for you? Ask us, and we'll tell you honestly."
-        faqs={FAQS}
-      />
-
-      {/* 10. start */}
-      <section className="relative overflow-hidden bg-navy-dark py-24 lg:py-32">
-        <DarkGlow className="-left-48 -top-20 h-[520px] w-[760px] opacity-50" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:px-8">
-          <motion.div {...rise()}>
-            <H2 dark>
-              One link. {PRICE}.
-              <br />
-              <Soft dark>Then you decide.</Soft>
-            </H2>
-            <p className="mt-6 max-w-md text-[17px] leading-relaxed text-white/75">
-              Send us your site and the page you want to rank. We'll reply
-              within 24 hours.
-            </p>
-            <ul className="mt-7 space-y-2.5">
-              {["100% money-back guarantee", "Free link replacement", "No contract, nothing renews"].map((x) => (
-                <li key={x} className="flex items-center gap-2.5 text-[15px] text-white/85">
-                  <Check className="h-4 w-4 flex-none text-mark" aria-hidden="true" />
-                  {x}
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={openBooking}
-              className="mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-[14px] font-semibold text-white ring-1 ring-white/25 transition-colors hover:bg-white/10"
-            >
-              <CalendarDays className="h-4 w-4" />
-              Rather talk first? Book a call
-            </button>
-          </motion.div>
-          <motion.div {...rise(0.08)}>
-            <StartPilot id="pilot-bottom" />
-          </motion.div>
-        </div>
-      </section>
-    </PageLayout>
-  );
-};
+          </ol>
+        </motion.div>
+        <motion.div {...rise(0.08)}>
+          <Apply id="apply-bottom" />
+        </motion.div>
+      </div>
+    </section>
+  </PageLayout>
+);
 
 export default Pilot;

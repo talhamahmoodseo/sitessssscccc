@@ -38,7 +38,7 @@ import { ServiceFaq } from "./services/common";
  * /pricing, round 13, on Amplemarket's pricing structure (the owner's
  * brief, 31 Oct 2026):
  *   1. short package cards on a dark stage, with ticks and crosses and the
- *      guarantees as highlights; the pilot as a slim bar above them;
+ *      guarantees as highlights; the $200 trial link as a slim bar above them;
  *   2. one client quote, under the client logos;
  *   3. the comparison, line by line;
  *   4. real results (the homepage bento);
@@ -334,8 +334,8 @@ const OTHER = [
 
 const FAQS = [
   {
-    q: "Why does the pilot cost more than a standard placement?",
-    a: `The pilot is one trial link for new clients who want to see our work before a bigger order. It's the same placement with no minimum, priced a little higher (${usd(TRIAL_PRICE)}) on purpose so it can't be used as a repeat discount. One pilot per company. After that, every placement is ${usd(PER_LINK)}.`,
+    q: "Why does the trial cost more than a standard placement?",
+    a: `The trial is one link for new clients who want to see our work before a bigger order. It's the same placement with no minimum, priced a little higher (${usd(TRIAL_PRICE)}) on purpose so it can't be used as a repeat discount. One trial per company. After that, every placement is ${usd(PER_LINK)}.`,
   },
   {
     q: `What do I get for ${usd(PER_LINK)} a placement?`,
@@ -400,14 +400,14 @@ const Pricing = () => {
     <PageLayout navOnDark>
       <Seo
         title="Link Building Pricing & Packages"
-        description={`Packages of 3, 5 and 10 editorial links at ${usd(PER_LINK)} a link, a ${usd(TRIAL_PRICE)} pilot link, or a custom package. No contract, no setup fee, 100% money-back guarantee.`}
+        description={`Packages of 3, 5 and 10 editorial links at ${usd(PER_LINK)} a link, a ${usd(TRIAL_PRICE)} trial link, or a custom package. No contract, no setup fee, 100% money-back guarantee.`}
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Link building packages",
           provider: { "@type": "Organization", name: "Editorial HQ" },
           offers: [
-            { "@type": "Offer", name: "Pilot placement (one trial link)", price: String(TRIAL_PRICE), priceCurrency: "USD" },
+            { "@type": "Offer", name: "Trial placement", price: String(TRIAL_PRICE), priceCurrency: "USD" },
             ...PLANS.map((p) => ({
               "@type": "Offer",
               name: `${p.name} package (${p.links} links)`,
@@ -469,7 +469,7 @@ const Pricing = () => {
             </motion.div>
           </div>
 
-          {/* the pilot: one link first */}
+          {/* the trial: one link first */}
           <motion.div
             className="mx-auto mt-14 flex max-w-5xl flex-col gap-4 rounded-2xl bg-white/[0.06] px-5 py-4 ring-1 ring-white/10 sm:px-6 md:flex-row md:items-center md:justify-between"
             initial={{ opacity: 0, y: 20 }}
@@ -478,7 +478,7 @@ const Pricing = () => {
           >
             <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[15px] text-white/80">
               <span className="rounded-md bg-mark px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.08em] text-navy-dark">
-                Pilot
+                Trial
               </span>
               <span>
                 Not ready for a package? Try one link first:{" "}
@@ -488,16 +488,10 @@ const Pricing = () => {
             </p>
             <div className="flex flex-none flex-wrap gap-2">
               <Link
-                to="/pilot"
-                className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[13.5px] font-semibold text-white ring-1 ring-white/20 transition-colors hover:bg-white/10"
-              >
-                How the pilot works
-              </Link>
-              <Link
                 to={orderUrl("trial")}
                 className="group inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2.5 text-[13.5px] font-semibold text-navy-dark transition-colors hover:bg-mark"
               >
-                Order a pilot link
+                Order a trial link
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>

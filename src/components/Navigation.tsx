@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
 
@@ -12,6 +12,7 @@ import {
 } from "./ui/dropdown-menu";
 import { openBooking } from "@/lib/booking";
 import Logo from "./Logo";
+import PilotBar, { BAR_H } from "./PilotBar";
 
 const serviceLinks = [
   { name: "Link Building", to: "/services/link-building" },
@@ -41,7 +42,32 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // the free-pilot bar: on every page but the pilot page itself, until the
+  // visitor closes it (remembered for the visit, read after the first
+  // render so it matches the prerendered page)
+  const { pathname } = useLocation();
+  const [closed, setClosed] = useState(false);
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("ehq-pilot-bar") === "closed") setClosed(true);
+    } catch {
+      /* storage blocked: keep the bar */
+    }
+  }, []);
+  const close = () => {
+    setClosed(true);
+    try {
+      sessionStorage.setItem("ehq-pilot-bar", "closed");
+    } catch {
+      /* fine */
+    }
+  };
+  const bar = !closed && pathname.replace(/\/+$/, "") !== "/pilot";
+
   return (
+    <>
+    {/* holds the bar's place, so no page's hero sits under it */}
+    {bar && <div className={BAR_H} aria-hidden="true" />}
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
@@ -50,6 +76,17 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
     >
+      {bar && (
+        <div
+          className={`grid transition-[grid-template-rows] duration-300 ${
+            scrolled ? "grid-rows-[0fr]" : "grid-rows-[1fr]"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <PilotBar onClose={close} />
+          </div>
+        </div>
+      )}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <motion.div
@@ -208,6 +245,7 @@ const Navigation = ({ onDark = false }: { onDark?: boolean }) => {
         )}
       </AnimatePresence>
     </motion.header>
+    </>
   );
 };
 

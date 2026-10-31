@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { GuaranteeChips } from "@/components/Guarantees";
 import { contactLink } from "@/lib/booking";
-import { TRIAL_PRICE, usd } from "@/lib/pricing";
 import ResultStage from "./ResultStage";
 
 const Hero = () => {
@@ -80,14 +79,8 @@ const Hero = () => {
               Get a free audit
             </button>
           </div>
-          <p className="mt-4 text-[13px] text-navy-dark/70">
-            Want to see our work first?{" "}
-            <Link
-              to="/pilot"
-              className="font-semibold text-navy-dark underline decoration-navy-dark/30 underline-offset-[3px] transition-colors hover:decoration-navy-dark"
-            >
-              Start with one {usd(TRIAL_PRICE)} pilot link
-            </Link>
+          <p className="mt-4 text-[12.5px] text-navy-dark/70">
+            Trusted by CapCut, SmileTutor, Ocuco and Defender
           </p>
           <GuaranteeChips compact className="mt-5 justify-center" />
         </motion.div>
