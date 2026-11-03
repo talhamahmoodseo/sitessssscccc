@@ -15,3 +15,7 @@ Before finishing any change:
    copy, no pricing changes without approval, verified data only).
 6. Update the screenshots in `docs/screenshots/` and the notes in `HANDOFF.md`
    when you change a page.
+7. After every change: commit, push, update the PR and refresh the theme zip
+   in `docs/downloads/`. Send the owner the zip, then ask "Is that thing
+   approved?" and, if yes, "Approved, or is it final?". Log the answer in
+   HANDOFF.md §5 "Sign-off log" and push again.

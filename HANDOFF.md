@@ -148,6 +148,19 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
    `/industries/home-services` 301s to `/services/link-building`. To bring it
    back, restore `src/pages/industries/HomeServices.tsx` from git (commit
    5149f30), its route, the footer link, and drop the 301 in `functions.php`.
+10. **Sign-off after every change (owner's rule, round 15).** After any edit
+    or update to the site, push it to GitHub (commit, push, update the PR,
+    refresh the theme zip in `docs/downloads/`) and send the owner the zip.
+    Then ask: **"Is that thing approved?"** If they say yes, ask: **"Approved,
+    or is it final?"** Record the answer in the sign-off log below and push
+    that too. "Approved" means it can change in a later round; "final" means
+    leave it as it is unless the owner asks.
+
+### Sign-off log
+
+| Round | Status | Notes |
+| --- | --- | --- |
+| 15 | Waiting for the owner | Home Services removed, 3-client hero, CryptoDesk + Bitcoin.com, FAQs, closing CTA, guarantee terms, copy pass |
 
 ## 6. History
 
