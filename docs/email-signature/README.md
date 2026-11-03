@@ -9,7 +9,7 @@ sharp on phones and Retina screens).
 | Old | New | Why |
 |---|---|---|
 | Dark old photo | The new mint headshot, round | Same face as LinkedIn, so people recognise you |
-| "Link Building & Digital PR Expert" | "Founder, Editorial HQ" | Shows you run an agency, instead of calling yourself an expert |
+| "Link Building & Digital PR Expert" | "Link Building · Digital PR · Brand Mentions for AI Search" | Says exactly what you do, including the AI angle, without a job title |
 | Gmail address | team@editorialhq.com + editorialhq.com | Your company email and website look more established than a Gmail address |
 | Blue underlined links | Plain dark text, still clickable | Looks calmer and more expensive |
 | "M:, E:" on one line | Phone, Email, Web in a neat column | Easier to scan |
