@@ -631,7 +631,7 @@ const Pilot = () => (
 
         {/* what the pilot won't do */}
         <motion.figure className="mt-10 flex flex-col gap-5 rounded-3xl p-6 ring-1 ring-line sm:flex-row sm:items-start sm:p-8" {...rise()}>
-          <Avatar name="Talha Mahmood" photo="/images/talha-avatar.jpg" size={52} />
+          <Avatar name="Talha Mahmood" photo="/images/talha-mahmood.jpg" size={52} />
           <div>
             <p className="text-[17px] font-semibold tracking-[-0.01em] text-navy-dark">What {N} links won't do</p>
             <blockquote className="mt-2 text-[15.5px] leading-relaxed text-navy-dark/80">

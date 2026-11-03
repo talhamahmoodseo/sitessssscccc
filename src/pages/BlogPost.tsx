@@ -67,7 +67,7 @@ const BlogPost = () => {
             </h1>
             <div className="flex items-center gap-4">
               <img
-                src={asset("/images/talha-avatar.jpg")}
+                src={asset("/images/talha-mahmood.jpg")}
                 alt="Talha Mahmood"
                 className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-accent/40"
               />
@@ -129,7 +129,7 @@ const BlogPost = () => {
           )}
           <div className="mt-14 flex items-center gap-4 bg-linen rounded-2xl p-6">
             <img
-              src={asset("/images/talha-avatar.jpg")}
+              src={asset("/images/talha-mahmood.jpg")}
               alt="Talha Mahmood"
               className="flex-none w-14 h-14 rounded-full object-cover ring-2 ring-blue-accent/40"
             />

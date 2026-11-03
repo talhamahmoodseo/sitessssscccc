@@ -232,7 +232,7 @@ export const GuaranteeBand = ({ terms = true }: { terms?: boolean }) => (
             </blockquote>
             <figcaption className="mt-3 flex items-center gap-2.5">
               <img
-                src={asset("/images/talha-avatar.jpg")}
+                src={asset("/images/talha-mahmood.jpg")}
                 alt="Talha Mahmood"
                 className="h-8 w-8 rounded-full object-cover ring-2 ring-mark/50"
                 loading="lazy"
