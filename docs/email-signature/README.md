@@ -9,13 +9,13 @@ sharp on phones and Retina screens).
 | Old | New | Why |
 |---|---|---|
 | Dark old photo | The new mint headshot, round | Same face as LinkedIn, so people recognise you |
-| "Link Building & Digital PR Expert" | "Founder, Editorial HQ" + "Link building · Digital PR · Brand mentions for AI search" | Shows you run an agency, says what you do instead of calling yourself an expert, and adds the AI angle |
+| "Link Building & Digital PR Expert" | "Founder, Editorial HQ" | Shows you run an agency, instead of calling yourself an expert |
 | Gmail address | team@editorialhq.com + editorialhq.com | Your company email and website look more established than a Gmail address |
 | Blue underlined links | Plain dark text, still clickable | Looks calmer and more expensive |
-| Phone opens a call | Phone opens WhatsApp | Most international clients reach Pakistan numbers on WhatsApp, not by phone |
+| "M:, E:" on one line | Phone, Email, Web in a neat column | Easier to scan |
+| Phone opens a call | Clicking the number opens WhatsApp | Most international clients reach Pakistan numbers on WhatsApp |
 | Sage green button with a calendar icon | Black "Book a 30-min call →" button | Matches the brand, and it's built from HTML, not an image, so it always shows |
-| Round social icons | "LinkedIn \| Instagram" as text | Icons are images: Gmail often blocks them and they look blurry. Text never breaks |
-| No proof | "Trusted by CapCut · SmileTutor · Ocuco · Defender · CryptoDesk" | Every email now carries your client list |
+| Round social icons | "LinkedIn · Instagram" as small grey text | Icons are images: Gmail often blocks them and they look blurry. Text never breaks |
 
 ## Set it up in Gmail (10 minutes)
 
@@ -50,7 +50,7 @@ on the phone will use this one on most accounts.
 
 ## Rules it follows
 
-- 470 px wide, so it fits phones without shrinking.
+- About 400 px wide, so it fits phones without shrinking.
 - Arial everywhere. Brand fonts don't load in email, and Arial looks the same
   in every inbox.
 - One photo, no other images, so nothing gets blocked and it stays light.
