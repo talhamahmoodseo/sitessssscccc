@@ -28,7 +28,7 @@ Digital PR, Brand Mentions for AI search, HARO & Expert Quotes.
 
 Pages: home, about, link-building, digital-pr, brand-mentions,
 haro-expert-quotes, results (case studies), case-study (SmileTutor),
-home-services, blog, contact, pricing, pilot, privacy, terms, plus the booking popup.
+blog, contact, pricing, pilot, privacy, terms, plus the booking popup.
 
 ## 3. Run it
 
@@ -144,12 +144,16 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
    section they liked. Improve it, and ask before removing anything.
 8. "No PBNs" and "white-hat" belong in the guarantee band and terms only. The
    small hero chips show just money-back and link replacement.
-9. Home Services lives in the footer only, not the header menu.
+9. Home Services is parked (round 15): the page is removed and
+   `/industries/home-services` 301s to `/services/link-building`. To bring it
+   back, restore `src/pages/industries/HomeServices.tsx` from git (commit
+   5149f30), its route, the footer link, and drop the 301 in `functions.php`.
 
 ## 6. History
 
 | Commit | Round |
 | --- | --- |
+| (round 15) | **Focus on the main services, cleaner copy.** Plan: `PLAN-ROUND-15.md`. Home Services page removed (301 to link building, footer link gone, persona button now goes to link building). Hero stage: 3 clients (SmileTutor, CryptoDesk, Ocuco) instead of 5, 8 s each, and it no longer pauses on hover or focus (it sits under the audit box, so it looked stuck); it pauses only when mostly off screen, the tab is hidden, or the visitor presses pause. CryptoDesk: 35+ press releases and 100+ placements (owner), the Bitcoin.com News press release (checked live, 15 July 2023) first in its press list as a larger card, and a new `badge` field on case studies ("Featured on Bitcoin.com", `CaseBadge` in `components/proof.tsx`) shown on its cards, homepage row and hero card. Every FAQ rewritten (home, pricing, pilot, contact, four service pages): answer first, search wording, no filler. One closing CTA everywhere (`components/AuditCTA.tsx`, used by `CTABand` and `HomeCTA`): "Find out what it takes to rank first", website field, one button; the repeated hero headline, the book-a-call row and the email address are gone. Guarantee terms: "Our guarantees, in full" with "What's included / Exclusions / How to claim". Copy pass: "honestly", "no small print", "in plain English", "no catch", "stay invisible on client calls", "pulling their weight" and similar removed site-wide |
 | (round 14) | **Free 3-link pilot, like uSERP's** (the owner's correction: not the paid trial). A bar on every page (`components/PilotBar.tsx`: "Get 3 editorial backlinks free. No catch, no contract." → /pilot?ref=bar), with a spacer so no hero sits under it; it folds on scroll and can be closed. /pilot rebuilt on uSERP's structure: offer + application form, why it's free, usual way vs pilot, 4 steps, what you get with an illustrative example and the value ($570 → $0), what 3 links won't do, who qualifies (published criteria), case results, FAQ, apply. The application posts to the contact endpoint ("Free pilot application"); `noindex`. The $200 link is called "trial" again on pricing and the contact form; case studies CTAs point to the free pilot; the homepage's "Trusted by…" line is back |
 | (round 13) | Results-first pages, after Amplemarket and uSERP (plan: `PLAN-ROUND-13.md`). **Homepage hero:** `ResultStage` replaces `SearchStory`: one client at a time, set like a post (their approved words, their homepage with the result pinned on it, three figures), two pieces of evidence beside it (Google #1, AI Overview, press, the placement), link tiles flying in, the client's colour behind, five tabs that cycle. Subline rewritten, plus a link to the pilot. **Pricing:** Amplemarket order: short ✓/✗ package cards with a pilot bar, the logos and one big quote on the dark stage, a line-by-line comparison (first column pinned on phones), guarantee band, the results bento and review wall from the homepage, full guarantee terms (`#guarantee-terms` kept), other services, FAQ. "Three steps", "the terms in plain words" and "five things move a custom quote" now live in the FAQ. The nav is white on the dark stage (`navOnDark`; it was invisible before). **Case studies:** results-at-a-glance hero, logo strip, SmileTutor featured, service filters and `ResultCard`s with each client's homepage, a pilot card, the review wall, then the totals, what we count / leave out and the eight parts. **Pilot (/pilot, new):** the existing $200 trial link presented as a pilot, after uSERP's /pilot structure (start form → contact with `?package=trial`). Linked from the hero, pricing, case studies and the footer. The contact form's package label reads "Pilot: one trial link ($200)" |
 | (round 12) | New logo, the "Link E" (Direction B in `docs/branding/`): a bold E with an orange-to-violet chain link hooked through it, wordmark "Editorial HQ" in Outfit Bold converted to outlines (no font loaded). `components/Logo.tsx` draws both from fixed paths; masks use `useId` so several logos can share a page. New favicon (svg, 32px, apple-touch), schema logo `public/images/logo.png`, and the logo in `og-default.jpg`. Brand kit (logo files, avatars, LinkedIn/X banners, post template) in `docs/branding/kit/`; competitor visual analysis, direction boards and the business profiles playbook (`docs/business-profiles-guide.md`) sit beside it |
@@ -172,6 +176,8 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 (conventions and traps), `HOSTING.md` (deployment).
 
 ## 7. Open work (owner's list, not done yet)
+
+- **CryptoDesk link mix (round 15), to confirm:** 35 press releases is the owner's figure; the split of the other 65 placements (35 guest posts, 15 niche edits, 15 press features) is still proposed. `src/lib/cases.ts`, see `CASE-STUDY-DRAFTS.md`.
 
 - **Free pilot thresholds (round 14), to confirm with the owner:** $5M+ annual revenue, 25+ employees, 3 businesses a month, agencies not eligible (they can buy the $200 trial link instead). uSERP uses $10M+ and 50+. All in `src/lib/pilot.ts`.
 - **Pricing (round 9, owner-set):** $190 a placement; trial $200, one per

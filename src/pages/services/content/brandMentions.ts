@@ -261,7 +261,7 @@ export const brandMentions = {
       "You want it measured, not just promised.",
     ],
     bad: [
-      "You want a guarantee that ChatGPT will name you. Nobody can honestly give one.",
+      "You want a guarantee that ChatGPT will name you. No one can give one.",
       "Your category is so new that AI tools have nothing to go on yet.",
       "You want this instead of SEO. It works on the same foundations.",
     ],
@@ -284,37 +284,37 @@ export const brandMentions = {
     eyebrow: "FAQ",
     h2a: "Questions",
     h2b: "about AI visibility.",
-    side: "Send us your brand and category. We’ll tell you on the call what AI says about you today, and whether this is worth doing yet.",
+    side: "Send us your brand and category. On the call, we’ll show you what AI tools say about you today, and whether this work makes sense for you yet.",
   },
 
   faqs: [
     {
-      q: "Can you actually change what AI says about us?",
-      a: "Not directly. There’s no dashboard or submission form, and anyone claiming a direct line is selling something. What you can change is what AI reads. These tools answer from sources they trust, and those sources can be found and reached through normal editorial work. We change the inputs and measure the answers every month.",
+      q: "Can you change what AI tools say about our brand?",
+      a: "Not directly. There's no submission form or direct line to ChatGPT or Google's AI. What you can influence is what those tools read. AI answers draw on sources they trust, and those sources can be reached through editorial work. We improve the inputs and measure the answers every month.",
     },
     {
-      q: "How do you measure it?",
-      a: "A fixed set of 30–60 real buyer questions, run through ChatGPT, Perplexity, Google’s AI Overviews and other tools on the same schedule each month. We record whether you’re named, how you’re described and which sources the answer used, and track it against named competitors. Same idea as rank tracking, applied to answers.",
+      q: "How do you measure AI visibility?",
+      a: "We run a fixed set of 30–60 real buyer questions through ChatGPT, Perplexity, Google's AI Overviews and other tools on the same schedule each month. We record whether you're named, how you're described and which sources each answer used, and compare that with named competitors. It's rank tracking, applied to AI answers.",
     },
     {
       q: "Isn’t this just link building with a new name?",
-      a: "There’s overlap: both put you on independent publications. But the target list is different. We go after the sources AI cites, not the ones that pass the most authority. Unlinked mentions count fully here. Comparison and “best of” articles matter much more. And we measure answers, not rankings.",
+      a: "There's overlap, since both put your brand on independent publications. The target list is different: we prioritise the sources AI tools cite, not the ones that pass the most authority. Unlinked mentions count fully, comparison and “best of” articles matter far more, and we measure answers rather than rankings.",
     },
     {
-      q: "Do unlinked mentions really matter?",
-      a: "For AI answers, yes. A sentence like “YourBrand, the help desk built for small teams” tells an AI tool what you are and who you’re for, link or no link. For Google rankings the link matters more. We go after both and report them separately.",
+      q: "Do unlinked brand mentions matter?",
+      a: "For AI answers, yes. A sentence like “YourBrand, the help desk built for small teams” tells an AI tool what you do and who you serve, with or without a link. For Google rankings, the link carries more weight. We pursue both and report them separately.",
     },
     {
-      q: "How long until something changes?",
-      a: "First movement usually shows up in months three to four, once new mentions get picked up. A real change in your share of answers is a two-quarter job. The month-one baseline is useful straight away, because most teams have never seen what AI says about them.",
+      q: "How long does it take to improve AI visibility?",
+      a: "First changes usually appear in months three to four, once new mentions are picked up. A meaningful shift in your share of answers typically takes two quarters. The month-one baseline is useful straight away, because most teams have never seen what AI tools say about them.",
     },
     {
-      q: "What if a competitor already dominates the answers?",
-      a: "That’s the usual starting point, and it’s workable. AI answers are less sticky than page-one rankings. The way in is comparison content: getting named next to them in the articles that compare your category, so the AI has a reason to mention you both.",
+      q: "What if a competitor already dominates AI answers?",
+      a: "That's the usual starting point, and it can change. AI answers shift more easily than page-one rankings. The most effective route is comparison content: getting your brand named alongside theirs in the articles that compare your category, so AI tools have a reason to mention both.",
     },
     {
-      q: "Does this replace our SEO?",
-      a: "No. The same publications feed both, and a site that can’t rank usually struggles to get cited too. Think of it as the same authority work aimed at a second place buyers look, with its own targets and its own report.",
+      q: "Does AI visibility work replace SEO?",
+      a: "No. The same publications feed both, and a site that struggles to rank usually struggles to be cited as well. It's the same authority work aimed at a second place buyers look, with its own targets and its own report.",
     },
   ],
 

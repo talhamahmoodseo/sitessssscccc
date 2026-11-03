@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { FigNetwork, FigTrendline } from "@/components/LineArt";
 import { CASES } from "@/lib/cases";
 import { LogoChip } from "@/pages/results/CaseParts";
+import { CaseBadge } from "@/components/proof";
 
 /** Homepage case studies: the three projects with the strongest numbers. */
 const ROWS = ["smiletutor", "cryptodesk", "ocuco"]
@@ -69,9 +70,12 @@ const Results = () => (
               </div>
               <div className="flex flex-col justify-between p-8 sm:p-10">
                 <div>
-                  <p className="mb-2 text-[13px] font-semibold text-navy-dark/70">
-                    {c.client}
-                  </p>
+                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-[13px] font-semibold text-navy-dark/70">
+                      {c.client}
+                    </p>
+                    {c.badge && <CaseBadge text={c.badge} />}
+                  </div>
                   <h3 className="mb-3 text-[1.5rem] font-semibold leading-[1.15] tracking-[-0.02em] text-navy-dark sm:text-[1.75rem]">
                     {c.card}
                   </h3>

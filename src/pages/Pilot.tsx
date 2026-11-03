@@ -248,12 +248,12 @@ const WHY = [
     d: "Every agency shows the same logos and the same charts. A live placement on a real publication, pointing at your page, is something you can open and check yourself.",
   },
   {
-    t: "It costs us less than chasing you.",
-    d: "Weeks of calls, proposals and follow-ups cost more than earning three links. We'd rather put that effort into work you get to keep.",
+    t: "It costs less than a long sales process.",
+    d: "Weeks of calls, proposals and follow-ups cost more than placing three links. We prefer to put that effort into work you keep.",
   },
   {
-    t: "The only catch is the obvious one.",
-    d: "We think that once you see the placements, you'll want more. If you don't, you keep the links and that's the end of it. No invoice, nothing to cancel.",
+    t: "What we hope happens next.",
+    d: "We expect that once you see the placements, you'll want more. If you don't, you keep the links and that's the end of it. No invoice, nothing to cancel.",
   },
 ];
 
@@ -275,7 +275,7 @@ const STEPS = [
   },
   {
     t: "Pick your pages on a 30-minute call",
-    d: "With whoever owns your SEO budget. We look at the pages that outrank you, agree where links will help most, and tell you honestly how big the gap is.",
+    d: "With whoever owns your SEO budget. We look at the pages that outrank you, agree where links will help most, and show you how big the gap is.",
   },
   {
     t: `We earn ${N} editorial links`,
@@ -322,44 +322,44 @@ const EXAMPLE = [
 
 const FAQS = [
   {
-    q: "Is this really free?",
-    a: `Yes. No card, no contract, no setup fee and no invoice later. If you're approved, we earn ${N} editorial links to your pages and you keep them.`,
+    q: "Is the pilot really free?",
+    a: `Yes. There's no card, no contract, no setup fee and no invoice later. If your application is approved, we place ${N} editorial links to your pages, and they're yours to keep.`,
   },
   {
-    q: "What's the catch?",
-    a: "We hope you'll like the placements enough to hire us for more. If you don't, nothing else happens. You keep the links.",
+    q: "Why are you offering free links?",
+    a: "Because the clearest way to show the quality of our work is to deliver it. We expect some pilot clients to hire us for more. If you don't, nothing else happens, and you keep the links.",
   },
   {
-    q: "Who qualifies?",
-    a: `Established businesses with ${REV}+ in annual revenue and ${EMP}+ employees, a live site with pages worth ranking, and the person who owns the SEO budget on the call. It's ${SPOTS} businesses a month.`,
+    q: "Who qualifies for the free pilot?",
+    a: `Established businesses with ${REV}+ in annual revenue and ${EMP}+ employees, a live website with pages worth ranking, and the person responsible for the SEO budget on the call. We accept ${SPOTS} businesses a month.`,
   },
   {
-    q: `Why only ${SPOTS} a month?`,
-    a: "Free placements never jump ahead of paying clients. When the month's spots are taken, applications roll to the next month.",
+    q: `Why only ${SPOTS} businesses a month?`,
+    a: "Pilot placements never take priority over our paying clients' work. When a month's spots are filled, new applications move to the following month.",
   },
   {
-    q: "How fast will we hear back?",
-    a: "Within 24 hours. A person reviews your site and niche and emails you either way.",
+    q: "How quickly will we hear back?",
+    a: "Within 24 hours. A member of our team reviews your site and niche, and emails you with a decision either way.",
   },
   {
-    q: "Will three links move our rankings?",
-    a: "On a competitive page, not on their own, and we won't pretend otherwise. On the call we tell you roughly how many links stand between your page and the ones outranking it. The pilot covers the first three and shows you what the rest would look like.",
+    q: "Will three backlinks improve our rankings?",
+    a: "On a competitive page, three links alone rarely move rankings much. On the call, we estimate how many links separate your page from the pages outranking it. The pilot covers the first three and shows you the quality the rest of a campaign would have.",
   },
   {
     q: "What kind of sites will the links be on?",
-    a: "Real publications in or next to your niche, with their own editors and readers, that pass the same 7-point site check as every paid placement.",
+    a: "Real publications in or close to your niche, with their own editors and readers. Each one passes the same 7-point site check as every paid placement.",
   },
   {
-    q: "We already have an agency or an in-house team. Can we apply?",
-    a: "Yes. The pilot is a simple way to compare our links with what you're getting now.",
+    q: "We already work with an agency or an in-house team. Can we apply?",
+    a: "Yes. The pilot is a simple way to compare our placements with the links you're getting now.",
   },
   {
-    q: "Can agencies apply for a client?",
-    a: `Not for the free pilot. Agencies can still test us with a single paid trial link (${usd(TRIAL_PRICE)}) and order white label after that.`,
+    q: "Can agencies apply on behalf of a client?",
+    a: `Not for the free pilot. Agencies can test us with a single paid trial placement (${usd(TRIAL_PRICE)}), then order white label.`,
   },
   {
     q: "What happens after the three links?",
-    a: `Nothing, unless you want more. If you do, packages start at 3 links at ${usd(PER_LINK)} a placement, with no contract.`,
+    a: `Nothing, unless you want to continue. Paid packages start at 3 links, at ${usd(PER_LINK)} a placement, with no contract.`,
   },
 ];
 
@@ -376,7 +376,7 @@ const Pilot = () => (
   <PageLayout navOnDark cta={false}>
     <Seo
       title={`Free Link Building Pilot: ${N} Backlinks`}
-      description={`Get ${N} editorial backlinks free, no catch and no contract. For established businesses that qualify, ${SPOTS} a month, by application.`}
+      description={`Get ${N} editorial backlinks free, with no contract and no card. For established businesses that qualify: ${SPOTS} spots a month, by application.`}
       noindex
     />
 
@@ -409,7 +409,7 @@ const Pilot = () => (
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease }}
             >
-              <span className="accent-ink-dark">Free. No catch, no contract.</span>
+              <span className="accent-ink-dark">Free, with no contract.</span>
             </motion.span>
           </h1>
           <motion.p
@@ -418,10 +418,11 @@ const Pilot = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
           >
-            Every link building agency says its links are better. We'd rather
-            show you. If your business qualifies, we earn {N} editorial links
-            to the pages you choose, on real publications, at the same standard
-            our clients pay for. You keep them no matter what.
+            Every link building agency says its links are better. We'd like
+            you to judge ours on live placements. If your business qualifies,
+            we place {N} editorial links to the pages you choose, on real
+            publications, at the same standard our clients pay for. They're
+            yours to keep.
           </motion.p>
           <motion.ul
             className="mt-7 space-y-2.5"
@@ -477,8 +478,8 @@ const Pilot = () => (
             <Soft>than any sales deck.</Soft>
           </H2>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-navy-dark/75">
-            It isn't charity and it isn't a trick. It's the most honest way we
-            know to win your business.
+            It's how we prefer to win new clients: by showing the work before
+            we ask for a budget.
           </p>
         </motion.div>
         <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -628,15 +629,15 @@ const Pilot = () => (
           </motion.div>
         </div>
 
-        {/* the honest part */}
+        {/* what the pilot won't do */}
         <motion.figure className="mt-10 flex flex-col gap-5 rounded-3xl p-6 ring-1 ring-line sm:flex-row sm:items-start sm:p-8" {...rise()}>
           <Avatar name="Talha Mahmood" photo="/images/talha-avatar.jpg" size={52} />
           <div>
             <p className="text-[17px] font-semibold tracking-[-0.01em] text-navy-dark">What {N} links won't do</p>
             <blockquote className="mt-2 text-[15.5px] leading-relaxed text-navy-dark/80">
-              Three links won't move a competitive page on their own, and we
-              won't pretend they will. On the call we'll tell you roughly how
-              many links stand between your page and the ones outranking it.
+              Three links won't move a competitive page on their own. On the
+              call we'll tell you roughly how many links stand between your
+              page and the ones outranking it.
               The pilot covers the first three and shows you exactly what the
               rest would look like.
             </blockquote>
@@ -739,7 +740,7 @@ const Pilot = () => (
       eyebrow="Questions"
       h2a="Before"
       h2b="you apply."
-      side="Not sure you qualify? Ask us, and we'll tell you honestly."
+      side="Not sure you qualify? Send us your site and we'll confirm within 24 hours."
       faqs={FAQS}
     />
 

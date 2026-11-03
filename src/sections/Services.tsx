@@ -263,7 +263,7 @@ const SERVICES: Service[] = [
     line: "Your expertise, quoted by journalists.",
     d: "We answer journalist requests in your name with quotes worth printing. You approve every word before it goes.",
     points: [
-      "Requests matched to what you can genuinely speak to",
+      "Requests matched to your real expertise",
       "Quotes drafted with you, sent before the deadline",
       "Links and mentions from the articles that run",
     ],

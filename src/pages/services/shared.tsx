@@ -80,7 +80,7 @@ export const SERVICES = [
       },
       {
         t: "Hand-picked source requests, answered fast",
-        d: "Only where you’re genuinely the right expert. We skip the rest.",
+        d: "Only where you’re clearly the right expert. We skip the rest.",
       },
     ],
   },

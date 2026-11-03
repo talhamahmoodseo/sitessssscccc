@@ -74,7 +74,7 @@ export const haroQuotes = {
         },
         {
           k: "Hand-picked source requests",
-          d: "We still watch the request platforms. We answer only the ones where you’re genuinely the right expert, fast, with something specific.",
+          d: "We still watch the request platforms. We answer only the ones where you’re clearly the right expert, fast, with something specific.",
           tag: "Selected requests",
         },
       ],
@@ -326,36 +326,36 @@ export const haroQuotes = {
 
   faqs: [
     {
-      q: "Isn’t HARO dead?",
-      a: "The free-for-all version mostly is. One request now gets hundreds of near-identical replies, and a lot of journalists stopped reading the inbox. What still works is the layer underneath: editors and publishers who know a source replies fast, on topic and without needing edits. That’s where most of our placements come from. If someone promises you twenty HARO links a month, they’re running the dead version.",
+      q: "Is HARO still worth it?",
+      a: "The original open-inbox version mostly isn't. A single request now attracts hundreds of near-identical replies, and many journalists have stopped reading them. What still works is the layer underneath: editors and publishers who know a source will reply quickly, on topic and without needing edits. That's where most of our placements come from. Offers of twenty HARO links a month usually rely on the old approach.",
     },
     {
-      q: "How is this different from normal HARO?",
-      a: "Normal HARO is answering as many requests as possible and hoping. We place most quotes through our own publishing connections, people who already take expert commentary from us, and we only answer public requests where you’re clearly the right expert. Fewer sends, far more of them published.",
+      q: "How is your expert quote service different from HARO?",
+      a: "Standard HARO means answering as many requests as possible. We place most quotes through our own publishing connections, editors who already take expert commentary from us, and we only answer public requests where you're clearly the right expert. Fewer pitches, and a much higher share published.",
     },
     {
-      q: "Who writes the quotes? Will they sound like me?",
-      a: "Our editorial team drafts from your expertise profile, which is built to capture how you talk and what you actually think. You approve every quote before it goes anywhere. Most clients change one in five by a few words.",
+      q: "Who writes the quotes, and will they sound like me?",
+      a: "Our editorial team drafts each quote from your expertise profile, which captures how you speak and what you think about your field. You approve every quote before it's sent. Most clients edit about one in five, usually by a few words.",
     },
     {
-      q: "How many placements will I get a month?",
-      a: "Usually two to six, depending on how much your field is being written about. We scope and bill on delivered placements, not attempts. We won’t promise a fixed number, because hitting a quota means lowering the bar.",
+      q: "How many placements will I get each month?",
+      a: "Usually two to six, depending on how much your field is in the news. We scope and bill on delivered placements, not attempts. We don't promise a fixed number, because hitting a quota means lowering the standard.",
     },
     {
       q: "What if the journalist doesn’t include a link?",
-      a: "It happens with some quotes, and it’s still worth having. A named expert mention on a trusted publication helps people trust you, and it’s the kind of thing AI answers pick up. We report linked and unlinked quotes separately.",
+      a: "It happens with some quotes, and the mention still has value. A named expert quote on a trusted publication builds credibility, and it's the kind of mention AI answers pick up. We report linked and unlinked quotes separately.",
     },
     {
       q: "Do I need to do interviews?",
-      a: "Rarely. Nearly all placements are written quotes over email. Sometimes a journalist wants a short call. We brief you first, and saying no is always fine.",
+      a: "Rarely. Nearly all placements are written quotes sent by email. Occasionally a journalist asks for a short call. We brief you first, and you can always decline.",
     },
     {
       q: "Can you quote more than one person from our team?",
-      a: "Yes, and it usually helps. We build a profile for each person, so a founder, a head of product and a CFO can each answer different requests. More experts, more chances.",
+      a: "Yes, and it usually helps. We build a profile for each expert, so a founder, a head of product and a CFO can each answer different requests. More experts means more relevant opportunities.",
     },
     {
       q: "What happens in a slow month?",
-      a: "We tell you, and you pay for what was delivered. We’d rather report a quiet month than pad it with weak outlets. If your field stays quiet for a while, we’ll suggest moving budget to digital PR, where we create the story instead of waiting for one.",
+      a: "We tell you, and you pay only for what was delivered. We won't pad a quiet month with weak outlets. If your field stays quiet for a while, we'll suggest moving budget to digital PR, where we create the story rather than wait for one.",
     },
   ],
 

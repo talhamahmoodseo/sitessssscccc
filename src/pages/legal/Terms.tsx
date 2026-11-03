@@ -15,7 +15,7 @@ const Terms = () => (
   <LegalPage
     title="Terms of service"
     seoTitle="Terms of Service"
-    description="How ordering, delivery, refunds and link replacement work at Editorial HQ, in plain English."
+    description="The terms for ordering, delivery, refunds and link replacement at Editorial HQ."
     updated="27 October 2026"
     intro={
       <p>
@@ -73,7 +73,7 @@ const Terms = () => (
     <H>What we can't promise</H>
     <L
       items={[
-        "Rankings or traffic. Nobody controls Google or AI answers, so no honest agency guarantees positions.",
+        "Rankings or traffic. No one controls Google or AI answers, so no reputable agency can guarantee positions.",
         "Third-party metrics such as DR or Authority Score. Tools update them all the time, so we record them on the day your link goes live.",
       ]}
     />

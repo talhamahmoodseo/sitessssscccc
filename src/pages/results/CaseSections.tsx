@@ -337,7 +337,7 @@ const SerpBand = ({ c }: { c: CaseStudy }) => (
           Also covered by
         </p>
         <ul className="flex flex-wrap gap-x-6 gap-y-2">
-          {["Cointelegraph", "Investing.com", ...c.links.alsoIn].map((n) => (
+          {c.links.alsoIn.map((n) => (
             <li key={n} className="font-news text-[17px] font-semibold tracking-[-0.01em] text-navy-dark/85">
               {n}
             </li>
@@ -755,7 +755,7 @@ export const Links = ({ c }: { c: CaseStudy }) => {
     L.reviewed ? [String(L.reviewed), "sites reviewed by hand"] : null,
     L.rejected ? [String(L.rejected), "turned down at vetting"] : null,
     L.indexed ? [L.indexed, "indexed by Google"] : null,
-    L.features ? [String(L.features.length), "press features"] : null,
+    L.features ? [String(L.features.length), "press articles linked below"] : null,
     L.niches ? [String(L.niches.length), "client niches"] : null,
   ].filter(Boolean) as [string, string][];
   const pagesTitle =
@@ -881,7 +881,7 @@ export const Links = ({ c }: { c: CaseStudy }) => {
       {L.features && (
         <div className="mt-8">
           <p className="mb-3 text-[15px] font-semibold text-navy-dark">
-            Press features
+            Press coverage
           </p>
           <div className="grid gap-3 md:grid-cols-2">
             {L.features.map((f, i) => (
@@ -890,16 +890,39 @@ export const Links = ({ c }: { c: CaseStudy }) => {
                 href={f.url}
                 target="_blank"
                 rel="noopener"
-                className="group flex flex-col rounded-2xl bg-mist p-5 ring-1 ring-line transition-shadow hover:shadow-soft"
+                className={`group flex flex-col rounded-2xl p-5 ring-1 transition-shadow hover:shadow-soft ${
+                  f.lead
+                    ? "bg-navy-dark text-white ring-navy-dark md:col-span-2 sm:p-7"
+                    : "bg-mist ring-line"
+                }`}
                 {...rise((i % 2) * 0.06)}
               >
-                <span className="font-news text-[15px] font-semibold text-navy-dark/80">
-                  {f.name}
+                <span className="flex flex-wrap items-center justify-between gap-2">
+                  <span className={`font-news text-[15px] font-semibold ${f.lead ? "text-white" : "text-navy-dark/80"}`}>
+                    {f.name}
+                  </span>
+                  {f.kind && (
+                    <span
+                      className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] ${
+                        f.lead ? "bg-white/10 text-white/80" : "bg-white text-navy-dark/70"
+                      }`}
+                    >
+                      {f.kind}
+                    </span>
+                  )}
                 </span>
-                <span className="mt-2 text-[15.5px] font-semibold leading-snug tracking-[-0.01em] text-navy-dark">
+                <span
+                  className={`mt-2 font-semibold leading-snug tracking-[-0.01em] ${
+                    f.lead ? "font-news text-[1.35rem] text-white sm:text-[1.6rem]" : "text-[15.5px] text-navy-dark"
+                  }`}
+                >
                   {f.t}
                 </span>
-                <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-navy-dark/70 group-hover:text-navy-dark">
+                <span
+                  className={`mt-3 inline-flex items-center gap-1 text-[13px] font-semibold ${
+                    f.lead ? "text-white/75 group-hover:text-white" : "text-navy-dark/70 group-hover:text-navy-dark"
+                  }`}
+                >
                   Read it
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </span>

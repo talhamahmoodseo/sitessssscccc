@@ -27,6 +27,8 @@ type Guarantee = {
   covered: string[];
   notCovered: string[];
   claim: string;
+  /** the label before `claim`; "How to claim" when left out */
+  claimLabel?: string;
 };
 
 export const GUARANTEES: Guarantee[] = [
@@ -43,7 +45,7 @@ export const GUARANTEES: Guarantee[] = [
       "You cancel before your links go live. We refund everything not yet delivered.",
     ],
     notCovered: [
-      "Rankings or traffic. Nobody controls Google, so no honest agency guarantees positions.",
+      "Rankings or traffic. No one controls Google's rankings, so no reputable agency can guarantee positions.",
       "DR moving after publication. Ahrefs updates DR all the time, so we record it on the day your link goes live.",
       "A change of mind once a link that matches your order is live.",
     ],
@@ -87,6 +89,7 @@ export const GUARANTEES: Guarantee[] = [
     notCovered: [],
     claim:
       "Every report lists the site and the live URL, so you can check any placement yourself.",
+    claimLabel: "How to check",
   },
   {
     id: "white-label",
@@ -103,6 +106,7 @@ export const GUARANTEES: Guarantee[] = [
     notCovered: [],
     claim:
       "Tell us it's a white-label order when you place it. Everything after that is unbranded by default.",
+    claimLabel: "How to request it",
   },
 ];
 
@@ -288,7 +292,7 @@ export const GuaranteeBand = ({ terms = true }: { terms?: boolean }) => (
 
 /* ----------------------------------- terms --------------------------------- */
 
-/** The plain-English terms behind each guarantee. Lives on /pricing. */
+/** The full terms behind each guarantee. Lives on /pricing. */
 export const GuaranteeTerms = () => (
   <section id="guarantee-terms" className="scroll-mt-24 bg-white py-24 lg:py-32">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -299,19 +303,19 @@ export const GuaranteeTerms = () => (
         <div>
           <Eyebrow className="mb-4">Guarantee terms</Eyebrow>
           <H2>
-            What's covered,
+            Our guarantees,
             <br />
-            <Soft>in plain English.</Soft>
+            <Soft>in full.</Soft>
           </H2>
         </div>
         <p className="text-[17px] leading-relaxed text-navy-dark/75">
-          No small print. This is exactly what each guarantee covers, what it
-          doesn't, and how to use it.
+          The complete terms behind every order: what each guarantee
+          includes, what it excludes, and how to make a claim.
         </p>
       </motion.div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        {GUARANTEES.map(({ id, Icon, title, covered, notCovered, claim }, i) => (
+        {GUARANTEES.map(({ id, Icon, title, covered, notCovered, claim, claimLabel }, i) => (
           <motion.article
             key={id}
             id={id}
@@ -328,7 +332,7 @@ export const GuaranteeTerms = () => (
             </div>
 
             <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.12em] text-verified">
-              {notCovered.length ? "Covered" : "What this means"}
+              {notCovered.length ? "What's included" : "What this means"}
             </p>
             <ul className="mt-3 space-y-2.5">
               {covered.map((c) => (
@@ -345,7 +349,7 @@ export const GuaranteeTerms = () => (
             {notCovered.length > 0 && (
               <>
                 <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.12em] text-navy-dark/70">
-                  Not covered
+                  Exclusions
                 </p>
                 <ul className="mt-3 space-y-2.5">
                   {notCovered.map((c) => (
@@ -363,7 +367,7 @@ export const GuaranteeTerms = () => (
 
             <p className="mt-auto pt-6 text-[14px] leading-relaxed text-navy-dark/80">
               <span className="font-semibold text-navy-dark">
-                How to use it:{" "}
+                {claimLabel ?? "How to claim"}:{" "}
               </span>
               {claim}
             </p>

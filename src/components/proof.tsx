@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowRight, Check, Lock } from "lucide-react";
+import { ArrowRight, Check, Lock, Newspaper } from "lucide-react";
 import { asset } from "@/lib/booking";
 import type { CaseStudy } from "@/lib/cases";
 import type { Chip } from "@/lib/stories";
@@ -261,6 +261,21 @@ export const ProofChip = ({ chip, className = "" }: { chip: Chip; className?: st
   }
 };
 
+/* -------------------------------------------------------------- case badge */
+
+/** A small label for a case's standout credential ("Featured on
+ *  Bitcoin.com"), set in a card's corner. Reads from `CaseStudy.badge`. */
+export const CaseBadge = ({ text, className = "" }: { text: string; className?: string }) => (
+  <span
+    className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-navy-dark py-1 pl-1 pr-3 text-[11px] font-semibold tracking-[0.01em] text-white shadow-[0_10px_24px_-12px_rgb(var(--ink)/0.7)] ${className}`}
+  >
+    <span className="flex h-[18px] w-[18px] flex-none items-center justify-center rounded-full bg-mark text-navy-dark">
+      <Newspaper className="h-2.5 w-2.5" aria-hidden="true" />
+    </span>
+    {text}
+  </span>
+);
+
 /* ------------------------------------------------------------- result card */
 
 /** where each client's screenshot should sit inside a frame */
@@ -333,6 +348,7 @@ export const ResultCard = ({
     >
       <div className={`relative h-[208px] overflow-hidden px-6 pt-6 ${c.tint}`}>
         <CardMedia c={c} />
+        {c.badge && <CaseBadge text={c.badge} className="absolute right-3 top-3 z-10" />}
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="flex items-center justify-between gap-3">

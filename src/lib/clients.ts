@@ -103,7 +103,7 @@ export const PROOF_TILES: ProofTile[] = [
 
   /* row 3: stat, stat, quote */
   stat("Defender", "18", "buyer's-guide placements for a new camera launch", "sky"),
-  stat("CryptoDesk", "100+", "links, plus two features in Cointelegraph Magazine", "butter"),
+  stat("CryptoDesk", "35+", "press releases, including Bitcoin.com, and 100+ placements", "butter"),
   {
     kind: "quote",
     quote:

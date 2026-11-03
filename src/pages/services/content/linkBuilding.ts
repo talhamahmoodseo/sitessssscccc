@@ -236,7 +236,7 @@ export const linkBuilding = {
     pass: "Passes all seven. Now it's allowed near your link.",
     cta: {
       t: "Curious how your current backlinks would do?",
-      d: "Send us your site. We'll run your existing links through the same seven checks and show you which ones are pulling their weight. Free.",
+      d: "Send us your site. We'll run your existing links through the same seven checks and show you which ones help your rankings and which don't. It's free.",
       button: "Get a free link audit",
     },
   },
@@ -347,7 +347,7 @@ export const linkBuilding = {
     eyebrow: "Reporting",
     h2a: "One clear report.",
     h2b: "Nothing to log into.",
-    lead: "Every link we build goes into one live sheet. Clean enough to forward to your boss or your client exactly as it is.",
+    lead: "Every link we build goes into one live sheet, ready to share with your team or your clients as it is.",
     points: [
       "Every link with its DR, anchor and target page",
       "Indexation status, checked every week",
@@ -418,7 +418,7 @@ export const linkBuilding = {
     ],
     agency: {
       t: "Running an agency?",
-      d: "We work with agencies as well as brands. Same site check, your logo on the reports, and we stay invisible on client calls.",
+      d: "We work with agencies as well as brands. Same site check, your logo on the reports, and no contact with your clients.",
     },
   },
 
@@ -436,45 +436,45 @@ export const linkBuilding = {
   faqHead: {
     eyebrow: "Link building FAQ",
     h2: "What clients ask before they start.",
-    side: "Your question isn't here? Ask it on a 30-minute call and we'll look at your site while we're at it.",
+    side: "Have a question that isn't covered here? Ask it on a 30-minute call, and we'll review your site at the same time.",
   },
 
   faqs: [
     {
-      q: "Are these PBNs or paid links?",
-      a: "No, and we never will be. Private blog networks are sites built only to sell links, and catching them is exactly what our site check is for. Every placement is on a real publication with its own readers. Some publishers charge an editorial fee, which is normal across the industry, but we skip any site that openly sells links on a price list. That footprint is what Google looks for.",
+      q: "Do you use PBNs or paid links?",
+      a: "No. Private blog networks are sites built only to sell links, and our site check exists to catch them. Every placement is on a real publication with its own readers. Some publishers charge an editorial fee, which is standard across the industry, but we avoid any site that advertises link prices publicly, because that footprint is exactly what Google looks for.",
     },
     {
-      q: "Do you pick the sites, or do I?",
-      a: "We do. That's a big part of what you're paying for. Every site goes through the 7-Point Site Check before it gets near your link. If you'd like to see the shortlist before anything goes live, tell us at kickoff and we'll send it. Most clients don't bother.",
+      q: "Who chooses the sites, you or me?",
+      a: "We do. It's a core part of the service. Every site passes our 7-Point Site Check before your link goes near it. If you'd like to approve the shortlist before anything is published, tell us at kickoff and we'll send it.",
     },
     {
-      q: "How long until I see results?",
-      a: "Links usually get indexed within two to six weeks. Pages already sitting in positions 5–20 tend to move between months two and four. Pages further back usually need content work as well as links. We track the keywords we agreed on in the audit, so you can see the trend instead of guessing.",
+      q: "How long does link building take to show results?",
+      a: "Links are usually indexed within two to six weeks. Pages already ranking in positions 5–20 tend to move between months two and four. Pages further back usually need content improvements as well as links. We track the keywords agreed in the audit, so you can follow the trend month by month.",
     },
     {
-      q: "Can these links get my site penalised?",
-      a: "Penalties come from obvious paid-link patterns, irrelevant links at scale and over-optimised anchor text. The site check deals with the first two and the anchor plan deals with the third. Nobody can promise you what Google will do, and anyone who does is selling something. What we can promise is that we don't build the kind of links that cause problems.",
+      q: "Can backlinks get my site penalised?",
+      a: "Penalties come from obvious paid-link patterns, irrelevant links at scale and over-optimised anchor text. Our site check addresses the first two, and the anchor plan addresses the third. No one can promise how Google will act, but we don't build the kinds of links that lead to penalties.",
     },
     {
       q: "Who writes the content?",
-      a: "We do. Our writers create each article to the publisher's standard and in a way that fits your brand. You can review drafts if you want to. Most clients skip it.",
+      a: "Our writers produce each article to the publisher's editorial standards and in line with your brand. You can review drafts before publication if you'd like to.",
     },
     {
-      q: "What happens if a link gets removed?",
-      a: "Every link is covered by our replacement guarantee. If a publisher ever removes it or turns it nofollow, tell us and we replace it on a site of the same or higher DR, free. The full terms are on the pricing page.",
+      q: "What happens if a link is removed?",
+      a: "Every link is covered by our replacement guarantee. If a publisher removes it or changes it to nofollow, we replace it on a site of the same or higher DR, free of charge. The full terms are on the pricing page.",
     },
     {
-      q: "Do I get to choose the anchor text?",
-      a: "Yes, if you have a preference. We propose an anchor mix in the audit: mostly branded, partial-match and natural phrases. If you want a specific anchor on a specific page, we'll do it, unless it pushes your profile into over-optimisation. Then we'll show you the numbers and explain why.",
+      q: "Can I choose the anchor text?",
+      a: "Yes. We propose an anchor mix in the audit: mostly branded, partial-match and natural phrases. If you want a specific anchor on a specific page, we'll use it, unless it would over-optimise your profile. In that case, we'll show you the data and recommend an alternative.",
     },
     {
       q: "How much does link building cost?",
-      a: "A placement is $190. Packages come in 3, 5 or 10 links ($570, $950 or $1,900), with higher-traffic sites in the bigger packages. If you'd like to test us first, a single trial placement is $200, once per company. Anything else, like more links, a monthly plan or DR 70+ sites, is a custom package we quote. Every order is covered by our money-back guarantee.",
+      a: "Placements are $190 each, in packages of 3, 5 or 10 links ($570, $950 or $1,900), with higher-traffic sites in the larger packages. To test us first, a single trial placement is $200, once per company. Larger volumes, monthly plans and DR 70+ sites are quoted as custom packages. Every order is covered by our money-back guarantee.",
     },
     {
-      q: "Do you work white label for agencies?",
-      a: "Yes. We work with agencies as well as brands. Same site check, same quality, reports with your branding, and we stay invisible on client calls.",
+      q: "Do you offer white label link building for agencies?",
+      a: "Yes. Agencies get the same site check and placement quality, with reports under their own branding. We never contact your clients.",
     },
   ],
 

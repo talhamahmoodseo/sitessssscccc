@@ -3,7 +3,9 @@ import { caseBySlug, type CaseStudy } from "./cases";
 /**
  * The homepage hero's client stories (round 13). One card per client: who
  * said it, a verbatim line from their approved quote, their own homepage,
- * three facts and two pieces of proof.
+ * three facts and two pieces of proof. Round 15: three clients, not five
+ * (SmileTutor, CryptoDesk, Ocuco: rankings, press and B2B software), so the
+ * stage reads as a short showcase rather than a carousel.
  *
  * Nothing here is new data:
  * - people, roles, photos and quotes come from `cases.ts` (approved by the
@@ -13,8 +15,7 @@ import { caseBySlug, type CaseStudy } from "./cases";
  * - the proof chips copy text word for word from the evidence screenshots
  *   in public/images/cases/ (SmileTutor's Google result and AI Overview,
  *   Ocuco's OpenCart placement) or from the case files (CryptoDesk's
- *   placements and press, CapCut's tool pages, Defender's buyer searches,
- *   the link mix of each campaign).
+ *   placements and its Bitcoin.com press release).
  */
 
 export type Chip =
@@ -38,6 +39,8 @@ export type Story = {
   role: string;
   photo?: string;
   logo?: string;
+  /** the case's corner label, if it has one */
+  badge?: string;
   quote: string;
   media: { src: string; domain: string; alt: string; pos: string };
   /** the result pinned on the screenshot */
@@ -50,7 +53,7 @@ export type Story = {
   tiles: string[];
 };
 
-type Draft = Omit<Story, "client" | "who" | "role" | "photo" | "logo" | "facts"> & {
+type Draft = Omit<Story, "client" | "who" | "role" | "photo" | "logo" | "badge" | "facts"> & {
   /** which of the case's headline figures to show, in order */
   facts: number[];
 };
@@ -71,15 +74,15 @@ const build = (d: Draft): Story => {
     role: t.role,
     photo: t.photo,
     logo: c.logo,
+    badge: c.badge,
     facts: d.facts.map((i) => c.headline[i]).filter(Boolean),
   };
 };
 
 const smiletutor = caseBySlug("smiletutor")!;
 const cryptodesk = caseBySlug("cryptodesk")!;
+const btc = cryptodesk.links?.features?.find((f) => f.name.startsWith("Bitcoin.com"));
 const ocuco = caseBySlug("ocuco")!;
-const capcut = caseBySlug("capcut")!;
-const defender = caseBySlug("defender")!;
 
 export const STORIES: Story[] = [
   build({
@@ -139,11 +142,11 @@ export const STORIES: Story[] = [
     },
     right: {
       kind: "press",
-      outlet: "Cointelegraph Magazine",
-      title: cryptodesk.links?.features?.[0]?.t ?? "",
-      note: "Its CEO, quoted as the expert",
+      outlet: btc?.name ?? "Bitcoin.com News",
+      title: btc?.t ?? "",
+      note: "One of 35+ press releases we ran",
     },
-    tiles: ["marketwatch.com", "khaleejtimes.com", "Cointelegraph"],
+    tiles: ["Bitcoin.com", "Cointelegraph", "marketwatch.com"],
   }),
   build({
     slug: "ocuco",
@@ -174,51 +177,5 @@ export const STORIES: Story[] = [
       ),
     },
     tiles: ["opencart.com", ...mix(ocuco).slice(0, 2).map((m) => m.k.replace(/s$/, ""))],
-  }),
-  build({
-    slug: "capcut",
-    field: "Video editing",
-    tint: "sky",
-    quote:
-      "Editorial HQ delivered guest posts, niche edits and mentions that fit naturally, with clear reporting on every placement.",
-    media: {
-      src: capcut.site!,
-      domain: "capcut.com",
-      alt: "CapCut's homepage",
-      pos: "50% 30%",
-    },
-    pin: "Links for six AI tool pages",
-    facts: [0, 1, 2],
-    left: {
-      kind: "list",
-      title: "Tool pages we built links to",
-      items: (capcut.links?.pages ?? []).slice(0, 4).map((p) => ({ t: p.page })),
-      more: `+${Math.max(0, (capcut.links?.pages?.length ?? 0) - 4)} more`,
-    },
-    right: { kind: "mix", title: "The mix", items: mix(capcut) },
-    tiles: mix(capcut).map((m) => m.k.replace(/s$/, "")),
-  }),
-  build({
-    slug: "defender",
-    field: "Security cameras",
-    tint: "blush",
-    quote:
-      "You helped us jumpstart our product launch and create awareness by securing listicle article reviews of our product.",
-    media: {
-      src: defender.site!,
-      domain: "defendercameras.com",
-      alt: "Defender's homepage",
-      pos: "0% 50%",
-    },
-    pin: "On the buyer's guides for launch",
-    facts: [0, 1, 2],
-    left: {
-      kind: "list",
-      title: "Buyer searches covered",
-      items: (defender.links?.pages ?? []).slice(0, 4).map((p) => ({ t: `“${p.page}”` })),
-      more: `+${Math.max(0, (defender.links?.pages?.length ?? 0) - 4)} more`,
-    },
-    right: { kind: "mix", title: "The mix", items: mix(defender) },
-    tiles: mix(defender).map((m) => m.k.replace(/s$/, "")),
   }),
 ];

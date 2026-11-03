@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, BadgeCheck, Link2, Pause, Play } from "lucide-react";
 import { asset } from "@/lib/booking";
 import { STORIES, type Story } from "@/lib/stories";
-import { Avatar, ProofChip, SiteShot } from "@/components/proof";
+import { Avatar, CaseBadge, ProofChip, SiteShot } from "@/components/proof";
 import { Annotation } from "@/components/brand";
 
 /**
@@ -16,16 +16,20 @@ import { Annotation } from "@/components/brand";
  * went into each result.
  *
  * The cards cycle every DURATION ms. The tab's progress bar is a CSS
- * animation and its `animationend` moves to the next client, so hovering,
- * keyboard focus or scrolling the stage away pauses everything at once (the
- * `ehq-paused` class). People who prefer reduced motion get no autoplay and
- * no travelling tiles; the tabs still work.
+ * animation and its `animationend` moves to the next client, so pausing the
+ * bar (the `ehq-paused` class) pauses everything at once. It pauses only when
+ * the stage is mostly scrolled out of view, the browser tab is hidden, or the
+ * visitor presses pause. Round 15: it no longer pauses on hover or focus,
+ * because the stage sits right under the audit box and the cursor was almost
+ * always over it, so it looked stuck after a couple of seconds. People who
+ * prefer reduced motion get no autoplay and no travelling tiles; the tabs
+ * still work.
  *
  * Hydration: the first render is always SmileTutor; nothing reads the
  * screen, storage or clock during render. The prerender never advances.
  */
 
-const DURATION = 7000;
+const DURATION = 8000;
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /* ------------------------------------------------------------- link lines */
@@ -116,16 +120,22 @@ const StoryCard = ({ s, first }: { s: Story; first: boolean }) => (
     exit={{ opacity: 0, y: -10 }}
     transition={{ duration: 0.42, ease }}
   >
+    {/* on phones the badge sits on the card's top edge; wider, it's in the header */}
+    {s.badge && <CaseBadge text={s.badge} className="absolute -top-3 right-5 z-10 sm:hidden" />}
     <header className="flex items-center gap-3">
       <Avatar name={s.who} photo={s.photo} logo={s.logo} size={42} />
       <div className="min-w-0 flex-1">
         <p className="truncate text-[14.5px] font-semibold text-navy-dark">{s.who}</p>
         <p className="truncate text-[12.5px] text-navy-dark/65">{s.role}</p>
       </div>
-      <span className="hidden flex-none items-center gap-1.5 rounded-full bg-mist px-2.5 py-1 text-[11.5px] font-semibold text-navy-dark/75 sm:inline-flex">
-        <BadgeCheck className="h-3.5 w-3.5 text-verified" aria-hidden="true" />
-        Client
-      </span>
+      {s.badge ? (
+        <CaseBadge text={s.badge} className="hidden flex-none sm:inline-flex" />
+      ) : (
+        <span className="hidden flex-none items-center gap-1.5 rounded-full bg-mist px-2.5 py-1 text-[11.5px] font-semibold text-navy-dark/75 sm:inline-flex">
+          <BadgeCheck className="h-3.5 w-3.5 text-verified" aria-hidden="true" />
+          Client
+        </span>
+      )}
     </header>
 
     <p className="mt-4 text-[15px] leading-[1.55] text-navy-dark/85 sm:min-h-[4.65em] sm:text-[15.5px]">
@@ -180,8 +190,8 @@ const StoryCard = ({ s, first }: { s: Story; first: boolean }) => (
 
 const ResultStage = () => {
   const [active, setActive] = useState(0);
-  const [hover, setHover] = useState(false);
   const [offscreen, setOffscreen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [still, setStill] = useState(false);
   const [stopped, setStopped] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -196,15 +206,24 @@ const ResultStage = () => {
     return () => m.removeEventListener("change", sync);
   }, []);
 
-  // pause while the stage is off screen
+  // pause while most of the stage is scrolled out of view
   useEffect(() => {
     const el = root.current;
     if (!el || !("IntersectionObserver" in window)) return;
-    const io = new IntersectionObserver(([e]) => setOffscreen(!e.isIntersecting), {
-      threshold: 0.1,
-    });
+    const io = new IntersectionObserver(
+      ([e]) => setOffscreen(!e.isIntersecting || e.intersectionRatio < 0.3),
+      { threshold: [0, 0.3] },
+    );
     io.observe(el);
     return () => io.disconnect();
+  }, []);
+
+  // pause while the browser tab is in the background
+  useEffect(() => {
+    const sync = () => setHidden(document.visibilityState === "hidden");
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
   }, []);
 
   // fetch the next client's screenshot before it's needed
@@ -219,20 +238,11 @@ const ResultStage = () => {
     setActive((a) => (a + 1) % STORIES.length);
   };
 
-  const paused = hover || offscreen || stopped;
+  const paused = offscreen || hidden || stopped;
   const auto = !still && !stopped;
 
   return (
-    <div
-      ref={root}
-      className={`relative ${paused ? "ehq-paused" : ""}`}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onFocus={() => setHover(true)}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) setHover(false);
-      }}
-    >
+    <div ref={root} className={`relative ${paused ? "ehq-paused" : ""}`}>
       {/* each client's colour, faded in behind its card */}
       <div className="pointer-events-none absolute inset-x-0 -bottom-24 -top-24" aria-hidden="true">
         {STORIES.map((st, i) => (
@@ -296,11 +306,11 @@ const ResultStage = () => {
         </div>
 
         {/* the tabs: pick a client, or watch them cycle */}
-        <div className="relative mx-auto mt-7 flex max-w-[1010px] items-center gap-2">
+        <div className="relative mx-auto mt-7 flex max-w-[1010px] items-center justify-center gap-2">
           <div
             role="tablist"
             aria-label="Client results"
-            className="-ml-4 flex min-w-0 flex-1 gap-2 overflow-x-auto pb-1 pl-4 pr-1 sm:ml-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0"
+            className="flex min-w-0 gap-2 overflow-x-auto sm:flex-wrap sm:justify-center sm:overflow-visible"
           >
             {STORIES.map((st, i) => {
               const on = i === active;
@@ -331,7 +341,7 @@ const ResultStage = () => {
                     aria-hidden="true"
                   />
                   {st.client}
-                  <span className={on ? "font-medium text-white/65" : "font-medium text-navy-dark/55"}>
+                  <span className={`hidden sm:inline ${on ? "font-medium text-white/65" : "font-medium text-navy-dark/55"}`}>
                     {st.field}
                   </span>
                   {on && auto && (
@@ -350,10 +360,10 @@ const ResultStage = () => {
           <button
             type="button"
             onClick={() => setStopped((v) => !v)}
-            className={`${still ? "hidden" : "flex"} h-9 w-9 flex-none items-center justify-center rounded-full bg-white/80 text-navy-dark ring-1 ring-navy-dark/10 transition-colors hover:bg-white`}
+            className={`${still ? "hidden" : "flex"} h-8 w-8 flex-none items-center justify-center rounded-full text-navy-dark/55 transition-colors hover:bg-white/80 hover:text-navy-dark`}
             aria-label={stopped ? "Play the client stories" : "Pause the client stories"}
           >
-            {stopped ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
+            {stopped ? <Play className="h-3 w-3" /> : <Pause className="h-3 w-3" />}
           </button>
         </div>
       </div>

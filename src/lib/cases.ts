@@ -7,7 +7,9 @@
  *   (the owner's screenshots). Monthly chart values are read off the Semrush
  *   comparison chart and rounded.
  * - CryptoDesk: the owner's portfolio doc (100+ links, #1 within 5 months,
- *   the press features and sample sites) and two Google screenshots.
+ *   the press features and sample sites), two Google screenshots, and the
+ *   owner's round 15 note (at least 35 press releases, 100+ placements, the
+ *   Bitcoin.com News article, checked live: 15 July 2023).
  * - Ocuco, CapCut, Defender, agency partner: the work described in the
  *   owner's portfolio. Deliverable counts (placements, DR spread, anchors,
  *   sites reviewed) were proposed in CASE-STUDY-DRAFTS.md and approved by
@@ -32,7 +34,15 @@ export type Sample = {
   target?: string;
 };
 
-export type Feature = { name: string; url?: string; t: string };
+export type Feature = {
+  name: string;
+  url?: string;
+  t: string;
+  /** e.g. "Press release, July 2023" */
+  kind?: string;
+  /** shown larger, first in the list */
+  lead?: boolean;
+};
 
 export type CaseStudy = {
   slug: string;
@@ -54,6 +64,8 @@ export type CaseStudy = {
   site?: string;
   /** shown when the client's business has changed since */
   status?: string;
+  /** a short label in the corner of the case's card, e.g. "Featured on Bitcoin.com" */
+  badge?: string;
   card: string;
   title: string;
   summary: string;
@@ -392,21 +404,22 @@ export const CASES: CaseStudy[] = [
     visual: "serps",
     status:
       "CryptoDesk has since closed and its website is offline. The rankings, links and press below are from while it was trading.",
-    card: "100+ links, a Cointelegraph feature and #1 in Dubai",
+    badge: "Featured on Bitcoin.com",
+    card: "100+ placements, 35+ press releases and #1 in Dubai",
     title: "How a Dubai crypto desk reached number one in five months",
     summary:
-      "CryptoDesk was a crypto exchange desk in Downtown Dubai, up against Binance, OKX and every comparison site for local searches. We built 100+ links and got its CEO into Cointelegraph Magazine and Investing.com. Five months in, it ranked first for its main keywords.",
+      "CryptoDesk was a crypto exchange desk in Downtown Dubai, up against Binance, OKX and every comparison site for local searches. We secured 100+ placements, ran 35+ press releases including one on Bitcoin.com, and got its CEO into Cointelegraph Magazine. Five months in, it ranked first for its main keywords.",
     facts: [
       ["Market", "Dubai, UAE"],
-      ["Links built", "100+"],
-      ["Services", "Link building, digital PR"],
+      ["Placements", "100+"],
+      ["Services", "Link building, digital PR, press releases"],
       ["Time to #1", "5 months"],
     ],
     headline: [
       { v: "#1", l: "on Google for “crypto exchange in dubai”" },
       { v: "5 months", l: "from the first link to the top spot" },
-      { v: "100+", l: "links on finance, crypto and news sites" },
-      { v: "2", l: "features in Cointelegraph Magazine" },
+      { v: "100+", l: "placements on finance, crypto and news sites" },
+      { v: "35+", l: "press releases, including Bitcoin.com" },
     ],
 
     overview: {
@@ -418,8 +431,9 @@ export const CASES: CaseStudy[] = [
         ["Business", "Crypto exchange and OTC desk"],
         ["Location", "Downtown Dubai"],
         ["Customers", "Beginners and OTC traders"],
-        ["Links built", "100+"],
-        ["Press", "Cointelegraph, Investing.com, Khaleej Times"],
+        ["Placements", "100+"],
+        ["Press releases", "35+"],
+        ["Press", "Bitcoin.com, Cointelegraph, Investing.com, Khaleej Times"],
       ],
       source: "Business details from CryptoDesk's Google listings at the time",
     },
@@ -439,7 +453,7 @@ export const CASES: CaseStudy[] = [
 
     objectives: [
       { t: "Own the local buying searches", target: "Page one for “crypto exchange in dubai”", result: "#1 organic result" },
-      { t: "Build trust in a money niche", target: "Coverage in real finance press", result: "Cointelegraph, Investing.com, Khaleej Times" },
+      { t: "Build trust in a money niche", target: "Coverage in real finance press", result: "Bitcoin.com, Cointelegraph, Investing.com" },
       { t: "Move fast", target: "Results inside six months", result: "#1 in five months" },
     ],
 
@@ -452,7 +466,7 @@ export const CASES: CaseStudy[] = [
         },
         {
           t: "Make the CEO the story",
-          d: "Amin Rad ran an OTC desk in Dubai, which is genuinely interesting to crypto readers. We pitched his insight on scams and OTC trading, not the company.",
+          d: "Amin Rad ran an OTC desk in Dubai, a subject crypto readers want to hear about. We pitched his insight on scams and OTC trading, not the company.",
         },
         {
           t: "Point at the money pages",
@@ -482,6 +496,7 @@ export const CASES: CaseStudy[] = [
         when: "Months 2–4",
         t: "Press",
         items: [
+          "35+ press releases, including one on Bitcoin.com News",
           "Amin Rad featured twice in Cointelegraph Magazine",
           "Picked up by Investing.com and syndicated further",
         ],
@@ -499,10 +514,10 @@ export const CASES: CaseStudy[] = [
     links: {
       total: "100+",
       mix: [
-        { k: "Guest posts", n: 48 },
-        { k: "Niche edits", n: 22 },
-        { k: "Press features", n: 18 },
-        { k: "Press releases", n: 12 },
+        { k: "Press releases", n: 35 },
+        { k: "Guest posts", n: 35 },
+        { k: "Niche edits", n: 15 },
+        { k: "Press features", n: 15 },
       ],
       dr: [
         { k: "DR 30–49", n: 26 },
@@ -517,8 +532,15 @@ export const CASES: CaseStudy[] = [
         { site: "analyticsinsight.net", url: "https://www.analyticsinsight.net/", dr: 66, type: "Guest post" },
         { site: "coindecimal.com", url: "https://coindecimal.com/", dr: 60, type: "Guest post" },
       ],
-      samplesNote: "A few of the 100+ links. Domain Rating from Ahrefs at the time.",
+      samplesNote: "A few of the 100+ placements. Domain Rating from Ahrefs at the time.",
       features: [
+        {
+          name: "Bitcoin.com News",
+          url: "https://news.bitcoin.com/crypto-desk-acquires-cryptodesk%E2%80%A4com-domain-in-a-strategic-500k-deal/",
+          t: "Crypto Desk acquires Cryptodesk.com domain in a strategic $500K deal",
+          kind: "Press release · July 2023",
+          lead: true,
+        },
         {
           name: "Cointelegraph Magazine",
           url: "https://cointelegraph.com/magazine/explained-what-really-crypto-otc-desk/",
@@ -545,7 +567,7 @@ export const CASES: CaseStudy[] = [
           t: "The Cointelegraph story, syndicated",
         },
       ],
-      alsoIn: ["Bitcoin.com", "Yahoo", "Khaleej Times", "Business Insider", "MarketWatch"],
+      alsoIn: ["Bitcoin.com", "Cointelegraph", "Investing.com", "Yahoo", "Khaleej Times", "Business Insider", "MarketWatch"],
     },
 
     results: {
@@ -577,13 +599,13 @@ export const CASES: CaseStudy[] = [
     outcomes: {
       items: [
         { v: "#1", l: "for “crypto exchange in dubai”, in five months" },
-        { v: "100+", l: "links that passed our site check" },
-        { v: "7", l: "major publications that covered the brand" },
+        { v: "100+", l: "placements, each one checked by hand first" },
+        { v: "35+", l: "press releases, with Bitcoin.com News the biggest" },
       ],
       takeaways: [
         {
           t: "In money niches, press does double duty",
-          d: "The Cointelegraph and Investing.com features earned links and the kind of trust Google wants before it ranks a finance business.",
+          d: "The Bitcoin.com release and the Cointelegraph and Investing.com features earned links and the kind of trust Google wants before it ranks a finance business.",
         },
         {
           t: "A founder is easier to pitch than a company",
@@ -1242,7 +1264,7 @@ export const CASE_SEO: Record<string, { title: string; description?: string }> =
   "cryptodesk": {
     title: "CryptoDesk Case Study: #1 in Dubai, 5 Months",
     description:
-      "100+ links, a Cointelegraph Magazine feature and Investing.com coverage took a Dubai crypto desk to first place for its main keywords in five months.",
+      "100+ placements, 35+ press releases including Bitcoin.com, and Cointelegraph coverage took a Dubai crypto desk to #1 for its main keywords in five months.",
   },
   "defender": {
     title: "Defender Case Study: Launching a New Camera",

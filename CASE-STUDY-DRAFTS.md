@@ -63,7 +63,9 @@ SmileTutor.
 | Also covered by Bitcoin.com, Yahoo, Khaleej Times, Business Insider, MarketWatch | Real (your doc) |
 | Sample links with DR: MarketWatch 92, Khaleej Times 83, Space Coast Daily 76, Analytics Insight 66, CoinDecimal 60 | Real (your doc) |
 | Type of each sample (press feature, news feature, guest post…) | **Proposed. Confirm** |
-| Mix: 48 guest posts, 22 niche edits, 18 press features, 12 press releases | **Proposed** |
+| 35+ press releases, 100+ placements | Real (owner, round 15) |
+| Bitcoin.com News press release, 15 July 2023: “Crypto Desk Acquires Cryptodesk.com Domain in a Strategic $500K Deal” | Real (checked live, round 15) |
+| Mix: 35 press releases, 35 guest posts, 15 niche edits, 15 press features | Press releases real (35+); the split of the other 65 is **proposed. Confirm** |
 | DR spread: 26 / 28 / 24 / 22 | **Proposed** |
 | Timeline (audit, authority build, press, #1 in month 5) | **Proposed** order of the real work |
 | “7 major publications” | Counted from your list |

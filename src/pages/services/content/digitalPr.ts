@@ -331,41 +331,41 @@ export const digitalPr = {
     eyebrow: "FAQ",
     h2a: "Questions",
     h2b: "about digital PR.",
-    side: "Tell us what you’ve got. We’ll tell you on the call if there’s a story in it, and if there isn’t, which service makes more sense.",
+    side: "Tell us about your business. On the call, we’ll tell you whether there’s a story worth pitching, and if there isn’t, which service suits you better.",
   },
 
   faqs: [
     {
       q: "How is digital PR different from link building?",
-      a: "Link building goes to a publication and arranges a placement. Digital PR creates a story and earns the coverage, with the link as a result. PR reaches publications that would never sell a link at any price, and it builds relationships that make the next story easier. It’s slower and less predictable month to month. Most clients run both: links for steady authority on key pages, PR for the publications links can’t reach.",
+      a: "Link building secures placements on publications directly. Digital PR creates a newsworthy story and earns coverage, with links as a result. PR reaches publications that would never accept a paid placement, and it builds editor relationships that make the next story easier to place. It's slower and less predictable month to month, so most clients run both: link building for steady authority on key pages, and PR for the publications links can't reach.",
     },
     {
-      q: "Can you guarantee coverage?",
-      a: "No. Editors decide what runs, and a “guaranteed” placement is a paid one, which is exactly what we’re avoiding. What we do commit to is the work: developed angles, a media list you approve, and an individual pitch to every target with follow-up. You’ll see all of it in the report.",
+      q: "Can you guarantee press coverage?",
+      a: "No. Editors decide what runs, and a guaranteed placement is a paid one, which is what digital PR is meant to avoid. We commit to the work: researched story angles, a media list you approve, and an individual pitch to every target, with follow-ups. All of it is in your report.",
     },
     {
       q: "What if we don’t have a story?",
-      a: "Almost every business has one and has stopped noticing it. Your order data, a customer survey, the thing you believe that your competitors disagree with: those are stories. That’s what the story audit is for. If we genuinely can’t find an angle, we’ll tell you and suggest link building instead.",
+      a: "Most businesses have several without realising it: their order data, a customer survey, or a view their competitors disagree with. Finding them is what the story audit is for. If we can't find a strong angle, we'll tell you and recommend link building instead.",
     },
     {
-      q: "Who writes the content and the quotes?",
-      a: "Our editorial team drafts everything in your voice, from the story audit. Nothing with your name on it goes to a journalist until you’ve approved the wording.",
+      q: "Who writes the press content and quotes?",
+      a: "Our editorial team drafts everything in your voice, based on the story audit. Nothing with your name on it goes to a journalist until you've approved the wording.",
     },
     {
-      q: "Does every placement include a link?",
-      a: "No. Some coverage is an unlinked mention of your brand. That still counts: mentions on trusted publications are what AI answers draw on, and Google uses them too. We report linked and unlinked coverage separately so you can see both.",
+      q: "Does every piece of coverage include a backlink?",
+      a: "No. Some coverage is an unlinked brand mention. It still has value: mentions on trusted publications are what AI answers draw on, and Google uses them too. We report linked and unlinked coverage separately.",
     },
     {
-      q: "How long before we see coverage?",
-      a: "First placements usually land between weeks four and eight. It builds from month three as editors come back and earlier coverage gets picked up elsewhere. Anyone promising coverage in week one is sending a press release to a wire service.",
+      q: "How long does digital PR take to get coverage?",
+      a: "First placements usually land between weeks four and eight. Coverage builds from month three, as editors come back for more and earlier stories are picked up elsewhere.",
     },
     {
       q: "Can you get coverage outside the US and UK?",
-      a: "Yes. We pitch business and trade publications in the markets you sell in and adapt each story for local editors. The story still has to be right for their readers, so we’ll tell you on the call if yours is.",
+      a: "Yes. We pitch business and trade publications in the markets you sell in, and adapt each story for local editors. The story still has to suit their readers, and we'll tell you on the call whether yours does.",
     },
     {
-      q: "Do you work white label for agencies?",
-      a: "Yes. Angle documents, media lists and coverage reports go out under your branding, and we stay off client calls unless you want us there.",
+      q: "Do you offer white label digital PR for agencies?",
+      a: "Yes. Angle documents, media lists and coverage reports are delivered under your branding, and we only join client calls if you ask us to.",
     },
   ],
 
@@ -392,9 +392,9 @@ export const digitalPr = {
 
   close: {
     eyebrow: "Free story call",
-    h2a: "Tell us one boring thing",
-    h2b: "about your business.",
-    d: "The thing you think nobody cares about is often the story. On a 15‑minute call we’ll tell you if there’s coverage in it, and where it could run.",
+    h2a: "Every business has a story",
+    h2b: "worth covering.",
+    d: "It’s often in data or expertise you already have. On a 15‑minute call, we’ll tell you whether there’s coverage in it, and which publications could run it.",
     primary: "Book a story call",
     subject: "Digital PR enquiry",
   },

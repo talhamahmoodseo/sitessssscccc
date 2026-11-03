@@ -21,7 +21,7 @@ const PilotBar = ({ onClose }: { onClose: () => void }) => (
       </span>
       <span className="truncate">
         <span className="font-semibold">Get {PILOT.links} editorial backlinks free.</span>
-        <span className="hidden text-white/75 sm:inline"> No catch, no contract.</span>
+        <span className="hidden text-white/75 sm:inline"> No contract, no card.</span>
       </span>
       <span className="hidden flex-none items-center gap-1 rounded-full bg-white px-3 py-1 text-[12.5px] font-semibold text-navy-dark transition-colors group-hover:bg-mark sm:inline-flex">
         See if your business qualifies

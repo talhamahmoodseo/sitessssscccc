@@ -27,10 +27,10 @@ const PERSONAS = [
     points: [
       {
         h: "Fulfilment you can resell",
-        d: "Vetted placements delivered under your logo, with reports your client can read without you translating them.",
+        d: "Vetted placements delivered under your logo, with reports your clients can read on their own.",
       },
       {
-        h: "Nothing awkward in a client audit",
+        h: "Placements that hold up in a client audit",
         d: "Every publication is checked by hand before we use it, so you never have to defend a placement.",
       },
     ],
@@ -61,7 +61,7 @@ const PERSONAS = [
     id: "seo",
     tab: "SEO Leads",
     Fig: FigInspector,
-    title: "A link partner you don't have to babysit",
+    title: "A link partner you can rely on",
     lede: "Clean placements, clear reporting, and nothing to fix when you audit our work.",
     services: ["Link building", "Expert quotes"],
     cta: { label: "Explore link building", to: "/services/link-building" },
@@ -103,8 +103,8 @@ const PERSONAS = [
     lede: "Beat the national directories on Google, and get named when people ask AI for someone local.",
     services: ["Link building", "Digital PR", "Brand mentions"],
     cta: {
-      label: "Link building for home services",
-      to: "/industries/home-services",
+      label: "Link building for local businesses",
+      to: "/services/link-building",
     },
     points: [
       {

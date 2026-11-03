@@ -83,7 +83,7 @@ const STEPS: {
     Icon: LineChart,
     t: "Report",
     when: "Every month",
-    d: "We confirm every link is live and indexed, track your target pages, and show you what moved. One report, written for humans.",
+    d: "We confirm every link is live and indexed, track your target pages, and show you what moved. One clear report your whole team can read.",
     get: "A monthly report",
     tone: "cool",
   },

@@ -91,14 +91,17 @@ function tm_fill( $html ) {
 
 /**
  * Pages that moved, old path => new path (one 301 hop each). The three sample
- * case studies from round 6 were indexed before the real ones replaced them.
+ * case studies from round 6 were indexed before the real ones replaced them;
+ * the Home Services page was taken down in round 15.
  */
 function tm_moved() {
 	return array(
 		'/services'                              => '/#services',
 		'/case-studies/b2b-saas-ai-visibility'   => '/case-studies',
 		'/case-studies/ecommerce-gulf-authority' => '/case-studies',
-		'/case-studies/home-services-local-pack' => '/industries/home-services',
+		'/case-studies/home-services-local-pack' => '/services/link-building',
+		// round 15: the Home Services page is parked for now
+		'/industries/home-services'              => '/services/link-building',
 	);
 }
 

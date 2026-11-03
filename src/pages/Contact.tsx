@@ -6,7 +6,7 @@ import { Seo } from "@/components/MotionKit";
 import PageLayout from "@/components/PageLayout";
 import { firstVisit, track } from "@/lib/analytics";
 import { openBooking } from "@/lib/booking";
-import { PACKAGE_LABELS } from "@/lib/pricing";
+import { PACKAGE_LABELS, PER_LINK, TRIAL_PRICE, usd } from "@/lib/pricing";
 import { CARD, GlowPanel, ease, rise } from "./services/kit";
 
 const EMAIL = "team@editorialhq.com";
@@ -61,15 +61,15 @@ const NEXT = [
 const ASKED = [
   {
     q: "Is there a contract?",
-    a: "No. You pay per order: packages of 3, 5 or 10 links at $190 a placement, a custom package, or a single $200 trial link to test us first. Every order has a 100% money-back guarantee.",
+    a: `No. You pay per order: packages of 3, 5 or 10 links at ${usd(PER_LINK)} a placement, a custom package, or a single ${usd(TRIAL_PRICE)} trial link. Every order includes a 100% money-back guarantee.`,
   },
   {
     q: "Do you work with agencies?",
-    a: "Yes. We work with agencies as well as brands. Your branding on the reports, and we stay invisible on client calls.",
+    a: "Yes, as well as brands. Agency orders can be fully white label, with unbranded reports, and we never contact your clients.",
   },
   {
     q: "What if my site isn’t ready for links?",
-    a: "The audit will say so. Pointing links at a thin page wastes your money, and we’d rather tell you before you spend it.",
+    a: "The audit will tell you. Building links to thin pages wastes budget, so if your pages need work first, we'll explain what to fix before you spend anything.",
   },
 ];
 

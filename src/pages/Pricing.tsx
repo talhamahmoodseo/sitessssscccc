@@ -334,52 +334,52 @@ const OTHER = [
 
 const FAQS = [
   {
-    q: "Why does the trial cost more than a standard placement?",
-    a: `The trial is one link for new clients who want to see our work before a bigger order. It's the same placement with no minimum, priced a little higher (${usd(TRIAL_PRICE)}) on purpose so it can't be used as a repeat discount. One trial per company. After that, every placement is ${usd(PER_LINK)}.`,
+    q: "Why does the trial placement cost more than a standard link?",
+    a: `The trial is a single placement for new clients who want to see our work before a larger order. It's the same placement with no minimum order, priced slightly higher (${usd(TRIAL_PRICE)}) so it can't be reused as a discount. It's available once per company. After that, every placement is ${usd(PER_LINK)}.`,
   },
   {
     q: `What do I get for ${usd(PER_LINK)} a placement?`,
-    a: "An editorial link on a relevant DR 40+ site, the article written by our team, the site checked by hand before we use it, and a report with the live URL. If the link is ever removed, we replace it free.",
+    a: "A dofollow link in the body of an article on a relevant DR 40+ site, the article written by our team to the publisher's standards, a manual review of the site before it's used, and a report with the live URL. If the link is ever removed, we replace it free of charge.",
   },
   {
     q: "How does ordering work?",
-    a: "Pick a package and send your site, the pages you want to rank and any anchor text preferences. Not sure which package? Tell us your goal and we'll suggest one. We shortlist relevant sites, check each one by hand, write the articles and get them published with your links inside. Then you get the report: every live link with its details, indexed and ready to share. Unbranded, if you're an agency passing it to a client.",
+    a: "Choose a package and send us your website, the pages you want to rank and any anchor text preferences. If you're not sure which package fits, tell us your goal and we'll recommend one. We shortlist relevant sites, review each one by hand, write the articles and get them published with your links in place. You then receive a report with every live link, its metrics and its indexing status, unbranded if you're an agency.",
   },
   {
     q: "Are the packages monthly or one-off?",
-    a: "Either. Order a package once, or repeat it every month. There's no contract and no setup fee. If you want a fixed monthly plan with a different number of links, ask for a custom package.",
+    a: "Either. You can order a package once or repeat it every month. There's no contract and no setup fee. For a fixed monthly plan with a different number of links, ask for a custom package.",
   },
   {
     q: "What's included in every package?",
-    a: "No contract: order once or every month, and stop whenever you like. No setup fee: choosing the pages, the anchors and the first shortlist of sites is part of the order. Every site checked by hand: relevance first, then keywords, trend, audience, authority, indexing and editorial standards, and about one in five fails. Free link replacement if a publisher ever removes your link or turns it nofollow. And you keep everything: every placement and report is yours, with nothing behind a dashboard you lose access to.",
+    a: "No contract: order once or every month, and stop at any time. No setup fee: choosing the pages, planning the anchors and building the first site shortlist are part of the order. A manual review of every site, covering relevance, keywords, traffic trend, audience, authority, indexing and editorial standards; about one in five sites fails. Free replacement if a publisher removes your link or makes it nofollow. And full ownership: every placement and report is yours, with nothing locked behind a dashboard.",
   },
   {
     q: "What does “average organic traffic per site” mean?",
-    a: "It's the estimated monthly organic traffic of the sites in your package, from Ahrefs, averaged across the package. Some sites will be above it and some below, but the package as a whole meets it. Traffic estimates change over time, so we record them on the day your links go live.",
+    a: "It's the average estimated monthly organic traffic, from Ahrefs, across the sites in your package. Some sites will sit above it and some below, but the package as a whole meets the figure. Traffic estimates change over time, so we record them on the day your links go live.",
   },
   {
-    q: "What changes the price of a custom package?",
-    a: "Five things. Traffic and authority, the biggest factor: sites with 100,000+ visits a month or DR 70+ cost more to place on than the package averages. Volume: twenty or more links a month, or a plan across several clients, gets volume pricing. Niche: finance, health and crypto have fewer good sites willing to publish, which can raise the price. The mix: adding digital PR or brand mentions to links changes the scope, and the quote. Page readiness: thin target pages need work first, and we'll tell you before you pay, not after. A custom quote shows how each of these applies to you before you pay anything.",
+    q: "What affects the price of a custom package?",
+    a: "Five factors. Traffic and authority have the biggest effect: sites with 100,000+ monthly visits or DR 70+ cost more than the package averages. Volume: 20 or more links a month, or a plan across several clients, qualifies for volume pricing. Niche: finance, health and crypto have fewer quality sites willing to publish, which can raise the price. Scope: adding digital PR or brand mentions to a link campaign changes the quote. Page readiness: thin target pages may need work first, and we'll tell you before you pay. Every custom quote shows how each factor applies to you.",
   },
   {
-    q: "Can I approve the sites first?",
-    a: "Yes. Tell us when you order and we'll send the shortlist before anything is published. If you'd rather not, we choose the sites for you.",
+    q: "Can I approve the sites before anything is published?",
+    a: "Yes. Ask for approval when you order, and we'll send the shortlist before anything goes live. Otherwise, we choose the sites for you using the same review.",
   },
   {
-    q: "How long does it take?",
-    a: "Most links go live within two to four weeks of your order.",
+    q: "How long does delivery take?",
+    a: "Most links go live within two to four weeks of your order. Google usually indexes them within a few weeks after that.",
   },
   {
     q: "Do you guarantee rankings?",
-    a: "No, and be careful with anyone who does. Nobody controls Google. We guarantee the work itself: placements that match what you ordered, or your money back, and a free replacement if a link is ever removed.",
+    a: "No. No one controls Google's rankings, so a ranking guarantee isn't something any agency can keep. We guarantee the work itself: placements that match what you ordered, or your money back, and free replacement if a link is ever removed.",
   },
   {
-    q: "Do you work with agencies?",
-    a: "Yes, as well as brands. Everything can be delivered white label, with unbranded reports and no contact with your clients. If you need 20 or more links a month, ask us about volume pricing.",
+    q: "Do you offer white label link building for agencies?",
+    a: "Yes. Every order can be delivered white label, with unbranded reports and no contact with your clients. For 20 or more links a month, ask us about volume pricing.",
   },
   {
-    q: "Are there niches you don't take?",
-    a: "We don't take adult, gambling or similar niches. If you're unsure about yours, ask before you order.",
+    q: "Are there niches you don't work with?",
+    a: "We don't accept adult, gambling or similar niches. If you're unsure about yours, ask us before you order.",
   },
 ];
 
@@ -732,7 +732,7 @@ const Pricing = () => {
         eyebrow="FAQ"
         h2a="Questions"
         h2b="about pricing."
-        side="Not sure which package fits? Send us your site and we'll tell you honestly."
+        side="Not sure which package fits? Send us your site and we'll recommend one."
         faqs={FAQS}
         bg="bg-white"
       />

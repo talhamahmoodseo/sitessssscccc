@@ -3,41 +3,43 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Mail, Plus } from "lucide-react";
 import Accent from "@/components/Accent";
 import { openBooking } from "@/lib/booking";
+import { PER_LINK, PLANS, TRIAL_PRICE, planPrice, usd } from "@/lib/pricing";
 
-/** Agency-level questions, across every service. Answers are short and
- *  honest; the page-specific detail lives on each service page. */
+/** Agency-level questions, across every service (rewritten in round 15).
+ *  Answers lead with the answer; page-specific detail lives on each service
+ *  page. Prices come from lib/pricing. */
 const FAQS = [
   {
-    q: "What does your agency actually do?",
-    a: "We build authority for brands outside their own website: editorial backlinks (guest posts, niche edits, authority placements), digital PR, brand mentions and expert quotes on real publications. Links move your Google rankings. Mentions and coverage are what AI answers draw on. Most clients use two or three of these together.",
+    q: "What services does your agency offer?",
+    a: "We build authority for brands on other websites, through four services: link building (guest posts, niche edits and authority placements), digital PR, brand mentions for AI search, and expert quotes on news sites. Backlinks move your Google rankings. Mentions and coverage on trusted publications are what AI answers draw on. Most clients combine two or three.",
   },
   {
     q: "Which service should we start with?",
-    a: "It depends on where you are. If your key pages already sit on page two, link building usually moves fastest. If nobody outside your own site talks about you yet, digital PR and brand mentions come first. If your team has real expertise, expert quotes are often the quickest win. The free audit tells you which, and we'll say so even if the answer is “not yet”.",
+    a: "It depends on where your site is today. If your key pages already rank on page two, link building usually moves them fastest. If few trusted sites mention your brand, start with digital PR or brand mentions. If your team has deep subject expertise, expert quotes are a quick way to earn coverage. The free audit recommends a starting point, and tells you if your site needs work before any links.",
   },
   {
-    q: "Can you get us recommended by ChatGPT or Google's AI?",
-    a: "Nobody controls what an AI says, so be careful with anyone who guarantees it. What we can do is get you mentioned on the publications AI answers already lean on, then track where you show up each month in Google's AI Overviews, ChatGPT and other assistants. Some people call this GEO or AEO. The work behind it is the same: be worth mentioning, on sites people trust.",
+    q: "Can you get our brand recommended by ChatGPT and Google's AI Overviews?",
+    a: "No one can guarantee what an AI tool says, and we don't. What we can do is get your brand mentioned on the publications AI answers already cite, then track each month whether Google's AI Overviews, ChatGPT and Perplexity name you. This is often called GEO (generative engine optimisation) or AEO. The work is the same either way: earning mentions on sites AI tools trust.",
   },
   {
-    q: "What kind of sites do you use?",
-    a: "Real publications with their own editors and readers. Every site is checked by hand first: is it relevant to you, what does it rank for, is it healthy, and does it act like a real publication. If a site exists only to sell links, we don't use it, whatever its DR.",
+    q: "What kind of websites do you get links on?",
+    a: "Real publications with their own editors, readers and organic traffic. Every site is reviewed by hand before we use it: its relevance to your niche, the keywords it ranks for, its traffic trend, and whether it runs like an active publication. We don't use PBNs, link farms or sites that exist to sell links, whatever their DR.",
   },
   {
-    q: "How long until we see results?",
-    a: "Links usually get indexed within two to six weeks. Pages already close to page one tend to move between months two and four. PR coverage and AI mentions build over a few months. We'll tell you on the first call what's realistic for your site.",
+    q: "How long does link building take to show results?",
+    a: "New links are usually indexed within two to six weeks. Pages already close to page one tend to move between months two and four. Digital PR coverage and AI mentions build over several months. On the first call, we give you a realistic timeline for your site and keywords.",
   },
   {
-    q: "What's in the monthly report?",
-    a: "Every placement with its URL, metrics and anchor, its indexation status, ranking movement on your target pages, and where AI answers mentioned you that month. Clean enough to forward to your boss or your client as it is.",
+    q: "What's included in the monthly report?",
+    a: "Every placement with its live URL, metrics and anchor text, its indexing status, ranking changes for your target pages, and where AI answers mentioned your brand that month. Reports come as a Google Sheet or PDF, ready to share with your team or your clients.",
   },
   {
-    q: "Do you work with agencies?",
-    a: "Yes. We work with agencies as well as brands: your branding on the reports, volume pricing, NDA on request, and we stay invisible on client calls.",
+    q: "Do you offer white label link building for agencies?",
+    a: "Yes. Agencies get unbranded reports ready for their own logo, volume pricing from 20 links a month, and an NDA on request. We never contact your clients, and publishers never hear your agency's name from us.",
   },
   {
-    q: "How much does it cost, and do you guarantee results?",
-    a: "A placement is $190, in packages of 3, 5 or 10 links ($570, $950 or $1,900). To test us first, a single trial placement is $200, once per company. Need something else? We'll build a custom package. Every order has a 100% money-back guarantee and free link replacement. We don't guarantee rankings or AI citations, because nobody honestly can. We guarantee the work itself.",
+    q: "How much does link building cost, and do you guarantee results?",
+    a: `Placements are ${usd(PER_LINK)} each, in packages of 3, 5 or 10 links (${planPrice(PLANS[0])}, ${planPrice(PLANS[1])} or ${planPrice(PLANS[2])}). New clients can test us with a single ${usd(TRIAL_PRICE)} trial placement, once per company, and larger or mixed campaigns are quoted as custom packages. Every order includes a 100% money-back guarantee and free link replacement. We don't guarantee rankings or AI citations, because no one controls them. We guarantee the work: placements that match what you ordered.`,
   },
 ];
 
