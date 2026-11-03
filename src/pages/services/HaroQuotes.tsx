@@ -20,12 +20,6 @@ const SERVICE_SCHEMA = {
   description: C.seo.description,
   provider: { "@type": "Organization", name: "Editorial HQ" },
   areaServed: "Worldwide",
-  offers: {
-    "@type": "Offer",
-    price: "997",
-    priceCurrency: "USD",
-    description: "Starting monthly price",
-  },
 };
 
 /**

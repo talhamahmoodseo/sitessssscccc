@@ -36,7 +36,7 @@ const Terms = () => (
     <H>Orders and prices</H>
     <L
       items={[
-        `Prices are in US dollars. A standard placement is ${usd(PER_LINK)}. The trial placement is ${usd(TRIAL_PRICE)}, one per company.`,
+        `Prices are in US dollars. A standard placement is ${usd(PER_LINK)}. A single trial placement, with no minimum order, is ${usd(TRIAL_PRICE)}.`,
         "Every order is confirmed in writing (an email or invoice) with the package, the pages we'll link to and the price. Work starts once the order is confirmed and paid as the invoice says.",
         "Custom packages are quoted in writing before you pay anything.",
         "We can turn down an order, for example when your niche is one our publishers won't accept. If we do, you pay nothing for it.",

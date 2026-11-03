@@ -31,8 +31,9 @@ export type FitPriceContent = {
   bad: string[];
   price: {
     label: string;
-    from: string;
-    unit: string;
+    /** a starting price; leave out for a service sold only as a custom package */
+    from?: string;
+    unit?: string;
     plan: string;
     note: string;
     points: string[];
@@ -110,15 +111,21 @@ export const FitPrice = ({
           <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-navy-dark/75">
             {c.price.label}
           </p>
-          <p className="mt-5 flex items-baseline gap-2">
-            <span className="text-[13px] text-navy-dark/75">from</span>
-            <span className="text-[3.2rem] font-semibold leading-none tracking-[-0.045em] text-navy-dark tabular-nums">
-              {c.price.from}
-            </span>
-            <span className="text-[14px] text-navy-dark/75">
-              {c.price.unit}
-            </span>
-          </p>
+          {c.price.from ? (
+            <p className="mt-5 flex items-baseline gap-2">
+              <span className="text-[13px] text-navy-dark/75">from</span>
+              <span className="text-[3.2rem] font-semibold leading-none tracking-[-0.045em] text-navy-dark tabular-nums">
+                {c.price.from}
+              </span>
+              <span className="text-[14px] text-navy-dark/75">
+                {c.price.unit}
+              </span>
+            </p>
+          ) : (
+            <p className="mt-5 text-[2.6rem] font-semibold leading-none tracking-[-0.045em] text-navy-dark">
+              Custom package
+            </p>
+          )}
           <p className="mt-2 text-[14px] font-semibold text-navy-dark">
             {c.price.plan}
           </p>
@@ -138,17 +145,17 @@ export const FitPrice = ({
           </p>
           <div className="mt-auto flex flex-wrap gap-2.5 pt-8">
             <Link
-              to="/pricing"
+              to={c.price.from ? "/pricing" : "/pricing#custom-package"}
               className="group inline-flex items-center gap-2 rounded-full bg-navy-dark px-6 py-3 text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-black"
             >
-              See all plans
+              {c.price.from ? "See all plans" : "See pricing"}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>
             <button
               onClick={openBooking}
               className="inline-flex items-center rounded-full bg-white/70 px-6 py-3 text-[14px] font-semibold text-navy-dark ring-1 ring-navy-dark/15 transition-colors duration-300 hover:bg-white"
             >
-              Get a quote
+              {c.price.from ? "Get a quote" : "Discuss a custom package"}
             </button>
           </div>
         </motion.div>

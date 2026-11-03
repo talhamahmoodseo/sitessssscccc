@@ -39,7 +39,7 @@ const FAQS = [
   },
   {
     q: "How much does link building cost, and do you guarantee results?",
-    a: `Placements are ${usd(PER_LINK)} each, in packages of 3, 5 or 10 links (${planPrice(PLANS[0])}, ${planPrice(PLANS[1])} or ${planPrice(PLANS[2])}). New clients can test us with a single ${usd(TRIAL_PRICE)} trial placement, once per company, and larger or mixed campaigns are quoted as custom packages. Every order includes a 100% money-back guarantee and free link replacement. We don't guarantee rankings or AI citations, because no one controls them. We guarantee the work: placements that match what you ordered.`,
+    a: `Placements are ${usd(PER_LINK)} each, in packages of 3, 5 or 10 links (${planPrice(PLANS[0])}, ${planPrice(PLANS[1])} or ${planPrice(PLANS[2])}). You can also start with a single trial placement (${usd(TRIAL_PRICE)}, no minimum order), and larger or mixed campaigns are quoted as custom packages. Every order includes a 100% money-back guarantee and free link replacement. We don't guarantee rankings or AI citations, because no one controls them. We guarantee the work: placements that match what you ordered.`,
   },
 ];
 

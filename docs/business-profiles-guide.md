@@ -99,7 +99,7 @@ the industry spread in long descriptions instead of one client's number.
 |---|---|---|
 | Established brands ($5M+ revenue, 25+ staff) | **3 editorial backlinks, free.** No catch, no contract. By application | `editorialhq.com/pilot` |
 | Smaller businesses and agencies | **One trial link, $200**, money-back guarantee | `editorialhq.com/pricing` |
-| Ready to buy | Packages from 3 links at $190 each | `editorialhq.com/pricing` |
+| Ready to buy | Packages from 3 links at $250 each | `editorialhq.com/pricing` |
 | Just looking | Free audit within 48 hours, or a 30-minute call | `editorialhq.com/contact` |
 
 Ready-made lines:
@@ -361,7 +361,7 @@ different client, named by industry first.
 | 1 | "Why we reject 1 in 5 sites before pitching" | B2B software: Ocuco's placement on OpenCart | "What makes a link editorial" + the pilot |
 | 2 | "Exact-match anchors are how sites get hit" | Crypto: CryptoDesk's Cointelegraph feature and #1 in Dubai | "How brand mentions turn into AI citations" |
 | 3 | "5 signs a guest post site is a link farm" | Consumer tech: links for CapCut's AI tool pages | A real report walkthrough (blurred) |
-| 4 | "What a $190 link actually includes" | Hardware: Defender's launch in 18 buyer's guides | "3 free pilot spots this month" |
+| 4 | "What a $250 link actually includes" | Hardware: Defender's launch in 18 buyer's guides | "3 free pilot spots this month" |
 | 5 | "Links for agencies: how white label works" | Education: SmileTutor's AI Overview and rankings | Behind the scenes: the team at work |
 
 Each post ends with one call to action, rotating between "DM me", "3 free

@@ -112,7 +112,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | `src/lib/stories.ts` | The homepage hero's five client stories (round 13): quotes, facts and evidence, all taken from `cases.ts` or copied word for word from the evidence screenshots |
 | `src/components/proof.tsx` | Shared proof kit: `SiteShot` (a client's homepage in a browser frame), `Avatar`, `ProofChip` (Google result, AI Overview, press, lists) and `ResultCard` (case card used on /case-studies and /pilot) |
 | `src/pages/Pilot.tsx` | /pilot: the free 3-link pilot, by application (round 14). The form posts to the contact endpoint as "Free pilot application". Page is `noindex` on purpose |
-| `src/lib/pilot.ts` | **The free pilot's numbers**: links (3), spots a month (3), revenue and employee thresholds, the value shown ($570) |
+| `src/lib/pilot.ts` | **The free pilot's numbers**: links (3), spots a month (3), revenue and employee thresholds, the value shown (3 × the link price, $750) |
 | `src/components/PilotBar.tsx` | The "Get 3 editorial backlinks free" bar on every page (Navigation places it, folds it on scroll, hides it on /pilot; closing it hides it for the visit) |
 | `src/lib/pricing.ts` | **All prices.** Pricing page, contact form, link building page, FAQs and About read from here |
 | `src/lib/reviews.ts` | Clutch / Trustpilot badges, hidden until the real profiles exist (§8) |
@@ -161,6 +161,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | Round | Status | Notes |
 | --- | --- | --- |
 | 15 | Waiting for the owner | Home Services removed, 3-client hero, CryptoDesk + Bitcoin.com, FAQs, closing CTA, guarantee terms, copy pass |
+| 16 | Waiting for the owner | $250 pricing, trial at $250, HARO as custom package, new photo on the site |
 | Email signature | Approved (Option A) | `docs/email-signature/`: photo, name, "Link Building · Digital PR · Brand Mentions for AI Search", phone (WhatsApp), team@editorialhq.com, editorialhq.com, booking button. Still needs the LinkedIn/Instagram links and a public photo URL |
 | Profile photo guide | Waiting for the owner | `docs/profile-photo-guide.md` |
 | LinkedIn banner | Waiting for a new photo angle | `docs/linkedin-banner/`; remove the Editorial HQ logo when rebuilt |
@@ -169,6 +170,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 
 | Commit | Round |
 | --- | --- |
+| (round 16) | **New price and photo.** Owner-set price $250 a link (packages $750 / $1,250 / $2,500, pilot value $750); the trial is one link at the same $250 with no minimum. Hard-coded prices on the link building and About pages now read from `lib/pricing.ts`. HARO & expert quotes: the $997/month price is removed everywhere (service page box, pricing page list, schema); it's a custom package with "See pricing" (→ `/pricing#custom-package`) and "Discuss a custom package". The owner's new AI headshot replaces `talha-avatar.jpg` and `talha.jpg` |
 | (round 15) | **Focus on the main services, cleaner copy.** Plan: `PLAN-ROUND-15.md`. Home Services page removed (301 to link building, footer link gone, persona button now goes to link building). Hero stage: 3 clients (SmileTutor, CryptoDesk, Ocuco) instead of 5, 8 s each, and it no longer pauses on hover or focus (it sits under the audit box, so it looked stuck); it pauses only when mostly off screen, the tab is hidden, or the visitor presses pause. CryptoDesk: 35+ press releases and 100+ placements (owner), the Bitcoin.com News press release (checked live, 15 July 2023) first in its press list as a larger card, and a new `badge` field on case studies ("Featured on Bitcoin.com", `CaseBadge` in `components/proof.tsx`) shown on its cards, homepage row and hero card. Every FAQ rewritten (home, pricing, pilot, contact, four service pages): answer first, search wording, no filler. One closing CTA everywhere (`components/AuditCTA.tsx`, used by `CTABand` and `HomeCTA`): "Find out what it takes to rank first", website field, one button; the repeated hero headline, the book-a-call row and the email address are gone. Guarantee terms: "Our guarantees, in full" with "What's included / Exclusions / How to claim". Copy pass: "honestly", "no small print", "in plain English", "no catch", "stay invisible on client calls", "pulling their weight" and similar removed site-wide |
 | (round 14) | **Free 3-link pilot, like uSERP's** (the owner's correction: not the paid trial). A bar on every page (`components/PilotBar.tsx`: "Get 3 editorial backlinks free. No catch, no contract." → /pilot?ref=bar), with a spacer so no hero sits under it; it folds on scroll and can be closed. /pilot rebuilt on uSERP's structure: offer + application form, why it's free, usual way vs pilot, 4 steps, what you get with an illustrative example and the value ($570 → $0), what 3 links won't do, who qualifies (published criteria), case results, FAQ, apply. The application posts to the contact endpoint ("Free pilot application"); `noindex`. The $200 link is called "trial" again on pricing and the contact form; case studies CTAs point to the free pilot; the homepage's "Trusted by…" line is back |
 | (round 13) | Results-first pages, after Amplemarket and uSERP (plan: `PLAN-ROUND-13.md`). **Homepage hero:** `ResultStage` replaces `SearchStory`: one client at a time, set like a post (their approved words, their homepage with the result pinned on it, three figures), two pieces of evidence beside it (Google #1, AI Overview, press, the placement), link tiles flying in, the client's colour behind, five tabs that cycle. Subline rewritten, plus a link to the pilot. **Pricing:** Amplemarket order: short ✓/✗ package cards with a pilot bar, the logos and one big quote on the dark stage, a line-by-line comparison (first column pinned on phones), guarantee band, the results bento and review wall from the homepage, full guarantee terms (`#guarantee-terms` kept), other services, FAQ. "Three steps", "the terms in plain words" and "five things move a custom quote" now live in the FAQ. The nav is white on the dark stage (`navOnDark`; it was invisible before). **Case studies:** results-at-a-glance hero, logo strip, SmileTutor featured, service filters and `ResultCard`s with each client's homepage, a pilot card, the review wall, then the totals, what we count / leave out and the eight parts. **Pilot (/pilot, new):** the existing $200 trial link presented as a pilot, after uSERP's /pilot structure (start form → contact with `?package=trial`). Linked from the hero, pricing, case studies and the footer. The contact form's package label reads "Pilot: one trial link ($200)" |
@@ -195,15 +197,15 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 
 - **CryptoDesk link mix (round 15), to confirm:** 35 press releases is the owner's figure; the split of the other 65 placements (35 guest posts, 15 niche edits, 15 press features) is still proposed. `src/lib/cases.ts`, see `CASE-STUDY-DRAFTS.md`.
 
-- **Free pilot thresholds (round 14), to confirm with the owner:** $5M+ annual revenue, 25+ employees, 3 businesses a month, agencies not eligible (they can buy the $200 trial link instead). uSERP uses $10M+ and 50+. All in `src/lib/pilot.ts`.
-- **Pricing (round 9, owner-set):** $190 a placement; trial $200, one per
-  company; Starter 3 links ($570, avg 5,000+ visits/site), Growth 5 links
-  ($950, 10,000+), Authority 10 links ($1,900, 50,000+); Custom quoted.
-  Packages can be ordered once or monthly, no setup fee, no contract, DR 40+
-  in every package. **To confirm with the owner:** that bigger packages keep
-  $190 a link even with higher-traffic sites, that "order once or monthly"
-  is right, and that DR 40+ applies to all three. All in `src/lib/pricing.ts`.
-  The round 8 and round 7 notes below are superseded.
+- **Free pilot thresholds (round 14), to confirm with the owner:** $5M+ annual revenue, 25+ employees, 3 businesses a month, agencies not eligible (they can buy the single trial link instead). uSERP uses $10M+ and 50+. All in `src/lib/pilot.ts`.
+- **Pricing (round 16, owner-set):** $250 a placement; trial = one link at
+  the same $250 with no minimum order (no longer "once per company");
+  Starter 3 links ($750, avg 5,000+ visits/site), Growth 5 links ($1,250,
+  10,000+), Authority 10 links ($2,500, 50,000+); Custom quoted. HARO &
+  expert quotes has no public price: it's sold as a custom package (the
+  $997/month price is gone). Packages can be ordered once or monthly, no
+  setup fee, no contract, DR 40+ in every package. All in `src/lib/pricing.ts`.
+  Round 9's $190/$200 and the older notes below are superseded.
 - **Pricing** (round 7, superseded): Trial $129 (1× DR 40+,
   one per new client) · Starter $695 (5× DR 40+) · Growth $1,290 (10× DR 40+) ·
   Authority $2,190 (10× DR 50+) · singles DR 30+ $110, 40+ $150, 50+ $240,

@@ -1,8 +1,8 @@
 /**
- * Prices, in one place (round 9, owner-approved):
- * - standard placement: $190 a link;
- * - trial placement: $200, one link, once per company (priced above the
- *   standard rate on purpose, so it can't be reused as a discount);
+ * Prices, in one place (owner-approved, round 16):
+ * - standard placement: $250 a link (was $190);
+ * - trial placement: one link at the same $250, with no minimum order, for
+ *   anyone who wants to see a placement before buying a package;
  * - packages of 3, 5 and 10 links at the standard rate, with an average
  *   organic traffic floor of 5,000, 10,000 and 50,000 visits a month;
  * - a custom package for anything else, quoted on a call.
@@ -12,8 +12,8 @@
  * only with the owner's approval.
  */
 
-export const PER_LINK = 190;
-export const TRIAL_PRICE = 200;
+export const PER_LINK = 250;
+export const TRIAL_PRICE = 250;
 
 export const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 

@@ -38,7 +38,7 @@ import { ServiceFaq } from "./services/common";
  * /pricing, round 13, on Amplemarket's pricing structure (the owner's
  * brief, 31 Oct 2026):
  *   1. short package cards on a dark stage, with ticks and crosses and the
- *      guarantees as highlights; the $200 trial link as a slim bar above them;
+ *      guarantees as highlights; the single trial link as a slim bar above them;
  *   2. one client quote, under the client logos;
  *   3. the comparison, line by line;
  *   4. real results (the homepage bento);
@@ -110,7 +110,7 @@ const CUSTOM_GROUPS: Group[] = [
       { t: "More than 10 links, or a monthly plan" },
       { t: "Higher traffic or DR targets" },
       { t: "A specific niche or country" },
-      { t: "Links plus PR and brand mentions" },
+      { t: "Links plus PR, brand mentions or expert quotes" },
     ],
   },
   {
@@ -182,7 +182,9 @@ const Card = ({
   groups,
   cta,
   delay,
+  id,
 }: {
+  id?: string;
   name: string;
   tag?: string;
   tagline: string;
@@ -195,7 +197,8 @@ const Card = ({
   delay: number;
 }) => (
   <motion.div
-    className={`flex flex-col rounded-[24px] p-6 sm:p-7 ${
+    id={id}
+    className={`flex scroll-mt-28 flex-col rounded-[24px] p-6 sm:p-7 ${
       featured
         ? "bg-white text-navy-dark shadow-[0_40px_80px_-40px_rgb(0_0_0/0.8)]"
         : custom
@@ -310,9 +313,9 @@ const OTHER = [
   {
     to: "/services/haro-links",
     t: "HARO & Expert Quotes",
-    d: "Your experts quoted in stories that are already being written.",
-    from: "$997",
-    per: "/mo",
+    d: "Your experts quoted in stories that are already being written. Part of a custom package.",
+    from: "",
+    per: "",
   },
   {
     to: "/services/brand-mentions",
@@ -334,8 +337,8 @@ const OTHER = [
 
 const FAQS = [
   {
-    q: "Why does the trial placement cost more than a standard link?",
-    a: `The trial is a single placement for new clients who want to see our work before a larger order. It's the same placement with no minimum order, priced slightly higher (${usd(TRIAL_PRICE)}) so it can't be reused as a discount. It's available once per company. After that, every placement is ${usd(PER_LINK)}.`,
+    q: "What is the trial placement?",
+    a: `One link, so you can see the quality of our work before ordering a package. It's the same placement at the same price (${usd(TRIAL_PRICE)}), just with no minimum order. If you like it, packages start at 3 links.`,
   },
   {
     q: `What do I get for ${usd(PER_LINK)} a placement?`,
@@ -523,6 +526,7 @@ const Pricing = () => {
               />
             ))}
             <Card
+              id="custom-package"
               name="Custom"
               tag="Your mix"
               tagline={TAGLINE.custom}
@@ -712,13 +716,19 @@ const Pricing = () => {
                     <span className="mt-1 block text-[14.5px] text-navy-dark/75">{s.d}</span>
                   </span>
                   <span className="flex items-center gap-4 sm:justify-end">
-                    <span className="flex items-baseline gap-1.5">
-                      <span className="text-[12.5px] text-navy-dark/70">from</span>
-                      <span className="text-[1.6rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark tabular-nums">
-                        {s.from}
+                    {s.from ? (
+                      <span className="flex items-baseline gap-1.5">
+                        <span className="text-[12.5px] text-navy-dark/70">from</span>
+                        <span className="text-[1.6rem] font-semibold leading-none tracking-[-0.04em] text-navy-dark tabular-nums">
+                          {s.from}
+                        </span>
+                        <span className="text-[12.5px] text-navy-dark/70">{s.per}</span>
                       </span>
-                      <span className="text-[12.5px] text-navy-dark/70">{s.per}</span>
-                    </span>
+                    ) : (
+                      <span className="text-[1.15rem] font-semibold leading-none tracking-[-0.03em] text-navy-dark">
+                        Custom package
+                      </span>
+                    )}
                     <ArrowUpRight className="h-4 w-4 text-navy-dark/40 transition-colors group-hover:text-navy-dark" />
                   </span>
                 </Link>

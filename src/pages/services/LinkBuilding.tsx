@@ -2,6 +2,7 @@ import { Seo } from "@/components/MotionKit";
 import { GuaranteeBand } from "@/components/Guarantees";
 import PageLayout from "@/components/PageLayout";
 import { casesFor } from "@/lib/cases";
+import { PER_LINK } from "@/lib/pricing";
 import { ClientWork } from "../results/CaseParts";
 import { linkBuilding as LB } from "./content/linkBuilding";
 import Hero from "./link-building/Hero";
@@ -30,9 +31,9 @@ const SERVICE_SCHEMA = {
   areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
-    price: "190",
+    price: String(PER_LINK),
     priceCurrency: "USD",
-    description: "Per placement, in packages of 3, 5 or 10 links. Trial placement $200.",
+    description: "Per placement, in packages of 3, 5 or 10 links, or a single trial placement.",
   },
 };
 

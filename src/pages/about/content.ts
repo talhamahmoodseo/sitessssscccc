@@ -4,6 +4,7 @@
  * studies for proof. Who we are → what we stand by → what we specialise
  * in → how we work → why clients trust us → a client's words → next.
  */
+import { PER_LINK, usd } from "@/lib/pricing";
 
 export const about = {
   seo: {
@@ -196,7 +197,7 @@ export const about = {
       {
         to: "/pricing",
         t: "What it costs",
-        d: "Packages from 3 links at $190 a placement, or a single $200 trial link to test us first.",
+        d: `Packages from 3 links at ${usd(PER_LINK)} a placement, or a single trial link to test us first.`,
         cta: "See pricing",
       },
     ],

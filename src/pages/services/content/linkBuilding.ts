@@ -3,12 +3,13 @@
  *
  *  STATUS: client names, figures, quotes and the case study are realistic
  *  samples for design review. The three rejected sites are real (anonymised). */
+import { PER_LINK, PLANS, TRIAL_PRICE, planPrice, usd } from "@/lib/pricing";
 
 export const linkBuilding = {
   seo: {
     title: "Link Building Services That Move Rankings",
     description:
-      "Done-for-you link building: guest posts and niche edits on hand-checked sites. $190 a link or a $200 trial link, backed by a money-back guarantee.",
+      `Done-for-you link building: guest posts and niche edits on hand-checked sites. ${usd(PER_LINK)} a link, packages from 3 links, backed by a money-back guarantee.`,
   },
 
   hero: {
@@ -424,11 +425,11 @@ export const linkBuilding = {
 
   pricing: {
     eyebrow: "Link building pricing",
-    h2: "Start with one trial link. Then $190 a placement.",
+    h2: `Start with one link, or a package. ${usd(PER_LINK)} a placement.`,
     d: "Every placement is DR 40+ on a relevant, hand-checked site, with content written for you, a white-label report, free link replacement and a 100% money-back guarantee.",
     plans: [
-      { name: "Trial placement", price: "$200", note: "One link, once per company" },
-      { name: "Starter, Growth, Authority", price: "$190", note: "Per link, in packages of 3, 5 or 10 links" },
+      { name: "Trial placement", price: usd(TRIAL_PRICE), note: "One link, no minimum order" },
+      { name: "Starter, Growth, Authority", price: usd(PER_LINK), note: "Per link, in packages of 3, 5 or 10 links" },
       { name: "Custom package", price: "Quote", note: "More links, higher traffic, or links plus PR" },
     ],
   },
@@ -470,7 +471,7 @@ export const linkBuilding = {
     },
     {
       q: "How much does link building cost?",
-      a: "Placements are $190 each, in packages of 3, 5 or 10 links ($570, $950 or $1,900), with higher-traffic sites in the larger packages. To test us first, a single trial placement is $200, once per company. Larger volumes, monthly plans and DR 70+ sites are quoted as custom packages. Every order is covered by our money-back guarantee.",
+      a: `Placements are ${usd(PER_LINK)} each, in packages of 3, 5 or 10 links (${planPrice(PLANS[0])}, ${planPrice(PLANS[1])} or ${planPrice(PLANS[2])}), with higher-traffic sites in the larger packages. To test us first, you can order a single trial placement at the same price, with no minimum order. Larger volumes, monthly plans and DR 70+ sites are quoted as custom packages. Every order is covered by our money-back guarantee.`,
     },
     {
       q: "Do you offer white label link building for agencies?",

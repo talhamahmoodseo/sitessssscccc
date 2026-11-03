@@ -304,16 +304,14 @@ export const haroQuotes = {
     ],
     price: {
       label: "Expert quotes pricing",
-      from: "$997",
-      unit: "/month",
-      plan: "Monthly campaign, no long contract",
+      plan: "Scoped with you on a short call, alone or alongside links and PR",
       points: [
         "Expertise profile for each expert",
         "Placements through our publishing connections",
         "Hand-picked source requests, answered fast",
-        "Monthly report with every published quote",
+        "A report with every published quote",
       ],
-      note: "Quotes only? We scope it on delivered placements, not attempts, so a quiet month costs you less.",
+      note: "You pay for delivered placements, not attempts, so a quiet stretch costs you less.",
     },
   },
 
