@@ -9,13 +9,13 @@ sharp on phones and Retina screens).
 | Old | New | Why |
 |---|---|---|
 | Dark old photo | The new mint headshot, round | Same face as LinkedIn, so people recognise you |
-| "Link Building & Digital PR Expert" | "Link Building & Digital PR · Brand mentions for AI search" | Says what you do instead of calling yourself an expert, and adds the AI angle |
+| "Link Building & Digital PR Expert" | "Founder, Editorial HQ" + "Link building · Digital PR · Brand mentions for AI search" | Shows you run an agency, says what you do instead of calling yourself an expert, and adds the AI angle |
+| Gmail address | team@editorialhq.com + editorialhq.com | Your company email and website look more established than a Gmail address |
 | Blue underlined links | Plain dark text, still clickable | Looks calmer and more expensive |
 | Phone opens a call | Phone opens WhatsApp | Most international clients reach Pakistan numbers on WhatsApp, not by phone |
 | Sage green button with a calendar icon | Black "Book a 30-min call →" button | Matches the brand, and it's built from HTML, not an image, so it always shows |
 | Round social icons | "LinkedIn \| Instagram" as text | Icons are images: Gmail often blocks them and they look blurry. Text never breaks |
 | No proof | "Trusted by CapCut · SmileTutor · Ocuco · Defender · CryptoDesk" | Every email now carries your client list |
-| | No website | As you asked. When the site is ready, add one line and it's done |
 
 ## Set it up in Gmail (10 minutes)
 
@@ -47,14 +47,6 @@ the WhatsApp link works.
 For the Gmail phone app: it uses a separate plain-text signature
 (app → Settings → your account → Mobile signature). Leave it empty and Gmail
 on the phone will use this one on most accounts.
-
-## Later, when the website is ready
-
-Add this line under the email row in `signature.html`:
-
-```html
-<tr><td width="18" style="width:18px;color:#8A8A8A;">W</td><td><a href="https://editorialhq.com" style="color:#0E0E0E;text-decoration:none;">editorialhq.com</a></td></tr>
-```
 
 ## Rules it follows
 
