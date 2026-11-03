@@ -161,6 +161,9 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | Round | Status | Notes |
 | --- | --- | --- |
 | 15 | Waiting for the owner | Home Services removed, 3-client hero, CryptoDesk + Bitcoin.com, FAQs, closing CTA, guarantee terms, copy pass |
+| Email signature | Approved (Option A) | `docs/email-signature/`: photo, name, "Link Building · Digital PR · Brand Mentions for AI Search", phone (WhatsApp), team@editorialhq.com, editorialhq.com, booking button. Still needs the LinkedIn/Instagram links and a public photo URL |
+| Profile photo guide | Waiting for the owner | `docs/profile-photo-guide.md` |
+| LinkedIn banner | Waiting for a new photo angle | `docs/linkedin-banner/`; remove the Editorial HQ logo when rebuilt |
 
 ## 6. History
 
