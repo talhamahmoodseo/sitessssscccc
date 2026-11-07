@@ -17,6 +17,12 @@
   corner. In the slideshow, LinkedIn also adds a **dots indicator in a dark
   pill at the bottom-right** (visible in the reference screenshot). Both
   corners have to stay free of anything important.
+- **On phones the profile photo is much bigger.** The owner's preview tool
+  showed it covering about 6% to 42% of the banner's width, from about 22%
+  of its height down (in banner pixels: x 95 to 665, from y 87). So every
+  text block starts at x 704, and only the CTA or the review card sits top
+  left, ending above y 80. `render.cjs` draws the phone preview with this
+  size.
 - **The first image matters most.** It's what loads first, and it's the one
   people see if they leave quickly. It must work on its own (and is the
   single banner if the account isn't on Premium Business).
@@ -103,3 +109,27 @@ banner's only job is a strong first impression and clear positioning.
 
 Order on LinkedIn: 1 → 2 → 3. Slide 1 is the one to use alone if the
 account isn't on Premium Business.
+
+## 7. Background scenes (round 3)
+
+The owner liked the dim laptop on the left of his old banner, and a
+designer's slides with one dim photo each (an hourglass, money). So each
+slide now has one dim photo in the left zone, which is free now that the
+text starts at x 704. On phones the profile photo covers most of it, which
+is fine: it's atmosphere, not content.
+
+| Slide | Scene | Why |
+|---|---|---|
+| 1 | A stack of newspapers ("World Business") | Authority links come from real publications |
+| 2 | Earth at night, city lights | "Worldwide" |
+| 3 | Two chess knights, face to face | You against your competitor |
+
+- Each photo is turned into a two-tone image (charcoal to soft violet), then
+  shown at 17% to 55% opacity and faded out before the text. A soft shade at
+  the top keeps the CTA readable.
+- Photos are from Unsplash (free for commercial use, no credit needed):
+  `photo-1504711434969-e33886168f5c` (newspapers),
+  `photo-1451187580459-43490279c0fa` (Earth at night, NASA),
+  `photo-1586165368502-1bad197a6461` (knights). Processed files are
+  `assets/bg-newspapers.jpg`, `assets/bg-earth.jpg` and `assets/bg-knights.jpg`.
+

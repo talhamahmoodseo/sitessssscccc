@@ -164,7 +164,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | 16 | Waiting for the owner | $250 pricing, trial at $250, HARO as custom package, new photo on the site |
 | Email signature | Approved (Option A) | `docs/email-signature/`: photo, name, "Link Building · Digital PR · Brand Mentions for AI Search", phone (WhatsApp), team@editorialhq.com, editorialhq.com, booking button. Still needs the LinkedIn/Instagram links and a public photo URL |
 | Profile photo guide | Waiting for the owner | `docs/profile-photo-guide.md` |
-| LinkedIn banner | Waiting for the owner | Slideshow of 3 (LinkedIn Premium Business feature), `docs/linkedin-banner/slideshow/`: research and design system in `STRATEGY.md`, slides in `slides.html`, export with `render.cjs`. Charcoal + two purples, white type. 1 positioning, 2 method, 3 proof. Earlier single banners (v1–v4, green, red, Gemini) rejected |
+| LinkedIn banner | Waiting for the owner | Slideshow of 3 (LinkedIn Premium Business feature), `docs/linkedin-banner/slideshow/`: research and design system in `STRATEGY.md`, slides in `slides.html`, export with `render.cjs`. Charcoal + two purples, white type. 1 taglines + client logos, 2 client review + faces, 3 "Outranked by your competitor?". Round 3: text moved right of the big phone profile photo, one dim photo per slide (newspapers, Earth at night, chess knights). Earlier single banners (v1–v4, green, red, Gemini) rejected |
 | Social brand palette | Superseded | The ink + Editor's Red palette was rejected (too common in the niche). Social now uses charcoal + purple, as in the slideshow |
 | LinkedIn plan | Waiting for the owner | `docs/linkedin-plan.md`: 10 steps from Lara's checklist |
 

@@ -7,9 +7,15 @@
   Three slides for LinkedIn's slideshow cover (1584 x 396 each).
   Open slides.html#1, #2 or #3; render.cjs exports all three.
   Design system and reasoning: STRATEGY.md.
-    1  Promise + CTA   (logo, two taglines, CTA button, arms-crossed photo)
-    2  Trust           (client faces and logos, headshot)
-    3  Approach        (relevance over volume, a simple illustration)
+
+  Safe areas (banner pixels):
+    - Phone: the profile photo is big. It covers about x 95-665 from y 87 down,
+      so all text sits right of x 704. Only the CTA / review sits top left,
+      and it ends above y 80.
+    - Desktop: the photo covers about x 47-346 from y 230 down.
+    - Both: LinkedIn's slideshow dots sit bottom right (about x 1390-1560,
+      y 330-380). Nothing important there.
+  The left zone (x 0-704) holds one dim background photo per slide.
 -->
 <style>
   @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-500-normal.woff2); font-weight: 500; }
@@ -24,6 +30,7 @@
     --white: #FFFFFF;
     --muted: rgb(255 255 255 / 0.74);
     --line: rgb(255 255 255 / 0.14);
+    --x: 704px;               /* where every text block starts */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 1584px; height: 396px; overflow: hidden; background: var(--bg); }
@@ -31,47 +38,70 @@
 
   .slide { position: relative; width: 1584px; height: 396px; overflow: hidden; background: var(--bg); display: none; }
   .slide.on { display: block; }
+
+  /* one dim photo per slide, left zone, fading out before the text */
+  .scene { position: absolute; left: 0; top: 0; width: 900px; height: 396px; background: center / cover no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 44%, rgb(0 0 0 / 0.55) 62%, transparent 80%);
+            mask-image: linear-gradient(90deg, #000 0%, #000 44%, rgb(0 0 0 / 0.55) 62%, transparent 80%); }
+  .s1 .scene { background-image: url(../assets/bg-newspapers.jpg); opacity: 0.17; }
+  .s2 .scene { background-image: url(../assets/bg-earth.jpg); opacity: 0.55; }
+  .s3 .scene { background-image: url(../assets/bg-knights.jpg); opacity: 0.42; }
+  /* a soft shade top left so the CTA always reads */
+  .shade { position: absolute; left: 0; top: 0; width: 760px; height: 140px;
+    background: linear-gradient(180deg, rgb(23 22 27 / 0.75), rgb(23 22 27 / 0)); }
+
   .light { position: absolute; right: -120px; top: -160px; width: 900px; height: 720px;
     background: radial-gradient(closest-side, rgb(157 134 255 / 0.13), rgb(157 134 255 / 0) 100%); }
   .grain { position: absolute; inset: 0; opacity: 0.22; mix-blend-mode: soft-light; pointer-events: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
 
-  /* the same on every slide: text block one third in; CTA top left on slides 1 and 3 */
-  .cta { position: absolute; left: 44px; top: 38px; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--white); }
+  /* top left, above the phone's profile photo */
+  .cta { position: absolute; left: 44px; top: 30px; font-size: 23px; font-weight: 600; letter-spacing: -0.01em; color: var(--white); }
   .cta b { color: var(--violet); font-weight: 700; }
-  .copy { position: absolute; left: 500px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+
+  .copy { position: absolute; left: var(--x); top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
   .label { align-self: flex-start; font-size: 14px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
     color: rgb(255 255 255 / 0.86); padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgb(255 255 255 / 0.05); }
-  h1 { margin-top: 16px; font-size: 56px; line-height: 1.05; font-weight: 700; letter-spacing: -0.032em; }
+  h1 { margin-top: 16px; font-size: 48px; line-height: 1.06; font-weight: 700; letter-spacing: -0.032em; }
   .a { color: var(--violet); }
   .b { color: var(--lilac); }
-  .sub { margin-top: 16px; font-size: 24px; line-height: 1.38; font-weight: 500; color: var(--muted); max-width: 560px; }
+  .sub { margin-top: 16px; font-size: 22px; line-height: 1.4; font-weight: 500; color: var(--muted); max-width: 420px; }
 
-  .me-arms { position: absolute; right: 70px; top: -40px; height: 500px; filter: drop-shadow(0 22px 32px rgb(0 0 0 / 0.55)); }
-  .me-head { position: absolute; right: -8px; top: 22px; height: 374px; filter: drop-shadow(0 22px 32px rgb(0 0 0 / 0.55)); }
+  .me-arms { position: absolute; right: -14px; top: -28px; height: 452px; filter: drop-shadow(0 22px 32px rgb(0 0 0 / 0.55)); }
+  .me-head { position: absolute; right: -30px; top: 40px; height: 356px; filter: drop-shadow(0 22px 32px rgb(0 0 0 / 0.55)); }
 
   /* slide 1: the first tagline sits above the headline, struck through but fully readable */
-  .kicker { font-size: 30px; font-weight: 600; letter-spacing: -0.015em; color: var(--white); }
+  .kicker { font-size: 28px; font-weight: 600; letter-spacing: -0.015em; color: var(--white); }
   .kicker s { text-decoration: none; position: relative; color: rgb(255 255 255 / 0.62); }
   .kicker s::after { content: ""; position: absolute; left: -1px; right: -1px; top: 54%; height: 2px; border-radius: 2px;
     background: rgb(255 255 255 / 0.42); }
-  .s1 h1 { margin-top: 12px; font-size: 54px; }
-  .btn { align-self: flex-start; margin-top: 26px; display: inline-flex; align-items: center; gap: 12px;
-    background: var(--violet); color: #120F1E; border-radius: 999px; padding: 14px 24px 14px 26px; font-size: 19px; font-weight: 700; }
-  .btn svg { width: 18px; height: 18px; stroke: #120F1E; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .s1 h1 { margin-top: 10px; }
+  .trust { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 19px; }
+  .trust span { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: rgb(255 255 255 / 0.62); white-space: nowrap; }
+  .trust img { display: block; filter: brightness(0) invert(1); opacity: 0.9; }
 
-  .trust { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); width: 580px;
-    display: flex; align-items: center; gap: 28px; }
-  .trust span { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: rgb(255 255 255 / 0.6); white-space: nowrap; }
-  .trust img { display: block; filter: brightness(0) invert(1); opacity: 0.88; }
+  /* slide 2: one short client review, top left, compact so it ends above the phone's profile photo */
+  .review { position: absolute; left: 40px; top: 14px; display: flex; align-items: center; gap: 12px;
+    padding: 9px 18px 9px 9px; border-radius: 14px; background: rgb(23 22 27 / 0.72); border: 1px solid var(--line); }
+  .review i { width: 40px; height: 40px; border-radius: 50%; flex: none; background: center / cover no-repeat; border: 2px solid rgb(157 134 255 / 0.6); }
+  .review q { display: block; font-size: 17px; line-height: 1.25; font-weight: 600; color: var(--white); quotes: "“" "”"; white-space: nowrap; }
+  .review small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: rgb(255 255 255 / 0.58); }
+
+  /* slide 2: client faces, one neat row */
+  .clients { margin-top: 24px; display: flex; align-items: center; gap: 18px; }
+  .stack { display: flex; }
+  .stack > * { width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--bg); margin-left: -13px; flex: none;
+    background: #fff center / cover no-repeat; }
+  .stack > *:first-child { margin-left: 0; }
+  .clients p { font-size: 18px; line-height: 1.32; font-weight: 600; color: rgb(255 255 255 / 0.86); }
 
   /* slide 3: a generic results list, "you" third and climbing */
-  .serp { position: absolute; left: 1092px; top: 54px; width: 420px; padding: 18px; border-radius: 18px;
+  .serp { position: absolute; left: 1166px; top: 40px; width: 380px; padding: 16px; border-radius: 18px;
     background: rgb(255 255 255 / 0.04); border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.8); }
-  .q { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 16px; border-radius: 999px;
+  .q { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 16px; border-radius: 999px;
     background: rgb(255 255 255 / 0.07); font-size: 15px; font-weight: 500; color: rgb(255 255 255 / 0.7); }
   .q svg { width: 16px; height: 16px; stroke: rgb(255 255 255 / 0.7); fill: none; stroke-width: 2; stroke-linecap: round; }
-  .r { display: flex; align-items: center; gap: 12px; margin-top: 12px; padding: 11px 14px; border-radius: 12px; }
+  .r { display: flex; align-items: center; gap: 12px; margin-top: 10px; padding: 10px 14px; border-radius: 12px; }
   .r .n { width: 18px; font-size: 14px; font-weight: 700; color: rgb(255 255 255 / 0.45); }
   .r .f { width: 26px; height: 26px; border-radius: 50%; background: rgb(255 255 255 / 0.12); flex: none; }
   .r .t { flex: 1; }
@@ -82,41 +112,14 @@
   .r.you .f { background: var(--violet); }
   .r.you .bar { background: rgb(157 134 255 / 0.35); }
   .up { flex: none; font-size: 13px; font-weight: 700; color: var(--bg); background: var(--violet); border-radius: 999px; padding: 5px 10px; }
-
-  .review { position: absolute; left: 40px; top: 32px; display: flex; align-items: center; gap: 13px; max-width: 420px;
-    padding: 11px 18px 11px 11px; border-radius: 16px; background: rgb(255 255 255 / 0.06); border: 1px solid var(--line); }
-  .review i { width: 44px; height: 44px; border-radius: 50%; flex: none; background: center / cover no-repeat; border: 2px solid rgb(157 134 255 / 0.6); }
-  .review q { display: block; font-size: 17px; line-height: 1.3; font-weight: 600; color: var(--white); quotes: "“" "”"; }
-  .review small { display: block; margin-top: 3px; font-size: 13px; font-weight: 500; color: rgb(255 255 255 / 0.55); }
-
-  /* slide 2: client faces and logos, one neat row */
-  .clients { margin-top: 26px; display: flex; align-items: center; gap: 18px; }
-  .stack { display: flex; }
-  .stack > * { width: 64px; height: 64px; border-radius: 50%; border: 3px solid var(--bg); margin-left: -14px; flex: none;
-    background: #fff center / cover no-repeat; display: grid; place-items: center; overflow: hidden; }
-  .stack > *:first-child { margin-left: 0; }
-  .stack img { display: block; filter: brightness(0); }
-  .clients p { font-size: 18px; line-height: 1.35; font-weight: 600; color: var(--white); }
-  .clients p span { display: block; font-size: 15px; font-weight: 500; color: rgb(255 255 255 / 0.6); }
-
-  /* slide 3: ten scattered grey dots against one strong link */
-  .viz { position: absolute; left: 1100px; top: 50px; width: 430px; height: 286px; border-radius: 20px; padding: 26px 28px;
-    background: rgb(255 255 255 / 0.035); border: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-  .col { display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; }
-  .field { position: relative; width: 150px; height: 150px; }
-  .dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: rgb(255 255 255 / 0.22); }
-  .hub { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; border: 2px solid rgb(255 255 255 / 0.3); }
-  .one { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
-    background: var(--violet); box-shadow: 0 0 0 10px rgb(157 134 255 / 0.18), 0 0 0 22px rgb(157 134 255 / 0.08), 0 0 50px rgb(157 134 255 / 0.5); }
-  .col b { font-size: 18px; font-weight: 700; }
-  .col small { display: block; margin-top: 4px; font-size: 14px; font-weight: 500; color: rgb(255 255 255 / 0.6); }
-  .col.dim b { color: rgb(255 255 255 / 0.55); }
 </style>
 </head>
 <body>
 
-<!-- 1. Promise + CTA -->
+<!-- 1. Promise + CTA. Scene: a stack of newspapers (authority links come from real publications) -->
 <section class="slide s1" id="s1">
+  <div class="scene"></div>
+  <div class="shade"></div>
   <div class="light"></div>
   <img class="me-arms" src="../assets/talha-cutout.webp" alt="Talha Mahmood">
   <p class="cta">Free link audit · DM me <b>“AUDIT”</b></p>
@@ -133,8 +136,10 @@
   <div class="grain"></div>
 </section>
 
-<!-- 2. Trust: who already works with us -->
+<!-- 2. Trust. Scene: Earth at night (clients worldwide) -->
 <section class="slide s2" id="s2">
+  <div class="scene"></div>
+  <div class="shade"></div>
   <div class="light"></div>
   <img class="me-head" src="../assets/talha-headshot-cutout.png" alt="Talha Mahmood">
   <div class="review">
@@ -151,14 +156,16 @@
         <div style="background-image:url(../assets/person-kieran-fallon.webp)" title="Kieran Fallon, Ocuco"></div>
         <div style="background-image:url(../assets/person-tiffany-lei.webp)" title="Tiffany Lei, agency owner"></div>
       </div>
-      <p>Founders, marketing leads and agency owners<span>across education, software, crypto and tech</span></p>
+      <p>Founders, marketing leads<br>and agency owners</p>
     </div>
   </div>
   <div class="grain"></div>
 </section>
 
-<!-- 3. Rankings: outranked by a competitor, and the free audit -->
+<!-- 3. Rankings + audit. Scene: two knights face to face (you and your competitor) -->
 <section class="slide s3" id="s3">
+  <div class="scene"></div>
+  <div class="shade"></div>
   <div class="light"></div>
   <p class="cta">Free link audit · DM me <b>“AUDIT”</b></p>
   <div class="copy">
