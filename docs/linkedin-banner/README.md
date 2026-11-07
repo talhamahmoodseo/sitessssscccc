@@ -16,7 +16,7 @@ the real thing on your phone after uploading.
 | Dark purple | Doesn't match the new mint photo or the website | Warm paper to mint, the same colours as the site and the photo |
 | "Forget Low Quality Backlinks" | Opens with a negative and a word buyers don't search for | "Rank on Google. Get cited by AI." The website's own promise, so the profile and the site say the same thing |
 | 3 logos | Two aren't on the website, and none of the big ones | The 5 clients from the website: CapCut, SmileTutor, Ocuco, CryptoDesk, Defender |
-| Stock "SEO analysis" photo on the left | Noise, and the profile photo covers it anyway | Left side kept calm, just the Editorial HQ logo |
+| Stock "SEO analysis" photo on the left | Noise, and the profile photo covers it anyway | Left side kept calm; no company logo (nobody knows the name yet) |
 | "DM 'SEO' to get free audit" | Good idea, keep it | "Free link audit: DM me 'AUDIT'" |
 
 ## 2. The design (based on your 4th reference, the Anamul Hasan one)
@@ -31,11 +31,11 @@ mint instead of lime, so the banner, the profile photo and the website feel
 like one brand.
 
 **Layout, left to right (1584 × 396):**
-- 0–470 px: Editorial HQ logo top left, nothing else. On desktop the profile
+- 0–470 px: kept empty. On desktop the profile
   photo covers the bottom left (about the first 360 px). On phones it covers
   a bit more.
 - 500–1140 px: the message. CTA pill, headline, one line, logos.
-- 1150–1550 px: your photo. Its mint backdrop melts into the banner.
+- 1150–1550 px: your arms-crossed photo (`assets/talha-cutout.webp`, transparent background) on a soft light circle.
 
 ## 3. The words
 
@@ -150,7 +150,7 @@ AI brand mentions). Font: Plus Jakarta Sans. Colours: ink #0E0E0E, paper
 #F7F6F4, mint #B2D8C1, accent gradient #E25428 to #7C5CF6, highlighter
 #F5CE58. Light paper background with a faint grid on the left, mint on the
 right, my headshot on the right with its mint backdrop blending in.
-Editorial HQ logo top left. Message starting 500 px from the left: black pill
+No logo. Message starting 500 px from the left: black pill
 "Free link audit: DM me “AUDIT”", headline "Rank on Google. / Get cited by
 AI." with "cited" in the italic gradient, line "I get your brand onto real
 publications your buyers already read." with "real publications" highlighted,

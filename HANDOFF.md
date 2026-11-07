@@ -164,7 +164,8 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | 16 | Waiting for the owner | $250 pricing, trial at $250, HARO as custom package, new photo on the site |
 | Email signature | Approved (Option A) | `docs/email-signature/`: photo, name, "Link Building · Digital PR · Brand Mentions for AI Search", phone (WhatsApp), team@editorialhq.com, editorialhq.com, booking button. Still needs the LinkedIn/Instagram links and a public photo URL |
 | Profile photo guide | Waiting for the owner | `docs/profile-photo-guide.md` |
-| LinkedIn banner | Waiting for a new photo angle | `docs/linkedin-banner/`; remove the Editorial HQ logo when rebuilt |
+| LinkedIn banner | Waiting for the owner | `docs/linkedin-banner/`: rebuilt with the arms-crossed cutout, no company logo |
+| LinkedIn plan | Waiting for the owner | `docs/linkedin-plan.md`: 10 steps from Lara's checklist |
 
 ## 6. History
 
