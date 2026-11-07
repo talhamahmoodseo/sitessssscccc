@@ -164,7 +164,8 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | 16 | Waiting for the owner | $250 pricing, trial at $250, HARO as custom package, new photo on the site |
 | Email signature | Approved (Option A) | `docs/email-signature/`: photo, name, "Link Building · Digital PR · Brand Mentions for AI Search", phone (WhatsApp), team@editorialhq.com, editorialhq.com, booking button. Still needs the LinkedIn/Instagram links and a public photo URL |
 | Profile photo guide | Waiting for the owner | `docs/profile-photo-guide.md` |
-| LinkedIn banner | Owner making it with ChatGPT/Gemini | Must use the **website's brand colours** (ink black, warm white, orange-to-violet accent, yellow highlighter), not green: the owner never meant green as the brand. v1 and v2 (green) rejected. Content and prompts: `docs/linkedin-banner/ai-prompts.md` |
+| LinkedIn banner | Waiting for the owner | v3 in `docs/linkedin-banner/v3/`, using the new social palette (`docs/branding/brand-palette.md`): Ink + Paper + Editor's Red `#E25428`, red once per design. v1, v2 (green) and the Gemini light/gradient version rejected |
+| Social brand palette | Waiting for the owner | `docs/branding/brand-palette.md` + `palette/palette.png` |
 | LinkedIn plan | Waiting for the owner | `docs/linkedin-plan.md`: 10 steps from Lara's checklist |
 
 ## 6. History
