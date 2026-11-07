@@ -72,17 +72,28 @@ look like one brand because **only the message and the picture change**:
 - **Photos:** your two real cutouts (arms crossed; head and shoulders), so
   slide 1 and slide 2 don't repeat the same picture.
 
-## 5. The three slides
+## 5. Content rules (from the owner, round 2)
 
-| # | Job | Label | Headline | Visual |
-|---|---|---|---|---|
-| 1 | Who you are and what you sell | LINK BUILDING & DIGITAL PR | Real publications. / Real rankings. | You, arms crossed + "Trusted by" CapCut, SmileTutor, CryptoDesk |
-| 2 | How you work (why it's safe) | HOW EVERY LINK IS PLACED | Vetted by hand. / Placed by editors. | 3-step line: site check → article → live link, + your headshot |
-| 3 | Proof | CLIENT RESULTS · SMILETUTOR | #1 on Google. / +169% traffic. | SmileTutor's real Semrush chart and its #1 Google result, as supporting evidence |
+The design was right; the first wording read like website or CV copy. A
+banner's only job is a strong first impression and clear positioning.
 
-On slide 3 the numbers are the headline: screenshots shrink to about half
-size on a real profile and can't be read, but "#1" and "+169%" at headline
-size can, on any screen.
+- One strong message per slide, said the way an SEO link building expert
+  would say it. The model is the owner's own line: "Forget low-quality
+  backlinks. Build authority links that move your rankings."
+- **No** client names or logos, no project results, no internal process
+  (e.g. "7-point check"), no lists of services. That belongs in the
+  profile, Featured section and website.
+- Every line must make sense to someone who knows nothing about us.
 
-Order on LinkedIn: 1 → 2 → 3. Slide 1 is the one to use alone if you're
-not on Premium Business.
+## 6. The three slides
+
+| # | Job | Label | Headline | Subline | Visual |
+|---|---|---|---|---|---|
+| 1 | The promise | LINK BUILDING & DIGITAL PR | Build **authority links** / that move **your rankings.** | Forget ~~low-quality backlinks~~. Every link lands on a real, trusted site. | You, arms crossed |
+| 2 | The difference | WHITE-HAT LINK BUILDING | Links that **last.** / Rankings that **grow.** | Placed on real sites with real readers. No PBNs, no link farms, no shortcuts. | Your headshot |
+| 3 | The conversation starter | FREE LINK AUDIT | Outranked by / **weaker websites?** | It's usually their links, not their content. I'll show you the gap, for free. | A generic results list: "yourbrand.com" third, climbing |
+
+Same on every slide: "Free link audit · DM me 'AUDIT'" top left.
+
+Order on LinkedIn: 1 → 2 → 3. Slide 1 is the one to use alone if the
+account isn't on Premium Business.
