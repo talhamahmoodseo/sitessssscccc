@@ -89,16 +89,16 @@ banner's only job is a strong first impression and clear positioning.
 
 | # | Job | Content | Visual |
 |---|---|---|---|
-| 1 | Attract + convert | Forget ~~low-quality backlinks.~~ (full phrase, readable) / Build **authority links** that move **your rankings.** / SERVING BRANDS LIKE: CapCut, Ocuco, CryptoDesk | You, arms crossed |
-| 2 | Trust | OUR CLIENTS / Trusted by brands **and agencies worldwide.** / four real client faces + "Founders, marketing leads and agency owners, across education, software, crypto and tech" | Your headshot |
-| 3 | Rankings | RANKINGS THAT CLIMB / From page two to **page one.** / Authority links aimed at the pages that matter, so they climb for the searches your buyers make. | A generic results list, "yourbrand.com" climbing |
+| 1 | Attract + convert | Forget ~~low-quality~~ backlinks. (only "low-quality" struck, with a thin dim line so it stays readable) / Build **authority links** that move **your rankings.** / SERVING BRANDS LIKE: CapCut, Ocuco, CryptoDesk, directly under the headline | You, arms crossed |
+| 2 | Trust | Review card top left: "Nothing has ever come back to bite me in an audit." Tiffany Lei, agency owner (verbatim from her approved testimonial) / OUR CLIENTS / Trusted by brands **and agencies worldwide.** / four real client faces | Your headshot |
+| 3 | Rankings + audit | FREE LINK AUDIT / Outranked by **your competitor?** / It's usually their links, not their content. I'll show you the gap, for free. | A generic results list, "yourbrand.com" climbing |
 
 - **No company logo** on any slide (the owner's call).
-- **CTA** "Free link audit · DM me 'AUDIT'" top left on slides 1 and 3.
-  Slide 2 shows clients instead.
+- **Top left:** the CTA "Free link audit · DM me 'AUDIT'" on slides 1 and 3,
+  and the client review on slide 2.
 - **Faces on slide 2:** Rum Tan (SmileTutor), Asad Abaas (CryptoDesk),
   Kieran Fallon (Ocuco), Tiffany Lei (agency owner). All four approved their
-  testimonials, and no names are printed.
+  testimonials.
 - Three logos at most on any slide.
 
 Order on LinkedIn: 1 → 2 → 3. Slide 1 is the one to use alone if the
