@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 112 112" width="112" height="112" overflow="visible"><defs><linearGradient id="s2g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="80" y2="0"><stop offset="0" stop-color="#E25428"/><stop offset="1" stop-color="#7C5CF6"/></linearGradient>
+  <clipPath id="s2c"><rect x="-10" y="-10" width="120" height="60"/></clipPath>
+  <mask id="s2m1" maskUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140"><rect x="-20" y="-20" width="140" height="140" fill="#fff"/><rect x="18.8" y="50" width="26.4" height="60" fill="#000"/></mask>
+  <mask id="s2m2" maskUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140"><rect x="-20" y="-20" width="140" height="140" fill="#fff"/><g clip-path="url(#s2c)"><path d="M14 39.5 H64 A10.5 10.5 0 0 1 64 60.5 H14 A10.5 10.5 0 0 1 14 39.5 Z" fill="none" stroke="#000" stroke-width="15.4"/></g></mask></defs>
+  <path d="M38 8 H80 A10 10 0 0 1 80 28 H42 V72 H80 A10 10 0 0 1 80 92 H38 A16 16 0 0 1 22 76 V24 A16 16 0 0 1 38 8 Z" fill="#14122B" mask="url(#s2m2)"/>
+  <path d="M14 39.5 H64 A10.5 10.5 0 0 1 64 60.5 H14 A10.5 10.5 0 0 1 14 39.5 Z" fill="none" stroke="url(#s2g)" stroke-width="9" mask="url(#s2m1)"/></svg>

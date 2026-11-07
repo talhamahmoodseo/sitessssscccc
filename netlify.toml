@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Every page is prerendered to <path>/index.html, so no SPA rewrite is needed.
+# Unknown URLs get dist/404.html with a real 404 status.

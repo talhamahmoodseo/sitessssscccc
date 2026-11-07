@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn banner, Talha Mahmood</title>
+<!--
+  LinkedIn banner, 1584 x 396 (LinkedIn's size). Rendered to PNG at 2x by
+  render.cjs. Text and logos are real HTML, so nothing is misspelt or
+  redrawn by an AI. Edit the copy below and re-run: node render.cjs
+  Brand: ink on warm paper, Plus Jakarta Sans, orange to violet accent,
+  the same mint as the profile photo and the website's tiles.
+  Round 2: the owner's arms-crossed cutout; no company logo (the owner's
+  call, and LinkedIn advice: nobody knows the company name yet).
+-->
+<style>
+  @font-face { font-family: PJS; src: url(assets/plus-jakarta-sans-latin-500-normal.woff2); font-weight: 500; }
+  @font-face { font-family: PJS; src: url(assets/plus-jakarta-sans-latin-600-normal.woff2); font-weight: 600; }
+  @font-face { font-family: PJS; src: url(assets/plus-jakarta-sans-latin-700-normal.woff2); font-weight: 700; }
+  @font-face { font-family: PJS; src: url(assets/plus-jakarta-sans-latin-800-normal.woff2); font-weight: 800; }
+  @font-face { font-family: PJS; src: url(assets/plus-jakarta-sans-latin-500-italic.woff2); font-weight: 500; font-style: italic; }
+
+  :root {
+    --ink: #0E0E0E;
+    --paper: #F7F6F4;
+    --mint: #B2D8C1;          /* sampled from the headshot's backdrop */
+    --warm: rgb(226 84 40);
+    --cool: rgb(124 92 246);
+    --mark: rgb(245 206 88);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; }
+  body { font-family: PJS, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  .banner {
+    position: relative; width: 1584px; height: 396px; overflow: hidden;
+    background: linear-gradient(90deg, var(--paper) 0%, var(--paper) 42%, #D9EADF 58%, var(--mint) 70%);
+  }
+  /* faint grid, like a sheet of graph paper, fading out to the right */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgb(14 14 14 / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(14 14 14 / 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 75%);
+            mask-image: linear-gradient(90deg, #000 0%, #000 45%, transparent 75%);
+  }
+  /* a soft light circle behind the photo, so the cutout sits on something */
+  .halo {
+    position: absolute; right: 70px; top: 26px; width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle at 50% 45%, rgb(255 255 255 / 0.55), rgb(255 255 255 / 0) 68%);
+  }
+  /* the arms-crossed cutout (transparent background), cropped at the waist */
+  .photo {
+    position: absolute; right: 64px; top: -38px; height: 500px; width: auto;
+    filter: drop-shadow(0 18px 28px rgb(14 14 14 / 0.18));
+  }
+
+  /* text column: starts right of the profile photo's corner */
+  .copy { position: absolute; left: 500px; top: 50px; width: 640px; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--ink); color: #fff; border-radius: 999px;
+    padding: 8px 16px 8px 10px; font-size: 15px; font-weight: 600; letter-spacing: 0.01em;
+  }
+  .cta .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--mark); display: grid; place-items: center; }
+  .cta .dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
+  .cta b { color: var(--mark); font-weight: 700; }
+
+  h1 {
+    margin-top: 18px; font-size: 58px; line-height: 1.02; font-weight: 700; letter-spacing: -0.035em;
+  }
+  .accent {
+    font-style: italic; font-weight: 500; padding-right: 0.1em;
+    background: linear-gradient(100deg, var(--warm), var(--cool));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .dot-end { font-style: normal; margin-left: -0.06em; }
+  h1 { word-spacing: 0.02em; }
+  .sub { margin-top: 12px; font-size: 20px; line-height: 1.4; font-weight: 500; color: rgb(14 14 14 / 0.72); }
+  .sub em { font-style: normal; color: var(--ink); font-weight: 600;
+    background: linear-gradient(transparent 58%, rgb(245 206 88 / 0.55) 58%, rgb(245 206 88 / 0.55) 92%, transparent 92%); }
+
+  .trust { margin-top: 10px; display: flex; align-items: center; gap: 24px; }
+  .trust-label { margin-top: 20px; }
+  .trust-label { display: block; white-space: nowrap; font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(14 14 14 / 0.55); }
+  .trust img { filter: brightness(0); opacity: 0.62; display: block; }
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="grid"></div>
+    <div class="halo"></div>
+    <img class="photo" src="assets/talha-cutout.webp" alt="Talha Mahmood">
+
+    <div class="copy">
+      <div class="cta"><span class="dot"></span>Free link audit: DM me <b>“AUDIT”</b></div>
+      <h1>Rank on Google<i class="dot-end">.</i><br>Get <span class="accent">cited</span> by AI<i class="dot-end">.</i></h1>
+      <p class="sub">I get your brand onto <em>real publications</em> your buyers already read.</p>
+      <span class="trust-label">Trusted by</span>
+      <div class="trust">
+        <img src="assets/capcut.svg" alt="CapCut" style="height:19px">
+        <img src="assets/smiletutor.svg" alt="SmileTutor" style="height:32px">
+        <img src="assets/ocuco.png" alt="Ocuco" style="height:19px">
+        <img src="assets/cryptodesk-mark.png" alt="CryptoDesk" style="height:23px">
+        <img src="assets/defender.png" alt="Defender" style="height:28px">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

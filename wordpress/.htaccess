@@ -1,0 +1,37 @@
+# Browser caching for this theme's own files (Hostinger runs LiteSpeed, which
+# reads .htaccess files in theme folders). Without this, everything here was
+# cached for 7 days, the server default.
+#
+# - assets/*.js: every file name carries a content hash (app-AbC123.js), so a
+#   new upload gets new names. Safe to cache for a year.
+# - app.css is linked with ?ver=<file time>, so it busts itself on upload.
+# - fonts and images keep their names: a year for fonts (they never change),
+#   30 days for images (if you replace an image without renaming it, returning
+#   visitors may see the old one for up to a month; purge the CDN in hPanel).
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(webp|png|jpe?g|svg|gif|avif|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>
+
+# prerendered page data is read by PHP, never by browsers
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^prerender/ - [F,L]
+</IfModule>
