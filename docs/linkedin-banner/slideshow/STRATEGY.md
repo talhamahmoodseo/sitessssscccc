@@ -85,15 +85,21 @@ banner's only job is a strong first impression and clear positioning.
   profile, Featured section and website.
 - Every line must make sense to someone who knows nothing about us.
 
-## 6. The three slides
+## 6. The three slides (owner's final brief)
 
-| # | Job | Label | Headline | Subline | Visual |
-|---|---|---|---|---|---|
-| 1 | The promise | LINK BUILDING & DIGITAL PR | Build **authority links** / that move **your rankings.** | Forget ~~low-quality backlinks~~. Every link lands on a real, trusted site. | You, arms crossed |
-| 2 | The difference | WHITE-HAT LINK BUILDING | Links that **last.** / Rankings that **grow.** | Placed on real sites with real readers. No PBNs, no link farms, no shortcuts. | Your headshot |
-| 3 | The conversation starter | FREE LINK AUDIT | Outranked by / **weaker websites?** | It's usually their links, not their content. I'll show you the gap, for free. | A generic results list: "yourbrand.com" third, climbing |
+| # | Job | Content | Visual |
+|---|---|---|---|
+| 1 | Attract + convert | Forget ~~low-quality backlinks.~~ (full phrase, readable) / Build **authority links** that move **your rankings.** / SERVING BRANDS LIKE: CapCut, Ocuco, CryptoDesk | You, arms crossed |
+| 2 | Trust | OUR CLIENTS / Trusted by brands **and agencies worldwide.** / four real client faces + "Founders, marketing leads and agency owners, across education, software, crypto and tech" | Your headshot |
+| 3 | Rankings | RANKINGS THAT CLIMB / From page two to **page one.** / Authority links aimed at the pages that matter, so they climb for the searches your buyers make. | A generic results list, "yourbrand.com" climbing |
 
-Same on every slide: "Free link audit · DM me 'AUDIT'" top left.
+- **No company logo** on any slide (the owner's call).
+- **CTA** "Free link audit · DM me 'AUDIT'" top left on slides 1 and 3.
+  Slide 2 shows clients instead.
+- **Faces on slide 2:** Rum Tan (SmileTutor), Asad Abaas (CryptoDesk),
+  Kieran Fallon (Ocuco), Tiffany Lei (agency owner). All four approved their
+  testimonials, and no names are printed.
+- Three logos at most on any slide.
 
 Order on LinkedIn: 1 → 2 → 3. Slide 1 is the one to use alone if the
 account isn't on Premium Business.
