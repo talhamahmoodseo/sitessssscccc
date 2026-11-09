@@ -214,8 +214,8 @@ const VISUALS: {
     passNote: "Authority backed by real rankings",
     fail: (
       <div>
-        <Fact k="dsnews.co.uk · DR" v="~70" />
-        <Fact k="Keywords" v="Weak, few buyer terms" bad />
+        <Fact k="metapress.com · DR" v="80" />
+        <Fact k="Organic traffic" v="Almost none" bad />
         <Fact k="Graph" v="Unstable" bad />
       </div>
     ),

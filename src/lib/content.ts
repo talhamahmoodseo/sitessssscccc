@@ -136,7 +136,7 @@ const BLOG_POSTS = [
       { t: "h2", c: "Then we open the keywords" },
       {
         t: "p",
-        c: "This is where most sites fail. A traffic number in an SEO tool is only an estimate, and it tells you nothing until you see what the site ranks for. We have rejected techbullion.com because its keywords were mostly irrelevant or spammy and most of its rankings were in markets the client does not sell in; dsnews.co.uk, a DR 70 site with weak keywords and an unstable graph; and entrepreneursbreak.com, a business site ranking for adult terms and openly selling guest posts. Roughly one in five sites we find gets dropped at this step.",
+        c: "This is where most sites fail. A traffic number in an SEO tool is only an estimate, and it tells you nothing until you see what the site ranks for. We have rejected trendifymagazine.com, a high-traffic site whose rankings were mostly spam keywords; metapress.com, a DR 80 site with almost no traffic and an unstable graph; and entrepreneursbreak.com, a DR 57 site with high traffic that ranks for spam keywords, has an unstable graph and works as a link farm. Roughly one in five sites we find gets dropped at this step.",
       },
       {
         t: "quote",
