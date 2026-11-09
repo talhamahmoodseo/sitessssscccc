@@ -3,7 +3,8 @@
 const path = require("path"); const fs = require("fs"); const { chromium } = require("playwright");
 const dir = __dirname;
 const sets = [["a", "Black + purple glow", 1], ["b", "Purple", 1], ["c", "Lavender", 1],
-              ["d", "Black + orange/violet glow", 6], ["e", "Orange to violet", 6], ["f", "Off-white", 6]];
+              ["d", "Black + orange/violet glow", 6], ["e", "Orange to violet", 6], ["f", "Off-white", 6],
+              ["g", "Plain black", 6], ["h", "Black, soft light behind the head", 6]];
 (async () => {
   const b = await chromium.launch();
   for (const [k] of sets) {
