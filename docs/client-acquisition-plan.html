@@ -1,0 +1,532 @@
+<title>Talha's Client Acquisition Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: one reading column with a sticky channel nav; each channel is a band with its own colour chip.
+     Brand: Editorial HQ ink + warm paper, orange-to-violet accent used sparingly. */
+  :root {
+    --bg: #F7F6F4;
+    --surface: #FFFFFF;
+    --fg: #121212;
+    --muted: #5E5B57;
+    --line: #E4E1DC;
+    --orange: #D9531F;
+    --violet: #6E52E8;
+    --upwork: #1F7A3A;
+    --linkedin: #0A66C2;
+    --site: #6E52E8;
+    --soft: #F0EEEA;
+    --display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #111111; --surface: #1A1A1A; --fg: #F2F1EE; --muted: #A9A6A1; --line: #2C2B29;
+    --orange: #FF7A45; --violet: #A08CFF; --upwork: #4CC170; --linkedin: #5AA9FF; --site: #A08CFF; --soft: #222120;
+    color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --bg: #111111; --surface: #1A1A1A; --fg: #F2F1EE; --muted: #A9A6A1; --line: #2C2B29;
+    --orange: #FF7A45; --violet: #A08CFF; --upwork: #4CC170; --linkedin: #5AA9FF; --site: #A08CFF; --soft: #222120;
+    color-scheme: dark }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap { max-width: 920px; margin: 0 auto; padding-block: 40px 80px; }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 800; }
+  h2 { font-size: clamp(24px, 4vw, 32px); font-weight: 800; }
+  h3 { font-size: 19px; font-weight: 700; }
+  p { margin: 0; max-width: 68ch; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .grad { background: linear-gradient(90deg, var(--orange), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  section { display: grid; gap: 18px; padding-block: 44px; border-top: 1px solid var(--line); }
+  .lead { font-size: 18px; color: var(--muted); }
+  .stack { display: grid; gap: 14px; }
+  ul.clean { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  ul.clean li { max-width: 66ch; }
+  b, strong { font-weight: 700; }
+
+  nav.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+    display: flex; gap: 8px; flex-wrap: wrap; padding-block: 12px; border-bottom: 1px solid var(--line); }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  nav.jump a { font-size: 13px; font-weight: 600; color: var(--fg); text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+  nav.jump a:hover, nav.jump a:focus-visible { border-color: var(--fg); outline: none; }
+
+  /* funnel */
+  .funnel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .chan { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+  .chan .tag { justify-self: start; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; color: #fff; }
+  .t-up { background: var(--upwork); } .t-li { background: var(--linkedin); } .t-site { background: var(--site); }
+  :root[data-theme="dark"] .chan .tag, :root:not([data-theme="light"]) .chan .tag { color: #fff; }
+  .chan small { color: var(--muted); font-size: 14px; }
+  .arrow { text-align: center; color: var(--muted); font-size: 22px; line-height: 1; }
+  .ladder { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .step { background: var(--fg); color: var(--bg); border-radius: 10px; padding: 8px 14px; font-weight: 700; font-size: 15px; }
+  .step.light { background: var(--surface); color: var(--fg); border: 1px solid var(--line); }
+  .ladder .sep { color: var(--muted); }
+
+  .note { background: var(--soft); border-radius: 12px; padding: 16px 18px; display: grid; gap: 6px; }
+  .note .eyebrow { color: var(--orange); }
+
+  /* schedule */
+  .day { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+  .slot { display: grid; grid-template-columns: 130px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 16px; border-top: 1px solid var(--line); }
+  .slot:first-child { border-top: 0; }
+  .slot .time { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; color: var(--muted); }
+  .slot .what { display: grid; gap: 2px; min-width: 0; }
+  .slot .what span { color: var(--muted); font-size: 14px; }
+  .mins { font-family: var(--mono); font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+  .d-up { background: var(--upwork); } .d-li { background: var(--linkedin); } .d-site { background: var(--site); } .d-all { background: var(--fg); }
+  .total { display: flex; justify-content: space-between; padding: 12px 16px; background: var(--soft); font-weight: 700; }
+
+  /* checklist */
+  .check { display: grid; gap: 8px; }
+  .check label { display: flex; gap: 12px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; cursor: pointer; }
+  .check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--violet); flex: none; }
+  .check input:checked + span { color: var(--muted); text-decoration: line-through; }
+  .check-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  button.reset { font: 600 13px var(--body); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+  button.reset:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+
+  /* tables */
+  .tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  thead th { border-top: 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* channel bands */
+  .chan-head { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .chip { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; color: #fff; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .box.do { border-left: 4px solid var(--upwork); }
+  .box.dont { border-left: 4px solid var(--orange); }
+
+  /* scripts */
+  .script { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .script-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--soft); }
+  .script-head span { font-size: 13px; font-weight: 700; }
+  .script pre { margin: 0; padding: 16px; white-space: pre-wrap; font-family: var(--body); font-size: 15px; line-height: 1.6; }
+  .copy { font: 600 12px var(--body); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+  .copy:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+
+  /* workflow */
+  ol.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: f; }
+  ol.flow li { counter-increment: f; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); align-items: start; }
+  ol.flow li:first-child { border-top: 0; }
+  ol.flow li::before { content: counter(f); width: 30px; height: 30px; border-radius: 50%; background: var(--fg); color: var(--bg); display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  .who { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap; color: var(--muted); }
+  .who.me { color: var(--orange); border-color: var(--orange); }
+  .who.team { color: var(--violet); border-color: var(--violet); }
+
+  .road { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .road .box h3 span { color: var(--muted); font-weight: 600; font-size: 14px; display: block; }
+
+  .rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; counter-reset: r; }
+  .rules div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+
+  footer { padding-top: 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 720px) {
+    .funnel, .grid2, .road, .rules { grid-template-columns: minmax(0, 1fr); }
+    .slot { grid-template-columns: minmax(0, 1fr) auto; }
+    .slot .time { grid-column: 1 / -1; }
+    ol.flow li { grid-template-columns: 34px minmax(0, 1fr); }
+    ol.flow li .who { grid-column: 2; justify-self: start; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+  html { scroll-behavior: smooth; }
+  a { color: var(--violet); }
+  section[id] { scroll-margin-top: 70px; }
+</style>
+
+<div class="wrap">
+  <header class="stack">
+    <p class="eyebrow">Client acquisition · LinkedIn · Upwork · Website</p>
+    <h1>Three channels.<br><span class="grad">One offer. Two hours a day.</span></h1>
+    <p class="lead">This is your daily system for getting link building clients without burning out. Every channel has one clear job, a fixed time slot and a few numbers to watch. Do the minimum on busy days, the full version on normal days, and review once a week.</p>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#big-picture">Big picture</a>
+    <a href="#day">Your day</a>
+    <a href="#week">Your week</a>
+    <a href="#upwork">Upwork</a>
+    <a href="#linkedin">LinkedIn</a>
+    <a href="#website">Website</a>
+    <a href="#audit">Audit workflow</a>
+    <a href="#team">Your team</a>
+    <a href="#numbers">Numbers</a>
+    <a href="#roadmap">90 days</a>
+    <a href="#rules">Rules</a>
+  </nav>
+
+  <!-- BIG PICTURE -->
+  <section id="big-picture">
+    <p class="eyebrow">1 · The big picture</p>
+    <h2>Each channel does one job</h2>
+    <div class="funnel">
+      <div class="chan"><span class="tag t-up">Upwork</span><h3>Catch demand</h3><small>People already looking to hire a link builder today. Fastest money, most competition.</small></div>
+      <div class="chan"><span class="tag t-li">LinkedIn</span><h3>Build attention</h3><small>People who don't know they need you yet. Slower, but brings bigger, repeat clients and agencies.</small></div>
+      <div class="chan"><span class="tag t-site">Website</span><h3>Win trust</h3><small>Where LinkedIn people go to check you out. Case studies, prices and the audit form close the deal.</small></div>
+    </div>
+    <p class="arrow" aria-hidden="true">↓</p>
+    <div class="ladder" aria-label="Offer ladder">
+      <span class="step light">Free link audit</span><span class="sep">→</span>
+      <span class="step light">Trial: 1 link, $250</span><span class="sep">→</span>
+      <span class="step">Package: 3, 5 or 10 links</span><span class="sep">→</span>
+      <span class="step">Monthly retainer</span>
+    </div>
+    <p>All three channels push to the same ladder. Nobody buys 10 links from a stranger, but many people say yes to a free audit, and a good audit sells the trial.</p>
+    <div class="note">
+      <p class="eyebrow">Where I'd push back</p>
+      <p><b>The website is not a daily channel.</b> A new site takes 6 to 12 months to bring clients from Google on its own. Right now its job is to convert the people LinkedIn sends there. So you spend 2 minutes a day on it (checking the form) and about 2 hours a week, mostly done by your team member. That's what keeps this plan at two hours a day instead of four.</p>
+    </div>
+  </section>
+
+  <!-- DAY -->
+  <section id="day">
+    <p class="eyebrow">2 · Your day (Pakistan time)</p>
+    <h2>Three short blocks, client work in between</h2>
+    <p>The times follow your buyers. US clients post Upwork jobs in their morning, which is your evening. UK and EU people are on LinkedIn in your afternoon.</p>
+    <div class="day">
+      <div class="slot"><span class="time">10:00 – 10:30</span><div class="what"><b><i class="dot d-all"></i>Inbox sweep + overnight Upwork jobs</b><span>Reply to every Upwork message, LinkedIn DM and website form. Send 2 proposals on jobs posted overnight.</span></div><span class="mins">30 min</span></div>
+      <div class="slot"><span class="time">10:30 – 14:00</span><div class="what"><b>Client work</b><span>Delivery, your team, reports. No channel work here.</span></div><span class="mins">—</span></div>
+      <div class="slot"><span class="time">14:00 – 14:40</span><div class="what"><b><i class="dot d-li"></i>LinkedIn: comments + outreach</b><span>5 to 7 real comments on buyers' and SEO people's posts. 5 connection requests to ideal clients. Reply to comments on your posts.</span></div><span class="mins">40 min</span></div>
+      <div class="slot"><span class="time">14:40 – 19:00</span><div class="what"><b>Client work</b><span>Including audits your team prepared.</span></div><span class="mins">—</span></div>
+      <div class="slot"><span class="time">19:00 – 20:00</span><div class="what"><b><i class="dot d-up"></i>Upwork: fresh US jobs</b><span>3 proposals on jobs under 1 hour old. On Mon / Wed / Fri, publish your LinkedIn post at 19:00 first and reply to every comment in the first hour.</span></div><span class="mins">60 min</span></div>
+      <div class="total"><span>Total on channels</span><span>about 2 hours 10 min</span></div>
+    </div>
+
+    <div class="note">
+      <p class="eyebrow">Busy-day minimum: 20 minutes</p>
+      <p>On days full of client work, do only this: <b>reply to every message, send 2 Upwork proposals, leave 5 LinkedIn comments.</b> Never zero, never more. Momentum matters more than one perfect day.</p>
+    </div>
+
+    <div class="check-head">
+      <h3>Today's checklist</h3>
+      <button class="reset" id="reset-today" type="button">Clear today</button>
+    </div>
+    <div class="check" id="today">
+      <label><input type="checkbox" id="c1"><span>Replied to all Upwork, LinkedIn and website messages</span></label>
+      <label><input type="checkbox" id="c2"><span>Sent 2 morning Upwork proposals</span></label>
+      <label><input type="checkbox" id="c3"><span>Left 5+ real LinkedIn comments</span></label>
+      <label><input type="checkbox" id="c4"><span>Sent 5 connection requests to ideal clients</span></label>
+      <label><input type="checkbox" id="c5"><span>Sent 3 evening Upwork proposals</span></label>
+      <label><input type="checkbox" id="c6"><span>Post day: published at 19:00 and replied to comments</span></label>
+    </div>
+    <p style="color:var(--muted);font-size:14px">Ticks are saved in this browser only and reset each day.</p>
+  </section>
+
+  <!-- WEEK -->
+  <section id="week">
+    <p class="eyebrow">3 · Your week</p>
+    <h2>Same rhythm every week</h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Day</th><th>LinkedIn</th><th>Upwork</th><th>Website</th></tr></thead>
+        <tbody>
+          <tr><td><b>Mon</b></td><td>Post: proof (client result)</td><td>5 proposals</td><td>2 min: check form + GA4</td></tr>
+          <tr><td><b>Tue</b></td><td>Comments + outreach</td><td>5 proposals</td><td>—</td></tr>
+          <tr><td><b>Wed</b></td><td>Post: lesson from the work</td><td>5 proposals</td><td>Team: blog draft due (every 2nd week)</td></tr>
+          <tr><td><b>Thu</b></td><td>Comments + outreach</td><td>5 proposals</td><td>You: edit the draft (30 min)</td></tr>
+          <tr><td><b>Fri</b></td><td>Post: AI tool / your journey</td><td>5 proposals · <b>20-min review of all numbers</b></td><td>Publish the blog post</td></tr>
+          <tr><td><b>Sat</b></td><td colspan="3">Off. Only reply to client messages.</td></tr>
+          <tr><td><b>Sun</b></td><td>90 min: write next week's 3 posts with AI</td><td>Update profile or catalog if needed</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- UPWORK -->
+  <section id="upwork">
+    <div class="chan-head"><span class="chip t-up">Upwork</span><p class="eyebrow">4 · Catch demand</p></div>
+    <h2>Fewer proposals, sent faster, written about them</h2>
+    <p>On Upwork the first 1 to 2 hours after a job goes live decide most hires. Speed and a first line about <i>their</i> website beat long proposals every time.</p>
+
+    <div class="grid2">
+      <div class="box">
+        <h3>Profile setup (one time)</h3>
+        <ul class="clean">
+          <li><b>Title:</b> "Link Building &amp; Digital PR | Authority Backlinks That Move Rankings"</li>
+          <li><b>Overview, first 2 lines</b> (all that shows in search): the problem and your result, not "Hi, I'm Talha".</li>
+          <li><b>Portfolio:</b> your SmileTutor and CryptoDesk Featured images as the first two items.</li>
+          <li><b>Project Catalog:</b> 3 fixed offers that match your website: trial link $250, 3 links $750, 5 links $1,250.</li>
+          <li><b>Specialized profile</b> for "Link Building" only. Don't mix in content writing or web design.</li>
+          <li>Same photo as LinkedIn, so people recognise you.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Job filters (save these searches)</h3>
+        <ul class="clean">
+          <li><b>Keywords:</b> link building, backlinks, guest posting, digital PR, off-page SEO, white label link building, outreach</li>
+          <li>Payment verified</li>
+          <li>Client has spent $1,000+ and hire rate 50%+</li>
+          <li>Fewer than 15 proposals</li>
+          <li>Posted in the last 24 hours (best: last hour)</li>
+          <li>Skip: "$5 per link", "need 100 links", "DA 50+ for $20". Those clients never pay $250.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>The proposal workflow (8 to 10 minutes each)</h3>
+    <ol class="flow">
+      <li><div><b>Open their website</b> (2 min). Find one real thing: a keyword they're on page 2 for, or a competitor beating them.</div><span class="who me">You</span></li>
+      <li><div><b>Write the first 2 lines about them</b>, using what you found. This is the only part they see before clicking.</div><span class="who me">You</span></li>
+      <li><div><b>Add one matching proof:</b> SmileTutor for local/service businesses, CryptoDesk for finance and hard niches.</div><span class="who me">You</span></li>
+      <li><div><b>Give a 3-step plan and ask one question.</b> The question gets replies.</div><span class="who me">You</span></li>
+      <li><div><b>Follow up once</b> after 2 days if they viewed it but didn't reply.</div><span class="who me">You</span></li>
+    </ol>
+
+    <div class="script">
+      <div class="script-head"><span>Proposal template</span><button class="copy" type="button" data-copy="p-upwork">Copy</button></div>
+<pre id="p-upwork">Hi [Name],
+
+I checked [their site]. You're on page 2 for "[keyword]", and the 3 sites above you all have links from [type of sites] that you don't have yet.
+
+That's fixable with links from real sites in your niche. No PBNs, no link farms.
+
+A recent example: I got a tuition agency to #1 on Google for "tuition" in Singapore, with +169% organic traffic. Case study is attached.
+
+How I'd start with you:
+1. A quick link gap check against your top 3 competitors
+2. A shortlist of sites for your approval before anything is published
+3. Placements, with a live report of every link
+
+Quick question: which page matters most to you right now?
+
+Talha</pre>
+    </div>
+
+    <div class="grid2">
+      <div class="box do">
+        <h3>Do</h3>
+        <ul class="clean">
+          <li>Reply to every message within 1 hour during your work blocks.</li>
+          <li>Ask every happy client for a review right after delivery.</li>
+          <li>Keep Upwork clients on Upwork. Taking them off-platform breaks Upwork's terms and risks your account.</li>
+          <li>Raise your catalog prices after every 3 five-star reviews.</li>
+        </ul>
+      </div>
+      <div class="box dont">
+        <h3>Don't</h3>
+        <ul class="clean">
+          <li>Send 20 copy-paste proposals a day. It burns Connects and gets ignored.</li>
+          <li>Let your team member send proposals from your freelancer account. It's against Upwork's rules. They can prepare the shortlist.</li>
+          <li>Compete on price. Compete on proof.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKEDIN -->
+  <section id="linkedin">
+    <div class="chan-head"><span class="chip t-li">LinkedIn</span><p class="eyebrow">5 · Build attention</p></div>
+    <h2>Post 3 times, comment every day, start real conversations</h2>
+    <p>Your profile is done: banner, About, Featured and Experience. Now the daily work is getting the right people to see it. At your stage, comments bring more profile views than your own posts.</p>
+
+    <div class="grid2">
+      <div class="box">
+        <h3>Posting: 3 a week</h3>
+        <ul class="clean">
+          <li><b>Mon, proof:</b> a client result with a screenshot.</li>
+          <li><b>Wed, lesson:</b> something you learned doing the work (site checks, outreach, pricing).</li>
+          <li><b>Fri, builder:</b> an AI tool or automation you made, or your journey.</li>
+          <li>Every post has a story, proof or a number.</li>
+          <li>One in three ends with "DM me 'AUDIT'".</li>
+          <li>Carousels for proof and lessons. They already do best for you.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Daily outreach: 5 people</h3>
+        <ul class="clean">
+          <li><b>Who:</b> SaaS founders, marketing heads, SEO agency owners, e-commerce owners.</li>
+          <li>Connect with no pitch. A short personal note or no note.</li>
+          <li>Like or comment on 1 of their posts before you ever DM.</li>
+          <li>Offer the audit only when there's a reason: they posted about SEO, traffic or a competitor.</li>
+          <li>Never send a pitch as the first message after they accept.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="script">
+      <div class="script-head"><span>Reply when someone DMs "AUDIT"</span><button class="copy" type="button" data-copy="p-audit">Copy</button></div>
+<pre id="p-audit">Hey [Name], happy to do this.
+
+Send me 3 things:
+1. Your website
+2. The main competitor you want to beat
+3. The country you're targeting
+
+You'll get a short video within 48 hours showing the links they have and you don't, and which ones are worth going after first. No call needed.</pre>
+    </div>
+
+    <div class="script">
+      <div class="script-head"><span>Opening a conversation (after they accepted and you've engaged)</span><button class="copy" type="button" data-copy="p-li">Copy</button></div>
+<pre id="p-li">Hey [Name], liked your post on [topic], especially the part about [detail].
+
+Quick one: are you doing any link building for [their site] right now, or is it all content for the moment?</pre>
+    </div>
+  </section>
+
+  <!-- WEBSITE -->
+  <section id="website">
+    <div class="chan-head"><span class="chip t-site">Website</span><p class="eyebrow">6 · Win trust</p></div>
+    <h2>Two minutes a day, two hours a week</h2>
+    <p>The website is where people from LinkedIn go to check you're real. It already has case studies, prices, guarantees and the audit form. Keep it fresh and make sure no lead waits.</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>When</th><th>Task</th><th>Who</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td>Daily</td><td>Check the contact and audit form, and reply within 2 hours</td><td>You</td><td class="num">2 min</td></tr>
+          <tr><td>Weekly (Mon)</td><td>GA4: visitors, top pages, where they came from</td><td>You</td><td class="num">10 min</td></tr>
+          <tr><td>Every 2 weeks</td><td>One blog post answering a real buyer question (draft by the team, edited by you)</td><td>Team + you</td><td class="num">30 min (you)</td></tr>
+          <tr><td>Monthly</td><td>Add a new result or screenshot to a case study</td><td>Team</td><td class="num">—</td></tr>
+          <tr><td>Monthly</td><td>Build 2 to 4 good links to your own site. Use your own service.</td><td>Team</td><td class="num">—</td></tr>
+          <tr><td>Monthly</td><td>Turn your best LinkedIn post into a blog post</td><td>Team</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <p class="eyebrow">Keep the channels separate</p>
+      <p>Your website doesn't mention freelancing platforms, and that stays. LinkedIn and Google send people to the website. Upwork clients stay on Upwork.</p>
+    </div>
+  </section>
+
+  <!-- AUDIT -->
+  <section id="audit">
+    <p class="eyebrow">7 · The engine behind all three</p>
+    <h2>The free audit workflow</h2>
+    <p>The audit is your main offer on every channel, so it needs a set process. Your team does the heavy part, and you add the expert voice.</p>
+    <ol class="flow">
+      <li><div><b>Request comes in</b> (LinkedIn DM, website form, or an Upwork client asking). Reply with the 3 questions.</div><span class="who me">You · 2 min</span></li>
+      <li><div><b>Run the link gap:</b> their site vs the competitor in Ahrefs or Semrush. List 10 to 15 linking sites the competitor has and they don't, and mark the realistic ones.</div><span class="who team">Team · 45 min</span></li>
+      <li><div><b>Record a 4 to 5 minute screen video</b> (Loom or similar) walking through the gap and the 3 easiest wins.</div><span class="who me">You · 10 min</span></li>
+      <li><div><b>Send it within 48 hours</b>, with one line: "If you want, I can start with one trial link for $250 so you can see the quality first."</div><span class="who me">You · 2 min</span></li>
+      <li><div><b>Follow up</b> after 2 days: "Did you get a chance to watch it?" Then once more after 5 days. Then stop.</div><span class="who me">You · 1 min</span></li>
+      <li><div><b>Log it</b> in your tracker: name, channel, date, outcome.</div><span class="who team">Team · 1 min</span></li>
+    </ol>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <p class="eyebrow">8 · What to hand off</p>
+    <h2>Your team member takes the repeat work</h2>
+    <div class="grid2">
+      <div class="box">
+        <h3>Team member does</h3>
+        <ul class="clean">
+          <li>Link gap research for every audit</li>
+          <li>Morning Upwork shortlist: the 10 best new jobs, in a sheet</li>
+          <li>Blog drafts every 2 weeks</li>
+          <li>Case study screenshots and updates</li>
+          <li>Links to your own website</li>
+          <li>The lead tracker</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Only you do</h3>
+        <ul class="clean">
+          <li>Writing and sending proposals</li>
+          <li>LinkedIn posts, comments and DMs (your voice)</li>
+          <li>Audit videos</li>
+          <li>Sales calls and pricing</li>
+          <li>Final check on anything published</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section id="numbers">
+    <p class="eyebrow">9 · Weekly scorecard (Friday, 20 minutes)</p>
+    <h2>Watch a few numbers, change one thing</h2>
+    <p>These are starting targets for month 1. After 4 weeks we'll adjust them to your real numbers.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Channel</th><th>Measure</th><th>Weekly target</th><th>If it's low</th></tr></thead>
+        <tbody>
+          <tr><td>Upwork</td><td>Proposals sent</td><td class="num">25</td><td>Use the busy-day minimum, never skip</td></tr>
+          <tr><td>Upwork</td><td>Proposals viewed</td><td class="num">50%+</td><td>Apply faster, rewrite the first 2 lines</td></tr>
+          <tr><td>Upwork</td><td>Replies / interviews</td><td class="num">3+</td><td>Ask a better question at the end</td></tr>
+          <tr><td>LinkedIn</td><td>Posts</td><td class="num">3</td><td>Batch-write on Sunday</td></tr>
+          <tr><td>LinkedIn</td><td>Comments left</td><td class="num">35</td><td>Comment before you scroll</td></tr>
+          <tr><td>LinkedIn</td><td>Profile views</td><td class="num">Going up</td><td>More comments on bigger accounts</td></tr>
+          <tr><td>All</td><td>Audit requests</td><td class="num">2+</td><td>Mention the audit in more posts</td></tr>
+          <tr><td>All</td><td>Audits → trial</td><td class="num">1 in 3</td><td>Sharper video, clearer next step</td></tr>
+          <tr><td>Website</td><td>Form leads</td><td class="num">Track</td><td>Check where visitors drop off in GA4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>The rule:</b> each Friday, change only one thing for the next week. Change everything at once and you'll never know what worked.</p>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <p class="eyebrow">10 · The first 90 days</p>
+    <h2>Build the habit, then sharpen, then grow</h2>
+    <div class="road">
+      <div class="box"><h3>Month 1 <span>Set up and show up</span></h3><ul class="clean"><li>Upwork profile, catalog and saved searches</li><li>Daily blocks, no skipped days</li><li>Audit process running with your team</li><li>Goal: first 2 to 4 audits sent</li></ul></div>
+      <div class="box"><h3>Month 2 <span>Find what works</span></h3><ul class="clean"><li>Compare which proposal openings get replies</li><li>Do more of the post types that bring DMs</li><li>First new case study from a trial client</li><li>Goal: 2+ paying clients</li></ul></div>
+      <div class="box"><h3>Month 3 <span>Grow</span></h3><ul class="clean"><li>Raise Upwork prices after the reviews come in</li><li>Pitch white-label to 10 SEO agencies</li><li>Turn the best posts into blog posts</li><li>Goal: 1 retainer or agency partner</li></ul></div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules">
+    <p class="eyebrow">11 · Rules that stop burnout</p>
+    <h2>Keep it small enough to keep doing</h2>
+    <div class="rules">
+      <div><b>Time-box everything.</b> When the block ends, stop, even mid-scroll.</div>
+      <div><b>Never zero, never extra.</b> Busy day = 20 minutes. Good day = 2 hours. No 5-hour days.</div>
+      <div><b>Batch the writing.</b> All 3 posts on Sunday, with AI for the first draft and you for the voice.</div>
+      <div><b>One day fully off.</b> Saturday: only reply to paying clients.</div>
+      <div><b>Hand off the repeat work.</b> If a task happens every week and doesn't need your voice, it's your team's.</div>
+      <div><b>Judge the month, not the day.</b> One bad week means nothing. Four bad weeks means change one thing.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built for Talha Mahmood, link building and digital PR. Starting targets are estimates for month 1. Replace them with your real numbers after 4 weeks.</p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var key = "plan-checks-" + new Date().toISOString().slice(0, 10);
+    var boxes = Array.prototype.slice.call(document.querySelectorAll("#today input"));
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key) || "{}"); } catch (e) { saved = {}; }
+    boxes.forEach(function (b) {
+      b.checked = !!saved[b.id];
+      b.addEventListener("change", function () {
+        saved[b.id] = b.checked;
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+      });
+    });
+    document.getElementById("reset-today").addEventListener("click", function () {
+      boxes.forEach(function (b) { b.checked = false; });
+      saved = {};
+      try { localStorage.removeItem(key); } catch (e) {}
+    });
+    document.querySelectorAll(".copy").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var el = document.getElementById(btn.getAttribute("data-copy"));
+        var text = el.innerText;
+        var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1500); };
+        var fallback = function () {
+          var r = document.createRange(); r.selectNodeContents(el);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+          btn.textContent = "Selected, press Ctrl+C";
+        };
+        try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+      });
+    });
+  })();
+</script>
