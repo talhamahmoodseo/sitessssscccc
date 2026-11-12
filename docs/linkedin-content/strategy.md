@@ -46,3 +46,15 @@ skill yet. Skills get written only from approved posts and feedback.
 - Old posts that worked (2 years ago): playful hook ("I am gonna give you a
   KISS"), short lines, arrow bullets, P.S. question. Weakness: generic tips with
   no story or proof. Keep the voice, add story + proof.
+
+## Round 3: playbook-based strategy (Lara Acosta playbook PDF)
+- Owner feedback: link-builder insider posts (disappearing links, reseller
+  prices, DR pricing) only reach other link builders, not clients. Max 1–2 a
+  month, framed for buyers.
+- Category of 1: brands found on Google and recommended by AI through mentions
+  on sites people read. Link building is the mechanism, not the topic.
+- 4-3-2-1: Tue Educate (PAS/framework, "How I"), Wed Document (proof, build in
+  public), Thu Storytell (SLAY/POV, broad, candid photo), Sat Sell (value
+  bridge, halo, customer-eyes, end-to-end). 80% educational / 20% personal.
+- Signature series: AI Visibility Teardown. Named framework: 3R Test.
+  Lead magnet: AI Visibility Prompt Pack. Core offer: free link audit.
