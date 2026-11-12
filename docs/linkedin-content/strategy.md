@@ -34,3 +34,15 @@ skill yet. Skills get written only from approved posts and feedback.
 - Daily: 30–45 min of real comments on agency owners' and SEO creators' posts.
 - Formats: text + photo of Talha for stories, text + screenshot for proof,
   carousel for frameworks.
+
+## Round 2 feedback (owner) + audience data
+- Followers: 46% entry level, 17% SEO specialists, 14% Lahore; founders/CEOs
+  about 10%. So the audience is mostly Pakistani SEO peers; buyers are a small
+  share. Posts must be written for practitioners to engage with and buyers to
+  trust (practitioner-level link building insight), and buyers are reached
+  through comments and DMs.
+- Rule: no client names, URLs or identifying details. Never claim sole credit:
+  "I helped", "the links I built were one part of it".
+- Old posts that worked (2 years ago): playful hook ("I am gonna give you a
+  KISS"), short lines, arrow bullets, P.S. question. Weakness: generic tips with
+  no story or proof. Keep the voice, add story + proof.
