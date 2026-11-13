@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn Featured cards, Talha Mahmood</title>
+<!-- Three LinkedIn Featured images, 1200 x 627 (link preview size), banner theme 6 colours.
+     cards.html#1 offer, #2 SmileTutor, #3 CryptoDesk. render.cjs exports them. -->
+<style>
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-500-normal.woff2); font-weight: 500; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-600-normal.woff2); font-weight: 600; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-700-normal.woff2); font-weight: 700; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-800-normal.woff2); font-weight: 800; }
+  :root { --bg: #0E0E0E; --grad: linear-gradient(90deg, #FF7A45, #A08CFF); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 627px; overflow: hidden; background: var(--bg); }
+  body { font-family: PJS, system-ui, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  .card { position: relative; width: 1200px; height: 627px; overflow: hidden; display: none;
+    background: radial-gradient(60% 90% at 85% 40%, rgb(124 92 246 / .22), transparent 70%),
+                radial-gradient(40% 60% at 70% 90%, rgb(255 122 69 / .14), transparent 70%), var(--bg); }
+  .card.on { display: block; }
+  .grain { position: absolute; inset: 0; opacity: .2; mix-blend-mode: soft-light; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .text { position: absolute; left: 64px; top: 0; bottom: 0; width: 600px; display: flex; flex-direction: column; justify-content: center; }
+  .pill { align-self: flex-start; font-size: 17px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    padding: 10px 18px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .2); background: rgb(255 255 255 / .06); }
+  .pill i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #2BD46A; margin-right: 10px; box-shadow: 0 0 0 4px rgb(43 212 106 / .25); }
+  h1 { margin-top: 26px; font-size: 62px; line-height: 1.04; font-weight: 800; letter-spacing: -.035em; }
+  h1 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { margin-top: 20px; font-size: 25px; line-height: 1.38; font-weight: 500; color: rgb(255 255 255 / .74); max-width: 540px; }
+  .who { margin-top: 16px; font-size: 22px; font-weight: 600; color: rgb(255 255 255 / .7); }
+  .stats { margin-top: 34px; display: flex; gap: 40px; }
+  .stats b { display: block; font-size: 44px; font-weight: 800; letter-spacing: -.03em; }
+  .stats span { display: block; margin-top: 2px; font-size: 18px; font-weight: 500; color: rgb(255 255 255 / .62); }
+  .brands { position: absolute; left: 64px; bottom: 48px; display: flex; align-items: center; gap: 28px; }
+  .brands span { font-size: 14px; font-weight: 700; letter-spacing: .2em; color: rgb(255 255 255 / .55); }
+  .brands img { display: block; filter: brightness(0) invert(1); opacity: .9; }
+  .me { position: absolute; right: -40px; bottom: -40px; height: 640px; filter: drop-shadow(0 24px 40px rgb(0 0 0 / .5)); }
+  /* Google result mock */
+  .serp { position: absolute; right: 56px; top: 50%; transform: translateY(-50%) rotate(-1.5deg); width: 470px; padding: 22px; border-radius: 22px;
+    background: #fff; box-shadow: 0 40px 80px -30px rgb(0 0 0 / .8), 0 0 0 1px rgb(255 255 255 / .1); }
+  .serp img { display: block; width: 100%; border-radius: 10px; }
+  .serp .res { margin-top: 18px; padding: 12px; border-radius: 14px; outline: 3px solid #FF7A45; outline-offset: 0; }
+  .rank { position: absolute; right: -26px; top: -30px; width: 82px; height: 82px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--grad); color: #fff; font-size: 34px; font-weight: 800; box-shadow: 0 14px 30px -10px rgb(0 0 0 / .6); }
+  .serp.dark { background: #1F1F1F; } .serp.dark .tag { color: #BDBDBD; }
+  #c1 h1 { font-size: 54px; white-space: nowrap; } #c1 .text { width: 700px; }
+  .tag { margin-top: 16px; font-size: 15px; font-weight: 600; color: #555; text-align: center; }
+
+  /* bigger type: the Featured row shows these at about a third of their size */
+  .text { left: 56px; width: 640px; }
+  .pill { font-size: 22px; padding: 12px 22px; }
+  h1 { margin-top: 24px; font-size: 84px; line-height: 1.0; }
+  .who { margin-top: 18px; font-size: 28px; }
+  .stats { margin-top: 30px; gap: 46px; }
+  .stats b { font-size: 60px; }
+  .stats span { font-size: 24px; color: rgb(255 255 255 / .72); }
+  .serp { right: 40px; width: 470px; }
+  .tag { font-size: 19px; }
+  #c1 h1 { font-size: 61px; } #c1 .text { width: 760px; }
+  #c1 .sub { font-size: 30px; max-width: 640px; }
+  .brands span { font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- 1. The offer (like Lara's "work with me" card) -->
+<section class="card" id="c1">
+  <img class="me" src="../assets/talha-cutout.webp" alt="Talha Mahmood">
+  <div class="text">
+    <span class="pill"><i></i>Free link audit</span>
+    <h1>Find out why your<br><em>competitor outranks you</em></h1>
+    <p class="sub">I'll show you the links they have and you don't. Free, within 48 hours.</p>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- 2. Case study: SmileTutor -->
+<section class="card" id="c2">
+  <div class="text">
+    <span class="pill">Case study</span>
+    <h1><em>#1 on Google</em><br>for “tuition”</h1>
+    <p class="who">SmileTutor · Tuition agency, Singapore</p>
+    <div class="stats">
+      <div><b>+169%</b><span>organic traffic</span></div>
+      <div><b>617</b><span>keywords in the top 3</span></div>
+    </div>
+  </div>
+  <div class="serp dark">
+    <div class="rank">#1</div>
+    <img src="st-query.png" alt="">
+    <div class="res"><img src="st-result.png" alt="SmileTutor ranking first on Google for tuition"></div>
+    <p class="tag">33,100 searches a month</p>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- 3. Case study: CryptoDesk -->
+<section class="card" id="c3">
+  <div class="text">
+    <span class="pill">Case study</span>
+    <h1><em>#1 in Dubai</em><br>in 5 months</h1>
+    <p class="who">CryptoDesk · Crypto exchange, Dubai</p>
+    <div class="stats">
+      <div><b>100+</b><span>placements</span></div>
+      <div><b>35+</b><span>press releases</span></div>
+    </div>
+  </div>
+  <div class="serp">
+    <div class="rank">#1</div>
+    <img src="cd-query.png" alt="">
+    <div class="res" style="outline:none;padding:0"><img src="cd-result.png" alt="CryptoDesk ranking for crypto exchange in dubai"></div>
+    <p class="tag">Ahead of Binance and OKX</p>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<script>document.getElementById("c" + ((location.hash || "#1").slice(1))).classList.add("on");</script>
+</body>
+</html>

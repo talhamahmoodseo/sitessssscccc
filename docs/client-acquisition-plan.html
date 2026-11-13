@@ -1,0 +1,407 @@
+<title>Talha's Client Acquisition Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: one reading column. Content first: diagrams, then the specific moves, then scripts. */
+  :root {
+    --bg: #F7F6F4; --surface: #FFFFFF; --fg: #121212; --muted: #5E5B57; --line: #E2DFDA; --soft: #EFEDE9;
+    --accent: #6E52E8; --warn: #C2410C; --ok: #1F7A3A;
+    --body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #111111; --surface: #1A1A1A; --fg: #F2F1EE; --muted: #A9A6A1; --line: #2C2B29; --soft: #222120;
+    --accent: #A08CFF; --warn: #FF8A5B; --ok: #4CC170; color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --bg: #111111; --surface: #1A1A1A; --fg: #F2F1EE; --muted: #A9A6A1; --line: #2C2B29; --soft: #222120;
+    --accent: #A08CFF; --warn: #FF8A5B; --ok: #4CC170; color-scheme: dark }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.65;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap { max-width: 860px; margin: 0 auto; padding-block: 36px 80px; display: grid; gap: 0; }
+  h1, h2, h3 { text-wrap: balance; line-height: 1.2; margin: 0; letter-spacing: -0.015em; }
+  h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 800; }
+  h2 { font-size: clamp(23px, 3.6vw, 30px); font-weight: 800; }
+  h3 { font-size: 18px; font-weight: 700; }
+  p { margin: 0; max-width: 70ch; }
+  section { display: grid; gap: 16px; padding-block: 40px; border-top: 1px solid var(--line); }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .lead { font-size: 18px; color: var(--muted); }
+  ul, ol { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+  li { max-width: 68ch; }
+  b { font-weight: 700; }
+  .why { color: var(--muted); }
+  nav.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 8px; flex-wrap: wrap; padding-block: 12px; border-bottom: 1px solid var(--line); margin-top: 20px; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  nav.jump a { font-size: 13px; font-weight: 600; color: var(--fg); text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+  nav.jump a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  section[id] { scroll-margin-top: 70px; }
+  .diagram { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; overflow-x: auto; }
+  .diagram pre.mermaid { margin: 0; background: transparent; }
+  .call { border-left: 4px solid var(--accent); background: var(--surface); padding: 14px 18px; border-radius: 0 12px 12px 0; display: grid; gap: 6px; }
+  .call.warn { border-left-color: var(--warn); }
+  .call .eyebrow { color: var(--accent); }
+  .call.warn .eyebrow { color: var(--warn); }
+  .tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  thead th { border-top: 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .script { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .script-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--line); background: var(--soft); }
+  .script-head span { font-size: 13px; font-weight: 700; }
+  .script pre { margin: 0; padding: 16px; white-space: pre-wrap; font-family: var(--body); font-size: 15px; line-height: 1.6; }
+  .copy { font: 600 12px var(--body); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+  .copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+  @media (max-width: 720px) { .two { grid-template-columns: minmax(0, 1fr); } }
+  footer { padding-top: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:14px">
+    <p class="eyebrow">Client acquisition plan · v2</p>
+    <h1>How you'll actually get clients from Upwork, LinkedIn and your website</h1>
+    <p class="lead">Fewer generic tips, more of what moves the needle for a link building seller. Each channel has a diagram first, then the exact moves, then copy-ready scripts. The numbers are rough benchmarks to start from, not promises.</p>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#strategy">Strategy</a>
+    <a href="#upwork">Upwork</a>
+    <a href="#linkedin">LinkedIn</a>
+    <a href="#website">Website</a>
+    <a href="#audit">Audit to client</a>
+    <a href="#day">Your day</a>
+    <a href="#numbers">Numbers</a>
+  </nav>
+
+  <!-- STRATEGY -->
+  <section id="strategy">
+    <p class="eyebrow">1 · Strategy</p>
+    <h2>Three channels, three jobs, one offer</h2>
+    <div class="diagram">
+<pre class="mermaid">
+flowchart LR
+  UP["Upwork<br/>people hiring today"] --> OFFER
+  LI["LinkedIn<br/>agencies + SaaS who don't know you yet"] --> SITE["Website<br/>proof: case studies, prices"]
+  SITE --> OFFER
+  LI --> OFFER
+  OFFER["Free link audit<br/>(video, 48h)"] --> TRIAL["Trial link<br/>$250"]
+  TRIAL --> PACK["Package<br/>3 / 5 / 10 links"]
+  PACK --> RET["Monthly retainer<br/>or white-label agency deal"]
+</pre>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Channel</th><th>Its real job</th><th>Speed to money</th><th>Your time share, month 1</th></tr></thead>
+      <tbody>
+        <tr><td><b>Upwork</b></td><td>Cash flow now. Buyers are already looking.</td><td>Days to weeks</td><td class="num">~50%</td></tr>
+        <tr><td><b>LinkedIn</b></td><td>Bigger, repeat clients, especially SEO agencies that need links every month.</td><td>1 to 3 months</td><td class="num">~40%</td></tr>
+        <tr><td><b>Website</b></td><td>Closes the trust gap for LinkedIn leads. Ranks on Google later.</td><td>6 to 12 months for SEO leads</td><td class="num">~10%</td></tr>
+      </tbody>
+    </table></div>
+    <div class="call">
+      <p class="eyebrow">The most important decision in this plan</p>
+      <p><b>Make SEO agencies your main LinkedIn target, not brands.</b> A brand buys 5 links and leaves. An agency has 10 to 30 clients who all need links, every month, and can't build them in-house. One agency on white-label is worth 5 brand clients, and they find you on LinkedIn, not on Google. Brands still come in through Upwork and your website.</p>
+    </div>
+  </section>
+
+  <!-- UPWORK -->
+  <section id="upwork">
+    <p class="eyebrow">2 · Upwork</p>
+    <h2>Win the top 20% of buyers, not the price shoppers</h2>
+    <p>Link building on Upwork is crowded with $30 guest post sellers. You won't beat them on price, and you shouldn't try. Most of your time goes to spotting the buyers who care about quality, and showing them proof faster than anyone else.</p>
+
+    <h3>Should you apply? The 30-second check</h3>
+    <div class="diagram">
+<pre class="mermaid">
+flowchart TD
+  A["New job in your saved search"] --> B{"Payment verified<br/>and spent $1k+?"}
+  B -- No --> X["Skip"]
+  B -- Yes --> C{"Posted less than<br/>3 hours ago?"}
+  C -- No --> D{"Under 10 proposals?"}
+  D -- No --> X
+  D -- Yes --> E
+  C -- Yes --> E{"Budget or wording says<br/>quality? (niche relevant,<br/>real traffic, no PBN, agency)"}
+  E -- "No: '$10/link', '100 links', 'DA 50 cheap'" --> X
+  E -- Yes --> F["Apply now with a<br/>niche site sample"]
+</pre>
+    </div>
+
+    <h3>The one thing that wins link building jobs: a site sample</h3>
+    <p>Every link building buyer has the same fear: <i>"Will the sites be junk?"</i> Most proposals answer it with words. You answer it with evidence. You have your own website lists, so in every proposal you include <b>5 real sites from their niche</b>, with traffic, DR and country, in a small table or a view-only Google Sheet. Don't share prices or contact details, just enough to prove the quality is real.</p>
+    <div class="call">
+      <p class="eyebrow">Why this works</p>
+      <p>It answers the fear before they ask. It shows you have inventory, not just outreach promises. And it takes your team member 5 minutes per niche, because you can reuse the same sheet for every SaaS, finance or health job.</p>
+    </div>
+
+    <h3>The proposal, part by part</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Part</th><th>What to write</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><b>Lines 1–2</b></td><td>Something specific about their site: a keyword they're on page 2 for, or a competitor's links.</td><td>Only these lines show in the client's list. Generic openers get skipped.</td></tr>
+        <tr><td><b>The sample</b></td><td>"Here are 5 sites from your niche I can place on:" + table or sheet link.</td><td>Proof of quality beats any claim.</td></tr>
+        <tr><td><b>One result</b></td><td>The case closest to their business (SmileTutor for local/service, CryptoDesk for finance and hard niches).</td><td>Shows you've done it before in a similar situation.</td></tr>
+        <tr><td><b>How it works</b></td><td>3 short steps, with "you approve every site before anything is published".</td><td>Removes the risk of paying for junk.</td></tr>
+        <tr><td><b>One question</b></td><td>"Which page matters most right now?"</td><td>Easy to answer, so they reply.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="script">
+      <div class="script-head"><span>Proposal template</span><button class="copy" type="button" data-copy="s1">Copy</button></div>
+<pre id="s1">Hi [Name], your [page] is sitting on page 2 for "[keyword]". The 3 sites above you all have links from [type of sites, e.g. SaaS review blogs] that you don't have yet.
+
+Here are 5 sites from your niche I can place on, so you can judge the quality first:
+[table or view-only sheet: site · monthly traffic · DR · main country]
+
+Recent result: a tuition agency I worked with ranks #1 on Google for "tuition" in Singapore (33,100 searches a month), with +169% organic traffic.
+
+How it works:
+1. I check your top 3 competitors' links
+2. You approve every site before anything is published
+3. Links go live, with a report of every URL
+
+Which page matters most to you right now?
+
+Talha</pre>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h3>Set up once</h3>
+        <ul>
+          <li><b>Pricing happens in chat.</b> On Upwork and LinkedIn you quote after you know their niche, sites and goals. The fixed packages stay on your website, where nobody can chat with you first.</li>
+          <li><b>Portfolio:</b> SmileTutor first, CryptoDesk second, each with the Google screenshot.</li>
+          <li><b>Profile title:</b> "Link Building &amp; Digital PR | Niche-Relevant Backlinks, Every Site Approved by You".</li>
+          <li><b>Saved searches:</b> one per keyword: link building, guest post, backlinks, digital PR, white label link building, off-page SEO.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Rules that protect your account</h3>
+        <ul>
+          <li><b>Invites first.</b> Reply to every invite within the hour. Win rate on invites is far higher than on cold proposals.</li>
+          <li><b>You can't follow up on a proposal.</b> Upwork lets you message only after the client replies, so the first message has to do all the work.</li>
+          <li><b>Boost only high-value jobs</b> (agency, monthly, $500+). Don't boost small jobs.</li>
+          <li><b>Keep Upwork clients on Upwork.</b> Moving them off breaks the terms of service.</li>
+          <li><b>Proposals come from you.</b> Your team member prepares the shortlist and site samples, and you send.</li>
+          <li><b>Ask for the review</b> the day you deliver, while they're happy.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKEDIN -->
+  <section id="linkedin">
+    <p class="eyebrow">3 · LinkedIn</p>
+    <h2>At 1,400 followers, conversations bring clients, not posts</h2>
+    <p>Your posts get 100 to 260 views. That's fine for building trust, but too small to bring buyers on its own. So in month 1, about 70% of your LinkedIn time goes to starting conversations with the right people, and 30% to posts. Your posts and profile do their job when those people click through to check you out.</p>
+
+    <h3>From stranger to client</h3>
+    <div class="diagram">
+<pre class="mermaid">
+flowchart LR
+  A["Find 5 agency owners<br/>or SaaS marketers a day"] --> B["Connect<br/>(no pitch)"]
+  B --> C["Comment on 1–2 of<br/>their posts that week"]
+  C --> D["Value DM:<br/>one useful thing<br/>about THEIR site"]
+  D --> E{"Interested?"}
+  E -- Yes --> F["Free audit video"]
+  E -- "No reply" --> G["Keep engaging,<br/>no chasing"]
+  F --> H["Trial link<br/>or white-label talk"]
+</pre>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h3>Who to find (free LinkedIn search)</h3>
+        <ul>
+          <li><b>Agencies, your main target:</b> titles "Founder", "CEO", "Head of SEO" at companies with "SEO" or "digital marketing agency" in the name. 2 to 50 employees. UK, US, Australia, UAE.</li>
+          <li><b>SaaS:</b> "Head of Marketing", "Growth", "SEO Lead" at software companies with 10 to 200 employees.</li>
+          <li><b>Warm signals, do these first:</b> people who viewed your profile, commented on your posts, or comment on other link building posts.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>The value DM, which is where most people go wrong</h3>
+        <ul>
+          <li>Don't send "Hi, I offer link building services". Everyone sends that and everyone ignores it.</li>
+          <li>Send one specific, useful observation from 3 minutes in Ahrefs or Semrush: a lost link, a competitor gap, or a page that's close to page 1.</li>
+          <li>Offer the full audit only after they reply.</li>
+          <li>For agencies, the hook is capacity: "Who builds links for your clients?"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="script">
+      <div class="script-head"><span>Value DM to a brand / SaaS (after you've engaged once)</span><button class="copy" type="button" data-copy="s2">Copy</button></div>
+<pre id="s2">Hey [Name], I had a quick look at [site]. Your [page] is at position [8–15] for "[keyword]". [Competitor] sits above you mainly because of links from [2–3 example sites].
+
+That's one of the easier gaps to close. Want me to send you a short video with the full list?</pre>
+    </div>
+    <div class="script">
+      <div class="script-head"><span>DM to an SEO agency owner</span><button class="copy" type="button" data-copy="s3">Copy</button></div>
+<pre id="s3">Hey [Name], quick question. Who builds links for your clients right now, in-house or a partner?
+
+I ask because I run link building white-label for agencies: niche-relevant sites, you approve every one, reports under your brand. Happy to do one free test placement for one of your clients so you can judge the quality.</pre>
+    </div>
+    <div class="script">
+      <div class="script-head"><span>When someone DMs "AUDIT"</span><button class="copy" type="button" data-copy="s4">Copy</button></div>
+<pre id="s4">Hey [Name], happy to. Send me:
+1. Your website
+2. The competitor you most want to beat
+3. Your target country
+
+You'll get a short video within 48 hours with the links they have and you don't, and which 3 to go after first.</pre>
+    </div>
+
+    <h3>Posts that bring DMs (not just likes)</h3>
+    <ul>
+      <li><b>Proof breakdowns</b> with a real screenshot: what you did, how many links, what changed. These bring the most "how much?" DMs.</li>
+      <li><b>"I rejected this site" posts:</b> show a high-DR site with spam keywords or a dead graph, and why you said no. Agencies love these because it's exactly their client problem.</li>
+      <li><b>Builder posts:</b> your AI tools and automations. This makes you different from every other link builder and gets shares.</li>
+      <li><b>Comments on bigger SEO accounts</b>, every day, with a real point from your work. On your account size, this is your biggest source of profile views.</li>
+    </ul>
+  </section>
+
+  <!-- WEBSITE -->
+  <section id="website">
+    <p class="eyebrow">4 · Website</p>
+    <h2>Make it convert now, rank later</h2>
+    <div class="diagram">
+<pre class="mermaid">
+flowchart LR
+  A["LinkedIn post / profile / DM"] -->|"link with ?utm_source=linkedin"| B["Case study page"]
+  B --> C["Pricing"]
+  C --> D["Audit form"]
+  E["Google (later)"] --> F["Money pages:<br/>white label link building,<br/>link building for SaaS"]
+  F --> D
+  D --> G["You reply within 2 hours"]
+</pre>
+    </div>
+    <div class="two">
+      <div class="card">
+        <h3>Now (convert LinkedIn traffic)</h3>
+        <ul>
+          <li><b>Track the source.</b> Every link you share adds <code>?utm_source=linkedin</code>. Then GA4 shows which channel brings the form fills.</li>
+          <li><b>Reply to form leads within 2 hours.</b> A slow reply loses more leads than a weak page does.</li>
+          <li><b>Link case studies everywhere:</b> in DMs, in your Featured section, in proposals (on LinkedIn only, not Upwork).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Later (rank on Google)</h3>
+        <ul>
+          <li><b>Build money pages before blog posts:</b> "white label link building", "link building for SaaS", "link building for [niche]". These searches come from buyers.</li>
+          <li><b>Build links to your own site</b>, 2 to 4 good ones a month. If you rank yourself, that's your best case study.</li>
+          <li>Turn your best LinkedIn posts into blog posts once a month. It's zero new writing.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT -->
+  <section id="audit">
+    <p class="eyebrow">5 · Audit to client</p>
+    <h2>The audit is your sales call</h2>
+    <p>Every channel ends here, so this is where you win or lose the client. A good audit makes the buyer think: "he already knows what to do, I just need to say yes."</p>
+    <div class="diagram">
+<pre class="mermaid">
+flowchart TD
+  A["Request: website + competitor + country"] --> B["Team: link gap in Ahrefs/Semrush<br/>15 sites the competitor has, you don't<br/>(45 min)"]
+  B --> C["You: pick the 3 easiest wins<br/>record a 4-minute video (10 min)"]
+  C --> D["Send within 48h + one offer:<br/>'start with one trial link, $250'"]
+  D --> E{"Reply in 2 days?"}
+  E -- Yes --> F["Trial link"]
+  E -- No --> G["One nudge, then stop"]
+  F --> H["Report + show the link<br/>+ offer 3 or 5 links"]
+  H --> I["Package / retainer"]
+</pre>
+    </div>
+    <div class="call warn">
+      <p class="eyebrow">Where audits usually fail</p>
+      <p>The audit is too long, too technical, or ends without a next step. Keep the video to 4 minutes, show only 3 wins, and always end with one clear, small offer. Don't send a 20-page PDF.</p>
+    </div>
+  </section>
+
+  <!-- DAY -->
+  <section id="day">
+    <p class="eyebrow">6 · Your day (Pakistan time)</p>
+    <h2>About 2 hours on channels, the rest on clients</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Time</th><th>What</th><th>Minutes</th></tr></thead>
+      <tbody>
+        <tr><td class="num">10:00</td><td>Reply to every message on all 3 channels. Upwork: invites + jobs posted overnight (2 proposals).</td><td class="num">30</td></tr>
+        <tr><td class="num">14:00</td><td>LinkedIn: 5 new connections, 5 comments, 2 value DMs. UK and EU are online.</td><td class="num">40</td></tr>
+        <tr><td class="num">19:00</td><td>Upwork: fresh US jobs (3 proposals). LinkedIn post on Mon / Wed / Fri, then reply to comments.</td><td class="num">60</td></tr>
+        <tr><td colspan="2"><b>Busy day minimum:</b> reply to everything, send 2 proposals, leave 5 comments.</td><td class="num">20</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="card">
+        <h3>Your team member does</h3>
+        <ul>
+          <li>Morning Upwork shortlist: the 10 best new jobs</li>
+          <li>Niche site samples (5 sites per niche, reused)</li>
+          <li>Link gap research for every audit</li>
+          <li>The lead tracker sheet</li>
+          <li>Links to your own website</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Only you do</h3>
+        <ul>
+          <li>Sending proposals</li>
+          <li>LinkedIn comments, DMs and posts</li>
+          <li>Audit videos</li>
+          <li>Calls, pricing, closing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section id="numbers">
+    <p class="eyebrow">7 · The maths</p>
+    <h2>What it takes to get 3 to 4 clients a month</h2>
+    <p>Rough benchmarks for a specialised service like yours. Track your own for 4 weeks, then replace these.</p>
+    <div class="diagram">
+<pre class="mermaid">
+flowchart LR
+  subgraph U["Upwork, per month"]
+    U1["75 proposals"] --> U2["~35 viewed"] --> U3["~8 replies"] --> U4["~4 calls/chats"] --> U5["1–2 clients"]
+  end
+  subgraph L["LinkedIn, per month"]
+    L1["100 connections"] --> L2["~35 accept"] --> L3["~10 conversations"] --> L4["~4 audits"] --> L5["1–2 clients"]
+  end
+</pre>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Check every Friday</th><th>Healthy</th><th>If it's low, fix this</th></tr></thead>
+      <tbody>
+        <tr><td>Upwork proposals viewed</td><td class="num">40%+</td><td>Apply faster (under 1 hour). Rewrite lines 1–2.</td></tr>
+        <tr><td>Upwork replies</td><td class="num">10%+</td><td>Add the niche site sample. Ask an easier question.</td></tr>
+        <tr><td>LinkedIn connection accepts</td><td class="num">30%+</td><td>Engage with their post before connecting.</td></tr>
+        <tr><td>LinkedIn DM replies</td><td class="num">20%+</td><td>Make the first DM about their site, not your service.</td></tr>
+        <tr><td>Audit → trial</td><td class="num">1 in 3</td><td>Shorter video, 3 wins only, one small offer.</td></tr>
+        <tr><td>Trial → package</td><td class="num">1 in 2</td><td>Better report: show where the link sits and why the site is strong.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="call">
+      <p class="eyebrow">Change one thing a week</p>
+      <p>Every Friday, find the weakest step in the chain above and fix only that one. If you change everything at once, you'll never know what worked.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>The numbers are rough benchmarks, not guarantees. Replace them with your own after 4 weeks of tracking.</p>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.getAttribute("data-copy"));
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1500); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press Ctrl+C"; };
+      try { navigator.clipboard.writeText(el.innerText).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+</script>
