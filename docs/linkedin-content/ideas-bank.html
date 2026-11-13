@@ -1,0 +1,264 @@
+<title>Talha's LinkedIn Idea Bank</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  /* Layout: a filter bar on top, then one list of idea rows. Each row = hook first, angle second, tags last. */
+  :root {
+    --bg: #F6F5F3; --surface: #FFFFFF; --fg: #141414; --muted: #615E59; --line: #E3E0DA; --soft: #EEECE8;
+    --accent: #6E52E8; --buyer: #C2410C; --peer: #0F6E8C; --both: #5B3FD6; --need: #8A5A00;
+    --font: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #121212; --surface: #1B1B1B; --fg: #F1F0EC; --muted: #A7A49F; --line: #2D2C2A; --soft: #232220;
+    --accent: #A08CFF; --buyer: #FF8A5B; --peer: #5BC0DE; --both: #B3A2FF; --need: #E6B450; color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --bg: #121212; --surface: #1B1B1B; --fg: #F1F0EC; --muted: #A7A49F; --line: #2D2C2A; --soft: #232220;
+    --accent: #A08CFF; --buyer: #FF8A5B; --peer: #5BC0DE; --both: #B3A2FF; --need: #E6B450; color-scheme: dark }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap { max-width: 900px; margin: 0 auto; padding-block: 36px 80px; display: grid; gap: 22px; }
+  h1 { margin: 0; font-size: clamp(28px, 5vw, 40px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; text-wrap: balance; }
+  p { margin: 0; max-width: 68ch; }
+  .lead { color: var(--muted); font-size: 17px; }
+  .rules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .rule { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 14px; color: var(--muted); }
+  .rule b { color: var(--fg); display: block; font-size: 15px; margin-bottom: 2px; }
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px; border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font: 600 13px var(--font); padding: 7px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .chip:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  input[type="search"] { width: 100%; font: 500 15px var(--font); padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+  .count { font-size: 13px; color: var(--muted); }
+  h2 { margin: 18px 0 0; font-size: 22px; font-weight: 800; letter-spacing: -0.01em; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  h2 small { font-size: 14px; font-weight: 600; color: var(--muted); }
+  ol.ideas { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  ol.ideas li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; padding: 14px 16px; border-top: 1px solid var(--line); }
+  ol.ideas li:first-child { border-top: 0; }
+  .n { font-size: 13px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+  .hook { font-weight: 700; font-size: 16px; }
+  .angle { color: var(--muted); font-size: 15px; margin-top: 3px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tag { font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; border: 1px solid currentColor; }
+  .t-B { color: var(--buyer); } .t-P { color: var(--peer); } .t-BP { color: var(--both); }
+  .t-x { color: var(--muted); border-color: var(--line); }
+  .t-need { color: var(--need); }
+  @media (max-width: 680px) { .rules { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:12px">
+    <h1>120 LinkedIn post ideas, sorted by format</h1>
+    <p class="lead">Every idea follows the playbook and the calendar we agreed: you own "getting found on Google and recommended by AI", buyers come first, link building is the method not the topic, and no client names. The bold line is the opening hook. Tap a filter to narrow the list.</p>
+    <div class="rules">
+      <div class="rule"><b>Buyers</b>Founders, marketing heads, agency owners. These bring DMs.</div>
+      <div class="rule"><b>Peers</b>SEO people and freelancers. These bring reach and comments.</div>
+      <div class="rule"><b>Your story / Your test</b>Only post if it really happened, or after you run the test yourself.</div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <input type="search" id="q" placeholder="Search ideas, e.g. ChatGPT, pricing, agency" aria-label="Search ideas">
+    <div class="chips" id="fmt" aria-label="Format"></div>
+    <div class="chips" id="aud" aria-label="Audience"></div>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<script>
+const FORMATS = {
+  text: ["Text posts", "Short to medium posts, no design needed"],
+  carousel: ["Carousels", "6 to 10 slides, a step-by-step or a breakdown"],
+  infographic: ["Infographics", "One image people save and share"],
+  story: ["Photo and POV stories", "Your real moments, with a candid photo"],
+  teardown: ["Screenshot teardowns", "Proof posts built on your own screenshots"]
+};
+// [format, audience B|P|BP, pillar, needs ("" | "story" | "test"), hook, angle]
+const IDEAS = [
+  // TEXT
+  ["text","B","Educate","","Your competitor isn't better than you. Google just trusts them more.","Trust comes from what other sites say about you. Three things a founder can check today."],
+  ["text","B","Educate","","Most founders check their Google ranking. Almost none check what ChatGPT says about them.","Short wake-up post. Ends with: when did you last ask?"],
+  ["text","B","Educate","","Your brand is being described by AI right now. You just haven't read it.","What AI gets wrong about brands (old info, wrong prices) and where it learned it."],
+  ["text","B","Educate","","The cheapest marketing channel you're not using is other people's websites.","Mentions on trusted sites keep working after you stop paying, unlike ads."],
+  ["text","B","Educate","","Ads stop the day you stop paying. A mention on a trusted site keeps working for years.","Rented attention vs owned trust. Simple comparison, one question at the end."],
+  ["text","B","Educate","","You don't have a traffic problem. You have a trust problem.","Why good content and a fast site still don't rank on their own."],
+  ["text","B","Educate","","Content without authority is a diary.","Why great articles sit on page 4, and what moves them."],
+  ["text","B","Educate","","If your website disappeared tomorrow, what would the internet still say about you?","Your brand footprint outside your own site is what Google and AI read."],
+  ["text","B","Educate","","Stop asking \"how many links do I need?\" Ask \"where does my buyer read?\"","Reframes link building into buyer language. Quantity vs place."],
+  ["text","B","Educate","","Before I build anything for a brand, I ask one question: which page makes you money?","Links to the homepage vs the pages that sell. Practical and short."],
+  ["text","B","Sell","","If your SEO report is full of DR numbers, ask one question: which of these brought traffic?","Buyer-side checklist for judging any agency's report. Your one insider post of the month."],
+  ["text","B","Educate","","A founder asked me how long links take to work. My honest answer.","Real timelines (first signs, real movement), and what to watch in the meantime."],
+  ["text","B","Educate","","Every SEO tool shows your competitor's links. None tells you which ones matter.","How a founder can spot the 10 links that actually carry a competitor."],
+  ["text","B","Educate","","If a journalist quoted you tomorrow, would ChatGPT know about it next month?","How press mentions flow into AI answers. Ties digital PR to AI visibility."],
+  ["text","B","Educate","","Reddit threads now show up on Google and inside AI answers. Your brand probably isn't in any of them.","Why community mentions matter now, and how to show up without spamming."],
+  ["text","B","Sell","","Agencies: your clients will soon ask \"are we showing up in ChatGPT?\" Have an answer ready.","Speaks straight to agency owners. Soft white-label angle."],
+  ["text","BP","Educate","","Unpopular opinion: most brands don't need more content. They need fewer pages and more mentions.","A debate post. Peers argue, buyers nod."],
+  ["text","BP","Educate","","Google's AI Overviews didn't kill SEO. They killed lazy SEO.","What still works, what stopped working. Strong opinion, clear reasons."],
+  ["text","BP","Educate","","Clients don't pay for links. They pay for the phone ringing.","Reframes the whole service around outcomes."],
+  ["text","BP","Educate","","The most expensive link is the one your client has to explain.","Reputation risk of bad placements, written for the person paying."],
+  ["text","BP","Document","","7 years in link building. The biggest change isn't Google. It's who's asking: AI.","Monthly proof re-anchor: 10,000+ links, 7+ years, what changed."],
+  ["text","BP","Educate","","\"Why should I pay you if ChatGPT can do SEO?\" Here's what I said.","Answers the question every service provider now hears. Only if a client really asked."],
+  ["text","BP","Document","story","I said no to a client who wanted 100 links in a week.","Turning down bad work, and why it protected the client too."],
+  ["text","P","Storytell","story","I raised my price and lost half my leads. Revenue went up.","Pricing courage. Big reach with freelancers. Needs your real numbers."],
+  ["text","P","Storytell","story","My first client paid me $[X]. Here's what I'd tell that version of me.","Low-to-high arc. Freelancers in your audience will share it."],
+  ["text","P","Storytell","story","Being from Pakistan felt like a disadvantage in sales. Now I lead with it.","Outsider story, your version. Huge relatability for 46% of your followers."],
+  ["text","P","Document","story","I hired my first team member. The business got slower before it got faster.","Delegation lessons. Real numbers make it stronger."],
+  ["text","P","Document","","The best investment I made in my business this year was a spreadsheet.","Your AI-built filter tool. Systems over hustle."],
+  ["text","BP","Educate","","Three questions to ask any SEO agency before you pay them a single dollar.","Buyer protection post. Positions you as the honest one."],
+  ["text","BP","Educate","test","I asked ChatGPT to recommend a business in my field. It named one that closed months ago.","AI repeats old web info. Only post if your test really shows this."],
+
+  // CAROUSEL
+  ["carousel","B","Educate","","How ChatGPT decides which brands to recommend, in plain English","6 slides: question → search → sources → shortlist → why you're missing → fix."],
+  ["carousel","B","Educate","","SEO vs AEO vs GEO for founders: what changes and what doesn't","One slide per term, then what stays the same for all three."],
+  ["carousel","B","Educate","","The 3R Test: where your brand should be mentioned","Your named framework. Relevant, Read, Ranked, one slide each with an example."],
+  ["carousel","B","Educate","","7 places AI tools find brands to recommend","Review sites, comparison lists, industry press, Reddit, podcasts, news, niche blogs."],
+  ["carousel","B","Educate","","Read your competitor's backlinks in 10 minutes. No SEO degree needed.","Step by step with a free tool. Which 10 links actually matter."],
+  ["carousel","B","Educate","","Why great content doesn't rank: 6 reasons, one fix each","Founder-friendly. Each slide = reason + fix."],
+  ["carousel","B","Sell","","10 questions to ask before hiring a link building agency","Buyer checklist. You pass every one of them, quietly."],
+  ["carousel","B","Sell","","Red flags in an SEO report","DR-only reports, no traffic, no index check, same sites for every client."],
+  ["carousel","B","Sell","","Page 2 to #1 for a one-word keyword: the timeline, month by month","Anonymised case. What happened each month, what the client saw."],
+  ["carousel","B","Sell","","How a fintech brand reached #1 in Dubai in 5 months","Anonymised end-to-end breakdown. Ends with DM AUDIT."],
+  ["carousel","B","Educate","","Digital PR in 8 slides: how one quote turns into links, mentions and AI citations","Shows the chain from journalist to Google to ChatGPT."],
+  ["carousel","B","Educate","","6 ways to get your brand mentioned without buying links","Expert quotes, podcasts, data studies, partnerships, reviews, communities."],
+  ["carousel","B","Educate","","The 4 types of pages AI loves to cite","Comparisons, lists, original data, clear answers. Examples for each."],
+  ["carousel","B","Educate","","10 questions your buyers type into ChatGPT, and how to show up for each","Industry examples. Very saveable."],
+  ["carousel","B","Educate","","Brand mention vs backlink: what's the difference and which do you need?","Clears up confusion for founders. Simple side by side."],
+  ["carousel","B","Educate","","How to tell if your SEO is working before rankings move","Early signals: indexing, impressions, branded searches, AI mentions."],
+  ["carousel","B","Educate","","Why your brand name now matters more than your keywords","Branded search and being a known name. Why AI picks names it has seen."],
+  ["carousel","B","Educate","","Google vs ChatGPT vs Perplexity: how each picks its sources","One slide per tool. Plain words, no hype."],
+  ["carousel","B","Sell","","Your 30-day plan to start showing up in AI answers","Week by week. Ends with the free audit."],
+  ["carousel","B","Educate","","Turn one customer story into 5 brand mentions","Case study → quote → podcast → list → review. Practical."],
+  ["carousel","B","Educate","","How to write a quote journalists actually use","For founders doing PR. Short, specific, one number."],
+  ["carousel","B","Educate","","Common SEO myths founders still believe","Each slide: the myth, then what's true now."],
+  ["carousel","B","Sell","","What happens after you hire me: first call to monthly report","Behind the scenes of your process. Removes buyer fear."],
+  ["carousel","B","Educate","","Where to spend your first $1,000 on SEO","A framework, not fake stats. Clear priorities."],
+  ["carousel","B","Educate","","Your brand's AI visibility audit in 5 steps","The audit you sell, given away as a method."],
+  ["carousel","BP","Document","test","The same brand in ChatGPT, 3 months apart","Before and after. Only with real screenshots you took."],
+  ["carousel","BP","Document","story","5 tools I built with AI to run my business","Bulk email sender, scraper, Semrush filter. What each saves."],
+  ["carousel","BP","Educate","","What 7 years of outreach taught me about getting a yes","Pitching editors and journalists, framed for founders doing PR."],
+  ["carousel","BP","Educate","","5 prompts to check if AI recommends your brand","The post 1 idea, redesigned properly."],
+  ["carousel","P","Storytell","story","7 years in SEO: what I'd tell my 2018 self","Career lessons. Peers save these."],
+
+  // INFOGRAPHIC
+  ["infographic","B","Educate","","SEO vs AEO vs GEO in one picture","A 3-column table: where it shows, what it rewards, what you do."],
+  ["infographic","B","Educate","","How AI picks the brands it recommends","Flow: buyer's question → web search → trusted sources → shortlist."],
+  ["infographic","B","Educate","","The 3R Test","Three circles: Relevant, Read, Ranked. The sweet spot in the middle."],
+  ["infographic","B","Educate","","The link quality pyramid","Spam at the bottom, editorial and press at the top."],
+  ["infographic","B","Educate","","Ads vs SEO vs brand mentions over 12 months","A concept chart: ads stop, mentions compound. Labelled as a concept, not data."],
+  ["infographic","B","Educate","","Where your brand should exist online","A map of the places buyers and AI look for you."],
+  ["infographic","B","Educate","","What to expect from link building, month 1 to month 6","A timeline that sets honest expectations."],
+  ["infographic","B","Educate","","Good site vs bad site, side by side","Buyer-friendly checklist with ticks and crosses."],
+  ["infographic","B","Educate","","The 2026 buyer journey","ChatGPT → Google → reviews → your website → your DMs."],
+  ["infographic","B","Educate","","Anatomy of a link that works","An annotated article: relevant topic, real readers, natural link."],
+  ["infographic","B","Educate","test","Anatomy of an AI answer","An annotated ChatGPT answer: named brands, cited sources, what's missing."],
+  ["infographic","B","Educate","","20 prompts to test your brand in AI","A cheat sheet people save."],
+  ["infographic","B","Educate","","The trust stack","Content, links, mentions, reviews, press. What each one adds."],
+  ["infographic","B","Educate","","Do you need link building right now? A decision tree","Honest: sometimes the answer is no. Builds trust."],
+  ["infographic","B","Educate","","Freelancer vs agency vs in-house for SEO","Cost, speed, control. Neutral and useful."],
+  ["infographic","B","Educate","","12 SEO terms explained in one line each","Founder glossary. No jargon in the explanations."],
+  ["infographic","B","Educate","","Your brand footprint checklist","Where your brand should be listed and mentioned."],
+  ["infographic","B","Sell","","5 questions to ask before you pay for any link","A small card buyers keep."],
+  ["infographic","B","Educate","","From unknown to recommended: the 4-stage authority ladder","Where a new brand starts and what moves it up."],
+  ["infographic","B","Educate","","Is your website ready for AI search? A checklist","Clear answers, facts on page, mentions off page."],
+  ["infographic","B","Educate","","Guest post vs digital PR vs niche edit vs brand mention","One table, plain words."],
+  ["infographic","B","Educate","","Signals Google trusts","Visual list: mentions, links, reviews, consistency, freshness."],
+  ["infographic","B","Educate","","What clients ask for vs what they need","Two columns: \"100 links\" vs \"10 right links\"."],
+  ["infographic","B","Educate","","How one press mention turns into links, AI citations and sales","A chain diagram."],
+  ["infographic","B","Educate","","Red flags in link offers","\"DA 50 for $20\", \"100% dofollow\", \"guaranteed rankings\"."],
+  ["infographic","B","Educate","","The founder's monthly SEO health check","10 checkboxes, 20 minutes."],
+  ["infographic","B","Educate","","Q1 2027 PR calendar: hooks you can use for press","Seasonal angles founders can pitch."],
+  ["infographic","P","Document","","A week in the life of a link builder","Behind the scenes. Peers relate."],
+  ["infographic","P","Document","","My tool stack","Paid tools plus the ones you built with AI."],
+  ["infographic","BP","Educate","","What changed in SEO from 2018 to 2026","A timeline from your 7 years. Proof and perspective in one."],
+
+  // STORY
+  ["story","P","Storytell","story","POV: You're a freelancer from Faisalabad pitching a client in London.","Your outsider story. Candid photo at your desk."],
+  ["story","P","Storytell","story","POV: Your first international client says yes.","The moment it became real. What changed after."],
+  ["story","P","Storytell","story","POV: You raise your price and half your leads disappear.","The fear, the decision, what happened next."],
+  ["story","P","Storytell","story","POV: You hire your first team member.","Letting go of control. Photo with your team member, if they agree."],
+  ["story","P","Storytell","story","This desk is where it started.","Photo of your first setup. Low-to-high arc."],
+  ["story","BP","Storytell","story","The client who almost walked away, and why they stayed.","Trust earned under pressure. Anonymous."],
+  ["story","BP","Storytell","story","The mistake that cost me a client, and what I changed.","Failure posts build more trust than wins."],
+  ["story","P","Storytell","story","Running clients in 3 time zones from Faisalabad.","A real day, honestly. Late calls, early reports."],
+  ["story","P","Storytell","story","The internet went down on a deadline day.","Pakistani freelancers will feel this. Lesson: systems and backups."],
+  ["story","BP","Storytell","story","Why I said no to a $[X] project.","Saying no as a positioning decision."],
+  ["story","P","Storytell","story","My family still doesn't fully understand what I do.","Light, human, very shareable. Ends with what you'd tell them."],
+  ["story","BP","Storytell","story","The first time my work showed up on page 1.","The feeling, then the lesson."],
+  ["story","P","Storytell","story","I'm not a coder. I build tools anyway.","Photo of your screen. The AI-building identity."],
+  ["story","P","Storytell","story","What freelancing taught me that school didn't.","Broad reach post. Three real lessons."],
+  ["story","BP","Storytell","story","The message from a client I still keep.","Anonymous screenshot (with permission). What it meant."],
+
+  // TEARDOWN
+  ["teardown","B","Document","test","AI Visibility Teardown: best CRM for small businesses","Who ChatGPT, Perplexity and Gemini name, and which sites they cite."],
+  ["teardown","B","Document","test","AI Visibility Teardown: best project management tool for small teams","Same format. Pattern: the most mentioned brands win."],
+  ["teardown","B","Document","test","AI Visibility Teardown: best accounting software in the UK","A regional category, so local buyers relate."],
+  ["teardown","B","Document","test","AI Visibility Teardown: best SEO agency in Dubai","Your own market. Brave and interesting, whatever the result."],
+  ["teardown","B","Document","test","AI Visibility Teardown: best online tutoring in Singapore","A market you know well. No client named."],
+  ["teardown","B","Document","test","Same question, three AIs, three different answers","Why visibility is not one ranking anymore."],
+  ["teardown","B","Document","test","Google AI Overview vs the #1 result: who gets the click?","Screenshot comparison with your take."],
+  ["teardown","B","Sell","","Page 2 to #1: the graph","Anonymised Semrush graph with three annotations."],
+  ["teardown","B","Educate","","DR 80, almost no readers","A blurred traffic graph of a site you turned down, written for buyers."],
+  ["teardown","BP","Document","","Before and after: the export my team cleaned by hand vs my tool","Your filter tool, shown working."],
+  ["teardown","BP","Document","story","The editor's reply that changed how I pitch","Anonymised screenshot and the lesson."],
+  ["teardown","B","Document","test","One mention, one citation","Show a page that mentions a brand, then Perplexity citing that page."],
+  ["teardown","B","Sell","","Branded searches after a PR push","Anonymised graph: more people searching the brand by name."],
+  ["teardown","B","Document","test","An AI answer that's wrong about a brand, and how it could be fixed","Use a public brand. Practical fix steps."],
+  ["teardown","B","Document","test","AI Visibility Teardown: your own category, link building agencies","Run it honestly. Named or not, it's a strong post."]
+];
+
+const state = { fmt: "all", aud: "all", q: "" };
+try { const s = JSON.parse(localStorage.getItem("idea-filters") || "{}"); Object.assign(state, s, { q: "" }); } catch (e) {}
+
+function chip(group, value, label) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "chip"; b.textContent = label;
+  b.setAttribute("aria-pressed", state[group] === value ? "true" : "false");
+  b.addEventListener("click", () => { state[group] = value; save(); renderChips(); render(); });
+  return b;
+}
+function renderChips() {
+  const f = document.getElementById("fmt"); f.innerHTML = "";
+  f.append(chip("fmt", "all", "All formats"));
+  Object.keys(FORMATS).forEach(k => f.append(chip("fmt", k, FORMATS[k][0])));
+  const a = document.getElementById("aud"); a.innerHTML = "";
+  [["all","All audiences"],["B","Buyers"],["P","Peers"],["BP","Both"],["need","Needs your story or test"]].forEach(([v,l]) => a.append(chip("aud", v, l)));
+}
+function save() { try { localStorage.setItem("idea-filters", JSON.stringify({ fmt: state.fmt, aud: state.aud })); } catch (e) {} }
+const AUD = { B: "Buyers", P: "Peers", BP: "Buyers + peers" };
+function render() {
+  const list = document.getElementById("list"); list.innerHTML = "";
+  const q = state.q.toLowerCase();
+  let shown = 0;
+  Object.keys(FORMATS).forEach(fk => {
+    if (state.fmt !== "all" && state.fmt !== fk) return;
+    const rows = IDEAS.map((r, i) => ({ r, i })).filter(({ r }) => r[0] === fk)
+      .map((o, k) => ({ ...o, k: k + 1 }))
+      .filter(({ r }) => (state.aud === "all" || (state.aud === "need" ? r[3] !== "" : r[1] === state.aud)))
+      .filter(({ r }) => !q || (r[4] + " " + r[5]).toLowerCase().includes(q));
+    if (!rows.length) return;
+    shown += rows.length;
+    const h = document.createElement("h2");
+    h.innerHTML = `${FORMATS[fk][0]} <small>${FORMATS[fk][1]} · ${rows.length}</small>`;
+    const ol = document.createElement("ol"); ol.className = "ideas";
+    rows.forEach(({ r, k }) => {
+      const li = document.createElement("li");
+      const need = r[3] === "story" ? `<span class="tag t-need">Your story</span>` : r[3] === "test" ? `<span class="tag t-need">Your test</span>` : "";
+      li.innerHTML = `<span class="n">${k}</span><div><div class="hook"></div><div class="angle"></div>
+        <div class="tags"><span class="tag t-${r[1]}">${AUD[r[1]]}</span><span class="tag t-x">${r[2]}</span>${need}</div></div>`;
+      li.querySelector(".hook").textContent = r[4];
+      li.querySelector(".angle").textContent = r[5];
+      ol.append(li);
+    });
+    list.append(h, ol);
+  });
+  document.getElementById("count").textContent = `${shown} of ${IDEAS.length} ideas`;
+}
+document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+renderChips(); render();
+</script>
