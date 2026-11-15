@@ -156,6 +156,16 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
     or is it final?"** Record the answer in the sign-off log below and push
     that too. "Approved" means it can change in a later round; "final" means
     leave it as it is unless the owner asks.
+11. **No template pages (round 18).** Every page needs its own purpose, its
+    own proof and its own substance. A page that could be made by swapping
+    a few words in another page should not exist. Research decides which
+    pages get built, never the other way round, and each new page starts as
+    a one-page brief (who it's for, why it exists, which keywords, what proof
+    only it has) that the owner approves before any build.
+12. **Results sections (round 18 request).** On service and other pages, show
+    client work the way `/case-studies` does (`ResultCard`: the client's site
+    screenshot, a title, a short description), not the coloured stat blocks
+    of `ClientWork`. The homepage results section stays as it is.
 
 ### Sign-off log
 
@@ -165,7 +175,7 @@ The build prerenders pages with Playwright's Chromium. On a new machine run
 | 16 | Waiting for the owner | $250 pricing, trial at $250, HARO as custom package, new photo on the site |
 | Email signature | Approved (Option A) | `docs/email-signature/`: photo, name, "Link Building · Digital PR · Brand Mentions for AI Search", phone (WhatsApp), team@editorialhq.com, editorialhq.com, booking button. Still needs the LinkedIn/Instagram links and a public photo URL |
 | Profile photo guide | Waiting for the owner | `docs/profile-photo-guide.md` |
-| Round 18 (guest posting, niche edits, white label pages) | Waiting for the owner | Three new service pages from the keyword map, link building page retargeted. Screenshots in `docs/screenshots/*/guest-posting.jpg`, `niche-edits.jpg`, `white-label-link-building.jpg` |
+| Round 18 (guest posting, niche edits, white label pages) | **Rejected** (owner: "0/10", "the weakest pages on our website", built to fill a formality, one template with swapped words) | Do not ship these pages as they are. Next step is Semrush research round 2 (`docs/seo/research-brief-round-2.md`), then a page-by-page decision. Screenshots of the rejected version: `docs/screenshots/*/guest-posting.jpg`, `niche-edits.jpg`, `white-label-link-building.jpg` |
 | Round 17 (rejected-site cards) | Approved (owner: "yes approved"; final not yet confirmed) | Trendify Magazine, MetaPress, Entrepreneurs Break on the link building page, blog post and site check |
 | LinkedIn profile photo (banner colours) | Waiting for the owner | Six versions matching banner themes 1 and 6, `docs/linkedin-banner/profile-photo/` (`photos.html`, `render.cjs`, `profile-a..f.png`, `preview.jpg`). Uses a cleaned headshot cutout (mint tint removed from the glasses) |
 | LinkedIn Featured images | Waiting for the owner | Three 1200 x 627 images in banner-6 colours: free link audit offer, SmileTutor #1 for "tuition", CryptoDesk #1 in Dubai in 5 months. `docs/linkedin-banner/featured/` (`cards.html`, `render.cjs`, `featured-1..3.png`). Numbers from `src/lib/cases.ts` |
@@ -205,7 +215,9 @@ Detailed notes: `ROUND-3-NOTES.md`, `PAGES-REDESIGN-2.md`,
 
 ## 7. Open work (owner's list, not done yet)
 
-- **SEO Month 1 (keyword map, `docs/seo/editorialhq-keyword-map.xlsx`), still to build:** blogger outreach services, SaaS link building, AI SEO services (new pages); homepage ("link building agency"), pricing ("link building packages"), digital PR ("digital pr agency"), brand mentions and HARO retargets; then the nine Month 1 blog posts. Each needs one real proof point from the owner's work.
+- **On hold: new pages.** Research comes first (owner, round 18). Muse runs Semrush research round 2 (`docs/seo/research-brief-round-2.md`): industry demand, the GEO / AI search cluster, SERP checks, competitor page audit, AI visibility (which brands and sources AI names), lists and directories, backlink gap. Then a page-by-page decision (build / merge / drop / later). The Month 1 list in the keyword map is not approved to build.
+- **Results sections:** switch `ClientWork` on the link building, digital PR, brand mentions and HARO pages to `ResultCard` style (rule 12). Held until the owner says to start building.
+- **The three round 18 pages** are still routed and linked on the branch. Owner to decide whether they go offline (404) until research decides their future. Don't upload a theme zip with them until then.
 
 - **CryptoDesk link mix (round 15), to confirm:** 35 press releases is the owner's figure; the split of the other 65 placements (35 guest posts, 15 niche edits, 15 press features) is still proposed. `src/lib/cases.ts`, see `CASE-STUDY-DRAFTS.md`.
 
