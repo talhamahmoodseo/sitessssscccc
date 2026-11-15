@@ -66,13 +66,13 @@ export const Fit = () => {
               <span className="font-semibold text-white">{F.agency.t} </span>
               {F.agency.d}
             </p>
-            <button
-              onClick={openBooking}
+            <Link
+              to="/services/white-label-link-building"
               className="inline-flex flex-none items-center gap-1.5 text-[14px] font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
             >
-              Talk white label
+              White label link building
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -196,7 +196,7 @@ export const Related = () => {
         <h2 className="text-[1.4rem] font-semibold tracking-[-0.02em] text-navy-dark">
           {R.h2}
         </h2>
-        <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {R.links.map((l) => (
             <li key={l.to}>
               <Link

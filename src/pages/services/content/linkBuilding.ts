@@ -9,7 +9,7 @@ export const linkBuilding = {
   seo: {
     title: "Link Building Services That Move Rankings",
     description:
-      `Done-for-you link building: guest posts and niche edits on hand-checked sites. ${usd(PER_LINK)} a link, packages from 3 links, backed by a money-back guarantee.`,
+      `Done-for-you SEO link building services: guest posts and niche edits on hand-checked sites. ${usd(PER_LINK)} a link, packages from 3, money-back guarantee.`,
   },
 
   hero: {
@@ -474,8 +474,12 @@ export const linkBuilding = {
       a: `Placements are ${usd(PER_LINK)} each, in packages of 3, 5 or 10 links (${planPrice(PLANS[0])}, ${planPrice(PLANS[1])} or ${planPrice(PLANS[2])}), with higher-traffic sites in the larger packages. To test us first, you can order a single trial placement at the same price, with no minimum order. Larger volumes, monthly plans and DR 70+ sites are quoted as custom packages. Every order is covered by our money-back guarantee.`,
     },
     {
+      q: "Are backlink services the same as link building services?",
+      a: "Mostly, yes. People use both names for the same thing: getting other sites to link to yours. The difference is how it's done. Many backlink services sell links in bulk from a list. Link building the way we do it starts from the pages you want to rank, and every site is checked by hand before your link goes near it.",
+    },
+    {
       q: "Do you offer white label link building for agencies?",
-      a: "Yes. Agencies get the same site check and placement quality, with reports under their own branding. We never contact your clients.",
+      a: "Yes. Agencies get the same site check and placement quality, with reports under their own branding. We never contact your clients. Our white label link building page explains how it works.",
     },
   ],
 
@@ -491,6 +495,13 @@ export const linkBuilding = {
         to: "/blog/site-vetting-checklist",
         k: "Article",
         t: "The site-vetting checklist we use on every domain",
+      },
+      { to: "/services/guest-posting", k: "Service", t: "Guest posting services" },
+      { to: "/services/niche-edits", k: "Service", t: "Niche edits" },
+      {
+        to: "/services/white-label-link-building",
+        k: "For agencies",
+        t: "White label link building",
       },
       { to: "/services/digital-pr", k: "Service", t: "Digital PR" },
       {
