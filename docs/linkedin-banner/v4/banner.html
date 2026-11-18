@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn banner v4, Talha Mahmood</title>
+<!--
+  v4: the owner's own banner (purple and black), kept and refined, not
+  redesigned. Same layout: CTA pill top left, "Forget ~~Low Quality~~
+  Backlinks", boxed uppercase headline with AUTHORITY in purple, brand
+  tiles, arms-crossed photo on the right. Purple is the logo's #7C5CF6.
+-->
+<style>
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-600-normal.woff2); font-weight: 600; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-700-normal.woff2); font-weight: 700; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-800-normal.woff2); font-weight: 800; }
+  :root { --bg: #09080D; --purple: #8B6CFF; --purple-deep: #5B3FD9; --white: #FFFFFF; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; }
+  body { font-family: PJS, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: var(--white); }
+
+  .banner { position: relative; width: 1584px; height: 396px; overflow: hidden; background: var(--bg); }
+  /* purple light from the left (as in the old banner) and behind the photo */
+  .glow-l { position: absolute; left: -260px; top: -200px; width: 900px; height: 760px;
+    background: radial-gradient(closest-side, rgb(124 92 246 / 0.55), rgb(124 92 246 / 0.12) 55%, transparent 100%); }
+  .glow-r { position: absolute; right: -40px; top: -60px; width: 640px; height: 560px;
+    background: radial-gradient(closest-side, rgb(124 92 246 / 0.32), transparent 100%); }
+  /* fine diagonal lines on the left, a quiet nod to the old "SEO screen" texture */
+  .lines { position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 18px);
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 25%, transparent 45%);
+            mask-image: linear-gradient(90deg, #000 0%, #000 25%, transparent 45%); }
+  .grain { position: absolute; inset: 0; opacity: 0.18; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.9'/></svg>"); }
+  .photo { position: absolute; right: 60px; top: -38px; height: 500px; filter: drop-shadow(0 24px 34px rgb(0 0 0 / 0.6)); }
+  /* thin purple rim behind the shoulders so the dark jacket separates from the background */
+  .rim { position: absolute; right: 30px; top: 70px; width: 470px; height: 470px; border-radius: 50%;
+    border: 2px solid rgb(139 108 255 / 0.35); }
+
+  .cta { position: absolute; left: 40px; top: 34px; display: inline-flex; align-items: center; gap: 11px;
+    background: var(--white); color: var(--bg); border-radius: 999px; padding: 11px 22px 11px 16px;
+    font-size: 16px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase;
+    box-shadow: 0 0 0 6px rgb(139 108 255 / 0.18); }
+  .cta i { width: 10px; height: 10px; border-radius: 50%; background: var(--purple-deep); box-shadow: 0 0 0 3px rgb(124 92 246 / 0.3); }
+  .cta b { color: var(--purple-deep); }
+
+  .copy { position: absolute; left: 480px; top: 54px; }
+  .kicker { font-size: 27px; font-weight: 700; color: var(--purple); letter-spacing: -0.01em; }
+  .kicker s { text-decoration: none; position: relative; color: rgb(255 255 255 / 0.9); }
+  .kicker s::after { content: ""; position: absolute; left: -2px; right: -2px; top: 54%; height: 3px; background: var(--white); border-radius: 2px; }
+  .box { margin-top: 12px; display: inline-block; padding: 16px 26px 18px 24px; position: relative;
+    border: 1px solid rgb(255 255 255 / 0.22); border-left: 4px solid var(--purple); border-radius: 4px 14px 14px 4px;
+    background: linear-gradient(100deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02)); }
+  .box h1 { font-size: 40px; line-height: 1.18; font-weight: 800; letter-spacing: 0.005em; text-transform: uppercase; white-space: nowrap; }
+  .box em { font-style: normal; color: var(--purple); }
+  .brands { margin-top: 22px; display: flex; align-items: center; gap: 12px; }
+  .brands span { font-size: 13px; font-weight: 800; letter-spacing: 0.14em; color: rgb(255 255 255 / 0.85); margin-right: 6px; }
+  .tile { height: 48px; padding: 0 18px; border-radius: 10px; display: flex; align-items: center;
+    background: rgb(255 255 255 / 0.06); border: 1px solid rgb(255 255 255 / 0.14); }
+  .tile img { display: block; filter: brightness(0) invert(1); opacity: 0.9; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="glow-l"></div><div class="glow-r"></div><div class="lines"></div>
+  <div class="rim"></div>
+  <img class="photo" src="../assets/talha-cutout.webp" alt="Talha Mahmood">
+  <div class="grain"></div>
+  <div class="cta"><i></i><span>DM <b>“SEO”</b> to get a free audit</span></div>
+  <div class="copy">
+    <p class="kicker">Forget <s>Low-Quality</s> Backlinks</p>
+    <div class="box"><h1>Build <em>Authority</em> Links<br>That Drive Rankings</h1></div>
+    <div class="brands">
+      <span>TRUSTED BY:</span>
+      <div class="tile"><img src="../assets/cryptodesk-mark.png" style="height:22px" alt="CryptoDesk"></div>
+      <div class="tile"><img src="../assets/capcut.svg" style="height:19px" alt="CapCut"></div>
+      <div class="tile"><img src="../assets/smiletutor.svg" style="height:30px" alt="SmileTutor"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

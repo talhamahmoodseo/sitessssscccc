@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn banner v3, Talha Mahmood</title>
+<!--
+  LinkedIn banner v3 (1584 x 396). The social palette from
+  docs/branding/brand-palette.md: Ink, Paper and one accent, Editor's Red.
+  Red is used only for the editor's strike and one word.
+-->
+<style>
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-500-normal.woff2); font-weight: 500; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-600-normal.woff2); font-weight: 600; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-700-normal.woff2); font-weight: 700; }
+  @font-face { font-family: PJS; src: url(../assets/plus-jakarta-sans-latin-800-normal.woff2); font-weight: 800; }
+  :root { --ink: #0E0E0E; --paper: #F7F6F4; --red: #E25428; --grey: #8C8A86; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; }
+  body { font-family: PJS, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: var(--paper); }
+
+  .banner { position: relative; width: 1584px; height: 396px; overflow: hidden; background: var(--ink); }
+  /* a neutral spotlight behind the photo: depth without colour */
+  .spot { position: absolute; right: -60px; top: -80px; width: 720px; height: 560px;
+    background: radial-gradient(closest-side, rgb(247 246 244 / 0.13), rgb(247 246 244 / 0) 100%); }
+  .photo { position: absolute; right: 70px; top: -38px; height: 500px; filter: drop-shadow(0 24px 34px rgb(0 0 0 / 0.55)); }
+
+  .cta { position: absolute; left: 40px; top: 34px; display: inline-flex; align-items: center; gap: 10px;
+    background: var(--paper); color: var(--ink); border-radius: 999px; padding: 10px 20px 10px 15px;
+    font-size: 16px; font-weight: 700; }
+  .cta i { width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+
+  .copy { position: absolute; left: 480px; top: 66px; }
+  .kicker { font-size: 24px; font-weight: 500; color: var(--grey); letter-spacing: -0.01em; }
+  .kicker s { position: relative; text-decoration: none; }
+  .kicker s::after { content: ""; position: absolute; left: 1px; right: -2px; top: 55%; height: 3px;
+    background: var(--red); border-radius: 2px; transform: rotate(-2.5deg); }
+  h1 { margin-top: 10px; font-size: 56px; line-height: 1.04; font-weight: 800; letter-spacing: -0.035em; color: var(--paper); }
+  h1 em { font-style: normal; color: var(--red); }
+  .sub { margin-top: 16px; font-size: 20px; font-weight: 500; color: rgb(247 246 244 / 0.72); }
+  .trust { margin-top: 26px; display: flex; align-items: center; gap: 30px; }
+  .trust span { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; color: var(--grey); }
+  .trust img { display: block; filter: brightness(0) invert(1); opacity: 0.82; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="spot"></div>
+  <img class="photo" src="../assets/talha-cutout.webp" alt="Talha Mahmood">
+  <div class="cta"><i></i><span>DM “AUDIT” for a free link audit</span></div>
+  <div class="copy">
+    <p class="kicker">Forget <s>low-quality backlinks.</s></p>
+    <h1>Build <em>authority</em> links<br>that move your rankings<span style="margin-left:-0.04em">.</span></h1>
+    <p class="sub">Real publications. Real editors. No PBNs.</p>
+    <div class="trust">
+      <span>TRUSTED BY</span>
+      <img src="../assets/capcut.svg" style="height:21px" alt="CapCut">
+      <img src="../assets/smiletutor.svg" style="height:34px" alt="SmileTutor">
+      <img src="../assets/cryptodesk-mark.png" style="height:25px" alt="CryptoDesk">
+    </div>
+  </div>
+</div>
+</body>
+</html>
