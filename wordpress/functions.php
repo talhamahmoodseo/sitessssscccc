@@ -102,6 +102,11 @@ function tm_moved() {
 		'/case-studies/home-services-local-pack' => '/services/link-building',
 		// round 15: the Home Services page is parked for now
 		'/industries/home-services'              => '/services/link-building',
+		// round 19: the round 18 offer pages are offline until rebuilt
+		// (remove a line here when its page comes back)
+		'/services/guest-posting'                => '/services/link-building',
+		'/services/niche-edits'                  => '/services/link-building',
+		'/services/white-label-link-building'    => '/services/link-building',
 	);
 }
 

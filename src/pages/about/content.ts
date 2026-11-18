@@ -17,7 +17,7 @@ export const about = {
     eyebrow: "About Editorial HQ",
     h1a: "We build the authority",
     h1b: "that gets brands found.",
-    lead: "Editorial HQ is a link building and digital PR agency. We work with brands and SEO agencies around the world, earning links and mentions on publications their buyers read, so they rank on Google and show up in AI answers.",
+    lead: "Editorial HQ is a link building, digital PR and AI visibility agency based in Faisalabad, Pakistan. We work with brands and SEO agencies around the world, earning links and mentions on publications their buyers read, so they rank on Google and show up in AI answers.",
     primary: "Book a call",
     secondary: "See our results",
     // value, label, sector, tint, position (desktop), depth (0 = sharp)
@@ -79,6 +79,7 @@ export const about = {
       "We started Editorial HQ because too much link building is sold by the spreadsheet: a list of domains, a DR next to each, and very little proof any of it worked.",
       "We do it the slow way. Every site is chosen for one client and checked by hand. Every link sits in an article someone would actually read. And every report shows what the work changed.",
       "Today we work with brands like CapCut, SmileTutor and Ocuco, and with agencies who put our work in front of their own clients. Each of them gets the same standard, and a founder who answers their emails.",
+      "One thing to clear up, because AI tools sometimes mix the names: Editorial HQ (editorialhq.com) is an independent agency. We're not connected to Editorial.Link or any other company with a similar name.",
     ],
   },
 

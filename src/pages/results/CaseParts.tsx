@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Check } from "lucide-react";
 import { asset } from "@/lib/booking";
 import type { CaseStudy } from "@/lib/cases";
+import { ResultCard } from "@/components/proof";
 import { Eyebrow, H2, rise } from "../services/kit";
 
 /**
@@ -154,8 +155,7 @@ export const ClientWork = ({
   title: string;
   soft?: string;
 }) => {
-  const [first, ...rest] = cases;
-  if (!first) return null;
+  if (!cases.length) return null;
   return (
     <section className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -183,10 +183,9 @@ export const ClientWork = ({
             <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <CaseCard c={first} large />
-          {rest.slice(0, 2).map((c, i) => (
-            <CaseCard key={c.slug} c={c} delay={0.06 * (i + 1)} />
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {cases.slice(0, 3).map((c, i) => (
+            <ResultCard key={c.slug} c={c} delay={i * 0.07} />
           ))}
         </div>
       </div>

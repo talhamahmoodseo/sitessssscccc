@@ -150,10 +150,36 @@ export const Seo = ({
           name: SITE_NAME,
           url: `${base}/`,
           logo: `${assetBase}/images/logo.png`,
+          /* one description, word for word the same on every profile
+             (Clutch, GoodFirms, Trustpilot, LinkedIn…), so Google and AI
+             tools connect them and stop mixing us up with Editorial.Link */
           description:
-            "Link building and digital PR agency. Editorial links, digital PR, expert quotes and brand mentions that move Google rankings and get brands named in AI answers.",
+            "Editorial HQ is a link building, digital PR and AI visibility agency based in Faisalabad, Pakistan.",
+          email: "team@editorialhq.com",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Faisalabad",
+            addressCountry: "PK",
+          },
           areaServed: "Worldwide",
-          founder: { "@type": "Person", name: "Talha Mahmood" },
+          knowsAbout: [
+            "Link building",
+            "Digital PR",
+            "Brand mentions",
+            "AI search visibility",
+            "Generative engine optimization",
+          ],
+          founder: {
+            "@type": "Person",
+            name: "Talha Mahmood",
+            jobTitle: "Founder",
+          },
+          /* add LinkedIn and Crunchbase here once the owner sends the URLs */
+          sameAs: [
+            "https://clutch.co/profile/editorial-hq",
+            "https://www.goodfirms.co/company/editorial-hq",
+            "https://www.trustpilot.com/review/editorialhq.com",
+          ],
         },
         {
           "@type": "WebSite",

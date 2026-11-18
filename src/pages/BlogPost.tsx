@@ -26,7 +26,14 @@ const BlogPost = () => {
       headline: s.title,
       description: s.excerpt,
       datePublished: new Date(s.date).toISOString().slice(0, 10),
-      author: { "@type": "Person", name: "Talha Mahmood" },
+      dateModified: new Date(s.updated ?? s.date).toISOString().slice(0, 10),
+      author: {
+        "@type": "Person",
+        name: "Talha Mahmood",
+        jobTitle: "Founder",
+        worksFor: { "@type": "Organization", name: "Editorial HQ" },
+      },
+      publisher: { "@type": "Organization", name: "Editorial HQ" },
     };
   return (
     <PageLayout navOnDark>
@@ -60,7 +67,7 @@ const BlogPost = () => {
             <p className="text-[10px] font-extrabold tracking-[0.2em] text-brand-soft uppercase mb-4">
               {s.category}
               {" \u00b7 "}
-              {s.date}
+              {s.updated ? `Updated ${s.updated}` : s.date}
             </p>
             <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] font-extrabold text-white leading-[1.12] tracking-tight mb-6">
               {s.title}
@@ -127,7 +134,7 @@ const BlogPost = () => {
               </p>
             ),
           )}
-          <div className="mt-14 flex items-center gap-4 bg-linen rounded-2xl p-6">
+          <div className="mt-14 flex items-start gap-4 bg-linen rounded-2xl p-6">
             <img
               src={asset("/images/talha-mahmood.jpg")}
               alt="Talha Mahmood"
@@ -137,10 +144,22 @@ const BlogPost = () => {
               <p className="text-navy-dark font-bold text-[15px]">
                 Talha Mahmood
               </p>
-              <p className="text-navy-dark/70 text-[13px] leading-snug mt-1">
-                Founder of Editorial HQ. Writes up what the team learns from
-                placing links and PR for clients.
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-navy-dark/60 mt-1">
+                Founder, Editorial HQ
               </p>
+              <p className="text-navy-dark/75 text-[13.5px] leading-relaxed mt-2">
+                Talha runs link building, digital PR and AI visibility work for
+                brands and SEO agencies, and checks the sites behind client
+                placements himself. He writes up what the team learns from real
+                campaigns.
+              </p>
+              <Link
+                to="/about"
+                className="mt-2 inline-flex items-center gap-1 text-[13px] font-semibold text-navy-dark underline decoration-navy-dark/30 underline-offset-4 hover:decoration-navy-dark"
+              >
+                About Editorial HQ
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
             </div>
           </div>
           {c && (

@@ -337,6 +337,10 @@ const OTHER = [
 
 const FAQS = [
   {
+    q: "How much do link building packages cost?",
+    a: `Every link is ${usd(PER_LINK)}, so the packages are ${planPrice(PLANS[0])} for 3 links, ${planPrice(PLANS[1])} for 5 links and ${planPrice(PLANS[2])} for 10 links, with higher-traffic sites in the larger packages. If you want to see one placement first, a single trial link is ${usd(TRIAL_PRICE)}. Bigger volumes, DR 70+ sites and digital PR are quoted as a custom package.`,
+  },
+  {
     q: "What is the trial placement?",
     a: `One link, so you can see the quality of our work before ordering a package. It's the same placement at the same price (${usd(TRIAL_PRICE)}), just with no minimum order. If you like it, packages start at 3 links.`,
   },
@@ -402,8 +406,8 @@ const Pricing = () => {
   return (
     <PageLayout navOnDark>
       <Seo
-        title="Link Building Pricing & Packages"
-        description={`Packages of 3, 5 and 10 editorial links at ${usd(PER_LINK)} a link, a ${usd(TRIAL_PRICE)} trial link, or a custom package. No contract, no setup fee, 100% money-back guarantee.`}
+        title="Link Building Packages & Pricing"
+        description={`Link building packages of 3, 5 or 10 editorial links at ${usd(PER_LINK)} a link, or one ${usd(TRIAL_PRICE)} trial link. Clear pricing, no contract, money-back guarantee.`}
         schema={{
           "@context": "https://schema.org",
           "@type": "Service",
@@ -433,7 +437,7 @@ const Pricing = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Pricing
+              Link building pricing
             </motion.p>
             <h1 className="mt-5">
               <motion.span
@@ -442,7 +446,7 @@ const Pricing = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease }}
               >
-                Simple packages,
+                Link building packages,
               </motion.span>
               <motion.span
                 className="block pb-[0.06em] text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-[3.8rem] lg:text-[4.2rem]"
@@ -450,7 +454,7 @@ const Pricing = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease }}
               >
-                <span className="accent-ink-dark">out in the open.</span>
+                <span className="accent-ink-dark">priced in the open.</span>
               </motion.span>
             </h1>
             <motion.p
@@ -596,7 +600,7 @@ const Pricing = () => {
             <div>
               <Eyebrow className="mb-4">Compare packages</Eyebrow>
               <H2>
-                Every package,
+                Every link building package,
                 <br />
                 <Soft>side by side.</Soft>
               </H2>
@@ -740,8 +744,8 @@ const Pricing = () => {
 
       <ServiceFaq
         eyebrow="FAQ"
-        h2a="Questions"
-        h2b="about pricing."
+        h2a="Questions about"
+        h2b="link building pricing."
         side="Not sure which package fits? Send us your site and we'll recommend one."
         faqs={FAQS}
         bg="bg-white"

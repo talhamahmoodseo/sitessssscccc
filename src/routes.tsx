@@ -41,9 +41,6 @@ const SERVICE_PAGES: Record<string, ReturnType<typeof page>> = {
   "digital-pr": page(() => import("./pages/services/DigitalPR")),
   "brand-mentions": page(() => import("./pages/services/BrandMentions")),
   "haro-links": page(() => import("./pages/services/HaroQuotes")),
-  "guest-posting": page(() => import("./pages/services/GuestPosting")),
-  "niche-edits": page(() => import("./pages/services/NicheEdits")),
-  "white-label-link-building": page(() => import("./pages/services/WhiteLabel")),
 };
 
 /** /services/:slug → that service's page, or the 404 page. */

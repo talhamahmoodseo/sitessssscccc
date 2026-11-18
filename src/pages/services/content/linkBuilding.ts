@@ -478,8 +478,16 @@ export const linkBuilding = {
       a: "Mostly, yes. People use both names for the same thing: getting other sites to link to yours. The difference is how it's done. Many backlink services sell links in bulk from a list. Link building the way we do it starts from the pages you want to rank, and every site is checked by hand before your link goes near it.",
     },
     {
+      q: "What are niche edits, and do you offer them?",
+      a: "Yes. A niche edit (also called a link insertion) is your link added to an article that's already published, indexed and ranking, instead of a new article. Because the page already has history, Google usually picks the link up faster, often within one to two weeks. We check the page as well as the site: it has to be indexed, get search traffic and not be crowded with other commercial links. Niche edits cost the same per link as guest posts.",
+    },
+    {
+      q: "Do you offer guest posting services?",
+      a: "Yes. A guest post is a new article written for a site's real readers, with your link in the body. We find the sites, pitch the editor, write the article and get it published, usually within two to four weeks. Every site passes the same 7-point check before your link goes near it.",
+    },
+    {
       q: "Do you offer white label link building for agencies?",
-      a: "Yes. Agencies get the same site check and placement quality, with reports under their own branding. We never contact your clients. Our white label link building page explains how it works.",
+      a: "Yes. Agencies get the same site check and placement quality, with reports under their own branding. We never contact your clients.",
     },
   ],
 
@@ -495,13 +503,6 @@ export const linkBuilding = {
         to: "/blog/site-vetting-checklist",
         k: "Article",
         t: "The site-vetting checklist we use on every domain",
-      },
-      { to: "/services/guest-posting", k: "Service", t: "Guest posting services" },
-      { to: "/services/niche-edits", k: "Service", t: "Niche edits" },
-      {
-        to: "/services/white-label-link-building",
-        k: "For agencies",
-        t: "White label link building",
       },
       { to: "/services/digital-pr", k: "Service", t: "Digital PR" },
       {

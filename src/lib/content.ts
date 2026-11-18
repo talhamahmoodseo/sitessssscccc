@@ -61,46 +61,106 @@ const BLOG_POSTS = [
   },
   {
     slug: "linked-vs-unlinked-mentions",
-    cover: "Linked vs unlinked mentions",
-    title: "Linked vs Unlinked Mentions: What Actually Moves the Needle",
+    cover: "Unlinked brand mentions",
+    title: "Unlinked Brand Mentions: How to Find Them and Turn Them Into Links",
     excerpt:
-      "Links move rankings. Mentions move AI answers. Treating them as the same deliverable is how budgets get wasted — here is how we split them in real campaigns.",
-    category: "Digital PR",
+      "An unlinked mention is your brand named on another site without a link. What they're worth for Google and for AI answers, how to find them, and how to turn the right ones into links.",
+    category: "AI Search",
     date: "May 27, 2026",
-    read: "6 min",
-    glyph: "¶",
+    updated: "Nov 19, 2026",
+    read: "8 min",
+    glyph: "\u00b6",
     grad: "bg-butter",
     body: [
       {
         t: "p",
-        c: 'Every month a client asks some version of the same question: the mention went live but there is no link — did we waste the placement? Five years ago the honest answer was "mostly, yes." Today it depends entirely on which machine you are trying to influence.',
+        c: "An unlinked brand mention is any page that names your brand without linking to your site. A trade blog writes \u201ctools like YourBrand\u201d, a podcast recap names your founder, a news story quotes your CEO. The mention is there. The link isn\u2019t.",
       },
-      { t: "h2", c: "What a link still does" },
       {
         t: "p",
-        c: "Google’s ranking systems remain link-driven. A contextual, do-follow link from a real publication passes authority to a specific page and helps that page rank for specific keywords. If your goal is moving a category page from position nine to position three, you need links. No amount of unlinked coverage substitutes for that.",
+        c: "Every month a client asks some version of the same question: the mention went live but there\u2019s no link, so did we waste it? A few years ago the honest answer was \u201cmostly, yes.\u201d Today it depends on what you want to move: Google\u2019s rankings, or the answers AI tools give about your brand.",
       },
-      { t: "h2", c: "What a mention does that a link cannot" },
+      { t: "h2", c: "Do unlinked mentions help SEO?" },
       {
         t: "p",
-        c: 'Language models do not crawl PageRank. They learn what to say about your brand from how it appears in text across the sources they trust. An unlinked sentence on a credible trade site — "YourBrand has built a reputation for 24/7 dispatch" — teaches the model an association it can repeat in answers. Industry research backs this up: a large Ahrefs analysis found brand mentions to be the strongest correlate of AI visibility, and most cited material comes from third-party sites rather than brand-owned pages.',
+        c: "For Google rankings, a little, and not in a way you can count on. Google\u2019s ranking systems still lean on links. A contextual link from a real publication passes authority to one specific page and helps that page rank for specific searches. If your goal is moving a service page from position nine to position three, you need links. No pile of unlinked mentions replaces that.",
+      },
+      {
+        t: "p",
+        c: "Mentions still help Google understand who you are. A brand that\u2019s named often, in the right context, is easier to connect to a topic. But you can\u2019t point a mention at a page, and you can\u2019t measure its effect the way you measure a link.",
+      },
+      { t: "h2", c: "Where unlinked mentions matter more: AI answers" },
+      {
+        t: "p",
+        c: "AI tools don\u2019t count links the way Google does. They learn what to say about a brand from how it\u2019s described across the sources they trust. A sentence on a credible trade site, \u201cYourBrand is known for 24/7 dispatch\u201d, teaches the model an association it can repeat in its answers.",
+      },
+      {
+        t: "p",
+        c: "Ahrefs studied 75,000 brands and found that mentions of a brand across the web lined up with AI Overview visibility far more closely than backlinks did: a correlation of 0.664 for mentions, against 0.218 for backlinks. It\u2019s a correlation, not proof, but it matches what we see in client work.",
+      },
+      {
+        t: "p",
+        c: "We saw the other side of it on our own brand. In November 2026 we asked ChatGPT, Google AI Mode, Google\u2019s AI Overview and Perplexity 30 questions buyers ask about link building agencies: 120 answers in total. Editorial HQ wasn\u2019t recommended once. When we asked about us directly, one answer described a different company with a similar name and gave us its prices and its reviews. That\u2019s what a thin mention footprint looks like from the inside, and it\u2019s the first thing we\u2019re fixing for ourselves.",
       },
       {
         t: "quote",
-        c: "Links are votes for a page. Mentions are sentences about a brand. Different machines count different things.",
+        c: "Links are votes for a page. Mentions are sentences about a brand. Google and AI tools count different things.",
+      },
+      { t: "h2", c: "How to find unlinked mentions of your brand" },
+      {
+        t: "ul",
+        c: [
+          "Search Google for your brand, minus your own site: \u201cYourBrand\u201d -site:yourbrand.com. Then add the words buyers use, like \u201cYourBrand review\u201d or \u201cYourBrand alternatives\u201d, to find the mentions people actually read.",
+          "Set up a mention tool. Ahrefs Content Explorer, Semrush Brand Monitoring, Brand24 or Mention will alert you when your brand is named. Filter out pages that already link to you.",
+          "Search your founder\u2019s name and your product names. Writers often name the person or the product, not the company.",
+          "Search the versions people get wrong. Search Console shows what people type to find you. For us it\u2019s searches like \u201chq links\u201d and \u201chq pr\u201d.",
+          "Go back through your own press. Every interview, podcast, guest appearance and quote from the last two years. Many of them named you and never linked.",
+        ],
+      },
+      { t: "h2", c: "Which mentions are worth turning into links" },
+      {
+        t: "p",
+        c: "Not every mention deserves an email. We run the same checks we run before placing a link, and three of them decide most cases:",
+      },
+      {
+        t: "ul",
+        c: [
+          "Does the site get real search traffic, and is the trend steady? A mention on a site nobody visits isn\u2019t worth the ask.",
+          "Is it relevant? A trade publication in your industry is worth chasing. A scraper or \u201cwebsite worth\u201d page is not.",
+          "Is the page indexed and still live? A link on a page Google doesn\u2019t index passes nothing.",
+        ],
+      },
+      {
+        t: "p",
+        c: "What\u2019s left is usually a short list: trade publications, reviews, roundups and interviews. Those are the ones to chase.",
+      },
+      { t: "h2", c: "How to turn a mention into a link" },
+      {
+        t: "ul",
+        c: [
+          "Write to the person who wrote it, not the general contact form. Their name is usually on the page.",
+          "Keep it short. Thank them for the mention, say which page would help their readers, and give the exact URL. Three or four sentences.",
+          "Link to the page that matches what they wrote about. Use your homepage only if they named the brand in general.",
+          "Follow up once, a week later. Then leave it.",
+          "Keep one sheet: the page, the ask, the date and the answer. After twenty asks you\u2019ll know your real hit rate.",
+        ],
+      },
+      {
+        t: "p",
+        c: "Many editors won\u2019t reply. The ones who do give you a link on a page that already chose to talk about you, which is about as natural as a link gets. And if a publication\u2019s policy is no links in that kind of article, thank them and move on. The mention still works for AI answers.",
       },
       { t: "h2", c: "How we split a real budget" },
       {
         t: "ul",
         c: [
           "Money pages that need rankings: editorial links with contextual anchors.",
-          "Category authority and AI answers: descriptive mentions on already-cited sources.",
-          "Both at once when possible — a feature that links AND describes is the best unit of work in this business.",
+          "Category authority and AI answers: descriptive mentions on the sources AI tools already cite.",
+          "Both at once when possible. A feature that links and describes the brand is the best unit of work in this business.",
         ],
       },
       {
         t: "p",
-        c: "The report we send clients now has two columns where it used to have one. Placements that pass authority, and placements that build the citation footprint. Judging the second column by the standards of the first is how good campaigns get cancelled early.",
+        c: "The report we send clients has two columns where it used to have one: placements that pass authority, and placements that build the mention footprint. Judging the second column by the standards of the first is how good campaigns get cancelled early.",
       },
     ],
   },
@@ -300,7 +360,9 @@ export const POST_SEO: Record<string, { title: string; description?: string }> =
       "Khaleej Times, Arabian Business and the regional press most agencies can't reach, and why Gulf media is a strong authority play for international brands.",
   },
   "linked-vs-unlinked-mentions": {
-    title: "Linked vs Unlinked Mentions: What Matters",
+    title: "Unlinked Brand Mentions: How to Convert Them",
+    description:
+      "What unlinked brand mentions are, what they do for Google and AI answers, and the steps we use to find them and turn the right ones into links.",
   },
   "site-vetting-checklist": {
     title: "Our Site-Vetting Checklist for Every Link",

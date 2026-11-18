@@ -19,9 +19,6 @@ const serviceLinks = [
   { name: "Digital PR", to: "/services/digital-pr" },
   { name: "Brand Mentions", to: "/services/brand-mentions" },
   { name: "HARO & Expert Quotes", to: "/services/haro-links" },
-  { name: "Guest Posting", to: "/services/guest-posting" },
-  { name: "Niche Edits", to: "/services/niche-edits" },
-  { name: "White Label Link Building", to: "/services/white-label-link-building" },
 ];
 
 const navLinks = [
