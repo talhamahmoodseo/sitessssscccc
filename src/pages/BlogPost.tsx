@@ -18,7 +18,7 @@ const BlogPost = () => {
     c = {
       "Link Building": { slug: "link-building", label: "Link Building" },
       "Digital PR": { slug: "digital-pr", label: "Digital PR" },
-      "AI Search": { slug: "brand-mentions", label: "Brand Mentions" },
+      "AI Search": { slug: "ai-seo-agency", label: "AI SEO & GEO" },
     }[s.category],
     u = {
       "@context": "https://schema.org",

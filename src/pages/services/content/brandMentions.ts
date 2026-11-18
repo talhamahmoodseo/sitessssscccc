@@ -1,5 +1,8 @@
 /**
- * Copy for /services/brand-mentions. Plan: SERVICE-PAGES-REDESIGN.md §4.
+ * Copy for /services/ai-seo-agency (was /services/brand-mentions, which now
+ * 301s here). Round 20: retargeted to "ai seo agency" / GEO / AEO, off-site
+ * only (owner's decision). Brand mentions stay the core method.
+ * Plan: SERVICE-PAGES-REDESIGN.md §4, docs/seo/growth-plan-90-days.md.
  *
  * Running example: a B2B SaaS help desk tool ("YourBrand"), the same client
  * as the "b2b-saas-ai-visibility" case study. Competitor names, domains and
@@ -8,16 +11,16 @@
 
 export const brandMentions = {
   seo: {
-    title: "Brand Mentions for AI Search & ChatGPT",
+    title: "AI SEO Agency for ChatGPT and Google AI",
     description:
-      "Get named when buyers ask ChatGPT, Perplexity and Google's AI Overviews. We place brand mentions on the sources AI answers cite, and track them monthly.",
+      "AI SEO agency for brands that want to be named in ChatGPT, Perplexity and Google AI. Off-site GEO: mentions, PR and list placements, tracked monthly.",
   },
 
   hero: {
-    eyebrow: "Brand mentions · AI visibility",
+    eyebrow: "AI SEO agency · GEO · AEO",
     h1a: "When buyers ask AI,",
     h1b: "your name should come up.",
-    lead: "ChatGPT, Perplexity and Google’s AI Overviews build their answers from what other sites say about you. We get your brand described on the sources they already trust, then check every month whether it’s working.",
+    lead: "ChatGPT, Perplexity and Google’s AI Overviews build their answers from what other sites say about you. So we work off-site: we get your brand described on the sources they already trust, then check every month whether it’s working.",
     primary: "See what AI says about us",
     question:
       "What’s the best help desk software for a 10-person support team?",
@@ -266,7 +269,7 @@ export const brandMentions = {
       "You want this instead of SEO. It works on the same foundations.",
     ],
     price: {
-      label: "Brand mentions pricing",
+      label: "AI SEO pricing",
       from: "$2,497",
       unit: "/month",
       plan: "Monthly campaign, links included",
@@ -281,13 +284,29 @@ export const brandMentions = {
   },
 
   faqHead: {
-    eyebrow: "FAQ",
-    h2a: "Questions",
-    h2b: "about AI visibility.",
+    eyebrow: "AI SEO FAQ",
+    h2a: "Questions about",
+    h2b: "AI SEO and GEO.",
     side: "Send us your brand and category. On the call, we’ll show you what AI tools say about you today, and whether this work makes sense for you yet.",
   },
 
   faqs: [
+    {
+      q: "What does an AI SEO agency do?",
+      a: "It works on how your brand shows up in answers from ChatGPT, Perplexity, Gemini and Google's AI Overviews and AI Mode. Some agencies focus on rewriting your website. We work off-site: we find the sources AI tools cite for your category and get your brand described there, through editorial mentions, comparison and \u201cbest of\u201d inclusions, digital PR and expert quotes. Then we measure the answers every month.",
+    },
+    {
+      q: "What is GEO (generative engine optimization), and how is it different from AEO?",
+      a: "GEO is the work of getting a brand cited or recommended in AI-generated answers. AEO, answer engine optimization, is an older name for much the same thing, from the days of featured snippets and voice search. Most agencies use the two interchangeably. What matters more is the method: on-site (making your own pages easy for AI to read) or off-site (being described on the sources AI trusts). We do the off-site part.",
+    },
+    {
+      q: "Do you change our website content or schema?",
+      a: "No. We're an off-site team: we don't rewrite your pages or touch your code. If your team or SEO agency handles on-site work, we share what our checks find, like the questions AI can't answer about you and the facts it gets wrong, so they can fix them on your site.",
+    },
+    {
+      q: "Can you guarantee that ChatGPT will recommend us?",
+      a: "No, and be careful with anyone who does. AI answers change by question, by tool and by week. We guarantee the work: the mentions we agree, placed on sites we've checked by hand, and an honest monthly report of what the answers say.",
+    },
     {
       q: "Can you change what AI tools say about our brand?",
       a: "Not directly. There's no submission form or direct line to ChatGPT or Google's AI. What you can influence is what those tools read. AI answers draw on sources they trust, and those sources can be reached through editorial work. We improve the inputs and measure the answers every month.",
@@ -317,6 +336,63 @@ export const brandMentions = {
       a: "No. The same publications feed both, and a site that struggles to rank usually struggles to be cited as well. It's the same authority work aimed at a second place buyers look, with its own targets and its own report.",
     },
   ],
+
+  /* our own baseline: Muse's AI check, 17–18 Nov 2026 (kit tab "3 AI
+     prompts log"). 30 questions per tool; prompts 29–30 ask about Editorial
+     HQ by name, so the 28 recommendation questions per tool are counted. */
+  own: {
+    eyebrow: "We checked ourselves first",
+    h2a: "Our own score:",
+    h2b: "0 out of 112.",
+    lead: "In November we asked ChatGPT, Google AI Mode, Google’s AI Overview and Perplexity the questions buyers ask about agencies like ours. 28 questions per tool, 112 answers. Editorial HQ wasn’t recommended once.",
+    tools: [
+      { k: "ChatGPT", v: 0, of: 28 },
+      { k: "Google AI Mode", v: 0, of: 28 },
+      { k: "Google AI Overview", v: 0, of: 28 },
+      { k: "Perplexity", v: 0, of: 28 },
+    ],
+    points: [
+      "The same handful of agencies came up again and again. Not because of their websites, but because comparison articles, review sites and Reddit threads keep naming them.",
+      "When we asked about Editorial HQ by name, one answer described a different company with a similar name, and gave us its prices and reviews.",
+      "So we’re running the same programme on ourselves that we run for clients, and we re-check every month.",
+    ],
+    note: "Checked 17–18 November 2026. The two questions that ask about Editorial HQ by name are left out of the count.",
+  },
+
+  /* real proof: SmileTutor case (lib/cases.ts → evidence) */
+  proof: {
+    eyebrow: "A real result",
+    h2a: "Named first",
+    h2b: "in Google’s AI Overview.",
+    lead: "SmileTutor is a tuition agency in Singapore. After it ranked first and was named in the comparison articles parents read, Google’s AI Overview for “online tuition” started opening with it.",
+    image: "/images/cases/smiletutor-ai-overview.webp",
+    alt: "Google AI Overview for 'online tuition' naming SmileTutor first",
+    caption: "“online tuition”: the AI Overview names SmileTutor first and links to it.",
+    domain: "google.com/search?q=online+tuition",
+    link: "/case-studies/smiletutor",
+    linkText: "Read the SmileTutor case study",
+  },
+
+  scope: {
+    eyebrow: "Off-site only",
+    h2a: "What we do,",
+    h2b: "and what we don’t.",
+    lead: "We’re an off-site team. That’s where AI tools look for proof, and it’s the work we do every day.",
+    do: [
+      "Find the sources AI tools cite for your category, and which of them never mention you",
+      "Get you described there: editorial mentions, comparison and “best of” inclusions",
+      "Digital PR and expert quotes on news and trade sites",
+      "One consistent description of your brand across the web",
+      "A monthly report of what AI answers say, with screenshots",
+    ],
+    dont: [
+      "Rewrite your website content",
+      "Change your code, schema or site structure",
+      "Fake reviews, planted Reddit posts or prompt tricks",
+      "Promise that any AI tool will name you",
+    ],
+    note: "Your website still matters. If your team or SEO agency handles on-site work, we hand them what our checks find.",
+  },
 
   pairs: {
     h2: "Pairs well with",

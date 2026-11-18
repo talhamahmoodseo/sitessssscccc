@@ -11,7 +11,7 @@ const COLUMNS = [
     links: [
       { name: "Link Building", to: "/services/link-building" },
       { name: "Digital PR", to: "/services/digital-pr" },
-      { name: "Brand Mentions", to: "/services/brand-mentions" },
+      { name: "AI SEO & GEO", to: "/services/ai-seo-agency" },
       { name: "HARO & Expert Quotes", to: "/services/haro-links" },
     ],
   },

@@ -45,8 +45,8 @@ export const SERVICES = [
     ],
   },
   {
-    slug: "brand-mentions",
-    nav: "Brand Mentions",
+    slug: "ai-seo-agency",
+    nav: "AI SEO & GEO",
     tint: "bg-lilac",
     sub: "Get named when buyers ask ChatGPT, Perplexity or Google’s AI Overviews. We place your brand on the sources AI answers already trust, then track it every month.",
     deliverables: [

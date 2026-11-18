@@ -107,8 +107,8 @@ export const about = {
         d: "Stories that earn coverage on news and trade publications.",
       },
       {
-        to: "/services/brand-mentions",
-        t: "Brand Mentions",
+        to: "/services/ai-seo-agency",
+        t: "AI SEO & GEO",
         d: "Mentions on the sources AI answers quote.",
       },
       {

@@ -245,7 +245,7 @@ const SERVICES: Service[] = [
   },
   {
     n: "03",
-    name: "Brand Mentions",
+    name: "AI SEO & GEO",
     line: "Get named when buyers ask AI.",
     d: "We find the sources ChatGPT, Perplexity and AI Overviews lean on for your category, and get you mentioned there.",
     points: [
@@ -253,7 +253,7 @@ const SERVICES: Service[] = [
       "Mentions on the sources AI tools actually cite",
       "Share of answers reported against competitors",
     ],
-    to: "/services/brand-mentions",
+    to: "/services/ai-seo-agency",
     tone: "cool",
     Art: Answer,
   },

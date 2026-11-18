@@ -506,9 +506,9 @@ export const linkBuilding = {
       },
       { to: "/services/digital-pr", k: "Service", t: "Digital PR" },
       {
-        to: "/services/brand-mentions",
+        to: "/services/ai-seo-agency",
         k: "Service",
-        t: "Brand mentions for AI search",
+        t: "AI SEO & GEO: get named in AI answers",
       },
       { to: "/services/haro-links", k: "Service", t: "HARO & expert quotes" },
     ],

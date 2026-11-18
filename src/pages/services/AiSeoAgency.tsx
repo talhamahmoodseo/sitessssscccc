@@ -15,12 +15,15 @@ import BeforeAfter from "./brand-mentions/BeforeAfter";
 import Anatomy from "./brand-mentions/Anatomy";
 import Report from "./brand-mentions/Report";
 import Loop from "./brand-mentions/Loop";
+import OwnCheck from "./brand-mentions/OwnCheck";
+import Proof from "./brand-mentions/Proof";
+import Scope from "./brand-mentions/Scope";
 
 const SERVICE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Brand Mention Building for AI Search",
-  serviceType: "Brand mentions and AI visibility",
+  name: "AI SEO Agency (off-site GEO)",
+  serviceType: "AI search optimization",
   description: C.seo.description,
   provider: { "@type": "Organization", name: "Editorial HQ" },
   areaServed: "Worldwide",
@@ -41,7 +44,7 @@ const CheckForm = () => {
   const send = () =>
     navigate(
       contactLink({
-        service: "Brand mentions & AI visibility",
+        service: "AI SEO & GEO",
         message: `Please run the free AI visibility check.\nBrand: ${brand}\nCategory: ${category}`,
       }),
     );
@@ -85,14 +88,17 @@ const CheckForm = () => {
 };
 
 /**
- * /services/brand-mentions
+ * /services/ai-seo-agency (round 20; was /services/brand-mentions, which
+ * 301s here in the WordPress theme)
  *
- * Story: the promise → how AI picks who to name (with data) → same question,
+ * Story: the promise → how AI picks who to name (with data) → our own score
+ * (0 of 112) → a real result (SmileTutor in the AI Overview) → same question,
  * six months apart → what a useful mention reads like → how we measure →
- * the monthly loop → one campaign in numbers → fit and price → questions →
- * free AI check. Plan: SERVICE-PAGES-REDESIGN.md §4.
+ * the monthly loop → off-site only: what we do and don't → client work →
+ * fit and price → questions → free AI check.
+ * Plan: SERVICE-PAGES-REDESIGN.md §4, docs/seo/growth-plan-90-days.md.
  */
-const BrandMentions = () => (
+const AiSeoAgency = () => (
   <PageLayout cta={false}>
     <Seo
       title={C.seo.title}
@@ -101,10 +107,13 @@ const BrandMentions = () => (
     />
     <Hero />
     <HowAiDecides />
+    <OwnCheck />
+    <Proof />
     <BeforeAfter />
     <Anatomy />
     <Report />
     <Loop />
+    <Scope />
     <ClientWork cases={casesFor("brand-mentions")} eyebrow="Client work" title="Brands we've got named" soft="where buyers compare." />
     <FitPrice c={C.fit} tint="bg-lilac" bg="bg-white" />
     <ServiceFaq
@@ -122,4 +131,4 @@ const BrandMentions = () => (
   </PageLayout>
 );
 
-export default BrandMentions;
+export default AiSeoAgency;

@@ -10,7 +10,7 @@ import PageLayout from "@/components/PageLayout";
 const LINKS = [
   { to: "/services/link-building", t: "Link Building" },
   { to: "/services/digital-pr", t: "Digital PR" },
-  { to: "/services/brand-mentions", t: "Brand Mentions" },
+  { to: "/services/ai-seo-agency", t: "AI SEO & GEO" },
   { to: "/case-studies", t: "Results" },
   { to: "/blog", t: "Blog" },
 ];

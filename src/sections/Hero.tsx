@@ -20,7 +20,7 @@ const Hero = () => {
     <div className="relative bg-mist overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.a
-          href="/services/brand-mentions"
+          href="/services/ai-seo-agency"
           className="inline-flex items-center gap-2.5 bg-white border border-line rounded-full pl-1.5 pr-4 py-1.5 mb-7 hover:border-navy-dark/30 transition-colors duration-300"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}

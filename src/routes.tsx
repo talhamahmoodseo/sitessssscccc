@@ -39,7 +39,7 @@ export const Terms = page(() => import("./pages/legal/Terms"));
 const SERVICE_PAGES: Record<string, ReturnType<typeof page>> = {
   "link-building": page(() => import("./pages/services/LinkBuilding")),
   "digital-pr": page(() => import("./pages/services/DigitalPR")),
-  "brand-mentions": page(() => import("./pages/services/BrandMentions")),
+  "ai-seo-agency": page(() => import("./pages/services/AiSeoAgency")),
   "haro-links": page(() => import("./pages/services/HaroQuotes")),
 };
 

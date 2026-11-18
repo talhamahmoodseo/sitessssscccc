@@ -378,8 +378,8 @@ export const digitalPr = {
         d: "Steady authority for the pages you need to rank, while PR goes after the bigger titles.",
       },
       {
-        to: "/services/brand-mentions",
-        t: "Brand Mentions",
+        to: "/services/ai-seo-agency",
+        t: "AI SEO & GEO",
         d: "Turn coverage into the sources AI answers quote, and track whether it’s working.",
       },
       {

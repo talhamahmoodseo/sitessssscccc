@@ -318,9 +318,9 @@ const OTHER = [
     per: "",
   },
   {
-    to: "/services/brand-mentions",
-    t: "Brand Mentions & AI visibility",
-    d: "Mentions on the sources AI answers trust, tracked every month.",
+    to: "/services/ai-seo-agency",
+    t: "AI SEO & GEO",
+    d: "Off-site AI visibility: mentions on the sources AI answers trust, tracked every month.",
     from: "$2,497",
     per: "/mo",
   },

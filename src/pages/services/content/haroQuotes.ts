@@ -366,8 +366,8 @@ export const haroQuotes = {
         d: "When the requests are quiet, we create the story instead.",
       },
       {
-        to: "/services/brand-mentions",
-        t: "Brand Mentions",
+        to: "/services/ai-seo-agency",
+        t: "AI SEO & GEO",
         d: "Named expert quotes are the kind of mention AI answers pick up.",
       },
       {
